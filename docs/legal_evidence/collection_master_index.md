@@ -529,3 +529,11 @@
 - Official FRA 2025-hosted searchable Law 176/2018 full text through Article 84 added to Agent 3 research file; key Articles 2, 3, 5, 28, 37, 55 and 60 transcribed.
 - FRA Board implementation package mapped: Decision 137/2018 licensing (updated by Decision 91/2023); 138/2018 financial statements; 139/2018 contract registry; 163/2018 factoring controls (amendments 197/2018, 95/2019, 25/2021, 84/2021); 164/2018 governance (amended by 93/2020, later superseded/repealed within Decision 100/2020 cross-sector governance); 195/2018 cessation/liquidation/merger/acquisition; Decision 100/2020 governance (updated 2024); Decisions 294/2024 and 38/2025 administrative deadline/association items.
 - No omnibus Executive Regulation was located; Law 176/2018 delegates rulemaking to FRA Board decisions. This is recorded explicitly to avoid inventing a single executive regulation.
+
+
+### Research Agent 3 — Importers Register Law 121/1982 current consolidation and 2026 regulation
+
+- MIFT official law record marks Law 121/1982 in force; GOEIC lists Laws 7/2017, 9/2018, 173/2023 and 4/2026. A full searchable consolidated text through 2 April 2026 was retrieved via secondary legal publisher; Articles 1–14 and amendment footnotes transcribed in Agent 3 file.
+- Law 4/2026: Official Gazette issue 14 تابع (أ), 2 April 2026; Amiri Press indexed text and DSpace Gazette metadata located. Final enactment adds only Article 2 final paragraph, Article 4 bis, Article 7 final paragraph and Article 12 bis. A pre-parliamentary draft's proposed Article 10(3) did not survive into the enacted text.
+- Ministerial Decision 271/2026: MIFT marks it in force, issued 21 July 2026; Gazette الوقائع المصرية issue 157 تابع, 21 July 2026; effective 22 July 2026. It repeals Decision 846/2017 and issues the new Importers Register Executive Regulation. The Gazette PDF is DSpace restricted-access; searchable secondary transcription through 17 numbered regulation articles was acquired and selected Articles 2, 3, 8–11, 13 transcribed. The platform is required to be prepared within six months; verify actual activation.
+- New regulation introduces e-register data, electronic application platform, five-year registration term, 15-day decision period, 60-day update obligations, financial reporting and fees. The exact primary Gazette PDF bytes remain restricted and were not downloaded.
