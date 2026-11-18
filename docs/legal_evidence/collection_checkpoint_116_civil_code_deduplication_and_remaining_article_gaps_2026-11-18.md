@@ -43,3 +43,27 @@ Therefore, among the 1,120 article numbers remaining after excluding the 29 repe
 - Small gaps in the agency and real-security sequences (707, 709–713, 715, 1019, 1021–1022, 1024–1026) should be filled from the official government-hosted PDF and checked for repeal or numbering changes.
 - The base-code repeal of Articles 389–417 must be retained as a historical version status, not silently omitted or treated as operative.
 - The count is a source-extraction metric only. It does not measure amendment completeness, judicial interpretation coverage, Gazette-image verification, lawyer review or reuse rights.
+
+## Re-audit after checkpoint 117
+
+Checkpoint 117 filled Articles 1–53 and 81–88. The source PDF expressly identifies Articles 54–80 as repealed. Therefore, the updated repository-wide count is:
+- **897 unique article numbers identified**;
+- **896 complete article texts** plus partial/quarantined Article 766(2);
+- **56 repealed article numbers** in the base code (Articles 54–80 and 389–417);
+- **196 non-repealed article numbers not yet transcribed**.
+
+Updated untranscribed ranges:
+1. Articles 89–215 (127 numbers).
+2. Articles 371–379 (9).
+3. Articles 389–417 (29 repealed).
+4. Articles 448–451 (4).
+5. Articles 453–495 (43).
+6. Article 707 (1).
+7. Articles 709–713 (5).
+8. Article 715 (1).
+9. Article 1019 (1).
+10. Articles 1021–1022 (2).
+11. Articles 1024–1026 (3).
+
+There are 1,149 numbered positions through the Civil Code's final Article 1149; excluding the 56 repealed positions leaves 1,093 non-repealed positions. Of those, 897 have article-number records (896 complete and one partial), leaving 196 non-repealed numbers without a text extraction.
+
