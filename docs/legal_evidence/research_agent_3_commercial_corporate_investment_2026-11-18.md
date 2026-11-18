@@ -4029,3 +4029,49 @@ The 7-article decision sets economic-court expert fee bands and expressly covers
 **Currentness note:** Decision 3715/2026 changes the amounts in Decision 2208/2019; do not use the original 2019 fee figures without applying the 2026 substitutions. Decision 3067/2021 is a separate general economic-court expert-fee regime and repeals Decision 3997/2009, not Decision 2208/2019.
 
 **Collection status:** full searchable texts surfaced for Decisions 1899/2018 (15 articles), 6214/2018 (10 articles), 2208/2019 (9 articles) and 3067/2021 (7 articles); selected provisions transcribed above. Official Gazette/Laweg records confirm issue/date. Decision 1889/2018 remains a source lead. No lawyer review or rights clearance claimed.
+
+
+## 37. Trade Register Law 34/1976 — earlier amendments Law 98/1996 and Law 75/2017
+
+### A. Law 98/1996 — foreign exporters' registration exception
+
+**Amending Law:** Law 98/1996.  
+**Gazette:** Official Gazette issue 25 bis (ب), 30 June 1996.  
+**Current consolidated Article 4 footnote:** https://lawhub.info/eg/?p=11741  
+**Consolidated Article 4 text:** https://ghazylaw.com/commercial-registration-law/
+
+Law 98/1996 adds item (4) to Article 4 of Law 34/1976, permitting foreigners engaged in export activity to register in the Commercial Register for that activity regardless of their shareholding percentage.
+
+**Verbatim — added Article 4(4):**
+
+> (٤) الأجانب المزاولون لنشاط التصدير وفي حدود هذا النشاط سواء أكانوا أفراداً أو شركاء في شركات أشخاص أو أموال أياً كانت أنصبتهم في رأس المال.
+
+The original Gazette PDF/full amending law text has not yet been located; the exact added clause and Gazette metadata are confirmed by the current consolidated statute footnote.
+
+### B. Law 75/2017 — Article 3 replacement
+
+**Amending Law:** Law 75/2017 amending Law 34/1976.  
+**Gazette:** Official Gazette issue 24 تابع, 15 June 2017.  
+**Official legal portal record:** https://www.laweg.net/Default.aspx?FIID=252&action=LegsCates  
+**Searchable text in current consolidated statute:** https://lawhub.info/eg/?p=11741
+
+Law 75/2017 replaced Article 3 of Law 34/1976. It required Egyptian nationality and a Chamber of Commerce licence for individuals/businesses engaging in trade, and a Chamber of Industry licence for industrial establishments. Law 198/2020 subsequently replaced Article 3 again, so Law 75/2017 is historical amendment text, not the current Article 3 wording.
+
+**Verbatim — Law 75/2017 replacement Article 3 (historical version, superseded by Law 198/2020):**
+
+> مادة (٣):
+>
+> يشترط فيمن يقيد في السجل التجاري أن يكون مصرياً حاصلاً على ترخيص بمزاولة التجارة من الغرفة التجارية المختصة.
+
+The 2017 law is a distinct amendment instrument; the consolidated text confirms it was published in Official Gazette issue 24 تابع on 15 June 2017. The complete original two-article Gazette copy remains to be captured.
+
+### C. Trade Register amendment sequence
+
+Current Article 3 of Law 34/1976 is the text inserted by Law 198/2020, not the earlier Law 75/2017 text. The amendment sequence is:
+- Law 98/1996: adds Article 4(4) for foreign exporters.
+- Law 75/2017: replaces Article 3 with Egyptian nationality + trade/industry chamber licensing requirement.
+- Law 198/2020: replaces Article 3 again with separate Chamber of Commerce approval for commercial activity and Chamber of Industry approval for industrial establishments; also replaces first paragraphs of Articles 8 and 9.
+
+This sequence should be encoded as successive versions of Article 3, with Law 75/2017 marked superseded by Law 198/2020, rather than concatenating both versions into the current statute.
+
+**Collection status:** two additional amendment instruments identified; Law 75/2017 replacement text and Law 98/1996 inserted Article 4(4) transcribed from consolidated statutory text. Gazette issue/date metadata confirmed; original Gazette PDFs still outstanding. No lawyer review or rights clearance claimed.
