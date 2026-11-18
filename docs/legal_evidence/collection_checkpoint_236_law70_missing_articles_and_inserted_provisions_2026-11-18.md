@@ -70,29 +70,12 @@
 ### Article 38
 تلغى جميع الأحكام المخالفة لهذا القانون.
 
-## Inserted provisions — Articles 34 bis 1–3
-
-### Article 34 bis 1
-يجوز التصالح بين مصلحة الشهر العقاري والتوثيق وبين ذوي الشأن في الدعاوى والمنازعات المتعلقة بالرسوم المستحقة للمصلحة.
-وتنشأ في كل محافظة لجنة أو أكثر تختص دون غيرها بنظر طلبات الصلح في الدعاوى والمنازعات المذكورة والبت فيها. وتشكل اللجنة بقرار من وزير العدل برئاسة مستشار على الأقل بمحكمة الاستئناف ترشحه سنويا الجمعية العامة لمحكمة الاستئناف التي يعمل بها عضوية اثنين من العاملين بالمصلحة من درجة مدير عام على الأقل يعينهما وزير العدل.
-ويقدم طلب التصالح إلى المصلحة من صاحب الشأن ويترتب على تقديمه وجوب تأجيل الدعوى لمدة أو لمدد لا تزيد في مجموعها على سنة إذا كان النزاع مطروحا على القضاء، وتقوم اللجنة بدراسة الطلب وفقا لأسس تقدير الرسوم الواردة في هذا القانون أو أسس التقدير السابقة عليها أيهما أصلح للطالب وذلك بعد سماع أقواله والاطلاع على مستنداته وتبدى اللجنة رأيها مسببا في هذا الطلب. فإذا قبله الطالب أصدرت اللجنة قرارها بذلك، ويصبح هذا القرار ملزما للطرفين أمام القضاء.
-أما إذا كان النزاع لم يطرح على القضاء، وتوصل الطرفان أمام اللجنة إلى الصلح، فيكون قرارها بالتصالح سندا تنفيذيا يجوز التنفيذ بمقتضاه وفقا للأحكام الخاصة بذلك.
-ويصدر قرار من وزير العدل بنظام وقواعد وإجراءات تقديم طلبات التصالح ونظرها والبت فيها وسير العمل بلجان التصالح.
-
-### Article 34 bis 2
-يخفض الرسم النسبي على شهر المحررات بنسبة (٢٥%) من مقداره المستحق بعد التخفيض المنصوص عليه في الفقرة الأولى من المادة (٣٤) مكررا ومع تطبيق أحكام الفقرة الثانية من المادة ذاتها، ويسرى التخفيض الجديد على المحررات الخاصة بطلبات الشهر القائمة عند بدء العمل به، وتلك التي تقدم خلال ثلاث سنوات تالية.
-ويجوز لرئيس الجمهورية أن يقرر العمل بالتخفيض على الرسوم المشار إليه في الفقرة السابقة، وذلك لمدة أو لمدد أخرى.
-
-### Article 34 bis 3
-يخفض الرسم النسبي على شهر المحررات بنسبة الثلث من مقداره المستحق بعد التخفيض المنصوص عليه في الفقرة الأولى من المادة (٣٤) مكررا "٢" ومع تطبيق أحكام المادة ٣٤ مكررا، ويسري التخفيض الجديد على المحررات الخاصة بطلبات الشهر القائمة عند بدء العمل به، وتلك التي تقدم خلال ثلاث سنوات تالية.
-ولرئيس الجمهورية أن يقرر العمل بالتخفيض على الرسوم المشار إليها في الفقرة السابقة، وذلك لمدة أو لمدد أخرى.
-
 ## Deduplication and count effect
 
 - The existing canonical files already contain Articles 1, 2, 3, 7, 15–30, 32, 34, 35, 39, Article 24 bis and Article 34 bis (among other text snapshots). These are not repeated here.
 - This checkpoint adds 16 base article bodies: 4–6, 8–14, 31, 33, 34, 36–38. (Article 34 is treated as the base provision; Article 34 bis is separate.)
 - This checkpoint adds three inserted provisions: 34 bis 1, 34 bis 2 and 34 bis 3.
-- The complete Law 70/1964 source has 39 numbered base articles and five inserted provisions (24 bis; 34 bis; 34 bis 1; 34 bis 2; 34 bis 3). All 44 provision IDs are now represented across the canonical files and this checkpoint.
+- The complete Law 70/1964 source has 39 numbered base articles and five inserted provisions (24 bis; 34 bis; 34 bis 1; 34 bis 2; 34 bis 3). The five inserted provisions were already represented in the canonical files; this checkpoint completes the remaining 16 base article bodies. All 44 provision IDs are now represented.
 - Article 20 is repealed; Article 30 has been declared unconstitutional; preserve historical text and effect markers separately.
 - The source text is consolidated through Law 67/2021. Historical fee amounts must not be treated as current without the amendment and current-decision chain.
 - The 11-page Gazette scan copy is secondary-hosted. No Amiri Press original digital binary/hash is archived. No lawyer verification, commercial reuse permission or redistribution permission is claimed.
