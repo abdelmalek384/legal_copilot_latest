@@ -72,3 +72,8 @@ Supplemental text-capture metrics:
 ## Rights and verification
 
 All captured text remains source-matched but not lawyer-reviewed. No lawyer verification, commercial reuse permission, certified Gazette authenticity or bulk-collection permission is claimed. The fallback source pages are not treated as proof of redistribution rights.
+
+
+## Subsequent deduplication correction — checkpoint 189
+
+The original 31-entry count in this checkpoint was a raw capture count, not a unique article-provision count. After comparison against the pre-existing canonical text file and checkpoints 165/188, duplicate blocks were removed. This checkpoint's surviving additions are Law 142/1964 substantive Articles 9 and 10 (two unique provisions) and original Gazette-version snapshots of Law 68/1947 Articles 12–14 (three historical versions of existing article numbers). The Law 114 and Law 70 excerpts previously repeated here are already represented in the canonical capture/checkpoint files and are no longer duplicated. See checkpoint 189.
