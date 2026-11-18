@@ -4,6 +4,8 @@
 **Source:** LAW HUB searchable Arabic text, https://lawhub.info/eg/?p=12146, lines 845–1060 as opened on 18 November 2026.  
 **Source tier:** secondary transcription. Article 26 is annotated as amended by Decisions 200/2010 and 120/2025; Article 27 is annotated as amended by Decision 200/2010. Both current and pre-amendment wording displayed by the source are preserved. Compare with the original Gazette and each amendment before treating as current law.
 
+**Superseding note (checkpoint 212):** Articles 41–45 have now also been transcribed. Cumulative complete Arabic-body coverage is 53/185 (132 remain). See checkpoint 212.
+
 ## Article 26 — current wording shown after Decisions 200/2010 and 120/2025
 عند إعداد مشروع المخطط التفصيلي للمنطقة, يتم تحديد الكثافة البنائية بمراعاة الظروف المحلية لكل مدينة أو قرية ووفقاً لإجمالي عدد الوحدات السكنية والخدمية المطلوبة لسنة الهدف والاستعمالات المسموح بها والمرافق والطرق وذلك بما يتوافق مع المخطط الاستراتيجي العام للمدينة أو القرية.
 
