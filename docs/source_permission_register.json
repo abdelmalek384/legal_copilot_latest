@@ -1163,19 +1163,21 @@
     {
       "source_id": "EG-ALHASSWA-COURT-CASSATION-TEXTS",
       "authority": "Alhasswa Law Firm legal library (secondary host; pages attribute source text to the Egyptian Court of Cassation legal portal)",
-      "source_page": "https://alhasswalawfirm.com/law-library/; https://alhasswalawfirm.com/law-library/law-143-1981; https://alhasswalawfirm.com/uploads/files/law-143-1981-1789186662928-97104762.pdf",
+      "source_page": "https://alhasswalawfirm.com/law-library/; https://alhasswalawfirm.com/law-library/law-114-1946; https://alhasswalawfirm.com/uploads/files/law-114-1946-1789186916244-431326360.pdf",
       "material_types": [
-        "Searchable consolidated statutory texts for Laws 114/1946, 142/1964, 68/1947 and 70/1964",
-        "PDF attachments and article-by-article statutory transcriptions"
+        "full-text statutory reproductions attributed to Court of Cassation portal",
+        "Law 114/1946 consolidated text through 6 March 2022",
+        "Law 142/1964 consolidated text",
+        "Decree 825/1975 full text"
       ],
-      "access_status": "Public searchable 29-article Law143/1981 consolidated text and 16-page PDF inspected 2026-11-18; source attributes text to Court of Cassation legislation portal and includes amendment footnotes through Law11/2024; site terms not reviewed",
+      "access_status": "Public searchable HTML and PDF inspected 2026-11-18; Law114 HTML page contains 70 headings and 578 lines; PDF mirror 574 lines; both secondary-hosted.",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
-      "permission_evidence": "Checked 2026-11-18. The law-library pages for Laws 114/1946, 142/1964, 68/1947 and 70/1964 provide searchable consolidated texts and describe the underlying text as transcribed from the Court of Cassation legislative portal. These are secondary-hosted reproductions, not original Amiri Press Gazette PDFs. No specific licence for bulk collection, OCR, indexing, commercial use, public display or redistribution was identified. The Law143/1981 PDF is a consolidated secondary-hosted text, not an original Gazette issue binary. Public access does not establish permission for bulk archiving, commercial reuse or redistribution.",
+      "permission_evidence": "The Law114 HTML page states 70 articles and consolidation through 6 March 2022; six additional article bodies (25,31,32,33,40,50) were transcribed in the latest Law114 text supplement. The PDF mirror has earlier selected article captures. These are secondary reproductions, not original Amiri Press binaries. Public access does not grant commercial reuse permission.",
       "terms_checked_on": null,
       "bulk_download_or_api": "Individual pages/PDF attachments; no bulk/API permission established",
-      "required_next_action": "Obtain original Amiri Press Gazette files where available; compare all article text and historical footnotes; review site terms and keep commercial reuse unknown absent affirmative permission."
+      "required_next_action": "Acquire original Gazette PDFs and verify the full 70-article consolidation against each amendment; obtain written permission for bulk extraction and commercial reuse; preserve repealed and inserted bis article versions separately."
     },
     {
       "source_id": "EG-MOA-DESERT-LAND-LAW143",
