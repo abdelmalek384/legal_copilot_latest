@@ -1125,6 +1125,40 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
       "required_next_action": "Inspect terms and obtain the original SCC judgment/Gazette issue; retain Qadaya as a secondary full-text source only until corroborated."
+    },
+    {
+      "source_id": "EG-CAIRO-GOV-STATE-LAND-REGULARIZATION",
+      "authority": "Cairo Governorate official website",
+      "source_page": "https://www.cairo.gov.eg/ar/more/more/taqnen/",
+      "material_types": [
+        "Official administrative notice on Law 168/2025 filing deadline",
+        "National state-land regularization platform guidance"
+      ],
+      "access_status": "Public government website; notice dated 21 June 2026 states 18 July 2026 as the last filing date",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Checked 2026-11-18. Cairo Governorate's official notice page states that the final date to receive regularization applications under Law 168/2025 is 18 July 2026. The notice predates Presidential Decision 480/2026 and therefore does not resolve the extension. No source-specific bulk collection or commercial reuse licence identified.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "single public HTML notice; no bulk/API permission established",
+      "required_next_action": "Preserve the notice as official administrative guidance; seek a post-Decision-480 update and retain rights status unknown."
+    },
+    {
+      "source_id": "EG-SIS-STATE-LAND-PLATFORM-ANNOUNCEMENT",
+      "authority": "Egyptian State Information Service",
+      "source_page": "https://sis.gov.eg/ar/المركز-الإعلامي/الأخبار/إطلاق-المنصة-الوطنية-لتقنين-أراضي-الدولة/",
+      "material_types": [
+        "Official public information announcement for the National State Land Regularization Platform",
+        "Administrative statement that filing period is six months from commencement of the Executive Regulation"
+      ],
+      "access_status": "Public government announcement; date indexed in 2026; states six-month filing period but no exact final date",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Checked 2026-11-18. SIS announcement states that the national platform enables online applications and that the six-month filing period runs from commencement of the Executive Regulation. It does not give an exact deadline or explain Presidential Decision 480/2026. No specific bulk retrieval or commercial reuse licence identified.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "single public HTML announcement; no bulk/API permission established",
+      "required_next_action": "Preserve as official government information, not a substitute for the Gazette text or binding deadline interpretation; keep reuse permission unknown."
     }
   ]
 }
