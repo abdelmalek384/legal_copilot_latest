@@ -1989,6 +1989,38 @@
       "terms_checked_on": "2026-11-18",
       "bulk_download_or_api": "Single PDF URL; no bulk/API permission established",
       "required_next_action": "Archive permitted PDF bytes and SHA-256; inspect terms; keep Gazette reproduction and administrative circular as separate legal instruments."
+    },
+    {
+      "source_id": "EG-ALHASSWA-LAW147-2026",
+      "authority": "Alhasswa Law Firm, Egypt",
+      "source_page": "https://alhasswalawfirm.com/law-library/law-147-2026",
+      "material_types": [
+        "Law 147/2026 searchable 112-article Arabic transcription"
+      ],
+      "access_status": "Full searchable Arabic text observed; page attributes source text to the Court of Cassation legislation portal; selected provisions mirrored in repository tranche; full local mirror pending.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "The page includes a copyright notice and law-firm use disclaimer. No affirmative licence for local full-text mirroring, commercial indexing or redistribution identified.",
+      "terms_checked_on": "2026-11-18",
+      "bulk_download_or_api": "HTML searchable text; no bulk/API permission established",
+      "required_next_action": "Request permission for local archival copy and compare complete 112-article transcription with official Gazette issue30 repeated PDF."
+    },
+    {
+      "source_id": "EG-DRHISHAM-LAW154-2026",
+      "authority": "Egypt Consult Hisham El-Husseiny & Partners, Egypt",
+      "source_page": "https://drhisham.org/tax-law/قوانين-أخرى-ذات-صلة/قانون-154-لسنة-2026/المادة-الأولى/",
+      "material_types": [
+        "Law 154/2026 Arabic text, Articles 1 and 2; source attribution to ETA official PDF"
+      ],
+      "access_status": "Two article pages opened; text identifies ETA official PDF as source and was captured in tranche.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://drhisham.org/الشروط-والأحكام/",
+      "permission_evidence": "Site includes copyright notice and general information disclaimer; no affirmative permission for commercial bulk extraction or redistribution identified.",
+      "terms_checked_on": "2026-11-18",
+      "bulk_download_or_api": "Article-by-article HTML; no bulk/API permission established",
+      "required_next_action": "Prefer direct ETA official PDF; confirm terms for any further extraction or redistribution."
     }
   ]
 }
