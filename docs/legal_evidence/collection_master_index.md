@@ -2284,3 +2284,10 @@ Added a complete three-article Arabic transcription of PM Decision2170/2026, inc
 Registered five PM decisions (EG-0330 to EG-0334) from Official Gazette issue46, 12 November 2026: Decisions3127,3128,3130,3131 (amending prior school expropriation/public-utility decisions) and 3308 (free state-land allocation for a school in Fayoum). Partial Arabic operative text is captured in [the issue46 tranche](acquisition_tranche_gazette_issue46_land_decisions_3127_3128_3130_3131_3308_2026-11-12.md).
 
 **Material discrepancy:** Decision3127's official Amiri Press home-page snippet and a secondary report give substantially different area figures. The discrepancy is explicitly flagged; neither figure is accepted pending Gazette page image and cadastral annex. The other four decisions also require their original Gazette pages and attached plans.
+
+
+### Decision3536/2026 — official Cabinet text recovered
+
+A direct Amiri Press page was blocked, so I used the official Cabinet of Egypt meeting record dated 10 November 2026. It reproduces the substantive Arabic paragraphs describing the approved draft decision: committee powers, binding effect, quarterly meetings, technical secretariat, secretariat functions and local committees in eight coastal governorates. Those paragraphs are transcribed verbatim in [the Decision3536 Cabinet-text tranche](acquisition_tranche_pm_decision3536_2026_coastal_committee_official_cabinet_text.md).
+
+This materially improves the text record, but the Cabinet statement is not the promulgated Gazette itself. Exact final wording, article numbering and any changes must still be compared with issue45 bis (د). The source and inventory record now distinguish the official Cabinet draft description from the final decree.
