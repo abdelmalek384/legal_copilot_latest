@@ -115,3 +115,11 @@ A further **29 distinct provisions** (Articles 418–446) were transcribed from 
 
 The cumulative Civil Code extraction stream is now **260 distinct article provisions** (67 prior + 193 new in this continuation: 216–370, 380–388 and 418–446). This is a deduplicated set of extracted provisions, not a consecutive range and not a statement that all are current. OCR and amendment verification remain outstanding.
 
+## 9. Further Civil Code extraction — Articles 496–601
+
+Two additional base-text batches were added to checkpoint 86:
+- Articles 496–557: **62 provisions**, covering gifts, revocation, partnership, loan, permanent income and compromise.
+- Articles 558–601: **44 provisions**, covering the general Civil Code lease regime, landlord/tenant duties, warranty, improvements, sublease and termination.
+
+The cumulative Civil Code extraction stream is now **366 distinct provisions** (67 prior + 299 new in this continuation). It remains a non-consecutive, base-text extraction set; special rent laws and later amendments may displace these default lease provisions. OCR/page-image verification and historical versioning remain open.
+
