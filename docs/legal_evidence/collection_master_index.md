@@ -15,6 +15,8 @@
 
 ## Collection checkpoints
 
+| checkpoint 100 — Agent 3 e-signature Gazette text | Law 15/2004 Arts 14–21 and amended Executive Regulation Arts 1–8 captured; official Gazette confirms Decision 331/2020 (not the 361/2020 number in some secondary pages); cumulative 91 instruments / 1,173 provision units |
+
 | checkpoint 99 — Agent 3 Trade Register Law 198/2020 | ITDA primary PDF located; secondary Arabic transcription of three replacement provisions (Arts 3, 8(1), 9(1)); Executive Regulation 106/2018 official download identified but not acquired; cumulative 90 instruments / 1,157 provision units |
 
 | checkpoint 98 — Agent 3 Investment amendment text | Agent 3 checkpoint file: six additional provisions from Law 141/2019 and PM Decision 2562/2024; cumulative 89 instruments / 1,154 provision units |
@@ -1045,4 +1047,4 @@
 - Law 20/2024: Official Gazette issue 14 مكرر, 5 Apr 2024; effective 6 Apr 2024. MOF official record marks it in force; official Gazette DSpace and Amiri Press text obtained.
 - Replaces Consumer Protection Law 181/2018 Article 71 for Article 8 strategic-products offences. Current penalty: imprisonment at least one year and fine EGP 150,000–3 million or value of goods (whichever greater); recidivism 2–5 years and doubled fine limits; confiscation, possible closure up to six months, publication in two daily newspapers, possible licence cancellation.
 - Both replacement Article 71 and commencement Article 2 transcribed in Agent 3 file. Original Article 71 text is historical only.
-- **Updated Agent 3 minimum:** 90 distinct instruments with some Arabic text surfaced; 1,157 article/provision text units; 13/13 assigned families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
+- **Updated Agent 3 minimum:** 91 distinct instruments with some Arabic text surfaced; 1,173 article/provision text units; 13/13 assigned families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
