@@ -816,3 +816,11 @@
 
 - FRA's official Decision 135/1993 page (marked updated 2025) lists the complete historical amendment index from PM Decisions 2482/2025 and 1539/2025 back through the original Decision 135/1993, including 2024 Decision 2423, 2023 Decision 3045, 2022 Decisions 4664/3456/1109, 2020 Decision 1760, 2019 Decisions 2216/1347, 2018 Decision 2479 and 50+ earlier ministerial decisions.
 - The full list and exact official catalogue link are preserved in Agent 3 file. Many historic items remain source leads only; each must be Gazette-retrieved and version-mapped. Some may be administrative/fee rules rather than substantive amendments.
+
+
+### Research Agent 3 — Competition Law 175/2022 and Decision 1120/2024 merger control
+
+- Law 175/2022: Official Gazette issue 52 تابع (أ), 29 Dec 2022; effective 30 Dec 2022. Amends Competition Law 3/2005, introduces ex ante economic-concentration review, notification thresholds, mandatory standstill, Phase I/II reviews, commitments, FRA coordination for non-bank financial activities, and penalties up to 10% of turnover/assets/transaction value (or EGP 30m–500m fallback). Full current ECA consolidated text and selected inserted Articles 19 bis / 19 bis A–F and 22 bis D transcribed.
+- PM Decision 1120/2024: Official Gazette issue 14 تابع (أ), 4 Apr 2024; effective 1 Jun 2024. Replaces Executive Regulation Articles 30 and 41(1), adds Chapter 9 / Articles 48–62, repeals Articles 44, 44 bis and 45. Full searchable text and official DSpace record obtained; key new provisions on definition, material influence, thresholds, substantive test, notification documents, commitments, below-threshold call-in and FRA-regulated concentrations transcribed.
+- ECA confirms merger-control system operational from 1 Jun 2024.
+- **Updated Agent 3 minimum:** 72 distinct instruments with some Arabic text surfaced; 991 article/provision text units; 13/13 families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
