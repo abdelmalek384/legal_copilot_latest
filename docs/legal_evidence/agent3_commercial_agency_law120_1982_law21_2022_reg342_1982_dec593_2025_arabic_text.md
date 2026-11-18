@@ -203,3 +203,57 @@ Adds Articles 3 bis, 15 bis, 15 bis 1, 16 bis, 16 bis 1, 16 bis 2, 16 bis 3 and 
 ## Counting
 - Law 120/1982, Law 21/2022, Decision 342/1982, and Decision 593/2025 already appear in the Agent 3 inventory. This is a text-depth and currentness expansion; no new unique-instrument count.
 - The searchable LawHub texts cover the full Law 120 statutory article range and the 32-article executive regulation; Decision 593 adds/replaces several provisions whose exact text still needs Gazette-page verification.
+
+
+## Primary-source upgrade — original 1982 Gazette and current consolidated statutory text
+
+### Original Law 120/1982 Gazette PDF
+- GOEIC official-hosted Gazette PDF: https://www.goeic.gov.eg/upload/online/2024/03/documents/files/ar/1134.pdf
+- Gazette issue 31, 5 August 1982, pages 2116–2134; source extraction contains the issuing provisions and the full 24-article statute.
+- Primary text confirms the original title was "قانون تنظيم أعمال الوكالة التجارية وبعض أعمال الوساطة التجارية" and commencement was six months after publication. Law 21/2022 later expanded the title to include real-estate brokerage; preserve both title versions.
+- The original statute is not a current consolidated version; use the 2022 consolidated text below for current wording while preserving the original as historical.
+
+**Original Article 1 — commercial agent / intermediary**
+> يقصد بالوكيل التجاري، في مجال تطبيق أحكام هذا القانون، كل شخص طبيعي أو اعتباري يقوم بصفة معتادة – دون أن يكون مرتبطاً بعقد عمل أو عند تأجير خدمات – بتقديم الطلبات أو بإبرام عمليات الشراء أو البيع أو التأجير، باسم ولحساب المنتجين أو التجار أو الموزعين أو باسمه ولحساب أحد هؤلاء.
+> كما يقصد بالوسيط التجاري من انحصر نشاطه، ولو عن صفقة واحدة، في البحث عن متعاقد أو التفاوض معه لإقناعه بالتعاقد، وكذلك كل من قام بأي عمل من أعمال الوكالة التجارية ولو غير اعتيادي ولمرة واحدة، أو كل من يرتبط مع المنتج أو التاجر أو الموزع بعقد عمل.
+
+**Original Article 2 — mandatory registration**
+> مع عدم الإخلال بأحكام القانون رقم ٣٤ لسنة ١٩٧٦ في شأن السجل التجاري تحظر مزاولة أي عمل من أعمال الوكالة التجارية أو الوساطة التجارية إلا أن يكون اسمه مقيداً في سجل الوكلاء والوسطاء التجاريين المعد لذلك بوزارة الاقتصاد والتجارة الخارجية.
+
+**Original Article 6 — five-year renewal**
+> يجدد القيد كل خمس سنوات من تاريخ القيد أو من تاريخ آخر تجديد، على أن يقدم الطلب خلال التسعين يوماً السابقة لانتهاء المدة، ومع ذلك يقبل الطلب إذا قدم خلال التسعين يوماً التالية لانتهاء المدة، إذا قام الطالب بسداد الرسم في هذه الحالة مضاعفاً.
+> ويشطب قيد الوكيل أو الوسيط في حالة عدم تقديم طلب التجديد خلال التسعين يوماً المشار إليها.
+
+**Original Article 10 — amendment notice**
+> يتعين على الوكيل التجاري أن يقدم للإدارة المختصة بسجل الوكلاء والوسطاء التجاريين بكل تعديل في البيانات الخاصة بالوكيل أو التوكيلات التجارية المسندة إليه وعلى الأخص بأي تعديل أو اتفاق مستقل خاص بنسبة العمولة أو مقدارها وذلك خلال ثلاثين يوماً على الأكثر من تاريخ حصول التعديل.
+> فإذا حصل الوكيل التجاري على توكيل آخر خلال القيد تعين قيد التوكيل الجديد بالسجل المشار إليه بالمادة (٢) قبل ممارسة العمل استناداً إلى هذا التوكيل.
+
+**Original Article 16 — registration offence**
+The original Gazette text prescribes imprisonment and a fine for practising commercial agency or intermediary activity without registration; later Law 21/2022 materially increases the penalty and extends it to real-estate brokerage. Preserve the historic version and current version separately.
+
+### Current consolidated statutory text — Ministry of Investment / Investment Portal
+- Official ministry portal PDF: https://portal.investment.gov.eg/publiclaws/download/24
+- 570 extracted lines; displays original and final/current wording side-by-side for the provisions amended by Law 21/2022.
+- The portal identifies Law 21/2022, dated 11 April 2022, published Official Gazette issue 14 bis (ج), effective 12 April 2022.
+- Current title includes commercial agency, commercial intermediation and real-estate brokerage.
+- Current law adds Articles 2 bis, 3 bis and 12 bis series; the portal shows current and original text for amended provisions.
+- Current Article 2 requires registration for commercial agents/intermediaries and real-estate brokers.
+- Article 3 bis imposes eligibility and training requirements for real-estate brokers; Article 4 extends contract documentation requirements to real-estate brokerage.
+- Current Article 16 provides up to two years imprisonment and a fine from EGP 50,000 to EGP 1,000,000 (or either), plus activity disqualification up to two years and closure for the same period, for unregistered practice.
+- Article 22 expands cancellation grounds to include violations of new Articles 11 bis, 12 bis and 12 bis (أ).
+- The portal text is a ministry-hosted current consolidated view, not the original Gazette binary of Law 21/2022. Original issue page/image still required for the amendment delta.
+
+### 2025 Executive Regulation amendment — provenance cross-check
+- GOEIC official laws-and-decisions catalogue lists Decision 593/2025 as a ministerial decision amending Decision 342/1982.
+- Amiri Press DSpace item: https://dspace.id.com.eg/items/ae370da9-bba8-4f99-ae12-be9b0c45dac3 — Official Gazette issue 20 supplement (أ), 25 January 2026; ministry author; original 2.26 MB issue PDF is request-only.
+- Separate Amiri Press/MELES item: https://dspace.id.com.eg/items/63d55c41-fd45-416b-8d36-0a1bbe72c0b1 — Decision 593/2025 file (217.7 KB Arabic and 312.37 KB English) is also restricted/request-copy.
+- Full decision text is available through EastLaws (https://www.eastlaws.com/legislation-full-text/ar/egypt/minister-investment-foreign-trade-decision/25-01-2026/no-593?id=5282594&type=1) and GOEIC catalogue metadata. It replaces eleven regulation provisions, inserts eight new provisions, repeals Articles 26 and 27, and creates a six-month transition for real-estate brokers. Original Gazette page images remain uninspected.
+- Correction: Decision 593/2025 was issued in 2025 but published on 25 January 2026 and effective 26 January 2026. Use publication/effective dates, not the decision number's year alone.
+
+### Cross-jurisdiction false positive avoided
+Search results for "Law 13/2016" and Ministerial Decision 565/2017 commercial agency led to Kuwait legislation pages (URL path explicitly marked kw-legislation), not Egyptian legislation. They are excluded from the Egypt corpus. Egypt's relevant parent statute remains Law 120/1982 and its Decision 342/1982 regulation.
+
+### Rights / legal status
+- GOEIC and Ministry of Investment official hosting improve provenance but do not grant commercial republication rights.
+- Amiri Press DSpace original 2026 Gazette bundles for Decision 593/2025 remain request-only.
+- No lawyer review; not verified.
