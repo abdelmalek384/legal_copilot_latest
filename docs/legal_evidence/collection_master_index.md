@@ -1379,3 +1379,13 @@
 
 
 | checkpoint 146 — Agent 3 CBE goAML circular for FX companies (16 Apr 2026) | Captured Arabic operative text for the mandatory use of goAML as the sole official electronic channel for suspicious-transaction reports, plus all nine minimum security controls: dedicated CBE-secured connection separated from company/internet networks, anti-malware, external-media block, licensed/updated OS, audit logs, strict user-permission matrix, no external maintenance access, business continuity and application allowlisting. Six-month transition. CBE official register confirms circular date/category; original PDF direct access blocked, text corroborated by five independent financial-news reproductions. Refers to 1 Sep 2025 FX-company AML/CFT controls clause 6-3. +1 CBE circular; no statute-article unit increment; cumulative Agent 3 **176 documents / 1,869 normalized units**; assigned-domain estimate **44% provisional**; whole corpus **2% provisional**; lawyer review 0%. Full Arabic text and caveats: [agent3_cbe_fx_companies_goaml_circular_16_apr_2026_arabic_text.md](agent3_cbe_fx_companies_goaml_circular_16_apr_2026_arabic_text.md) |
+
+
+### Research Agent 1 — checkpoint 157: Law 142/1964 amendment and judicial-effect reconciliation (18 November 2026)
+
+- Added [collection_checkpoint_157_law_142_1964_amendment_and_judicial_effects_2026-11-18.md](collection_checkpoint_157_law_142_1964_amendment_and_judicial_effects_2026-11-18.md).
+- Law 142/1964 has **72 numbered provisions total**: six issuing articles plus **66 substantive articles**. Its identified direct statutory amendment chain contains Law **83/2006**, which replaced Article 30 and also amended Law 70/1964; it remains one instrument record (EG-0221).
+- Clarified judgment effects: Case 10/35 invalidated Articles 21 and 24 and Article 23 fell consequentially; Case 42/17 invalidated **Article 37(2) only**, Article 37(1) remains, and Article 38 fell consequentially. The Alhasswa consolidated footnote overgeneralizes Case 42/17 as invalidating Article 37; the more precise judgment text controls.
+- Case 42/17 Gazette issue 25 supplement, 18 June 1998 is corroborated by State Council General Assembly Opinion 512; original SCC judgment/Gazette scan remain outstanding.
+- Updated EG-0145 provenance/status notes. Acquisition register remains **240 rows**, 240 unique IDs, no duplicates; source-permission register remains **63 unique records**. Core completed article provisions remain **1,370**.
+- Completion estimates unchanged: core extraction 100% for three defined statutes; broader civil/property/contract 15% provisional; whole Egyptian corpus 2% provisional.
