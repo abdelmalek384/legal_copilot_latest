@@ -2475,3 +2475,11 @@ Added Law75/2026 (annual raises/special allowance/EGP750 incentive), Law77/2026 
 
 - Added [Decision 2864/2026](agent3_fra_decision2864_2026_consumer_finance_fra_database_integration_arabic_text.md): all three articles from the official FRA-hosted two-page Gazette PDF, issue 210 (تابع أ), 23 September 2026; effective 24 September. Requires consumer-finance companies to connect their databases to FRA and provide approved-client, real-time transaction, financed-product classification, repayment regularity and company solvency data; FRA implementing controls are due within six months.
 - One additional unique instrument ID. Current implementing controls and any later amendments remain to be acquired; source-matched, not lawyer-reviewed.
+
+
+### Agent 3 — FRA Decisions 43/2026, 2735/2026 and Circular 7/2026 (18 Nov 2026)
+
+- Added [Decision 43/2026](agent3_fra_decision43_2026_fintech_consumer_finance_licensing_suspension_arabic_text.md): complete preamble and both articles from official FRA-hosted Gazette PDF, issue 45 (تابع أ), 24 February 2026. Suspends new fintech-based consumer-finance incorporation/licensing applications for one year from commencement, renewable; exempts applications already filed before commencement.
+- Added [Decision 2735/2026](agent3_fra_decision2735_2026_otp_implementation_deadline_arabic_text.md): complete preamble and both articles from official FRA-hosted Gazette PDF, issue 199 (تابع ج), 10 September 2026. Gives covered consumer-finance and MSME-finance licensees/entities two months from commencement to implement Decision 133/2026 requirements and notify FRA that implementation has begun. FRA's announcement describes OTP to verified customer mobile at contract execution and disbursement, with transaction records retained.
+- Added [Circular 7/2026](agent3_fra_circular7_2026_monthly_data_platform_reporting_arabic_text.md): complete one-page circular transcribed from official FRA-hosted image, dated 7 October 2026. Requires monthly activity data through FRA Portal by the 15th; includes a 12–29 October 2026 remediation window for 2026 data.
+- Three additional unique instruments. Source-matched to official FRA publications; not lawyer-reviewed; commercial reuse permissions not established.
