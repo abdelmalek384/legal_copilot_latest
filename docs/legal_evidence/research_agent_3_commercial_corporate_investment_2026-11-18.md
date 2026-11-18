@@ -4723,3 +4723,22 @@ Decision 4426/2022 replaces item (1) of Article 42 of Executive Regulation 2310/
 **Version note:** Decision 4426/2022 was later superseded in full for Articles 41–43 by Decision 1203/2024. Preserve the 4426 text as a historical intermediate version; current single-approval requirements must use the 17 April 2024 replacement.
 
 **Source rights:** the Official Gazette DSpace PDF is access-restricted; the transcribed Arabic clause is from contemporaneous secondary reporting and must be checked against a lawfully obtained Gazette copy before ingestion as primary text.
+
+
+## 44. Investment Executive Regulation amendment Decision 910/2021 — foreign-currency capital exception for single approval projects
+
+**Decision:** Prime Minister Decision 910/2021.  
+**Published:** 10 May 2021, Official Gazette (issue/date to be verified against original scan).  
+**Searchable Arabic text / contemporaneous reports:**  
+https://m.akhbarelyom.com/news/newdetails/3358260/1/تعديل-لائحة-قانون-الاستثمار-قرار-جديد-من/amp  
+https://www.cairo24.com/1370888
+
+Decision 910/2021 adds a new paragraph to item 4 of the third paragraph of Article 36 of Executive Regulation 2310/2017. Article 36 regulates the ability to set company capital in freely convertible foreign currency and the corresponding foreign-currency deposit and financial-statement requirements. The new paragraph permits the Cabinet, for public-interest reasons, to exempt companies under Law 72/2017 Article 20 (single-approval strategic/national projects) from the relevant foreign-currency condition, after joint ministerial proposal, GAFI Board approval and consultation with the CBE.
+
+**Verbatim — inserted paragraph to Regulation Article 36(3), item 4:**
+
+> ويجوز لمجلس الوزراء، بناءً على عرض مشترك من الوزير المختص والوزير المعني، وبعد موافقة مجلس إدارة الهيئة، واستطلاع رأي البنك المركزي المصري، استثناء الشركات المنصوص عليها بالمادة (20) من القانون بهذا الشرط، وذلك لاعتبارات المصلحة العامة.
+
+The consolidated Decision 2310/2017 text footnote confirms this paragraph was added by Decision 910/2021. The original Gazette PDF and exact Gazette issue/page remain to be captured.
+
+**Collection status:** inserted paragraph text and date/source lead captured; issuing article and full Gazette copy not yet retrieved. No lawyer review or rights clearance claimed.
