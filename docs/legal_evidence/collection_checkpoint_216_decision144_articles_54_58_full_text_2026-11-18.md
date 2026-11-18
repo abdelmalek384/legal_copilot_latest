@@ -4,6 +4,8 @@
 **Source:** LAW HUB searchable Arabic text, https://lawhub.info/eg/?p=12146, lines 1347–1475 as opened on 18 November 2026.  
 **Source tier:** secondary legal-text transcription. Article 57 is explicitly amended by Decisions 200/2010 and 67/2014; current and pre-amendment wording are preserved below. Article 58 is transcribed as currently displayed; compare with the 2014 Gazette before finalizing its prior version.
 
+**Superseding note (checkpoint 217):** Article 53 current and pre-amendment text has now been captured. Cumulative complete Arabic-body coverage is 66/185 (119 remain). See checkpoint 217.
+
 ## Article 54
 تضم مشروعات التقسيم ذات الطبيعة الخاصة ما يأتي:
 
