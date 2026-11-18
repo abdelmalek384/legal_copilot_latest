@@ -5282,3 +5282,85 @@ FRA's current amendment register (updated 2025) separately lists:
 Decision 2423/2024 is not embedded in the July 2024 PDF because it was published on 28 July 2024; it must be overlaid. Decisions 1539/2025 and 2482/2025 must also be overlaid. This is the current amendment chain surfaced by FRA.
 
 **Collection status:** official FRA 176-page consolidated Executive Regulation opened with searchable text through Article 362 and amendment footnotes; Decision 2423/2024 official six-page Gazette PDF fully searchable and 16 provision units transcribed. The 2025 Decisions 1539/2025 and 2482/2025 are already transcribed in sections 27 and 18. No lawyer approval or rights clearance claimed.
+
+
+### C. Complete FRA historical amendment index for Executive Regulation 135/1993
+
+The FRA official current amendment page lists the following historical instruments under the Executive Regulation. This is an **official source inventory**, not a statement that every decision remains in force; the 176-page consolidated PDF and the current amendments must be used to establish each provision's operative version.
+
+**Recent amendments (already partly text-collected above):**
+- PM Decision 2482/2025.
+- PM Decision 1539/2025.
+- PM Decision 2423/2024.
+- PM Decision 3045/2023.
+- PM Decision 4664/2022.
+- PM Decision 3456/2022.
+- PM Decision 1109/2022.
+- PM Decision 1760/2020.
+- PM Decision 2216/2019.
+- PM Decision 1347/2019.
+- PM Decision 2479/2018.
+- Minister of Investment Decision 40/2018.
+- Minister of Investment Decision 33/2017.
+- Minister of Investment Decision 95/2016.
+- Minister of Investment Decision 6/2016.
+- Minister of Investment Decision 45/2015.
+- Minister of Investment Decision 22/2014.
+- PM Decision 572/2012.
+- PM Decision 345/2011.
+- Minister of Investment Decision 64/2010.
+- Minister of Investment Decision 1/2010.
+- Minister of Investment Decision 10/2009.
+- Minister of Investment Decision 231/2008.
+- Minister of Investment Decision 126/2008.
+
+**Earlier amendment/source leads:**
+- Minister of Investment Decision 295/2007.
+- Minister of Investment Decision 294/2007.
+- Minister of Investment Decision 293/2007.
+- Minister of Investment Decision 258/2007.
+- Minister of Investment Decision 209/2007.
+- Minister of Investment Decision 101/2007.
+- Minister of Investment Decision 84/2007.
+- Minister of Investment Decision 42/2007.
+- Minister of Investment Decision 12/2007.
+- Minister of Investment Decision 314/2006.
+- Minister of Investment Decision 301/2006.
+- Minister of Investment Decision 140/2006.
+- Minister of Investment Decision 141/2006.
+- Minister of Investment Decision 139/2006.
+- Minister of Investment Decision 14/2006.
+- Minister of Investment Decision 1/2006.
+- Minister of Investment Decision 192/2005.
+- Minister of Investment Decision 54/2004.
+- Minister of Investment Decision 46/2004.
+- Minister of Industry and Trade Decision 383/2004.
+- Minister of Foreign Trade Decision 146/2004.
+- Minister of Industry and Trade Decision 517/2003.
+- Minister of Industry and Trade Decision 321/2003.
+- Minister of Industry and Trade Decision 553/2002.
+- Minister of Industry and Trade Decision 441/2002.
+- Minister of Economy Decision 709/2001.
+- Minister of Economy Decision 620/2001.
+- Minister of Economy Decision 561/2001.
+- Minister of Economy Decision 355/2001.
+- Minister of Economy Decision 340/2001.
+- Minister of Economy Decision 200/2001.
+- Minister of Economy Decision 586/2000.
+- Minister of Economy Decision 92/2000.
+- Minister of Economy Decision 44/2000.
+- Minister of Economy Decision 276/1999.
+- Minister of Economy Decision 42/1999.
+- Minister of Economy Decision 478/1998.
+- Minister of Economy Decision 447/1998.
+- Minister of Economy Decision 397/1998.
+- Minister of Economy Decision 295/1998.
+- Minister of Economy Decision 39/1998.
+- Minister of Economy Decision 935/1996.
+- Minister of Economy Decision 632/1996.
+- Minister of Economy Decision 360/1996.
+- Original Minister of Economy Decision 135/1993.
+
+**Official source:** FRA page "قرار وزير الإقتصاد رقم (135) لسنة 1993 (نسخة محدثة فى 2025)": https://fra.gov.eg/regulations/تعديلات-اللائحة-التنفيذية-لقانون-سوق/
+
+**Collection priority:** for each instrument, acquire the Gazette PDF, record issue/date/pages, identify exact article/paragraph replaced/inserted/repealed, and compare with the 2024 consolidated PDF plus 2024/2025 amendments. The FRA page duplicates Decision 40/2018 in its HTML menu; deduplicate by instrument identity when building the legal registry. Do not infer that every item is a substantive amendment—some are fee, administrative or procedural rules.
