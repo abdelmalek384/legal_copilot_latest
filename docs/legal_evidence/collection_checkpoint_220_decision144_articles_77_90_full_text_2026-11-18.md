@@ -1,5 +1,7 @@
 # Collection checkpoint 220 — Decision 144/2009 Articles 77–90 full Arabic extraction
 
+**Deduplication note (checkpoint 225):** This 77–90 subset is fully duplicated by the complete Articles 77–93 capture in `collection_checkpoint_220_decision144_articles_77_93_full_text_2026-11-18.md`. Retain this file as a source-capture audit trail only; it contributes no incremental unique article IDs or full-text count.
+
 **Date:** 18 November 2026  
 **Source:** LAW HUB searchable Arabic text, https://lawhub.info/eg/?p=12146, lines 1640–1732 as opened on 18 November 2026.  
 **Source tier:** secondary legal-text transcription; compare with the original Gazette and later amendments before legal reliance.
