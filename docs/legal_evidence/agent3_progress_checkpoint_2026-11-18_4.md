@@ -148,3 +148,8 @@ All new material remains machine-collected and not lawyer-reviewed. Do not mark 
 - OCR correction: extractor rendered Article 2 as Article 8; page image clearly reads Article 2. Use image-verified text.
 - Record: [agent3_capital_market_law13_2022_amendment_full_gazette_text.md](agent3_capital_market_law13_2022_amendment_full_gazette_text.md).
 - No new unique instrument count; text/page-image upgrade only. 209 / 2,049 last reconciled baseline; 55% provisional; lawyer review 0%.
+
+## Law 212/1994 repealed Article 21 bis — text recovered
+- Found the body in a full historical Law 159/1981 reproduction: it exempted company formation contracts and related loan/mortgage contracts from stamp duty, authentication and publication fees for one year from Commercial Register entry.
+- Inserted by Law 212/1994 and expressly repealed by Law 3/1998. Text remains secondary-source until matched against Gazette issue 24 bis (18 June 1994); no page-image verification.
+- Record: [agent3_companies_law159_amendments_1994_2015_primary_texts.md](agent3_companies_law159_amendments_1994_2015_primary_texts.md).
