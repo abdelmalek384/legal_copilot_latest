@@ -172,3 +172,11 @@ Cumulative Civil Code extraction stream: **637 fully transcribed unique provisio
 - The cumulative Civil Code extraction stream is now **734 fully transcribed distinct article provisions** (67 prior + 667 newly transcribed in this continuation). Articles 1015–1029 (easements) and 1030 onward (mortgages) were already indexed in checkpoint 86 and were not recounted.
 - Article 934's registration rule (checkpoint 102) must be read with Law 114/1946; Articles 970 and 999–1014 require historical versioning against state-property, waqf and land laws. No currentness is implied.
 
+## 16. Final Civil Code property-security extraction — Articles 1030–1149
+
+- Checkpoint 105 adds **50 new article provisions**: Article 1034 and Articles 1036–1084. Articles 1030–1033 and 1035 are reproduced as context only because they were already extracted in checkpoint 86.
+- Checkpoint 106 adds **65 new article provisions**, Articles 1085–1149: judicial lien/special charge (1085–1095), possessory pledge (1096–1129), and statutory privileges (1130–1149).
+- The Civil Code extraction stream is now **849 fully transcribed unique article provisions** (67 previously recorded + 782 new in this continuation). Article 766(2) remains a partial/quarantined text and is excluded.
+- This includes the final enacted article number, 1149, but does not mean every article 1–1149 is transcribed. Earlier gaps remain; Articles 389–417 are repealed in the base text and are not treated as operative provisions.
+- Article 1148 provides a statutory privilege for contractors and architects on the constructed/reconstructed/repaired/maintained works, to the extent the works increased the property's value at sale; the privilege must be registered and ranks from registration. Reconcile this with Building Law 119/2008, Law 114/1946 and subsequent amendments.
+
