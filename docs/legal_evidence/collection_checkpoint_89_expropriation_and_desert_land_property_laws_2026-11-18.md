@@ -415,3 +415,12 @@ This supplement adds full searchable text sources for previously identified amen
 6. Build a parcel-specific public-benefit declaration tracker with publication date, deposited transfer forms/decision, three-year lapse date under Law 187/2020, renewals/reissues and compensation deposits.
 7. Collect Law 7/1991 and the full executive/ministerial decisions governing private State property and desert-land allocation.
 8. Have Egyptian property/expropriation counsel validate valuation, compensation, challenge deadlines, direct possession, temporary possession and cadastral registration effects.
+
+## Checkpoint 93 supplement — SCC Case 101/26 full official judgment and 2024 rent judgment cross-reference
+
+- Case 101/26 (constitutional), judgment 1 February 2009, full official SCC judgment:
+  https://www.sccourt.gov.eg/DjangoPortalResources/Rules_Html/3204_26_101_1_2.html
+- Official Gazette issue 7 bis (A), 15 February 2009. Operative holding invalidates the first paragraph of Article 22 of Law 143/1981, which had assigned all disputes arising under the Desert Lands Law exclusively to ordinary courts. Civil possession/ownership disputes remain for ordinary courts; challenges to administrative decisions and administrative disputes belong to the administrative judiciary according to the constitutional division of jurisdiction. The SCC page includes an official correction note; preserve it with the judgment.
+- Later official SCC Case 17/43 execution judgment reproduces and explains the holding:
+  https://www.sccourt.gov.eg/DjangoPortalResources/Rules_Html/12215_43_17_6_2.html
+- This upgrades Case 101/26 from a case-number/summary lead to a full official judgment page. No separate original Gazette PDF was downloaded.
