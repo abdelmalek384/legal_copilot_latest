@@ -118,3 +118,48 @@ The Gazette publication must include registration office, date and number, trade
 
 ## Accounting
 - Decision 946/1976 and Decisions 20/2018 and 41/2020 were already included in the prior Agent 3 inventory. Text-depth/provenance expansion only; no new instrument or numbered-unit increment.
+
+
+## Primary-source upgrade — ITDA official combined Gazette PDF and Decision 41/2020 page-image inspection
+
+### Official ITDA PDF now acquired
+- Official ITDA PDF: https://www.itda.gov.eg/pdf/CR_WorkGuide34.pdf
+- The 320-line PDF contains both Law 34/1976 and Ministerial Decision 946/1976. It explicitly identifies Law 34/1976 as Official Gazette issue 19 (تابع), 6 May 1976, and Decision 946/1976 as Al-Waqa'i issue 179, 3 August 1976.
+- The official PDF reproduces the 25-article base law and 24-article 946/1976 regulation, including original Article 4 and historical note that it was amended by Decision 826/1978 (Al-Waqa'i issue 154, 3 July 1978).
+- This is a much stronger source than the previously used secondary transcription. It is an official agency-hosted compilation of the Gazette text; still not the Amiri Press original binary, and it does not integrate the 2020 beneficial-owner amendments in its 946 text.
+- The official PDF shows the regulation's Article 4 amendment and its pre-amendment wording, enabling a pre/post version record.
+
+### Decision 41/2020 — original Gazette PDF page images visually inspected
+- Official ITDA-hosted PDF: https://www.itda.gov.eg/pdf/41.pdf
+- Gazette: Al-Waqa'i issue 56 (تابع), 8 March 2020, pages 2–4.
+- Ministerial Decision 41/2020, issued 1 March 2020, amends Executive Regulation 946/1976 by adding Articles 13 bis/1, 13 bis/2 and 13 bis/3. Effective the day after publication.
+- All three pages were visually inspected from the original ITDA-hosted Gazette reproduction. This upgrades the three provisions from secondary text to primary-source page-image checked.
+
+**Article 1 — insertion**
+> تضاف مواد جديدة إلى اللائحة التنفيذية الصادرة بقرار وزير التجارة رقم ٩٤٦ لسنة ١٩٧٦ المشار إليها بأرقام ١٣ مكرراً/١، ١٣ مكرراً/٢، ١٣ مكرراً/٣ نصوصها الآتي:
+
+**Article 13 bis/1 — beneficial-owner register**
+> يلتزم كل من يتم قيده في السجل التجاري بأن ينشئ لديه سجل خاص يسمى بسجل المستفيدين الحقيقيين - يقيد فيه أسماء وبيانات المستفيدين الحقيقيين لديه ممن لهم فعلياً ملكية المنشأة التجارية أو السيطرة عليها سواء كانوا شخصاً اعتبارياً أو ترتيباً قانونياً، على أن يتم تحديث بياناته بمجرد نشوء الواقعة الموجبة لقيدها ويتم إخطار السجل التجاري بها فور وقوعها، ولمأموري الضبط القضائي الاطلاع على ذلك السجل حال طلبه.
+
+**Article 13 bis/2 — registry data and retention**
+> تدرج ببيانات السجل التجاري بند خاص يثبت به أسماء المستفيدين الحقيقيين وجنسيتهم والرقم القومي أو جواز السفر للأجنبي وذلك من واقع سجل المستفيدين الحقيقيين، وعلى المقيدين بالسجل التجاري الاحتفاظ بهذا السجل طوال فترة مزاولة النشاط ولمدة خمس سنوات من تاريخ توقف النشاط أو محو السجل التجاري، وتعد البيانات موضوع القيد في سجل المستفيدين الحقيقيين من البيانات الجوهرية في طلبات القيد أو التأشير في السجل التجاري.
+
+**Article 13 bis/3 — integrity of beneficial-owner books**
+> يتبع في مسك سجل المستفيدين الحقيقيين الأحكام الخاصة بالدفاتر التجارية وخاصة من حيث وجوب أن تكون هذه الدفاتر خالية من كل فراغ أو بياض أو كتابة في الحواشي أو كشط أو تحشير، ويجب أن تكون صفحات هذه السجلات مرقومة بالتسلسل ويتعين قبل استعمالها أن تختم كل ورقة منها بخاتم مكتب السجل التجاري المختص، ولا يجوز تسجيل دفتر جديد إلا بعد تقديم الدفتر السابق ليؤشر بانتهائه بعد آخر قيد.
+
+**Article 2 — publication and commencement**
+> ينشر هذا القرار في الوقائع المصرية، ويعمل به اعتباراً من اليوم التالي لتاريخ نشره.
+
+### Important classification/currentness finding — Decision 106/2018
+- ITDA's current Commercial Register legislation page explicitly labels a 14,898,711-byte PDF as "Executive Regulation 106/2018" and links it from the Law 34/1976 section.
+- The PDF's direct fetch fails because its size exceeds the web extraction limit; local direct download also failed. Search-engine directory listing confirms filename and byte size.
+- The separate ITDA PDF CR_WorkGuide34.pdf contains Decision 946/1976, not Decision 106/2018. Do not treat 946/1976 as a substitute for the 2018 instrument.
+- The current ITDA online procedural work guide (https://itda.gov.eg/Workguide.aspx) is operational guidance, not a formal replacement for the 2018 regulation. It has eight chapters (individual trader; partnerships; capital companies; foreign branches; associations; renewal; deletion; general instructions) and lists documentary requirements for registry filings, renewal every five years, deletion and beneficial-owner records. Preserve it as guidance, not legislation.
+- Open blocker: obtain the full 14.9 MB Decision 106/2018 PDF through a lawful mirror, official ITDA file request, or split/range-capable download; inspect cover, issuing clauses, annexes and repeal clauses before deciding its relationship to Decision 946/1976.
+
+### Corrected source status
+- Law 34/1976 and Decision 946/1976: official ITDA-hosted Gazette-text compilation; extracted text.
+- Decision 826/1978: amendment identified and pre/post Article 4 text shown in official compilation; separate original Gazette image not yet acquired.
+- Decision 41/2020: original Gazette page images visually inspected; Articles 13 bis/1–3 now page-image checked.
+- Decision 106/2018: official ITDA catalogue metadata only; PDF acquisition blocked.
+- No lawyer sign-off. Do not mark the Trade Register legal family currentness-complete.
