@@ -92,8 +92,6 @@ The official PDF text includes Articles 1–61 and covers:
 - The retrieved Gazette scan includes the full text of Law 9/2022 on pages 3–8 of the issue.
 - PDF copy hosted by Al-Ahram Gate:  
   https://gate.ahram.org.eg/media/News/2022/3/9/2022-637824260974323933-432.pdf
-- Official Gazette record metadata in Egyptian government's IDSC DSpace:  
-  https://dspace.id.com.eg/handle/123456789/6303
 - Commencement: Article 5 states it comes into force on the day following the passage of sixty days from publication. Publication 6 March 2022; effective 6 May 2022.
 - This is an amending law, not a new general registration code.
 
@@ -284,8 +282,7 @@ These are actual current legal texts from the Official Amiri Press portal and Ga
 
 - Official Amiri Press full Arabic text:  
   https://www.alamiria.com/Sec/TashTxt?id=rEOlBjl474g%3D
-- Official Gazette repository record: الوقائع المصرية, issue 243, 2 November 2026:  
-  https://dspace.id.com.eg/handle/123456789/8931
+- Gazette metadata cross-check: الوقائع المصرية, issue 243, 2 November 2026 (reported in contemporary publication coverage); an IDSC DSpace item URL was not verified in this session.
 - Secondary date/report cross-check:  
   https://www.cairo24.com/2522912
 - Issued 29 September 2026; operative from 1 October 2026.
@@ -325,13 +322,13 @@ The 2026 decisions recite a long series of annual postponements, including 2025 
 
 1. **Law 114/1946 original Gazette PDF:** not located; Ministry of Justice government-hosted PDF retrieved as searchable text, but original Gazette bytes/hash not saved.
 2. **Law 114/1946 consolidated official text:** not located; secondary updated transcription exists. Full amendment/correction/repeal history is incomplete.
-3. **Law 9/2022:** full Gazette scan text was retrieved, but scan is hosted by Al-Ahram Gate rather than a government domain. IDSC metadata confirms Gazette issue. No checksum recorded.
+3. **Law 9/2022:** full Gazette scan text was retrieved, but scan is hosted by Al-Ahram Gate rather than a government domain. The scan itself shows the Official Gazette masthead, issue number and date. No IDSC metadata record or checksum was verified in this session.
 4. **Decision 2332/2022:** official Amiri Press record not retrieved; secondary full-text snippets and Gazette metadata exist. Full official issue 75 supplement (c) PDF and complete text are missing.
 5. **Law 142/1964:** full 72-article secondary transcription located, but official original Gazette PDF and government-hosted complete text were not found.
 6. **Law 142/1964 current amendments:** Law 83/2006 and SCC judgments of 1998 and 2018 identified; exhaustive later amendment search remains incomplete.
 7. **Decision 825/1975:** 136-article secondary transcription located; original Gazette PDF and official current consolidated regulation are missing.
 8. **Decision 11264/2016:** amendment identified, but official Gazette PDF and full text are missing.
-9. **Decisions 5207/2026 and 5208/2026:** official Amiri Press text and Gazette repository metadata retrieved; original Gazette PDF bytes and SHA-256 not archived.
+9. **Decisions 5207/2026 and 5208/2026:** official Amiri Press texts retrieved; the Gazette repository item for Decision 5208/2026 was verified, while a separate DSpace record for Decision 5207/2026 was not verified; original Gazette PDF bytes and SHA-256 not archived.
 10. **Territorial commencement schedule:** full list of cadastral sections and all historic postponements remains incomplete. Do not assume the real-property register is active in every governorate/section.
 11. **Law 68/1947 and its regulations:** secondary and catalogue sources exist; primary official full text and full amendments remain outstanding.
 12. **Law 70/1964 fees:** related law identified but not collected in this checkpoint.
