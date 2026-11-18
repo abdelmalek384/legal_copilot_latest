@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (Research Agent 1 checkpoint 201; Agent 3 continuation separately indexed)
+**Last updated:** 2026-11-18 (Research Agent 1 checkpoint 202; Agent 3 continuation separately indexed)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -17,6 +17,7 @@
 - **Law142 amendment chain:** the full searchable text identifies Law83/2006 as the sole express statutory replacement (Article30), plus a 1964 corrigendum for Articles62/65; Case42/17 publication corrected to Gazette issue35 تابع, 18 June 1998.
 - **Case10/35 scan copy:** full 10-page secondary-hosted Gazette reproduction visually inspected (issue22 bis (ط), 6 June 2018); official signed SCC binary and Amiri Press original remain outstanding.
 - **Rent-law judgment update:** full secondary texts are now captured for Cases4/23,14/23,47/21 and116/27; official later SCC judgments corroborate Cases144/20 and6/20. Original SCC judgment files and exact Gazette scans remain outstanding for those cases.
+- **Building Law 119/2008 text expansion:** checkpoint 202 adds eight complete substantive article bodies (Articles 2, 4–10) from a searchable consolidation dated 1 December 2020. These are source-version snapshots, not original 2008 Gazette wording or a 2026 consolidated text; do not double-count against the 1,370 core provisions.
 - **Assigned Research Agent 1 workstreams:** **45% complete (provisional)** under the ten-task scope; distinct from the whole Egyptian legal corpus estimate of 2%. The verified first Law 168/2025 application period ended 18 July 2026; Decision 480/2026 extends it by an equivalent period, with 18 January 2027 retained only as a calculated endpoint pending authoritative commencement confirmation. See [checkpoint 201](collection_checkpoint_201_deadline_and_assigned_workstream_progress_2026-11-18.md).
 - **Law 168/2025 official Gazette lead:** SIS repository metadata identifies the Amiri Press issue32 bis (و), 13 Aug2025, and a 295.3 KB PDF; item and direct file routes currently return 502. The VetoGate 20-page scan is a secondary copy marked not valid for circulation. No local bytes/hash acquired.
 - **Complete searchable text recovery:** Law 168/2025 (18/18 provisions), PM Decision 200/2026 (24/24 provisions) and Presidential Decision 480/2026 (2/2 operative articles) now total **44 full-text provisions**. These are text-complete from accessible sources, not original-Gazette authenticated; Forms 1–3 for Decision 200/2026 are separately transcribed. Original Gazette PDF bytes/hashes remain unarchived and the Article 20 page-image discrepancy remains unresolved.
@@ -37,7 +38,7 @@
 - Legal-source rights/permission: not presumed. Official public accessibility does not automatically establish commercial indexing, excerpt-display or redistribution rights.
 - Machine labels must remain `source-matched, not lawyer-reviewed` where applicable; no `verified` label without qualified Egyptian lawyer approval.
 
-## Current audited repository snapshot — checkpoint 201 (18 November 2026)
+## Current audited repository snapshot — checkpoint 202 (18 November 2026)
 
 - Acquisition register after instrument deduplication: **250 canonical instrument rows**, 250 unique canonical IDs, no duplicate legal instruments; 11 duplicate rows were consolidated and preserved in [the acquisition-ID alias map](../data/research/egypt_acquisition_register_aliases_2026-11-18.csv). The [provisional instrument-type ledger](../data/research/egypt_instrument_type_classification_2026-11-18.csv) provides the separate category counts.
 - Source-permission register: **86 unique source records**, no duplicate source IDs. These are assessments, not permissions granted.
@@ -59,6 +60,8 @@
 | checkpoint 7 — Agent 3 FRA Decision 51/2026 factoring invoice controls | Added the Arabic operative text of the amendment inserting Article 3 bis into FRA Decision 163/2018; original Gazette binary remains outstanding | [Agent 3 checkpoint 7](agent3_progress_checkpoint_2026-11-18_7.md) |
 
 | checkpoint 6 — Agent 3 FRA Decision 43/2026 fintech consumer-finance licensing pause | Added one distinct FRA Board decision and exact Arabic text of Articles 1–2; original Gazette binary/page-image check remains outstanding | [Agent 3 checkpoint 6](agent3_progress_checkpoint_2026-11-18_6.md) |
+
+| checkpoint 202 — Building Law 119/2008 additional article text | Added eight full substantive article bodies (Arts 2, 4–10) from a 1 Dec 2020 searchable consolidation; kept as historical/source-version snapshots pending comparison with original Gazette and amendments | [checkpoint 202](collection_checkpoint_202_building_law_119_2008_additional_article_text_2020_consolidation_2026-11-18.md) |
 
 | checkpoint 201 — deadline reconciliation and assigned-workstream progress | Verified the original application window's last day as 18 July 2026; Decision 480/2026 extends by an equivalent period, with 18 January 2027 marked as calculated, not express text; assigned ten-workstream progress 45% provisional | [checkpoint 201](collection_checkpoint_201_deadline_and_assigned_workstream_progress_2026-11-18.md) |
 
