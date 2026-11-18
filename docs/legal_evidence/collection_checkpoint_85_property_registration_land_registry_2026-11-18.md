@@ -318,12 +318,43 @@ The 2026 decisions recite a long series of annual postponements, including 2025 
 - Building Law 119/2008, Law 187/2023, Expropriation Law 10/1990, Desert Lands Law 143/1981, New Urban Communities Law 59/1979 and State property laws are related but not substitutes for title-registration rules.
 - The lease registration threshold for leases exceeding nine years appears in Law 114/1946 Article 11 and Law 142/1964 Article 28; confirm which registration regime applies to the particular cadastral section.
 
+## Source-access upgrades — checkpoint 91 (18 November 2026)
+
+### Law 9/2022 — Official Gazette repository metadata
+
+- IDSC DSpace item for Official Gazette issue 9 bis (A), 6 March 2022:
+  https://dspace.id.com.eg/items/7dfa9956-1d6c-4301-ad8a-ae0353aa4dd3/full
+- Metadata identifies the publisher as المطابع الأميرية, the issue date as 2022-03-06, and the abstract as Law 9/2022 amending Law 114/1946.
+- The DSpace page lists the original-bundle PDF (194.71 KB), but the file link redirects to a request-a-copy form and is not anonymously downloadable. Therefore the DSpace record is an official catalogue/metadata record, not a successfully retrieved PDF byte copy.
+- The previously collected Al-Ahram Gate-hosted Gazette scan remains the accessible Gazette reproduction:
+  https://gate.ahram.org.eg/media/News/2022/3/9/2022-637824260974323933-432.pdf
+- Do not upgrade the source to "Official Amiri Press bytes downloaded" until the restricted DSpace file is lawfully obtained.
+
+### Decision 2332/2022 — Gazette issue record and complete text source
+
+- IDSC DSpace record for الوقائع المصرية supplement issue 75 supplement (ج), dated 30 March 2022:
+  https://dspace.id.com.eg/items/1afd9674-9b20-4812-bdb6-f0c7cd0dda1e/full
+- Metadata identifies the publisher as المطابع الأميرية, contributor وزارة العدل and abstract as Ministry of Justice Decisions 2322–2336/2022.
+- The original-bundle PDF (6.82 MB) is listed but the download link requires a request-a-copy form. It is not an anonymously downloadable scan in this session.
+- Full searchable secondary text of Decision 2332/2022:
+  https://www.eastlaws.com/legislation-full-text/ar/egypt/justice/30-03-2022/no-2332?id=2079182&type=1
+  https://alhasswalawfirm.com/law-library/moj-decree-2332-2022
+- Decision 2332/2022 substitutes Executive Regulation Articles 2, 6, 7, 10(1), 11, 13, 14 bis, 16, 19 and 33; adds paragraphs to Articles 3, 98 and 116; and repeals Articles 8, 9 and 12. It applies from the effective date of Law 9/2022. The complete Gazette issue bytes remain missing.
+
+### Decision 11264/2016 — full text retrieved
+
+- Full searchable text of Justice Minister Decision 11264/2016:
+  https://www.laweg.net/framePlain.aspx?NID=132217&action=viewactivepages&itemid=106487&type=6
+- Gazette metadata: الوقائع المصرية issue 30, 6 February 2017; decision dated 26 December 2016.
+- It replaces specific provisions in Decision 825/1975 Articles 1(3), 5(8),(10), 14(4), 15, 21, 23, 24(last paragraph), 27, 66(last paragraph), 93 and 126; adds paragraphs to Articles 3, 98 and 116; and repeals Article 11(last paragraph), Article 12 and Article 13(last paragraph).
+- This upgrades the earlier "identified but full text missing" status to "full searchable secondary transcription acquired; original Gazette scan missing."
+
 ## 8. Extraction failures and missing documents
 
 1. **Law 114/1946 original Gazette PDF:** not located; Ministry of Justice government-hosted PDF retrieved as searchable text, but original Gazette bytes/hash not saved.
 2. **Law 114/1946 consolidated official text:** not located; secondary updated transcription exists. Full amendment/correction/repeal history is incomplete.
 3. **Law 9/2022:** full Gazette scan text was retrieved, but scan is hosted by Al-Ahram Gate rather than a government domain. The scan itself shows the Official Gazette masthead, issue number and date. No IDSC metadata record or checksum was verified in this session.
-4. **Decision 2332/2022:** official Amiri Press record not retrieved; secondary full-text snippets and Gazette metadata exist. Full official issue 75 supplement (c) PDF and complete text are missing.
+4. **Decision 2332/2022:** DSpace official Gazette metadata record located for issue 75 supplement (c), 30 March 2022; the 6.82 MB original bundle is request-only, not anonymously downloadable. Full searchable secondary text obtained; original PDF bytes remain missing.
 5. **Law 142/1964:** full 72-article secondary transcription located, but official original Gazette PDF and government-hosted complete text were not found.
 6. **Law 142/1964 current amendments:** Law 83/2006 and SCC judgments of 1998 and 2018 identified; exhaustive later amendment search remains incomplete.
 7. **Decision 825/1975:** 136-article secondary transcription located; original Gazette PDF and official current consolidated regulation are missing.
