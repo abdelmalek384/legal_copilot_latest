@@ -1620,3 +1620,12 @@ Current Agent 3 progress checkpoint (18 Nov 2026, continued): [agent3_progress_c
 
 
 | checkpoint 179 — Agent 3 FRA Decision 87/2026 and Circular 9/2026 | Acquired official FRA-hosted 3-page Gazette PDF for Decision 87/2026 (Official Gazette issue 111 supplement, 20 May 2026): creates warning, negative and administrative-measure lists for natural/legal persons violating NBFI laws; includes notice/defence, urgent temporary listing, 60-day grievance, 30-day committee decision and periodic removal review. Acquired official FRA 3-page Circular 9/2026 (3 Jan 2026): requires companies under Decisions 107/2021 and 108/2021 to publish updated sustainability statements with minimum ESG/climate content, annual/event-driven updates, accessible/accurate/non-misleading information, consistency with FRA filings, material-change notice and management accountability. +2 documents / +10 units. Record: [agent3_fra_decision87_2026_and_circular9_2026_arabic_text.md](agent3_fra_decision87_2026_and_circular9_2026_arabic_text.md). Cumulative Agent 3 **209 documents / 2,049 provisional units**; assigned completion 55% provisional; whole corpus 2%; lawyer review 0%. |
+
+### Research Agent — checkpoint 170: Decision 144/2009 and Law 142/1964 full searchable text upgrades (18 November 2026)
+
+- Added collection_checkpoint_170_decision144_law142_full_text_extraction_2026-11-18.md and decision_144_2009_full_text_extraction_and_law142_full_text_fallback_2026-11-18.md.
+- Decision144/2009 LAW HUB page reviewed across 2,786 source lines; confirmed 185 base articles, four issuing provisions and preliminary definitions. Captured selected text for Articles1–10,24,104,106–107,112,112 bis,112 bis 1,119–120,124–126 and182–185, including permit documents, construction time limits, multi-purpose projects, grievances and repair/demolition safety.
+- Law142/1964 full searchable fallback located for all 66 substantive articles and issuing provisions; Article65 Gazette corrigendum noted at issue77, 2 April 1964.
+- FT-0030 upgraded to full searchable text; FT-0032 added for Law142. Full-text inventory now **32**; acquisition **242**; sources **64**; version events **44**; normalized core provisions **1,370**.
+- Broader civil/property/contract corpus estimate now **19% provisional** (up from 18%); whole Egyptian corpus remains **2% provisional**. No change to lawyer verification or rights clearance (both 0%).
+- Sources: https://lawhub.info/eg/?p=12146 ; https://lawhub.info/eg/?p=11694 ; https://mhuc.gov.eg/قطاع_الإسكان_والمرافق/قانون_التصالح_ولائحته_التنفيذيه/.
