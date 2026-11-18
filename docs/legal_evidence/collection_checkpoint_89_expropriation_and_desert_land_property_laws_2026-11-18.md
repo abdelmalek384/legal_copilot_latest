@@ -93,7 +93,7 @@ The 2020 amendment changes the deposit deadline and makes the 20% addition to cu
   https://www.eastlaws.com/legislation-full-text/ar/egypt/water-irrigation/07-02-2019/no-20?id=1931694&sub=9565869&type=1
 - The decision repeals Minister of Public Works Decision 319/1990, the former executive regulation.
 - The regulation governs public-benefit declaration, parcel survey and inventory, compensation committees, display/notice, objections, deposit of compensation, title transfer forms, registration, direct possession, temporary possession and compensation.
-- The 2019 regulation text contains 165 numbered provisions in the current transcription. Verify the exact count and all schedules/annexes against the original Gazette PDF before normalizing.
+- The regulation's exact article count and annex/schedule structure were not verified in this session; do not infer the count from unrelated water-law regulations.
 - Original Official Gazette PDF and SHA-256 are not yet archived.
 - This is a material replacement: Decision 319/1990 should be marked repealed by Decision 20/2019, not treated as concurrently operative.
 
