@@ -1737,6 +1737,62 @@
       "permission_evidence": "Checked 2026-11-18. Public availability does not establish bulk collection, commercial reuse, reproduction or redistribution permission.",
       "bulk_download_or_api": "No bulk/API permission established.",
       "required_next_action": "Retain only as secondary corroboration; obtain original SCC signed judgment and Gazette issue 19 bis (ب) scan; review terms before reuse."
+    },
+    {
+      "source_id": "EG-RIWAQ-CIVILCODE-REPEALED-TEXT",
+      "authority": "Riwaq al-Jamal legal blog (secondary transcription)",
+      "source_page": "https://ahmedazimelgamel.blogspot.com/2015/11/131-1948.html?hl=ar&m=0",
+      "file_url": "https://ahmedazimelgamel.blogspot.com/2015/11/131-1948.html?hl=ar&m=0",
+      "material_types": [
+        "Historical Civil Code text",
+        "Repealed Articles 54–80",
+        "Law 131/1948"
+      ],
+      "access_status": "Public searchable full text; 1948 text transcription available; not original Gazette page images.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://www.blogger.com/",
+      "terms_checked_on": null,
+      "permission_evidence": "Checked 2026-11-18. Public access does not establish bulk collection, commercial reuse, republication or redistribution permission. No source-specific reuse grant located.",
+      "bulk_download_or_api": "No bulk/API permission established.",
+      "required_next_action": "Use as secondary text pending visual collation with contemporaneous 1948 print edition; seek permission before commercial display or redistribution."
+    },
+    {
+      "source_id": "EG-LAWHUB-CIVILCODE-REPEALED-389-417",
+      "authority": "LAW HUB Egypt (secondary legal text transcription)",
+      "source_page": "https://lawhub.info/eg/?p=11319",
+      "file_url": "https://lawhub.info/eg/?p=11319",
+      "material_types": [
+        "Historical Civil Code text",
+        "Repealed Articles 389–417",
+        "Law 131/1948"
+      ],
+      "access_status": "Public searchable text; pre-repeal article bodies displayed; not original Gazette scan.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://lawhub.info/",
+      "terms_checked_on": null,
+      "permission_evidence": "Checked 2026-11-18. Publicly searchable text does not establish permission for bulk acquisition, commercial database reuse, public display or redistribution.",
+      "bulk_download_or_api": "No bulk/API permission established.",
+      "required_next_action": "Retain source-level provenance and compare each article against the 1948 edition; obtain explicit permission before bulk/commercial reuse."
+    },
+    {
+      "source_id": "EG-NYU-COLUMBIA-CIVILCODE-1948-PRINT",
+      "authority": "Columbia University Libraries / Arabic Collections Online; scanned 1948 print edition",
+      "source_page": "https://hdl.handle.net/2333.1/70rxwntf",
+      "file_url": "https://hdl.handle.net/2333.1/70rxwntf",
+      "material_types": [
+        "1948 printed Civil Code edition",
+        "Historical text collation source"
+      ],
+      "access_status": "Catalogue and high/low PDF links located; low-resolution PDF 24.77 MB; browser PDF open failed due content-size limit; not Official Gazette issue itself.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://dlib.nyu.edu/",
+      "terms_checked_on": null,
+      "permission_evidence": "Catalogue states digitized materials are believed to be public domain, but item-level rights and source of the original print should be reviewed before redistribution. No local bytes/hash archived.",
+      "bulk_download_or_api": "No bulk/API permission established.",
+      "required_next_action": "Acquire the PDF through authorized library access or download, hash exact bytes, visually verify the 56 repealed articles and record the edition's title page and publication data."
     }
   ]
 }
