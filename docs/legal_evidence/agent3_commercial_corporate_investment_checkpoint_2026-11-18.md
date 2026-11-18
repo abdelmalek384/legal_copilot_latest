@@ -2084,3 +2084,43 @@ FRA's official financial-leasing/factoring legislation catalogue and contemporan
 - One new unique amendment instrument with Arabic Gazette text surfaced: Law 11/2021. Law 11/2018 was already counted in the corpus.
 - Four issuing provision units counted (Law 11/2021 Articles 1–4). Inserted Article 57 bis and 57 bis (1) are separately indexed as underlying statutory provisions but not double-counted as issuing articles.
 - Cumulative Agent 3 minimum: 131 unique instruments / 1,296 provision units.
+
+
+## 42. Commercial Agency Law 21/2022 — statutory insertion of real-estate brokerage
+
+### Source and publication
+
+- Instrument: Law 21/2022 amending Law 120/1982 on Commercial Agency and Certain Commercial Mediation Activities.
+- Official Gazette issue 14 bis (ج), 11 April 2022; effective 12 April 2022.
+- MELES archive record with Arabic PDF: https://dspace.id.com.eg/items/0251eea4-9b61-450f-90ec-a788e1ceb487/full
+- Official SIS report confirms presidential signature and publication: https://sis.gov.eg/ar/الرئاسة/شئون-داخلية/القرارات-الرئاسية/الرئيس-السيسي-يوقع-تعديل-قانون-تنظيم-أعمال-الوكالة-التجارية-والوساطة/
+- Full current consolidated Arabic transcription with amendment footnotes: https://lawhub.info/eg/?p=11706
+- Eastlaws Gazette metadata and article-by-article record: https://www.eastlaws.com/legislation-full-text/ar/egypt/law/11-04-2022/no-21?id=2051982&sub=10412396&type=1
+
+### Main legal changes
+
+- Renames the statute to include real-estate brokerage (السمسرة العقارية), expanding the regulatory scope beyond commercial agency and commercial mediation.
+- Revises the definition of commercial agent and the registration framework; inserts a separate real-estate brokers register.
+- Inserts Article 3 bis with qualification conditions for registration/renewal in the real-estate brokers register. Natural-person applicants must satisfy the relevant Article 3 requirements; the new framework also regulates corporate applicants.
+- Inserts Article 10 bis, Article 11 bis, Articles 12 bis, 12 bis (A), 12 bis (B), Article 16 bis, Article 16 bis (A), Article 20 bis and other consequential clauses, addressing broker conduct, records, payment/commission restrictions and penalties.
+- Introduces an express statutory prohibition on carrying out real-estate brokerage without registration in the relevant register. This must be cross-linked to the later Decision 593/2025 amendments to the Executive Regulation and the 2026 GOEIC registration transition.
+- Adds criminal/administrative consequences for legal persons and their actual managers in specified circumstances; changes penalties and grounds for cancellation of registration.
+- **Exact Arabic text — new Article 3 bis (opening):**
+> يشترط فى من يقيد أو يجدد قيده فى سجل السماسرة العقاريين المشار إليه فى المادة (٢) من هذا القانون، أن تتوافر فيه الشروط الآتية:
+> أولاً – بالنسبة إلى قيد الأشخاص الطبيعيين:
+> (أ) استيفاء الشروط المتطلبة بالبند أولاً من المادة (٣) من هذا القانون.
+- **Exact Arabic text — new Article 19 (legal-person manager liability):**
+> فى الأحوال التى ترتكب فيها الجريمة بواسطة شخص اعتبارى يعاقب المسئول عن الإدارة الفعلية لهذا الشخص الاعتبارى بالعقوبات ذاتها المقررة عن الأفعال التى ترتكب بالمخالفة لأحكام هذا القانون، إذا ثبت علمه بها، وكانت الجريمة قد وقعت بسبب إخلاله بواجبات وظيفته.
+- The consolidated transcription shows Article 19 was added by Law 21/2022. Do not confuse this statutory Article 19 with similarly numbered provisions in the 1982 Executive Regulation.
+
+### Transitional and implementation rule
+
+- Law 21/2022 gives existing real-estate brokerage practitioners a six-month period from commencement to regularize their status under the new statutory regime.
+- The subsequent Executive Regulation amendment Decision 593/2025 established the detailed real-estate broker register, training annex and registration documentation; GOEIC's 2026 notice states the six-month adjustment period ends in July 2026. The administrative notice is not itself the source of the statutory registration requirement.
+- As at the 18 November 2026 research date, do not describe the transitional six-month grace period as still open without identifying a later extension instrument.
+
+### Count increment
+
+- One new unique instrument with Arabic operative text surfaced: Law 21/2022.
+- Four issuing provision units counted (Articles 1–4); the multiple inserted statutory articles are separately indexed as nested provisions and are not double-counted.
+- Cumulative Agent 3 minimum: 132 unique instruments / 1,300 provision units.
