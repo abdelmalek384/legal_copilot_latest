@@ -59,7 +59,7 @@ These percentages measure text presence/coverage, not Gazette authentication, co
 | Core unique non-repealed article provisions | 1,370 |
 | Additional searchable article headings in four property statutes | 200 |
 | Historical article-version events | 44 |
-| Source-permission records | 76 |
+| Source-permission records | 77 |
 
 The 1,370 core provisions remain Civil Code 1,093, Evidence Law 163 and Building Law 114. The additional text above is not merged into that core count. No new unique instrument or article text is double-counted.
 
