@@ -60,8 +60,8 @@ All collection and commercial reuse fields remain `unknown`. The DSpace original
 ## 4. Updated text-capture counts
 
 Across the two supplemental text files:
-- 46 text-bearing article/provision entries across Laws 114/1946, 142/1964, 68/1947, 70/1964, Law 168/2025, Decision 200/2026 and Decision 480/2026.
-- One of the 46 is a repealed Article 1 marker under Law 68/1947.
+- 47 text-bearing article/provision entries across Laws 114/1946, 142/1964, 68/1947, 70/1964, Law 168/2025, Decision 200/2026 and Decision 480/2026.
+- One of the 47 is a repealed Article 1 marker under Law 68/1947.
 - The Law 168/2025 / Decision 200/2026 / Decision 480/2026 file contributes 15 complete provisions and one partial provision.
 - Completeness varies across the earlier 31 entries; do not label all 46 non-repealed entries fully complete.
 - These supplemental entries are not added to the 1,370 core provisions, the 200 heading count, or the 44 historical-version event count until article IDs and version states are normalized.
