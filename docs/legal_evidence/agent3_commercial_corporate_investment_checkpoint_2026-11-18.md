@@ -261,3 +261,43 @@ The current text contains further paragraph(s) and must be imported in full from
 - The MIFT record exposes the current law download and the latest Executive Regulation download. The actual download bytes and full current texts were not captured in this checkpoint; obtain them next rather than substituting the old ETA base PDF.
 
 **Counts:** no additional unique legal instrument or new verbatim provision counted from this catalogue/news confirmation. Existing Companies Law and amendment records are already part of the 89-instrument baseline.
+
+
+## 11. Additional official MIFT primary-source catalogue confirmations
+
+### Companies Law Executive Regulation 96/1982 — official consolidated text surfaced
+
+- Official MIFT text URL: https://www.mift.gov.eg/legislation/download/253
+- The source labels the text as amended through 21 August 2022 and contains the regulation issuing provisions and consolidated regulation text. The earlier checkpoint's 361-provision count is consistent with this official consolidated source.
+- Issuing Article 1 (verbatim):
+> يعمل بأحكام اللائحة التنفيذية لقانون شركات المساهمة وشركات التوصية بالأسهم والشركات ذات المسؤولية المحدودة الصادر بالقانون رقم ١٥٩ لسنة ١٩٨١ والمرافقة لهذا القرار.
+- Issuing Article 2 (verbatim opening):
+> يقصد بالكلمات الآتية حيثما وردت باللائحة المرافقة العبارة الواردة قرين كل منها:
+>
+> القانون: قانون شركات المساهمة وشركات التوصية بالأسهم والشركات ذات المسؤولية المحدودة الصادر بالقانون رقم ١٥٩ لسنة ١٩٨١.
+- Currentness caveat: this is an official consolidated version only through 21 August 2022. It does not prove there were no later Gazette amendments after that date. MIFT's own company-law record also shows a 2026 policy announcement about possible regulation amendments; that announcement is not operative law.
+
+### Companies Law 159/1981 — official catalogue
+
+- MIFT record: https://www.mift.gov.eg/legislation/details/252
+- Status displayed: in force.
+- Seven amendments listed by MIFT: 212/1994, 3/1998, 159/1998, 94/2005, 68/2009, 17/2015 and 4/2018.
+- Eight legislative attachments and 21 Executive Regulation attachments are displayed. The source page is a catalogue record; obtain the exact latest downloadable file and Gazette originals for each amendment before building a provision-level consolidated text.
+
+### Capital Market Law 95/1992 — official catalogue and amendment graph
+
+- MIFT official record: https://mift.gov.eg/legislation/details/251
+- Status displayed: in force.
+- Eight statutory amendments listed: Laws 10/1995, 89/1996, 158/1998, 143/2004, 123/2008, 27/2014, 17/2018 and 13/2022.
+- The record lists Executive Regulation Decision 135/1993 with 23 attachments, including PM Decisions 2482/2025, 1539/2025, 2423/2024, 3045/2023, 4664/2022 and 3456/2022. This independently supports the FRA amendment chain already captured above.
+- Use FRA's consolidated 2025 regulation and the MIFT instrument list together; the catalogue is not a substitute for each amendment Gazette text.
+
+### Commercial Agency Law 120/1982 — official MIFT catalogue
+
+- MIFT official record: https://www.mift.gov.eg/legislation/details/258
+- Status displayed: in force.
+- Law 21/2022 is listed as the statutory amendment.
+- Executive Regulation Decision 342/1982 is listed with Decision 593/2025 as the latest attachment, alongside Decisions 362/2005, 84/1988 and 111/2000.
+- This corroborates the previously captured current amendment chain. Keep the MIFT record as the official catalogue and GOEIC's detailed register as the operational registration source.
+
+**Count treatment:** these are additional primary-source provenance confirmations and selected regulation text excerpts for instruments already counted. They do not increase the unique-instrument or provision totals.
