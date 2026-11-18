@@ -582,3 +582,12 @@
 - **Lawyer-verified: 0%.** Source matching and lawyer verification remain distinct.
 - Whole-project corpus denominator is not validated; the prior ~2% estimate remains provisional and cannot be recalculated from Agent 3's subset.
 - Detailed instrument list, source/access status and next tasks are in [Agent 3 research file](research_agent_3_commercial_corporate_investment_2026-11-18.md).
+
+
+### Research Agent 3 — Law 4/2018 corporate amendment and case-law conflict
+
+- Official Amiri Press Gazette copy of Law 4/2018 obtained from the National Investment Bank government-hosted library: Official Gazette issue 2 bis (ط), 16 Jan 2018, 18 printed pages. Full searchable text and amendment map added to Agent 3 file.
+- Law 4/2018 replaces 20 provisions/paragraphs, inserts 21 new provisions/paragraphs, and adds the full single-person-company chapter (Articles 129 bis–129 bis/9). Selected provisions transcribed include Articles 8, 17, 45, 73, 76 bis, 100, 129 bis, 135 bis and sub-articles, 156 bis, 157 bis, 160 bis and 164 bis.
+- A separate 2018 correction/استدراك was published in Official Gazette issue 10 on 8 March 2018; the record is identified but its original Gazette scan/full corrected wording remains to be captured.
+- Court of Cassation appeal 2100/92, hearing 18 Oct 2023, is reported to hold that Regulation Article 136 conflicts with amended Law 159 Article 45 on founders' shares and is ineffective to the extent of conflict. Secondary judgment transcription is recorded; official court copy still needed.
+- **Updated Agent 3 minimum:** 38 distinct legal instruments with some Arabic text surfaced; 262 article/provision text units surfaced. These are manual research counts, not deduplicated current operative provisions. 13/13 law families touched; 0/13 fully amendment/currentness-complete; 0% lawyer-reviewed.
