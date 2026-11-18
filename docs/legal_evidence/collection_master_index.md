@@ -1123,3 +1123,11 @@
 
 
 | checkpoint 122 — Agent 3 Mortgage Finance Law 55/2014 amendment | Captured official GAFI-hosted Gazette text (issue 26 bis هـ, 2 Jul 2014); replaced 18 mortgage-finance statutory provisions and inserted 8 new provisions, including FRA oversight, company licensing/governance, support fund, broker discipline and penalties; cumulative Agent 3 minimum 139 instruments / 1,335 provision units |
+
+
+### Historical Gazette scan acquisition — Laws 114/1946, 142/1964, 68/1947 and 70/1964
+
+- Visually inspected all available page images from four Manshurat-hosted scans of printed Gazette pages: Law114/1946 (6 pages, issue85, 24 Aug 1946); Law142/1964 (7 pages, issue69, 24 Mar 1964, printed pp.781–787); Law68/1947 (2 pages, issue58, 3 Jul 1947, printed pp.2–3); Law70/1964 (11 pages, issue67, 22 Mar 1964, printed pp.644–654).
+- The page scans display the original Gazette mastheads, issue/date and page numbers. They are secondary-hosted reproductions of printed Gazette pages, not digital originals obtained from Amiri Press; no publisher hash, formal authentication or commercial reuse permission is claimed.
+- Acquisition register rows EG-0144, EG-0145, EG-0150 and EG-0151 upgraded with the scan routes, page counts, exact issue metadata and remaining authenticity/amendment caveats. Register remains 187 data rows, 12 columns; latest validation found no malformed rows or duplicate IDs.
+- Full visual-verification record: [primary_gazette_scan_visual_verification_laws_114_1946_142_1964_68_1947_70_1964_2026-11-18.md](primary_gazette_scan_visual_verification_laws_114_1946_142_1964_68_1947_70_1964_2026-11-18.md).
