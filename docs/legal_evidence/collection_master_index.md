@@ -1395,3 +1395,13 @@
 
 
 | checkpoint 148 — Agent 3 CBE consumer-finance credit prohibition circular (12 Oct 2026) | Captured Arabic operative text prohibiting banks from granting, renewing or using credit facilities to consumer-finance companies to fund transactions banned by FRA's 16 Sep 2026 circular; requires reclassification of existing debts found to fund those transactions; applies alongside CBE's 24 Sep 2025 controls for lending/securitization to FRA-regulated firms, including compliance/no outstanding violations or sanctions checks. CBE official register confirms circular; direct PDF blocked, text corroborated by Shorouk and Amwal Alghad. Underlying FRA circular 16 Sep and CBE original PDF remain acquisition targets. +1 CBE circular; no statute-article increment; cumulative Agent 3 **178 documents / 1,869 normalized units**; assigned-domain estimate **46% provisional**; whole corpus **2% provisional**; lawyer review 0%. Full text/provenance: [agent3_cbe_consumer_finance_credit_prohibition_circular_12_oct_2026_arabic_text.md](agent3_cbe_consumer_finance_credit_prohibition_circular_12_oct_2026_arabic_text.md) |
+
+
+### Research Agent 1 — checkpoint 158: Law 114/1946 transitional and amendment detail (18 November 2026)
+
+- Added [collection_checkpoint_158_law_114_1946_transitional_and_amendment_detail_2026-11-18.md](collection_checkpoint_158_law_114_1946_transitional_and_amendment_detail_2026-11-18.md).
+- Added **EG-0245, Law 157/1947**, a transitional extension of Law 114/1946 Article 58 by one year beginning 1 January 1948; publication cited as 28 December 1947; original issue/page remains outstanding.
+- Expanded EG-0205 Law 25/1976 amendment footprint: replaced Articles 6,8,17,24,48,49,57; added paragraphs to Articles 9,10,16,23; added Articles 23 bis,27 bis,36 bis,53 bis; replaced Article 22(6), Article35 paragraphs3–4, Article39 final paragraph; repealed Article21. The 23 March 1976 vs 1 May 1976 commencement discrepancy remains open.
+- Updated the Law 114 article-status map for repeals by Law5/1964 and Law9/2022, Law222/1956 / Law181/1957 Article3 history, Law82/1957 Article12 bis, Law186/2020 / Law5/2021 Article35 bis commencement, and Article58 transitional extension.
+- Acquisition register now has **241 rows**, 241 unique IDs, zero duplicates. Source-permission register remains **63 unique records**. Core completed article provisions remain **1,370**.
+- Completion estimates unchanged: core article extraction 100% for three defined statutes; broader civil/property/contract 15% provisional; whole Egyptian corpus 2% provisional.
