@@ -644,3 +644,11 @@
 - Justice Minister Decision 3067/2021: Gazette issue 123, 3 Jun 2021; 7-article general economic-court expert-fee regime, expressly covers Bankruptcy Administration appointments and repeals Decision 3997/2009.
 - Decision 1889/2018 (monitoring committee) and Decisions 2215/2019, 4143/2019, 1985/2024 (expert list/appointments) remain additional source leads; full text/relationship mapping outstanding.
 - **Updated Agent 3 minimum:** 55 distinct instruments with some Arabic text surfaced; 373 article/provision text units; 13/13 law families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
+
+
+### Research Agent 3 — Earlier Trade Register amendments Law 98/1996 and Law 75/2017
+
+- Law 98/1996: Official Gazette issue 25 bis (ب), 30 Jun 1996; adds Article 4(4) to Law 34/1976 allowing foreign exporters to register for export activity regardless of ownership share. Exact inserted clause transcribed from consolidated law footnote; original Gazette PDF still outstanding.
+- Law 75/2017: Official Gazette issue 24 تابع, 15 Jun 2017; replaced Article 3 of Law 34/1976 with Egyptian nationality and Chamber of Commerce/Industry licensing criteria. This version was later superseded by Law 198/2020. Text transcribed in Agent 3 file.
+- Current Article 3 must be the Law 198/2020 version; preserve Law 75/2017 as historical version, not current text.
+- **Updated Agent 3 minimum:** 57 distinct instruments with some Arabic text surfaced; 375 article/provision text units; 13/13 law families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
