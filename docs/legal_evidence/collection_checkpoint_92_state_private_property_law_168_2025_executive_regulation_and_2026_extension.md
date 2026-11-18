@@ -245,3 +245,12 @@ This checkpoint upgrades that existing lead with the full 14-article Law 168/202
 - If Presidential Decision 480/2026's "another equivalent period" runs consecutively from expiry of the first period, the second six-month period runs 20 July 2026 through 19 January 2027.
 - This is a conditional statutory-calendar calculation, not a certified deadline. Decision 480/2026 was published on 10 November 2026 after the original period had elapsed and does not expressly state whether the extension is retrospective or prospective, or how applications during the apparent 20 July–10 November gap are treated.
 - Until an official implementation notice or written authority response resolves that gap, 19 January 2027 is only the consecutive-extension candidate. A competing reopening-from-publication construction would produce 10 or 11 May 2027, depending on whether Decision 480 is effective on 10 November or the following day; neither date is certified. Article 11's separate criminal-action/surrender period is not expressly extended. The full competing-construction analysis is in the dedicated deadline-computation note.
+
+
+### Additional Gazette scan reproduction — Law 168/2025
+
+A secondary-hosted scan copy of the printed Official Gazette issue has now been visually inspected:
+- PDF: https://cdn.vetogate.com/UploadCache/libfiles/556/3/0x0o/540.pdf
+- Pages visually inspected: PDF pages 0–9 (printed issue pages 1–10). The cover/contents identify Official Gazette issue 32 bis (و), 13 August 2025; the Law 168/2025 text runs across printed pages 3–10 and includes its 14 substantive articles and issuing provisions.
+- The PDF is hosted by Vetogate, not Amiri Press. It is a scan reproduction of printed Gazette pages and is stronger than a text-only transcription, but it is not the publisher's original digital bundle and has no Amiri Press hash/certification.
+- The DSpace Amiri Press item remains request-a-copy only. The official Court of Cassation-hosted reproduction remains a separate government/judiciary source.
