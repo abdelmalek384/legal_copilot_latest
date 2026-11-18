@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (expanded through checkpoint 127)
+**Last updated:** 2026-11-18 (expanded through checkpoint 128)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -1070,3 +1070,6 @@
 
 
 | checkpoint 108 — Agent 3 Companies Executive Regulation Decision 144/2019 | Added amendment identity/scope and current consolidated Arabic text of Regulation Article 205; source limitation recorded because Gazette original not yet inspected; cumulative Agent 3 minimum 102 instruments / 1,211 provision units |
+
+
+| checkpoint 109 — Agent 3 Companies Executive Regulation Decision 256/2018 | Added Arabic text for replacement paragraphs in Regulation Articles 203 and 281; five-day interval for second GA notice publication and statutory Article 89 manager qualifications; Gazette scan still required; cumulative Agent 3 minimum 103 instruments / 1,213 provision units |
