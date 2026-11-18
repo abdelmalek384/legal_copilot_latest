@@ -135,3 +135,32 @@ The provision allows companies falling below the minimum number of founders/part
 ## Accounting
 - Law 4/2018 already existed in Agent 3's prior instrument count. This is a text-depth expansion, no new instrument/article-unit increment.
 - Assigned-domain completion remains 55% provisional; aggregate 189 documents / 1,924 numbered units; lawyer review 0%.
+
+
+## Primary-source upgrade and corrections — 18 November 2026
+
+The original Gazette PDF has now been obtained through the National Investment Bank library:
+https://www.nib.gov.eg/PDF/library/القانون-4-لسنة-2018.pdf%20تعديل%20قانون%20159.pdf
+
+It is an Amiri Press "صورة طبق الأصل" of Official Gazette issue 2 bis (ط), 16 January 2018, pp. 11–33. The PDF was opened and page 24 visually inspected; the text for Articles 86(3), 98(2)–(3), 100(final) and 135 bis is visible on the page image. Primary Gazette text now replaces the former secondary-only provenance for the original 2018 law. Original Gazette text also confirms the new one-person-company chapter in Articles 129 bis through 129 bis 9.
+
+**Exact correction to earlier source notes:**
+- The Law 4/2018 Gazette PDF's Article 5 list identifies the division-related provisions as Articles 135 bis, 135 bis (أ), (ب), (ج), and (د). The PDF text extraction has one apparent character-recognition error reading the first as "125 مكرر 1"; the Gazette list and context show it is the 135 bis division provision. Do not ingest the OCR variant as the article number.
+- The one-person company provisions in the primary Gazette run from Article 129 bis through 129 bis 9, not a new standalone statute.
+- The primary Gazette expressly provides in Article 129 bis 5 that transfer of all or part of the capital is not effective against third parties until registered in the Commercial Register; this sentence must be preserved.
+- Article 129 bis 6 requires prudent-person care and restricts the manager from managing another company in the same activity, contracting with the company for own/third-party account, or carrying on the same activity for a third party.
+- Article 129 bis 9 lists dissolution events: loss of half the capital unless the owner decides to continue, dissolution of a corporate owner, interdiction/incapacity of owner, and death subject to the single-heir/continuation route and six-month regularization.
+- The 2018 primary PDF includes Article 157 bis: shareholders/partners holding at least 10% may obtain information and documents relating to related-party contracts/transactions; if the company refuses, they may request the FRA to obtain them, and the FRA's disclosure decision is binding.
+- It includes Article 76 bis allowing the FRA to suspend certain general-assembly decisions at the request of shareholders holding at least 5% in listed/publicly offered/NBFI companies, subject to the statutory grounds and 30-day windows.
+- It includes cumulative voting and remote electronic voting in Article 73(2)–(3), subject to Executive Regulation rules; and Article 80 expressly allows board meetings via modern communication technologies such as electronic signature where permitted by the Executive Regulation.
+- It includes Article 48 treasury-share acquisition cap (10%), notification within three working days, disposal within one year or capital reduction, and no voting/dividend rights while held.
+
+**Corrigendum / erratum**
+EastLaws identifies a separate "استدراك - تصحيح خطأ" for Law 4/2018, published 8 March 2018 in Official Gazette issue 10. The final text of Article 3 is marked as affected by this correction. The exact issue-10 erratum page has not yet been acquired, so this record does not claim that the correction has been incorporated. Preserve the original 16 January text and create a separate erratum overlay once the page is obtained:
+https://www.eastlaws.com/legislation-full-text/ar/egypt/law/16-01-2018/no-4?id=1895782&type=1
+
+**Current provenance status**
+- Original Law 4/2018: primary Gazette copy obtained and page image inspected.
+- Erratum of 8 March 2018: metadata/correction notice identified; operative correction text outstanding.
+- No lawyer review; no commercial reuse permission claimed.
+- Count unchanged: Law 4/2018 remains one instrument already counted; this is a source-quality/text-depth upgrade only.
