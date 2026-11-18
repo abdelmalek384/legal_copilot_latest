@@ -1446,3 +1446,43 @@ The same Article 240 bis further permits electronic remote agenda presentation a
 - Replacement Article 9 first paragraph requires renewal every five years from initial registration or the last renewal; application is made in the month before expiry; renewal requires payment of prescribed fees; a late application within 90 days after expiry is accepted with double fee.
 - The ITDA official catalogue continues to list the law as an amendment to Law 34/1976. Keep the official scan as primary evidence and the earlier laweg transcription only as a cross-check.
 - Count unchanged: Law 198/2020 remains one instrument / three replacement-provision units already included in the cumulative total.
+
+
+## 36. Central Bank and Banking System Law 194/2020 — official Gazette reproduction acquired
+
+### Primary source and publication
+
+- Instrument: Law 194/2020 promulgating the Central Bank and Banking System Law.
+- Official Gazette: issue 37 bis (و), 15 September 2020; effective 16 September 2020.
+- Ministry of Finance official Arabic legal-text PDF: https://media.mof.gov.eg/mof-prd/qanwnrqm_194_lsnt_2020_39c565fe1c.pdf
+- Ministry of Finance record marks the law as in force and provides the Gazette-derived PDF: https://mof.gov.eg/ar/legislation/legislation-678cc4be953d480008b32c45
+- CBE official Banking Laws catalogue: https://www.cbe.org.eg/ar/laws-regulations/laws/banking-laws
+- Gazette page image for the issuing articles visually inspected. The PDF is 115 pages; OCR/text extraction is not available in the browser, so full substantive article ingestion remains a separate task.
+
+### Issuing provisions captured
+
+**Article 1:**
+> تسري أحكام القانون المرافق على البنك المركزي والجهاز المصرفي وشركات الصرافة وشركات تحويل الأموال وشركات الاستعلام والتصنيف الائتماني وشركات ضمان الائتمان ومشغلي نظم الدفع ومقدمي خدمات الدفع.
+
+**Article 2:**
+> تسري على البنوك والشركات المخاطبة بأحكام القانون المرافق، فيما لم يرد بشأنه نص فيه أو في اللوائح والقرارات الصادرة تنفيذًا له، أحكام قانون شركات المساهمة وشركات التوصية بالأسهم والشركات ذات المسئولية المحدودة وشركات الشخص الواحد الصادر بالقانون رقم 159 لسنة 1981.
+>
+> ويكون البنك المركزي هو الجهة الإدارية المختصة، ومحافظ البنك المركزي هو الوزير المختص في تطبيق أحكام قانون شركات المساهمة وشركات التوصية بالأسهم والشركات ذات المسئولية المحدودة وشركات الشخص الواحد المشار إليه بالنسبة إلى الجهات الخاضعة لإشرافه طبقًا لأحكام القانون المرافق.
+>
+> كما تسري أحكام قانون التجارة الصادر بالقانون رقم 17 لسنة 1999 على المعاملات التي تتم بين البنوك وعملائها سواء كانوا تجارًا أو غير تجار، أيًا كانت طبيعة تلك المعاملات.
+
+**Article 3** — the issuance law also replaces the expression “public sector banks” with “banks wholly owned by the State” wherever that expression appears in the referenced legislation.
+
+### Commercial/corporate cross-links
+
+- Article 2 expressly makes Companies Law 159/1981 the supplementary corporate-law regime for banks and covered entities where Law 194/2020 and its implementing instruments are silent. It also makes the CBE the competent administrative authority and its Governor the competent minister for those Companies Law purposes.
+- Article 2 applies Commercial Code 17/1999 to transactions between banks and customers, whether or not customers are traders and regardless of transaction nature.
+- This is a high-priority cross-law rule for legal retrieval: bank governance/corporate filings should first query Law 194/2020 and its regulations, then Companies Law 159/1981 as supplementary; bank-customer commercial transactions should also query Commercial Code 17/1999.
+- CBE official catalogue lists the Central Bank statute, Executive Regulations of the CBE/banking sector/money law, and relevant presidential decisions. The separate Executive Regulation and subsequent CBE Board decisions/circulars are not yet collected here.
+- Do not assume all CBE circulars are legislation; classify binding Board decisions/regulations separately from supervisory circulars, guidance and prudential instructions.
+
+### Count increment
+
+- One unique instrument with Arabic Gazette text surfaced: Law 194/2020.
+- Three issuing provisions counted (Articles 1–3); the full 115-page substantive law remains pending article-by-article extraction.
+- Cumulative Agent 3 minimum: 117 unique instruments / 1,256 provision units.
