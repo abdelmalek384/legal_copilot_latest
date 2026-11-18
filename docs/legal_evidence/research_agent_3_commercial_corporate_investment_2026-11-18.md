@@ -356,7 +356,7 @@ The PDF is 32 pages and is hosted by the Consumer Protection Agency. The PDF rea
 - Additional official source inventory: ITDA index confirms Executive Regulation Decision 106/2018, amendment Law 198/2020 and Decision 41/2020 on beneficial-owner register.
 - Consumer Law 181/2018: official 32-page PDF opened but OCR unusable; no article count added.
 - **Unique legal text instruments surfaced in the session now: 10** if Law 21/2022 and Law 34/1976 are added to the earlier eight. Decision 109/2005 remains a publication-confirmed source lead only, not counted as text obtained.
-- **Minimum provision/article units now: 63** (previous 35, including Investment Law Articles 71–72, plus six manually transcribed Trade Register articles). These manual transcriptions remain subject to page-image verification.
+- **Minimum provision/article units now: 81** (previous 35, including Investment Law Articles 71–72, plus six manually transcribed Trade Register articles). These manual transcriptions remain subject to page-image verification.
 - No lawyer approval or rights clearance has been obtained.
 
 
@@ -502,3 +502,117 @@ The ITDA-hosted Gazette scan continues with the Law's final provisions and an or
 **Version warning:** Decision 946/1976 is the original Executive Regulation text, not the current regulation. ITDA's current index lists Minister of Supply and Internal Trade Decision 106/2018 as the Executive Regulation of Law 34/1976. The 2018 regulation is a large 14.9 MB official attachment; it could not be opened by the web text reader in this session. Retrieve it from the ITDA index, record its Gazette publication and transitional/repeal clause, and compare the full text. Decision 826/1978 is identified by the page-11 footnote as an amendment to Article 4 of Decision 946/1976; collect its full text separately.
 
 **Updated provision count:** add four Law provisions (22–25) and six original Executive Regulation provisions (1–6) = 10 additional provision units. The minimum count is now **63 provision/article units** (53 previously + 10). These are manually transcribed from rendered page images and require second-person transcription QA.
+
+
+### Original Trade Register Executive Regulation Decision 946/1976 — Articles 7–24 (scan pages 12–16)
+
+The remaining pages of the official ITDA scan were inspected. The following is a manual transcription of the visible text. It is the **original 1976 regulation**, not a statement of current requirements; the current ITDA index identifies Decision 106/2018 as the Executive Regulation. The 1976 text is preserved here for historical/version-linking and amendment analysis.
+
+**Articles 7–12 (page 12):**
+
+> مادة 7 - بعد تدوين البيانات الواردة فى الطلب فى السجل التجارى ترد إلى الطالب إحدى نسختى الطلب مختومة بخاتم المكتب ويؤشر عليها بحصول القيد أو تجديده أو التأشير.
+>
+> مادة 8 - يحرر طلب القيد أو تجديده أو التأشير فى السجل من نسختين أما طلب المحو فمن نسخة واحدة على النموذج المعد لهذا الغرض وذلك وفقا لأحكام المواد التالية.
+>
+> مادة 9 - يجب أن تكون بيانات النماذج المذكورة باللغة العربية وبخط واضح دون اختصار أو تغيير أو تحشير أو محو أو كشط وأن يوقع الطالب على كل إضافة أو تصحيح بهامشها وأن تحصى عدد الكلمات المضافة أو الملغاة ويؤشر عليها مكتب السجل التجارى بما يفيد المراجعة.
+>
+> مادة 10 - يجب أن تشتمل الطلبات على البيانات المنصوص عليها فى الملحق رقم (1) المرفق مشفوعة بكافة المستندات المؤيدة لصحة هذه البيانات والمحددة فى الملحق المذكور خلال المدة المحددة لكل نوع منها مع سند أداء الرسم المقرر وفقا للملحق رقم (2).
+>
+> مادة 11 - تقدم الطلبات إلى مكتب السجل التجارى المختص ممن لهم صفة فى ذلك ويجب على المكتب أن يتحقق من هذه الصفة قبل استلامها.
+>
+> مادة 12 - يعطى الطالب إيصالا يشتمل على البيانات الآتية:
+>
+> (1) رقم الطلب وتاريخ وساعة الإيداع.
+>
+> (2) اسم الطالب.
+>
+> (3) نوع الطلب.
+>
+> (4) بيان المستندات المرفقة بالطلب.
+
+**Articles 13–14 (page 13):**
+
+> مادة 13 - تعد بمكاتب السجل التجارى فهارس بالأسماء التجارية للمقيدين بسجلاتها، كل نوع منها على حدة - بجانب الفهارس التى تعدها إدارة السجل التجارى بالأسماء التجارية لشركات المساهمة والشركات ذات المسئولية المحدودة والمقيدة لدى جميع مكاتب السجل التجارى.
+>
+> كما يعد بها سجلات لقيد ومتابعة:
+>
+> (1) ما يرد من أقلام كتاب المحاكم وفقا لما تقضى به المادة السابعة من القانون.
+>
+> (2) ما يرد من إخطارات وحدات الضرائب والقوى العاملة والتأمينات الاجتماعية والسجل المدنى والمرخص وغيرها طبقا لحكم المادة 21.
+>
+> مادة 14 - تصدر مصلحة التسجيل التجارى فى الأسبوع الأول من كل شهر صحيفة تسمى جريدة الأسماء التجارية، تشمل على الأخص الأبواب الآتية:
+>
+> الباب الأول: التجار الأفراد وشركات الأشخاص.
+>
+> الباب الثانى: شركات الأموال.
+>
+> الباب الثالث: الجمعيات التعاونية والأشخاص الاعتبارية العامة التى تباشر بنفسها نشاطا تجاريا.
+>
+> الباب الرابع: المشروعات المنشأة تنفيذا للقانون رقم 43 لسنة 1974 بنظام استثمار المال العربى والأجنبى والمناطق الحرة والمنشآت الأجنبية التى يوجد مركزها العام بالخارج إذا كان الأجنبى شريكا فيها.
+>
+> الباب الخامس: البيانات الإحصائية.
+
+**Article 15 (pages 13–14; publication data categories):**
+
+> مادة 15 - تشهر فى الجريدة المذكورة البيانات الآتية:
+>
+> (أ) فيما يخص القيد:
+>
+> 1 - مكتب السجل الذى تم فيه القيد.
+>
+> 2 - تاريخ القيد ورقمه.
+>
+> 3 - الاسم التجارى للتاجر أو الشركة أو اسم الجمعية التعاونية.
+>
+> 4 - قيمة رأس المال مع بيان حصة الشركاء الأجانب الموصين.
+>
+> 5 - موقع المحل الرئيسى للتاجر أو المركز الرئيسى للشخص الاعتبارى وموقع الفرع أو المكتب حسب الأحوال.
+>
+> 6 - نوع النشاط ورقمه.
+>
+> (ب) فيما يخص التعديلات وتجديد القيد والتأشير والمحو:
+>
+> 1 - مكتب السجل التجارى الذى حصل فيه التعديل أو التجديد أو التأشير أو المحو.
+>
+> 2 - الاسم التجارى للتاجر أو الشركة أو الجمعية التعاونية السابق ورقم القيد الأصلى بالسجل وعدد الجريدة التى أشهر فيها هذا القيد ورقم الصفحة.
+>
+> 3 - مضمون البيان المطلوب شهره من حيث موضوع التعديل وتاريخ حصوله وتاريخ صدوره، والسنوات الخمس وتاريخ التجديد المطلوب شهره وسبب المحو وتاريخ حصوله.
+>
+> 4 - منطوق الحكم أو الأمر أو القرار وتاريخه والمحكمة الصادر منها وتاريخ التأشير به فى السجل.
+
+**Articles 16–20 (page 15):**
+
+> مادة 16 - ترسل مكاتب السجل التجارى إلى إدارة السجل التجارى فى الأسبوع الأول من كل شهر إخطارات عن طلبات القيد والتجديد والتأشير وأوامر المحو والأحكام والقرارات التى تؤشر بها فى السجل خلال الشهر المذكور وتكون هذه الإخطارات مشتملة على البيانات التى تنشر فى الصحيفة.
+>
+> مادة 17 - يحرر طلب المستخرج أو شهادة البيانات أو الشهادة السلبية أو الصورة المستخرجة من عقد الشركة والعقود اللاحقة على النموذج الخاص بذلك كما تحرر صور خطية من عقد الشركة وكذلك العقود اللاحقة عليه.
+>
+> مادة 18 - يحرر المستخرج أو الشهادة المشار إليها فى المادة السابقة على النموذج الخاص ويكون موقعا عليه من الطالب ومشفوعا بالإيصال الدال على سداد الرسم المستحق.
+>
+> مادة 19 - يؤدى الرسم المقرر طبقا للفئات المنصوص عليها فى الملحق رقم 2 المرفق.
+>
+> مادة 20 - لمكتب السجل التجارى المختص بقرار مسبب من مدير عام مصلحة التسجيل التجارى رفض طلب القيد فى السجل أو طلب التأشير بالبيانات فيه وذلك خلال شهرين على الأكثر من تاريخ الطلب ويرسل هذا القرار لصاحب الطلب بموجب كتاب بالبريد الموصى عليه بعلم الوصول على عنوان محل الإقامة الموضح بآخر الطلب وتبدأ سريان المواعيد المنصوص عليها فى الفقرة الأخيرة من المادة الثامنة من القانون من تاريخ هذا الإرسال.
+
+**Articles 21–24 (page 16):**
+
+> مادة 21 - يستمر الأجانب المقيدة أسماؤهم فى السجل التجارى وقت العمل بالقانون رقم 34 لسنة 1976 فى مزاولة العمل التجارى المشار إليه بالشروط الآتية:
+>
+> (أ) أن تكون أسماؤهم مقيدة عن نفس نوع التجارة.
+>
+> (ب) يخضع القيد للتجديد القانونى ولا يجوز تعديله سواء بدخول شركاء أجانب جدد ولو كانوا من أصول التاجر أو فروعه أو زوجه، وتمنع التغيير فى بيانات السجل التجارى نتيجة أى تصرف من التصرفات بما فى ذلك الهبة.
+>
+> (ج) يمحى القيد من السجل التجارى إذا اعتزل التاجر الأجنبى تجارته أو غادر البلاد وفى حالة وفاته.
+>
+> مادة 22 - يقوم أمين مكتب السجل التجارى أو من يقوم مقامه بتحرير المحاضر عن المخالفات التى تقع فى دائرة اختصاص مكتب السجل التجارى وتقيد فى سجل خاص لمتابعتها حتى إتمام التصرف فيها.
+>
+> مادة 23 - يتولى المحافظ المختص الإشراف على مكاتب السجل الواقعة فى دائرة اختصاصاته.
+>
+> مادة 24 - ينشر هذا القرار فى الوقائع المصرية.
+>
+> صدر فى 19 رجب 1396 (17 يوليو 1976).
+>
+> وزير التجارة  
+> زكريا توفيق عبد الفتاح
+
+**Historical amendment note:** page 11 footnote records Ministerial Decision 826/1978 as amending Article 4 of Decision 946/1976. The current ITDA index identifies Decision 106/2018 as the later Executive Regulation. Do not assume all provisions of the 1976 Regulation remained operative until 2018 or that every provision was replaced at once; inspect Decision 106/2018's repeal/transitional clause and intermediate decisions.
+
+**Updated provision count:** add 18 original Regulation articles (7–24) to the previous 63 = **81 provision/article units**. This count is the number of distinct article texts surfaced in this research file, not a validated count of unique provisions in the current operative law corpus.
