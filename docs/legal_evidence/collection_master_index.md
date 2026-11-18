@@ -412,6 +412,12 @@
 - No national completion percentage recalculated: the corpus still lacks a validated denominator of all unique Egyptian legal article texts.
 
 
+### Research Agent 1 — Law 147/2021 amendment source upgrade
+
+- Law 167/2025 amending Article 107 of Law 147/2021 is now recorded with the official Amiri Press text page and official IDSC DSpace Gazette metadata (issue 32 supplement (A), 7 August 2025). The amendment substitutes the penalty provision; it is not a land-title or allocation amendment.
+- DSpace's 245.51 KB original Gazette bundle is request-only; full text was acquired from the official Amiri Press text portal and secondary transcription.
+- Added acquisition register record EG-0176. All review and rights flags remain false.
+
 ### Research Agent 1 — State private property regularization update (checkpoint 92)
 
 - Full 14-article searchable Arabic text of Law 168/2025 acquired; the statute was already identified in checkpoint 89 and is not counted as a new base-law discovery. Official Gazette issue 32 bis (و), 13 August 2025; Law 168/2025 repeals Law 144/2017.
@@ -425,7 +431,7 @@
 - Inspected the existing national source register, Phase 2 metadata-only document inventory, source-evidence register, source-permission register and initial statute acquisition register before updating.
 - Extended `data/research/egypt_initial_statute_acquisition_register_2026-11-17.csv` with 29 unique instrument records (EG-0144–EG-0172) for civil/property registration, notarization, desert land, expropriation, irrigation and mortgage-finance texts.
 - Upgraded existing EG-0070 Law 148/2001 from the earlier ETA PDF with no readable text layer to the official FRA-hosted Gazette reproduction with searchable Arabic text.
-- CSV validation: 171 instrument rows, 12 columns per row, no duplicate instrument IDs, and no malformed rows. This is a register count, not a count of unique full legal texts or articles.
+- CSV validation: 172 instrument rows, 12 columns per row, no duplicate instrument IDs, and no malformed rows. This is a register count, not a count of unique full legal texts or articles.
 - All new rows retain `lawyer_reviewed=false` and `rights_cleared=false`; no collection or commercial reuse permission is inferred. Phase 2 production inventory and source-permission register were not promoted or altered because their permission/review gates remain unknown.
 
 ### Research Agent 1 — desert-land amendment and jurisdiction supplement
