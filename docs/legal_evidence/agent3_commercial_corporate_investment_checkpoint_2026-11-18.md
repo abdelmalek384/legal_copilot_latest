@@ -2124,3 +2124,72 @@ FRA's official financial-leasing/factoring legislation catalogue and contemporan
 - One new unique instrument with Arabic operative text surfaced: Law 21/2022.
 - Four issuing provision units counted (Articles 1–4); the multiple inserted statutory articles are separately indexed as nested provisions and are not double-counted.
 - Cumulative Agent 3 minimum: 132 unique instruments / 1,300 provision units.
+
+
+## 43. Competition Law 3/2005 — earlier amendment instruments 190/2008, 193/2008, 56/2014 and 15/2019
+
+### Law 190/2008 — horizontal/vertical restriction and penalty amendments
+
+- Gazette record: Official Gazette issue 25 bis (A), 22 June 2008.
+- Full operative text indexed by Laweg: https://www.laweg.net/Default.aspx?FIID=1760&action=LegsPublisherForm
+- Law 190/2008 replaces Competition Law Article 6(b) and (d), Article 8(e), Article 11(2) first paragraph and Article 22.
+- Article 6(b) explicitly includes market/customer/product/territory/time-based allocation among competitors; Article 8(e) covers discriminatory treatment in agreements with suppliers or customers in comparable contractual positions.
+- The revised Article 22 sets turnover-based fines for violations of Articles 6–8, with fixed minimum/maximum fallback amounts when the relevant product revenue cannot be calculated.
+- Full official Gazette page image still needed; the Laweg legal portal provides a detailed operative transcription and Gazette issue reference.
+
+### Law 193/2008 — leniency / cooperation provision
+
+- Gazette: Official Gazette issue 25 bis (B), 22 June 2008.
+- Full Arabic operative text: https://www.laweg.net/framePlain.aspx?NID=7860&action=viewactivepages&itemid=9148&type=6
+- Article 1 adds new Competition Law Article 26. A court may reduce the penalty by up to half for a violator who first reports an offence under Articles 6 or 7 and supplies evidence that helps reveal and prove its elements during investigation or trial.
+- Article 2 publication and commencement the day after publication.
+- This provision was subsequently superseded/reworked by Law 56/2014, which replaced Article 26 with a first-informant no-prosecution mechanism for offences under Article 6 and judicial leniency for other contributors. Store the 2008 provision as historical rather than current.
+
+### Law 56/2014 — major institutional and enforcement amendment
+
+- Instrument: Presidential Decree-Law 56/2014 amending Law 3/2005.
+- Official Gazette issue 26 bis (هـ), 2 July 2014.
+- Full Arabic operative text: https://www.laweg.net/framePlain.aspx?ItemID=93274&NID=113513&Type=6&action=ViewActivePages
+- Article 1 replaces Article 8(a),(b),(d),(e); Article 11(6); Articles 9, 12, 13(1), 15, 16, 20, 21, 22 and 26.
+- Changes include:
+  - Defines state-directly-operated public utilities outside the law's scope and permits limited exemption for indirectly managed utilities where public interest or consumer benefit outweighs competition restriction.
+  - Reconstitutes the ECA Board and term; sets its meeting quorum.
+  - Creates the full-time Executive Director role.
+  - Strengthens confidentiality of ECA investigation material and restricts disclosure/use.
+  - Adds cease-and-desist/corrective measures and board power to suspend harmful practices.
+  - Changes criminal referral and settlement authority from the competent minister to the ECA Board, with specified payment ranges and procedural stages.
+  - Revises fines for Articles 6–8 and recidivism.
+  - Replaces Article 26 with a first-informant immunity mechanism for Article 6 offences and possible half-penalty reduction for other cooperating violators.
+- Article 2 makes terminology substitutions in Article 6 and adjusts penalty references in Article 22 bis and Article 23.
+- Article 3 adds definitions of economic efficiency and sectoral regulators, an efficiency exemption to Article 6 where consumer benefits outweigh competition harm, coordination with sectoral regulators, an employee secondment exception and new Article 22 bis (b) penalty for obstructing ECA judicial-police officers.
+- Article 4 deletes Article 22 bis (a).
+- Article 5 publication/commencement, with delayed commencement for Articles 12 and 13(1) until the end of the then-current Board term.
+- **Exact Arabic text — Article 1, revised Article 21 opening:**
+> لا يجوز تحريك الدعوى الجنائية أو اتخاذ إجراءات فيها بالنسبة إلى الأفعال المخالفة لأحكام هذا القانون إلا بطلب كتابى من رئيس مجلس إدارة الجهاز بناءً على موافقة أغلبية أعضائه.
+- **Exact Arabic text — Article 3, economic-efficiency exemption:**
+> وللجهاز بناء على طلب الأشخاص ذوى الشأن أن يعفى من الحظر الوارد فى هذه المادة الاتفاق أو التعاقد الذى يهدف إلى تحقيق كفاءة اقتصادية إذا أثبت الاتفاق أو التعاقد المشار إليه يحقق فائدة للمستهلك تفوق آثار الحد من المنافسة، وتحدد اللائحة التنفيذية إجراءات وشروط تقديم الطلب وضوابط صدور قرار الجهاز.
+
+### Law 15/2019 — state price-control decision penalty
+
+- Instrument: Law 15/2019, a multi-statute law amending Supply Law 95/1945 and Competition Law 3/2005.
+- Official Gazette issue 14 bis, 8 April 2019; effective 9 April 2019.
+- Official SIS record: https://sis.gov.eg/ar/الرئاسة/شئون-داخلية/القرارات-الرئاسية/الرئيس-السيسي-يصدق-على-قانون-بتعديل-بعض-أحكام-قانوني-شئون-التموين-وحماية-المنافسة/
+- Full Arabic transcription: https://www.eglf.org/قانون-15-لسنة-2019/ and https://lawyeregypt.net/قانون-رقم-15-لسنة-2019-بتعديل-بعض-أحكام-المرسوم-بقانون-رقم-95-لسنة-1945-الخاص-بشئون-التموين-وبعض-أحكام-قانون-حماية-المنافسة/
+- Article 2 adds an exception to the opening of Competition Law Article 21, excluding the new Article 22 bis (c) offence from the ordinary ECA Board written-request prosecution gate.
+- Article 3 inserts new Article 22 bis (c): violation of Cabinet decisions issued under Competition Law Article 10 (temporary price-setting for one or more essential products) is punishable by a fine of EGP 100,000 to EGP 5 million.
+- Article 4 publication and commencement the day after publication.
+- The same multi-statute law also amends Supply Law 95/1945 in Article 1; do not duplicate-count it as a separate instrument in the Competition Law corpus.
+- **Exact Arabic text — new Article 22 bis (c):**
+> مع عدم الإخلال بأى عقوبة أشد منصوص عليها فى أى قانون آخر، يعاقب على مخالفة القرارات الصادرة من مجلس الوزراء تنفيذًا لحكم المادة (١٠) من هذا القانون بغرامة لا تقل عن مائة ألف جنيه ولا تجاوز خمسة ملايين جنيه.
+
+### Important amendment-number discrepancy: Law 56/2014 vs Law 9/2014
+
+- The ECA official FAQ and the original Gazette transcription identify **Law 56/2014**, Official Gazette issue 26 bis (هـ), 2 July 2014, as the amendment to Law 3/2005.
+- Some footnotes in ECA-hosted consolidated PDF snippets incorrectly attribute several 2014 textual substitutions to **Law 9/2014**. The original Gazette text retrieved here is explicitly Law 56/2014 and the ECA FAQ itself also says 56/2014. Preserve this discrepancy as a source/editorial annotation; do not silently replace the primary-source instrument number with 9/2014.
+- The ECA-hosted PDF's footnote also inconsistently refers to insertion of Article 11(10), whereas the Law 56/2014 Gazette transcription shows Article 11(9) for sectoral-regulator coordination. Prefer the actual Gazette amendment text and record the footnote discrepancy.
+
+### Count increment
+
+- Four unique instruments with Arabic operative text surfaced: Laws 190/2008, 193/2008, 56/2014 and 15/2019.
+- Thirteen issuing provision units counted: Laws 190/2008 and 193/2008 Articles 1–2 each; Law 56/2014 Articles 1–5; Law 15/2019 Articles 1–4.
+- Cumulative Agent 3 minimum: 136 unique instruments / 1,313 provision units.
