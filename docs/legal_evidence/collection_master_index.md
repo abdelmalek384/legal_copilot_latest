@@ -727,3 +727,10 @@
 - PM Decision 4426/2022, Official Gazette issue 49 تابع, 8 Dec 2022. Official DSpace record found, but Arabic PDF is restricted via request-a-copy. Contemporaneous Arabic text confirms replacement of Executive Regulation 2310/2017 Article 42(1): eligible forms are Egyptian joint-stock or LLC; the earlier 20%-of-project-cost capital minimum is replaced with financial-solvency criteria set by GAFI Board; company must be incorporated after Law 72/2017 commencement.
 - Decision 4426/2022 was later superseded for Articles 41–43 by Decision 1203/2024. Keep as historical intermediate version, not current rule.
 - **Updated Agent 3 minimum:** 63 distinct instruments with some Arabic text surfaced; 557 article/provision text units; 13/13 families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
+
+
+### Research Agent 3 — Investment Decision 910/2021
+
+- PM Decision 910/2021, published 10 May 2021, adds a paragraph to Executive Regulation 2310/2017 Article 36(3), item 4. It permits the Cabinet, for public-interest reasons, to exempt Article 20 single-approval projects from the foreign-currency capital condition after joint ministerial proposal, GAFI Board approval and CBE consultation.
+- Inserted paragraph text captured from contemporaneous reporting and confirmed by the consolidated regulation footnote; original Gazette PDF/issue/page still outstanding.
+- **Updated Agent 3 minimum:** 64 distinct instruments with some Arabic text surfaced; 559 article/provision text units; 13/13 families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
