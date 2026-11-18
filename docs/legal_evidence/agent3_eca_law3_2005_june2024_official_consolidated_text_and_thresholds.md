@@ -123,3 +123,12 @@
 ## Counting
 - Law 3/2005 and Law 175/2022 already appear in Agent 3's instrument inventory. This is a source-quality and statutory-text expansion, not a new unique-instrument count.
 - Do not add Article 19 bis–19 bis (و) again if the previous Law 175 record already counted them. Reconcile article-unit duplicates against the existing record before adjusting the aggregate.
+
+
+## Superseding correction — Law 175/2022 Gazette text controls the worldwide threshold
+The ECA June 2024 consolidated PDF transcribes Article 19 bis(ب) as EGP 7.2 billion and footnotes the insertion to Law 15/2022, Gazette issue 13 supplement (أ), 31 March 2022. That passage is inconsistent with the full text of **Law 175/2022** published by the Amiri Press. The Amiri Press Law 175 text expressly inserts Article 19 bis and states the worldwide threshold as **EGP 7.5 billion**, with at least one concerned person having Egyptian turnover above EGP 200 million. It also expressly states that Law 175/2022 is the instrument inserting the new Article 19 bis chain. The ECA consolidation is therefore stale or contains a material editorial/metadata error on this point. Do not use 7.2 billion as the current threshold. The operative filing trigger is 7.5 billion under Law 175/2022, subject to final original Gazette page-image confirmation. Primary Amiri Press text: https://alamiria.com/Sec/TashTxt?id=fS+Yv1+FkoI%3D. The ECA PDF remains useful for the rest of the consolidated statutory text, but the threshold passage and its Law 15/2022 footnote are quarantined pending correction by ECA.
+
+**Corrected threshold fields:**
+- Egypt domestic combined turnover/assets: > EGP 900m; at least two concerned persons each have Egyptian turnover > EGP 200m.
+- Worldwide combined turnover/assets: > EGP 7.5bn; at least one concerned person has Egyptian turnover > EGP 200m.
+- Decision 1120/2024 Article 59 also uses EGP 7.5bn as a fee band; that fee rule is distinct from the statutory filing test, even though the numeric amount coincides.
