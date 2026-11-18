@@ -1181,3 +1181,6 @@
 
 
 | checkpoint 128 — Agent 3 official full-text acquisition tranche | Acquired searchable official Arabic primary texts for Companies Executive Regulation Decision 96/1982 (MIFT consolidated to 21 Aug 2022), Investment Law 72/2017 and original Executive Regulation Decision 2310/2017 (133 articles); re-opened Commercial Code 17/1999 and corrected article range to 1–772 plus separately preserved 1883 partnership chapter; no new unique instruments or provision-unit count claimed pending normalization; assignment estimate 31%, lawyer-reviewed 0% |
+
+
+| checkpoint 129 — Agent 3 Investment Law 160/2023 and Companies Regulation amendment provenance | Upgraded Law 160/2023 to full Arabic secondary transcription; recorded Gazette issue 32 corrigendum as mandatory final-text reconciliation; verified Decision 2928/2022's amendment target via MIFT consolidated Decision 96/1982 and DSpace metadata; classified PM Decision 104/2022 as investment-zone implementation and Decision 876/2023 as an unacquired lead; cumulative 146 instruments / 1,349 provision units, completion estimate 31%, lawyer review 0% |
