@@ -4743,3 +4743,66 @@ Decision 910/2021 adds a new paragraph to item 4 of the third paragraph of Artic
 The consolidated Decision 2310/2017 text footnote confirms this paragraph was added by Decision 910/2021. The original Gazette PDF and exact Gazette issue/page remain to be captured.
 
 **Collection status:** inserted paragraph text and date/source lead captured; issuing article and full Gazette copy not yet retrieved. No lawyer review or rights clearance claimed.
+
+
+## 45. Investment Executive Regulation Decisions 1199/2020 and 2467/2020 — official Gazette PDFs visually transcribed
+
+### A. PM Decision 1199/2020 — exemption from private free-zone conditions
+
+**Decision:** Prime Minister Decision 1199/2020, 15 June 2020.  
+**Gazette:** Official Gazette issue 24 bis (ب), 15 June 2020.  
+**Effective:** 16 June 2020.  
+**Manshurat indexed Gazette page:** https://www.manshurat.org/node/67017  
+**One-page Gazette PDF:** https://www.manshurat.org/file/78710/download?token=BR-0pxKw
+
+**Verbatim — Article 1:**
+
+> (المادة الأولى)
+>
+> تُضاف فقرة جديدة إلى عجز المادة (76) من اللائحة التنفيذية لقانون الاستثمار المشار إليها، نصها الآتي:
+>
+> "ويجوز لمجلس الوزراء للاعتبارات التى يقدرها فى كل حالة على حدة، وبناءً على عرض الوزير المختص، وبعد موافقة مجلس إدارة الهيئة، استثناء أحد المشروعات من شرط أو أكثر من تلك الشروط."
+
+**Verbatim — Article 2:**
+
+> (المادة الثانية)
+>
+> ينشر هذا القرار فى الجريدة الرسمية، ويعمل به اعتباراً من اليوم التالى لتاريخ نشره.
+
+**Currentness:** The 2020 Article 76 was later replaced by Decision 2140/2023. The exemption concept is retained in the replacement Article 76, but the operative current text is the 2023/2024 version, not the original 2020 insertion.
+
+### B. PM Decision 2467/2020 — Sector A definition and Golden Triangle
+
+**Decision:** Prime Minister Decision 2467/2020, dated 26 November 2020.  
+**Gazette:** Official Gazette issue 48 bis (أ), 26 November 2020.  
+**Effective:** 27 November 2020.  
+**Manshurat indexed Gazette page:** https://manshurat.org/node/69056  
+**Two-page Gazette PDF:** https://manshurat.org/file/80759/download?token=0QSrjv6F
+
+Decision 2467/2020 replaces the second paragraph of Article 10 of Executive Regulation 2310/2017 and expands the geographic description of Sector A to include the Suez Canal Economic Zone, Golden Triangle Economic Zone, New Administrative Capital and other areas most in need of development.
+
+**Verbatim — Article 1 / replacement Regulation Article 10, second paragraph:**
+
+> "أولاً - القطاع (أ)، ويشمل المنطقة الاقتصادية لقناة السويس، والمنطقة الاقتصادية للمثلث الذهبى، ومنطقة العاصمة الإدارية الجديدة، والمناطق الأخرى الأكثر احتياجاً للتنمية التى يصدر بتحديدها قرار من مجلس الوزراء والتى تتصف بالآتى:
+>
+> 1- انخفاض مستويات التنمية الاقتصادية والناتج المحلى وزيادة حجم القطاع غير الرسمى بها.
+>
+> 2- انخفاض مستويات التشغيل وفرص العمل المتاحة وارتفاع معدلات البطالة.
+>
+> 3- المؤشرات الاجتماعية الآتية:
+>
+> زيادة واضحة فى الكثافة السكانية.
+>
+> انخفاض مستوى جودة التعليم وزيادة نسبة الأمية.
+>
+> انخفاض مستوى الخدمات الصحية.
+>
+> ارتفاع معدلات الفقر."
+
+**Verbatim — Article 2:**
+
+> (المادة الثانية)
+>
+> ينشر هذا القرار فى الجريدة الرسمية، ويعمل به اعتباراً من اليوم التالى لتاريخ نشره.
+
+**Currentness:** Article 10 was subsequently amended by Decisions 1203/2024 and 2562/2024, and the industrial schedules under Decision 104/2022 were replaced by Decision 503/2026. Preserve Decision 2467/2020 as the historical Sector A version; apply the current consolidated Article 10 and current schedule version.
