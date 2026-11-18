@@ -6532,3 +6532,59 @@ The official GOEIC catalogue lists Decision 593/2025 as the amendment to Executi
 5. The MIFT current catalogue lists Law 120/1982 as in force, Law 21/2022 as its amendment, and Decision 593/2025 as the latest Executive Regulation amendment. GOEIC lists Decision 593/2025 in its current decisions catalogue.
 
 **Collection status:** official GOEIC current catalogue and Official Gazette DSpace record obtained; Decision 593/2025 full searchable text surfaced, with 12 selected provisions transcribed. This is a material update to the commercial-agency and distribution-law collection. No lawyer review or rights clearance claimed.
+
+
+## 45. Related corporate-finance statute — Law 154/2026 state-owned company profit remittance
+
+### A. Official Gazette text and status
+
+**Instrument:** Law 154/2026 on allocation/remittance of a percentage of net profits of state-owned companies and companies owned by public juridical persons to the State Treasury.  
+**Gazette:** Official Gazette issue 30 bis (أ), 28 July 2026.  
+**Official Ministry of Finance record:** https://mof.gov.eg/ar/legislation/legislation-6a731fef63496600085dd865 (status: ساري).  
+**Direct official MOF-hosted Gazette PDF:** https://media.mof.gov.eg/mof-prd/qanwn_rqm_154_lsnt_2026_ilzam_alshrkat_almmlwkt_lldwlt_aw_llashkhas_alaetbaryt_aleamt_btwryd_nsbt_mn_arbahha_alsafyt_ila_alkhzant_aleamt_lldwlt_4d6cc71c22.pdf
+
+The two-page MOF PDF includes the Gazette masthead and full Arabic text of the two articles. This is an adjacent corporate-finance/public-ownership instrument, not an amendment to Companies Law 159/1981 or Public Business Sector Companies Law 203/1991. It applies to companies regardless of their legal regime where the ownership thresholds are met.
+
+### B. Verbatim statutory text
+
+**Verbatim — Article 1 (profit allocation):**
+
+> المادة الأولى
+>
+> مع عدم الإخلال بالشركات المنشأة تنفيذاً لاتفاقيات دولية، تلتزم مجالس إدارات الشركات التي يكون رأسمالها مملوكاً بالكامل للدولة أو للأشخاص الاعتبارية العامة، وذلك أياً كان النظام القانوني الذي تخضع له هذه الشركات، بتجنيب نسبة (٥٪) من الأرباح الصافية القابلة للتوزيع، وذلك بعد تغطية الخسائر المرحلة وقبل تجنيب أية احتياطات، وتعد هذه النسبة إيرادات ضريبية وتؤول حصيلتها خلال أربعة أشهر من تاريخ إقفال السنة المالية إلى الخزانة العامة للدولة لدعم مواردها.
+>
+> وبالنسبة للشركات التي تساهم فيها الدولة أو الأشخاص الاعتبارية العامة جزئياً بنسبة تجاوز (٥٠٪) من رأسمالها، فتلتزم مجالس إداراتها بتحصيل نسبة تعادل (٤٪) من الأرباح الصافية القابلة للتوزيع بعد اعتماد القوائم المالية من الجمعية العمومية للشركة وبما لا يجاوز حصة الدولة أو الأشخاص الاعتبارية العامة في هذه الأرباح، وذلك بعد تغطية الخسائر المرحلة وقبل تجنيب أية احتياطات، على أن تخصم هذه النسبة كاملة من نصيب الدولة أو الأشخاص الاعتبارية العامة في الأرباح الصافية، وتعد هذه النسبة إيرادات ضريبية وتؤول حصيلتها إلى الخزانة العامة للدولة لدعم مواردها خلال أربعة أشهر من تاريخ إقفال السنة المالية.
+>
+> ويجوز لضرورات اجتماعية أو اقتصادية يقتضيها الصالح العام استثناء بعض الشركات لفترة مؤقتة من تطبيق أحكام هذا القانون، وذلك بقرار من مجلس الوزراء بناءً على عرض وزير المالية.
+
+**Verbatim — Article 2 (commencement):**
+
+> المادة الثانية
+>
+> ينشر هذا القانون في الجريدة الرسمية، ويعمل به اعتباراً من اليوم التالي لتاريخ نشره.
+>
+> يبصم هذا القانون بخاتم الدولة، وينفذ كقانون من قوانينها.
+>
+> صدر برئاسة الجمهورية في ١٤ صفر سنة ١٤٤٨ هـ (الموافق ٢٨ يولية سنة ٢٠٢٦ م).
+
+### C. Practical versioning and scope
+
+- 100% state/public-juridical-person ownership: 5% of distributable net profits after carried losses and before reserves; remittance within four months after fiscal year close.
+- Public ownership exceeding 50% but not 100%: 4% of distributable net profits, capped at the public owner's share; deducted from the public owner's profit entitlement and remitted within four months after fiscal year close.
+- The law authorizes temporary exemptions by Cabinet decision on Finance Minister proposal for social/economic public-interest reasons.
+- The law says it applies regardless of the legal regime of the company; it should therefore be checked for companies formed under Law 159/1981, Law 203/1991, special statutes and other corporate forms where public ownership qualifies.
+
+**Collection status:** official MOF record and two-page Gazette PDF retrieved; both statutory articles transcribed. No lawyer review or rights clearance claimed.
+
+## 46. Companies Law 159/1981 — 2026 Ministry announcement of contemplated Executive Regulation amendments (non-binding lead)
+
+The Ministry of Investment and Foreign Trade published an official announcement describing work on amendments to the Executive Regulation of Companies Law 159/1981. The stated policy topics include:
+- recognition/regulation of shareholders' agreements;
+- convertible notes / debt instruments convertible into shares and a register for such instruments;
+- specialized-company valuation for capital increases and a register;
+- easier legal-form changes for sole proprietorships;
+- preserving a business's commercial history after changes to ownership/legal form.
+
+**Classification:** official ministry announcement / policy lead only, not a published ministerial decision, Cabinet decision, Gazette amendment or operative law. No legal effects should be attributed to these proposals unless and until the final amending decision is published in الوقائع المصرية. The source page is the Ministry's official blog, title: "وزير الاستثمار والتجارة الخارجية يشارك في قمة انطلاق لريادة الأعمال..." (MIFT Blog ID 369; search result indexed September 2026). URL: https://www.mift.gov.eg/Blog/Details/369
+
+This is a currentness watch item for the 361-article Companies Law Executive Regulation 96/1982 consolidation already held in the master index. It must not be counted as a legal instrument or amendment.
