@@ -166,7 +166,7 @@ The full issue contains three attached model forms:
 
 **Drafting discrepancy requiring confirmation:** Regulation Article 20 in the PDF says the authority prepares **annual** reports (تقارير سنوية), while Form 3 is headed **quarterly** report (تقرير ربع سنوي). Preserve both source readings; do not silently normalize one into the other.
 
-**Coverage update:** this adds three complete regulation articles (10, 17, 18) from the opened SIS Gazette PDF. The repository now contains complete text for Regulation Articles 3–7, 9–10, 13, 15–18, plus Articles 12? (not transcribed), 17 and 18 only where specifically listed; the exact capture count is maintained in the inventory/checkpoint rather than inferred from the full PDF availability. Forms are structurally mapped, not transcribed field-by-field in full.
+**Coverage update:** the supplemental file contains complete text for Regulation Articles 3–7, 9–10, 13, 15–18 (12 of 20 regulation articles), plus issuing Article 4. Regulation Articles 1, 2, 8, 11, 12, 14, 19 and 20 have not yet been transcribed as full article text into the structured capture file. Forms 1 (two variants), 2 and 3 are structurally mapped, not transcribed field-by-field in full.
 
 
 ## Additional Law 168/2025 provisions from the 20-page Gazette scan reproduction
