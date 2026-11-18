@@ -2085,3 +2085,131 @@ Law 20/2024 Article 2 provides publication and commencement from the day followi
 - PM Decision 822/2019 searchable text is a secondary reproduction and only Articles 1–23 were surfaced in this pass; full text and amendment chain still required.
 - Law 20/2024 has Ministry of Finance current-law metadata and Amiri Press Gazette issue/date evidence; full Arabic amendment PDF listed in DSpace but page-image transcription still required.
 - No lawyer approval or rights clearance claimed.
+
+
+## 22. Financial Leasing and Factoring Law 176/2018 — full current FRA text and implementing FRA decision package
+
+### A. Full Law 176/2018 text
+
+**Official FRA-hosted Arabic PDF (2025 upload):**  
+https://fra.gov.eg/wp-content/uploads/2025/02/قانون-تنظيم-نشاطي-التأجير-التمويلي-والتخصيم.pdf
+
+The FRA PDF is a searchable full text of Law 176/2018 through numbered Article 84, including issuing provisions and the attached statute. The PDF's text extraction contains obvious typographical/OCR issues in several lines, so use the rendered original page images for exact legal ingestion. The issuing Article 1 repeals Financial Leasing Law 95/1995 and PM Decision 1446/2003 on factoring. The law itself directs the FRA Board to issue detailed rules; this collection pass did not identify one comprehensive executive regulation. The operative framework is implemented by multiple FRA Board decisions.
+
+**Verbatim — issuing Article 1:**
+
+> المادة 1 إصدار
+>
+> تسرى أحكام القانون المرافق على نشاطى التأجير التمويلى والتخصيم.
+>
+> ويُلغى القانون رقم 95 لسنة 1995 فى شأن التأجير التمويلى، كما يُلغى قرار رئيس مجلس الوزراء رقم 1446 لسنة 2003 بشأن الضوابط والأحكام الخاصة بنشاط التخصيم وكل حكم يخالف أحكام القانون المرافق.
+
+**Verbatim — substantive Article 2 (regulatory basis):**
+
+> المادة ٢
+>
+> تكون ممارسة نشاطى التأجير التمويلي والتخصيم وفقاً للأحكام الواردة بهذا القانون واللوائح والشروط والضوابط والمعايير التي يصدر بها قرار مجلس إدارة الهيئة طبقاً لطبيعة كل نشاط.
+
+**Verbatim — Article 3 (exclusive licensing):**
+
+> المادة ٣
+>
+> تختص الهيئة، دون غيرها، بمنح تراخيص ممارسة النشاط للشركات الخاضعة لأحكام هذا القانون، كما تختص بالترخيص للشركات والجمعيات والمؤسسات الأهلية التي تمارس نشاط التمويل متناهي الصغر وفقاً لأحكام القانون رقم ١٤١ لسنة ٢٠١٤ بتنظيم نشاط التمويل متناهي الصغر وفق الشروط المنصوص عليها في هذا القانون والقواعد الصادرة عن مجلس إدارة الهيئة، ولا يجوز لغير الجهات المشار إليها ممارسة نشاط التأجير التمويلي أو نشاط التخصيم.
+
+**Verbatim — Article 5 (leasing-contract registry):**
+
+> المادة ٥
+>
+> تعد الهيئة سجلاً لقيد عقود التأجير التمويلي التي تبرم بين المؤجر المرخص له بممارسة النشاط طبقاً لأحكام هذا القانون والمستأجر متى أبرم العقد في جمهورية مصر العربية أو كان تنفيذها يقع فيها، وعقود البيع التي ترتبط بهذه العقود ويتم استناداً إليها، وكذلك أي تعديل لهذه العقود.
+>
+> ويحدد مجلس إدارة الهيئة أحكام وإجراءات القيد في السجل المشار إليه، والمستندات والبيانات والأوراق والبيانات الأخرى التي يتطلبها القيد، وإجراءات تعديل القيد أو شطبه، وذلك دون الإخلال في شأن الضمانات المنقولة محل عقد التأجير التمويلي بسجل الضمانات المنقولة المنشأ وفقاً لأحكام قانون تنظيم الضمانات المنقولة الصادر بالقانون رقم ١١٥ لسنة ٢٠١٥.
+
+**Verbatim — Article 28 (enforceable instrument):**
+
+> المادة ٢٨
+>
+> يكون لعقد التأجير التمويلي المقيد لدى الهيئة طبقاً لأحكام هذا القانون قوة السند التنفيذي، وفي الحالات التي ينقضي فيها العقد بسبب فسخه أو لأي سبب آخر دون تجديده ودون شراء المستأجر للأصل، يلتزم المستأجر أو ورثته أو باقي الشركاء أو أمين التفليسة أو المصفي، بحسب الأحوال، بأن يرد إلى المؤجر الأصل المؤجر بالحالة المتفق عليها في العقد.
+
+**Verbatim — Article 37 (factoring-eligible receivables):**
+
+> المادة ٣٧
+>
+> يجب أن يتوافر في الحق المبيع للمخصم الشروط الآتية:
+>
+> - أن يكون ناشئاً عن معاملات تجارية مرتبطة بنشاط كل من البائع والمدين، وليست ناشئة عن عمليات إقراض نقدي.
+>
+> - أن يكون خالياً من أي حقوق حالية أو مستقبلية للغير.
+>
+> - ألا يكون مقيداً أو مشروطاً بما لم يتفق المخصم والبائع على غير ذلك.
+>
+> - ويجوز أن يكون المدين مستهلكاً نهائياً إذا توافرت الشروط الواردة بالبندين (٢، ٣) من هذه المادة وذلك وفقاً للضوابط التي يضعها مجلس إدارة الهيئة.
+
+**Verbatim — Article 55 (company licensing conditions):**
+
+> المادة ٥٥
+>
+> يجب أن يتوافر في الشركات التي ترغب في الحصول على ترخيص من الهيئة بممارسة نشاط التأجير التمويلي أو نشاط التخصيم الشروط الآتية:
+>
+> أن تتخذ شكل شركة مساهمة مصرية.
+>
+> ألا يقل رأس المال الشركة المصدر والمدفوع عند التأسيس عن الحد الذي يقرره مجلس إدارة الهيئة وبما لا يقل عن عشرة ملايين جنيه نقداً، أو ما يعادلها بالعملات الأجنبية.
+>
+> أن يقتصر غرض الشركة على ممارسة نشاط التأجير التمويلي أو نشاط التخصيم والخدمات المرتبطة به، وللهيئة الترخيص للشركة بممارسة نشاط التأجير التمويلي والتخصيم معاً أو ممارسة أنشطة مالية غير مصرفية أخرى مرتبطة وفقاً للضوابط التي يضعها مجلس إدارة الهيئة.
+
+**Verbatim — Article 60 (mandatory regulatory-rule topics):**
+
+> المادة ٦٠
+>
+> يشترط لمباشرة نشاط التأجير التمويلي أو نشاط التخصيم الالتزام بالقواعد والضوابط التي يضعها مجلس إدارة الهيئة والتي يجب أن تتضمن على الأقل ما يأتي:
+>
+> - متطلبات الحوكمة من حيث تشكيل مجلس الإدارة، واللجان المنبثقة عنه، والإفصاحات المطلوبة من الشركة، وتوقيتها.
+>
+> - الحد الأدنى الواجب توافره في الهيكل التنظيمي للشركة، ومتطلبات الخبرة العملية والكفاءة المهنية والمؤهل الدراسي في شاغلي الوظائف الرئيسية بها.
+>
+> - الحد الأدنى لمتطلبات حسن سير أعمال الشركة وضمان حقوق الدائنين والعملاء.
+>
+> - الحد الأدنى من الأحكام التي يجب أن يتضمنها عقد التأجير التمويلي أو عقد التخصيم.
+>
+> - الحد الأدنى الواجب توافره في نظم عمل الرقابة الداخلية والائتمان وإدارة المخاطر.
+>
+> - معايير الملاءة المالية والسيولة والحد الأقصى لنسب التركيز والتمويل للعميل الواحد والعملاء المرتبطين.
+>
+> - ضوابط مكافحة غسل الأموال وتمويل الإرهاب، بعد التنسيق مع الجهات المعنية ذات الصلة.
+
+### B. FRA implementing decisions and version map
+
+FRA's official non-bank financing legislation catalogue identifies the following principal implementation decisions:
+
+1. **Decision 137/2018** — licensing and continuing-licence controls for financial leasing/factoring companies. FRA publishes a consolidated version updated by Decision 91/2023 (12 April 2023):  
+   https://fra.gov.eg/wp-content/uploads/2023/05/قرار-91-2023-بتعديل-قرار-137-2018.pdf  
+   The 2023 amending decision changes Decision 137/2018. This is a regulatory decision, not an amendment to Law 176/2018.
+
+2. **Decision 138/2018** — rules for preparing/presenting financial statements and filing deadlines for licensed financial leasing/factoring entities. Official FRA legislation listing identifies it.
+
+3. **Decision 139/2018** — rules and procedures for registration in the financial leasing contract registry. Official FRA legislation listing identifies it.
+
+4. **Decision 163/2018** — executive controls for factoring activity. Official consolidated PDF:  
+   https://fra.gov.eg/wp-content/uploads/2021/04/163-2018-الضوابط-التنفيذية-لممارسة-نشاط-التخصيم.pdf  
+   FRA PDF footnotes identify amendments by Decisions 197/2018, 95/2019, 25/2021 and 84/2021. The 2021 PDF is a consolidated version as of 6 June 2021.
+
+5. **Decision 164/2018** — executive corporate-governance rules for licensed leasing/factoring companies. It was amended by Decision 93/2020. However, FRA's later broad corporate-governance Decision 100/2020 (updated 2024) repealed Decision 164/2018 as one of the superseded sectoral governance decisions. Do not apply Decision 164/2018 as current without checking the transition and sectoral carve-outs under Decision 100/2020. Official Decision 93/2020 PDF: https://fra.gov.eg/wp-content/uploads/fra_live_data/pdfs/UG50695UG50696.pdf
+
+6. **Decision 195/2018** — rules for cessation, liquidation, merger and acquisition of licensed leasing/factoring companies. Official FRA catalogue lists it.
+
+7. **Decision 100/2020** — current cross-sector corporate governance rules for non-bank financial activities, consolidated/updated 2024. FRA identifies it as repealing Decision 164/2018 among older governance decisions. Current official record: https://fra.gov.eg/wp-content/uploads/2021/11/قرار-رقم-100-بشأن-حوكمة-الشركات-العاملة-في-مجال-الأنشطة-المالية-غير-المصرفية.pdf
+
+8. **Decision 91/2023** — amendment to Decision 137/2018, with a consolidated licensing-control text updated 12 April 2023.
+
+9. **Decision 294/2024** — extension of the board term of the two industry federations for financial leasing and factoring. This is an administrative/sectoral decision, not a substantive amendment to Law 176/2018.
+
+10. **Decision 38/2025** — extension of annual financial-statement filing deadlines for listed companies and FRA-supervised entities. It is a deadline decision, not a general amendment to Law 176/2018.
+
+FRA official legislative catalogues:
+- General legislation: https://fra.gov.eg/تشريعات-عامة-للهيئة1/
+- Non-bank financing legislation: https://fra.gov.eg/تشريعات-أنشطة-التمويل-غير-المصرفي-2/
+
+### C. No single omnibus Executive Regulation found
+
+Unlike a statute with one conventional cabinet Executive Regulation, Law 176/2018 Article 2 and Articles 5, 36, 37, 39, 40, 45, 55, 56, 60 and 68 expressly delegate detailed requirements to FRA Board decisions. The practical regulatory corpus is therefore a set of activity-specific decisions, amendments, governance rules, registration rules, financial-reporting rules and circulars. No single comprehensive Executive Regulation of Law 176/2018 was identified in the FRA catalogue during this pass. Do not fabricate one.
+
+**Collection status:** full searchable Law 176/2018 through Article 84 obtained from official FRA PDF; key provisions transcribed. FRA decision chain for licensing, registration, factoring controls, governance, financial statements and M&A/liquidation located. The exact Gazette copies and full article-by-article text of each implementing decision still need to be added; no lawyer review or rights clearance claimed.
