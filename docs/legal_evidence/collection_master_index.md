@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (expanded through checkpoint 133)
+**Last updated:** 2026-11-18 (expanded through checkpoint 134)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -1089,3 +1089,6 @@
 
 
 | checkpoint 114 — Agent 3 Trade Register Decision 41/2020 | Captured Gazette-original Decision 41/2020 (Egyptian Gazette 56 تابع, 8 Mar 2020), adding Companies/Trader beneficial-owner register provisions 13 bis-1 to 13 bis-3, immediate update/reporting and five-year post-cessation retention; cumulative Agent 3 minimum 116 instruments / 1,253 provision units |
+
+
+| checkpoint 115 — Agent 3 Law 198/2020 primary-source upgrade | Visually verified all three replacement provisions (Trade Register Law Articles 3, 8(1), 9(1)) against ITDA-hosted Official Gazette issue 39 bis (ز), 30 Sep 2020; existing count unchanged at 116 instruments / 1,253 provision units |
