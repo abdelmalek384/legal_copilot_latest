@@ -55,3 +55,9 @@
 - +3 numbered amendment provisions transcribed (Articles 1–3); do not count missing publication/commencement provision until obtained.
 - Prior Agent 3 cumulative minimum: 213 instruments / 2,061 units.
 - Updated Agent 3 cumulative minimum: **214 instruments / 2,064 units**, pending acquisition-register reconciliation. Assigned-domain estimate remains 55% provisional; whole corpus approximately 2%; lawyer review 0%; commercial reuse permissions 0.
+## Source-number collision resolution — update 18 November 2026
+
+- The earlier collision is now resolved: **Decision 168/2026 is the REIT-conversion amendment to Decision 179/2025**, as listed by the official FRA regulatory record and supported by the secondary transcription captured above.
+- The foreign-currency financing amendment to Decision 318/2025 is **FRA Decision 156/2026**, not Decision 168/2026. The official FRA Gazette PDF for Decision 156/2026 is https://fra.gov.eg/wp-content/uploads/2026/09/alamiria_2026_156.pdf; the FRA's current consolidated Decision 318/2025 PDF identifies the 5 August 2026 amendment history.
+- Remove the collision warning from active blockers; retain it here as provenance/history so the false secondary attribution is not reintroduced.
+- Updated Agent 3 capture: [Decision 156/2026 full Arabic amendment text](agent3_fra_decision_156_2026_foreign_currency_nbf_financing_amendment_arabic_text.md).
