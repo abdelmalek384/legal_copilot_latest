@@ -4,7 +4,7 @@
 
 **Primary source:** FRA official consolidated PDF (8 pages): https://fra.gov.eg/wp-content/uploads/2021/04/191-2018.pdf  
 **Official catalogue:** https://fra.gov.eg/regulations/قرار-رقم-191-لعام-2018/  
-The FRA page identifies the text as updated in 2022 and lists Decisions 69/2020 and 161/2022 as amendments. The PDF text layer was extracted; page-image/OCR validation remains outstanding.
+The FRA page identifies the text as updated in 2022 and lists Decisions 69/2020 and 161/2022 as amendments. All eight pages were visually inspected on 18 November 2026; the PDF heading confirms Decision 191/2018 (the earlier 91/2018 reading was an OCR error), and the current amended annex text is page-image verified. See the visual verification addendum at the end.
 
 ## Issuing provisions — Arabic transcription
 
