@@ -6,7 +6,7 @@
 
 ## Current progress
 
-- **Latest register counts (checkpoint 195):** 250 canonical acquisition records; 66 base laws; 48 amending laws; 13 executive regulations; 35 executive-regulation amendments; 21 judicial decisions; 54 other decisions/circulars; 13 other/unclassified records; 81 unique source-permission records. These are provisional title-based instrument classes and are maintained separately.
+- **Latest register counts (checkpoint 195):** 250 canonical acquisition records; 66 base laws; 48 amending laws; 13 executive regulations; 35 executive-regulation amendments; 21 judicial decisions; 54 other decisions/circulars; 13 other/unclassified records; 82 unique source-permission records. These are provisional title-based instrument classes and are maintained separately.
 - **Priority full-text inventory:** 27 unique instruments after merging six duplicate inventory rows; historical IDs and reasons are preserved in the inventory alias map. Full-text source availability is distinct from complete extraction, Gazette authentication and currentness.
 - **Supplemental text captures:** checkpoint 189 added 17 article/provision texts (nine Building Law provisions that overlap the 1,370 core extraction and eight Decision 144/2009 provisions); checkpoint 188 added 16 Law 114 article texts, but most overlap existing article ranges in FT-0029 and earlier captures. Do not add these to unique article totals until the provision IDs and versions are deduplicated.
 - **Full-text and unique-provision counts:** priority inventory 27 unique instruments; 26 records have searchable/full text sources, with extraction completeness varying. The validated core unique provision count remains **1,370**; the additional 200 headings across four older property statutes are not yet unique article-body counts. Supplemental entries from checkpoints 185–194 remain outside that count until article/version deduplication.
@@ -30,7 +30,7 @@
 - Legal-source rights/permission: not presumed. Official public accessibility does not automatically establish commercial indexing, excerpt-display or redistribution rights.
 - Machine labels must remain `source-matched, not lawyer-reviewed` where applicable; no `verified` label without qualified Egyptian lawyer approval.
 
-## Current audited repository snapshot — checkpoint 195 (18 November 2026)
+## Current audited repository snapshot — checkpoint 196 (18 November 2026)
 
 - Acquisition register after instrument deduplication: **250 canonical instrument rows**, 250 unique canonical IDs, no duplicate legal instruments; 11 duplicate rows were consolidated and preserved in [the acquisition-ID alias map](../data/research/egypt_acquisition_register_aliases_2026-11-18.csv). The [provisional instrument-type ledger](../data/research/egypt_instrument_type_classification_2026-11-18.csv) provides the separate category counts.
 - Source-permission register: **78 unique source records**, no duplicate source IDs. These are assessments, not permissions granted.
