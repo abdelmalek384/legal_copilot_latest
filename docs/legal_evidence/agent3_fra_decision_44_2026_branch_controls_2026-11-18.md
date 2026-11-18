@@ -92,3 +92,13 @@ The PDF text includes the complete operative text and fee schedule. At ingestion
 - +17 provision units: Articles 1–17. Article 14 includes a table that must be separately normalized as structured data.
 - Decision 100/2026 remains a source lead only and is not counted as a full-text acquisition in this checkpoint.
 - Updated cumulative Agent 3 minimum after this acquisition: 153 distinct instruments / 1,382 provision units.
+
+## Current consolidated primary-source upgrade — 18 November 2026
+
+- Official FRA-hosted consolidated PDF: https://fra.gov.eg/wp-content/uploads/2026/03/44-2026-%D9%88%D9%81%D9%82%D8%A7-%D9%84%D8%A7%D8%AE%D8%B1-%D8%AA%D8%B9%D8%AF%D9%8A%D9%84.pdf
+- The six-page consolidated Arabic text expressly states it is Decision 44/2026 updated through 20 May 2026 and footnotes that Decision 100/2026 amended Article 5(1) and Article 7(2) on that date.
+- This is now the preferred current text snapshot for Decision 44/2026; keep the original February Gazette PDF and the current consolidated PDF as separate source-version artifacts.
+- Exact current replacement Article 6(1) establishes one regional area per five financing branches, with one risk officer and one credit officer for each area; each officer may supervise at most four regional areas.
+- Exact current replacement Article 7(2) addresses pending/final judicial proceedings and administrative measures, allowing compliance where judgments are executed, violations settled, or causes of measures removed and the specified waiting period has elapsed; non-removable causes are subject to an FRA-assessed three-month-to-three-year period.
+- The PDF contains all 17 articles and current fee schedule; Article 14's fee table and Article 5 branch-document matrix should be retained as structured data.
+- Decision 100/2026's separate Gazette PDF remains inaccessible, but the exact current replacement wording is now present in the official FRA consolidated text. This materially reduces the content gap without falsely claiming acquisition of the original amending Gazette binary.
