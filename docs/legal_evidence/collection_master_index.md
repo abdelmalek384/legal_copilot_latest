@@ -15,14 +15,14 @@
 - Legal-source rights/permission: not presumed. Official public accessibility does not automatically establish commercial indexing, excerpt-display or redistribution rights.
 - Machine labels must remain `source-matched, not lawyer-reviewed` where applicable; no `verified` label without qualified Egyptian lawyer approval.
 
-## Current audited repository snapshot — checkpoint 158 (18 November 2026)
+## Current audited repository snapshot — checkpoint 162 (18 November 2026)
 
 - Acquisition register: **241 non-header rows**, 241 unique IDs, no duplicate IDs; EG-0076–EG-0079 remain unresolved historical gaps.
 - Source-permission register: **63 unique source records**. These are assessments, not permissions granted; collection and commercial reuse remain source-specific.
 - Completed core unique article provisions: **1,370** (Law 131/1948: 1,093; Law 25/1968: 163; Law 119/2008: 114).
 - Additional searchable article-heading counts: Law 114/1946: 70 (61 ordinary + 9 bis); Law 142/1964: 72 (6 issuing + 66 substantive); Law 68/1947: 14; Law 70/1964: 44. These 200 entries are not fully versioned or validated.
 - Building Law Executive Regulation Decision 144/2009: 185 base numbered articles; later consolidated count of 198 provisions remains unverified.
-- Original Amiri Press digital binaries obtained for the four historical priority statutes: **0**. Secondary-hosted printed Gazette scan reproductions visually inspected: 26 pages across Laws 114/1946, 142/1964, 68/1947 and 70/1964.
+- Priority full-text inventory: **25 instrument/text records**. Historical scan reproductions visually inspected: 26 pages across Laws 114/1946, 142/1964, 68/1947 and 70/1964. Original Amiri Press digital binaries obtained for those four statutes: **0**. Historical version event register: **44 events**.
 - Lawyer verification: **0**. Commercial reuse permissions established by this research: **0**.
 - Provisional completion estimates: defined core article extraction **100%** at article-number level; broader civil/property/contract corpus **15%**; whole Egyptian legal corpus **2%**.
 - Instrument-category cumulative totals remain separate from the 241-row catalogue count; no claim that 241 rows equal 241 base laws, amendments, regulations or full texts.
