@@ -68,20 +68,20 @@
     {
       "source_id": "EG-WIPO-LEX",
       "authority": "World Intellectual Property Organization",
-      "source_page": "https://www.wipo.int/wipolex/",
+      "source_page": "https://www.wipo.int/wipolex/; https://www.wipo.int/wipolex/en/legislation/details/22397; https://wipolex-res.wipo.int/edocs/lexdocs/laws/ar/eg/eg087ar_1.pdf",
       "material_types": [
         "legal texts",
         "IP legislation",
         "metadata"
       ],
-      "access_status": "public research portal",
+      "access_status": "Public WIPO Lex record and 445-line Arabic PDF opened 2026-11-18; OCR is materially corrupted; terms not reviewed",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": "https://www.wipo.int/en/web/terms-of-use/index",
       "terms_checked_on": "2026-10-24",
       "bulk_download_or_api": "not established",
       "required_next_action": "Review WIPO site/database terms; use as a discovery and cross-reference source unless intended reuse is clearly permitted.",
-      "permission_evidence": "Terms reviewed 2026-10-24. WIPO's open-access policy generally licenses WIPO-owned online publications/content under CC BY 4.0 unless more restrictive terms apply, but expressly excludes third-party content. WIPO Lex includes national legal materials; item-level ownership and service-specific terms are not established here. Keep collection and commercial reuse unknown until rights for each record are confirmed. Evidence Law source upgrade checked 2026-11-18: WIPO Lex hosts an Arabic PDF of Law 25/1968 with extracted text through Article 162; the final WIPO extracted line labelled 163 duplicates Article 153 and is treated as OCR anomaly pending Gazette image check (not 117). This is a useful comparative full-text source but not a substitute for the Egyptian Official Gazette; no separate commercial/bulk reuse permission is established by its availability."
+      "permission_evidence": "Terms reviewed 2026-10-24. WIPO's open-access policy generally licenses WIPO-owned online publications/content under CC BY 4.0 unless more restrictive terms apply, but expressly excludes third-party content. WIPO Lex includes national legal materials; item-level ownership and service-specific terms are not established here. Keep collection and commercial reuse unknown until rights for each record are confirmed. Evidence Law source upgrade checked 2026-11-18: WIPO Lex hosts an Arabic PDF of Law 25/1968 with extracted text through Article 162; the final WIPO extracted line labelled 163 duplicates Article 153 and is treated as OCR anomaly pending Gazette image check (not 117). This is a useful comparative full-text source but not a substitute for the Egyptian Official Gazette; no separate commercial/bulk reuse permission is established by its availability. The Egypt Law 25/1968 PDF identifies Official Gazette issue22, 30 May1968, and WIPO metadata gives 30 Nov1968 commencement; text layer is not reliable for verbatim extraction. No commercial reuse permission inferred."
     },
     {
       "source_id": "EG-ILO-NATLEX",
@@ -1277,12 +1277,12 @@
     {
       "source_id": "EG-NOTARIES-UNION-TEXT",
       "authority": "Egypt Notaries Union",
-      "source_page": "https://notariesofegypt.org/article.php?id=312",
+      "source_page": "https://notariesofegypt.org/article.php?id=312; https://www.notariesofegypt.org/article.php?id=430",
       "material_types": [
         "statutory text",
         "notarization and real-estate registration laws"
       ],
-      "access_status": "Public searchable page; text sampled 2026-11-18; site terms not reviewed",
+      "access_status": "Public searchable full Arabic text pages inspected 2026-11-18 (including Evidence Law 25/1968 Articles1–117); site terms not reviewed; rights unknown.",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
