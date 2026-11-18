@@ -161,7 +161,7 @@ No lawyer verification, commercial reuse permission, or official-Gazette-origina
 - New amending statutes: 0.
 - New executive/ministerial decisions: 0.
 - Existing legislative instruments upgraded with stronger official-hosted source: 2.
-- New official SCC full judgment pages acquired: 3 (Cases 39/32/2024, 24/20/2024, 81/19/1999 and 108/19/2004 are directly Court-hosted; Case 14/41/2022 is an official later judgment that reproduces Case 10/35's operative result. The distinct judicial decision count is therefore 5 court-hosted pages/records, not all of which are the underlying target decisions).
+- New direct official SCC-hosted judgment pages acquired: 4 (Cases 39/32/2024, 24/20/2024, 81/19/1999 and 108/19/2004); one additional official SCC-hosted later judgment (Case 14/41/2022) reproduces Case 10/35/2018's operative result. Total official court-hosted pages/records reviewed: 5.
 - New judicial holdings/case records extracted or source-upgraded: at least 7.
 - New statute article provisions added: 0 counted in this checkpoint; legislative text already exists in checkpoints 85–89. This is a judicial-source and source-tier upgrade.
 - Missing primary documents remain as listed above.
