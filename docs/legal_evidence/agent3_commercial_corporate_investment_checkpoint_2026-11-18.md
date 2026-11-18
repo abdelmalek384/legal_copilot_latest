@@ -1823,3 +1823,22 @@ The same Article 240 bis further permits electronic remote agenda presentation a
 - Twenty-two provision units counted: Law 148/2001 issuing Articles 1–4; Decision 1/2001 issuing Articles 1–3; Law 115/2015 issuing Articles 1–5; Decision 108/2016 issuing Articles 1–2; Law 152/2020 issuing Articles 1–4; Decision 654/2021 issuing Articles 1–4.
 - Full substantive texts are available from official FRA/ETA PDFs; complete article-by-article ingestion and amendment overlays remain separate tasks.
 - Cumulative Agent 3 minimum: 138 unique instruments / 1,330 provision units.
+
+
+### Mortgage Finance statutory amendment — Law 55/2014 (official Gazette text captured)
+
+- Instrument: Presidential Decree-Law 55/2014 amending Law 148/2001 on Real Estate Finance.
+- Official Gazette: issue 26 bis (هـ), 2 July 2014.
+- Official GAFI-hosted Gazette PDF: https://gafiadmin.gafi.gov.eg/media/1zagiwtt/قانون-التمويل-العقاري.pdf
+- Full Arabic text extracted (309 lines). It replaces Law 148/2001 issuing Article 2 and statutory Articles 1, 2, 4, 5, 6, 11, 28, 33, 34, 35, 36, 40, 42, 46, 47, 50 and 51; it also inserts Articles 1 bis, 32 bis, 34 bis, 36 bis, 42 bis, 42 bis-1, 43 bis and 48 bis.
+- It expands mortgage finance activities to include lease-to-own, purchase of usufruct, participation/mudaraba and refinancing; assigns FRA regulatory and supervisory jurisdiction; allows lenders to determine financing costs subject to the regulatory framework; establishes the mortgage-finance guarantee/support fund; updates corporate licensing, financial statements, merger/asset-disposal controls, enforcement and penalties.
+- It requires mortgage-finance companies to be Egyptian joint-stock companies with the minimum paid-up capital set by the Executive Regulation; changes corporate financial reporting and audit obligations; requires prior FRA approval for merger, cessation, asset disposal or acquisition of stakes in other mortgage-finance companies.
+- It creates the Egyptian Mortgage Finance Union, support-fund rules, special restrictions on disposition of subsidized housing units for seven years, disciplinary measures against brokers/valuation experts/intermediaries, mandatory grievance procedures, restitution duties and a new offence for fraudulent receipt of housing support.
+- **Exact Arabic text — replacement Law 148/2001 Article 2:**
+> مع عدم الإخلال باختصاص جهاز حماية المنافسة ومنع الممارسات الاحتكارية، تختص الهيئة بالتنظيم والرقابة والإشراف على جميع أنشطة التمويل العقاري المبينة في هذا القانون.
+- **Exact Arabic text — replacement Law 148/2001 Article 28 (core):**
+> يجب أن تتخذ الشركة شكل شركة مساهمة مصرية، وألا يقل رأس مالها المصدر والمدفوع منه عن الحد الذي تبينه اللائحة التنفيذية.
+- The law also provides a supplementary link to Law 10/2009 (FRA institutional statute), Companies Law 159/1981 and Competition Law 3/2005.
+- This is the key statutory update to Law 148/2001. Use Law 55/2014 replacement text for affected articles, not the original 2001 version. The 2014 amendment is not a separate mortgage-finance code; it amends the 2001 law directly.
+
+**Incremental count:** one unique instrument and five issuing provisions (Articles 1–5). Cumulative Agent 3 minimum: 139 instruments / 1,335 provision units.
