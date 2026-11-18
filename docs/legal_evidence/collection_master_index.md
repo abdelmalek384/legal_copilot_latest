@@ -2395,3 +2395,7 @@ Added the three-article stamp-tax amendment to Law111/1980. It replaces Article8
 - Added [FRA Board Decision 108/2026](agent3_fra_decision108_2026_auditor_register_amendment_arabic_text.md), full preamble and both operative articles from the FRA-hosted Official Gazette PDF.
 - Gazette: issue152 (تابع), 15 July 2026, pp. 2–3. It inserts a third paragraph into Article8 of FRA Decision244/2023: an auditor who had served a company for at least five years when its securities were offered on the Egyptian Exchange may continue auditing it for up to two financial years after the offering.
 - This is an amendment to the auditor-register regime, not to Companies Law159/1981. Page-image QA, local PDF hash, later-currentness review, lawyer review and commercial reuse permissions remain outstanding.
+
+
+### New Arabic text tranche — EG-0348 to EG-0353
+Added full Arabic transcriptions for Laws 1/2026, 2/2026 and 74/2026 and PM Decision37/2026, plus a clearly labelled partial Arabic operative extract for PM Decision2402/2026. See [acquisition tranche](acquisition_tranche_2026_laws1_2_74_pm37_2402_2026-11-18.md). Decision2402 is deliberately not represented as a complete text; its original Gazette issue31 bis (ج) is still required.
