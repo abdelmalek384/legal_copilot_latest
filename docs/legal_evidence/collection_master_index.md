@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (expanded through checkpoint 162)
+**Last updated:** 2026-11-18 (expanded through checkpoint 163)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -1493,3 +1493,13 @@
 
 
 | checkpoint 158 — Agent 3 PPP Law 67/2010 and Executive Regulation 238/2011 full-text expansion | Duplicate audit confirms Law 67/2010, Law 153/2021 and Decision 238/2011 already counted in checkpoint 102; no new instrument/provision increment. Acquired full official MOF-hosted Official Gazette PDF for Law 67/2010 (issue 19 bis (أ), 18 May 2010; 39 substantive articles) and full secondary Arabic transcription of Executive Regulation 238/2011 (95 numbered articles), including PM Decision 3217/2022 amendments and new 62 bis series for unsolicited innovative projects, direct award where exclusive IP, and 10% match / 3% technical-score advantages. Captured text on PPP contract terms, project company share-transfer/pledge restrictions, procurement, government support, grievance, feasibility review, oversight and performance. Law153/2021 amendment chain mapped; original Gazette PDF and PM3217/2022 Gazette remain outstanding. Full text: [agent3_ppp_law67_2010_exec_reg238_2011_full_text_expansion_2026-11-18.md](agent3_ppp_law67_2010_exec_reg238_2011_full_text_expansion_2026-11-18.md). Cumulative counts unchanged: **186 documents / 1,869 normalized units**; assigned-domain estimate **53% provisional**; whole corpus **2% provisional**; lawyer review 0%. |
+
+
+### Research Agent 1 — checkpoint 163: FAOLEX cross-check of Law 143/1981 Article 2 (18 November 2026)
+
+- Added [collection_checkpoint_163_faolex_law143_article2_crosscheck_2026-11-18.md](collection_checkpoint_163_faolex_law143_article2_crosscheck_2026-11-18.md).
+- Cross-checked Law 143/1981 Article 2 against the FAOLEX full-text reproduction and replaced uncertain clause placeholders with the (أ)–(د) text structure in the Arabic extraction file.
+- FAOLEX corroborates Law 143/1981 issued 30 August 1981, Gazette issue 35 bis, 31 August 1981, effective 1 September 1981.
+- Added source-permission record EG-FAOLEX-LAW143-1981; source register now has **64 unique records**, reuse permission unknown.
+- Acquisition register remains **241 rows**, 241 unique IDs; 44 historical version events; 25 priority full-text inventory records. Completed core provisions remain **1,370**; Law143 source-version extraction remains 27 complete, with remaining image/OCR validation and one repealed marker.
+- Completion estimates unchanged: core extraction 100%, broader civil/property/contract 15% provisional, whole Egyptian corpus 2% provisional.
