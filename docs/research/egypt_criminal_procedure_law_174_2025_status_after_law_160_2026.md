@@ -51,3 +51,26 @@ Secondary reporting identifies Ministry of Justice Decisions 4704/2026 and 4746/
 - `currentness_checked_through`: 17 November 2026 for the cited commencement instrument only.
 - `full_code_article_review`: not performed.
 - `rights_cleared_for_bulk_reuse`: not assessed.
+
+
+## Verbatim Arabic operative text — Law 160/2026
+
+**قانون رقم 160 لسنة 2026 بتعديل بعض أحكام القانون رقم 174 لسنة 2025 بإصدار قانون الإجراءات الجنائية**
+
+**المادة الأولى**
+> تستبدل عبارة «الأول من أكتوبر لعام 2027» بعبارة «الأول من أكتوبر التالى لتاريخ نشره» الواردة بالمادة السادسة من القانون رقم 174 لسنة 2025 بإصدار قانون الإجراءات الجنائية.
+
+**المادة الثانية**
+> ينشر هذا القانون فى الجريدة الرسمية، ويعمل به اعتبارًا من اليوم التالى لتاريخ نشره.
+
+صدر برئاسة الجمهورية فى 18 ربيع الآخر سنة 1448هـ (الموافق 30 سبتمبر سنة 2026م).
+
+### Article-version control
+
+- Target provision: Law 174/2025, promulgating Article 6.
+- Previous wording: «ينشر هذا القانون فى الجريدة الرسمية، ويعمل به اعتبارًا من الأول من أكتوبر التالى لتاريخ نشره».
+- Replacement wording after Law 160/2026: «ينشر هذا القانون فى الجريدة الرسمية، ويعمل به اعتبارًا من الأول من أكتوبر لعام 2027».
+- Law 160/2026 itself commenced 1 October 2026, the day after Gazette publication on 30 September 2026.
+- The replacement date is a fixed date, not a rolling “October following publication” formula. The code remains enacted but not in force until 1 October 2027, unless a later amendment changes it.
+
+The official Amiri Press text portal returns the complete two-article Arabic text; the DSpace item identifies the Amiri Press Gazette bundle for issue 39 bis (ب). No local PDF bytes/hash or commercial reuse permission are claimed.
