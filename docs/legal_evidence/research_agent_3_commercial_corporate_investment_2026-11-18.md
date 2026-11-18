@@ -356,7 +356,7 @@ The PDF is 32 pages and is hosted by the Consumer Protection Agency. The PDF rea
 - Additional official source inventory: ITDA index confirms Executive Regulation Decision 106/2018, amendment Law 198/2020 and Decision 41/2020 on beneficial-owner register.
 - Consumer Law 181/2018: official 32-page PDF opened but OCR unusable; no article count added.
 - **Unique legal text instruments surfaced in the session now: 10** if Law 21/2022 and Law 34/1976 are added to the earlier eight. Decision 109/2005 remains a publication-confirmed source lead only, not counted as text obtained.
-- **Minimum provision/article units now: 53** (previous 35, including Investment Law Articles 71–72, plus six manually transcribed Trade Register articles). These manual transcriptions remain subject to page-image verification.
+- **Minimum provision/article units now: 63** (previous 35, including Investment Law Articles 71–72, plus six manually transcribed Trade Register articles). These manual transcriptions remain subject to page-image verification.
 - No lawyer approval or rights clearance has been obtained.
 
 
@@ -450,3 +450,55 @@ The remainder of the offence list continues beyond the inspected lines and is no
 **Article 15 fee schedule (pages 6–7):** the scan shows a table of fees set by the Minister of Trade, with columns for milliemes and pounds. The listed categories include registration/renewal for companies and individual traders, endorsements, negative certificates, extract pages/data certificates, file inspection, and publication of registration/renewal/endorsement data. The exact historical amounts are not copied here because the table's two monetary columns and current amendments require a careful visual transcription and legal-status check.
 
 **Updated provision count:** six additional complete article texts (16, 17, 19, 20, 21) plus the opening of Article 18 = six additional provision units. The minimum count is now **53 provision/article units** (47 previously + 6). Article 15's fee schedule and Article 18's remaining paragraphs are excluded from the count.
+
+
+### Trade Register Law 34/1976 — closing provisions and original Executive Regulation (scan pages 9–11)
+
+The ITDA-hosted Gazette scan continues with the Law's final provisions and an original Ministerial Executive Regulation. This is important because ITDA's current index separately lists Decision 106/2018 as the later Executive Regulation; Decision 946/1976 is historical and must be linked as superseded/replaced only after checking the exact repeal/supersession clause.
+
+**Law 34/1976 — Articles 22–25 (page 9; manual transcription):**
+
+> مادة 22 - على التجار والشركات المقيدة أسماؤهم فى السجل التجارى وقت العمل بهذا القانون طلب تعديل بيانات القيد بما يتفق مع أحكام هذا القانون ولائحته التنفيذية خلال ستة أشهر من تاريخ العمل باللائحة التنفيذية.
+>
+> فإذا كان قد مضى على القيد أو التجديد عند العمل بهذا القانون مدة تزيد على خمس سنوات فعليهم أن يطلبوا تجديد القيد خلال المدة المشار إليها.
+>
+> مادة 23 - يجوز للأجانب والفروع ومكاتب المنشآت والشركات المنصوص عليها فى المادة (4) المقيدة أسماؤهم فى السجل التجارى وقت العمل بأحكام هذا القانون أن يستمروا فى مزاولة النشاط التجارى بشرط أن تكون مقيدة عن نفس نوع التجارة.
+>
+> مادة 24 - يلغى القانون رقم 219 لسنة 1953 الخاص بالسجل التجارى، ويستمر العمل بالقرارات الصادرة تنفيذا له فيما لا يتعارض مع أحكام هذا القانون إلى أن تصدر اللائحة التنفيذية.
+>
+> مادة 25 - ينشر هذا القانون فى الجريدة الرسمية، ويعمل به بعد ثلاثة أشهر من تاريخ نشره.
+
+### Original Executive Regulation — Ministerial Decision 946/1976
+
+**Source:** same official ITDA-hosted Gazette scan, pages 10–11. Page 10 identifies:
+> قرار وزارى رقم 946 لسنة 1976  
+> باللائحة التنفيذية للقانون رقم 34 لسنة 1976  
+> فى شأن السجل التجارى
+
+**Articles 1–3 (pages 10–11; manual transcription):**
+
+> مادة 1 - تتولى مكاتب السجل التجارى فى كل محافظة أو مدينة قيد أسماء التجار الخاضعين لأحكام القانون رقم 34 لسنة 1976 المشار إليه فى السجل المعد لذلك.
+>
+> مادة 2 - تفرد لكل شخص تسرى عليه أحكام المادتين 2، 4 من القانون صفحة خاصة فى السجل التجارى على شكل جدول، وترقم صفحات السجل بأرقام مسلسلة.
+>
+> مادة 3 - تقيد الطلبات المقبولة فى السجل بحسب ترتيب إيداعها، ويتم تدوين البيانات الواردة فيها فى الخانات المخصصة لها فى السجل، ويكون القيد بأرقام متتابعة وبصفة مستمرة.
+>
+> ويتعدد قيد الطلبات بتعدد المحال الواقعة فى دائرة اختصاص مكاتب السجل التجارى الأخرى.
+>
+> وبالنسبة لقيد الشركات التى يوجد مركزها الرئيسى أو مركز إدارتها بالخارج فيشمل القيد على موافقة هيئة الاستثمار بالنسبة للشركات الخاضعة لأحكام القانون رقم 43 لسنة 1974 بنظام استثمار المال العربى والأجنبى والمناطق الحرة، أما بالنسبة للشركات الأخرى غير الخاضعة لأحكام هذا القانون فيتم الاتفاق بشأنها بين وزير التجارة والوزير المختص.
+
+**Article 4 (page 11; scan footnote says amended by Ministerial Decision 826/1978):**
+
+> مادة 4 - فى حالة التأشير بتغيير أو تعديل بيانات القيد تدون البيانات الجديدة فى صحيفة القيد نفسها مع الإشارة فى هامش السجل الأيسر إلى تاريخ ورقم إيداع طلب التأشير بالتعديل والمستند المؤيد له فى الحالات التى تقيد فى سجل بيع المحال التجارية ورهنها والقرارات والأحكام والأوامر التى استلزم القانون إثباتها فى صحيفة القيد.
+>
+> وتثبت البيانات الإضافية فى صحيفة قيد الفرع إذا أصبح مركزا رئيسيا، وفى صحيفة المركز الرئيسى إذا أصبح فرعا.
+
+**Articles 5–6 (page 11):**
+
+> مادة 5 - يؤشر مكتب السجل التجارى على هامش السجل الأيمن بما يفيد تجديد القيد مع الإشارة إلى رقم وتاريخ إيداع الطلب.
+>
+> مادة 6 - يكون محو القيد بإثبات هذه الواقعة بخط يملأ فراغ أعلى صحيفة القيد، ويشار فى هامش الصحيفة إلى تاريخ المحو وسببه ورقم أمر المحو.
+
+**Version warning:** Decision 946/1976 is the original Executive Regulation text, not the current regulation. ITDA's current index lists Minister of Supply and Internal Trade Decision 106/2018 as the Executive Regulation of Law 34/1976. The 2018 regulation is a large 14.9 MB official attachment; it could not be opened by the web text reader in this session. Retrieve it from the ITDA index, record its Gazette publication and transitional/repeal clause, and compare the full text. Decision 826/1978 is identified by the page-11 footnote as an amendment to Article 4 of Decision 946/1976; collect its full text separately.
+
+**Updated provision count:** add four Law provisions (22–25) and six original Executive Regulation provisions (1–6) = 10 additional provision units. The minimum count is now **63 provision/article units** (53 previously + 10). These are manually transcribed from rendered page images and require second-person transcription QA.
