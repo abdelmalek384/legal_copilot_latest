@@ -22,8 +22,8 @@
 
 ## Current audited repository snapshot — checkpoint 170 (18 November 2026)
 
-- Acquisition register after instrument deduplication: **246 canonical instrument rows**, 246 unique canonical IDs, no duplicate legal instruments; 11 duplicate rows were consolidated and preserved in [the acquisition-ID alias map](../data/research/egypt_acquisition_register_aliases_2026-11-18.csv). The [provisional instrument-type ledger](../data/research/egypt_instrument_type_classification_2026-11-18.csv) provides the separate category counts.
-- Source-permission register: **71 unique source records**, no duplicate source IDs. These are assessments, not permissions granted.
+- Acquisition register after instrument deduplication: **250 canonical instrument rows**, 250 unique canonical IDs, no duplicate legal instruments; 11 duplicate rows were consolidated and preserved in [the acquisition-ID alias map](../data/research/egypt_acquisition_register_aliases_2026-11-18.csv). The [provisional instrument-type ledger](../data/research/egypt_instrument_type_classification_2026-11-18.csv) provides the separate category counts.
+- Source-permission register: **73 unique source records**, no duplicate source IDs. These are assessments, not permissions granted.
 - Provisional instrument-type classification (246 canonical records; title/domain-based and subject to manual normalization): **66 base-law records; 48 amending-law records; 13 executive regulations; 35 executive-regulation amendment records; 19 judicial decisions; 52 other decisions/circulars; 13 other/unclassified records**.
 - Priority full-text inventory: **33 records** (14 base laws, 6 executive regulations, 1 presidential decision, 9 executive-regulation amendments, 1 implementing decision, 1 fee decision, 1 annual valuation decision). Inventory status varies; 33 records do not mean 33 authenticated complete texts.
 - Completed core unique article provisions: **1,370** (Civil Code 1,093; Evidence Law 163; Building Law 114).
@@ -34,7 +34,12 @@
 - Lawyer verification: **0**. Commercial reuse permissions established by this research: **0**. All canonical acquisition records retain lawyer_reviewed=false and rights_cleared=false.
 - Coverage estimates remain provisional: core article-number extraction **100%** for the three defined core statutes (not source-image/currentness complete); broader civil/property/contract corpus **18% provisional** per checkpoint 169; whole Egyptian legal corpus **2% provisional**.
 
+- Law 70/1964 fee amendment chain and currentness: [research file](law70_1964_amendment_chain_and_fee_currentness_2026-11-18.md).
+- SCC Case 42/17 and Case 101/26 operative Arabic text: [judgment capture](scc_case_42_17_and_101_26_text_and_article_effects_2026-11-18.md).
+
 ## Collection checkpoints
+
+| checkpoint 187 — SCC priority cases and Law 70 fee chain | Added separate records for Cases 42/17 and 101/26; captured operative text; mapped Law 70 amendments, SCC effects and 2026 fee-schedule blockers; acquisition register 250 rows, 21 judicial decisions | [checkpoint 187](collection_checkpoint_187_scc_42_17_101_26_and_law70_fee_chain_2026-11-18.md) |
 
 | checkpoint 186 — Law 168/2025 and Decisions 200/2026 and 480/2026 text recovery and deadline reconciliation | Alternate full-text sources recovered; selected operative provisions transcribed; Decision 480 original DSpace download redirects to request-copy; commencement fixed at 19 Jan 2026; deadline candidates remain unresolved (18/19 Jan 2027 vs conditional May 2027) | [checkpoint 186](collection_checkpoint_186_law168_decision200_decision480_text_and_deadline_research_2026-11-18.md) |
 
