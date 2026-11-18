@@ -218,3 +218,13 @@ Particularly relevant provisions:
 
 The base text must be reconciled with subsequent condominium/building legislation, registration requirements and the current procedural framework. OCR/image review is outstanding.
 
+## 14. Further Civil Code extraction — Articles 862–874
+
+Checkpoint 102 adds **13 distinct provisions**, Articles 862–874, covering owners' associations for multi-storey buildings, common-area administration, common insurance, reconstruction after destruction, a registered priority right securing association loans, acquisition by occupation and ownerless land.
+
+Cumulative Civil Code extraction stream: **609 distinct provisions** (67 previously recorded + 542 newly transcribed in this continuation). This is not a consecutive or verified current consolidation.
+
+Key property points:
+- Articles 862–869 provide the base Civil Code framework for owners' associations, common parts, majority decisions and building renewal. Article 869's privilege depends on registration.
+- Article 874 states the historical Civil Code position on ownerless uncultivated land and State ownership. Later desert-land and State-private-property statutes materially affect this field; never rely on Article 874 in isolation.
+
