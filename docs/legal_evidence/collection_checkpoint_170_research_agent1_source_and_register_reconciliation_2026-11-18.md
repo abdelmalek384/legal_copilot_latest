@@ -71,13 +71,13 @@ The previously inspected 26 printed Gazette pages remain secondary-hosted scan r
 - Law 68/1947: Egyptian Proceedings issue 58, 3 July 1947, 2 pages.
 - Law 70/1964: Official Gazette issue 67, 22 March 1964, 11 pages.
 
-Manshurat catalogue/PDF records:
-- https://manshurat.org/node/69796
-- https://manshurat.org/node/33844
-- https://manshurat.org/node/70547
-- https://manshurat.org/node/33668
+Manshurat catalogue records and direct scan-PDF routes:
+- Law 114/1946: catalogue https://manshurat.org/node/69796 ; PDF https://manshurat.org/file/81500/download?token=G8bK0_YZ (6 pages).
+- Law 142/1964: catalogue https://manshurat.org/node/33844 ; PDF https://manshurat.org/file/44021/download?token=5Zwo9ziS (7 pages).
+- Law 68/1947: catalogue https://manshurat.org/node/70547 ; PDF https://manshurat.org/file/82270/download?token=fuDVQjIu (2 pages).
+- Law 70/1964: catalogue https://manshurat.org/node/33668 ; PDF https://manshurat.org/file/43842/download?token=z-q7csZN (11 pages).
 
-Law 114 also has a government-hosted Ministry of Justice PDF, but it is a base-law reproduction, not an authenticated Amiri Press Gazette binary. Original Amiri Press files for all four statutes remain not obtained. No certified publisher hash/authentication or commercial reuse right is claimed.
+All four PDF objects were opened in the research session; their page counts and first-page masthead, issue/date and instrument headings were visually checked. The first-page images show the relevant printed Gazette issue and instrument. These are secondary-hosted scans of printed Gazette pages, not authenticated Amiri Press digital binaries. Law 114 also has a government-hosted Ministry of Justice PDF, but it is a base-law reproduction, not an authenticated Amiri Press Gazette binary. Original Amiri Press files for all four statutes remain not obtained. No certified publisher hash/authentication or commercial reuse right is claimed.
 
 ### Law 168/2025, PM Decision 200/2026, Presidential Decision 480/2026
 
