@@ -2913,3 +2913,104 @@ The whole Legal Copilot corpus has no validated denominator of all operative Egy
 10. Reconcile all Commercial Code cheque amendments and build the operative/historical boundary after repeal of Book V by Law 11/2018.
 
 No lawyer approval, currentness certification, or rights clearance is claimed.
+
+
+## 30. Companies Law 159/1981 — Law 4/2018 full Gazette amendment, correction and Cassation conflict note
+
+### A. Law 4/2018 — official Gazette copy
+
+**Official Gazette PDF (National Investment Bank government-hosted library):**  
+https://www.nib.gov.eg/PDF/library/القانون-4-لسنة-2018.pdf%20تعديل%20قانون%20159.pdf  
+**Gazette:** Official Gazette issue 2 bis (ط), 16 January 2018; 18 printed Gazette pages.  
+**Full searchable Gazette text:** opened in the web reader; official Amiri Press stamp and "صورة طبق الأصل" marks visible.
+
+Law 4/2018 is a major amendment to Law 159/1981, not merely the insertion of single-person companies. It:
+- Changes the law's title/short title to include single-person companies.
+- Replaces issuing Articles 1(1) and 5.
+- Replaces 20 substantive provisions/paragraphs, including Articles 1(1), 2(3), 8, 17(1), 25, 33(1), 35(2–3), 45(1–2), 48, 59, 67(1), 69, 70(c), 80, 85(3), 120, 122, 128(1), 130(1), 137, 161 and 175(2).
+- Adds 21 new provisions/paragraphs including Articles 1(3), 1 bis, 4 bis, 9 bis, 19 bis, 68(d), 73(2–3), 76 bis, 77 bis, 86(3), 98(2–3), 100 final paragraph, 135 bis and its subdivisions, 154 bis, 156 bis, 157 bis, 160 bis and 164 bis.
+- Adds a new chapter on single-person companies (Articles 129 bis through 129 bis/9).
+- Repeals specified phrases in Articles 63, 70 and 127.
+- Requires existing joint-stock and partnership-limited-by-shares companies to regularize their central-depository registration within one year.
+
+**Verbatim — Law 4/2018 Article 1 (scope and single-person company inclusion):**
+
+> (المادة الأولى)
+>
+> يُستبدل مسمى "قانون شركات المساهمة وشركات التوصية بالأسهم والشركات ذات المسئولية المحدودة وشركات الشخص الواحد" بمسمى "قانون شركات المساهمة وشركات التوصية بالأسهم والشركات ذات المسئولية المحدودة" أينما ورد في القانون رقم 159 لسنة 1981 والقانون المرافق له، وفي أي قانون آخر.
+
+**Verbatim — Law 4/2018 Article 2 replacement of issuing Article 1(1):**
+
+> مادة (1 - فقرة أولى):
+>
+> تسرى أحكام القانون المرافق على شركات المساهمة، وشركات التوصية بالأسهم، والشركات ذات المسئولية المحدودة، وشركات الشخص الواحد.
+
+**Verbatim — Law 4/2018 replacement of substantive Article 8 (minimum partner numbers):**
+
+> مادة (8):
+>
+> فيما عدا شركات الشخص الواحد، لا يجوز أن يقل عدد الشركاء، المؤسسين في شركات المساهمة عن ثلاثة، كما لا يجوز أن يقل هذا العدد عن اثنين بالنسبة لباقي الشركات الخاضعة لأحكام هذا القانون، فإذا قل عدد الشركاء، عن هذا النصاب اعتبرت الشركة منحلّة بحكم القانون ما لم تبادر خلال ستة أشهر على الأكثر إلى استكمال هذا النصاب، أو يطلب من بقي من الشركاء، خلال هذا الأجل تحويلها إلى شركة من شركات الشخص الواحد، ويكون من بقي من الشركاء، مسئولًا في جميع أمواله عن التزامات الشركة خلال هذه الفترة.
+
+**Verbatim — Law 4/2018 replacement of Article 17(1) (central depository certificate):**
+
+> مادة (17) - فقرة (أولى):
+>
+> على المؤسسين أو من ينوب عنهم، إخطار الهيئة بإنشاء الشركة، ويجب أن يرفق بالإخطار المحررات الآتية:
+>
+> (أ) العقد الابتدائي والنظام الأساسي للشركة بالنسبة لشركات المساهمة وشركات التوصية بالأسهم، أو عند التأسيس بالنسبة للشركات ذات المسئولية المحدودة وشركات الشخص الواحد.
+>
+> (ب) موافقة الجهات المختصة إذا كانت ممارسة أي من أغراض الشركة تستوجب الحصول على موافقات خاصة تقتضي أحكام قانون آخر.
+>
+> (ج) شهادة من أحد البنوك المرخص لها تفيد تمام الاكتتاب في جميع أسهم الشركة أو حصصها، وأن القيمة الواجب سدادها على الأقل من الأسهم أو الحصص النقدية قد تم أداؤها ووضعت تحت تصرف الشركة إلى أن يتم اكتسابها الشخصية الاعتبارية، وتستثنى الشركات ذات المسئولية المحدودة من تقديم هذه الشهادة.
+>
+> (د) إيصال سداد رسم نشر واقع واحد في الألف من رأس مال الشركة المصدر بالنسبة لشركات المساهمة وشركات التوصية بالأسهم، ومن رأس المال المدفوع بالنسبة للشركات ذات المسئولية المحدودة وشركات الشخص الواحد، وذلك بما لا يقل عن مائة جنيه ولا يزيد على ألف جنيه.
+>
+> (هـ) شهادة من إحدى شركات الإيداع والقيد المركزي المرخص لها تفيد إيداع الأوراق المالية لشركات المساهمة وشركات التوصية بالأسهم لدى شركة الإيداع والقيد المركزي.
+
+**Verbatim — Law 4/2018 new Article 4 bis (single-person company):**
+
+> مادة (٤ مكرر):
+>
+> شركة الشخص الواحد هي شركة يملكها بالكامل شخص واحد، سواء كان طبيعيًا أو اعتباريًا وذلك بما لا يتعارض مع أغراضها، ولا يُسأل مؤسس الشركة عن التزاماتها إلا في حدود رأس المال المخصص لها.
+>
+> وتتخذ الشركة اسمًا خاصًا لها يستمد من أغراضها أو من اسم مؤسسها، ويجب أن يتبع اسمها بما يفيد أنها شركة من شركات الشخص الواحد ذات مسؤولية محدودة، ويوضع على مركزها الرئيس وفروعها – إن وجدت – وفي جميع مكاتباتها.
+
+**Verbatim — Law 4/2018 new Article 129 bis (founding a single-person company):**
+
+> مادة (١٢٩ مكرر):
+>
+> استثناءً من حكم المادة (٥٠٥) من القانون المدني، يجوز لكل شخص طبيعي، أو اعتباري في حدود الأغراض التي أنشئ من أجلها، أن يؤسس بمفرده شركة من شركات الشخص الواحد وفقًا لأحكام هذا الفصل، وتكون هذه الشركة محدودة المسئولية.
+>
+> ومع عدم الإخلال بأحكام القوانين التي تحيز لبعض الجهات تأسيس شركات بمفردها، يشترط لتأسيس الشركة إذا كان مؤسسها أحد أشخاص القانون العام الحصول على موافقة رئيس مجلس الوزراء، أو الوزير المختص، بحسب الأحوال.
+>
+> وتشهر شركة الشخص الواحد وتكتسب الشخصية الاعتبارية اعتبارًا من تاريخ قيدها في السجل التجاري.
+>
+> وفيما لم يرد بشأنه نص خاص، تطبق على شركات الشخص الواحد أحكام الشركات ذات المسئولية المحدودة الواردة بهذا القانون.
+
+**Verbatim — Law 4/2018 Article 9 (effective date):**
+
+> يُنشر هذا القانون في الجريدة الرسمية، ويعمل به من اليوم التالي لتاريخ نشره.
+
+### B. 2018 erratum / correction — must be included in the source chain
+
+A separate **استدراك تصحيح خطأ** to Law 4/2018 was published in Official Gazette issue 10, 8 March 2018. EastLaws' amendment record identifies it as correcting the Law 4/2018 text, specifically Article 3 (the list of substituted provisions). This correction is part of the authoritative amendment chain. The correction's original Gazette scan and full corrected wording were not yet retrieved; do not rely solely on the 16 January print copy for the exact Article 3 list until the 8 March correction is captured.
+
+### C. Court of Cassation application — Article 45 vs Regulation Article 136
+
+A Commercial/Economic Civil Chamber Court of Cassation judgment, appeal **2100/92**, hearing **18 October 2023**, discusses Article 45 of Law 159/1981 as amended by Law 4/2018 and Regulation Article 136 of Decision 96/1982.
+
+The judgment's reported principle:
+- Law 4/2018 narrowed the restriction on trading founder shares and shares issued for in-kind contributions before two full financial years.
+- The statutory Article 45 restriction applies to founders' shares/quotas and shares issued against in-kind contributions, but excludes shares subscribed by founders of joint-stock companies from the restriction as amended.
+- Executive Regulation Article 136 still purported to restrict founders' subscribed shares, which conflicts with the amended statute.
+- The Court treated the conflicting regulatory restriction as exceeding the statutory delegation and having no effect to the extent of the conflict; the statute prevails over the regulation.
+
+**Judgment source (secondary case-law database):** https://www.eastlaws.com/judgments-full-text/ar/egypt/cassation-civil/judicial-year-92/18-10-2023/no-2100?id=1521894&type=1
+
+**Important retrieval warning:** this is a secondary published judgment transcription, not the official Court of Cassation judgment copy. Obtain the official judgment text or court collection before treating it as a fully verified precedent. The conflict illustrates why the corpus must preserve both statutory amendments and regulations, then apply hierarchy/version checks rather than mechanically relying on the consolidated regulation.
+
+### D. FRA 2026 compliance notice — central depository registration
+
+FRA's January 2026 public notice states that companies subject to its supervision must comply with Article 17 of Law 159/1981 (as amended by Law 4/2018) by registering shares with the central depository by 31 March 2026, with potential regulatory action for non-compliance. This is a regulator notice, not a new statutory amendment. It is useful as current enforcement context.
+
+**Collection status:** full official Gazette PDF of Law 4/2018 acquired and searchable; amendment map and selected new/replaced provisions transcribed. Erratum Gazette issue 10 still outstanding. Court of Cassation case-law transcription is secondary and needs official judgment validation. No lawyer review or rights clearance claimed.
