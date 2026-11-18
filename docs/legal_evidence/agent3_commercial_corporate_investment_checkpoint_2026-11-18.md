@@ -2476,3 +2476,39 @@ FRA's official financial-leasing/factoring legislation catalogue and contemporan
 - The Commercial Code source range is corrected from 771 to 772 articles. Do not increase cumulative provision totals on that correction alone.
 - Updated working assignment completion estimate: **31%** (up from 30%) to reflect acquisition of full searchable Arabic primary texts for Companies Regulation 96/1982 and Investment Law 72/2017 plus the full 133-article original Investment Regulation, and correction of Commercial Code structure. This remains a non-denominator estimate, not a percentage of all Egyptian legal instruments.
 - Lawyer-reviewed / legally verified: **0%**. All machine-collected text remains unverified pending Egyptian lawyer review.
+
+
+## 49. Investment Law amendment Law 160/2023 — full Arabic text and corrigendum warning
+
+- Instrument: Law 160/2023 amending Investment Law 72/2017.
+- Issued 25 July 2023; published Official Gazette issue 29 bis, 25 July 2023; commencement stated as 26 July 2023.
+- Full Arabic transcription located: https://mksegypt.org/public/ar/laws/17335 (secondary legal text repository, not the Gazette host).
+- Officially corroborated by the State Information Service's Investment Law amendments page: https://sis.gov.eg/en/economy-investment/economy/investment/investment-law-its-amendments/
+- Gazette corrigendum: a correction to Law 160/2023 was published in Official Gazette issue 32, 10 August 2023. Eastlaws identifies the corrected final text of Article 1; the original issue 29 text must not be treated as the final text without applying that corrigendum: https://www.eastlaws.com/legislation-full-text/ar/egypt/law/25-07-2023/no-160?id=2094459&type=1
+- Article 1 substitutes the definition of “special incentives” and provisions in Articles 9, 11(1)(1), 12(1)(2), 13, 14(1), 17, 20, 34 and 40(2)-(3) of Law 72/2017.
+- Article 2 adds Article 11 bis, creating a cash investment incentive for eligible industrial projects: 35%–55% of income tax paid on qualifying project income, subject to foreign-currency financing and start-of-activity conditions, with implementing criteria to be set by Cabinet decision.
+- The replacement Article 13 also expands additional non-tax incentives, including customs entry points, utility connection costs, training costs, partial land-value refunds, free land for strategic activities, usufruct-fee exemptions, infrastructure/utility contribution relief and possible utility-bill support.
+- The replacement Article 20 revises the single-approval (“golden licence”) framework and its scope for strategic/national projects and PPP-related projects.
+- Important currentness task: obtain the actual Official Gazette issue 32 corrigendum page and compare its correction character-by-character with Article 1 of the 25 July text. The full secondary transcription is useful for discovery but does not replace Gazette image verification.
+- Status: this amendment was already represented in the inventory as an outstanding source lead; this tranche upgrades it to a complete secondary Arabic transcription with identified Gazette corrigendum. No new unique-instrument count claimed until Gazette issue 32 is inspected and the prior count's text threshold is confirmed.
+
+## 50. Companies Executive Regulation Decision 2928/2022 — amendment-source verification
+
+- Instrument: PM Decision 2928/2022 amending Executive Regulation 96/1982.
+- MIFT's official Law 159 page lists it as the latest attachment in the regulation chain and its consolidated Decision 96/1982 PDF is expressly current through 21 August 2022: https://mift.gov.eg/legislation/details/252 and https://www.mift.gov.eg/legislation/download/253
+- DSpace record for the amendment identifies an Arabic PDF file but the download currently routes to a “request a copy” page, not an openly retrievable PDF: https://dspace.id.com.eg/items/37796d03-fadf-4e13-900e-855b013a817c
+- The DSpace abstract says Article 1 replaces the first paragraph of Regulation Article 287 bis 2. The MIFT consolidated text is the accessible official-source text for the resulting provision; use it as the controlling current wording through the stated 2022 cut-off, while retaining the DSpace metadata as a separate amendment provenance record.
+- Do not mark the 21-instrument amendment chain reconciled: several attachments are duplicated in the catalogue display, and original Gazette issue/page metadata still need verification.
+
+## 51. Investment Law implementation decision leads — classification and acquisition
+
+- ETA's official legislation index lists PM Decision 104/2022 on distribution of investment sub-sectors across geographic zones A and B and provides a PDF named qarar-104-2022.pdf: https://www.eta.gov.eg/en/node/837
+- PM Decision 104/2022 is an implementing geographic allocation decision, not itself an amendment to the 133-article Executive Regulation 2310/2017. Keep it in the investment incentive implementation layer and link it to Articles 11–12 and their amendments.
+- The 2023 investor-residence/banking changes are described in the 2024 US State Department Investment Climate Statement as Ministerial Decision 876/2023 amending Decision 3099/2019. This is a lead, not a collected primary instrument: https://2021-2025.state.gov/reports/2024-investment-climate-statements/egypt/
+- OECD's 2024 review specifically cautions that the public GAFI copy of Decision 2310/2017 reflected only two of six amendments then made. Accordingly, Decision 2310/2017 remains a full original text but not a current consolidated regulation. Source: https://www.oecd.org/content/dam/oecd/en/publications/reports/2024/07/towards-more-sustainable-investment-frameworks_60a6b341/411468b9-en.pdf
+
+### Status after this tranche
+
+- Unique instrument count and provision-unit count remain unchanged: 146 instruments / 1,349 provision units. This tranche upgrades source coverage and identifies an exact corrigendum gap; it does not add a newly verified instrument.
+- Assignment completion estimate remains **31%**. The source acquisition is progressing, but currentness reconciliation is still 0/13 subject families complete.
+- Lawyer-reviewed / legally verified remains **0%**.
