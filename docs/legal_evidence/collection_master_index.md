@@ -2076,3 +2076,19 @@ Added **EG-0304**, Prime Minister Decision 1440/2026, as an executive-regulation
 ### Further 2026 acquisitions — Law 10/2026 and PM Decision 267/2026
 
 Added **EG-0305 Law 10/2026** (amending Nuclear and Radiation Activities Law 7/2010) and **EG-0306 PM Decision 267/2026** (amending Universities Executive Regulation 809/1975). Both full Arabic texts are transcribed in [the additional amendments text file](2026_additional_amendments_text_law10_decision267_decision36_2026-11-18.md). Law10 Gazette issue20 مكرر, 16 May 2026, effective 17 May; PM267 Gazette issue4 مكرر, 25 January 2026, effective 26 January. PM Decision36/2026 building-reconciliation amendment is also transcribed in that file as a text-depth upgrade to existing EG-0270; no duplicate instrument count.
+
+
+### Latest progress snapshot — after EG-0310 (18 November 2026)
+
+**Live canonical counts:** 294 acquisition records / 294 unique IDs; 294 type classifications; 75 full-text inventory rows representing 71 unique instruments; 107 unique source-permission records.
+
+**Provisional type totals:** 73 base laws; 58 amending laws; 18 executive regulations; 43 executive-regulation amendments; 21 judicial decisions; 68 other decisions/circulars; 13 other/unclassified.
+
+**Text coverage metrics:**
+- Full-text inventory has text/source records for **71/294 instruments = 24.1%**. This is inventory coverage, not a claim that all 71 texts are complete or current.
+- New acquisition batch now contains **21 distinct new instruments** (EG-0290–EG-0310); **19/21 (90.5%)** have complete operative text locally mirrored. Law147/2026 has a full 112-article external searchable transcription but only selected provisions mirrored; Labour Decision162/2026 has 24/66 articles mirrored locally and the full searchable source linked.
+- Core unique provision units locally mirrored: **1,444** (prior 1,370 plus 74 local units in new tranches). A further 154 units are source-located but not fully mirrored locally (112 Law147 + 42 remaining articles of Decision162), giving **1,598 source-located units**. Do not merge these two measures.
+- Defined-code representation remains: Civil Code 1,149/1,149 article/status entries; Evidence Law 163/163 provision units; Building Law 119/2008 114/114 substantive articles; Decision144/2009 184/185 extant base articles. Historical version and amendment completeness remains below these representation ratios.
+- Broader assigned-domain completion remains **55% provisional**, inherited from an unvalidated denominator. It is not comparable to the 24.1% full-text-inventory coverage. A single whole-Egyptian-corpus completion percentage is not supportable yet.
+
+**New executive-regulation acquisition depth:** Decision1440/2026 (Mineral Resources Regulation), Decision1509/2026 (Civil Service Regulation), Decision267/2026 (Universities Regulation), Decision430/2026 (Roads Regulation), and Decision262/2026 (Customs Regulation) now have Arabic operative text in the tranche files. The Law 14/2025 workstream also gained 66-article Ministerial Decision162/2026, of which 24 articles are mirrored locally.
