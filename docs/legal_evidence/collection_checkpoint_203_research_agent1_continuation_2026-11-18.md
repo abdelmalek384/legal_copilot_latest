@@ -4,6 +4,8 @@
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Scope:** continuation of the ten Research Agent 1 priorities; source acquisition, provenance reconciliation and targeted full-text upgrades.
 
+**Superseding note (checkpoint 204):** The Building Law 119/2008 cumulative extraction count stated in Section 6 below was incorrect. All 114 substantive base articles are already transcribed across checkpoints 93 and 108–111. Decision 144/2009 has 13/185 substantive regulation article bodies captured (172 remain). See checkpoint 204 for the reconciled evidence and corrected registers.
+
 ## 1. Repository and register audit
 
 Inspected the master index, checkpoints 85–92 (including their supplemental sections and cross-references), and the later reconciliation records relevant to these workstreams: checkpoints 147, 159–160, 170, 185, 188–202, including 190, 191 and 197. The acquisition register and source-permission JSON were read from their current default-branch paths.
