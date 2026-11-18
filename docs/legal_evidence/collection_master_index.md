@@ -627,3 +627,10 @@
 - Decision 467/2024 is the later regulation and supersedes the 2020 regulation text as the current full version; Decision 331/2020 remains historical. Earlier secondary reference to Decision 361/2020 remains unresolved and is not merged with 331/2020.
 - Ministerial Decision 724/2024 (dated 19 Sep 2024; Gazette issue 252, 13 Nov 2024) updates Annex 2 to Decision 152/2019 on mobile services subject to the IT Development Industry fee under Law 15/2004, including 5G services. It is a fee-schedule decision, not an amendment to Law 15/2004 itself.
 - **Updated Agent 3 minimum:** 49 distinct legal instruments with some Arabic text surfaced; 313 article/provision text units; 13/13 families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
+
+
+### Research Agent 3 — Capital Market amendments 143/2004 and 13/2022
+
+- Law 143/2004: Official Gazette issue 25 bis (أ), 17 Jun 2004; full searchable Arabic text located, and FRA/MOF official records confirm its status. Adds securitization companies Chapter 3 / Articles 41 bis through 41 bis/8, Article 65 bis late-reporting penalty, and amends Real Estate Finance Law 148/2001 Article 11, Capital Market Law Articles 23–24 and Central Depository Law 93/2000 Article 18.
+- Law 13/2022: Official FRA PDF, Gazette issue 10 bis (ز), 14 Mar 2022. Adds Article 10 bis for remote general-meeting attendance/voting, expands securitization to future cash flows under Article 41 bis and adds a valuation paragraph to Article 41 bis/1, plus Article 65 bis penalty. Five provisions transcribed.
+- **Updated Agent 3 minimum:** 51 distinct legal instruments with some Arabic text surfaced; 332 article/provision text units; 13/13 law families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
