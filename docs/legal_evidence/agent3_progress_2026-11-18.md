@@ -6,10 +6,10 @@
 
 ## Progress
 
-- **Assigned-domain completion estimate: 53% provisional.**
+- **Assigned-domain completion estimate: 54% provisional.**
 - **Whole Egyptian legal corpus estimate: approximately 2% provisional**, per the master index.
-- **186 source documents/instruments surfaced**, including statutes, amendments, executive regulations, regulator decisions, circulars and AML/CFT procedures. This is not 186 complete consolidated statutes; some are full PDFs, some selected operative excerpts, and one eKYC circular is partial-only.
-- **1,869 normalized numbered statutory/regulation units.** Clause-based CBE circulars and procedure documents are tracked separately and are not added to this article-unit number.
+- **187 source documents/instruments surfaced**, including statutes, amendments, executive regulations, regulator decisions, circulars and AML/CFT procedures. This is not 186 complete consolidated statutes; some are full PDFs, some selected operative excerpts, and one eKYC circular is partial-only.
+- **1,871 normalized numbered statutory/regulation units.** Clause-based CBE circulars and procedure documents are tracked separately and are not added to this article-unit number.
 - **13/13 assigned legal families touched.**
 - **0/13 families currentness-complete.**
 - **Lawyer-reviewed content: 0%.**
@@ -41,7 +41,7 @@ Percentages are conservative planning estimates, not denominator-validated measu
 - Consumer Protection Law 181/2018 Gazette reproduction, PM Decision 822/2019 full 47-article transcription, Law 20/2024 Article 71 amendment.
 - Central Bank Law 194/2020 Arabic transcription; CBE payment-service licensing rules (June 2025), agent banking circular (3 Nov 2026), credit-guarantee companies rules (24 Sep 2026), margin-financing circular (22 Apr 2026), goAML circular (16 Apr 2026), commercial-register services amendment (24 Sep 2026), consumer-finance credit prohibition (12 Oct 2026), investment-fund policy circular (27 Oct 2026), credit-registry update (26 Mar 2025) and coding precondition (11 Apr 2026), credit-bureau update (23 Nov 2023), corporate/securitization bond investment rules (1 Jul 2026), FX-company AML/CFT/CPF controls (1 Sep 2025).
 - Six September 2026 AML/CFT Unit procedure/guidance documents: bank CDD, financial-inclusion CDD, mobile payments, prepaid cards, eKYC and PEP reclassification.
-- Investment Law amendments 141/2019 and 160/2023, GAFI cash-incentive guide, and 2026 investment notices.
+- Investment Law amendments 141/2019 and 160/2023, GAFI cash-incentive guide, PM Decision 503/2026 with Sector A/B industrial activity schedules, and 2026 investment notices.
 - Official Gazette text upgrade for Bankruptcy Law 11/2021 amendment.
 - Text-depth expansions for Companies Law 159/1981 / Executive Regulation 96/1982, Commercial Agency Law 120/1982 / Executive Regulation 342/1982 / Law 21/2022, PPP Law 67/2010 / Executive Regulation 238/2011.
 - Duplicate audit corrected the earlier overcount: Commercial Code 17/1999 and Leasing/Factoring 176/2018 were already in the prior Agent 3 inventory; the accompanying compilation did not add duplicate instruments or 877 article units.
@@ -86,3 +86,8 @@ Percentages are conservative planning estimates, not denominator-validated measu
 - [Investment Law amendments](agent3_investment_law_72_amendments_2019_2023_incentives_2026.md)
 - [Consumer Protection Regulation 822/2019 and Law 20/2024](agent3_consumer_protection_exec_reg_822_2019_law20_2024_text.md)
 - [September 2026 AML Unit procedures](agent3_aml_unit_september_2026_bank_cdd_ekyc_procedures_arabic_text.md)
+
+
+## Latest checkpoint — PM Decision 503/2026
+
+Official Amiri Press text page/search index and secondary images of its Sector A/B schedules were acquired and recorded in [agent3_investment_pm_decision_503_2026_industrial_incentive_schedules_arabic_text.md](agent3_investment_pm_decision_503_2026_industrial_incentive_schedules_arabic_text.md). Gazette issue/page and official PDF/hash remain outstanding; some schedule technical terms require image verification.
