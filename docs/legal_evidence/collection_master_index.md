@@ -1295,3 +1295,13 @@
 
 
 | checkpoint 140 — Agent 3 Commercial Agency Law 120/1982 text-depth expansion | Duplicate audit against prior Agent 3 checkpoint 20 confirmed Law 120/1982, Law 21/2022, Decision 342/1982 and Decision 593/2025 were already counted; no duplicate instrument/provision increment. Expanded the record with full searchable 28-article GOEIC Law 120 Gazette reproduction, full 32-article secondary transcription of Executive Regulation 342/1982, and current Law 21/2022 real-estate-broker additions (Arts 2 bis, 3 bis, 10 bis, 11 bis, 12 bis series, penalties and settlement). Identified commencement discrepancy: GOEIC PDF extraction says six months; secondary text and Decision 342 Article 32 point to nine months / 5 May 1983; original Gazette image visual check required. Full text and source qualifications: [agent3_commercial_agency_law120_reg342_law21_2022_full_text_reconciliation_2026-11-18.md](agent3_commercial_agency_law120_reg342_law21_2022_full_text_reconciliation_2026-11-18.md). Cumulative counts unchanged: **166 instruments / 2,698 normalized units**; assigned-domain completion **40% provisional**; whole corpus **2% provisional**; lawyer review 0%. |
+
+
+### Research Agent 1 — checkpoint 151: Law 70/1964 amendment and valuation chain (18 November 2026)
+
+- Added [collection_checkpoint_151_law_70_1964_amendment_and_valuation_chain_2026-11-18.md](collection_checkpoint_151_law_70_1964_amendment_and_valuation_chain_2026-11-18.md).
+- Added nine previously unregistered statutory amendments to Law 70/1964 (EG-0215–EG-0223): Laws 94/1980, 6/1991, 224/1996, 225/1996, 9/2003, 3/2004, 83/2006, 163/2019 and 67/2021.
+- Added predecessor annual vehicle valuation decisions (EG-0224–EG-0226): Decisions 8656/2013, 176/2019 and 8073/2023. Original texts/annexes for 8656/2013 and 8073/2023 remain outstanding. Existing Decisions 278/2025 and 7657/2025 remain separately registered.
+- The amendment graph separates statutory amendments from constitutional judgments: Case 2/24 invalidated Article 30; Case 10/16 invalidated Article 21(9) and consequentially removed item (3) of Table 2 to Decision 2936/1992. Case 10/16 has a direct official SCC page; Case 2/24 full text remains secondary-source in this pass.
+- Acquisition register now has **222 non-header rows**, 222 unique IDs, zero duplicates. Source-permission register remains **54 unique records**. Core provisions remain **1,370**; no article texts were added in checkpoint 151.
+- Completion estimates remain core extraction 100% at article-number level for the three defined core statutes, broader civil/property/contract 15% provisional, whole Egyptian legal corpus 2% provisional. No unsupported percentage increase.
