@@ -202,4 +202,4 @@ The 44-event historical article-version register currently records effects but l
 
 ## 11. Verification and rights
 
-No lawyer verification, commercial reuse permission, certified Amiri Press authentication, or general bulk collection permission is claimed. No restricted download was bypassed. All 233 canonical acquisition records remain lawyer_reviewed=false and rights_cleared=false.
+No lawyer verification, commercial reuse permission, certified Amiri Press authentication, or general bulk collection permission is claimed. No restricted download was bypassed. All 246 canonical acquisition records remain lawyer_reviewed=false and rights_cleared=false.
