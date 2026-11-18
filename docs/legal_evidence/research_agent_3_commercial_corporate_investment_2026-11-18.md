@@ -1880,3 +1880,109 @@ The PDF was visually inspected. It is published in الوقائع المصرية
 The decision's second article states it is published in الوقائع المصرية and takes effect the day after publication. This is a ministerial implementing decision, not a new statute. Its obligations should be linked to the Executive Regulation version and any later beneficial-owner guidance/AML amendments.
 
 **Version/rights status:** the current Decision 106/2018 PDF is officially located but not text-extracted; Law 198/2020 is fully visually transcribed from the official PDF; Decision 41/2020 is fully transcribed from its official 3-page Gazette publication. No lawyer verification or redistribution rights clearance claimed.
+
+
+## 20. Electronic Signature Law 15/2004 — official ITIDA 2020 amended regulation Gazette scan
+
+### A. Law and original Executive Regulation
+
+**Law:** Law 15/2004 regulating electronic signature and establishing ITIDA.  
+**Original Executive Regulation:** Minister of Communications and Information Technology Decision 109/2005, published in الوقائع المصرية issue 115, 25 May 2005.  
+**Official MCIT confirmation:** https://mcit.gov.eg/Ar/Media_Center/Press_Room/Press_Releases/1158
+
+MCIT states Decision 109/2005 contains 24 articles plus a technical/technical annex and sets the requirements for electronic signature creation, authentication providers, trust services and evidentiary validity for civil, commercial and administrative electronic transactions. This is an official ministry publication confirmation and source lead; the original 2005 Gazette PDF still needs retrieval.
+
+### B. 2020 amended regulation — official ITIDA / Amiri Press Gazette PDF
+
+**Official ITIDA-hosted Gazette PDF:**  
+https://itida.gov.eg/English/Documents/3.pdf  
+**Gazette:** الوقائع المصرية, issue 95 (تابع), 23 April 2020.  
+**Decision shown on Gazette scan:** Minister of Communications and Information Technology Decision **331/2020**, dated 19 April 2020, amending the Executive Regulation of Law 15/2004.
+
+The 2020 Gazette scan is 22 printed pages and fully searchable. It replaces the prior regulation with an amended text through Article 27 plus a technical annex. It introduces definitions for electronic seals and electronic time stamps and strengthens controls for certification authorities, PKI, HSMs and timestamp services.
+
+**Important decision-number discrepancy:** A secondary legal database identifies Decision **361/2020** as the amendment to the Executive Regulation of Law 15/2004, published 23 April 2020. However, the official ITIDA-hosted Gazette PDF for the same publication date clearly prints Decision **331/2020**. The official PDF is the stronger primary source for the scanned document. Do not merge 331/2020 and 361/2020 or assume they are identical; obtain the original Official Gazette issue 95 (تابع) and any separate decision record to resolve the discrepancy. A prior project checkpoint mentioned Decision 361/2020; this note preserves the conflict rather than silently overwriting it.
+
+**Verbatim — Decision 331/2020 issuing Article 1:**
+
+> (المادة الأولى)
+>
+> يعمل بأحكام اللائحة التنفيذية للقانون رقم ١٥ لسنة ٢٠٠٤ بتنظيم التوقيع الإلكتروني وإنشاء هيئة تنمية صناعة تكنولوجيا المعلومات، المعدلة، المرفقة.
+
+**Verbatim — amended Regulation Article 1 definitions (selected):**
+
+> مادة (١)
+>
+> في تطبيق أحكام هذه اللائحة، يقصد بالمصطلحات الآتية المعاني المبينة قرين كل منها:
+>
+> ١- التوقيع الإلكتروني:
+>
+> ما يوضع على محرر إلكتروني ويتخذ شكل حروف، أو أرقام، أو رموز، أو إشارات أو غيرها ويكون له طابع منفرد يسمح بتحديد شخص الموقع ويميزه عن غيره.
+>
+> ٢- الكتابة الإلكترونية:
+>
+> كل حروف، أو أرقام، أو رموز، أو أي علامات أخرى تثبت على دعامة إلكترونية أو رقمية أو ضوئية أو أية وسيلة مشابهة وتعطي دلالة قابلة للإدراك.
+>
+> ٣- المحرر الإلكتروني:
+>
+> رسالة بيانات تتضمن معلومات تنشأ، أو تدمج، أو تخزن، أو ترسل، أو تستقبل، كلياً أو جزئياً، بواسطة إلكترونية، أو رقمية، أو ضوئية، أو بأية وسيلة أخرى مشابهة.
+>
+> ٩- الختم الإلكتروني:
+>
+> هو توقيع إلكتروني يسمح بتحديد الشخص الاعتباري منشئ الختم ويميزه عن غيره.
+>
+> ١٣- البصمة الزمنية الإلكترونية:
+>
+> ما يوضع على محرر إلكتروني ويتخذ شكل حروف أو أرقام أو رموز أو إشارات أو غيرها والتي تربط تلك البيانات بوقت محدد لإثبات وجود هذا المحرر الإلكتروني في ذلك الوقت.
+
+**Verbatim — amended Regulation Article 4 (timestamp):**
+
+> مادة (٤)
+>
+> يشترط لإثبات البصمة الزمنية الإلكترونية توافر ما يلي:
+>
+> (أ) أن تربط التاريخ والوقت بالمحرر الإلكتروني بطريقة تمنع إمكانية تغيير البيانات دون اكتشافها.
+>
+> (ب) أن يستند إلى مصدر زمني دقيق معتمد من السلطة الجذرية العليا للتصديق الإلكتروني.
+>
+> (ج) يجرى إنشاؤه بواسطة السلطة الجذرية العليا للتصديق الإلكتروني أو من إحدى الجهات المرخص لها من قبل الهيئة، وفقاً للضوابط الفنية والتقنية المنصوص عليها في الفقرة (أ) من الملحق الفني والتقني المرفق بهذه اللائحة.
+
+**Verbatim — amended Regulation Article 9 (evidence integrity):**
+
+> مادة (٩)
+>
+> مع عدم الإخلال بالشروط المنصوص عليها في القانون، تتحقق حجية الإثبات المقررة للكتابة الإلكترونية والمحررات الإلكترونية الرسمية أو العرفية لمنشئها، إذا توافرت الضوابط الفنية والتقنية الآتية:
+>
+> (أ) أن يكون متاحاً فنياً تحديد وقت وتاريخ إنشاء الكتابة الإلكترونية أو المحررات الإلكترونية الرسمية أو العرفية، وأن تتم هذه الإتاحة من خلال نظام حفظ إلكتروني مستقل وغير خاضع لسيطرة منشئ هذه الكتابة أو تلك المحررات، أو لسيطرة المعني بها.
+>
+> (ب) أن يكون متاحاً فنياً تحديد مصدر إنشاء الكتابة الإلكترونية أو المحررات الإلكترونية الرسمية أو العرفية ودرجة سيطرة منشئها على هذا المصدر وعلى الوسائط المستخدمة في إنشائها.
+>
+> (ج) في حالة إنشاء وصدور الكتابة الإلكترونية أو المحررات الإلكترونية الرسمية أو العرفية بدون تدخل بشري، جزئي أو كلي، فإن حجيتها تكون متحققة متى أمكن التحقق من وقت وتاريخ إنشائها ومن عدم العبث بهذه الكتابة أو تلك المحررات.
+
+**Verbatim — amended Regulation Article 13 (licensing prerequisites):**
+
+> مادة (١٣)
+>
+> يجب أن يتوافر لدى طالب الحصول على الترخيص بمزاولة نشاط تقديم خدمات التوقيع الإلكتروني للمتطلبات التالية:
+>
+> (أ) نظام تأمين للمعلومات وحماية البيانات وخصوصيتها، بمستوى حماية لا تقل عن المستوى المذكور في المعايير والقواعد المشار إليها في الفقرة (د) من الملحق الفني والتقني المرفق بهذه اللائحة.
+>
+> (ب) دليل إرشادي يتضمن ما يلي:
+>
+> 1- إصدار شهادات التصديق الإلكتروني.
+>
+> 2- إدارة المفاتيح الشفرية.
+>
+> 3- إدارة الأعمال الداخلية.
+>
+> 4- إدارة التأمين والكوارث.
+>
+> (ج) منظومة تكوين بيانات إنشاء التوقيع الإلكتروني مؤمنة وفقاً للضوابط الفنية والتقنية المنصوص عليها في المواد (٢، ٣، ٥) من هذه اللائحة.
+
+**Technical annex notes:** the 2020 regulation's annex references PKI/X.509, RFC 3161 timestamp services, OCSP/RFC 6960, hardware security modules, certificate policies, LTV signatures and security certification baselines. There is a technical inconsistency in the printed annex: Article 3(b) requires root keys of at least 4096 bits, while the annex later lists minimum RSA/DSA key lengths of 2048 bits and recommends 4096. Preserve both texts and flag for technical/legal review rather than normalize away the discrepancy.
+
+### C. Later official regulatory implementation
+
+ITIDA's official website confirms it is the authority responsible for licensing and regulating IT activities and the electronic signature trust ecosystem under Law 15/2004 and its Executive Regulation. The official 2020 Gazette PDF is sufficient to count the 2020 amended regulation as text obtained, but the original 2005 Regulation 109/2005 and full amending decision chain still require a consolidated source package.
+
+**Collection status:** Law 15/2004 base statute was previously captured in part (Articles 1–13); Decision 109/2005 is officially confirmed as original Executive Regulation (24 articles + annex), but original Gazette text not yet acquired; official Decision 331/2020 Gazette scan and amended regulation through Article 27 plus technical annex acquired. Conflicting secondary reference to Decision 361/2020 remains unresolved. No lawyer approval or rights clearance claimed.
