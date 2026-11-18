@@ -936,6 +936,93 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "one public PDF locator; no bulk/API permission established",
       "required_next_action": "Use only as secondary comparison and amendment index; obtain original Gazette instruments; review site terms and request permission before systematic extraction or commercial display."
+    },
+    {
+      "source_id": "EG-MANSHURAT-LAW114-SCAN",
+      "authority": "Manshurat secondary legal archive",
+      "source_page": "https://manshurat.org/node/71597",
+      "file_url": "https://manshurat.org/file/83333/download?token=Kv0YfwAI",
+      "material_types": [
+        "Law 114/1946 six-page PDF scan copy"
+      ],
+      "access_status": "Public PDF download route; 6-page scan; metadata states issued 11 August 1946, published 24 August 1946, effective 1 January 1947",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://manshurat.org",
+      "terms_checked_on": null,
+      "permission_evidence": "Checked 2026-11-18. Public scan copy available through Manshurat. This is a secondary-hosted scan, not an Amiri Press repository file. The repository metadata identifies the historical publication dates. No licence establishing bulk extraction, OCR, commercial indexing, excerpt display or redistribution rights was located.",
+      "bulk_download_or_api": "single public download route; no bulk/API permission established",
+      "required_next_action": "Use for page comparison only; request an official Gazette copy; review terms and obtain permission before systematic reuse."
+    },
+    {
+      "source_id": "EG-MANSHURAT-LAW142-SCAN",
+      "authority": "Manshurat secondary legal archive",
+      "source_page": "https://manshurat.org/node/33844",
+      "file_url": "https://manshurat.org/file/44021/download?token=5Zwo9ziS",
+      "material_types": [
+        "Law 142/1964 seven-page PDF scan copy"
+      ],
+      "access_status": "Public PDF download route; 7-page scan; metadata states issue/publication date 24 March 1964",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://manshurat.org",
+      "terms_checked_on": null,
+      "permission_evidence": "Checked 2026-11-18. Public seven-page scan copy available through Manshurat. Secondary-hosted scan, not Amiri Press source; original Gazette issue number and exact page sequence need cross-check. No licence or commercial reuse grant established.",
+      "bulk_download_or_api": "single public download route; no bulk/API permission established",
+      "required_next_action": "Compare against Official Gazette issue 69/1964 and request official copy; obtain permission before bulk extraction or commercial display."
+    },
+    {
+      "source_id": "EG-MANSHURAT-LAW68-SCAN",
+      "authority": "Manshurat secondary legal archive",
+      "source_page": "https://manshurat.org/node/70547",
+      "file_url": "https://manshurat.org/file/82270/download?token=fuDVQjIu",
+      "material_types": [
+        "Law 68/1947 two-page PDF scan copy"
+      ],
+      "access_status": "Public PDF download route; 2-page scan; metadata states issue date 3 July 1947",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://manshurat.org",
+      "terms_checked_on": null,
+      "permission_evidence": "Checked 2026-11-18. Public two-page scan copy available through Manshurat. Secondary-hosted and not independently authenticated as original Amiri Press Gazette PDF. No licence establishing bulk extraction, commercial use or redistribution located.",
+      "bulk_download_or_api": "single public download route; no bulk/API permission established",
+      "required_next_action": "Compare scan against original Gazette issue; obtain official copy and rights clarification before bulk extraction."
+    },
+    {
+      "source_id": "EG-MANSHURAT-LAW70-SCAN",
+      "authority": "Manshurat secondary legal archive",
+      "source_page": "https://manshurat.org/node/33668",
+      "file_url": "https://manshurat.org/file/43842/download?token=z-q7csZN",
+      "material_types": [
+        "Law 70/1964 eleven-page PDF scan copy"
+      ],
+      "access_status": "Public PDF download route; 11-page scan; metadata states issue and commencement date 22 March 1964",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://manshurat.org",
+      "terms_checked_on": null,
+      "permission_evidence": "Checked 2026-11-18. Public eleven-page scan copy available through Manshurat. Secondary-hosted scan; not verified as the original Amiri Press Gazette PDF. No licence establishing bulk extraction, commercial use, excerpt display or redistribution located.",
+      "bulk_download_or_api": "single public download route; no bulk/API permission established",
+      "required_next_action": "Compare scan against Gazette issue and amended article versions; obtain official copy and rights clarification."
+    },
+    {
+      "source_id": "EG-SIS-GAZETTE-2026-01-18",
+      "authority": "State Information Service / Media Digital Repository",
+      "source_page": "https://mediadr.sis.gov.eg/xmlui/handle/123456789/118973",
+      "file_url": "https://mediadr.sis.gov.eg/xmlui/bitstream/handle/123456789/118973/OG3_20260118_2885.pdf?isAllowed=y&sequence=2",
+      "material_types": [
+        "Official Gazette issue 3 bis (A), 18 January 2026",
+        "PM Decision 200/2026",
+        "20-article Executive Regulation of Law 168/2025"
+      ],
+      "access_status": "Public official-hosted full Gazette PDF; 562 extracted lines; official DSpace catalogue also records a separate 1.89 MB original bundle as restricted/request-only",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://mediadr.sis.gov.eg",
+      "terms_checked_on": null,
+      "permission_evidence": "Checked 2026-11-18. Public full Gazette issue PDF served from SIS Media Digital Repository; page content begins with the Republic/Presidency/Official Gazette masthead and issue/date metadata. The PDF text layer includes Decision 200/2026 and all regulation articles. This establishes access to an official government-hosted Gazette reproduction, not an explicit licence for bulk collection, commercial indexing, public display or redistribution. The DSpace original bundle is separately restricted.",
+      "bulk_download_or_api": "single public issue PDF URL; no bulk/API licence established",
+      "required_next_action": "Archive/hash exact PDF; inspect page images; compare against restricted DSpace original when authorized; seek explicit reuse terms."
     }
   ]
 }
