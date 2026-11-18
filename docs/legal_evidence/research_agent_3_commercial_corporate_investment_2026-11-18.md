@@ -2825,9 +2825,9 @@ The official CBE circulars database is a live index and should be queried by top
 
 ### A. Unique instruments with at least some Arabic text surfaced
 
-**Current minimum: 38 distinct legal instruments** with at least some Arabic legal text surfaced in this Agent 3 collection. This includes statutes, executive regulations, ministerial/prime-minister decisions and CBE circulars; a few are represented by selected provisions or secondary searchable reproductions rather than a full primary Gazette text. Publication-only source leads and unreadable official PDFs are excluded.
+**Current minimum: 39 distinct legal instruments** with at least some Arabic legal text surfaced in this Agent 3 collection. This includes statutes, executive regulations, ministerial/prime-minister decisions and CBE circulars; a few are represented by selected provisions or secondary searchable reproductions rather than a full primary Gazette text. Publication-only source leads and unreadable official PDFs are excluded.
 
-The 38 are:
+The 39 are:
 1. Competition Law 3/2005
 2. Executive Regulation Decision 1316/2005
 3. E-Signature Law 15/2004
@@ -2866,12 +2866,13 @@ The 38 are:
 36. Investment sector-schedule amendment Decision 503/2026
 37. Investment establishment-deadline extension Decision 1/2024
 38. Companies amendment Law 4/2018
+39. Commercial Code cheque amendment Law 156/2004
 
 **Source-only / not counted as text obtained:** Trade Register Executive Regulation Decision 106/2018 (14.9 MB official PDF locator, download failed); original E-Signature Executive Regulation Decision 109/2005 (official publication confirmation only); PM Decision 104/2022 (parent schedules identified, full schedules not extracted); Consumer Protection Law 181/2018 (official PDF OCR unusable); CBE eKYC circular 23 August 2026 and CBE PSO/PSP 2025 licensing/governance PDFs (official locators but reader blocked).
 
 ### B. Article/provision text units
 
-**Current minimum: 262 article/provision text units surfaced.** This reconciles the previous 111-unit baseline with 151 additional individually surfaced article or regulatory-section texts in this checkpoint, including 20 provisions from Law 4/2018. It is a manual minimum, not a count of unique operative provisions after amendment normalization. It includes some regulatory sections (e.g., CBE Agent Banking numbered sections) and selected provisions, and does not count every article merely because a full searchable PDF spans a larger numbering range.
+**Current minimum: 270 article/provision text units surfaced.** This reconciles the previous 111-unit baseline with 159 additional individually surfaced article or regulatory-section texts in this checkpoint, including 20 provisions from Law 4/2018 and eight provisions from Law 156/2004. It is a manual minimum, not a count of unique operative provisions after amendment normalization. It includes some regulatory sections (e.g., CBE Agent Banking numbered sections) and selected provisions, and does not count every article merely because a full searchable PDF spans a larger numbering range.
 
 ### C. Assigned-domain coverage
 
@@ -3201,4 +3202,4 @@ The operative result is six months for a cheque drawn in Egypt and payable in Eg
 
 **Critical version note:** Law 156/2004 does not change every cheque provision; it specifically changes Articles 449, 482, 503, 504, 531, 537 and 544 of Commercial Code 17/1999 and Article 52 of Stamp Tax Law 111/1980. The 2004 amendment must be overlaid on the Commercial Code 1999 edition, with effective date linked to Law 158/2003. Do not treat the original 1999 three-/four-month presentation periods or six-month recourse periods as current.
 
-**Collection status:** full searchable Arabic amendment text surfaced via secondary publisher and official legislative index; Gazette issue/date confirmed; original Amiri Press Gazette PDF still needs capture. Seven amendment provision units transcribed. No lawyer approval or rights clearance claimed.
+**Collection status:** full searchable Arabic amendment text surfaced via secondary publisher and official legislative index; Gazette issue/date confirmed; original Amiri Press Gazette PDF still needs capture. Eight amendment provision units transcribed. No lawyer approval or rights clearance claimed.
