@@ -2373,3 +2373,12 @@ Added Decision635 (Port Said temporary customs zone for Suez Canal Auto Trading)
 - Added [FRA Board Decision 87/2026](agent3_fra_decision87_2026_warning_negative_lists_arabic_text.md): full five-article operative text from the FRA-hosted Gazette PDF, Official Gazette issue111 (تابع), 20 May 2026. It establishes warning, final-judgment negative, and administrative-measure lists; sets listing safeguards, emergency temporary listing, 60-day grievance filing, a 30-day committee review period, periodic review and removal rules. Gazette image QA and local PDF hash remain outstanding.
 - Added [FRA Circular 9/2026](agent3_fra_circular9_2026_sustainability_disclosure_arabic_text.md): full two-page Arabic text from the FRA-hosted PDF. It requires covered NBFI firms and listed companies to publish an accessible, accurate sustainability statement, refresh it at least annually and when material changes occur, retain supporting records, align public statements with regulatory filings, and notify FRA of material new information. The circular's face date is 3 January 2026, although its URL is in the FRA November 2026 upload directory; this date/path mismatch is explicitly preserved. No Gazette publication is asserted.
 - Both texts are marked **source-matched, not lawyer-reviewed**. Neither public availability nor regulator hosting is treated as commercial reuse permission. Page-image/OCR reconciliation, currentness, and any later amendments remain open.
+
+
+### Agent 3 — FRA Decision 40/2026 investor identifier (complete operative text)
+
+- Added [FRA Board Decision 40/2026](agent3_fra_decision40_2026_investor_identifier_arabic_text.md), full preamble and all eight operative articles transcribed from the six-page FRA-hosted Official Gazette PDF.
+- Gazette: issue45 (تابع), 24 February 2026, pp. 26–31; effective 25 February 2026.
+- Creates a unique investor identifier and a unified database at the Egyptian Exchange; governs participating intermediaries, AML/KYC and eKYC, signature checks, fraud reporting, five-business-day application processing, cybersecurity, quarterly logs, FRA access and six-month review of special-purpose identifiers.
+- The PDF text layer was used; the page itself cautions that the electronic image is not the legally relied-upon copy. Image QA, currentness, local binary/hash, lawyer review and commercial reuse rights remain outstanding.
+- This is a new full-text acquisition; no percentage increase is claimed until the canonical acquisition and text-inventory ledgers are reconciled.
