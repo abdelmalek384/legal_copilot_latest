@@ -105,3 +105,12 @@ The full SIS-hosted Official Gazette PDF is directly accessible and was opened: 
 The Amiri Press DSpace item remains request-copy only. Its metadata identifies Gazette issue 45 bis (ج), 10 November 2026, 178.37 KB original bundle. The alternate reproductions expose both operative articles, but no direct official Amiri Press HTML text locator was found; the Amiri Press search for decision number 480 returned an unrelated Ministry of Housing decision 480/2026, which must not be conflated with the Presidential Decision.
 
 The source-permission register now has 71 unique records after adding the VetoGate-hosted Law 168 Gazette scan. The directly accessible SIS-hosted PDF for Decision 200 was opened; all three forms are mapped and the Article 20/Form 3 annual-versus-quarterly wording discrepancy is recorded. Collection and commercial reuse permissions remain unknown.
+
+
+## 9. Deadline calculation sources added
+
+- Official Cairo Governorate / Al-Amiriya District notice dated 20 June 2026: https://www.cairo.gov.eg/ar/governorate-entities/neighborhoods/north-area/hay-alamiriya/news/2026/june/09c8646b18c94561a1985b0a83aa38ef — explicitly states 18 July 2026 as the last day.
+- Civil and Commercial Procedure Law 13/1968, Article 15, full searchable text: https://lawhub.info/eg/?p=11332 — excludes the day of the triggering event, includes the last day, and uses the solar calendar for month/year periods unless otherwise specified.
+- Egyptian Bar Association digest of Cassation Appeal 14335/85: https://egyls.com/%D9%85%D9%86-%D8%A3%D8%AD%D9%83%D8%A7%D9%85-%D8%A7%D9%84%D9%86%D9%82%D8%B6-%D8%A8%D8%B4%D8%A3%D9%86-%D8%AD%D8%B3%D8%A7%D8%A8-%D8%A7%D9%84%D9%85%D9%88%D8%A7%D8%B9%D9%8A%D8%AF-%D9%88%D8%A7%D9%84%D9%85/ — reports that the Article15 rule is applied in other branches of law and that a month-period runs from the end of the trigger day to the end of the corresponding day in the final month.
+
+Applying that reported rule to the 19 January 2026 commencement trigger yields a 19 July 2026 endpoint, while the official Cairo notice and the committee coordinator's interview state 18 July 2026. This strengthens, rather than removes, the one-day discrepancy. The sources are now recorded in the permission register; their collection and commercial reuse fields remain unknown.
