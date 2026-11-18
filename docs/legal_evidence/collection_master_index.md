@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (expanded through checkpoint 107)
+**Last updated:** 2026-11-18 (expanded through checkpoint 111)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -400,6 +400,10 @@
 - Whole Egyptian legal collection estimate remains approximately 2% (provisional). No denominator of all unique Egyptian legal article texts is currently recorded, so an exact incremental percentage contribution from this tranche is not responsibly calculable.
 - Overall whole-corpus coverage remains approximately 2% as recorded in the existing index. This is provisional. The project does not yet record a denominator of all unique Egyptian legal article texts, so the incremental percentage contribution of these checkpoints cannot responsibly be calculated. Counts are based on unique instruments and article provisions, not URLs or catalogue entries.
 
+| [collection_checkpoint_108_building_law_119_2008_articles_6_16_18_23_25_32_2026-11-18.md](collection_checkpoint_108_building_law_119_2008_articles_6_16_18_23_25_32_2026-11-18.md) | Building Law 119/2008 Articles 6–16, 18–23, 25–32: planning authorities, strategic plans, subdivision and urban coordination |
+| [collection_checkpoint_109_building_law_articles_33_37_40_59_2026-11-18.md](collection_checkpoint_109_building_law_articles_33_37_40_59_2026-11-18.md) | Building Law Articles 33–37 and 40–59: distinguished areas, signage, building permits, insurance, supervision and stop-work controls |
+| [collection_checkpoint_110_building_law_articles_60_88_90_97_99_101_103_113_2026-11-18.md](collection_checkpoint_110_building_law_articles_60_88_90_97_99_101_103_113_2026-11-18.md) | Building Law Articles 60–88, 90–97, 99–101, 103–113: removal, occupancy, owners' unions, dangerous buildings, appeals and penalties |
+| [collection_checkpoint_111_building_law_articles_1_5_2026-11-18.md](collection_checkpoint_111_building_law_articles_1_5_2026-11-18.md) | Building Law substantive Articles 1–5: scope, definitions, Supreme Council and General Organization for Urban Planning |
 | [collection_checkpoint_107_evidence_law_articles_125_162_extraction_2026-11-18.md](collection_checkpoint_107_evidence_law_articles_125_162_extraction_2026-11-18.md) | Evidence Law Articles 125–162: oath procedure, inspection, expert appointment, expert duties, reports, fees and challenges; amendments to Articles 148/148 bis recorded |
 | [collection_checkpoint_106_civil_code_special_security_rights_and_privileges_articles_1085_1149_2026-11-18.md](collection_checkpoint_106_civil_code_special_security_rights_and_privileges_articles_1085_1149_2026-11-18.md) | Civil Code Articles 1085–1149: judicial lien, possessory pledge, pledge of debts and statutory privileges, including contractors/architects |
 | [collection_checkpoint_105_civil_code_official_mortgage_articles_1030_1084_2026-11-18.md](collection_checkpoint_105_civil_code_official_mortgage_articles_1030_1084_2026-11-18.md) | Civil Code Articles 1030–1084: official mortgage creation, priority, enforcement, purchaser/hāʾiz rights, purification and extinction |
@@ -447,6 +451,15 @@
 - Acquisition register now has 182 instrument records, 12 columns per row, no duplicate IDs or malformed rows. This is a register count, not a legal-text/article count. All lawyer-review and rights-clearance flags remain false.
 - Assigned civil/property domain estimate remains approximately 15%; whole Egyptian legal collection remains approximately 2%. Both are provisional; no validated national denominator exists, so no exact incremental percentage is claimed.
 - Material access blockers: several DSpace original Gazette bundles require a request-a-copy workflow; the official GPO Decision 200/2026 page returned 502 on direct open; original Gazette PDFs and some direct SCC judgment pages remain missing. GitHub repository writes and register validation succeeded.
+
+### Research Agent 1 — checkpoints 108–111 Building Law extraction (18 November 2026)
+
+- Completed base-text article-number coverage of **all 114 substantive articles** of Building Law 119/2008 using the Ministry of Housing-hosted Official Gazette reproduction, issue 19 bis (A), 11 May 2008.
+- New article texts in this continuation: 25 (checkpoint108: Articles 6–16, 18–23, 25–32), 25 (checkpoint109: Articles 33–37, 40–59), 51 (checkpoint110: Articles 60–88, 90–97, 99–101, 103–113), and 5 (checkpoint111: Articles 1–5). Together with the eight previously selected substantive articles (17,24,38,39,89,98,102,114), this covers Articles 1–114 without duplicate article numbers.
+- The five promulgation provisions are separately preserved and are not part of the 114 substantive articles.
+- Source quality: official government-hosted Gazette reproduction, but text-layer OCR is materially corrupted in several provisions. Article labels 34–36 were normalized from misread sequential labels; page-image verification remains mandatory for flagged provisions. No local binary/hash was archived.
+- Law 23/2015 and Executive Regulation Decision 144/2009, plus Decisions 410/2021 and 943/2024, require article-by-article historical versioning and annex/form reconciliation; base Law 119 text coverage does not equal current consolidated law.
+- No lawyer verification or commercial reuse rights are claimed.
 
 ### Research Agent 1 — checkpoint 107 Evidence Law update (18 November 2026)
 
