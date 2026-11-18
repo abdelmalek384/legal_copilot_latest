@@ -485,3 +485,12 @@
 - ECA confirms Law 175/2022 and Decision 1120/2024 brought the ex-ante merger-control regime into operation on 1 June 2024.
 - The 2026 competition-law replacement bill passed Parliament in final form on 22 April 2026, but the official MOF legislation catalogue still lists Law 3/2005 as in force; no promulgation number/Gazette issue for the replacement was found. It is recorded as a bill, not operative law.
 - CPA's official 32-page Law 181/2018 PDF was opened, but Arabic OCR is unusable. No article count added. CPA's Article 19 explanatory release is recorded as guidance, not primary statutory text.
+
+
+### Research Agent 3 — Bankruptcy and restructuring acquisition (2026-11-18)
+
+- Agent 3 file now includes full searchable Arabic text of Law 11/2018 through Article 243 from a secondary consolidated source, selected provisions transcribed, and the 2021 amendment map.
+- Crucial correction to Commercial Code status: Law 11/2018 issuing Article 5 expressly repeals Book V of Commercial Code 17/1999 (former Articles 550–772). These bankruptcy provisions must be excluded from operative Commercial Code retrieval and retained only as historical text.
+- Law 11/2021 amendments: Official Gazette issue 16 bis (و), 28 April 2021, Amiri Press repository record located. The amendment replaces 25 listed provisions and inserts numerous provisions including Article 3 bis (electronic litigation), Article 20 bis (rescue financing), Article 36 bis, Article 57 bis and other additions. Full Arabic attachment is marked restricted in the repository; do not claim downloaded.
+- Justice Minister Decision 3715/2026 official Amiri Press text updates expert fees under Decision 2208/2019; this is a procedural/fee decision, not a substantive amendment to Law 11/2018.
+- The 2018 base Gazette scan and full 2021 amendment Gazette PDF remain to be captured/verified; no comprehensive executive regulation has yet been identified, so the implementing decision set remains an open collection task.
