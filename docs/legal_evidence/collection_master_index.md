@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (expanded through checkpoint 134)
+**Last updated:** 2026-11-18 (expanded through checkpoint 135)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -1102,3 +1102,6 @@
 - Decision943/2024 appears in two SIS-hosted Gazette issue PDFs: issue216 (1 Oct 2024) and issue240 (30 Oct 2024), with identical decision text and conflicting publication/effective-date implications. Preserve both; official clarification required.
 - Acquisition register updated to 191 rows (EG-0189–EG-0191 added for Decisions954/2022,120/2025,1505/2025); original-Gazette byte/hash acquisition and lawyer/rights review remain open.
 - Full evidence: [building_law_119_2008_decision_144_2009_official_gazette_sources_and_amendment_chain_2026-11-18.md](building_law_119_2008_decision_144_2009_official_gazette_sources_and_amendment_chain_2026-11-18.md).
+
+
+| checkpoint 116 — Agent 3 CBE Law 194/2020 | Captured official Ministry of Finance Gazette PDF and issuing Articles 1–3; key Article 2 cross-links Companies Law 159/1981 as supplementary corporate law and Commercial Code 17/1999 for all bank-customer transactions; 115-page substantive law still needs article extraction; cumulative Agent 3 minimum 117 instruments / 1,256 provision units |
