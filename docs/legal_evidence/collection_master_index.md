@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (expanded through checkpoint 125)
+**Last updated:** 2026-11-18 (expanded through checkpoint 126)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -1064,3 +1064,6 @@
 
 
 | checkpoint 106 — Agent 3 Companies Law inserted articles | Captured official Gazette text for Law 4/2018 inserted Companies Law Articles 1 bis, 4 bis, 9 bis and 156 bis; clarified annual GAFI filing duty originates in 2018 statute, not 2026 announcement; cumulative Agent 3 minimum 99 instruments / 1,207 provision units |
+
+
+| checkpoint 107 — Agent 3 Companies Law 1994/1989 amendment history | Added Law 212/1994 Article 21 bis fee provision (explicitly marked repealed by Law 3/1998) and Law 230/1989 repeal of Companies Law Article 183; captured MIFT's seven direct amendment laws and 21 regulation attachments as a deduplication/currentness lead; cumulative Agent 3 minimum 101 instruments / 1,210 provision units |
