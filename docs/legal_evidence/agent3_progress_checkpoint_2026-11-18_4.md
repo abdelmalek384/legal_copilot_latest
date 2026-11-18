@@ -64,8 +64,8 @@ All new material remains machine-collected and not lawyer-reviewed. Do not mark 
 
 ## Latest Capital Market Gazette delta recovery
 - Decision 2482/2025: obtained official FRA-hosted Gazette PDF (issue 29 bis (أ), 20 July 2025) and visually inspected pages 4–5; Article 148 bis installment-payment default notices, FRA review/objection process, four-business-day no-sale standstill, forced-sale valuation, CSD notification, and Article 156 private-placement close-out provision captured. Corrected OCR phrases against image.
-- Decision 1529/2025: obtained Official Gazette issue 18 (مكرر), 4 May 2025 PDF; Article 35 bis 9 treats energy-source certificates under Electricity Law 87/2015 as tradable financial instruments.
-- Number discrepancy: FRA list and English file name say 1539/2025, but Arabic Gazette PDF prints 1529/2025. Preserve the mismatch; Gazette number controls pending authority clarification. Do not create two instrument records.
+- Decision 1539/2025: obtained Official Gazette issue 18 (مكرر), 4 May 2025 PDF; Article 35 bis 9 treats energy-source certificates under Electricity Law 87/2015 as tradable financial instruments.
+- Number discrepancy: FRA list and English file name say 1539/2025, but Arabic Gazette PDF prints 1539/2025. Preserve the mismatch; Gazette number controls pending authority clarification. Do not create two instrument records.
 - Record: [agent3_capital_market_decisions_1529_and_2482_2025_gazette_text.md](agent3_capital_market_decisions_1529_and_2482_2025_gazette_text.md).
 - Aggregate counts and 55% provisional estimate remain unchanged pending deduplication; no lawyer review.
 
@@ -168,3 +168,8 @@ All new material remains machine-collected and not lawyer-reviewed. Do not mark 
 - Decision 106/2018 remains a separate unresolved instrument: ITDA lists it as the current Executive Regulation and links a 14,898,711-byte PDF. Web extraction rejects it at the content-size limit and direct local download failed. The 946/1976 text is not a substitute. The current ITDA Work Guide is operational guidance, not legislation.
 - [Updated Trade Register record](agent3_trade_register_exec_reg_946_1976_amendments_2020_arabic_text.md).
 - No new unique-instrument count; text/source-quality upgrade. Reconciled baseline remains **209 documents / 2,049 provisional units**; assigned-domain **55% provisional**; lawyer review **0%**.
+
+
+## Official number verification correction — 18 November 2026
+
+The official Gazette PDF hosted by the Egyptian Electric Utility and Consumer Protection Regulatory Agency was opened and text-extracted at https://www.egyptera.org/ar/download/DecreeNo1539Year2025.pdf. Page 1 expressly prints «قرار رئيس مجلس الوزراء رقم ١٥٣٩ لسنة ٢٠٢٥» (Official Gazette issue 18 bis, 4 May 2025); page 2 inserts Article 35 bis 9. This resolves the prior apparent 1529 reading: **1539/2025 is the correct instrument number**. The filename, FRA catalogue and actual Gazette heading all align. Any earlier 1529/2025 text is withdrawn; this is one decision only.
