@@ -439,3 +439,32 @@ These are five separate legal instruments, not a single consolidated decision. E
 رئيس مجلس الوزراء — دكتور/ مصطفى كمال مدبولي.
 
 **Extraction note:** The complete five-article decision and replaced/new regulation provisions are text-captured from MKSEgypt, cross-identified by the official Gazette DSpace item and the Egyptian Mineral Resources Authority legislation page. The royalty schedule has been normalized into text here; verify every mineral/rate row against the Gazette PDF page image before using in calculations. No Gazette binary/hash is archived.
+
+
+### Addendum — verbatim mineral royalty table from amended Article (32)
+
+The summary in the preceding transcription is not a substitute for the schedule. The full table text was captured in the searchable Arabic source and is transcribed here for subsequent page-image checking:
+
+| م | الخام | نسبة الإتاوة ٪ | م | الخام | نسبة الإتاوة ٪ |
+|---:|---|---:|---:|---|---:|
+| 1 | المنيت | 10 | 18 | ذهب | 5 |
+| 2 | باريت | 9 | 19 | كالسيت | 6 |
+| 3 | بنتونيت | 9 | 20 | كاولين | 8 |
+| 4 | بيروكسين | 6 | 21 | كاولين رملي | 7 |
+| 5 | بيريت | 6 | 22 | كروميت | 8 |
+| 6 | تلك | 7 | 23 | كوارتز | 8 |
+| 7 | جالينا | 9 | 24 | ماجنزيت | 8 |
+| 8 | دياتوميت | 7 | 25 | مسكوفيت | 7 |
+| 9 | زنك | 6 | 26 | أكسيد منجنيز | 8 |
+| 10 | زركون | 6 | 27 | ميكا | 6 |
+| 11 | شبة | 8 | 28 | نحاس | 8 |
+| 12 | فحم | 8 | 29 | نفلين سيانيت | 8 |
+| 13 | فلسبار عروق | 8 | 30 | ولفراميت | 9 |
+| 14 | فلسبار وديانى | 6 | 31 | البايت | 8 |
+| 15 | فلورسبار (فلوريت) | 6 | 32 | جلوكونيت | 7 |
+| 16 | فوسفات | 10 | 33 | أكاسيد الحديد | 9 |
+| 17 | كاستريت | 7 | 34 | قصدير | 9 |
+
+أي خام أو معدن لم يتم إدراجه بالجدول السابق يتم احتساب الإتاوة بنسبة (٦٪). ويتم احتساب قيمة الإتاوة طبقًا لأسعار السوق المحلية للخام في أرض الموقع لكل خام، وتحدد هذه الأسعار من خلال لجنة يصدر بتشكيلها قرار من رئيس الهيئة. ويؤدي المرخص له باستغلال الرمال البيضاء (رمال الزجاج) إتاوة بنسبة (١٨٪) من إجمالي الإنتاج السنوي طبقًا لأسعار السوق المحلي في أرض الموقع.
+
+**Verification status:** all values above are from the searchable text; check each cell against the Gazette issue18 مكرر (ج) PDF page image before using for fee calculations.
