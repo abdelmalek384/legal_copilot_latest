@@ -1066,3 +1066,50 @@ The Gazette text's Article 5 adds multiple new provisions. These are separate op
 **Currentness correction:** Article 156 bis (المادة 156 مكرراً) was inserted by Law 4/2018, not created by a 2026 announcement. The MIFT 20 July 2026 announcement is a reminder/operational reporting communication about an existing statutory duty. The exact reporting form, method, deadlines and sanctions still require the applicable current Executive Regulation and GAFI instruments. Do not cite the announcement as the legal source for the obligation.
 
 **Incremental provision count:** four new inserted provisions (Articles 1 bis, 4 bis, 9 bis and 156 bis) are added to the cumulative provision-unit count here. Article 157 bis is recorded in the text but excluded from the numeric increment pending confirmation of the exact provision-numbering and text in the Gazette page image, because the extracted PDF sequence and secondary renderings show inconsistent punctuation/Arabic numbering. Do not count Article 157 bis until that check is complete.
+
+
+## 29. Companies Law early amendment chain — Laws 212/1994 and 230/1989
+
+### Law 212/1994 — addition of Article 21 bis (historical, later repealed)
+
+- Instrument: Law 212/1994 amending Law 159/1981.
+- Issued 17 June 1994; secondary legal-library metadata associates publication with Official Gazette issue 24 bis (A), 18 June 1994. Gazette scan not yet acquired.
+- Full Arabic transcription: https://qadaya.net/?p=10736
+- Cross-reference: the 1994 law-year index at https://www.laweg.net/Default.aspx?Year=1994&action=LegsYears independently lists Law 212/1994 and reproduces its operative opening.
+- Article 1 added Companies Law Article 21 bis, setting an examination/incorporation services fee for companies approved by the committee under Article 18: 1 per thousand of issued capital for joint-stock and partnerships limited by shares, or paid-up capital for LLCs, minimum EGP 100 and maximum EGP 1,000.
+- Article 2 provides publication and commencement on the day after publication.
+- **Exact Arabic text — new Article 21 bis:**
+> تؤدى الشركات التى توافق عليها اللجنة المنصوص عليها فى المادة (18) من هذا القانون رسوما مقابل خدمات الفحص والتأسيس بواقع واحد فى الألف من رأس المال المصدر بالنسبة إلى الشركات المساهمة وشركات التوصية بالأسهم, ومن رأس المال المدفوع بالنسبة إلى الشركات ذات المسئولية المحدودة, وذلك بحد أدنى مقداره مائة جنيه وحد أقصى مقداره ألف جنيه.
+- **Lifecycle / currentness:** Law 3/1998 Article 4 repealed Article 21 bis. The 1994 fee rule is therefore historical and must not be presented as the current incorporation fee. Law 3/1998 also repealed Articles 22 and 23 and phrases relating to the former committee approval mechanism.
+- Text quality: full secondary transcription; official Gazette page-image verification remains outstanding.
+
+### Law 230/1989 — repeal of Companies Law Article 183
+
+- Instrument: Law 230/1989 issuing the former Investment Law.
+- Official Gazette metadata and full Arabic text: https://manshurat.org/node/70135 (PDF copy; legal text is a secondary hosted scan). A secondary full-text reproduction is also indexed at https://www.laweg.net/framePlain.aspx?ItemID=167&NID=55573&Type=14&action=ViewActivePages.
+- Article 2 of Law 230/1989 expressly repealed Companies Law Article 183. The official MIFT Companies Law catalogue's amendment list does not display Law 230/1989, but the Companies Law's own Article 183 footnote in FRA-hosted Arabic text confirms it was repealed by Law 230/1989.
+- **Exact Arabic text — relevant clause of Article 2:**
+> كما تلغى المادة 183 من قانون شركات المساهمة وشركات التوصية بالأسهم والشركات ذات المسئولية المحدودة الصادر بالقانون رقم 159 لسنة 1981.
+- The remainder of Law 230/1989 issued the former Investment Law and replaced certain statutory references. Law 8/1997 later repealed Law 230/1989 subject to a saving for the third paragraph of Article 20; that survival issue concerns the former Investment Law and is not a revival of Companies Law Article 183.
+- Treat this as a cross-statute repeal affecting the Companies Law, not as a general amendment of its substantive company-governance scheme.
+
+### Official MIFT Companies Law record — complete amendment inventory lead
+
+The MIFT record for Law 159/1981 marks the statute “in force” and enumerates seven direct amendment laws: 212/1994, 3/1998, 159/1998, 94/2005, 68/2009, 17/2015 and 4/2018. It also lists the 96/1982 Executive Regulation and 21 attached regulation instruments. Its regulation amendment inventory includes:
+- Minister of Economy Decisions 408/1987, 204/1991, 461/1994, 40/1995, 471/1997, 496/1997, 251/1998 and 492/1998;
+- PM Decision 1212/2004;
+- Ministerial Decision 282/2005;
+- Ministerial Decision 11/2008;
+- Ministerial Decisions 90/2009 (duplicate attachment entry) and 16/2010, 85/2010;
+- Ministerial Decisions 256/2018 (duplicate attachment entry), 32/2019 and 144/2019;
+- PM Decision 2928/2022.
+The catalogue contains duplicate attachment entries for 90/2009, 256/2018 and 144/2019? (The visible list has 256/2018 twice and 90/2009 twice; deduplicate by instrument number before counting.) The 21 attachments are not 21 unique instruments until the raw record is normalized and checked.
+
+Primary catalogue record: https://www.mift.gov.eg/legislation/details/252
+
+### Count increment and correction
+
+- Two additional unique instruments surfaced with Arabic operative text: Law 212/1994 and Law 230/1989.
+- Three provision units counted: Law 212/1994 Articles 1–2 and Law 230/1989 Article 2 (the clause repealing Companies Law Article 183).
+- The 1994 fee rule is historical/repealed; it is included as amendment-chain evidence, not current law.
+- Cumulative Agent 3 count: 101 unique instruments / 1,210 provision units.
