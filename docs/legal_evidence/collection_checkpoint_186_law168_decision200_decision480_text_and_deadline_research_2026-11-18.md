@@ -10,7 +10,7 @@ Created `alternate_source_text_recovery_law168_decision200_decision480_2026-11-1
 | Instrument | Full-text fallback | Text captured in repository | Remaining gap |
 |---|---|---|---|
 | Law 168/2025 | Full 18-provision searchable mirror (4 issuing + 14 substantive) | Nine complete entries (issuing Article 4; substantive Articles 2,3,4,6,7,8,11,12) plus partial substantive Article 5 | Remaining articles, original DSpace PDF bytes/hash, Gazette comparison |
-| PM Decision 200/2026 | Official Amiri Press searchable text plus full 20-article secondary transcriptions and DSpace PDF metadata | Fifteen complete regulation articles (3–7, 9–10, 13, 15–18) plus issuing Article 4 | Remaining 4 regulation provisions; three forms mapped; PDF bytes/hash |
+| PM Decision 200/2026 | Official Amiri Press searchable text plus full 20-article secondary transcriptions and DSpace PDF metadata | Fifteen complete regulation articles (2–10, 13–18) plus partial Article20 first paragraph and issuing Article4 | Four regulation articles (1,11,12,19) remain; three forms mapped; PDF bytes/hash |
 | Presidential Decision 480/2026 | DSpace official metadata and two independent news reproductions of the operative articles | Articles 1 and 2 complete | Original PDF is request-copy only; no local bytes/hash |
 
 The Amiri Press portal exposes Decision 200/2026 text. DSpace lists the 1.89 MB Gazette issue 3 bis (أ) bundle. The DSpace Decision 480/2026 page lists issue 45 bis (ج), dated 10 November 2026, and a 178.37 KB original bundle. Clicking its Download link redirects to a request-a-copy form; no bypass was attempted.
@@ -118,4 +118,4 @@ Applying that reported rule to the 19 January 2026 commencement trigger yields a
 
 ## Subsequent deduplication correction — checkpoint 189
 
-The earlier 56-entry total was a raw text-block count across several overlapping captures. After deduplication, the state-land text file retains 29 distinct text-bearing entries (Law 168/2025: 10, including one partial; PM Decision 200/2026: 13; Presidential Decision 480/2026: 2). These are 27 additional unique article/provision IDs when combined with the two new Law 142/1964 provisions in checkpoint 185; the Law 68/1947 Articles 12–14 are three separate original-version snapshots, not new article numbers. Duplicate Law 114/142/68/70 blocks were removed. See checkpoint 189 for the canonical current counts.
+The state-land text file now retains 29 distinct text-bearing entries: Law 168/2025 (10, nine complete and one partial); PM Decision 200/2026 (17, including issuing Article4, 15 complete regulation articles and partial Article20); Presidential Decision 480/2026 (2 complete). Combined with Law 142/1964 Articles 9–10, this is 31 additional unique article/provision IDs. Only one original Law 68/1947 Article12 historical-version snapshot remains; Articles13–14 are unchanged and not duplicated. See checkpoints189–190 for current counts.
