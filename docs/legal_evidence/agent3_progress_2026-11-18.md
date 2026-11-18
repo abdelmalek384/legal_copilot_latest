@@ -154,3 +154,5 @@ The Agent 3 summary figures currently disagree across repository records: the ma
 - Corrected the Capital Market Executive Regulation 135/1993 amendment number: the official Gazette PDF expressly prints PM Decision **1539/2025**, not 1529/2025. All prior 1529 references are withdrawn; count once as 1539.
 - Decision 100/2026 official FRA PDF is now directly accessible and text-extracted; only page-image/OCR ambiguity remains.
 - Assigned-domain estimate stays 55% provisional; 0/13 families currentness-complete; lawyer review 0%.
+
+- Added two further commercial-register instruments: Minister of Supply Decision 125/2026 (four articles; postal delivery of register extracts, renewal, enterprise-data inquiry and lookup; secured paper and EGP20 per sheet) and Decision 90/2024 (two articles; approved templates for register extract, establishment data certificate and negative non-registration certificate). Original Gazette page-image authentication remains outstanding for both. Master index now records **262 unique Agent 3 instruments / at least 2,352 normalized units**.
