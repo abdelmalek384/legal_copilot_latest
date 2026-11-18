@@ -167,3 +167,10 @@ The remaining provisions of Law 17/2015 amend Sales Tax Law 11/1991, Investment 
 - Law 212/1994 is only partially recovered; Article 21 bis body remains unavailable, and the provision was repealed in 1998.
 - Law 159/1981 is already in Agent 3 inventory. This file adds amendment text and event history, not new unique law count.
 - No lawyer review; no commercial reuse rights inferred.
+
+## Law 212/1994 Article 21 bis — body recovered from full statute reproduction
+The exact body of repealed Article 21 bis has now been recovered from the full Law 159/1981 historical text reproduced by AA Abdelaziz & Partners (secondary legal-library source):
+
+> وتعفى من رسوم الدمغة ومن رسوم التوثيق والشهر عقود تأسيس هذه الشركات وكذلك عقود القرض والرهن المرتبطة بأعمال هذه الشركات وذلك لمدة سنة من تاريخ شهر عقد الشركة ونظامها فى السجل التجارى.
+
+The provision granted a one-year exemption from stamp duty and authentication/publication fees for company formation contracts and associated loan/mortgage contracts, running from registration of the company's contract and bylaws in the Commercial Register. It was inserted by Law 212/1994 and expressly repealed by Law 3/1998. Source: https://www.abdelazizandpartners.com/legal-library/companies-law-159-1981/. Original Law 212/1994 Gazette page image still not obtained; this exact wording remains secondary-source until matched to issue 24 bis (18 June 1994).
