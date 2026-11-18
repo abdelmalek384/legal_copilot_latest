@@ -3751,6 +3751,12 @@ It adds a new Chapter 3 to Book III of Capital Market Law on securitization comp
 >
 > على شركة التوريق بذل عناية الشخص الحريص للحفاظ على حقوق حملة السندات، كما يلتزم محيل المحفظة بذات العناية متى استمر في تحصيل الحقوق المحالة لحساب شركة التوريق.
 
+**Verbatim — Article 41 bis/4 (application of general rules):**
+
+> مادة (٤١) مكرراً (٤):
+>
+> تسري على شركة التوريق أحكام المادة (٤٠) من هذا القانون.
+
 **Verbatim — Article 41 bis/5 (books and records):**
 
 > مادة (٤١) مكرراً (٥):
