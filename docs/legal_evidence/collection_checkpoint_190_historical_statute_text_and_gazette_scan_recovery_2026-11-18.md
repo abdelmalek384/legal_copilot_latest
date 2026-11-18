@@ -92,5 +92,5 @@ The 41 additional article identifiers are not added to the core 1,370 count; the
 4. Resolve Law 68 Article 1's repeal discrepancy against Law 5/1964 and the 1947 Gazette scan.
 5. Finish Law 142 Article 23 complete text and Law 70 Article 21 complete text; preserve the partial flags until complete.
 6. Complete article-by-article version redlines for Laws 114, 142, 68 and 70, including inserted bis provisions, repeals, constitutional invalidity and executive regulations.
-7. Obtain original SCC Case 42/17 and Case 10/35 judgments and original Gazette judgment pages. Case 101/26 now has its full judgment directly on the official SCC site.
+7. Case 10/35 now has a full 10-page secondary-hosted Gazette scan reproduction visually inspected (checkpoint197); the original signed SCC binary and official Amiri Press PDF remain outstanding. Obtain original Case42/17 judgment and Gazette pages. Case101/26 has its full judgment directly on the official SCC site.
 8. No lawyer verification or commercial reuse permission is claimed.
