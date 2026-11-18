@@ -4658,3 +4658,47 @@ The current 140-article consolidated Decision 2310/2017 identifies these additio
 - Decision 4427/2022 — adds research centres/accreditation laboratories associated with automotive industry to sector schedules (full text captured in section 33).
 
 **Collection status:** Decision 2140/2023 full three-article text captured; it adds service private free zones and replaces private free-zone conditions. Other amendment records remain in the consolidated regulation's footnotes and are not yet individually text-verified.
+
+
+## 42. Investment Executive Regulation amendment Decision 2300/2022 — single approval requirements
+
+**Decision:** Prime Minister Decision 2300/2022, dated 27 June 2022.  
+**Gazette:** Official Gazette issue 25 bis (ج), 27 June 2022.  
+**Full searchable Arabic text:** https://ahmedazimelgamel.blogspot.com/2022/10/2300-2022-2310-2017.html  
+**Contemporaneous report:** https://www.alborsaanews.com/2022/06/28/1553751
+
+Decision 2300/2022 replaces Executive Regulation Article 42 and the second paragraph of Article 43 of PM Decision 2310/2017, governing the single approval for strategic/national projects under Article 20 of Law 72/2017. It is later superseded for these provisions by Decision 1203/2024, which replaced Articles 41–43 again. Preserve Decision 2300/2022 as the historical version between 27 June 2022 and 17 April 2024.
+
+**Verbatim — Decision Article 1 / replacement Regulation Article 42:**
+
+> مادة رقم 1
+>
+> يُستبدل بنصى المادة 42 والفقرة الثانية من المادة 43 من اللائحة التنفيذية لقانون الاستثمار المشار إليها النصان الآتيان:
+>
+> المادة 42:
+>
+> "يشترط فيمن يتقدم للحصول على الموافقة الواحدة المنصوص عليها بالمادة 20 من قانون الاستثمار أن تتوافر فيه الشروط الآتية:
+>
+> 1 - أن يتخذ شكل شركة مساهمة أو شركة ذات مسئولية محدودة، وفقًا لأحكام قانون الاستثمار أو قانون شركات المساهمة وشركات التوصية بالأسهم والشركات ذات المسئولية المحدودة وشركات الشخص الواحد الصادر بالقانون رقم 159 لسنة 1981، على ألا يقل رأس المال المصدر للشركة المساهمة، ورأس المال للشركة ذات المسئولية المحدودة، عن 20% من التكاليف الاستثمارية للمشروع، مع الالتزام بتقديم ما يفيد الملاءة المالية لتنفيذ المشروع، وفي جميع الأحوال يجب أن تؤسس الشركة في تاريخ لاحق على تاريخ العمل بقانون الاستثمار المشار إليه.
+>
+> 2 - أن يلتزم بتقديم دراسة جدوى مبدئية للمشروع يعدها أحد بيوت الخبرة الوطنية أو العالمية ذات السمعة الطيبة المرخص لها.
+>
+> 3 - أن يلتزم بتقديم برنامج زمني لتنفيذ المشروع.
+>
+> 4 - أن يقدم إقرارًا بالالتزام بتوفير كافة المرافق الخاصة بالبنية التحتية (طرق - مياه - صرف صحي - كهرباء - اتصالات - معالجة المخلفات).
+>
+> 5 - أن يقدم إقرارًا بالالتزام بكافة الاشتراطات والضوابط المتعلقة بنشاط الشركة وفقًا للقوانين واللوائح المنظمة له."
+
+**Verbatim — replacement Regulation Article 43, second paragraph:**
+
+> المادة 43 الفقرة الثانية:
+>
+> ويتولى الوزير المختص بشئون الاستثمار بالتنسيق مع الوزير المعني عرض طلب الشركة على مجلس الوزراء لاستصدار قرار بمنح الشركة موافقة واحدة على إقامة وتشغيل وإدارة المشروع بما في ذلك تراخيص البناء، وتخصيص العقارات اللازمة له، وتكون هذه الموافقة نافذة بذاتها دون حاجة إلى اتخاذ أي إجراء آخر.
+
+**Verbatim — Decision Article 2 (commencement):**
+
+> مادة رقم 2
+>
+> يُنشر هذا القرار في الجريدة الرسمية، ويُعمل به من اليوم التالي لتاريخ نشره.
+
+**Currentness:** Decision 1203/2024 subsequently replaced Regulation Articles 41, 42 and 43, so the 2022 version of Article 42/43 above is historical. Current answers must use the 17 April 2024 text in section 33 and the consolidated Decision 2310/2017 version, not the 2022 requirements.
