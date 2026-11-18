@@ -476,3 +476,12 @@
 - Agent 3 research file now includes the full searchable FRA-hosted Arabic Law 72/2017 PDF, through Article 94, with substantive text transcribed for Articles 2–7 and Article 74(14)/91 bis.
 - Consolidated PDF footnotes identify Law 141/2019 amendments and Law 160/2023 amendments (Article 1 special-incentives definition; Article 9 general incentives). Full Gazette capture of Law 160/2023 remains pending.
 - FRA officially confirms Prime Minister Decision 2310/2017 as the Executive Regulation. Its "updated version" link returned access denied in the web reader; full regulation text not counted as obtained. MIFT's 20 July 2026 notice says Law 72/2017 Article 74 and Executive Regulation Article 126 bis (أ) require quarterly FDI data reporting within 45 days after each quarter; underlying exact regulation and amendment Gazette chain remain to be retrieved.
+
+
+### Research Agent 3 — Competition merger-control and Consumer Law acquisition (2026-11-18)
+
+- Agent 3 file now includes the ECA June 2024 searchable Arabic edition of Law 3/2005, with amendment footnotes and provisions transcribed (Articles 1, 3–6); the official ECA Executive Regulation 1316/2005 PDF; and PM Decision 1120/2024 amendment text, Gazette issue 14 bis (أ), 4 April 2024, effective 1 June 2024.
+- PM Decision 1120/2024 adds Chapter 9 / Articles 48–62 on ex-ante merger control, replaces Regulation Articles 30 and 41(1), and repeals Articles 44, 44 bis and 45. Selected Articles 48, 54, 55, 61 and 62 are transcribed in Agent 3's file. The Official Gazette record is from Amiri Press repository metadata.
+- ECA confirms Law 175/2022 and Decision 1120/2024 brought the ex-ante merger-control regime into operation on 1 June 2024.
+- The 2026 competition-law replacement bill passed Parliament in final form on 22 April 2026, but the official MOF legislation catalogue still lists Law 3/2005 as in force; no promulgation number/Gazette issue for the replacement was found. It is recorded as a bill, not operative law.
+- CPA's official 32-page Law 181/2018 PDF was opened, but Arabic OCR is unusable. No article count added. CPA's Article 19 explanatory release is recorded as guidance, not primary statutory text.
