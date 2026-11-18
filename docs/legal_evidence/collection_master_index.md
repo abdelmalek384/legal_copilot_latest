@@ -925,3 +925,12 @@
 - FRA's official 2025 consolidated regulation annotates Articles 35 bis/4 and 35 bis/5 as added by Decision 3456/2022: sustainability-linked securitization/sukuk and issuance procedures; Article 148's installment-payment mechanism was also amended by 3456/2022 but later replaced by Decision 2482/2025.
 - Three regulatory provisions transcribed in Agent 3 file. Keep the 2022 Article 148 wording as historical only; current version is the 2025 replacement.
 - **Updated Agent 3 minimum:** 82 distinct instruments with some Arabic text surfaced; 1,090 article/provision text units; 13/13 assigned families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
+
+
+### Research Agent 3 — Financial Leasing and Factoring Law 176/2018 full-text expansion
+
+- FRA official consolidated Arabic PDF dated February 2025 retrieved: https://fra.gov.eg/wp-content/uploads/2025/02/قانون-تنظيم-نشاطي-التأجير-التمويلي-والتخصيم-1.pdf. It includes the issuing provisions and the full statute through Article 84. Gazette: issue 32 مكرر (ج), 14 Aug 2018; effective 15 Aug 2018.
+- Ten further provisions transcribed in Agent 3 file: factoring receivable eligibility, assignment and debtor notice (Articles 37–40), seller recourse/guarantees (43), licensing/company-form/capital/governance requirements (55), delegated FRA rulemaking (60), confidentiality (64), mandatory sector associations (69), FRA enforcement measures (72) and corporate/de facto manager liability (82).
+- Article 37 requires receivables to arise from commercial transactions linked to seller/debtor business, generally be free of third-party rights and be unconditional unless agreed otherwise. Article 39 makes assignment effective from agreement date, while debtor notice must comply with FRA rules and language requirements.
+- The statute delegates extensive licensing, governance, prudential, risk, AML, information-security and reporting rules to FRA Board decisions. Those Board decisions and circulars are not yet comprehensively inventoried.
+- **Updated Agent 3 minimum:** 82 distinct instruments with some Arabic text surfaced; 1,100 article/provision text units; 13/13 assigned families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
