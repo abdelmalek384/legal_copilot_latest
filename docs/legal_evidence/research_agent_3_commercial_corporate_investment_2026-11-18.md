@@ -356,7 +356,7 @@ The PDF is 32 pages and is hosted by the Consumer Protection Agency. The PDF rea
 - Additional official source inventory: ITDA index confirms Executive Regulation Decision 106/2018, amendment Law 198/2020 and Decision 41/2020 on beneficial-owner register.
 - Consumer Law 181/2018: official 32-page PDF opened but OCR unusable; no article count added.
 - **Unique legal text instruments surfaced in the session now: 10** if Law 21/2022 and Law 34/1976 are added to the earlier eight. Decision 109/2005 remains a publication-confirmed source lead only, not counted as text obtained.
-- **Minimum provision/article units now: 81** (previous 35, including Investment Law Articles 71–72, plus six manually transcribed Trade Register articles). These manual transcriptions remain subject to page-image verification.
+- **Minimum provision/article units now: 111** (previous 35, including Investment Law Articles 71–72, plus six manually transcribed Trade Register articles). These manual transcriptions remain subject to page-image verification.
 - No lawyer approval or rights clearance has been obtained.
 
 
@@ -616,3 +616,133 @@ The remaining pages of the official ITDA scan were inspected. The following is a
 **Historical amendment note:** page 11 footnote records Ministerial Decision 826/1978 as amending Article 4 of Decision 946/1976. The current ITDA index identifies Decision 106/2018 as the later Executive Regulation. Do not assume all provisions of the 1976 Regulation remained operative until 2018 or that every provision was replaced at once; inspect Decision 106/2018's repeal/transitional clause and intermediate decisions.
 
 **Updated provision count:** add 18 original Regulation articles (7–24) to the previous 63 = **81 provision/article units**. This count is the number of distinct article texts surfaced in this research file, not a validated count of unique provisions in the current operative law corpus.
+
+
+## 10. Commercial agency, importers' register and current 2026 regulatory leads
+
+### A. Commercial Agency Law 120/1982 — complete searchable Arabic source
+
+**Official GOEIC-hosted PDF:** https://www.goeic.gov.eg/upload/online/2017/03/documents/files/ar/210.pdf  
+The PDF reader exposes the complete 28-article Law text and a detailed article index. The document title is: **القانون رقم ١٢٠ لسنة ١٩٨٢ بتنظيم أعمال الوكالة التجارية وبعض أعمال الوساطة**. It is a primary text hosted by the General Organization for Export and Import Control (GOEIC). The text appears to be the pre-amendment base version; it must be overlaid with Law 21/2022 and the 2025 Executive Regulation amendment before it is treated as current.
+
+**Verbatim — Article 1 (source transcription):**
+
+> مادة ١  
+> يقصد بالوكيل التجاري في مجال تطبيق أحكام هذا القانون كل شخص طبيعي او اعتباري يقوم بصفة معتادة، دون ان يكون مرتبطا بعقد عمل او عقد تاجير خدمات بتقديم العطاءات او ابرام عمليات الشراء او البيع او التاجير او تقديم الخدمات باسم ولحساب المنتجين او التجار او الموزعين او باسمه ولحساب احد هؤلاء.
+>
+> كما يقصد بالوسيط التجاري من اقتصر نشاطه ولو عن صفقة واحدة على البحث عن متعاقد او التفاوض معه لاقناعه بالتعاقد وكذلك كل من قام باي عمل من اعمال الوكالة التجارية ولو على غير اعتياد ولمرة واحدة او كان مرتبطا مع المنتج او التاجر او الموزع بعقد عمل.
+
+**Verbatim — Article 2 (source transcription; source OCR appears to misread the law number as 4/1976, verify image):**
+
+> مادة ٢  
+> مع عدم الاخلال باحكام القانون رقم ٤ لسنة ١٩٧٦ في شان السجل التجاري تحظر مزاولة اي عمل من اعمال الوكالة التجارية او الوساطة التجارية الا لمن يكون اسمه مقيدا في سجل الوكلاء والوسطاء التجاريين المعد لذلك في وزارة الاقتصاد والتجارة الخارجية.
+
+**Verbatim — Article 4 (source transcription):**
+
+> مادة ٤  
+> يشترط لقبول طلب القيد في سجل الوكلاء والوسطاء التجاريين ما يأتي:
+>
+> 1- تقديم عقد الوكالة او الوساطة التجارية بحسب الاحوال على ان يتضمن العقد طبيعة عمل الوكيل او الوسيط التجاري ومسؤولية اطراف العقد ونسب العمولة المقررة وشروط تقاضيها وعلى الاخص نوع العملة التي تدفع بها.
+>
+> 2- وبالنسبة للشركات او الجهات الاجنبية مصدره التوكيل يتعين فضلا عن الشروط السابقة ان يكون العقد موثقا بالغرفة التجارية المختصة او الجهة الرسمية التي تقوم مقامها ومصدقا عليه من القنصلية المصرية المختصة وان يتضمن التزام الشركة او الجهة الاجنبية بموافاة هذه القنصلية بكل اتفاق يتضمن تعديلا في اي بيان من بيانات العقد.
+>
+> 3- الا يكون للشركة او الجهة الاجنبية وكيل تجاري من شركات القطاع العام ما لم ينه هذا التوكيل.
+
+**Verbatim — Article 6 (source transcription):**
+
+> مادة ٦  
+> يجدد القيد كل خمس سنوات من تاريخ القيد او تاريخ اخر تجديد على ان يقدم الطالب خلال التسعين يوما السابقة لانتهاء المدة ومع ذلك يقبل الطلب اذا قدم خلال التسعين يوما التالية لانتهاء المدة اذا قام الطالب بسداد الرسم في هذه الحالة مضاعفا.
+>
+> ويشطب قيد الوكيل او الوسيط في حالة عدم تقديم طلب التجديد خلال التسعين يوما المشار اليها.
+
+**Verbatim — Article 10 (source transcription):**
+
+> مادة ١٠  
+> يتعين على الوكيل التجاري أن يقوم بموافاة الإدارة المختصة بسجل الوكلاء والوسطاء التجاريين بكل تعديل في البيانات الخاصة بالتوكيل أو التوكيلات التجارية المسندة إليه وعلى الأخص بأي تعديل أو اتفاق منفصل خاص بنسبة العمولة أو مقدارها وذلك خلال ثلاثين يوما على الأكثر من تاريخ حصول التعديل.
+>
+> فإذا حصل الوكيل التجاري على توكيل آخر خلاف المقيد تعين قيد التوكيل الجديد بالسجل المشار إليه بالمادة (٢) قبل ممارسة العمل استنادا إلى هذا التوكيل.
+
+**Verbatim — Article 11 (source transcription):**
+
+> مادة ١١  
+> يلتزم الوكيل التجاري بأمسك دفاتر منتظمة تتضمن بيانات صحيحة ويتعين أن يقيد بها العمولات التي تستحق له والبنوك المودعة بها.
+>
+> كما يلتزم بإخطار الإدارة المختصة بسجل الوكلاء والوسطاء التجاريين عند التوقف عن ممارسة نشاط الوكالة التجارية خلال ثلاثين يوما من تاريخ التوقف.
+>
+> وفي هذه الحالة يرد مبلغ التأمين.
+
+**Verbatim — Article 16 (source transcription; historical penalty text, later amendments/current penalty levels must be checked):**
+
+> مادة ١٦  
+> دون الاخلال بأية عقوبة اشد ينص عليها قانون يعاقب بالحبس مدة لا تقل عن ستة اشهر وبغرامة لا تقل عن خمسة جنيهات ولا تزيد على عشرة الاف جنيه او باحدى هاتين العقوبتين كل من مارس مهنة الوكالة التجارية او قام بعمل من اعمال الوساطة التجارية دون ان يكون مقيدا بالسجل المشار اليه بالمادة (٢) من هذا القانون.
+>
+> ويخفض الحد الادنى للعقوبة الى النصف في حالة مخالفة حكم الفقرة الثانية من المادة (١٠) من هذا القانون ويترتب على صدور الحكم بالغاء القيد وسقوط الحق في استرداد التأمين.
+
+**Verbatim — Article 22 (source transcription):**
+
+> مادة ٢٢  
+> يلغى قيد الوكيل او الوسيط التجاري بقرار مسبب يصدره وزير الاقتصاد في الاحوال الاتية:
+>
+> 1- مخالفة أحكام الفقرة الأولى من المادة 10، والفقرة الأولى من المادة 11، أو المادة 12 من هذا القانون ويترتب على إلغاء القيد في هذه الحالة سقوط الحق في استرداد التأمين.
+>
+> 2- إذا فقد الوكيل أو الوسيط التجاري شرطاً من شروط القيد في سجل الوكلاء التجاريين.
+>
+> 3- في حالة وفاة الشخص الطبيعي أو انقضاء الشخص الاعتباري.
+
+**Verbatim — Article 28 (source transcription):**
+
+> مادة ٢٨  
+> تصدر اللائحة التنفيذية لهذا القانون بقرار من وزير الاقتصاد والتجارة الخارجية خلال أربعة أشهر من تاريخ نشره في الجريدة الرسمية وتتضمن على وجه الخصوص تحديد مدة سريان القيد بحيث لا تقل عن سنة ولا تزيد على خمس سنوات. كما تتضمن الجزاءات التي تترتب على مخالفة أحكامها بما لا يجاوز عقوبة الغرامة بحد أقصى مائة جنيه كما تحدد الحالات التي يجوز فيها بقرار من وزير الاقتصاد شطب القيد بالسجل المشار إليه في المادة (٢) لمدة لا تجاوز ثلاث سنوات.
+
+**Complete-text retrieval status:** the official GOEIC PDF search extraction exposes all 28 articles (Articles 1–28) and the subject index, including agency definition, registration, eligibility, contract documentation, renewals, recordkeeping, tax withholding, public-sector agency commissions, penalties, cancellation, confidentiality and the Executive Regulation mandate. This file preserves key articles above; full article-by-article normalization still needs to be added. OCR errors are visible in the source (including the Article 2 cross-reference to Law 4/1976); compare page images before adopting any text.
+
+### B. Law 21/2022 amendment to Commercial Agency Law 120/1982
+
+**Official Amiri Press indexed text:** https://alamiria.com/Sec/TashTxt?id=rYbr7ZR6Bdo%3D  
+The amendment changes the statutory title to remove real-estate brokerage from the 120/1982 title and updates terminology; it replaces specified text in Articles 1, 2, first paragraph of 3, and Articles 16–20. The exact amendment text was partially surfaced in the preceding section of this file. Obtain the Gazette issue scan, extract all substituted provisions, and compare them to the GOEIC-hosted base 28-article text. Do not treat the older penalty text in Article 16 above as current without this consolidation.
+
+### C. Commercial Agency Executive Regulation and current amendments
+
+GOEIC's official current legal-decision catalogue identifies:
+- Ministerial Decision 342/1982 — Executive Regulation of Law 120/1982.
+- Ministerial Decision 362/2005 — amendment to Decision 342/1982.
+- Ministerial Decision 593/2025 — amending provisions of the Executive Regulation Decision 342/1982.
+- Ministerial Decision 962/2012 — registration of advertising, advertising-marketing and media-marketing agencies in the commercial agents/intermediaries register.
+- Ministerial Decision 578/2026 — determination of types/categories of real-estate brokers.
+- Law 21/2022 — amendment to Law 120/1982.
+Official GOEIC list: https://www.goeic.gov.eg/ar/laws-and-decisions/list/898
+Official GOEIC laws index: https://www.goeic.gov.eg/ar/laws-and-decisions/list/891
+The older GOEIC portal summary (last updated 6 Nov 2022) confirms Law 120/1982 and Decision 342/1982; it is stale for 2025/2026 updates: https://www.goeic.gov.eg/ar/pages/default/view/id/52
+
+### D. Importers Register Law 121/1982 — important 2026 change
+
+**Official GOEIC law catalogue:** https://www.goeic.gov.eg/ar/laws-and-decisions/list/891  
+It lists:
+- Law 121/1982 (base Importers Register Law).
+- Law 7/2017 amendment.
+- Law 173/2023 amendment.
+- Law 4/2026 amendment.
+- Decision 846/2017 (previous Executive Regulation).
+- **Minister of Investment and Foreign Trade Decision 271/2026 — issuing the Executive Regulation of Law 121/1982.**
+The catalogue therefore identifies a 2026 regulatory change that must be checked against the earlier Decision 846/2017. The official GOEIC list is newer than its older summary page; do not rely on the 2022 portal summary for currentness.
+
+**Law 4/2026 — surfaced verbatim amendment text (Amiri Press search result):**
+
+> قانون رقم 4 لسنة 2026 بتعديل بعض أحكام القانون رقم 121 لسنة 1982 فى شأن سجل المستوردين
+>
+> **(المادة الأولى)**  
+> تضاف إلى القانون رقم ۱۲۱ لسنة ۱۹۸۲ في شأن سجل المستوردين المواد (۲/ فقرة أخيرة، ٤ مكررًا، ۷/ فقرة أخيرة، ۱۲ مكررًا)، نصوصها الآتي:
+>
+> **مادة (٢/ فقرة أخيرة):**  
+> وفي جميع الأحوال، يجوز أن تكون المبالغ الواردة في هذه المادة بما يعادلها من العملات الأجنبية الحرة التي يقبلها البنك المركزى المصرى.
+>
+> **مادة (4 مكررًا):**  
+> مع عدم الإخلال بحكم المادة (2) من هذا القانون يجوز للجهة المختصة بالوزارة المختصة بشئون التجارة الخارجية حال إخطارها خلال ستين يومًا بتغيير أو تعديل الشكل القانوني للشركات المقيدة في سجل المستوردين أو تعديل رقم التسجيل الضريبي لها أن تقوم بقيد هذا التغيير أو التعديل، وفقًا للإجراءات التي تحددها اللائحة التنفيذية لهذا القانون، ويُعد ذلك بمثابة تعديل للبيانات في السجل.
+
+**Law 4/2026 source:** official Amiri Press text result https://alamiria.com/Sec/TashTxt?id=ej7L8KHCh+c%3D. GOEIC states that the President approved Law 4/2026 and that it is effective from the day following its publication: https://www.goeic.gov.eg/ar/media-center/news/1461. Remaining inserted provisions (Article 7 last paragraph and Article 12 bis), Gazette issue/date/page, and full text remain to be retrieved.
+
+### E. 2026 importers' register implementing regulation
+
+GOEIC's official list identifies **Decision 271/2026** as issuing the Executive Regulation of Law 121/1982. The older GOEIC page still references Decision 846/2017 as the previous regulation; do not assume 846/2017 remains wholly operative. Retrieve Decision 271/2026 full text, record commencement and repeal/transitional provisions, then map 846/2017, Laws 7/2017, 173/2023 and 4/2026 article-by-article.
+
+**Updated provision count:** add 28 Law 120/1982 article texts (complete searchable text surfaced; key articles copied above) and two Law 4/2026 inserted provisions surfaced verbatim. Minimum count is now **111 provision/article units** (81 + 28 + 2). This is an evidence-surface count, not an assertion that 111 provisions are current, unique after legal amendments, or lawyer-approved.
