@@ -161,13 +161,16 @@ This is a secondary-hosted copy with Gazette masthead and consolidated annotatio
 - Case: الدعوى رقم 101 لسنة 26 قضائية دستورية.
 - Judgment date: 1 February 2009.
 - Gazette: issue 7 bis (أ), 15 February 2009.
-- Full searchable secondary judgment transcription:
+- **Original full judgment is now available directly on the official SCC website:**
+  https://www.sccourt.gov.eg/DjangoPortalResources/Rules_Html/3204_26_101_1_2.html
+- The official SCC page exposes the complete judgment, date, parties, analysis, operative order and a Gazette corrigendum note. It states that the decision was published in Official Gazette issue 7 bis (أ), 15 February 2009.
+- A full secondary transcription is also available at:
   https://www.mohamah.net/law/عدم-دستورية-اختصاص-القضاء-العادي-بمنازعات-الأراضي-الصحراوية-حكم-المحكمة-الدستورية-العليا-المصرية
-- Official SCC later judgment confirms the earlier holding and publication data:
+- An official later SCC judgment also confirms the earlier holding and publication data:
   https://www.sccourt.gov.eg/DjangoPortalResources/Rules_Html/12215_43_17_6_2.html
 - Holding: Article 22(1) of Law 143/1981 was invalidated insofar as it assigned to ordinary courts exclusive jurisdiction over disputes arising from application of the Desert Lands Law. The official later SCC decision explains that ordinary civil courts retain jurisdiction over civil possession/ownership disputes, while administrative courts hear administrative disputes, under the ordinary constitutional allocation of jurisdiction.
 - This judgment is not a rent-law case. It belongs to the Law 143/1981 amendment/currentness and jurisdiction map. The user-supplied priority list grouped it with other SCC records; the legal-domain classification must remain accurate.
-- No direct original Case 101/26 SCC page or original Gazette scan was obtained in this pass.
+- The original judgment text is acquired from the direct SCC page. The original printed Gazette issue image/binary has not been separately downloaded or hashed.
 
 ## 6. Rent-law judgment leads upgraded in this pass
 
@@ -214,4 +217,4 @@ Checkpoint 88 lists older cases (including 6/9, 4/15, 3/18, 44/17, 116/18, 70/18
 
 ## 9. Rights and verification
 
-The Law 114/1946 text PDF is hosted by a secondary site and displays Court of Cassation branding; it is not the original Amiri Press binary. The case text pages are secondary reproductions unless specifically identified as official SCC later judgments. Public visibility does not establish bulk collection or commercial reuse rights. No lawyer verification or commercial reuse permission is claimed.
+The Law 114/1946 text PDF is hosted by a secondary site and displays Court of Cassation branding; it is not the original Amiri Press binary. Case 101/26 is now available as a direct original SCC HTML judgment; Cases 42/17 and 10/35 still rely on secondary text / later official SCC corroboration, respectively. Public visibility does not establish bulk collection or commercial reuse rights. No lawyer verification or commercial reuse permission is claimed.
