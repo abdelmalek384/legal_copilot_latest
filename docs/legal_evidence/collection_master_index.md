@@ -1,12 +1,12 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (Research Agent 1 checkpoint 239 live-register and provenance reconciliation; Agent 3 continuation separately indexed)
+**Last updated:** 2026-11-18 (acquisition-first notarization text tranche; see new Arabic text capture file)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
 ## Current progress — consolidated acquisition dashboard (18 November 2026)
 
-<badge color="success">355 instruments indexed</badge> <badge color="success">35.8% have a text-inventory record</badge>
+<badge color="success">355 instruments indexed</badge> <badge color="success">37.2% have a text-inventory record</badge>
 
 ### Audited register totals
 
@@ -21,11 +21,11 @@
 | Other decisions | 112 |
 | Other / unclassified | 14 |
 | Source-permission register | **111 unique source records** |
-| Full-text inventory | **131 rows / 127 unique instruments** |
+| Full-text inventory | **136 rows / 132 unique instruments** |
 | Full/complete text-source records | **85 unique instruments (legacy tally; status recode pending)** |
-| Any text-inventory coverage | **127/355 (35.8%)** |
+| Any text-inventory coverage | **132/355 (37.2%)** |
 
-The 85-instrument full/complete tally is a legacy status classification and requires a field-by-field recode against the live inventory. The 131 inventory rows cover 127 distinct instruments; four rows are duplicate source/version entries. Text-inventory coverage means a record exists, not that every instrument has a complete local transcription, authenticated Gazette page images, or current-law verification. The live acquisition CSV and type ledger agree at 355 unique IDs; earlier dashboard/checkpoint counts of 336, 273, 250 and 172 are historical snapshots.
+The 85-instrument full/complete tally is a legacy status classification and requires a field-by-field recode against the live inventory. The 136 inventory rows cover 132 distinct instruments; four rows are duplicate source/version entries. Text-inventory coverage means a record exists, not that every instrument has a complete local transcription, authenticated Gazette page images, or current-law verification. The live acquisition CSV and type ledger agree at 355 unique IDs; earlier dashboard/checkpoint counts of 336, 273, 250 and 172 are historical snapshots.
 
 ### Substantive acquisition work in the latest pass
 
@@ -48,10 +48,12 @@ New or expanded Arabic text files:
 - [Five PM land/public-purpose decisions in Gazette issue46](acquisition_tranche_gazette_issue46_land_decisions_3127_3128_3130_3131_3308_2026-11-12.md)
 - [Finance, aviation and housing ministerial decisions 638,895,896,1049,1056,1162](acquisition_tranche_aviation_finance_housing_decisions_638_895_896_1049_1056_1162_2026.md)
 - [Finance Decisions635/636 — customs zones](acquisition_tranche_finance_decisions635_636_2026_customs_zones_arabic.md)
+- [Law68/1947 notarization family — 1947 executive regulation and five related amendments, Arabic text](notarization_law68_1947_regulation_and_amendments_full_arabic_text_capture_2026-11-18.md)
 
 ### Corpus depth and verification boundaries
 
-- Core unique article provisions previously validated: **1,370** (Civil Code 1,093; Evidence Law 163; Building Law 114). New partial extracts are not added until article/version deduplication.
+- Core unique article provisions previously validated: **1,370** (Civil Code 1,093; Evidence Law 163; Building Law 114).
+- Additional unique Arabic article/provision bodies captured in the 18 November notarization tranche: **47 complete** plus **3 OCR-incomplete/quarantined** (32 bodies from the 1947 notarization executive regulation; 15 operative provisions from Laws629/1955 and103/1976 and Decisions820/1963,1532/1976,11264/2016). These are outside the 1,370 core-code metric and are not added to it. Decision11264/2016 was merged into its existing FT-0015 instrument record, not duplicated.
 - Additional searchable article-heading entries: **200** (Laws114/1946: 70; 142/1964: 72; 68/1947: 14; 70/1964: 44), not fully extracted/versioned.
 - Historical article-version events: 127; pre/post Arabic text snapshots are not normalized for every event.
 - Secondary-hosted Gazette scan reproductions visually inspected: 26 pages across Laws114/1946,142/1964,68/1947,70/1964. Original Amiri Press binaries for those four statutes: **0**.
@@ -62,7 +64,7 @@ New or expanded Arabic text files:
 
 ## Collection checkpoints
 
-| checkpoint 239 — Research Agent 1 live-register audit, source provenance and continuation | Reconciles the live 355-record acquisition/type ledgers, 111 source assessments and 131-row text inventory; records Gazette/judgment blockers, Decision 480 deadline qualifications and current article/version coverage | [Research Agent 1 checkpoint 239](collection_checkpoint_239_research_agent1_session_update_2026-11-18.md) |
+| checkpoint 239 — Research Agent 1 live-register audit, source provenance and continuation | Reconciles the live 355-record acquisition/type ledgers, 111 source assessments and 136-row text inventory; records Gazette/judgment blockers, Decision 480 deadline qualifications and current article/version coverage | [Research Agent 1 checkpoint 239](collection_checkpoint_239_research_agent1_session_update_2026-11-18.md) |
 
 
 | checkpoint 31 — Agent 3 licensing, solvency and governance capture | Added current FRA Decision 137/2018 partial text, 191/192 solvency rule captures and Decision 100/2020 governance scope; amendments/currentness caveats recorded | [Agent 3 checkpoint 31](agent3_progress_checkpoint_2026-11-18_31.md) |
