@@ -1,10 +1,10 @@
-# Mortgage Finance Executive Regulation — Full 2016 Arabic Snapshot (Secondary Transcription)
+# Mortgage Finance Executive Regulation — Historical Arabic Snapshot with Decision465/2005 Amendments (Secondary Transcription)
 
 **Instrument:** PM Decision 1/2001 issuing the Executive Regulation of Law148/2001.  
-**Snapshot source date:** 29 February 2016 (publication date of the secondary transcription).  
-**Scope:** 61 numbered regulation articles with amendment annotations; includes text marked as amended/inserted/repealed by Decision465/2005 and certain Decision2/2015 amendments.  
-**Source tier:** Secondary egylawsite transcription, not an Official Gazette scan. The later official FRA 2024 consolidated PDF remains the preferred current-text source.  
-**Purpose:** Preserve the historical Arabic text snapshot and its annotations to enable article-level redlines against the FRA 2024 version.
+**Snapshot source date:** 29 February 2016 (date of online secondary publication). The text itself is a historical consolidated version reflecting the Decision465/2005 amendment set; it is not reliably current as of 2016.  
+**Scope:** 61 numbered regulation articles as reproduced on the secondary page, including multiple Decision465/2005 replacements/insertions/repeals. It omits later bis provisions and does not incorporate the full Decision2/2015 changes; Article6 still contains the pre-Decision1/2015 income-threshold wording.  
+**Source tier:** Secondary egylawsite transcription, not an Official Gazette scan. The official FRA 2024 consolidated PDF and the full SHMFF Decision2/2015 Gazette reproduction are preferred for later versions.  
+**Purpose:** Preserve the older Decision465/2005 text layer for historical comparison; do not treat this as a complete or current consolidation.
 
 ## Arabic text
 
@@ -486,10 +486,10 @@
 
 ## Version and provenance notes
 
-1. This is a historical secondary snapshot dated 29 February 2016, not the original 2001 Gazette text and not a 2024 consolidated regulation.
+1. This is a historical secondary snapshot published online on 29 February 2016. Its Article6 remains in the pre-2015 version and the page omits bis provisions visible in later FRA consolidated text. It is not the original 2001 Gazette text and not a complete 2016/2024 consolidation.
 2. The transcription explicitly marks numerous provisions as amended, inserted, or repealed by Decision465/2005. These annotations are preserved in the article headings.
 3. The text also identifies Articles2 bis and2 bis 1 and the Article3 version as modified by Decision2/2015 in the later FRA consolidated text; those provisions are not all present in this 2016 snapshot and must be reconciled against the official 2024 FRA PDF.
-4. The source contains OCR/typing errors (for example, malformed words in Articles35 bis 2 and35 bis 6, inconsistent hamza, and punctuation). This capture normalizes obvious spacing/orthography only; substantive uncertain strings must be checked against the page image.
+4. The source contains OCR/typing errors (for example, malformed words in Articles35 bis 2 and35 bis 6, inconsistent hamza, and punctuation). This capture normalizes obvious spacing/orthography only; substantive uncertain strings must be checked against the page image. Article6's historical EGP12,000/18,000 threshold text must not be used as the 2015 or current criterion.
 5. Decision465/2005's original Gazette issue and signed decision text are still outstanding. This file captures the post-amendment regulatory wording, not the full amending decision's preamble and issuing articles.
 6. The FRA 2024 consolidated regulation PDF is the later official regulator source for current-text comparison: https://fra.gov.eg/wp-content/uploads/2020/12/اللائحة-التنفيذية-للقانون-التمويل-العقاري.pdf
 7. Secondary source page: https://egylawsite.wordpress.com/2016/02/29/اللائحة-التنفيذية-لقانون-التمويل-العقارى/
