@@ -49,7 +49,7 @@ Percentages are conservative planning estimates, not denominator-validated measu
 ## Highest-priority unresolved work
 
 ### Primary-source acquisition blockers
-1. Original Gazette PDF and image verification for FRA Decision 100/2026 (amends Decision 44/2026); current source is secondary Arabic text plus official Gazette metadata.
+1. **Decision 100/2026 primary PDF acquired:** direct FRA-hosted two-page Gazette PDF opened and its full text layer verified. Remaining image-only gap: FRA screenshot endpoint rejects page images, so the exact punctuation/role phrase in Article 6(1) remains OCR-uncertain; see updated [Decision 100/2026 text record](agent3_fra_decision_100_2026_branch_rules_amendment_arabic_text.md). This is no longer a missing-PDF blocker.
 2. Original Gazette PDFs for FRA Decisions 44/2026 and 45/2026; the official Gazette bundle is request-only at Amiri Press DSpace.
 3. Original Gazette for Law 21/2022 (Commercial Agency) and Decision 593/2025 annexes; current text is secondary transcription and partial decision text.
 4. Original Gazette for Law 153/2021 (PPP) and PM Decision 3217/2022; consolidated secondary text exists, original amendment PDFs remain outstanding.
@@ -147,3 +147,10 @@ These are text-depth/source-quality upgrades to already inventoried instruments.
 
 ## Count reconciliation warning
 The Agent 3 summary figures currently disagree across repository records: the master index's current-progress block reports **209 documents / 2,049 normalized units**, while this progress file's earlier reconciliation block reports **189 documents / 1,924 units**. The assigned-domain percentage is consistently shown as **55% provisional**. Until the acquisition register and normalized provision IDs are reconciled against the latest master index, treat both count pairs as competing snapshots and do not present either as a newly verified total. Recent updates to Companies Executive Regulation 96/1982, Competition, Consumer Protection, Commercial Code, Trade Register, Commercial Agency, Investment and CBE circulars are text-depth/source-quality upgrades; do not add excerpt counts without deduplication.
+
+
+## 18 November late-session acquisition and correction
+- Added Decision 578/2025 (real-estate broker types and registration classes) as one new distinct instrument and three article units; original Gazette metadata is confirmed through Amiri Press DSpace, while the binary remains request-only. Full three-article Arabic transcription is in the linked record.
+- Corrected the Capital Market Executive Regulation 135/1993 amendment number: the official Gazette PDF expressly prints PM Decision **1539/2025**, not 1529/2025. All prior 1529 references are withdrawn; count once as 1539.
+- Decision 100/2026 official FRA PDF is now directly accessible and text-extracted; only page-image/OCR ambiguity remains.
+- Assigned-domain estimate stays 55% provisional; 0/13 families currentness-complete; lawyer review 0%.
