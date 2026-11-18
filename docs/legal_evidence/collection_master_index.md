@@ -810,3 +810,9 @@
 - PM Decision 2423/2024: Gazette issue 30 bis (أ), 28 Jul 2024; effective 29 Jul 2024; official FRA six-page PDF. It amends 10 provisions and inserts hedge-fund definition/Article 179 bis/2 and related provisions. Sixteen provision units transcribed in Agent 3 file.
 - FRA's current amendment register separately lists Decisions 2423/2024, 1539/2025 and 2482/2025. The latter two are already transcribed in sections 27 and 18.
 - **Updated Agent 3 minimum:** 70 distinct instruments with some Arabic text surfaced; 951 article/provision text units; 13/13 families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
+
+
+### Research Agent 3 — FRA Capital Market Executive Regulation amendment index
+
+- FRA's official Decision 135/1993 page (marked updated 2025) lists the complete historical amendment index from PM Decisions 2482/2025 and 1539/2025 back through the original Decision 135/1993, including 2024 Decision 2423, 2023 Decision 3045, 2022 Decisions 4664/3456/1109, 2020 Decision 1760, 2019 Decisions 2216/1347, 2018 Decision 2479 and 50+ earlier ministerial decisions.
+- The full list and exact official catalogue link are preserved in Agent 3 file. Many historic items remain source leads only; each must be Gazette-retrieved and version-mapped. Some may be administrative/fee rules rather than substantive amendments.
