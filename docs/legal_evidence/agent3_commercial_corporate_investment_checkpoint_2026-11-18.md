@@ -492,3 +492,64 @@ The regulation PDF includes subsequent amendments and marked provisions; Article
 - Families amendment/currentness-complete: 0/13.
 - Lawyer-reviewed: 0%.
 - Overall corpus estimate remains approximately 2%; denominator-based recalculation is unavailable.
+
+
+## 16. Trade Register — primary source route and Law 198/2020 amendment text
+
+### A. Official base statute and implementing instruments
+
+- ITDA official page identifies the governing set: Law 34/1976; Executive Regulation issued by Minister of Supply and Internal Trade Decision 106/2018; Law 198/2020 amending Law 34/1976; and Ministerial Decision 41/2020 on the beneficial-owner register: https://itda.gov.eg/sgl.aspx
+- ITDA's base statute PDF: https://www.itda.gov.eg/pdf/CR_WorkGuide34.pdf
+  - Searchable Arabic text; identifies Official Gazette issue 19 (تابع), 6 May 1976.
+  - Includes Law 98/1996 footnote adding the export-activity foreigner registration category to Article 4.
+  - Important: this base PDF's Articles 3, 8 and 9 are pre-Law 198/2020 wording. Do not use it as a current consolidated text.
+- ETA government-hosted base text: https://www.eta.gov.eg/sites/default/files/2024-10/law-34-1976.pdf
+  - Also a base text with the Law 98/1996 addition visible; not current for Articles 3, 8(1) and 9(1) after Law 198/2020.
+- ITDA's official page labels the Executive Regulation as Decision 106/2018 and provides a PDF download. Direct URL: https://itda.gov.eg/pdf/CR_WorkGuide106-2018.pdf
+  - Download attempt returned an oversized file response; no text was captured in this checkpoint. Do not count it as collected text.
+- ITDA official Law 198/2020 PDF: https://itda.gov.eg/pdf/القانون%20رقم%20198%20لسنة%202020.pdf
+  - Two-page official-hosted PDF; text extraction was unavailable from the web parser. Use the PDF as the primary source and the transcription below as a secondary text aid pending visual comparison.
+- Gazette citation for Law 198/2020: Official Gazette, issue 40 bis (A), 1 October 2020; Law dated 29 September 2020; effective the day after publication.
+- Law 98/1996 amendment: Official Gazette, issue 25 bis (B), 30 June 1996.
+
+### B. Law 198/2020 — exact Arabic amendment transcription (secondary transcription; compare official scan)
+
+The ITDA official PDF establishes the primary-source file. The text below is transcribed from a secondary legal text page and must be compared with the official two-page scan before being treated as exact source-matched text: https://lawegypt.net/قانون-رقم-198-لسنة-2020/
+
+**Article 3 — replacement text:**
+> يشترط فيمن يقيد في السجل التجاري الآتى:
+>
+> 1- أن يكون مصري الجنسية
+>
+> 2- أن يكون حاصلًا على موافقة بمزاولة التجارة من الغرفة التجارية المختصة بالنسبة للأفراد والشركات المنشأة للممارسة نشاط تجاري
+>
+> 3- أن يكون حاصلًا على موافقة بمزاولة النشاط الصناعي من الغرفة الصناعية المختصة بالنسبة للمنشأت الصناعية ، أيا كان شكلها فردية او شركة او محلا صناعيا وايا كان حجمها المنشأة لممارسة نشاط صناعي
+
+**Article 8, first paragraph — replacement text:**
+> يقدم طلب القيد او التاشير خلال المدة التى تحددها اللائحة التنفيذية لهذا القانون من التاجر أو المديرين او الممثلين القانونيين للمنشأة الصناعية او الشخص الاعتبارى او مدير الفرع بحسب الاحوال الى مكتب السجل التجارى الذى يقع فى دائرته المركز الرئيسى او الفرع
+
+**Article 9, first paragraph — replacement text:**
+> يجدد القيد فى السجل التجارى كل خمس سنوات من تاريخ القيد او من تاريخ اخر تجديد، ويقدم الطلب من اصحاب الشأن المشار اليهم في الفقرة الاولى من المادة (8) من هذا القانون خلال الشهر السابق لانتهاء المدة ، ولايجدد القيد الا بعد سداد الرسوم المقررة ، ويقبل الطلب اذا قدم خلال التسعين يوما التالية لانتهاء المدة ، على ان يؤدى الرسم فى هذة الحالة مضاعفا
+
+**Issuing Article 2:**
+> ينشر هذا القانون فى الجريدة الرسمية ويُعمل به من اليوم التالى لتاريخ نشره
+
+### C. Currentness and scope consequences
+
+- Law 198/2020 expressly replaces three provisions: Article 3, Article 8(1), and Article 9(1). The legal amendment adds industrial-establishment registration eligibility to Article 3 and updates who may submit registration/endorsement requests and renewal procedures.
+- The exact Law 198 wording above remains a secondary transcription until checked character-by-character against ITDA's official PDF or Gazette page images.
+- ITDA's base PDF also contains the Law 98/1996 Article 4 addition for foreigners engaged in export activity. Retain that as an amendment node and verify its current compatibility with later foreign-investment, trade and export legislation.
+- Decision 106/2018 is the identified executive regulation. It must be read with Law 198/2020 and any later decisions; do not assume the 2018 regulation was fully updated merely because the ITDA page lists it.
+- Decision 41/2020 on beneficial-owner registration is a separate administrative/ministerial instrument and should be collected separately, not folded into the statute.
+- The older Decision 946/1976 executive regulation is superseded for current workflow purposes by the newer Decision 106/2018, subject to any express transitional provisions. Keep the 1976 version only as historical material if needed.
+
+**Incremental counts in this checkpoint:** 1 newly identified unique amendment instrument (Law 198/2020) with Arabic text surfaced from a secondary transcription and official primary PDF located; 3 replacement provision units. Law 34/1976 and Decision 106/2018 were already present as source leads, so no new unique count for those. No claim that the entire executive regulation has been acquired.
+
+## 17. Revised counts after Trade Register amendment acquisition
+
+- Unique instruments with Arabic text surfaced: 90 (89 + Law 198/2020).
+- Article/provision text units: 1,157 (1,154 + three replacement provisions).
+- Assigned families touched: 13/13.
+- Families amendment/currentness-complete: 0/13.
+- Lawyer-reviewed: 0%.
+- Whole-corpus estimate remains approximately 2%; no denominator-based recalculation is available.
