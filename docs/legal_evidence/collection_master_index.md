@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (expanded through checkpoint 136)
+**Last updated:** 2026-11-18 (expanded through checkpoint 137)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -1108,3 +1108,6 @@
 
 
 | checkpoint 117 — Agent 3 Competition Law ex-ante merger-control framework | Captured Law 3/2005 and Executive Regulation 1316/2005 source routes, Law 175/2022 statutory ex-ante regime and PM Decision 1120/2024 implementing chapter; flagged unresolved ECA-guide 1122/2023 reference and unpromulgated 2026 bill status; cumulative Agent 3 minimum 121 instruments / 1,270 provision units |
+
+
+| checkpoint 118 — Agent 3 Consumer Protection Law 181/2018 | Added Arabic full-law and Executive Regulation source routes, PM Decision 822/2019 and Gazette-derived Law 20/2024 replacement of Article 71 penalties for Article 8 violations; cumulative Agent 3 minimum 124 instruments / 1,278 provision units |
