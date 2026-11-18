@@ -945,3 +945,12 @@
 - Current FRA source leads: Decision 7/2019 (leasing/factoring operating rules) updated in 2026; FRA page lists amendments 82/2019, 38/2020 and 44/2026. Decision 44/2026 regulates branch registration/transfer/closure and lists Decisions 179/2020 and 142/2018 as repealed. Full 2026 PDF extraction remains outstanding.
 - Decision 192/2018 separately governs factoring solvency; it must not be confused with leasing solvency Decision 191/2018.
 - **Updated Agent 3 minimum:** 86 distinct instruments with some Arabic text surfaced; 1,112 article/provision text units; 13/13 assigned families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
+
+
+### Research Agent 3 — Competition Executive Regulation Decision 1120/2024
+
+- Prime Minister Decision 1120/2024: Official Gazette issue 14 تابع (أ), 4 Apr 2024; effective 1 Jun 2024. Official Gazette DSpace record and MOF legislation catalogue identify it; full searchable Arabic text captured.
+- Amends Executive Regulation Decision 1316/2005: replaces Articles 30 and 41(1), adds new Chapter 9 comprising Articles 48–62 on economic concentration review, and repeals Articles 44, 44 bis and 45.
+- Selected operative text transcribed in Agent 3 file: concentration definition, material influence threshold (25%, with below-25% qualitative factors and under-10% general safe harbor), substantive assessment factors, who must notify, complete filing documents, 15-day public comment period, remedies/commitments, filing fee bands, failing-firm/efficiency/national-security exemptions, below-threshold review and FRA/ECA coordination for NBFI transactions.
+- Critical version point: the 2024 amendment is binding from 1 Jun 2024 and operationalizes Law 175/2022's pre-merger control provisions. Do not use the 2005/2010/2016 regulation alone.
+- **Updated Agent 3 minimum:** 87 distinct instruments with some Arabic text surfaced; 1,125 article/provision text units; 13/13 assigned families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
