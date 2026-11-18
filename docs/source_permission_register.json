@@ -1212,18 +1212,21 @@
     {
       "source_id": "EG-LAWEG-LEGAL-ARCHIVE",
       "authority": "Legal and Administrative Legislation website (Laweg)",
-      "source_page": "https://www.laweg.net/",
+      "source_page": "https://www.laweg.net/; https://www.laweg.net/Default.aspx?Year=1946&action=LegsYears; https://www.laweg.net/Default.aspx?Year=1964&action=LegsYears; https://www.laweg.net/Default.aspx?ItemID=36923&Type=6&action=ViewActivePages; https://www.laweg.net/Default.aspx?ItemID=29242&Type=6&action=ViewActivePages",
       "material_types": [
-        "Full-text ministerial decisions and executive regulation amendments"
+        "Egyptian legislation index",
+        "searchable legal text portal",
+        "historical Gazette issue listings",
+        "Law 114/1946 and Law 142/1964 text item pages"
       ],
-      "access_status": "Public secondary legal text archive; no reuse licence identified.",
+      "access_status": "Public portal inspected 2026-11-18; year indexes identify Law 114/1946 and Law 142/1964; direct item pages render a page selector but article body pages were not accessible in this session.",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
-      "permission_evidence": "Checked 2026-11-18. Public access does not establish permission for bulk download, OCR, indexing, commercial use, public display or redistribution. No source-specific affirmative permission identified.",
+      "permission_evidence": "The 1946 year index lists Law 114/1946 and exposes item ID36923; the 1964 year index lists Law 142/1964 and exposes item ID29242. Search snippets show the opening provision of each. The item pages require selecting a page, but the browser interface exposes only an input/select and direct page-number URL attempts were blocked. This is a useful alternate source lead, not a downloaded full text or original Gazette PDF. The portal footer says all rights reserved; no collection, bulk extraction, or commercial reuse permission is established.",
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
-      "required_next_action": "Review source terms; obtain original Gazette copies through authorized channels; keep rights unknown absent documentary permission."
+      "required_next_action": "Use a human browser to select and export article pages for Laws 114/1946 and 142/1964 if permitted; request written permission for bulk extraction and commercial use; compare against original Gazette scans."
     },
     {
       "source_id": "EG-LAWHUB-STATUTE-TEXTS",
