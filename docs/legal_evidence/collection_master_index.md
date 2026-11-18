@@ -1152,3 +1152,6 @@
 
 
 | checkpoint 121 — Agent 3 Bankruptcy Law 11/2021 amendment | Added government-hosted Official Gazette PDF for Law 11/2021 amending Law 11/2018; captures 2021 substitutions across restructuring, preventive composition, bankruptcy, creditor information and financing priority, including new Articles 57 bis/57 bis (1) and repeal of Article 179; cumulative Agent 3 minimum 131 instruments / 1,296 provision units |
+
+
+| checkpoint 122 — Agent 3 Commercial Agency Law 21/2022 | Added Gazette metadata and Arabic text for Law 21/2022 expanding Law 120/1982 to real-estate brokerage, establishing broker registration/qualification framework and new offence/liability provisions; linked to Decision 593/2025 implementation; cumulative Agent 3 minimum 132 instruments / 1,300 provision units |
