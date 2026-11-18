@@ -2779,6 +2779,86 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "Single public HTML page; no bulk/API permission established",
       "required_next_action": "Compare with Official Gazette issue27 bis original page; review archive terms before redistribution."
+    },
+    {
+      "source_id": "EG-MANSHURAT-LAW69-1950",
+      "authority": "Manshurat legal archive",
+      "source_page": "https://manshurat.org/node/34308",
+      "material_types": [
+        "One-page Gazette scan copy of Law69/1950 replacing Law114/1946 Article24"
+      ],
+      "access_status": "Public image-only scan copy; embedded Google Docs viewer inspected; complete two-article text transcribed. Secondary host, not authenticated Amiri Press binary.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Used to transcribe statutory text. No source-specific licence or written permission for commercial display or redistribution was established.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "Single public PDF/scan; no bulk/API permission established",
+      "required_next_action": "Acquire original Gazette issue56 page/binary and hash if authorized; review Manshurat terms before reuse."
+    },
+    {
+      "source_id": "EG-MANSHURAT-LAW222-1956",
+      "authority": "Manshurat legal archive",
+      "source_page": "https://manshurat.org/node/39455",
+      "material_types": [
+        "One-page Gazette scan copy of Law222/1956 inserting Law114/1946 Article19 bis"
+      ],
+      "access_status": "Public image-only scan copy; embedded Google Docs viewer inspected; full two-article text transcribed. Issue suffix conflicts with LawHub footnote.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Used to transcribe the inserted Article19 bis and issuing clause. No source-specific licence or written permission for commercial reuse was established.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "Single public PDF/scan; no bulk/API permission established",
+      "required_next_action": "Verify issue41 bis suffix (د vs أ) against original printed masthead; acquire original Amiri Press binary/hash; review terms before redistribution."
+    },
+    {
+      "source_id": "EG-MANSHURAT-LAW82-1957",
+      "authority": "Manshurat legal archive",
+      "source_page": "https://manshurat.org/node/39592",
+      "material_types": [
+        "Metadata for Law82/1957 inserting Law114/1946 Article12 bis; Gazette issue28 تابع, 4 April 1957"
+      ],
+      "access_status": "Public metadata page; PDF/scan endpoint timed out during retrieval. Exact inserted provision text independently captured from LawHub consolidated statute.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Used for instrument identity and Gazette metadata only; no original PDF bytes or image pages were obtained. No licence or written reuse permission was reviewed.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "Single public metadata page; scan endpoint timed out; no bulk/API permission established",
+      "required_next_action": "Retry page image/PDF acquisition from another mirror; transcribe complete issuing clauses; review site terms before reuse."
+    },
+    {
+      "source_id": "EG-MANSHURAT-LAW136-1957",
+      "authority": "Manshurat legal archive",
+      "source_page": "https://manshurat.org/node/40255",
+      "material_types": [
+        "One-page Gazette scan copy of Law136/1957 replacing Law114/1946 Article24 first paragraph"
+      ],
+      "access_status": "Public image-only scan copy; embedded Google Docs viewer inspected; complete two-article text transcribed. Secondary host, not authenticated Amiri Press binary.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Used to transcribe Article24 first-paragraph replacement. No source-specific licence or written permission for commercial display or redistribution was established.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "Single public PDF/scan; no bulk/API permission established",
+      "required_next_action": "Acquire original Gazette issue52 bis (د) page/binary and hash; review site terms before reuse."
+    },
+    {
+      "source_id": "EG-MANSHURAT-LAW181-1957",
+      "authority": "Manshurat legal archive",
+      "source_page": "https://manshurat.org/node/40502",
+      "material_types": [
+        "Three-page Gazette scan copy of Law181/1957 concerning river accretion and erosion; LawHub attributes repeal of Law114 Article19 bis to this law"
+      ],
+      "access_status": "Public image-only PDF scan (three pages). Pages0–1 visually inspected; page2 screenshot retrieval failed. Full text not transcribed.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Used for instrument identity, publication metadata and partial visual inspection. No full text transcription or commercial reuse permission established.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "Single public three-page PDF; no bulk/API permission established",
+      "required_next_action": "Retry page2 retrieval, transcribe full law, verify Article19 bis repeal effect against operative text, and review site terms before redistribution."
     }
   ]
 }
