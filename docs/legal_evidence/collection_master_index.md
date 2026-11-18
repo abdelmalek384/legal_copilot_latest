@@ -1318,3 +1318,13 @@
 - Added one source-specific Qadaya permission record; source-permission register now has **55 unique records**. Qadaya collection/commercial reuse permissions remain unknown.
 - Acquisition register now has **224 non-header rows**, 224 unique IDs and zero duplicate IDs. Core article provisions remain **1,370**. Completion estimates remain core article extraction 100% (three defined statutes), broader civil/property/contract 15% provisional, whole Egyptian corpus 2% provisional.
 - No original Gazette judgment scans were acquired and no article text was added in checkpoint 152.
+
+
+### Research Agent 1 — checkpoint 153: Decision 480/2026 deadline re-analysis (18 November 2026)
+
+- Added [collection_checkpoint_153_decision_480_2026_deadline_reanalysis_2026-11-18.md](collection_checkpoint_153_decision_480_2026_deadline_reanalysis_2026-11-18.md).
+- Added official administrative evidence: Cairo Governorate notice dated 21 June 2026 states **18 July 2026** as the initial filing deadline; SIS platform announcement says six months from commencement but gives no exact date. Decision 200/2026 official Amiri Press text confirms commencement on **19 January 2026**.
+- This exposes a one-day conflict: literal CPC Article 15 computation gives a provisional 19 July 2026; Cairo Governorate says 18 July. A possible weekend/Article 18 explanation is unconfirmed. Both dates are preserved.
+- Decision 480/2026 still does not specify the start of the “another equivalent period”. Conditional candidates remain 18/19 January 2027 (consecutive extension) or 10/11 May 2027 (new period from publication/effectiveness). No final date is certified; Article 11 is not expressly extended.
+- Added two source-permission records for Cairo Governorate and SIS; permission register now has **57 unique records**, reuse permissions unknown. Acquisition register remains **224 rows**, no new legal instrument. Core article provisions remain **1,370**.
+- Completion estimates unchanged: core article extraction 100% for three defined statutes; broader civil/property/contract 15% provisional; whole Egyptian corpus 2% provisional.
