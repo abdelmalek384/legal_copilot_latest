@@ -1214,21 +1214,22 @@
     {
       "source_id": "EG-LAWEG-LEGAL-ARCHIVE",
       "authority": "Legal and Administrative Legislation website (Laweg)",
-      "source_page": "https://www.laweg.net/; https://www.laweg.net/Default.aspx?Year=1946&action=LegsYears; https://www.laweg.net/Default.aspx?Year=1964&action=LegsYears; https://www.laweg.net/Default.aspx?ItemID=36923&Type=6&action=ViewActivePages; https://www.laweg.net/Default.aspx?ItemID=29242&Type=6&action=ViewActivePages",
+      "source_page": "https://www.laweg.net/; https://www.laweg.net/Default.aspx?Year=1946&action=LegsYears; https://www.laweg.net/Default.aspx?Year=1964&action=LegsYears; https://www.laweg.net/Default.aspx?ItemID=36923&Type=6&action=ViewActivePages; https://www.laweg.net/Default.aspx?ItemID=29242&Type=6&action=ViewActivePages; https://www.laweg.net/framePlain.aspx?JID=98789&NID=56502&Type=16&action=LawEg",
       "material_types": [
         "Egyptian legislation index",
         "searchable legal text portal",
         "historical Gazette issue listings",
-        "Law 114/1946 and Law 142/1964 text item pages"
+        "Law 114/1946 and Law 142/1964 text item pages",
+        "full judgment reproduction within Official Gazette issue 19 bis (ب), SCC Case 11/23/2018"
       ],
-      "access_status": "Public portal inspected 2026-11-18; year indexes identify Law 114/1946 and Law 142/1964; direct item pages render a page selector but article body pages were not accessible in this session.",
+      "access_status": "Public portal inspected 2026-11-18; year indexes identify Laws 114/1946 and 142/1964; Case 11/23/2018 full judgment is reproduced with Official Gazette issue 19 bis (ب), 13 May 2018 masthead. Laweg article-page selectors for Laws 114 and 142 did not yield accessible article bodies.",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
-      "permission_evidence": "The 1946 year index lists Law 114/1946 and exposes item ID36923; the 1964 year index lists Law 142/1964 and exposes item ID29242. Search snippets show the opening provision of each. The item pages require selecting a page, but the browser interface exposes only an input/select and direct page-number URL attempts were blocked. This is a useful alternate source lead, not a downloaded full text or original Gazette PDF. The portal footer says all rights reserved; no collection, bulk extraction, or commercial reuse permission is established.",
+      "permission_evidence": "The 1946 year index lists Law 114/1946 and exposes item ID36923; the 1964 year index lists Law 142/1964 and exposes item ID29242. Search snippets show the opening provision of each. The item pages require selecting a page, but the browser interface exposes only an input/select and direct page-number URL attempts were blocked. This is a useful alternate source lead, not a downloaded full text or original Gazette PDF. The portal footer says all rights reserved; no collection, bulk extraction, or commercial reuse permission is established. A separate Laweg page reproduces the complete SCC Case 11/23/2018 judgment within the Gazette issue dated 13 May 2018. This is a secondary-hosted Gazette reproduction, not a direct signed SCC binary; the portal footer says all rights reserved and no bulk extraction or commercial reuse permission is established.",
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
-      "required_next_action": "Use a human browser to select and export article pages for Laws 114/1946 and 142/1964 if permitted; request written permission for bulk extraction and commercial use; compare against original Gazette scans."
+      "required_next_action": "Use a human browser to select and export article pages for Laws 114/1946 and 142/1964 if permitted; request written permission for bulk extraction and commercial use; compare against original Gazette scans. Preserve the Case11/23 Gazette reproduction as a secondary-hosted full judgment text; obtain original signed SCC copy and review terms before any reuse."
     },
     {
       "source_id": "EG-LAWHUB-STATUTE-TEXTS",
