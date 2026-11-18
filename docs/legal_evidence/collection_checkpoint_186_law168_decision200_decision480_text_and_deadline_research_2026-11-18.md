@@ -10,7 +10,7 @@ Created `alternate_source_text_recovery_law168_decision200_decision480_2026-11-1
 | Instrument | Full-text fallback | Text captured in repository | Remaining gap |
 |---|---|---|---|
 | Law 168/2025 | Full 18-provision searchable mirror (4 issuing + 14 substantive) | Six complete articles (issuing Article 4; substantive Articles 2,3,4,6,8) plus partial substantive Article 5 | Remaining articles, original DSpace PDF bytes/hash, Gazette comparison |
-| PM Decision 200/2026 | Official Amiri Press searchable text plus full 20-article secondary transcriptions and DSpace PDF metadata | Seven complete regulation articles (3–7 and 9) plus issuing Article 4 | Remaining 13 regulation provisions, forms/schedules, PDF bytes/hash |
+| PM Decision 200/2026 | Official Amiri Press searchable text plus full 20-article secondary transcriptions and DSpace PDF metadata | Six complete regulation articles (3–7 and 9) plus issuing Article 4 | Remaining 13 regulation provisions, forms/schedules, PDF bytes/hash |
 | Presidential Decision 480/2026 | DSpace official metadata and two independent news reproductions of the operative articles | Articles 1 and 2 complete | Original PDF is request-copy only; no local bytes/hash |
 
 The Amiri Press portal exposes Decision 200/2026 text. DSpace lists the 1.89 MB Gazette issue 3 bis (أ) bundle. The DSpace Decision 480/2026 page lists issue 45 bis (ج), dated 10 November 2026, and a 178.37 KB original bundle. Clicking its Download link redirects to a request-a-copy form; no bypass was attempted.
@@ -62,8 +62,8 @@ All collection and commercial reuse fields remain `unknown`. The DSpace original
 Across the two supplemental text files:
 - 46 text-bearing article/provision entries across Laws 114/1946, 142/1964, 68/1947, 70/1964, Law 168/2025, Decision 200/2026 and Decision 480/2026.
 - One of the 46 is a repealed Article 1 marker under Law 68/1947.
-- The Law 168/2025 / Decision 200/2026 / Decision 480/2026 file contributes 14 complete provisions and one partial provision.
-- Completeness varies across the earlier 31 entries; do not label all 45 non-repealed entries fully complete.
+- The Law 168/2025 / Decision 200/2026 / Decision 480/2026 file contributes 15 complete provisions and one partial provision.
+- Completeness varies across the earlier 31 entries; do not label all 46 non-repealed entries fully complete.
 - These supplemental entries are not added to the 1,370 core provisions, the 200 heading count, or the 44 historical-version event count until article IDs and version states are normalized.
 - The 33-record priority full-text inventory remains 33; existing records were upgraded, not duplicated.
 
