@@ -934,3 +934,14 @@
 - Article 37 requires receivables to arise from commercial transactions linked to seller/debtor business, generally be free of third-party rights and be unconditional unless agreed otherwise. Article 39 makes assignment effective from agreement date, while debtor notice must comply with FRA rules and language requirements.
 - The statute delegates extensive licensing, governance, prudential, risk, AML, information-security and reporting rules to FRA Board decisions. Those Board decisions and circulars are not yet comprehensively inventoried.
 - **Updated Agent 3 minimum:** 82 distinct instruments with some Arabic text surfaced; 1,100 article/provision text units; 13/13 assigned families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
+
+
+### Research Agent 3 — FRA leasing/factoring implementing decisions
+
+- Decision 27/2018 (13 Sep 2018): official 314-line PDF. Covers preliminary establishment approval, Egyptian joint-stock form, ownership/financial-institution founder thresholds, minimum capital and board experience/independence. Selected provisions transcribed.
+- Decision 163/2018 (31 Oct 2018): official consolidated PDF last amended 6 Jun 2021. Factoring operating rules; amendment chain 197/2018, 95/2019, 25/2021 and 84/2021. Selected Articles 1–4 and 4 bis transcribed, including non-recourse transfer and margin-purchase receivables.
+- Decision 191/2018 (31 Dec 2018): official FRA PDF updated through 16 Nov 2022; leasing-company solvency rules. Capital adequacy minimum 10% phased to 12%, concentration limits and leverage cap 9x capital base. Amended by Decisions 69/2020 and 161/2022. **Source-number discrepancy:** filename/FRA catalogue identify 191/2018, but scanned heading OCR reads 91/2018; preserve discrepancy pending Gazette scan.
+- Decision 100/2020: official FRA PDF; general governance for non-bank financial activities includes leasing/factoring and expressly repeals dedicated Decision 164/2018. Current governance source is Decision 100/2020 as amended/updated in 2024; Decision 93/2020's amendment to 164/2018 is historical only.
+- Current FRA source leads: Decision 7/2019 (leasing/factoring operating rules) updated in 2026; FRA page lists amendments 82/2019, 38/2020 and 44/2026. Decision 44/2026 regulates branch registration/transfer/closure and lists Decisions 179/2020 and 142/2018 as repealed. Full 2026 PDF extraction remains outstanding.
+- Decision 192/2018 separately governs factoring solvency; it must not be confused with leasing solvency Decision 191/2018.
+- **Updated Agent 3 minimum:** 86 distinct instruments with some Arabic text surfaced; 1,112 article/provision text units; 13/13 assigned families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
