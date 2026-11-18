@@ -2057,6 +2057,38 @@
       "terms_checked_on": "2026-11-18",
       "bulk_download_or_api": "Single public PDF; no bulk/API permission established",
       "required_next_action": "Use as official discovery/index source; obtain underlying original Gazette issues for page-image and binary verification."
+    },
+    {
+      "source_id": "EG-SADA-ALQANUN-LABOUR",
+      "authority": "Sada AlQanun, Egypt",
+      "source_page": "https://sadaalqanun.com/مدونة-العمل/",
+      "material_types": [
+        "Labour Minister Decision162/2026, 66-article Arabic transcription"
+      ],
+      "access_status": "Full searchable Arabic transcription of 66-article Ministerial Decision162/2026 opened; locally extracted 24 articles.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "No explicit licence for bulk copying or commercial redistribution identified in this pass.",
+      "terms_checked_on": "2026-11-18",
+      "bulk_download_or_api": "Searchable HTML; no bulk/API permission established",
+      "required_next_action": "Check site terms; obtain Gazette issue176 scan and continue local extraction."
+    },
+    {
+      "source_id": "EG-ELRSALA-LAW156-2026",
+      "authority": "Elrsala News, Egypt",
+      "source_page": "https://www.elrsala.com/news/قرار-جمهوري-بشأن-النظام-الأساسي-للكلية-الفنية/465893/",
+      "material_types": [
+        "Law156/2026 full text, amendments to Military Technical College Law93/1975"
+      ],
+      "access_status": "Full two-article law and five replacement article bodies captured; Amiri Press indexed text and Gazette metadata used for cross-check.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "No express licence for legal-text redistribution or commercial bulk extraction identified.",
+      "terms_checked_on": "2026-11-18",
+      "bulk_download_or_api": "Single article HTML; no bulk/API permission established",
+      "required_next_action": "Use only for cross-check; prefer Amiri Press text and original Gazette scan."
     }
   ]
 }
