@@ -5723,3 +5723,206 @@ Decision 1120/2024:
 ECA's official page confirms that pre-merger review commenced on **1 June 2024** under Law 175/2022 and Decision 1120/2024. The framework requires pre-notification for concentrations meeting Law 3/2005 Article 19 bis thresholds and imposes a standstill obligation pending approval. For FRA-regulated activities, the notification is submitted to FRA, which must seek ECA's view before approval.
 
 **Collection status:** Law 175/2022 official Amiri Press and Official Gazette metadata, full current ECA consolidated Law 3/2005 text and key inserted articles captured; Decision 1120/2024 full searchable 62-article amendment text and official DSpace Gazette record captured, with the 15 new Articles 48–62 and key provisions transcribed. No lawyer approval or rights clearance claimed.
+
+
+## 40. Commercial Code Law 17/1999 — complete Arabic statute text retrieved from the Government Printing Authority
+
+### A. Primary text source and extent
+
+**Instrument:** Law 17/1999 promulgating the Commercial Code.  
+**Official Gazette:** issue 19 (مكرر), 17 May 1999.  
+**Official government-hosted PDF:** https://www.eta.gov.eg/sites/default/files/2024-10/law-17-1999.pdf  
+**Alternative government-hosted mirror:** https://portal.eta.gov.eg/sites/default/files/2024-10/law-17-1999.pdf  
+**PDF provenance:** the PDF title page identifies the الهيئة العامة لشؤون المطابع الأميرية, "الطبعة الثانية", prepared/reviewed by two Court of Cassation lawyers and senior legal officials; it reproduces the law and the retained 1883 Companies chapter. It is an official government-hosted printed edition, but it is not itself the 1999 Gazette scan.
+
+The complete searchable Arabic PDF has 3,759 extracted lines and includes the promulgating provisions, Commercial Code Articles 1–771, and the retained Chapter 1 of Book II of the 1883 Commercial Code concerning partnerships. The table of contents identifies six books/parts: general commercial activity (including trader, commercial books, commercial register, business, stock exchange); commercial obligations/contracts (technology transfer, sale, commercial pledge, public warehouses, commercial agency, brokerage, transport); banking operations; negotiable instruments; and bankruptcy/preventive composition.
+
+**Important temporal footnote:** Law 168/2000 amended the cheque commencement dates in Article 3 of the promulgating provisions. The second edition PDF itself records this amendment at its footnote: Official Gazette issue 30 تابع, 27 July 2000. It substitutes 1 October 2001 for the original 1 October 2000 and 1 October 2001 for the original 1 October 2002. The amended dates, not the unamended promulgation wording, must be used.
+
+### B. Verbatim provisions collected from the full statute
+
+**Verbatim — promulgating Article 1:**
+
+> (المادة الأولى)
+>
+> يلغى قانون التجارة الصادر بالأمر العالي في ١٣ من نوفمبر سنة ١٨٨٣، عدا الفصل الأول من الباب الثاني منه والخاص بشركات الأشخاص (٢)، ويستعاض عنه بالقانون المرافق.
+>
+> ويلغى نص المادة (٣٣٧) من قانون العقوبات اعتباراً من أول أكتوبر سنة ٢٠٠١ (٣) كما يلغى كل حكم يتعارض مع أحكام القانون المرافق.
+
+**Verbatim — promulgating Article 3 (as amended by Law 168/2000):**
+
+> (المادة الثالثة)
+>
+> ينشر هذا القانون في الجريدة الرسمية، ويعمل به اعتباراً من أول أكتوبر سنة ١٩٩٩، عدا الأحكام الخاصة بالشيك فيعمل بها اعتباراً من أول أكتوبر سنة ٢٠٠١.
+>
+> وتطبق على الشيك الصادر قبل هذا التاريخ الأحكام القانونية المعمول بها في تاريخ إصداره، إذا كان ثابت التاريخ أو تم إثبات تاريخه قبل أول أكتوبر سنة ٢٠٠١.
+>
+> ويكون إثبات تاريخ الشيك المشار إليه لدى أحد مكاتب التوثيق بمصلحة الشهر العقاري، بلا رسوم، أو بقيده في سجلات خاصة لدى أحد البنوك، أو بأية طريقة أخرى من الطرق المنصوص عليها في المادة (١٥) من قانون الإثبات في المواد المدنية والتجارية.
+
+**Verbatim — Article 1 (scope):**
+
+> مادة (١)
+>
+> تسري أحكام هذا القانون على الأعمال التجارية، وعلى كل شخص طبيعي أو اعتباري ثبتت له صفة التاجر.
+
+**Verbatim — Article 2 (sources and hierarchy for commercial matters):**
+
+> مادة (٢)
+>
+> ١- تسري على المواد التجارية أحكام الاتفاق بين المتعاقدين، فإذا لم يوجد هذا الاتفاق، سرت نصوص هذا القانون أو غيره من القوانين المتعلقة بالمواد التجارية، ثم قواعد العرف التجاري والعادات التجارية، فإذا لم يوجد عرف تجاري أو عادة تجارية وجب تطبيق أحكام القانون المدني.
+>
+> ٢- لا يجوز تطبيق الاتفاقات بين المتعاقدين، أو قواعد العرف التجاري أو العادات التجارية متى تعارضت مع النظام العام في مصر.
+
+**Verbatim — Article 4 (commercial acts):**
+
+> مادة (٤)
+>
+> يعد عملاً تجارياً:
+>
+> (أ) شراء المنقولات أياً كان نوعها بقصد بيعها أو تأجيرها بذاتها أو بعد تهيئتها في صورة أخرى، وكذلك بيع أو تأجير هذه المنقولات.
+>
+> (ب) استئجار المنقولات بقصد تأجيرها وكذلك تأجير هذه المنقولات.
+>
+> (ج) تأسيس الشركات التجارية.
+
+**Verbatim — Article 5 (professional commercial activities):**
+
+> مادة (٥)
+>
+> تعد الأعمال التالية تجارية إذا كانت مزاولتها على وجه الاحتراف:
+>
+> (أ) توريد البضائع والخدمات.
+>
+> (ب) الصناعة.
+>
+> (ج) النقل البري والنقل في المياه الداخلية.
+>
+> (د) الوكالة التجارية والسمسرة أياً كانت طبيعة العمليات التي يمارسها السمسار.
+>
+> (هـ) التأمين على اختلاف أنواعه.
+>
+> (و) عمليات البنوك والصرافة.
+>
+> (ز) استيداع البضائع ووسائط النقل والمحاصيل وغيرها.
+>
+> (ح) أعمال الدور والمكاتب التي تعمل في مجالات النشر والطباعة والتصوير والكتابة على الآلات الكاتبة وغيرها، والترجمة والإذاعة والتليفزيون والصحافة ونقل الأخبار والبريد والاتصالات والإعلان.
+>
+> (ط) الاستغلال التجاري لبرامج الحاسب الآلي والبث الفضائي عبر الأقمار الصناعية.
+
+**Verbatim — Article 10 (who is a trader):**
+
+> مادة (١٠)
+>
+> يكون تاجراً:
+>
+> ١- كل من يزاول على وجه الاحتراف باسمه ولحسابه عملاً تجارياً.
+>
+> ٢- كل شركة تتخذ أحد الأشكال المنصوص عليها في القوانين المتعلقة بالشركات أياً كان الغرض الذي أنشئت الشركة من أجله.
+
+**Verbatim — Article 21 (commercial books):**
+
+> مادة (٢١)
+>
+> على كل تاجر يجاوز رأس ماله المستثمر في التجارة عشرين ألف جنيه أن يمسك الدفاتر التي تستلزمها طبيعة تجارته وأهميتها، على أن يكون القيد في هذه الدفاتر منتظماً وباللغة العربية.
+
+**Verbatim — Article 22 (mandatory books):**
+
+> مادة (٢٢)
+>
+> يجب على كل تاجر، أياً كانت قيمة رأس ماله، أن يمسك الدفترين الآتيين:
+>
+> ١- دفتر اليومية الأصلي.
+>
+> ٢- دفتر الجرد.
+
+**Verbatim — Article 23 (daily journal):**
+
+> مادة (٢٣)
+>
+> ١- تقيد في دفتر اليومية الأصلي جميع العمليات المالية التي يقوم بها التاجر، وكذلك مسحوباته الشخصية، ويتم هذا القيد يوماً بيوم وبالتفصيل، ويجوز للتاجر أن يستعين بدفاتر يومية مساعدة لإثبات تفاصيل الأنواع المختلفة من العمليات المالية، وفي هذه الحالة يكتفى بقيد إجمالي لهذه العمليات في دفتر اليومية الأصلي في فترات منتظمة من واقع هذه الدفاتر.
+>
+> ٢- تقيد في دفتر الجرد تفاصيل البضاعة الموجودة لدى التاجر في آخر سنته المالية أو بيان إجمالي عنها إذا كانت تفاصيلها واردة بدفاتر أو قوائم مستقلة، وفي هذه الحالة تعتبر هذه الدفاتر أو القوائم جزءاً متمماً لدفتر الجرد الأصلي.
+
+**Verbatim — Article 30 (retention period):**
+
+> مادة (٣٠)
+>
+> على التاجر أو ورثته الاحتفاظ بالدفاتر التجارية والمراسلات والمستندات والصور المشار إليها في المادتين السابقتين مدة سبع سنوات تبدأ من تاريخ التأشير على الدفتر بانتهائه أو من تاريخ إنشاء المستندات بحسب الأحوال.
+
+**Verbatim — Article 188 (commercial agency agreement termination):**
+
+> مادة (١٨٨)
+>
+> ١- تتقيد وكالة العقود لمصلحة الطرفين المشتركة، فإذا كان العقد غير محدد المدة فلا يجوز للموكل إنهاؤه دون خطأ من الوكيل وإلا كان ملزماً بتعويضه عن الضرر الذي لحقه من جراء عزله. ويبطل كل اتفاق يخالف ذلك.
+>
+> ٢- كما يلتزم الوكيل بتعويض الموكل عن الضرر الذي أصابه إذا نزل عن الوكالة في وقت غير مناسب وبغير عذر مقبول.
+
+**Verbatim — Article 189 (non-renewal of fixed-term agency):**
+
+> مادة (١٨٩)
+>
+> ١- إذا كان العقد محدد المدة، ورأى الموكل عدم تجديده عند انتهاء أجله، يكون للوكيل الحق في تعويض يقدره القاضي، ولو وجد اتفاق يخالف ذلك.
+>
+> ٢- ويشترط لاستحقاق هذا التعويض:
+>
+> (أ) ألا يكون قد وقع خطأ أو تقصير من الوكيل أثناء تنفيذ العقد.
+>
+> (ب) أن يكون نشاط الوكيل قد أدى إلى نجاح ظاهر في ترويج السلعة أو زيادة عدد العملاء.
+>
+> ٣- ويراعى في تقدير التعويض مقدار ما لحق الوكيل من ضرر وما أفاده الموكل من جهوده في ترويج السلعة وزيادة العملاء.
+
+**Verbatim — Article 190 (limitation periods for agency claims):**
+
+> مادة (١٩٠)
+>
+> ١- تسقط دعوى التعويض المشار إليها في المادة السابقة بمضي تسعين يوماً من وقت انتهاء العقد.
+>
+> ٢- وتسقط جميع الدعاوى الأخرى الناشئة عن عقد وكالة العقود بانقضاء سنتين على انتهاء العلاقة العقدية.
+
+**Verbatim — Article 194 (broker remuneration):**
+
+> مادة (١٩٤)
+>
+> ١- لا يستحق السمسار أجره إلا إذا أدت وساطته إلى إبرام العقد، وإذا لم يتم إبرام العقد بسبب تعنت من فوضه جاز للمحكمة أن تعوض السمسار عما بذله من جهد.
+>
+> ٢- ويستحق السمسار الأجر بمجرد إبرام العقد ولو لم ينفذ كله أو بعضه.
+>
+> ٣- إذا كان العقد معلقاً على شرط واقف فلا يستحق السمسار أجره إلا إذا تحقق الشرط.
+>
+> ٤- إذا كان أحد آثار العقد يتوقف على إتمام إجراء قانوني معين كالتسجيل في بيع العقار أو القيد في الرهن الرسمي استحق السمسار أجره بمجرد إبرام العقد الابتدائي.
+
+**Verbatim — Article 699 (company bankruptcy):**
+
+> مادة (٦٩٩)
+>
+> ١- فيما عدا شركات المحاصة، تعد في حالة إفلاس، كل شركة اتخذت أحد الأشكال المنصوص عليها في قانون الشركات إذا توقفت عن دفع ديونها إثر اضطراب أعمالها المالية، ويلزم شهر إفلاسها بحكم يصدر بذلك.
+>
+> ٢- ويجوز شهر إفلاس الشركة ولو كانت في دور التصفية.
+
+**Verbatim — Article 704(2) (management liability in company bankruptcy):**
+
+> ٢- وإذا تبين أن موجودات الشركة لا تكفي لوفاء ٢٠٪ على الأقل من ديونها، جاز للمحكمة بناء على طلب قاضي التفليسة أن تقضي بإلزام أعضاء مجلس الإدارة أو المديرين كلهم أو بعضهم بالتضامن بينهم أو بغير تضامن بدفع ديون الشركة كلها أو بعضها إلا إذا أثبتوا أنهم بذلوا في تدبير شؤون الشركة عناية الرجل الحريص.
+
+**Verbatim — Article 754 (preventive composition voting threshold):**
+
+> مادة (٧٥٤)
+>
+> ١- لا يقع الصلح إلا بموافقة أغلبية الدائنين الذين قبلت ديونهم نهائياً أو مؤقتاً بشرط أن يكونوا حائزين لثلثي قيمة هذه الديون.
+
+**Verbatim — Article 761 (effect of preventive composition):**
+
+> مادة (٧٦١)
+>
+> ١- يسري الصلح الواقي من الإفلاس بمجرد صدور الحكم بالتصديق عليه على جميع الدائنين الذين تعتبر ديونهم عادية وفقاً لأحكام الإفلاس ولو لم يشتركوا في إجراءاته أو لم يوافقوا على شروطه.
+>
+> ٢- لا يفيد من الصلح الواقي المدينون المتضامنون مع المدين أو كفلاؤه في الدين، ومع ذلك إذا وقع الصلح مع شركة أفاد من شروطه الشركاء المسؤولون في جميع أموالهم عن ديون الشركة إلا إذا نص في عقد الصلح على غير ذلك.
+
+### C. Scope warning — bankruptcy provisions superseded by Law 11/2018
+
+Commercial Code Book V, Articles 550 onward, originally governed bankruptcy and preventive composition. Law 11/2018 promulgating the Law on Restructuring, Preventive Composition and Bankruptcy replaced the former bankruptcy regime. The historical Articles 550–771 must not be presented as the current insolvency procedure without checking Law 11/2018 and its implementing decisions. The PDF's historical text remains important for transitional issues, contracts and legal events governed by the former regime.
+
+### D. Source and rights note
+
+The PDF is hosted on an Egyptian government tax-authority domain and identifies the Government Printing Authority as publisher. The file itself contains a full legal text, but no separate licence for commercial redistribution was found. Preserve the source URL and access date; do not infer a right to redistribute the full PDF or bulk text in a commercial corpus. For the authoritative publication, cross-check the Official Gazette issue 19 (مكرر), 17 May 1999, and the Law 168/2000 amendment in issue 30 تابع, 27 July 2000.
+
+**Collection status:** full Arabic PDF and its 3,759-line searchable extraction obtained; all 771 code articles are present in the edition (plus retained 1883 partnerships chapter); 17 selected provisions transcribed here. Law 168/2000 cheque commencement amendment identified in the printed footnote. No lawyer review or rights clearance claimed.
