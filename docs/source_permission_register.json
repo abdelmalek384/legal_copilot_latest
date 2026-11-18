@@ -2506,6 +2506,22 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "Single public consolidated PDF; no bulk/API permission established",
       "required_next_action": "Acquire original issue8 bis (د) PDF/page images and bilingual PDF through authorized request; verify text and review source terms."
+    },
+    {
+      "source_id": "EG-FRA-GAZETTE-LAW93-2018-SOCIAL-HOUSING",
+      "authority": "Financial Regulatory Authority (Egypt), government-hosted Official Gazette PDF repository",
+      "source_page": "https://www.fra.gov.eg/wp-content/uploads/2020/12/UG44117UG44118.pdf",
+      "material_types": [
+        "Official Gazette issue23 bis (أ), 11 June 2018; full text of Law93/2018 issuing Social Housing and Mortgage Finance Support Law, including Article4 repeals of Law148/2001"
+      ],
+      "access_status": "Public searchable PDF reproduction hosted by FRA; text layer covers pages35–52. Original Amiri Press binary/page image hash not archived.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Used for legal text acquisition and Gazette metadata. No source-specific licence or written permission for bulk ingestion, commercial display or redistribution was established. Public government hosting is not treated as a reuse grant.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "Single public PDF endpoint; no bulk/API permission established",
+      "required_next_action": "Review FRA terms and obtain written permission if required for commercial ingestion/display; archive and hash original Amiri Press issue PDF if authorized; check later amendments to Law93."
     }
   ]
 }
