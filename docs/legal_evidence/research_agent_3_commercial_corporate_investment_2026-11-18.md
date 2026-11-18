@@ -3514,3 +3514,179 @@ GAFI's 7 December 2025 announcement says GAFI issued Decision 675/2025 forming t
 **Investment amendment chain now surfaced:** Law 72/2017 → Law 141/2019 → Law 160/2023 + correction PM Decision 1/2023 → Executive Regulation PM Decision 2310/2017 → PM Decisions 1203/2024 and 2562/2024 → industrial incentive Decision 77/2023 → sector tables Decision 104/2022, amended by Decisions 4427/2022 and 503/2026 → GAFI committee Decision 675/2025.
 
 **Collection status:** Law 160/2023 full searchable text, Decision 77/2023 full searchable text, Decision 1203/2024 full searchable text, Decision 2562/2024 full searchable text, Decision 4427/2022 full Amiri Press text captured. Correction Decision 1/2023 metadata/source identified but exact corrected wording remains outstanding; Decision 675/2025 source lead only. No lawyer approval or rights clearance claimed.
+
+
+## 34. Electronic Signature Law 15/2004 — 2024 replacement Executive Regulation and fee decision
+
+### A. Ministerial Decision 467/2024 — updated Executive Regulation
+
+**Decision:** Minister of Communications and Information Technology Decision 467/2024, dated 12 June 2024.  
+**Gazette:** الوقائع المصرية issue 141 (تابع), 2 July 2024.  
+**Effective:** 3 July 2024.  
+**Searchable full Arabic text (secondary transcription attributed to Court of Cassation legislation portal):** https://alhasswalawfirm.com/law-library/decree-467-2024  
+**Alternate full text:** https://www.eastlaws.com/legislation-full-text/ar/egypt/tech-minister-decision/02-07-2024/no-467?id=2137048&type=1
+
+Decision 467/2024 issues a revised Executive Regulation for Law 15/2004, with 52 articles and a technical annex. Its preamble expressly refers to original Executive Regulation Decision 109/2005 and its amendments and to ITIDA Board Decision 2/2024 (14 March 2024). The new regulation covers trusted electronic transactions, trust services, e-signature, e-seals, timestamps, electronic records, licensing, inspection, and IT activities.
+
+**Verbatim — issuing Article 1:**
+
+> مادة (الأولى)
+>
+> يعمل بأحكام اللائحة التنفيذية للقانون رقم ١٥ لسنة ٢٠٠٤، بتنظيم التوقيع الإلكتروني وبإنشاء هيئة تنمية صناعة تكنولوجيا المعلومات، المعدلة، المرفقة.
+
+**Verbatim — issuing Article 2 (scope):**
+
+> مادة (الثانية)
+>
+> تسري الأحكام والشروط والإجراءات المنصوص عليها في هذه اللائحة في شأن تنظيم خدمات الثقة والمعاملات الإلكترونية الموثوق بها وأنشطة تكنولوجيا المعلومات.
+
+**Verbatim — issuing Article 3 (commencement and conflict):**
+
+> مادة (الثالثة)
+>
+> ينشر هذا القرار في الوقائع المصرية، ويعمل به من اليوم التالي لتاريخ نشره، ويلغى كل قرار يخالف أحكامه.
+
+**Verbatim — Regulation Article 6 (trusted electronic transactions):**
+
+> مادة (٦)
+>
+> يجب أن تتوافر في المعاملة الإلكترونية الموثوق بها الضوابط الفنية والتقنية المنصوص عليها بالملحق الفني المرفق بهذه اللائحة، وعلى الأخص ما يلي:
+>
+> (أ) أن تسمح بتحديد هوية صاحب المعاملة.
+>
+> (ب) أن تتم بطريقة تمكن من كشف أي تغيير لاحق يطرأ عليها.
+>
+> (ج) أن تعتمد في إجرائها على إحدى خدمات الثقة المنصوص عليها في هذه اللائحة، مستخدمة تقنية شفرة المفتاح العام Public Key Infrastructure.
+
+**Verbatim — Regulation Article 7 (electronic record retention):**
+
+> مادة (٧)
+>
+> (أ) إذا أوجب القانون حفظ مستندات أو معلومات أو سجلات معينة، فإن هذا الالتزام يتحقق عندما يتم حفظ تلك المستندات أو المعلومات أو السجلات في شكل إلكتروني، شريطة مراعاة ما يلي:
+>
+> ١- حفظ المستند بالشكل الذي أنشئ أو أرسل أو استلم به، أو بشكل يمكن من إثبات أنه يمثل بدقة المعلومات التي أنشئت أو أرسلت أو استلمت في الأصل.
+>
+> ٢- بقاء المعلومات محفوظة على نحو يتيح استخدامها والرجوع إليها لاحقاً.
+>
+> ٣- حفظ المعلومات التي تمكن من معرفة مرسل الرسالة الإلكترونية - إن وجدت - وجهة وصولها وتاريخ ووقت إرسالها واستلامها.
+
+**Verbatim — Regulation Article 8 (automated trusted transactions):**
+
+> مادة (٨)
+>
+> يجوز أن تتم المعاملة الإلكترونية الموثوق بها بين وسائل إلكترونية بطريقة آلية تتضمن إحدى الطريقتين الآتيتين:
+>
+> (أ) نظامي معلومات إلكترونيين أو أكثر، يكونان معدين ومبرمجين مسبقاً للقيام بمثل هذه العمليات، ويكون التعاقد صحيحاً ومنتجاً لآثاره القانونية على الرغم من عدم التدخل الشخصي أو المباشر لأي شخص طبيعي في عملية إبرام العقد في هذه الأنظمة.
+>
+> (ب) نظام معلومات إلكتروني مؤتمت بحوزة شخص وبين شخص آخر إذا كان الأخير يعلم أو من المفترض أن يعلم أن ذلك النظام سيقوم بإبرام العقد أو تنفيذه تلقائياً.
+
+**Verbatim — Regulation Article 17 (secure e-signature creation):**
+
+> مادة (١٧)
+>
+> تكون منظومة تكوين بيانات إنشاء التوقيع الإلكتروني مؤمنة متى استوفت ما يأتي:
+>
+> (أ) الطابع المتفرد لبيانات إنشاء التوقيع الإلكتروني.
+>
+> (ب) سرية بيانات إنشاء التوقيع الإلكتروني.
+>
+> (ج) عدم قابلية الاستنتاج أو الاستنباط لبيانات إنشاء التوقيع الإلكتروني.
+>
+> (د) حماية التوقيع الإلكتروني من التزوير، أو التقليد، أو التحريف، أو الاصطناع أو غير ذلك من صور التلاعب.
+>
+> (هـ) عدم إحداث أي إتلاف بمحتوى أو مضمون المحرر الإلكتروني المراد توقيعه.
+>
+> (و) ألا تحول هذه المنظومة دون علم الموقع علماً تاماً بمضمون المحرر الإلكتروني قبل توقيعه له.
+>
+> (ز) أن تربط التوقيع الإلكتروني بالمحرر الإلكتروني، بطريقة متفردة تمنع إجراء أي تعديل بعد عملية التوقيع دون اكتشافه.
+
+**Verbatim — Regulation Article 19 (link to signer):**
+
+> مادة (١٩)
+>
+> يتحقق من الناحية الفنية والتقنية، ارتباط التوقيع الإلكتروني بالموقع وحده دون غيره متى استند هذا التوقيع إلى منظومة تكوين بيانات إنشاء توقيع إلكتروني مؤمنة على النحو الوارد في المواد (١٤، ١٧، ١٨) من هذه اللائحة، وتوافرت إحدى الحالتين الآتيتين:
+>
+> (أ) أن يكون هذا التوقيع مرتبطاً بشهادة تصديق إلكتروني معتمدة ونافذة المفعول صادرة من جهة تصديق إلكتروني مرخص لها أو معتمدة.
+>
+> (ب) أن يتم التحقق من صحة التوقيع الإلكتروني طبقاً للمادة (٢٤) من هذه اللائحة.
+
+**Verbatim — Regulation Article 20 (signer control):**
+
+> مادة (٢٠)
+>
+> تتحقق من الناحية الفنية والتقنية، سيطرة الموقع وحده دون غيره، على أداة التوقيع الإلكتروني المستخدمة في عملية تثبيت التوقيع الإلكتروني، عن طريق حيازة الموقع أو تحكمه - عن بعد - في أداة حفظ المفتاح الشفري الخاص به.
+
+**Verbatim — Regulation Article 21 (detecting alteration):**
+
+> مادة (٢١)
+>
+> مع عدم الإخلال بما هو منصوص عليه في المواد (١٧، ١٨، ١٩، ٢٠) من هذه اللائحة يتم من الناحية الفنية والتقنية، كشف أي تعديل أو تبديل في بيانات المحرر الإلكتروني الموقع إلكترونياً، باستخدام تقنية شفرة المفتاحين العام والخاص وبمضاهاة شهادة التصديق الإلكتروني وبيانات إنشاء التوقيع الإلكتروني بأصل هذه الشهادة وتلك البيانات، أو بأي وسيلة مشابهة.
+
+**Verbatim — Regulation Article 22 (e-seal):**
+
+> مادة (٢٢)
+>
+> تسري على الختم الإلكتروني جميع الأحكام المنظمة للتوقيع الإلكتروني، المنصوص عليها في هذه اللائحة.
+
+**Verbatim — Regulation Article 24 (ITIDA verification service):**
+
+> مادة (٢٤)
+>
+> تقدم الهيئة بناءً على طلب كل ذي شأن، خدمة الفحص والتحقق من صحة بيانات إنشاء التوقيع الإلكتروني، أو الختم الإلكتروني، أو البصمة الزمنية الإلكترونية نظير مقابل يحدد فئاته مجلس إدارة الهيئة، ويجوز للهيئة أن تعهد للغير بتقديم هذه الخدمة تحت إشرافها.
+
+**Verbatim — Regulation Article 31 (licensing trust-service providers):**
+
+> مادة (٣١)
+>
+> يجب أن يتوافر لدى طالب الحصول على الترخيص بمزاولة نشاط تقديم خدمة التوقيع الإلكتروني، أو خدمة الختم الإلكتروني، أو خدمة البصمة الزمنية الإلكترونية المتطلبات التالية:
+>
+> (أ) نظام تأمين للمعلومات وحماية البيانات وخصوصيتها بمستوى حماية لا يقل عن المستوى المذكور في المعايير والقواعد المشار إليها في البند (١/الفقرة د) من الملحق الفني والتقني المرفق بهذه اللائحة.
+>
+> (ب) دليل إرشادي يتضمن ما يلي:
+>
+> ١- إصدار شهادات التصديق الإلكتروني.
+>
+> ٢- إدارة المفاتيح الشفرية.
+>
+> ٣- إدارة الأعمال الداخلية.
+>
+> ٤- إدارة التأمين والكوارث.
+>
+> (ج) منظومة تكوين بيانات إنشاء التوقيع الإلكتروني مؤمنة وفقاً للضوابط الفنية والتقنية المنصوص عليها في هذه اللائحة.
+
+**Verbatim — Regulation Article 45 (inspection):**
+
+> مادة (٤٥)
+>
+> تقوم الهيئة بشكل دوري بالتفتيش على الجهات المرخص لها للتحقق من مدى التزامها بأحكام القانون ولائحته التنفيذية والترخيص الممنوح لها، وذلك بواقع مرة واحدة كل سنتين على الأقل.
+
+**Verbatim — Regulation Article 47 (prohibition without licence):**
+
+> مادة (٤٧)
+>
+> يحظر مزاولة أي نشاط من الأنشطة المنصوص عليها في هذه اللائحة دون الحصول على ترخيص بذلك من الهيئة، وفي حالة مخالفة هذه المادة يجوز للهيئة وقف النشاط جزئياً أو كلياً بالإضافة إلى اتخاذ التدابير والإجراءات الأخرى المناسبة في هذا الشأن.
+
+**Technical annex — current cryptographic baseline:**
+
+The 2024 Annex specifies PKIX/X.509 profiles, RFC 3161 timestamp services, OCSP/RFC 6960 and PKI key management. It specifies a minimum RSA/DSA key length of **3072 bits**, with 4096 bits recommended for long-term security. This supersedes the 2020 annex discrepancy (where 4096 was required in one clause but 2048 appeared in another). The 2024 annex should be treated as the latest technical baseline after verification against the Gazette scan.
+
+### B. Decision 331/2020 and the earlier 361/2020 secondary reference — version status
+
+The official ITIDA-hosted Gazette PDF for Decision 331/2020 (وقائع مصرية issue 95 تابع, 23 April 2020) remains a historical amendment text. Decision 467/2024 is the later revised Executive Regulation and says it replaces the prior regulation and repeals inconsistent decisions. Therefore, do not treat the 2020 regulation as the current full text.
+
+A secondary source's reference to Decision 361/2020 remains unresolved; it is not needed to establish the 2024 current regulation. Preserve it as a source discrepancy, but do not merge it into Decision 331/2020.
+
+### C. Ministerial Decision 724/2024 — IT development fee schedule (not a statutory amendment)
+
+**Decision:** Minister of Communications and Information Technology Decision 724/2024, dated 19 September 2024.  
+**Gazette:** الوقائع المصرية issue 252, 13 November 2024.  
+**Secondary official-gazette report:** https://yalla.business/article/214319/وزارة-الاتصالات-تضيف-خدمات-الجيل-الخامس-للوعاء-الخاضع-لرسم-تنمية-صناعة-تكنولوجيا-المعلومات
+
+Decision 724/2024 replaces Annex 2 to Ministerial Decision 152/2019, specifying mobile-network services subject to the IT Development Industry fee under Article 5 of Law 15/2004. It incorporates 5G mobile services. It is a related fee/scope decision under Law 15/2004, **not an amendment to the text of Law 15/2004** and not an amendment to Decision 467/2024.
+
+### D. Currentness correction
+
+The prior section 20's treatment of Decision 331/2020 as the latest amended regulation is superseded by Decision 467/2024. Current chain:
+Law 15/2004 → original Executive Regulation 109/2005 and amendments → revised Executive Regulation Decision 467/2024 (effective 3 July 2024). Decision 724/2024 is a separate fee schedule instrument. The full official Gazette scan for Decision 467/2024 still needs acquisition; the searchable full text is currently a secondary transcription attributed to the Court of Cassation legislation portal.
+
+**Collection status:** Decision 467/2024 full searchable 52-article regulation text surfaced; 15 numbered regulatory provisions plus three issuing provisions transcribed. Decision 724/2024 publication metadata and effect on the mobile-service fee schedule identified. No lawyer review or rights clearance claimed.
