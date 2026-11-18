@@ -1,0 +1,12 @@
+alias_id,canonical_id,instrument,deduplication_reason
+EG-0063,EG-0004,Companies Law 159/1981,Same statute; merged official ETA PDF observations into Ministry listing record.
+EG-0050,EG-0012,Customs Law 207/2020,Same statute; merged Customs Authority full-text source and Gazette metadata into Ministry listing record.
+EG-0027,EG-0013,Social Insurance and Pensions Law 148/2019,Same statute; merged NOSI commencement and constitutional-status observations into Ministry listing record.
+EG-0028,EG-0021,Penal Code Law 58/1937,Same statute; merged Administrative Control Authority source observation into Refworld source record.
+EG-0068,EG-0023,Investment Law 72/2017,Same statute; merged official ETA PDF and Gazette metadata into GAFI source record.
+EG-0026,EG-0025,Consumer Protection Law 181/2018,Same statute; merged CPA official 32-page PDF observation into CPA portal record.
+EG-0066,EG-0059,"Restructuring, Preventive Composition and Bankruptcy Law 11/2018",Same statute; merged secondary full-text lead into original base-law acquisition record.
+EG-0209,EG-0168,Law 629/1955 amending Law 68/1947,Same amending law; merged detailed Article 3 replacement and Gazette metadata.
+EG-0210,EG-0169,Law 103/1976 amending Law 68/1947,Same amending law; merged article replacement details and Gazette metadata.
+EG-0214,EG-0171,Justice Minister Decision 1532/1976 amending Law 68/1947 Executive Regulation,Same executive-regulation amendment; merged Gazette issue/date and Article 10/18 bis details.
+EG-0236,EG-0153,Law 12/1984 Irrigation and Drainage Law,Same Law 12/1984 instrument; merged consequential repeal of Law 143/1981 Article 21.
