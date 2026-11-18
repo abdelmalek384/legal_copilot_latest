@@ -2246,3 +2246,12 @@ Added **Law149/2026**, amending VAT Law67/2016, from the Egyptian Tax Authority'
 Crucially, I also acquired the **official corrigendum** published in Official Gazette issue32 bis, 8 August 2026. Customs Authority Circular48/2026 reproduces the Cabinet Council of Advisers correction to Article28 bis: (i) remove the extra «و» in «مد هذه المدة» and (ii) correct «في الأجهزة الطبية» to «في حكم الأجهزة الطبية». The local transcript uses corrected wording, not the uncorrected first print. Circular48/2026 also records Circular45/2026 as the original transmission of Law149 to customs administrations.
 
 The Ministry of Finance lists Law149 as in force but cautions that online text is advisory and the Official Gazette is the legal reference. The ETA-hosted PDF is government-hosted; local binary/hash and separate Amiri Press original remain outstanding. Follow-up: locate executive-regulation amendments and ETA instructions implementing Article28 bis.
+
+
+### Law161/2026 local text completion
+
+Completed the previously missing local Arabic transcription for **Articles11–32 and39–46** of the Kayan University Act. Combined with the earlier tranche (issuing provisions and Articles1–10,33–38,47–50), the repository now contains all five issuing provisions and all 50 substantive articles in two text files:
+- [Initial tranche](acquisition_tranche_2026_laws10_11_155_156_160_161_pm3536_2026-11-18.md)
+- [Continuation: Articles11–32 and39–46](acquisition_tranche_law161_2026_kayan_university_articles11_32_39_46.md)
+
+This is now a complete local searchable text transcription sourced from LAW HUB's complete page, but not yet line-by-line authenticated against the Official Gazette issue43 bis page images. The original Gazette binary and later implementing university bylaws remain outstanding.
