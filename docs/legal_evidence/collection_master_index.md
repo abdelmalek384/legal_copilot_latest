@@ -1245,3 +1245,14 @@
 
 
 | checkpoint 134 — Agent 3 FRA Decision 45/2026 key-position licensing | Captured Arabic Articles 1–2 from secondary transcription and visually inspected secondary Gazette page-16 image; DSpace confirms Amiri Press issue 45 supplement (أ), 24 Feb 2026, original bundle request-only; official FRA guide corroborates 14 key roles and licensing framework; +1 instrument / +2 provision units; cumulative Agent 3 minimum 155 instruments / 1,386 provision units; assignment estimate 31%, lawyer review 0%. Annex 1 and remaining articles need full transcription: [agent3_fra_decision_45_2026_key_positions_licensing_2026-11-18.md](agent3_fra_decision_45_2026_key_positions_licensing_2026-11-18.md) |
+
+
+### Research Agent 1 — checkpoint 149: Law 142/1964 territorial postponement chain (18 November 2026)
+
+- Added [collection_checkpoint_149_law_142_1964_territorial_postponement_chain_2025_2026_2026-11-18.md](collection_checkpoint_149_law_142_1964_territorial_postponement_chain_2025_2026_2026-11-18.md).
+- Added two previously unregistered territorial commencement decisions: **6910/2025 (EG-0196)** for Al-Saqriya and Kom Badar, Sohag; and **6911/2025 (EG-0197)** for specified sections in Sohag, Aswan, Damietta and Ismailia. Both are Law 142/1964 implementation/postponement instruments, not substantive amendments.
+- Decision 6910 has a material source conflict: official Amiri Press text says 2 Dec 2025–1 Dec 2026, while the SIS issue 295 PDF text extraction gives different dates. Printed page image not verified; preserve the discrepancy.
+- Decision 6911's extracted issue text and Amiri Press text both indicate 2 Dec 2025–1 Dec 2026; territorial schedule still needs visual validation.
+- Decision 5208/2026 has a separate mirror discrepancy: official Amiri Press text and DSpace metadata identify 5208, while a third-party mirror's extracted issue text labels it 5280. Do not create a separate 5280 instrument from that mirror alone.
+- Acquisition register now contains **193 rows**, 193 unique IDs, zero duplicate IDs. Source-permission register now contains **54 unique source records**, with reuse permissions unknown for the new SIS issue source.
+- Core provisions remain **1,370**; completion estimates remain core extraction 100% at article-number level, civil/property/contract 15% provisional, and whole Egyptian corpus 2% provisional. No percentage increase is justified by two new territorial decisions.
