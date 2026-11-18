@@ -18,11 +18,6 @@
 
 ولا يترتب على تقديم الطلب المشار إليه وغيره من الإجراءات التمهيدية أي حقوق قانونية لواضع اليد، أو ترتيب التزام على جهة الولاية بالتصرف إليه.
 
-### Substantive Article 5 — committees and grievance
-تُشكل لجان في كل جهة إدارية مختصة بقرار من الوزير أو المحافظ أو رئيس الهيئة أو رئيس الجهاز، بحسب الأحوال، تضم عناصر فنية ومالية وقانونية لا يقل المستوى الوظيفى لرئيس أى منها عن مدير عام أو ما يعادله، تختص بفحص الطلبات والمستندات المقدمة وفقًا لأحكام هذا القانون والبت فيها.
-
-ولذوي الشأن التظلم من قرار اللجنة بعد اعتماده وذلك خلال خمسة عشر يومًا من إعلانهم به، وتصدر اللجنة قرارها فى التظلم خلال ثلاثين يومًا من تاريخ تقديمه، دون أن يخل ذلك بحق ذوي الشأن في الطعن على القرار الصادر أمام المحكمة المختصة.
-
 ### Substantive Article 8 — use and transfer restrictions
 يُحظر على المتعاقد طبقًا لأحكام هذا القانون استخدام الأراضى فى غير الغرض الذى تم التصرف إليه من أجله.
 
@@ -141,20 +136,7 @@ Source: https://lawhub.info/eg/?p=17395 . This is an independent full searchable
 
 ## Further text from the directly accessible SIS Gazette PDF — Decision 200/2026
 
-**Primary-source locator:** https://mediadr.sis.gov.eg/xmlui/bitstream/handle/123456789/118973/OG3_20260118_2885.pdf?isAllowed=y&sequence=2 . The opened PDF is the Official Gazette issue 3 bis (أ), 18 January 2026. The following are additional complete provisions transcribed from that PDF, not from the earlier secondary mirrors.
-
-### Executive Regulation Article 10 — committee formation
-تُشكَّل لجان في كل جهة إدارية مختصة بقرار يصدر من الوزير أو المحافظ أو رئيس الهيئة أو رئيس الجهاز، بحسب الأحوال، برئاسة موظف لا يقل مستواه الوظيفي عن مدير عام أو ما يعادله، وعضوية عناصر فنية ومالية وقانونية من ذوي الخبرة والكفاءة من بينهم ممثلين عن كل من الوزارة المختصة بالموارد المائية والري والهيئة المصرية العامة للمساحة.
-
-وللجنة أن تستعين بمن تراه لازماً لمعاونتها في أداء مهامها، وذلك دون أن يكون له صوت معدود.
-
-### Executive Regulation Article 17 — registration of final dispositions
-تلتزم الجهة الإدارية المختصة بموافاة مكتب الشهر العقاري المختص بجميع المستندات اللازمة لشهر وقيد التصرفات التي تتم على الأراضي المتعاقد عليها، وفقاً لأحكام القانون رقم ١١٤ لسنة ١٩٤٦ بتنظيم الشهر العقاري، وذلك فور الانتهاء من جميع الإجراءات الخاصة بالتصرفات وتحرير العقد النهائي وبما يضمن سرعة إتمام إجراءات شهر وقيد هذه التصرفات.
-
-### Executive Regulation Article 18 — delegation to governor
-يجوز للجهة الإدارية المختصة تفويض المحافظ المختص في التصرف واتخاذ جميع الإجراءات الخاصة بالتقنين نيابة عنها في الأراضي المملوكة للدولة ملكية خاصة والخاضعة لولايتها، على أن يكون من بين أعضاء اللجان المشار إليها بالمادة (١٠) من هذه اللائحة ممثل عن تلك الجهة، وفي هذه الحالة تؤول نسبة (٢٠٪) من إجمالي المبالغ المحصلة للمحافظة، تخصص للمشروعات العامة والقومية داخل المحافظة.
-
-ويكون للمحافظ المختص ولاية التصرف لواضعي اليد بالنسبة للأراضي الواقعة في النطاق الجغرافي لمحافظته وليس لها جهة ولاية.
+**Primary-source locator:** https://mediadr.sis.gov.eg/xmlui/bitstream/handle/123456789/118973/OG3_20260118_2885.pdf?isAllowed=y&sequence=2 . The opened PDF is the Official Gazette issue 3 bis (أ), 18 January 2026. The complete versions of the previously duplicated Articles 10, 17 and 18 are retained once in the final 24-provision capture below.
 
 ## Forms and annexes in the SIS Gazette PDF
 
@@ -166,88 +148,20 @@ The full issue contains three attached model forms:
 
 **Drafting discrepancy requiring confirmation:** Regulation Article 20 in the PDF says the authority prepares **annual** reports (تقارير سنوية), while Form 3 is headed **quarterly** report (تقرير ربع سنوي). Preserve both source readings; do not silently normalize one into the other.
 
-**Coverage update:** the supplemental file contains complete text for Regulation Articles 3–7, 9–10, 13, 15–18 (12 of 20 regulation articles), plus issuing Article 4. Regulation Articles 1, 2, 8, 11, 12, 14, 19 and 20 have not yet been transcribed as full article text into the structured capture file. Forms 1 (two variants), 2 and 3 are structurally mapped, not transcribed field-by-field in full.
+**Coverage update:** forms 1 (two variants), 2 and 3 are structurally mapped. All 20 regulation articles and four issuing articles are retained once in the final complete capture below.
 
 
 ## Additional Law 168/2025 provisions from the 20-page Gazette scan reproduction
 
-**Source:** https://cdn.vetogate.com/UploadCache/libfiles/556/3/0x0o/540.pdf — the 20-page reproduction of Official Gazette issue 32 bis (و), 13 August 2025. The source is a secondary-hosted scan and carries a printed notice that its electronic copy is not valid for circulation; the following text is transcribed from the scan and remains subject to original Amiri Press verification.
-
-### Substantive Article 7 — purpose covenant in contracts
-يجب أن تتضمن العقود المحررة وفقًا لأحكام هذا القانون النص على شرط بالتزام المتعاقد باستخدام الأرض واستغلالها فى الغرض الذى تم التصرف إليه من أجله. ويقع باطلاً بطلانًا مطلقًا أى عقد يبرم بالمخالفة لهذا الشرط، ويعتبر مفسوخًا من تلقاء نفسه دون الحاجة إلى اتخاذ أى إجراء، مع التعويض إن كان له مقتض. ولكل ذى شأن التمسك بالبطلان، وعلى المحكمة أن تحكم به من تلقاء نفسها، ولا يجوز شهر هذا التصرف.
-
-### Substantive Article 11 — extinguishment of criminal action on regularization or surrender
-تنقضى الدعوى الجنائية لجريمة التعدى على الأراضى المملوكة للدولة ملكية خاصة لكل من يتم التصرف له وفق أحكام هذا القانون، ولكل من قام بتسليم الأرض المتعدى عليها خلال مدة ستة أشهر من تاريخ العمل باللائحة التنفيذية لهذا القانون.
-
-وفى جميع الأحوال، تأمر النيابة العامة بوقف تنفيذ العقوبة إذا تم التصرف أو التسليم أثناء تنفيذ العقوبة.
-
-### Substantive Article 12 — penalty for breach of Article 8
-مع عدم الإخلال بأية عقوبة أشد يُنص عليها فى قانون آخر، يُعاقب كل من يخالف حكم المادة (8) من هذا القانون بغرامة لا تقل عن مائتين وخمسين ألف جنيه ولا تزيد على مليون جنيه، ويُحكم برد الأرض بما عليها من مبان أو غراس، أو إزالة ما عليها من تلك التعديات على نفقة المخالف، فضلاً عن دفع قيمة ما عاد عليه من منفعة. وفى حالة العود تضاعف عقوبة الغرامة بحديها.
+**Source:** https://cdn.vetogate.com/UploadCache/libfiles/556/3/0x0o/540.pdf — the 20-page reproduction of Official Gazette issue 32 bis (و), 13 August 2025. The scan is secondary-hosted and carries a notice that its electronic copy is not valid for circulation. Articles 7, 11 and 12 are retained once in the final complete capture below; they are not repeated here.
 
 ## Additional PM Decision 200/2026 provisions from the official SIS Gazette PDF
 
-**Source:** https://mediadr.sis.gov.eg/xmlui/bitstream/handle/123456789/118973/OG3_20260118_2885.pdf?isAllowed=y&sequence=2 — Official Gazette issue 3 bis (أ), 18 January 2026. These provisions were transcribed from the opened official-hosted Gazette PDF.
-
-### Executive Regulation Article 13 — sale price payment schedule
-في الحالات التي يكون التصرف فيها بالبيع، يتم سداد (٢٥٪) من قيمة الأرض وذلك خلال شهر من تاريخ إخطار مقدم الطلب بسداد هذه القيمة بخطاب موصى عليه مصحوب بعلم الوصول على عنوانه المبين بالطلب، على أن يتم سداد باقي الثمن على ثلاث دفعات سنوية خلال ثلاث سنوات من تاريخ سداد النسبة المشار إليها، مع استحقاق عائد قيمته (٧٪) عن الفترة من تاريخ التعاقد حتى تاريخ السداد لكل قسط.
-
-وفي حالة سداد كامل الثمن عند تحرير العقد يخصم نسبة (١٠٪) من قيمة الأرض.
-
-وفي حالة سداد المتعاقد باقي الأقساط خلال سنة من تاريخ تحرير العقد يُعفى من الفائدة المستحقة على الأقساط.
-
-ويجوز في حالات الضرورة بموافقة الجهة الإدارية المختصة، تخفيض نسبة مقدم الثمن لعقود الأراضي المقام عليها بناء، ليكون (١٥٪)، على أن يتم سداد باقي الثمن على أقساط سنوية خلال المدة التي تحددها الجهة الإدارية المختصة وبما لا يجاوز سبع سنوات، مع استحقاق العائد المشار إليه بالفقرة الأولى من هذه المادة.
-
-وفي حالة تأخر المتعاقد عن سداد أي قسط يلتزم بسداد فائدة عن فترة التأخير تعادل الفائدة المعلنة بالبنك المركزي.
-
-وفي جميع الأحوال لا تنقل ملكية العقار إلا بعد سداد كامل الثمن للجهة الإدارية المختصة، وتلتزم هذه الجهة بتحرير عقد نهائي للمتعاقد عقب تمام السداد.
-
-### Executive Regulation Article 15 — default and recovery
-تلتزم الجهة الإدارية المختصة باتخاذ الإجراءات القانونية المقررة في حالة إخلال المتعاقد بالتزامه بسداد كامل الثمن أو سداد الأقساط في المواعيد المحددة في العقد، ومنها فسخ العقد واسترداد الأرض موضوع العقد، واتخاذ الإجراءات المطلوبة نحو تحرير المحاضر اللازمة، بحسب الأحوال.
-
-### Executive Regulation Article 16 — annual use compensation
-تلتزم الجهة الإدارية المختصة في الحالات التي لا يتم فيها تقنين وضع اليد لأي سبب، وكذا في حالات تعذر إزالة التعدي مؤقتًا، بتحصيل مقابل انتفاع من واضع اليد، وفقًا للضوابط والفئات والإعفاءات التي يصدر بها قرار من رئيس مجلس الوزراء، وذلك لحين إتمام إزالة التعدي.
-
-وفي حالة عدم قيام الجهة الإدارية المختصة بتحصيل المقابل المشار إليه خلال شهرين من تاريخ العمل بأحكام هذه اللائحة، تلتزم المحافظة المختصة بتحصيله على أن تؤول إليها نسبة (٢٠٪) من إجمالي المبالغ المحصلة مقابل إجراءات التحصيل، تخصص لمشروعات المحافظة.
-
-ولا يترتب على تحصيل المقابل المشار إليه أي حقوق لواضع اليد.
-
-**Count update:** six additional complete provisions were captured in this addendum: Law 168/2025 Articles 7, 11 and 12; PM Decision 200/2026 Executive Regulation Articles 13, 15 and 16. These are text additions to existing instrument IDs, not new legal instruments.
-
+**Source:** https://mediadr.sis.gov.eg/xmlui/bitstream/handle/123456789/118973/OG3_20260118_2885.pdf?isAllowed=y&sequence=2 — Official Gazette issue 3 bis (أ), 18 January 2026. Articles 13, 15 and 16 are retained once in the final complete capture below.
 
 ## Further PM Decision 200/2026 text from an independent full-text mirror
 
-**Source:** https://alhasswalawfirm.com/law-library/decree-200-2026 . The page states that its 24 provisions are transcribed verbatim from the Official Gazette and attributed to the Court of Cassation legislation portal. The provisions below are additional to those already captured from the official SIS PDF, LAW HUB and MKSEgypt.
-
-### Executive Regulation Article 2 — direct agreement and exclusions
-يكون التصرف فى الأراضى المملوكة للدولة ملكية خاصة الخاضعة لأحكام هذه اللائحة بطريق الاتفاق المباشر، وفقا للقواعد والضوابط والشروط والإجراءات المُبيَّنة لاحقا.
-
-ولا يجوز التصرف فى تلك الأراضى إذا تعارض ذلك مع مقتضيات شئون الدفاع عن الدولة أو الأمن القومى أو الطيران المدني.
-
-### Executive Regulation Article 8 — inspection fees
-يكون رسم المعاينة بالنسبة للأراضى الزراعية أو الأراضى المستصلحة أو المستزرعة، أو الأراضى المتخللة لها، خمسمائة جنيه عن الفدان الواحد أو جزء منه.
-
-ويكون رسم المعاينة بالنسبة للأراضى المقام عليها بناء، أو الأراضى المتخللة لها، أو زوائد التنظيم، وفقًا للفئات الآتية:
-
-١ - ستة جنيهات عن كل متر بالنسبة للأراضى الواقعة خارج الزمام.
-
-٢ - ستة جنيهات عن كل متر مربع للأراضى داخل زمام القرى وتوابعها.
-
-٣ - ثمانية جنيهات عن كل متر مربع للأراضى داخل زمام المدن.
-
-٤ - عشرة جنيهات عن كل متر مربع للأراضى داخل عواصم المحافظات.
-
-### Executive Regulation Article 14 — payment for lease/use arrangements
-فى الحالات التى يتم التصرف فيها بالإيجار أو بالإيجار المنتهى بالتملك أو بالترخيص بالانتفاع، يتم سداد مقابل التصرف وفقًا للشروط التى ترد بالعقد المبرم بين الجهة الإدارية المختصة والمتعاقد.
-
-### Executive Regulation Article 20 — first paragraph only (partial capture)
-يظهر نص المادة (٢٠) فى مرآة الحصوة على النحو الآتى:
-
-تلتزم الجهة الإدارية المختصة بإعداد تقارير ربع سنوية عن موقف طلبات التقنين المقدمة إليها، وذلك وفق النموذج رقم (٣) المرافق لهذه اللائحة، ولها تشكيل لجان لمتابعة دورة طلبات التقنين وإعداد التقارير المشار إليها، وعرضها على مجلس الوزراء، ورئيس الجمهورية.
-
-The second paragraph of Article 20 is not transcribed in this file. The official SIS PDF text extraction renders the reporting frequency as “سنوية”, while this independent mirror and the attached Form 3 render it as “ربع سنوية”. The PDF screenshot endpoint could not be fetched in this session, so the printed page has not been visually adjudicated. Preserve the conflict; do not silently normalize the reporting frequency.
-
-**Coverage update:** three further complete regulation articles (2, 8, 14) and one partial article (20 first paragraph) are added. PM Decision 200/2026 now has 15 complete regulation articles and one partial Article 20 in the structured text file; Articles 1, 11, 12 and 19 remain to be transcribed.
-
+**Source:** https://alhasswalawfirm.com/law-library/decree-200-2026 . The page states that its 24 provisions are transcribed from the Official Gazette. Articles 2, 8 and 14 are retained once in the final complete capture below. This mirror renders Article 20 as quarterly reports, while the SIS PDF text layer and LAW HUB full text render it as annual reports; Form 3 is headed quarterly. Preserve the conflict pending visual Gazette-page verification.
 
 ## Additional complete Arabic text recovered from full searchable pages — 18 November 2026
 
@@ -406,19 +320,7 @@ The following provisions are new to the repository text capture. Previously capt
 
 ## Additional Law 168/2025 provisions from Diwan Al-Omran's searchable Gazette text
 
-**Source:** https://diwanalomran.com/fr/legal/2025-168/ — searchable text identifies Official Gazette issue 32 bis (و), 13 August 2025, and links an original-PDF download route. These provisions were not transcribed in the earlier captures.
-
-### Substantive Article 1 — definition of competent administrative authority
-فى تطبيق أحكام هذا القانون، يقصد بالجهة الإدارية المختصة، الوزارة أو المحافظة أو الهيئة العامة أو الجهاز التابع للدولة أو غيرها من الأشخاص الاعتبارية العامة التى لها سلطة الإدارة والاستغلال والتصرف فى أملاك الدولة الخاصة الخاضعة لولايتها.
-
-### Substantive Article 13 — liability of the actual manager of a legal person
-يُعاقب المسئول عن الإدارة الفعلية للشخص الاعتبارى بذات العقوبة المقررة على الأفعال التى ترتكب بالمخالفة لأحكام هذا القانون متى ثبت علمه بها وكان إخلاله بواجبات الإدارة قد أسهم فى وقوع الجريمة. ويكون الشخص الاعتبارى مسئولاً بالتضامن مع المحكوم عليه عن الوفاء بما يحكم به من عقوبات مالية وتعويضات.
-
-### Substantive Article 14 — quarterly reporting
-تُعد الجهة الإدارية المختصة تقارير ربع سنوية عن موقف طلبات التقنين المقدمة إليها وفقًا لأحكام هذا القانون على النموذج الذى تحدده اللائحة التنفيذية لهذا القانون، تعرض على مجلس الوزراء ورئيس الجمهورية، على أن تحدد اللائحة التنفيذية لهذا القانون الجهة المعنية بتجميع تلك التقارير والإشراف على دورة طلبات التقنين ومتابعتها حتى انتهاء مراحلها.
-
-**Coverage update:** three further complete substantive articles (1, 13 and 14) are added. Law 168/2025 now has 12 complete provisions plus one partial Article5 in the structured text file. Articles9 and 10 and issuing Articles2–3 remain to be transcribed.
-
+**Source:** https://diwanalomran.com/fr/legal/2025-168/ — searchable text identifies Official Gazette issue 32 bis (و), 13 August 2025, and links an original-PDF download route. Articles 1, 13 and 14 are retained once in the final complete capture below.
 
 ### Official Gazette verification note — Regulation Article 20
 The official SIS-hosted Gazette issue 3 bis (أ), 18 January 2026 PDF (https://mediadr.sis.gov.eg/xmlui/bitstream/handle/123456789/118973/OG3_20260118_2885.pdf?isAllowed=y&sequence=2), lines 263–268, reads **تقارير سنوية** in Executive Regulation Article 20. The attached Form 3 at lines 516–555 is titled **تقرير ربع سنوي**. LAW HUB's secondary transcription uses the quarterly wording in Article 20 and therefore conflicts with the official Gazette PDF text layer. Preserve the Gazette wording and flag the internal Article20/Form3 discrepancy; do not harmonize the two.
