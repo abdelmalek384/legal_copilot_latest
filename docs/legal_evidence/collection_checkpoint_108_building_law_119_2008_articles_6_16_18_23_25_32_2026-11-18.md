@@ -3,7 +3,7 @@
 **Primary source:** Ministry of Housing-hosted Official Gazette reproduction, issue 19 bis (A), 11 May 2008:
 https://img.mhuc.gov.eg/images/83cf09a1-4aeb-42b5-bbba-f2384e0d214e.pdf
 
-The text below is transcribed from the government-hosted Gazette PDF's text layer. Articles 17 and 24 were already extracted in checkpoint 93 and are not repeated. Article 38–39 and selected later provisions were also already extracted there. This checkpoint adds **27 new article texts**.
+The text below is transcribed from the government-hosted Gazette PDF's text layer. Articles 17 and 24 were already extracted in checkpoint 93 and are not repeated. Article 38–39 and selected later provisions were also already extracted there. This checkpoint adds **25 new article texts**.
 
 ## Chapter I — Urban planning and development
 
@@ -135,7 +135,7 @@ The text below is transcribed from the government-hosted Gazette PDF's text laye
 
 ## Verification and count
 
-- **27 new distinct article texts:** Articles 6–16 (11), 18–23 (6), Article 25 (1), and Articles 26–32 (7).
+- **25 new distinct article texts:** Articles 6–16 (11), 18–23 (6), Article 25 (1), and Articles 26–32 (7).
 - Articles 17 and 24 were already extracted in checkpoint 93 and are not duplicated.
 - Source text-layer OCR is defective in parts of Articles 6, 11, 15, 19, 25 and 27. The text above normalizes obvious OCR errors and line wraps; check the PDF page images before production use.
 - Base 2008 text only. Later amendments, especially Law 23/2015 and later executive regulation amendments, must be versioned separately.
