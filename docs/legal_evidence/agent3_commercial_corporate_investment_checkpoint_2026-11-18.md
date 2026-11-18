@@ -2254,3 +2254,73 @@ FRA's official financial-leasing/factoring legislation catalogue and contemporan
 - Nine issuing provision units counted: Law 115/2015 Articles 1–5; Decision 108/2016 Articles 1–2; Decision 908/2020 Articles 1–2. The full substantive law and regulation articles are separately indexed from their full texts but not double-counted as issuing articles.
 - PM Decision 4666/2022 is retained as a pending source lead and is not counted.
 - Cumulative Agent 3 minimum: 139 unique instruments / 1,322 provision units.
+
+
+## 45. Capital Market Law 95/1992 — amendment instruments 27/2014, 17/2018 and 13/2022
+
+### Law 27/2014 — exchange listing fees and brokerage commission authority
+
+- Instrument: Presidential Decree-Law 27/2014 amending Capital Market Law 95/1992.
+- Official Gazette issue 14 (تابع), 3 April 2014.
+- Official FRA-hosted Gazette PDF: https://fra.gov.eg/wp-content/uploads/2025/01/alamiria_2014_27.pdf
+- Article 1 replaces Capital Market Law Article 24, authorizing the competent minister, on FRA Board proposal, to set brokerage commission rules and maximum service fees for exchange transactions; it also fixes annual securities-listing fees at 2 per thousand of company capital, capped at EGP 500,000, with no fee for government-issued securities.
+- Article 2 publication and commencement the day after publication.
+- This law is a direct statutory amendment; do not confuse the EGP 500,000 listing cap with later Article 24 fee amendments in Law 17/2018.
+
+### Law 17/2018 — extensive capital-market reform and sukuk framework
+
+- Instrument: Law 17/2018 amending Capital Market Law 95/1992.
+- Official Gazette issue 10 bis (هـ), 14 March 2018.
+- Full Arabic text transcription with Gazette metadata: https://www.laweg.net/framePlain.aspx?NID=137793&action=viewactivepages&itemid=111280&type=6
+- FRA official record: https://fra.gov.eg/regulations/قانون-رقم-17-لسنة-2018-بتعديل-بعض-أحكام-قانون/
+- Article 1 replaces multiple provisions: Articles 1(1), 4, 6(5–6), 8, 12, 15(2), 17(2), 23, 24, 26, 35, 36(3), 38, 41, 63, 64, 66 and 68(1).
+- Core changes include:
+  - Eliminates bearer shares and makes share capital shares registered/nominative.
+  - Broadens the public-offering and private-placement regulatory perimeter to securities and financial instruments.
+  - Strengthens financial-statement summaries and immediate disclosure of material events.
+  - Reworks mandatory tender offers and acquisition rules to protect minority shareholders.
+  - Enables issuance of bonds, financing sukuk and other securities with specific short-term issuance rules.
+  - Reconstitutes the investor-protection fund and creates a clearer framework for licensed exchanges, investment funds and futures exchanges.
+  - Expands penalties and actual-management liability.
+- Article 2 adds an entire sukuk framework, including Articles 14 bis through 14 bis 19 and related provisions on issuance, securitization companies, eligible beneficiaries, investor protections, custody, disclosure, tax treatment and redemption.
+- Article 3 provides for publication and commencement the day after publication.
+- **Exact Arabic text — revised Article 1 (registered shares):**
+> يقسم رأس مال شركة المساهمة وحصة الشركاء غير المتضامنين فى شركات التوصية بالأسهم إلى أسهم اسمية متساوية القيمة.
+- **Exact Arabic text — revised Article 4 (offerings):**
+> لا يجوز لأى شخص اعتبارى مصرى أو غير مصرى, أيًا كانت طبيعته وأيا كان النظام القانونى الخاضع له طرح أوراق مالية أو أدوات مالية فى اكتتاب عام للجمهور إلا بناءً على نشرة اكتتاب معتمدة من الهيئة، وعلى النماذج التى تعدها الهيئة, ووفقًا للشروط والإجراءات التى تحددها اللائحة التنفيذية لهذا القانون.
+- The 2018 law's sukuk articles are foundational for Islamic capital-market products. They must be cross-linked to the Executive Regulation 135/1993, FRA issuance rules and the later Law 13/2022 securitization/remote-meeting amendments.
+
+### Law 13/2022 — remote shareholder meetings and securitization of future cash flows
+
+- Instrument: Law 13/2022 amending Capital Market Law 95/1992.
+- Official Gazette issue 10 bis (ز), 14 March 2022; effective 15 March 2022.
+- Official FRA Arabic Gazette PDF: https://fra.gov.eg/wp-content/uploads/2022/03/قانون-رقم-13-2022.pdf
+- Article 1 adds new Article 10 bis, additional paragraphs to Articles 41 bis and 41 bis (1), and a second paragraph to Article 65 bis.
+- New Article 10 bis requires issuers listed on securities exchanges to make available electronic systems allowing shareholders to attend general meetings remotely, record meeting procedures and vote remotely, subject to FRA Board controls.
+- Article 41 bis additions permit securitization companies to issue tradable bonds to finance public or private legal persons against future cash flows, subject to eligibility requirements: cash flows must arise in favor of legal persons, be unconditional/unrestricted, and be free of current or future third-party rights; FRA Board issues implementing decisions.
+- Article 41 bis (1) adds the future-cash-flow securitization portfolio calculation/reporting and security/priority rules.
+- Article 65 bis adds a fine of EGP 20,000–100,000 for violating Article 10 bis.
+- Article 8 requires FRA Board to issue the implementing remote-meeting decision within six months; covered issuers must regularize within six months of that decision or before the first subsequent general meeting, whichever is later.
+- Article 3 publication/commencement the day after publication.
+- **Exact Arabic text — new Article 10 bis:**
+> تلتزم الجهة المقيد لها أوراق أو أدوات مالية ببورصات الأوراق المالية بإتاحة استخدام الأنظمة الإلكترونية التي تكفل لمساهميها حضور اجتماعات الجمعية العامة وإثبات إجراءاتها والتصويت عليها عن بعد، وذلك كله وفقاً للشروط والضوابط والإجراءات التي يصدر بها قرار من مجلس إدارة الهيئة.
+- **Exact Arabic text — future cash-flow securitization (Article 41 bis additions):**
+> ويجوز لشركة التوريق إصدار سندات قابلة للتداول توجه حصيلتها لتمويل الأشخاص الاعتبارية العامة أو الخاصة بعد موافقة السلطة المختصة بها مقابل ما ينشأ لصالح هذه الجهات من تدفقات نقدية مستقبلية، ويقصد بالتدفقات النقدية المستقبلية التدفقات المتوقع دخولها في المستقبل في ذمة المحيل طبقاً للمجرى العادي للأمور، ويشترط في تلك التدفقات الآتي:
+> 1- أن تكون ناشئة لصالح الأشخاص الاعتبارية العامة أو الخاصة.
+> 2- ألا تكون مقيدة أو مشروطة.
+> 3- أن تكون خالية من أي حقوق حالية أو مستقبلية للغير.
+
+### Consolidated text and currentness notes
+
+- FRA's June 2024 updated Law 95/1992 text contains 1,545 extracted lines and the full consolidated statutory text, including historical amendment footnotes for Laws 10/1995, 89/1996, 158/1998, 13/2004, 143/2004, 123/2008, 27/2014, 17/2018 and 13/2022.
+- Official PDF: https://fra.gov.eg/wp-content/uploads/2024/06/قانون-سوق-المال-بصيغة-WORD-4.pdf
+- FRA official catalogue confirms these eight direct amendments and lists the Executive Regulation Decision 135/1993 with 23 attached amendment instruments. Recent amendments include PM Decisions 1109/2022, 3456/2022, 4664/2022, 3045/2023, 2423/2024, 1539/2025 and 2482/2025.
+- The 2024 consolidated PDF is a useful official source for current text and amendment footnotes; it is not a substitute for retaining the separate Gazette copies of every amending instrument.
+- Law 123/2008, Law 143/2004, Law 13/2004, Law 158/1998, Law 89/1996 and Law 10/1995 remain listed as amendment leads; exact Gazette texts should be captured in later passes.
+- The Executive Regulation 135/1993 is currently updated in 2025. PM Decision 2482/2025 appears in the FRA/MIFT attachment list and should be captured as a priority next instrument; do not assume 2025 is the final amendment without checking Gazette updates through 18 November 2026.
+
+### Count increment
+
+- Three unique instruments with Arabic operative text surfaced: Laws 27/2014, 17/2018 and 13/2022.
+- Seven issuing provision units counted: Law 27/2014 Articles 1–2; Law 17/2018 Articles 1–3; Law 13/2022 Articles 1, 8 and 3 (the source PDF presents Article 8 before Article 3; preserve source numbering rather than renumbering).
+- Cumulative Agent 3 minimum: 142 unique instruments / 1,329 provision units.
