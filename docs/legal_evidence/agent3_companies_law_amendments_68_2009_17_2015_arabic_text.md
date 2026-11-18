@@ -77,3 +77,14 @@ The earlier statement that Law 17/2015 was available only from a secondary legal
 
 ## Law 68/2009 source status remains
 The exact Article 116(1) replacement is captured from a secondary-hosted PDF/transcription. The original Gazette issue 14 bis PDF remains outstanding.
+
+
+## Primary-source upgrade — Law 68/2009
+
+Official MIFT / Amiri Press text page obtained:
+https://www.mift.gov.eg/legislation/download/228
+
+The official page reproduces Law 68/2009 and its two issuing articles, dated 7 April 2009. It replaces Article 116(1) with:
+> "يكون للشركة ذات المسئولية المحدودة رأس مال محدد بمعرفة الشركاء في عقد تأسيس الشركة ويقسم إلى حصص متساوية، ولا يسرى هذا الحكم على الشركات القائمة وقت العمل بهذا القانون."
+
+This supersedes the prior secondary-only provenance for the operative text. The original Gazette metadata is issue 14 bis, 8 April 2009; effective 9 April 2009. Status: official MIFT/Amiri Press reproduction; original Gazette page image/hash still not independently checked.
