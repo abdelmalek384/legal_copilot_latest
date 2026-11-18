@@ -2066,3 +2066,8 @@ No original Gazette binary hashes were added; no lawyer verification or commerci
 ### Remote-work Decision 982/2026 currentness lead
 
 Cabinet approved a *draft* decision to halt PM Decision 982/2026 at its 30 September 2026 meeting; official Cabinet announcement: https://cabinet.gov.eg/Meeting/Details/11910. The later publication of a final signed decision and its Gazette issue was not located in this pass. Accordingly, Decisions 1305, 1572, 2033, 2377 and 2590 remain separate historical continuation instruments; do not label the September continuation as current after September or treat Cabinet approval of a draft as a published repeal. Continue searching for the final Gazette instrument.
+
+
+### Further acquisition — PM Decision 1440/2026 (mineral resources regulation)
+
+Added **EG-0304**, Prime Minister Decision 1440/2026, as an executive-regulation amendment to PM Decision 108/2020 (Mineral Resources Executive Regulation). Official Gazette issue 18 مكرر (ج), 6 May 2026; effective 7 May 2026. The Amiri Press DSpace issue record identifies the official Gazette publisher and lists a 309.01 KB bundle; the Egyptian Mineral Resources Authority portal also lists the decision. Full five-article Arabic text, 14 replacement regulation provisions, inserted definition/application/register entries, new Article107 for assay laboratories, and repeal of Article44 are transcribed in the Arabic text tranche. The mineral royalty table is transcribed but requires page-image verification. No original binary/hash archived.
