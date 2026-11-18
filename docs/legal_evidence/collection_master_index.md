@@ -791,3 +791,13 @@
 - The full searchable text of Executive Regulation 238/2011 now exposes inserted Articles 62 bis/6 and 62 bis/7 from Decision 3217/2022. Both provisions transcribed in Agent 3 file: the Higher Committee's approval/contract route for private-sector initiated proposals and the originator's preferential right (up to a 10% price gap) or alternative preference mechanism.
 - Article 62 bis/7's second alternative is truncated in the current searchable excerpt; full Gazette PDF/page-image verification remains mandatory before implementing the preference.
 - **Updated Agent 3 minimum:** 69 distinct instruments with some Arabic text surfaced; 574 article/provision text units; 13/13 families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
+
+
+### Research Agent 3 — Central Bank Law 194/2020 full text resolved
+
+- Full searchable Arabic text of Law 194/2020 through eight issuing provisions and substantive Articles 1–241 (249 numbered provisions total) retrieved. Official Gazette issue 37 bis (و), 15 Sep 2020. Official CBE banking-laws index and FRA source record confirm the statute; the full searchable transcription is from a secondary legal publisher reproducing the Gazette and reporting article-by-article image review.
+- Fifteen additional provisions transcribed in Agent 3 file, including CBE auditor review, corrective measures, early intervention, resolution valuation, FRA consent in bank resolution, payment-system access, direct debit, penalties, judicial officers, prosecution request and settlement.
+- Issuing Article 2 explicitly imports Companies Law 159/1981 as the default corporate law for banks/covered companies where Law 194 and its instruments are silent; CBE is the competent administrative authority and the Governor the competent minister for supervised entities.
+- CBE's official Banking Laws index lists Law 194/2020 but no single comprehensive current Executive Regulation of Law 194/2020; the framework is supplemented by CBE Board regulations/circulars. Do not invent an Executive Regulation number.
+- The full-text source reports no amending law identified through 14 Oct 2026; 2025–2026 CBE circulars are subordinate instruments, not amendments to the statute.
+- **Updated Agent 3 minimum:** 69 distinct instruments with some Arabic text surfaced; 817 article/provision text units; 13/13 families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
