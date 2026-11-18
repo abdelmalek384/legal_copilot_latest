@@ -1,17 +1,31 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (expanded through checkpoint 147)
+**Last updated:** 2026-11-18 (expanded through checkpoint 158)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
 ## Current progress
 
 - **Overall corpus coverage estimate: approximately 2% (provisional).**
-- The estimate is deliberately conservative. Most work to date is source discovery, selected search-indexed text inspection and preservation of research notes. We do not yet have a validated count of unique law articles ingested into the product's searchable corpus.
+- The estimate is deliberately conservative and has no validated national denominator. The defined core extraction set now contains **1,370 unique non-repealed article provisions** (Civil Code 1,093; Evidence Law 163; Building Law 114). Article-number extraction is complete for those three statutes, but source-image, amendment-version and currentness validation remain incomplete.
+- A further **200 numbered article headings** are identified in searchable texts for Laws 114/1946, 142/1964, 68/1947 and 70/1964; they are not yet normalized into historical article versions or current operative provisions. Law 114's 70 headings comprise 61 ordinary articles plus nine inserted bis provisions.
+- Decision 144/2009 has a full text reproduction with 185 base numbered articles; a secondary consolidated text claims 198 current provisions after amendments, a count still to be reconciled.
 - Do not increase overall coverage based on number of URLs, catalogue records, or checkpoint files.
 - Lawyer-verified legal content: 0% under the project's current sign-off rule.
 - Legal-source rights/permission: not presumed. Official public accessibility does not automatically establish commercial indexing, excerpt-display or redistribution rights.
 - Machine labels must remain `source-matched, not lawyer-reviewed` where applicable; no `verified` label without qualified Egyptian lawyer approval.
+
+## Current audited repository snapshot — checkpoint 158 (18 November 2026)
+
+- Acquisition register: **241 non-header rows**, 241 unique IDs, no duplicate IDs; EG-0076–EG-0079 remain unresolved historical gaps.
+- Source-permission register: **63 unique source records**. These are assessments, not permissions granted; collection and commercial reuse remain source-specific.
+- Completed core unique article provisions: **1,370** (Law 131/1948: 1,093; Law 25/1968: 163; Law 119/2008: 114).
+- Additional searchable article-heading counts: Law 114/1946: 70 (61 ordinary + 9 bis); Law 142/1964: 72 (6 issuing + 66 substantive); Law 68/1947: 14; Law 70/1964: 44. These 200 entries are not fully versioned or validated.
+- Building Law Executive Regulation Decision 144/2009: 185 base numbered articles; later consolidated count of 198 provisions remains unverified.
+- Original Amiri Press digital binaries obtained for the four historical priority statutes: **0**. Secondary-hosted printed Gazette scan reproductions visually inspected: 26 pages across Laws 114/1946, 142/1964, 68/1947 and 70/1964.
+- Lawyer verification: **0**. Commercial reuse permissions established by this research: **0**.
+- Provisional completion estimates: defined core article extraction **100%** at article-number level; broader civil/property/contract corpus **15%**; whole Egyptian legal corpus **2%**.
+- Instrument-category cumulative totals remain separate from the 241-row catalogue count; no claim that 241 rows equal 241 base laws, amendments, regulations or full texts.
 
 ## Collection checkpoints
 
