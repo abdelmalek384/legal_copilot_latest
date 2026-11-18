@@ -2202,6 +2202,54 @@
       "terms_checked_on": "2026-11-18",
       "bulk_download_or_api": "Single direct PDF URL; no bulk/API permission established",
       "required_next_action": "Review Library of Congress terms and any restrictions attached to the Cairo Field Office scan; obtain permission before republication or commercial reuse; preserve issue/page citations; do not remove stamps or watermarks."
+    },
+    {
+      "source_id": "EG-SHARKIA-GOV-LAW88-2025",
+      "authority": "Sharkia Governorate official legislation portal",
+      "source_page": "https://projects.sharkia.gov.eg/legislations/file/183",
+      "material_types": [
+        "Law88/2025 Unified National Real Estate Identification Number Database — Arabic statutory text and government-hosted PDF/reproduction"
+      ],
+      "access_status": "Government-hosted legislation page accessible; complete Arabic law text reproduced; source identifies Official Gazette issue24 bis, 17 June 2025.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://sharkia.gov.eg/",
+      "permission_evidence": "Government publication/access does not by itself establish permission to bulk archive, redistribute, OCR-republish or commercially reuse the PDF/text. No specific licence for this item identified.",
+      "terms_checked_on": "2026-11-18",
+      "bulk_download_or_api": "Single legislation page/PDF; no bulk/API permission established",
+      "required_next_action": "Check portal terms and request written permission before republication or commercial reuse; compare text with Official Gazette scan."
+    },
+    {
+      "source_id": "EG-ELMODAWANA-LAW67-2021",
+      "authority": "El Modawana Egyptian legal text website",
+      "source_page": "https://www.elmodawanaeg.com/قانون-رقم-67-لسنة-2021-بتعديل-بعض-أحكام-القانون-رقم-70-لسنة-1964-بشأن-رسوم-التوثيق-و-الشهر/",
+      "material_types": [
+        "Law67/2021 two-article Arabic transcription amending Law70/1964 Table(B)"
+      ],
+      "access_status": "Searchable full two-article Arabic text accessible; linked one-page PDF located; official Gazette DSpace issue23 bis metadata corroborates publication.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "No affirmative licence identified. Used as secondary transcription only; official Gazette PDF is separately identified through Amiri Press DSpace.",
+      "terms_checked_on": "2026-11-18",
+      "bulk_download_or_api": "Not established",
+      "required_next_action": "Compare linked PDF and official Gazette bundle; seek written permission before commercial reuse or redistribution."
+    },
+    {
+      "source_id": "EG-ALAMIRIA-DECISION1301-2025",
+      "authority": "Amiri Press official searchable text portal",
+      "source_page": "https://www.alamiria.com/Sec/TashTxt?id=EVD%2FSRNiu48%3D",
+      "material_types": [
+        "Justice Minister Decision1301/2025 amending Decision777/1974 Article1"
+      ],
+      "access_status": "Search index exposes full two-article Arabic operative text; direct page fetch returned HTTP 502; SIS issue59 record corroborates publication and lists Decision1301/2025.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://www.alamiria.com/",
+      "permission_evidence": "Official public text access is not a licence for bulk extraction, republication or commercial reuse. No explicit permission located.",
+      "terms_checked_on": "2026-11-18",
+      "bulk_download_or_api": "Single text route; no bulk/API permission established",
+      "required_next_action": "Retry official text/PDF retrieval; acquire issue59 Gazette page image; confirm applicable reuse terms."
     }
   ]
 }
