@@ -2271,3 +2271,9 @@ This is now a complete local searchable text transcription sourced from LAW HUB'
 ### Decision3530/2026 — local Arabic extraction expanded
 
 Added a dedicated tranche containing all four issuing articles, all 12 general controls, the monthly savings/reporting matrix, selected restrictions by expenditure chapter and investment exceptions. The official Amiri Press text is indexed, but its page currently returns intermittent 502 responses. The detailed annex has not yet been fully transcribed locally; inventory status remains partial for that reason.
+
+
+### Decision2170/2026 — full text transcribed
+
+Added a complete three-article Arabic transcription of PM Decision2170/2026, including the revised minimum-wage table (EGP14,500 to EGP8,000 by grade) and the replacement complementary-incentive rule. Official Gazette issue28 bis, 13 July 2026; the wage schedule is expressly effective from 1 July 2026. The text also flags a secondary-source discrepancy in the preceding amendment number: the Amiri Press indexed text says Decision2594/2025.
+[Decision2170 full Arabic tranche](acquisition_tranche_pm_decision2170_2026_minimum_wage_arabic_text.md)
