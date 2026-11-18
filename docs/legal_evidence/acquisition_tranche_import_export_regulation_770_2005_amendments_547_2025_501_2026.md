@@ -1,0 +1,94 @@
+# Arabic text acquisition — Amendments to Import/Export Regulation 770/2005: Decisions 547/2025 and 501/2026
+
+**Capture date:** 18 November 2026  
+**Parent framework:** Law 118/1975 and Ministerial Decision 770/2005 (implementing import/export rules and inspection/control procedures).  
+**Method:** visually inspected two-page Gazette scan reproductions hosted by Al-Masdar, cross-checked against GOEIC official catalogue and Egyptian Customs circular listings. These are secondary-hosted page images, not publisher-hosted Amiri Press originals. No local file bytes/hash, lawyer verification or commercial reuse permission claimed.
+
+## 1. Decision 547/2025 — replacement of Article 69(1)
+
+**Instrument:** قرار وزير الاستثمار والتجارة الخارجية رقم 547 لسنة 2025.  
+**Date of decision:** 27 November 2025.  
+**Gazette:** الوقائع المصرية، العدد 277 تابع (ب)، 9 December 2025.  
+**Effective date:** 10 December 2025 (the day after publication, expressly stated in Article 2).  
+**Parent regulation:** Ministerial Decision 770/2005, the executive rules to Law 118/1975.  
+**Page-image reproduction:** https://www.almasdar.com/Upload/libfiles/40/6/445.jpg and https://www.almasdar.com/Upload/libfiles/40/6/446.jpg  
+**Text page:** https://www.almasdar.com/164476  
+**GOEIC listing:** https://www.goeic.gov.eg/ar/laws-and-decisions/list
+
+### Preamble / source correction
+The Gazette page identifies the underlying regulation as Ministerial Decision **770/2005**. GOEIC's listing title contains a “770/2000” typo; use 770/2005 when identifying the legal parent, subject to the official page image.
+
+### Article 1 — exact Arabic text
+
+**المادة الأولى**
+> يستبدل بنص الفقرة الأولى من المادة (69) من لائحة القواعد المنفذة لأحكام القانون رقم 118 لسنة 1975 فى شأن الاستيراد والتصدير ونظام إجراءات فحص ورقابة السلع المستوردة والمصدرة الصادرة بقرار وزير التجارة الخارجية والصناعة رقم 770 لسنة 2005؛ النص الآتى:
+
+**مادة (69/ فقرة أولى)**
+> مع مراعاة أحكام المادة (15) من هذه اللائحة، يتعين للإفراج عن السلع المدرجة بالملحق رقم (8) المرفق بهذه اللائحة استيفاء الشروط والإجراءات الواردة فى القسم الثانى من هذه اللائحة، ويستثنى من ذلك ما ورد بشأنه نص خاص بهذه اللائحة وما يستورد للاستخدام الخاص أو الاستعمال الشخصى ومستلزمات الإنتاج التى تستوردها المشروعات الإنتاجية بأسمائها ولحسابها وفى حدود الكميات التى تغطى احتياجاتها الفعلية.
+
+**المادة الثانية**
+> ينشر هذا القرار فى الوقائع المصرية، ويعمل به اعتبارًا من اليوم التالى لتاريخ نشره.
+
+صدر فى 27/11/2025 — وزير الاستثمار والتجارة الخارجية / حسن الخطيب.
+
+### Version effect
+- Replaces only the first paragraph of Article 69 of Decision 770/2005.
+- The new paragraph requires compliance with Section II procedures for release of goods listed in Annex 8, subject to express exceptions for special provisions, private/personal use and production inputs imported by productive projects in their own names/accounts within actual requirements.
+- Preserve the prior Article 69(1) text as a separate historical version; do not overwrite the entire Article 69 or Annex 8.
+
+## 2. Decision 501/2026 — replacement of Annex 2 item 7 (metal scrap and used railway rails)
+
+**Instrument:** قرار وزير الاستثمار والتجارة الخارجية رقم 501 لسنة 2026 بتعديل بعض أحكام لائحة القواعد المنفذة لأحكام القانون رقم 118 لسنة 1975 فى شأن الاستيراد والتصدير ونظام إجراءات فحص ورقابة السلع المستوردة والمصدرة.  
+**Decision date:** 11 October 2026 (as reported by one source; official Gazette image gives the date at signature).  
+**Gazette:** الوقائع المصرية، العدد 225 تابع، 12 October 2026.  
+**Effective date:** the precise operative commencement clause is visible in the second page image; Article 2 says publication and application from the day following publication. Therefore, 13 October 2026, subject to original Gazette verification.  
+**Parent regulation:** Decision 770/2005, implementing Law 118/1975.  
+**Page-image reproduction:** https://www.almasdar.com/WebP/libfiles/46/2/576.webp and https://www.almasdar.com/WebP/libfiles/46/2/577.webp  
+**Text page:** https://www.almasdar.com/174913  
+**GOEIC official listing:** https://www.goeic.gov.eg/ar/laws-and-decisions/list  
+**Customs implementation circular:** Import Circular 30/2026, Egyptian Customs listing dated 18 October 2026: https://customs.gov.eg/Legislations/Manshorat?categoryId=4
+
+### Article 1 — replacement instruction (Arabic)
+
+**المادة الأولى**
+> يُستبدل بالبند رقم (7) من الملحق رقم (2) المرفق بلائحة القواعد المنفذة لأحكام القانون رقم 118 لسنة 1975 فى شأن الاستيراد والتصدير ونظام إجراءات فحص ورقابة السلع المستوردة والمصدرة المشار إليها، البند الآتى:
+
+**البند رقم (7) — الصنف**
+> خردة وفضلات المعادن بما فى ذلك قضبان السكك الحديدية المستعملة.
+
+**الشروط المقررة — text recovered from the Gazette page image**
+> الحصول على تصريح استيراد سنوى مسبق لصنف مخلفات غير خطرة (خردة معادن) من جهاز تنظيم إدارة المخلفات.
+>
+> قصر استيراد الخردة على المصانع المرخص لها من الهيئة العامة للتنمية الصناعية باستخدام الخردة كمستلزم إنتاج فى العملية الصناعية، أو على مصانع إعادة تدوير الخردة المرخصة.
+>
+> ألا تشتمل على قطع غيار السيارات المستعملة.
+
+**Additional release conditions — visible on page 3**
+> يشترط للإفراج عن الشحنة ما يأتى:
+>
+> - تخريد قضبان السكك الحديدية قبل الإفراج.
+> - فحص الشحنة إشعاعيًا من قبل جهة الرقابة النووية والإشعاعية وفق النص الوارد بالصفحة المصورة.
+> - أن تكون الشحنة مصحوبة بالمستندات والشهادات الرقابية المبينة فى البند المستبدل، بما يثبت خلو الأصناف من المواد الخطرة/المحظورة وفق الشهادات المعتمدة.
+>
+> **Transcription qualification:** the last two release-condition subparagraphs are partially legible in the low-resolution page image. Their exact Arabic must be rechecked against a higher-resolution official scan before using as verbatim text. The first three eligibility conditions above are legible and transcribed.
+
+**المادة الثانية**
+> ينشر هذا القرار فى الوقائع المصرية، ويعمل به من اليوم التالى لتاريخ نشره.
+
+صدر فى 11/10/2026 — وزير الاستثمار والتجارة الخارجية / محمد فريد صالح.
+
+### Version effect and administrative implementation
+- Replaces Annex 2 item 7 in Decision 770/2005. The subject item covers metal scrap/waste and used railway rails.
+- It requires a prior annual import permit for non-hazardous metal-scrap waste from the Waste Management Regulatory Authority.
+- It confines importation to IDA-licensed industrial factories using scrap as production inputs or licensed scrap-recycling plants.
+- It excludes used car spare parts from the covered shipment.
+- The Customs Authority issued Import Circular 30/2026 on 18 October 2026 to implement Decision 501/2026. Treat the circular as an administrative implementation instrument, not a substitute for the ministerial decision.
+- Preserve the previous Annex 2 item 7 as a historical version and keep the Customs circular as a distinct instrument.
+
+## 3. Source and authentication controls
+
+- GOEIC official catalogue lists Decisions 547/2025 and 501/2026 and identifies them as amendments to the import/export rules. The catalogue is a locator, not the Gazette binary.
+- The two-page images for Decision 547 and Decision 501 reproduce Gazette page mastheads, issue/date and operative text, but are hosted by a secondary publisher. They are not Amiri Press-hosted original PDFs.
+- Decision 547's source page confirms Gazette issue 277 supplement (ب), 9 Dec 2025, and the next-day commencement clause.
+- Decision 501's page images show issue 225 supplement, 12 Oct 2026, and the next-day commencement clause; Article 1's replacement Annex 2 item 7 is visually available. The two long release-condition lines need higher-resolution review.
+- No original Amiri Press PDF bytes, publisher certificate, SHA-256 hash or explicit commercial/bulk reuse licence has been acquired.
