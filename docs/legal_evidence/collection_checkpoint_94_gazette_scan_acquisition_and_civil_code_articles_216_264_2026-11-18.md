@@ -204,3 +204,17 @@ Checkpoint 116 performed a repository-wide audit of explicit Arabic article head
 - Property-relevant provisions include Article 803 (vertical extent and possible separation of surface ownership), Article 807 (neighbour nuisance), Article 812 (right of passage for landlocked land), Articles 814–818 (party walls), Articles 819–822 (openings and harmful premises), and Articles 823–824 (restraints on alienation).
 - Insurance provisions in checkpoint 99 are historical base text; Article 748 expressly directs other insurance rules to special legislation. The current Insurance Law and FRA rules require separate reconciliation.
 
+## 13. Further Civil Code extraction — Articles 825–861
+
+Checkpoint 101 adds **37 distinct provisions**, Articles 825–861, covering undivided co-ownership, management and supermajority decisions, partition and sale, partition by use, family ownership and multi-storey/multi-apartment ownership.
+
+Cumulative Civil Code extraction stream: **596 distinct provisions** (67 previously recorded + 529 newly transcribed in this continuation). This remains a non-consecutive base-text set, not a complete or verified current consolidation.
+
+Particularly relevant provisions:
+- Article 833: limited statutory recovery right for a co-owner where another co-owner sells an undivided share in movable property or an aggregate of assets to an outsider.
+- Articles 834–845: right to seek partition, procedure, sale where physical division is unsuitable, creditor intervention and partition warranty/avoidance.
+- Articles 856–858: common ownership of land and common building parts, non-severability, use, modification consent and maintenance cost allocation in multi-storey property.
+- Articles 859–861: upper/lower owner structural duties and prohibition on harmful vertical extension.
+
+The base text must be reconciled with subsequent condominium/building legislation, registration requirements and the current procedural framework. OCR/image review is outstanding.
+
