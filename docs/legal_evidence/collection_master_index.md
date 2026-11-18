@@ -547,7 +547,7 @@
 - Inspected the existing national source register, Phase 2 metadata-only document inventory, source-evidence register, source-permission register and initial statute acquisition register before updating.
 - Extended `data/research/egypt_initial_statute_acquisition_register_2026-11-17.csv` with 29 unique instrument records (EG-0144–EG-0172) for civil/property registration, notarization, desert land, expropriation, irrigation and mortgage-finance texts.
 - Upgraded existing EG-0070 Law 148/2001 from the earlier ETA PDF with no readable text layer to the official FRA-hosted Gazette reproduction with searchable Arabic text.
-- CSV validation: 178 instrument rows, 12 columns per row, no duplicate instrument IDs, and no malformed rows. This is a register count, not a count of unique full legal texts or articles.
+- CSV validation: 187 instrument rows, 12 columns per row, no duplicate instrument IDs, and no malformed rows (latest validation after EG-0189–EG-0191 additions). This is a register count, not a count of unique full legal texts or articles.
 - All new rows retain `lawyer_reviewed=false` and `rights_cleared=false`; no collection or commercial reuse permission is inferred. Phase 2 production inventory and source-permission register were not promoted or altered because their permission/review gates remain unknown.
 
 ### Research Agent 1 — desert-land amendment and jurisdiction supplement
