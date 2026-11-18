@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (expanded through checkpoint 131)
+**Last updated:** 2026-11-18 (expanded through checkpoint 132)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -1083,3 +1083,6 @@
 
 
 | checkpoint 112 — Agent 3 Commercial Code 17/1999 corpus | Acquired full ETA-hosted Arabic Commercial Code (3,759 extracted lines) and Arabic amendment text for Laws 168/2000, 150/2001, 158/2003 and 156/2004; captured cheque commencement history, Article 503/504/531/537/544 amendments and 2018 bankruptcy repeal interaction; cumulative Agent 3 minimum 109 instruments / 1,236 provision units |
+
+
+| checkpoint 113 — Agent 3 Investment Law 72/2017 amendment chain | Added official Arabic source routes for Law 72/2017 and Decision 2310/2017; captured Decisions 2300/2022, 2140/2023 and 1203/2024, Law 160/2023 including Article 11 bis cash incentive and golden-license changes; recorded 10 Aug 2023 corrigendum as unresolved text lead; cumulative Agent 3 minimum 115 instruments / 1,251 provision units |
