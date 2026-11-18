@@ -3,6 +3,8 @@
 **Date:** 18 November 2026  
 **Priority:** original Gazette PDF identification; full Arabic text capture; commencement/deadline reconciliation.
 
+**Superseding note (checkpoint 227):** PM Decision 200/2026 and all 20 articles of its Executive Regulation have since been transcribed into the repository. See checkpoint 227. The original DSpace PDF bundle remains unarchived locally.
+
 ## 1. Gazette originals identified in the Amiri Press digital repository
 
 The DSpace catalogue identifies the following as original Gazette bundles published by the Amiri Press. Their catalogue records and file metadata are captured here. The PDF binaries have **not** yet been downloaded into the GitHub repository or hashed locally; do not mark the file-acquisition task as complete until that occurs.
