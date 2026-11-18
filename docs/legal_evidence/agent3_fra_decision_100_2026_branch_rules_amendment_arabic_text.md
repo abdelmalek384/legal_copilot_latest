@@ -41,3 +41,11 @@
 
 - Direct official FRA two-page Gazette PDF, Articles 1–2 fully transcribed.
 - Machine status: `source-matched, not lawyer-reviewed`; no lawyer sign-off or commercial republication rights implied.
+
+
+## Official PDF verification completed — 18 November 2026
+
+- Opened the direct FRA-hosted two-page Gazette PDF; searchable text confirms the printed number (100/2026), Gazette issue 130 تابع (أ), 17 June 2026, printed pages 3–4, and the complete preamble and two replacement clauses. The original PDF is no longer treated as an outstanding acquisition blocker.
+- Official FRA/SIS reporting corroborates the amended regional-supervision rule as one region per five finance branches, with both the risk officer and credit officer permitted to supervise up to four regional areas each. However, the PDF image endpoint rejected page-image access in this pass and the searchable text layer appears to merge/omit a conjunction in «مسئول مخاطر ائتمان ... لكل منهما». Preserve the literal OCR text above and do not silently normalize the phrase until page image or a signed Gazette copy is accessible.
+- FRA annual report 2026 Q2 records the Decision 100/2026 change and its operative conditions: executed judgments/settlements/removal of measure grounds plus three months; non-removable measure causes require a waiting period from three months up to three years depending on severity; companies must be current on regulatory reports and annual/periodic statements and resolve examination/compliance findings. Source: https://fra.gov.eg/wp-content/uploads/2026/09/%D8%A7%D9%84%D8%B1%D8%A8%D8%B9-%D8%A7%D9%84%D8%AB%D8%A7%D9%86%D9%8A-2026-2.pdf
+- Official PDF text-layer evidence is primary-source matched; image-level exact punctuation/role phrase remains outstanding. Machine status remains source-matched, not lawyer-reviewed.
