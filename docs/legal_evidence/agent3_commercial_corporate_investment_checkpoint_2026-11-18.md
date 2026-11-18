@@ -1392,3 +1392,44 @@ The same Article 240 bis further permits electronic remote agenda presentation a
 - Full Law 72 and 133-article Regulation PDFs are located but not yet fully ingested article-by-article in this checkpoint. Their complete ingestion is a substantial next task; the count above does not pretend all 227 substantive articles have been parsed.
 - The corrigendum PM Decision 1/2023 is recorded as a lead, not counted until its operative correction text is extracted.
 - Cumulative Agent 3 minimum: 115 unique instruments / 1,251 provision units.
+
+
+## 35. Trade Register — Ministerial Decision 41/2020 and beneficial-owner record
+
+### Gazette-original source acquired
+
+- Instrument: Minister of Supply and Internal Trade Decision 41/2020, dated 1 March 2020.
+- Official Gazette: الوقائع المصرية issue 56 (تابع), 8 March 2020.
+- ITDA official Arabic PDF: https://www.itda.gov.eg/pdf/41.pdf
+- ITDA official Commercial Registry legislation catalogue lists Decision 41/2020 as “regarding registration in the beneficial-owner register”: https://www.itda.gov.eg/sgl.aspx
+- Gazette page images directly inspected: PDF pages 2–4 (zero-indexed pages 0–2). This is stronger provenance than a secondary transcription.
+
+### Operative text
+
+**Article 1** adds new Articles 13 bis-1, 13 bis-2 and 13 bis-3 to Law 34/1976.
+
+**New Article 13 bis-1:**
+> يلتزم كل من يتم قيده في السجل التجاري بأن ينشئ لديه سجل خاص يسمى سجل المستفيدين الحقيقيين - تقيد فيه أسماء وبيانات المستفيدين الحقيقيين لديه من ملكية المنشأة التجارية أو السيطرة عليها سواء كانوا شخصاً اعتبارياً أو ترتيباً قانونياً ، على أن يتم تحديث بياناته بمجرد نشوء الواقعة الموجبة لتعديلها ويتم إخطار السجل التجاري بها فور وقوعها ، ولمأموري الضبط القضائي الاطلاع على ذلك السجل حال طلبه .
+
+**New Article 13 bis-2:**
+> تدرج بيانات السجل التجاري بنداً خاصاً يثبت به أسماء المستفيدين الحقيقيين وجنسيتهم والرقم القومي أو جواز السفر للأجنبي وذلك من واقع سجل المستفيدين الحقيقيين وعلى المقيدين بالسجل التجاري الاحتفاظ بهذا السجل طوال فترة مزاولة النشاط ولمدة خمس سنوات من تاريخ توقف النشاط أو محو السجل التجاري ، وتعد البيانات موضوع القيد في سجل المستفيدين الحقيقيين من البيانات الجمهورية في طلبات القيد أو التأشير في السجل التجاري .
+
+**New Article 13 bis-3 (core requirements):**
+> يتبع في مسك سجل المستفيدين الحقيقيين الأحكام الخاصة بالدفاتر التجارية وخاصة من حيث وجوب أن تكون هذه الدفاتر خالية من كل فراغ أو بياض أو كتابة في الحواشي أو كشط أو تحشير ، ويجب أن تكون صفحات هذه السجلات مرقومة بالتسلسل ويتعين قبل استعمالها أن تختمها إدارة السجل التجاري المختصة ، ولا يجوز تسجيل دفتر جديد إلا بعد تقديم الدفتر السابق للمؤشر بانتهائه أو قفله بعد آخر قيد .
+
+**Article 2** publication and commencement from the day following publication.
+
+### Legal and data-model implications
+
+- This is a mandatory company/trader-level record duty, not merely a voluntary disclosure form. The register records natural persons who ultimately benefit from ownership or control, including control through a legal person or legal arrangement.
+- Data is to be updated when a triggering event occurs and reported to the Commercial Registry immediately; the record must be retained throughout activity and five years after cessation or deletion from the Commercial Registry.
+- The amendment requires the Commercial Registry data to carry a special beneficial-owner field. The text says the relevant information is treated as public data in commercial-register applications/annotations; implement access controls and lawful disclosure logic with care rather than assuming all underlying source documents are public.
+- The record-keeping rules borrow the formal requirements for commercial books: no blanks/erasures, sequential pagination, official stamping before use, and closure of the prior book before a new one.
+- Decision 41/2020 should be cross-linked with Law 198/2020 and the Commercial Registry Law, and with AML/CFT beneficial-ownership obligations under other statutes and regulations. Do not collapse these separate legal bases into one.
+- This 2020 decision adds provisions directly to Law 34/1976; it is not the Executive Regulation Decision 106/2018.
+
+### Count increment
+
+- One unique instrument with Arabic operative text surfaced: Decision 41/2020.
+- Two issuing provisions counted (Articles 1–2); Article 1 contains three inserted statutory articles, each separately indexed in the legal text.
+- Cumulative Agent 3 minimum: 116 unique instruments / 1,253 provision units.
