@@ -283,3 +283,33 @@
 6. Decision 11264/2016 amends the separate Executive Regulation of Law 142/1964 (Decision 825/1975); it is not part of the Law 68/1947 notarization family.
 7. Do not infer current force solely from a consolidated secondary page. Confirm later amendment instruments, including 712/2008, 9200/2015 and 4730/2020, and compare page images.
 8. No lawyer verification, authenticated original Gazette binary, or commercial reuse permission is claimed.
+
+
+## I. Justice Minister Decision 712/2008 — amendment of Article 18 bis, second paragraph
+
+**Decision date:** 26 January 2008. **Publication:** الوقائع المصرية, issue 28, 4 February 2008. **Effect:** date of publication.  
+**Source tier:** secondary text reproduced in the technical circular and legal-library sources; no Gazette page image obtained. Sources: https://lawyeregypt.net/منشور-فني-شهر-عقارى-رقم-3-لسنة-2008-بشأن-المحررات-الموثقة-أمام-السلطات-الأجنبية-والسفارات/ and https://ahmedazimelgamel.blogspot.com/2017/11/3-24-2-2008.html.
+
+**المادة الأولى** — يستبدل بنص الفقرة الثانية من المادة رقم 18 مكررا من اللائحة التنفيذية للقانون رقم 68 لسنة 1947 بشأن التوثيق النص الآتي: «المحررات الموثقة أمام السلطات الأجنبية والسفارات والقنصليات المصرية».
+
+**المادة الثانية** — ينشر هذا القرار في الوقائع المصرية ويعمل به من تاريخ نشره.
+
+## J. Justice Minister Decision 4807/2008 — addition to Article 18 bis and replacement of Article 19
+
+**Decision date:** 4 June 2008. **Publication:** الوقائع المصرية, issue 137, 15 June 2008. **Effect:** date of publication.  
+**Source tier:** complete secondary transcription in Lawyer Egypt technical circular page and Riwaq al-Jamal; no original Gazette binary/page image. Sources: https://lawyeregypt.net/منشور-فني-شهر-عقارى-رقم-8-لسنة-2008-بشأن-التصديق-على-التوقيعات-أمام-السفارات-والقنصليات-المصرية/ and https://ahmedazimelgamel.blogspot.com/search?by-date=false&max-results=7&start=13&updated-max=2017-11-21T14%3A31%3A00-02%3A00.
+
+**المادة الأولى** — تضاف إلى المادة 18 مكررا من اللائحة التنفيذية للقانون رقم 68 لسنة 1947 بشأن التوثيق فقرة ثالثة نصها الآتي: «(3) المحررات العرفية المصدق على توقيعات ذوي الشأن فيها أمام السلطات الأجنبية والسفارات والقنصليات المصرية».
+
+**المادة الثانية** — يستبدل بنص المادة 19 من اللائحة سالفة الذكر النص الآتي:
+«مادة (19) تنسخ صور من المحررات لتسليمها لأصحاب الشأن بعد دفع الرسم ويوضح على هذه الصورة رقم التوثيق أو التصديق وتاريخه وصيغة التسليم وتاريخها ويوقعها الموثق ويوضع عليها خاتم المكتب ويؤشر الموثق بالتسليم على أصل المحرر ويوقع هذا التأشير».
+
+**المادة الثالثة** — ينشر هذا القرار في الوقائع المصرية ويعمل به من تاريخ نشره.
+
+## K. Justice Minister Decision 6199/2007 — reported addition of Article 34 bis
+
+**Source tier:** secondary consolidated transcription only; instrument-specific original text, exact issue/date and Gazette scan not yet acquired. The consolidated text attributes the following provision to Decision 6199/2007; do not infer more metadata from that attribution. Source: https://adnanlawyer.online/القوانين-والقرارات/ and https://adnanlawyer.online/في-إثبات-التاريخ-للمحررات-العرفية/.
+
+**مادة (34) مكررا** — «في مكاتب وفروع التوثيق المميكنة يستغنى عن الدفاتر المشار إليها في المواد (14، 25، 32) وتجمع أصول المحررات الموثقة بعد ترقيمها بأرقام متتابعة وتجلد وتحفظ بمرفقاتها، ويستعاض عن دفتري التصديق على التوقيعات وإثبات التاريخ بصور المسح الضوئي غير القابلة للتعديل المحفوظة على جهاز الكمبيوتر بعد توقيع صاحب الشأن عليها».
+
+**Verification gap:** the consolidated source identifies the amendment but does not supply the standalone Decision 6199/2007 preamble, operative article, issue/date or commencement. Treat this as an attributed article-version note, not a complete acquired instrument.
