@@ -236,3 +236,12 @@ Cumulative Civil Code extraction stream: **640 distinct provisions** (67 previou
 
 Important scope note: Article 875(1) expressly directs heir identification, inheritance shares and transmission of estate property to the applicable Islamic Sharia and laws enacted on the subject. Articles 876–905 regulate estate liquidation mechanics and must be reconciled with current procedural, guardianship, registration and inheritance rules.
 
+## 16. Further Civil Code extraction — Articles 906–949
+
+- Checkpoint 104 adds **12 provisions**, Articles 906–917: estate business allocation, testamentary partition, wills and death-illness transactions.
+- Checkpoint 105 adds **17 provisions**, Articles 918–934: accession to land, building on another's land, compensation/removal and real-estate registration.
+- Checkpoint 106 adds **15 provisions**, Articles 935–949: pre-emption rights and commencement of possession rules.
+- Cumulative Civil Code extraction stream: **684 distinct provisions** (67 previously recorded + 617 newly transcribed in this continuation). This is not a consecutive or verified current consolidation.
+- Article 934 is a central real-estate conveyancing provision: immovable ownership and other real rights do not transfer unless the Real Estate Publicity Law requirements are observed. Article 936 lists statutory pre-emption beneficiaries; Articles 940–944 prescribe notice, registration, price deposit and proceedings; Article 947 gives registered notice a defined priority effect.
+- Special laws and amendments remain to be reconciled; OCR/image verification is outstanding.
+
