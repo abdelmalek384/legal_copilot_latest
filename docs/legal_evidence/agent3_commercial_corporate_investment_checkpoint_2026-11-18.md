@@ -121,3 +121,70 @@ The 13 assigned families remain touched in earlier Agent 3 checkpoints, but none
 | Law 4/2026 announcement | GOEIC | Press announcement (not statute text) | https://www.goeic.gov.eg/ar/media-center/news/1461 | Publication/effective-date announcement only |
 | Importers register service | GOEIC | Administrative service guidance | https://www.goeic.gov.eg/ar/electronic-services/show/6 | Must be reconciled with Law 4/2026 |
 
+
+
+## 6. New primary-content acquisition: Importers Register Law 4/2026
+
+**Status:** Full Arabic text retrieved from a legal database; official publication confirmed by GOEIC; Gazette image not yet independently page-image checked.
+
+- Instrument: Law 4/2026 amending Law 121/1982 concerning the Importers Register.
+- Date: 2 April 2026.
+- Gazette metadata surfaced: Official Gazette, issue 14 تابع (أ), 2 April 2026. A Gazette-PDF mirror is available at https://www.cairo24.com/Upload/libfiles/181/1/45.pdf; this is not an official host and must be checked against the official Gazette.
+- GOEIC official announcement confirms Presidential ratification, publication in the Official Gazette, and commencement on the day following publication: https://www.goeic.gov.eg/ar/media-center/news/1461
+- GOEIC official instrument index lists Law 4/2026: https://www.goeic.gov.eg/ar/laws-and-decisions/list/891
+- Full text page: https://www.mksegypt.org/public/index.php/ar/laws/24664
+- Source page states Creative Commons Attribution 4.0 (CC BY 4.0); preserve attribution and license metadata. This license statement relates to the database page's published content; do not assume it independently clears rights in the underlying Gazette scan.
+- A second repository record identifies the two attached PDFs and publisher metadata: https://dspace.id.com.eg/items/1736ce1d-b76b-4207-bc58-69a17207e2f2. Treat the publisher/scan chain as non-government secondary hosting.
+
+### Exact Arabic text — inserted Article 2 final paragraph
+
+> وفي جميع الأحوال، يجوز أن تكون المبالغ الواردة في هذه المادة بما يعادلها من العملات الأجنبية الحرة التي يقبلها البنك المركزي المصري.
+
+### Exact Arabic text — new Article 4 bis
+
+> مع عدم الإخلال بحكم المادة (2) من هذا القانون يجوز للجهة المختصة بالوزارة المختصة بشئون التجارة الخارجية حال إخطارها خلال ستين يومًا بتغيير أو تعديل الشكل القانوني للشركات المقيدة في سجل المستوردين أو تعديل رقم التسجيل الضريبي لها أن تقوم بقيد هذا التغيير أو التعديل، وفقًا للإجراءات التي تحددها اللائحة التنفيذية لهذا القانون، ويُعد ذلك بمثابة تعديل للبيانات في السجل.
+
+### Exact Arabic text — inserted Article 7 final paragraph
+
+> ويجوز إعادة القيد في السجل في حالة قيام ورثة الشخص الطبيعي أو بعضهم بتأسيس شركة بغرض ممارسة ذات نشاط مورثهم خلال عام ونصف من تاريخ الوفاة، على أن تُعفى الشركة في هذه الحالة من الشروط المنصوص عليها في البند (ثانيًا/ أ) من المادة ٢ من هذا القانون.
+
+### Exact Arabic text — new Article 12 bis (settlement)
+
+> للجهة المختصة بالوزارة المختصة بشئون التجارة الخارجية التصالح مع المتهم في الجرائم المنصوص عليها في المادتين ۸ ، ۱۰ من هذا القانون، وذلك على النحو الآتي:
+>
+> 1- قبل رفع الدعوى الجنائية إلى المحكمة المختصة مقابل أداء مبلغ لا يقل عن الحد الأدنى للغرامة المقررة ولا يجاوز ثلث حدها الأقصى.
+>
+> 2- بعد رفع الدعوى الجنائية إلى المحكمة المختصة وقبل صدور حكم بات فيها، مقابل أداء مبلغ لا يقل عن ثلاثة أمثال الحد الأدنى للغرامة المقررة ولا يجاوز ثلثي حدها الأقصى.
+>
+> 3- بعد صيرورة الحكم باتًا، مقابل أداء مبلغ لا يقل عن الحد الأقصى للغرامة المقررة ولا يجاوز مثلى حدها الأقصى.
+>
+> ويترتب على التصالح انقضاء الدعوى الجنائية، وجميع الآثار المترتبة على الحكم، بحسب الأحوال، وتأمر النيابة العامة بوقف تنفيذ العقوبة إذا حصل التصالح أثناء تنفيذها ولو بعد صيرورة الحكم باتًا.
+
+### Issuing provisions — operative transition
+
+- Issuing Article 2 directs the competent Minister for Foreign Trade to amend the Executive Regulation within 30 days from commencement; pending that decision, the existing regulation continues only insofar as it does not conflict with Law 4/2026.
+- Issuing Article 3 provides commencement from the day after publication.
+- The above makes the pre-amendment text of Decision 271/2026 and any predecessor rules subject to a statutory conflict check. The executive regulation must be updated/reconciled; do not assume the existing 2026 regulation automatically implements Law 4/2026.
+
+### Legal effect requiring implementation mapping
+
+1. Foreign-currency equivalents may satisfy amounts specified in Article 2, but only in freely convertible currencies accepted by the CBE.
+2. A 60-day notification route allows amendment of a registered company's legal form or tax registration number as a register-data change, subject to executive-regulation procedure.
+3. Certain heirs may establish a company to continue the deceased natural person's same activity within 18 months of death and obtain re-registration without the condition in Article 2(Second/A).
+4. The competent ministry may settle offences under Articles 8 and 10 at three procedural stages, with distinct payment bands and effects on criminal proceedings/sentence execution.
+
+### Amendment graph update
+
+Law 121/1982 (Importers Register) → Law 7/2017 → Law 173/2023 → **Law 4/2026** → Executive Regulation Decision 271/2026 (21 July 2026), subject to the 30-day amendment command in Law 4/2026 and a check for any later amending ministerial decision.
+
+**Important chronology issue:** Decision 271/2026 was issued 21 July 2026, after Law 4/2026. Confirm whether its final text incorporates Law 4/2026, and whether a separate post-Law-4 amending decision was published. The earlier 30-day statutory direction is not itself proof that the regulation was duly amended.
+
+## 7. Revised cumulative Agent 3 counts
+
+- **Unique legal instruments with Arabic text surfaced:** 89 (previous baseline 88 + Law 4/2026).
+- **Article/provision text units surfaced:** 1,133 (previous baseline 1,127 + four inserted provisions + two issuing provisions).
+- **Assigned legal families touched:** 13/13 (breadth only).
+- **Families amendment/currentness-complete:** 0/13.
+- **Lawyer-reviewed:** 0%.
+- **Whole corpus coverage:** retain the master index estimate of approximately 2%; this one instrument does not justify a percentage change.
+- **Rights:** Law 4/2026 full text source page reports CC BY 4.0; official Gazette scan remains to be checked. Do not bulk redistribute the secondary-hosted scan.
