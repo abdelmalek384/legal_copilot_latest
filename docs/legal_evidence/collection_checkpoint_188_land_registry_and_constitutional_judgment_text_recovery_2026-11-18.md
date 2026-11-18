@@ -196,7 +196,7 @@ Checkpoint 88 lists older cases (including 6/9, 4/15, 3/18, 44/17, 116/18, 70/18
 
 ## 7. New text-capture count
 
-- Law 114/1946: 13 additional complete article bodies captured in this checkpoint (Articles 1, 4, 5, 6, 7, 8, 9, 10, 10 bis, 11, 12, 13, 15, 21, 22 and 22 bis: 16 listed articles; the 10 bis and 22 bis are inserted article provisions).
+- Law 114/1946: 16 additional complete article bodies captured in this checkpoint (Articles 1, 4, 5, 6, 7, 8, 9, 10, 10 bis, 11, 12, 13, 15, 21, 22 and 22 bis: 16 listed articles; the 10 bis and 22 bis are inserted article provisions).
 - Constitutional judgments: three operative holdings transcribed/verified (Cases 10/35, 42/17, 101/26), plus two rent-law judgment cross-reference texts (Cases 11/23 and 144/20).
 - These are not added to the 1,370 core provision count. Law 114 article IDs and versions must be normalized against the existing 8 captured entries before any cumulative article total is updated.
 - No new base law or executive regulation is created in this checkpoint.
