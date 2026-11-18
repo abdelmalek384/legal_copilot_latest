@@ -824,3 +824,12 @@
 - PM Decision 1120/2024: Official Gazette issue 14 تابع (أ), 4 Apr 2024; effective 1 Jun 2024. Replaces Executive Regulation Articles 30 and 41(1), adds Chapter 9 / Articles 48–62, repeals Articles 44, 44 bis and 45. Full searchable text and official DSpace record obtained; key new provisions on definition, material influence, thresholds, substantive test, notification documents, commitments, below-threshold call-in and FRA-regulated concentrations transcribed.
 - ECA confirms merger-control system operational from 1 Jun 2024.
 - **Updated Agent 3 minimum:** 72 distinct instruments with some Arabic text surfaced; 991 article/provision text units; 13/13 families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
+
+
+### Research Agent 3 — Commercial Code Law 17/1999 complete Arabic text
+
+- Government-hosted full searchable Arabic PDF obtained: https://www.eta.gov.eg/sites/default/files/2024-10/law-17-1999.pdf (alternative https://portal.eta.gov.eg/sites/default/files/2024-10/law-17-1999.pdf). The printed edition identifies the Government Printing Authority and contains 3,759 extracted lines, the promulgating provisions, Commercial Code Articles 1–771, and the retained 1883 Commercial Code partnerships chapter.
+- Gazette metadata: Official Gazette issue 19 مكرر, 17 May 1999. Law 168/2000 amendment to cheque commencement dates is expressly recorded in the second-edition footnote, Gazette issue 30 تابع, 27 July 2000. The dates must be read as amended.
+- 17 selected provisions transcribed in Agent 3 file, including commercial acts/trader status, commercial books and seven-year retention, commercial agency termination/non-renewal compensation and limitation periods, brokerage remuneration, company bankruptcy under the historical Code and preventive composition.
+- **Critical version boundary:** former Commercial Code bankruptcy regime (Articles 550 onward through 771) was replaced by Law 11/2018; treat these Code provisions as historical, not current insolvency procedure.
+- **Updated Agent 3 minimum:** 74 distinct instruments with some Arabic text surfaced; 1,008 article/provision text units across Agent 3 checkpoints; 13/13 assigned families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed. The complete PDF's 771 article texts are available from source, but are not yet individually normalized into the product corpus.
