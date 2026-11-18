@@ -2359,3 +2359,9 @@ Added six 2026 decisions from the Egyptian Proceedings:
 - **Source-permission register:** 111 source records.
 - New local complete text sets in this pass include Law161/2026 (all 50 articles), PM Decision3530/2026 (complete annex), PM Decision2170/2026, Finance Decision450/2026 (both forms), PM Decision3531/2026, Cabinet Decision95/2026, Aviation Decision896/2026, Aviation Decision1162/2026, and Finance Decision638/2026. Other recently added instruments have partial local text pending original sources or annexes.
 - No new Amiri Press original PDF binary/hash was archived locally. Official indexed text, government-hosted scans and secondary reproductions are distinguished in the acquisition and permission registers.
+
+
+### Finance Decisions635/2026 and636/2026 — Arabic text acquired
+
+Added Decision635 (Port Said temporary customs zone for Suez Canal Auto Trading) with its preamble and all three articles; the incorporated Customs Administration letter, company letter and engineering drawing remain missing. Added Decision636 (Egypt Free Shops customs zone relocation to Meraki Hotel, Sharm El Sheikh) with all three operative articles and boundary description; preamble, signature/publication clause and drawing remain outstanding.
+[Decisions635/636 Arabic text](acquisition_tranche_finance_decisions635_636_2026_customs_zones_arabic.md)
