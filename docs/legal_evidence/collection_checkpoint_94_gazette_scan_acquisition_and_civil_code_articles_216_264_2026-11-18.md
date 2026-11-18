@@ -228,3 +228,11 @@ Key property points:
 - Articles 862–869 provide the base Civil Code framework for owners' associations, common parts, majority decisions and building renewal. Article 869's privilege depends on registration.
 - Article 874 states the historical Civil Code position on ownerless uncultivated land and State ownership. Later desert-land and State-private-property statutes materially affect this field; never rely on Article 874 in isolation.
 
+## 15. Further Civil Code extraction — Articles 875–905
+
+Checkpoint 103 adds **31 distinct provisions**, Articles 875–905, covering the succession-law boundary, estate liquidator appointment, estate possession/protection, inventory, creditor claims, debt settlement, distribution and partition.
+
+Cumulative Civil Code extraction stream: **640 distinct provisions** (67 previously recorded + 573 newly transcribed in this continuation). This is a non-consecutive base-text set, not a complete or verified current consolidation.
+
+Important scope note: Article 875(1) expressly directs heir identification, inheritance shares and transmission of estate property to the applicable Islamic Sharia and laws enacted on the subject. Articles 876–905 regulate estate liquidation mechanics and must be reconciled with current procedural, guardianship, registration and inheritance rules.
+
