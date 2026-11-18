@@ -1186,11 +1186,11 @@
       "material_types": [
         "Law 143/1981 full statute text"
       ],
-      "access_status": "Public official ministry PDF; original Gazette binary not established.",
+      "access_status": "Official Ministry of Agriculture PDF URL returned 404 when opened 2026-11-18; a separate 16-page consolidated Court of Cassation Information Centre PDF is accessible via Al-Hasswa; original Gazette binary not established.",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
-      "permission_evidence": "Checked 2026-11-18. Public access does not establish permission for bulk download, OCR, indexing, commercial use, public display or redistribution. No source-specific affirmative permission identified.",
+      "permission_evidence": "Checked 2026-11-18. Public access does not establish permission for bulk download, OCR, indexing, commercial use, public display or redistribution. No source-specific affirmative permission identified. The previously cited Ministry of Agriculture PDF URL is currently 404. Do not describe it as presently accessible.",
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
       "required_next_action": "Review source terms; obtain original Gazette copies through authorized channels; keep rights unknown absent documentary permission."
@@ -1642,6 +1642,24 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
       "required_next_action": "Seek official SCC/Amiri Press original file; review Manshurat terms and seek written permission before commercial archiving or redistribution; hash only after authorized local acquisition."
+    },
+    {
+      "source_id": "EG-MANSHURAT-LAW11-2024",
+      "authority": "Manshurat legal documents archive",
+      "source_page": "https://manshurat.org/file/88853/download?token=3NTAFW5f",
+      "material_types": [
+        "secondary-hosted scan reproduction of amending law",
+        "Law 11/2024",
+        "Official Gazette issue8 bis (A)"
+      ],
+      "access_status": "Public one-page PDF opened 2026-11-18; scan identifies Official Gazette issue8 bis (A), 24 February 2024; full text layer extracted; scan carries notice electronic copy not valid for circulation; terms not reviewed",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "One-page page-image reproduction of Law11/2024, amending Law143/1981 Articles11(2) and12(2). Public access does not establish commercial reuse or redistribution rights; scan includes non-circulation notice.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Obtain authenticated Amiri Press original issue8 bis (A); compare with consolidated 2024 text; review terms and seek written permission before commercial use or redistribution."
     }
   ]
 }
