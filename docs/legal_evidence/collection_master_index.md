@@ -571,3 +571,14 @@
 - CBE circular of 23 Aug 2026 on digital financial identity/eKYC: official PDF locator and regulatory-book Chapter 17/4 found; reader blocked, so no text count added.
 - CBE 2025 PSO/PSP licensing rules (19 Jun 2025) and governance/internal-control/fit-and-proper regulations (27 Aug/1 Sep 2025) identified with official PDF locators; reader blocked.
 - Other CBE instruments located: digital-bank licensing framework (12 Jul 2023); bank ownership/merger/divestiture/acquisition rules (2 May 2024); updated bank governance (19 Sep 2024); Code of Conduct for Banks (27 Mar 2025); board-meeting governance amendment (30 Nov 2025); credit-guarantee-company licensing framework (24 Sep 2026); separate KYC circulars (28 Sep 2026). Underlying PDFs remain to be collected and individually indexed.
+
+
+### Agent 3 cumulative dashboard — 18 November 2026
+
+- **37 distinct legal instruments** with at least some Arabic text surfaced in the Agent 3 commercial/corporate/investment collection. This includes partial primary text and searchable secondary transcriptions; publication-only leads and unreadable PDFs are excluded.
+- **242 minimum article/provision text units** surfaced. This is a manual minimum and includes selected provisions/regulatory sections; it is not a deduplicated count of current operative law.
+- **Assigned-domain coverage touched: 13/13 = 100%** of the named law families have at least one Arabic legal text source or excerpt.
+- **Fully amendment/currentness-complete families: 0/13.**
+- **Lawyer-verified: 0%.** Source matching and lawyer verification remain distinct.
+- Whole-project corpus denominator is not validated; the prior ~2% estimate remains provisional and cannot be recalculated from Agent 3's subset.
+- Detailed instrument list, source/access status and next tasks are in [Agent 3 research file](research_agent_3_commercial_corporate_investment_2026-11-18.md).
