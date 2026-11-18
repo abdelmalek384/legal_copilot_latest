@@ -1564,3 +1564,13 @@
 
 
 Current Agent 3 progress checkpoint (18 Nov 2026, continued): [agent3_progress_checkpoint_2026-11-18_2.md](agent3_progress_checkpoint_2026-11-18_2.md) — **55% provisional assigned-domain completion; 190 documents; 1,927 normalized numbered units; 0% lawyer-reviewed**.
+
+### Research Agent — checkpoint 168: Decree 2/1946 full searchable text and Decision 825 attribution correction (18 November 2026)
+
+- Added collection_checkpoint_168_law114_executive_regulation_text_and_825_correction_2026-11-18.md and law_114_1946_executive_regulation_decree_2_1946_full_text_recovery_and_decision_2332_2022_amendments_2026-11-18.md.
+- Recovered the full searchable 38-provision consolidated text of **Decree 2/1946**, the Executive Regulation of Law114/1946, with amendments through Decision2332/2022. Transcribed selected current provisions including Articles7 bis and 7 bis 1 digital filing, Article14 bis possession-based/factual-event registration, Articles21 bis series for judgment registration and Article32 bis 37-day processing period.
+- Material graph correction: **Decision825/1975 is the Executive Regulation of Law142/1964**, not Law114/1946. **Decree2/1946** is the Law114/1946 regulation. Decision2332/2022 amends Decree2/1946; Decision11264/2016 amends Decision825/1975. Corrected EG-0148, added EG-0246, and updated checkpoint166.
+- Priority full-text inventory now **31** (FT-0031 added); acquisition register **242 unique records** (EG-0246 added); source register **64**; version events **44**; normalized core provisions **1,370**.
+- Progress estimates: broader civil/property/contract corpus **18% provisional** (up from 17%); whole Egyptian legal corpus **2% provisional**; lawyer verification and commercial reuse clearance **0%**.
+- Decree2/1946 LAW HUB source: https://lawhub.info/eg/?p=12044; original scan catalogue: https://manshurat.org/node/72161. Decision2332/2022 metadata: https://dspace.id.com.eg/items/1afd9674-9b20-4812-bdb6-f0c7cd0dda1e/full.
+
