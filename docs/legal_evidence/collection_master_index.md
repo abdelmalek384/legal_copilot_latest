@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (expanded through checkpoint 158)
+**Last updated:** 2026-11-18 (expanded through checkpoint 160)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -1446,3 +1446,13 @@
 
 
 | checkpoint 152 — Agent 3 CBE Credit Registry update (26 Mar 2025) + coding precondition (11 Apr 2026) | Captured Arabic amendment summaries from CBE financial-stability material and text of 2026 follow-up: CCR reporting threshold raised from EGP 10k to 30k; category renamed from non-performing-only to "customers under procedures" to include regular and irregular; removal of absolute individual restriction; monthly declaration fee EGP 2 per declaration, min EGP 1,000 per institution; sanctions include warnings/corrective action and non-interest-bearing deposits. 11 Apr 2026 follow-up requires credit coding and declaration in both CBE CCR and Egyptian Credit Bureau networks before granting/renewing facilities; existing debts subject to classification if providers fail to regularize within 3 months. Official CBE catalogue confirms 2025 update; 2026 text secondary Shorouk/El-Balad; original circular binaries remain outstanding. +2 CBE circulars, no article-unit increment; cumulative Agent 3 **183 documents / 1,869 normalized units**; assigned-domain estimate **50% provisional**; whole corpus **2% provisional**; lawyer review 0%. Full text/provenance: [agent3_cbe_credit_registry_rules_2025_and_2026_coding_circular.md](agent3_cbe_credit_registry_rules_2025_and_2026_coding_circular.md) |
+
+
+### Research Agent 1 — checkpoint 160: normalized historical article-version event register (18 November 2026)
+
+- Added [collection_checkpoint_160_historical_article_version_event_register_2026-11-18.md](collection_checkpoint_160_historical_article_version_event_register_2026-11-18.md).
+- Created `data/research/egypt_historical_article_version_events_2026-11-18.csv` with **44 version-event rows** across Laws 114/1946, 142/1964, 143/1981 and 70/1964, including insertions, replacements, repeals, transitional extensions, constitutional invalidations, consequential falls and deferrals.
+- The event register links to existing acquisition IDs and intentionally permits repeated instrument IDs for different affected article provisions. It does not duplicate legal instruments or article text.
+- All 44 events are marked as identified effects with pre/post article text not yet normalized. Original Gazette page coordinates/hashes remain outstanding.
+- Acquisition register remains **241 rows**, 241 unique IDs, zero duplicates; source-permission register remains **63 unique records**. Core completed article provisions remain **1,370**; 200 additional searchable article headings remain unnormalized.
+- Completion estimates unchanged: core extraction 100% for three defined statutes; broader civil/property/contract 15% provisional; whole Egyptian corpus 2% provisional.
