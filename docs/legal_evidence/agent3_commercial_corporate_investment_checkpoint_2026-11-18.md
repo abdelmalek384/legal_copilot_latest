@@ -2026,3 +2026,61 @@ FRA's official financial-leasing/factoring legislation catalogue and contemporan
 - Two additional unique instruments with Arabic operative text surfaced: Law 153/2021 and PM Decision 3217/2022.
 - Seven issuing provision units counted: Law 153/2021 Articles 1–4 and PM Decision 3217/2022 Articles 1–3. The numerous nested Executive Regulation articles replaced by Article 1 of Decision 3217 are separately indexed in the text notes but not double-counted as issuing articles.
 - Cumulative Agent 3 minimum: 130 unique instruments / 1,292 provision units.
+
+
+## 41. Bankruptcy and Restructuring Law 11/2018 — Law 11/2021 amendment acquired
+
+### Core Law 11/2018 — source and scope
+
+- Instrument: Law 11/2018 promulgating the Law Regulating Restructuring, Preventive Composition and Bankruptcy.
+- Issued/published 19 February 2018; effective 21 March 2018.
+- Arabic PDF scan/source record: https://manshurat.org/node/25896
+- Full Arabic text transcription: https://lawhub.info/eg/?p=11442
+- MELES archival bundle: https://dspace.id.com.eg/items/02d351c9-544d-4ad3-a88b-8b980ee009ef/full
+- The law applies to traders as defined by Commercial Code 17/1999, except joint ventures, public-sector companies and public-business-sector companies. It creates a dedicated bankruptcy department and specialist procedures for restructuring, preventive composition, bankruptcy, asset administration/liquidation, creditor distributions, rehabilitation and penalties.
+- Law 11/2018 repeals the former Commercial Code bankruptcy title and replaces the previous insolvency framework; legacy Commercial Code bankruptcy provisions must be treated as historical/repealed, subject to any express transition rules.
+- Selected substantive rules:
+  - Article 10: trader eligibility and conditions for restructuring (including the statutory minimum invested capital and continuous trading history, subject to the amended wording).
+  - Article 17: effect of restructuring filing on bankruptcy/preventive-composition proceedings.
+  - Article 20: restructuring committee report and implementation period (amended in 2021).
+  - Article 24: trader generally continues to manage assets during restructuring, subject to plan restrictions.
+  - Article 25: prohibits transactions prejudicial to creditors contrary to the restructuring plan.
+  - Article 57 bis and 57 bis (1), inserted by Law 11/2021: creditor/financier information and report architecture in preventive composition.
+  - Article 191: creditor decision path for continued operation, restructuring plan or liquidation of bankruptcy estate (amended in 2021).
+- **Exact Arabic text — Law 11/2018 issuing Article 1:**
+> يُعمل بأحكام القانون المرافق فى شأن إعادة الهيكلة والإفلاس والصلح الواقى منه.
+> وتسرى على التاجر وفقاً للتعريف الوارد فى المادة (١٠) من قانون التجارة الصادر بالقانون رقم ١٧ لسنة ١٩٩٩، وذلك فيما عدا شركات المحاصة وشركات القطاع العام وشركات قطاع الأعمال العام.
+
+### Law 11/2021 — substantial amendment
+
+- Instrument: Law 11/2021 amending Law 11/2018 and its issuing law.
+- Official Gazette issue 16 bis (و), 28 April 2021.
+- Official Invest in Egypt / government-hosted Gazette PDF: https://www.investinegypt.gov.eg/PublishingImages/Lists/LawsAndRegulations/AllItems/تعديل%20بعض%20أحكام%20قانون%20تنظيم%20إعادة%20الهيكلة%20والصلح%20الواقي%20من%20الإفلاس%20بالقانون%20رقم%2011%20لسنة%202021.pdf
+- The official PDF identifies the amendment and its extensive substitution schedule. Article 1 replaces provisions/paragraphs across Articles 1, 4, 10, 16, 17, 20, 27, 31, 35, 41, 42, 55, 57, 60, 63, 64, 66, 70, 72, 87, 143, 163, 176, 191 and 192 (including specified paragraphs/items).
+- Article 2 adds Articles 57 bis and 57 bis (1), creates new reporting and creditor-information mechanisms for preventive composition, and adds a paragraph to Article 72 concerning priority for new-money financing in specified insolvency circumstances.
+- Article 3 repeals Article 179 of Law 11/2018.
+- Article 4 publication and commencement the day following publication.
+- **Exact Arabic text — Article 1 opening:**
+> يستبدل بنصوص المواد أرقام (١/ التعريفان السادس والتاسع، ٤ بند/ب، ١٠، ١٦، ١٧/ فقرتان ثانية وثالثة، ٢٠، ٢٧ بند/و، ٣/ فقرتان أولى وثانية، ٣٥، ٤١، ٤٢، ٥٥/ فقرة أولى، ٥٧، ٦٠، ٦٣، ٦٤/ فقرتان ثانية وثالثة، ٦٦/ فقرة أولى، ٧٠، ٧٢، ٨٧/ فقرة رابعة، ١٤٣/ فقرة ثانية، ١٦٣، ١٧٦ بند/أ، ١٩١، ٢٨/ فقرة ثانية) من قانون تنظيم إعادة الهيكلة والصلح الواقي والإفلاس الصادر بالقانون رقم ١١ لسنة ٢٠١٨، النصوص الآتية:
+- **Selected exact Arabic text — new Article 57 bis (core reporting):**
+> يكلف قاضى الصلح أمين الصلح بإعداد تقرير عن مقترحات الصلح المقدمة من المدين أو الدائن مقدم طلب الصلح، بحسب الأحوال، ورأيه فى شأنها ومقترحاته.
+> ويجب أن يتضمن التقرير الوضع المالى للمدين، وحجم تجارته، ومدة الصلح، وكيفية السداد، ومدته، والمبالغ المتوقع حصول الدائنين عليها من جراء الصلح، وتلك المتوقع حصولهم عليها من جراء بيع موجودات المدين وفقًا لتقرير الخبير المثمن المبين بالبند (ج) من المادة (٤٠) من هذا القانون، ومدى حاجة الصلح إلى التمويل من عدمه، ومقداره، ومدته، والفوائد المستحقة.
+- **Selected exact Arabic text — new Article 57 bis (1) (creditor/financier information):**
+> للجهات مقدمة التمويل حق الحصول على معلومات مالية خاصة بتجارة المدين بطلب يقدم إلى القاضى المختص.
+> ويحق للدائنين المقبولة ديونهم الاطلاع على جميع المستندات المقدمة من التاجر المدين، وعلى قائمة الديون النهائية وتقارير الخبراء المقدمة فى الإجراءات، وأية معلومات مالية متعلقة بخطة الصلح بما يسمح لهم بإعداد مقترحات للصلح والتصويت على مقترحات الصلح المقدمة.
+- Article 20 now provides a six-month period for the restructuring committee report, extendable for a similar period by the bankruptcy judge; implementation of the plan is up to five years, extendable by two years with consent of all plan parties.
+- Article 191 provides a structured creditor decision process for continuation of the bankrupt trader's business, restructuring, sale as a going concern, or liquidation of core assets.
+- The 2021 amendment adds specific treatment for new financing in insolvency and updates creditor priority/reporting rules. Store this amendment as a separate temporal layer; do not overwrite 2018 wording.
+
+### Legal status and source cautions
+
+- The Official Gazette PDF is government-hosted and provides strong primary provenance for Law 11/2021. The full original Law 11/2018 source remains an archival scan/transcription; obtain the Gazette issue 7 bis (ج), 19 February 2018, original page images to upgrade provenance.
+- Law 11/2021 is a substantive amendment, not an executive regulation. Minister of Justice implementing decisions and Economic Court procedural circulars are separate instruments and remain to be acquired.
+- The statutory eligibility conditions and capital thresholds have to be read in the amended text, not from older summaries of the 2018 law. The SIS investment-law overview is only a summary and must not be treated as controlling text.
+- The 2021 law's repeal of Article 179 and new Article 57 bis / 57 bis (1) must be represented explicitly in the corpus lineage.
+
+### Count increment
+
+- One new unique amendment instrument with Arabic Gazette text surfaced: Law 11/2021. Law 11/2018 was already counted in the corpus.
+- Four issuing provision units counted (Law 11/2021 Articles 1–4). Inserted Article 57 bis and 57 bis (1) are separately indexed as underlying statutory provisions but not double-counted as issuing articles.
+- Cumulative Agent 3 minimum: 131 unique instruments / 1,296 provision units.
