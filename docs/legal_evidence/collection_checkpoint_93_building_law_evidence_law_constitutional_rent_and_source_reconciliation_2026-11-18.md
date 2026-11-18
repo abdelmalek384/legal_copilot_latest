@@ -303,17 +303,17 @@ No attempt was made to bypass restricted DSpace access. No original PDF bytes or
 10. Resolve the Decision 480/2026 filing-window gap through an official implementation notice or written authority response; preserve 19 January 2027 only as the conditional consecutive-extension date.
 11. Update the national unique-instrument/article denominators before revising assigned-domain or whole-corpus percentages.
 
-## 15. Evidence Law correction — the statute extends to Article 163, not Article 117
+## 15. Evidence Law correction — the statute extends to Article 162, not Article 117
 
-The user-requested range of Articles 1–117 is not the complete enacted law. The full Evidence Law text and its expert provisions continue through Article 163. The WIPO Lex PDF and consolidated secondary PDF both expose the expert chapter and Articles 148–163; Article 148 bis was added by Law 54/1974.
+The user-requested range of Articles 1–117 is not the complete enacted law. The consolidated Arabic text extends through Article 162. The WIPO Lex PDF OCR displays a final repeated provision labelled Article 163, but that text duplicates the expert-discussion provision in Article 153 and is not corroborated by the consolidated PDF, which ends at Article 162. Treat "Article 163" as a source-extraction anomaly unless the original Gazette image establishes otherwise. Article 148 bis was added by Law 54/1974.
 
 ### Primary and secondary text locators
 
 - Official Ministry of Finance 12-page Gazette reproduction, Official Gazette issue 22, 30 May 1968:
   https://media.mof.gov.eg/mof-prd/1299_705e8a7b67.pdf?response-content-disposition=attachment%3B+filename%3D%221299.pdf%22
-- WIPO Lex Arabic PDF of Law 25/1968, extracted through Article 163:
+- WIPO Lex Arabic PDF of Law 25/1968 (OCR text includes a likely duplicated Article 163 line):
   https://wipolex-res.wipo.int/edocs/lexdocs/laws/ar/eg/eg087ar_1.pdf
-- Secondary consolidated PDF with amendment notes and amendment texts (1,736 extracted lines):
+- Secondary consolidated PDF with amendment notes and amendment texts (1,736 extracted lines), which ends at Article 162:
   https://kanonmisr.com/ar/wp-content/uploads/2021/08/قانون-الاثبات-المصري-رقم-25-وتعديلاته-في-ملف-واحد-pdf-1_compressed.pdf
 - Secondary full text:
   https://www.notariesofegypt.org/article.php?id=152
@@ -326,36 +326,35 @@ The user-requested range of Articles 1–117 is not the complete enacted law. Th
 3. **Law 18/1999** — Official Gazette issue 19 bis (A), 17 May 1999; effective 16 July 1999. Updates penalty and monetary thresholds in several Evidence Law provisions, including Articles 43, 56, 60, 61 and 78.
 4. **Law 76/2007** — Official Gazette issue 22 bis, 6 June 2007; effective 1 October 2007. Updates monetary thresholds in Evidence Law Articles 60 and 61 to EGP 1,000.
 
-### Verbatim Arabic — terminal provisions from WIPO Lex PDF (OCR transcription; verify against official Gazette page images)
+### Verbatim Arabic — Articles 118–124 from the secondary consolidated text (compare against Gazette images before production use)
 
 **مادة ١١٨:**
-> كل من وجهت إليه اليمين نكل عنها دون أن يردها على خصمه، وكل من ردت عليه اليمين نكل فيما نكل دعواه.
+> كل من وجهت إليه اليمين فنكل عنها دون أن يردها على خصمه، وكل من ردت عليه اليمين فنكل عنها خسر دعواه.
 
 **مادة ١١٩:**
 > للقاضي أن يوجه اليمين المتممة من تلقاء نفسه إلى أي من الخصمين ليبني على ذلك حكمه في موضوع الدعوى أو في قيمة ما يحكم به.
+> ويشترط في توجيه هذه اليمين ألا يكون في الدعوى دليل كامل وألا تكون الدعوى خالية من أي دليل.
 
 **مادة ١٢٠:**
-> لا يجوز للخصم الذي وجهت إليه اليمين المتممة أن يردها على الخصم الآخر.
+> لا يجوز للخصم الذي وجه إليه القاضي اليمين المتممة أن يردها على الخصم الآخر.
 
 **مادة ١٢١:**
-> لا يجوز للقاضي أن يوجه إلى المدعى عليه اليمين المتممة لتحديد قيمة المدعى به إلا إذا استحال تحديدها بطريقة أخرى.
+> لا يجوز للقاضي أن يوجه إلى المدعي اليمين المتممة لتحديد قيمة المدعى به إلا إذا استحال تحديد هذه القيمة بطريقة أخرى.
+> ويحدد القاضي حتى في هذه الحالة حداً أقصى للقيمة التي يصدق فيها المدعي بيمينه.
 
 **مادة ١٢٢:**
-> يجب على من وجهت إليه اليمين أن يبين بالذات الواقعة التي يريد استحلافه عليها ويذكر صيغة اليمين بعبارة واضحة.
+> يجب على من يوجه إلى خصمه اليمين أن يبين بالدقة الوقائع التي يريد استحلافه عليها، ويذكر صيغة اليمين بعبارة واضحة.
 
 **مادة ١٢٣:**
-> للمحكمة أن تعدل صيغة اليمين التي يطلبها الخصم بحيث يوجه بوضوح وردة على الواقعة المطلوب الحلف عليها.
+> للمحكمة أن تعدل صيغة اليمين التي يعرضها الخصم بحيث توجه بوضوح ودقة على الواقعة المطلوب الحلف عليها.
 
 **مادة ١٢٤:**
-> إذا امتنع من وجهت إليه اليمين من حلفها جاز للمحكمة أن تعتبره عاقداً بها، ولا في مقابلها بالمدعى وجب عليه أن كان حاضراً بشخصه أن يحلفها فوراً.
-
-The OCR of the WIPO PDF is imperfect and the quoted Articles 118–124 must be checked against Gazette images before production use. The consolidated PDF is better for article text but is still secondary and has its own OCR defects.
+> إذا لم ينازع من وجهت إليه اليمين لا في جوازها ولا في تعلقها بالدعوى وجب عليه إن كان حاضراً بنفسه أن يحلفها فوراً أو يردها على خصمه وإلا اعتبر ناكلاً، ويجوز للمحكمة أن تعطيه ميعاداً للحلف إذا رأت لذلك وجهاً، فإن لم يكن حاضراً وجب تكليفه على يد محضر للحضور لحلفها بالصيغة التي أقرتها المحكمة، وفي اليوم الذي حددته، فإن حضر وامتنع دون أن ينازع أو تخلف بغير عذر اعتبر ناكلاً كذلك.
 
 ### Corrected metrics and ingestion rule
 
-- Full original statute range: Articles 1–163 (not 1–117).
-- Existing article count is not yet 163 extracted and verified. The Ministry Gazette reproduction is 12 pages; only 11/12 pages were visually inspected in this session.
-- New unique terminal article texts added in this continuation: 7 provisional transcriptions (Articles 118–124) from WIPO Lex; do not promote to production until image comparison.
+- Consolidated statutory range: Articles 1–162. WIPO's last extracted line labelled 163 appears to duplicate Article 153 and is not counted.
+- Existing article count is not yet 162 extracted and verified. The Ministry Gazette reproduction is 12 pages; only 11/12 pages were visually inspected in this session.
+- New unique terminal article texts added in this continuation: 7 provisional transcriptions (Articles 118–124) from the secondary consolidated text; do not promote to production until comparison with Gazette images.
 - Four amending laws located and separately registered as EG-0183–EG-0186.
 - Amendment original Gazette scans remain outstanding; no claim of lawyer review or reuse permission.
-
