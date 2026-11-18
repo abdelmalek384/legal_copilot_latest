@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (expanded through checkpoint 140)
+**Last updated:** 2026-11-18 (expanded through checkpoint 141)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -1120,3 +1120,6 @@
 
 
 | checkpoint 121 — Agent 3 mortgage / movable collateral / MSME development | Captured ETA/FRA full Arabic texts for Law 148/2001 and PM Decision 1/2001; Law 115/2015 and Decision 108/2016; Law 152/2020 and PM Decision 654/2021; recorded amendments PM 465/2005, PM 2/2015, PM 908/2020, PM 4666/2022, PM 4278/2023; flagged 2026 MSME amendment as Cabinet-approved draft, not enacted law; cumulative Agent 3 minimum 138 instruments / 1,330 provision units |
+
+
+| checkpoint 122 — Agent 3 Mortgage Finance Law 55/2014 amendment | Captured official GAFI-hosted Gazette text (issue 26 bis هـ, 2 Jul 2014); replaced 18 mortgage-finance statutory provisions and inserted 8 new provisions, including FRA oversight, company licensing/governance, support fund, broker discipline and penalties; cumulative Agent 3 minimum 139 instruments / 1,335 provision units |
