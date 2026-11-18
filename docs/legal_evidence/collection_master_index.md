@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (expanded through checkpoint 123)
+**Last updated:** 2026-11-18 (expanded through checkpoint 124)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -1058,3 +1058,6 @@
 
 
 | checkpoint 104 — Agent 3 Companies Law statutory amendments | Official Gazette text of Laws 4/2018 and 17/2015 acquired; selected operative amendments and precedence relationship for Companies Law Article 17 captured; cumulative Agent 3 minimum 95 instruments / 1,192 provision units |
+
+
+| checkpoint 105 — Agent 3 Companies Law amendment-chain expansion | Added Arabic operative text for Laws 3/1998, 159/1998, 94/2005 and 68/2009; official MIFT/ETA copies distinguished from secondary Gazette transcriptions; cumulative Agent 3 minimum 99 instruments / 1,203 provision units |
