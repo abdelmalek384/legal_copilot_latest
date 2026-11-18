@@ -6,35 +6,36 @@
 
 ## Current progress — consolidated acquisition dashboard (18 November 2026)
 
-<badge color="success">331 instruments indexed</badge> <badge color="success">31.1% have a text-inventory record</badge>
+<badge color="success">336 instruments indexed</badge> <badge color="success">31.0% have a text-inventory record</badge>
 
 ### Audited register totals
 
 | Measure | Current audited value |
 |---|---:|
-| Acquisition register | **331 / 331 unique instrument IDs** |
+| Acquisition register | **336 / 336 unique instrument IDs** |
 | Base laws | 74 |
-| Amending laws | 65 |
+| Amending laws | 67 |
 | Executive regulations | 19 |
 | Executive-regulation amendments | 43 |
 | Judicial decisions | 21 |
-| Other decisions | 96 |
-| Other / unclassified | 13 |
+| Other decisions | 98 |
+| Other / unclassified | 14 |
 | Source-permission register | **111 unique source records** |
-| Full-text inventory | **107 rows / 103 unique instruments** |
-| Full/complete text-source records | **83 unique instruments (25.1%)** |
-| Any text-inventory coverage | **103/331 (31.1%)** |
+| Full-text inventory | **108 rows / 104 unique instruments** |
+| Full/complete text-source records | **84 unique instruments (25.0%)** |
+| Any text-inventory coverage | **104/336 (31.0%)** |
 
-The 25.1% figure means an instrument has a full/complete text-source record in the inventory; it does **not** mean every such instrument has a complete local transcription, authenticated Gazette page images, or current-law verification. The 23 remaining inventory rows are partial, external-only or incomplete; four duplicate IDs are source/version rows.
+The 25.0% figure means an instrument has a full/complete text-source record in the inventory; it does **not** mean every such instrument has a complete local transcription, authenticated Gazette page images, or current-law verification. The 23 remaining inventory rows are partial, external-only or incomplete; four duplicate IDs are source/version rows.
 
 ### Substantive acquisition work in the latest pass
 
-Newly registered instruments include Laws 10, 11, 149, 155, 156, 160 and 161/2026; the official corrigendum to Laws149–151; PM Decision95/2026; PM Decisions3127,3128,3130,3131,3308,3531,3536; Presidential Decision448/2026; Finance Decisions450,635,636,638/2026; Aviation Decisions895,896,1049,1162/2026; Housing Decision1056/2026; and other November instruments already registered in the previous tranche.
+Newly registered instruments include Laws 10, 11, 149, 153, 155, 156, 160 and 161/2026; the official corrigendum to Laws149–151; PM Decision95/2026; PM Decisions3127,3128,3130,3131,3308,3531,3536; Presidential Decision448/2026; Finance Decisions450,635,636,638/2026; Aviation Decisions895,896,1049,1162/2026; Housing Decision1056/2026; and other November instruments in the preceding acquisition tranches. The register also contains Law2/2026, Law74/2026, PM Decision37/2026 and PM Decision2402/2026 from earlier acquisitions.
 
 New or expanded Arabic text files:
 - [Laws10, 11, 155, 156, 160 and 161; Decision3536](acquisition_tranche_2026_laws10_11_155_156_160_161_pm3536_2026-11-18.md)
 - [Law161/2026 continuation — Articles11–32 and39–46](acquisition_tranche_law161_2026_kayan_university_articles11_32_39_46.md); combined with the initial tranche this provides all 50 articles locally.
 - [Law149/2026 VAT amendment and corrigendum](acquisition_tranche_law149_2026_vat_amendment_corrigendum.md)
+- [Law153/2026 Stamp Tax amendment](acquisition_tranche_law153_2026_stamp_tax_listed_securities_arabic.md)
 - [Official corrigendum to Laws149,150,151/2026](acquisition_tranche_official_corrigendum_laws149_150_151_2026.md)
 - [PM Decision3530/2026 — complete expenditure-rationalization annex](acquisition_tranche_pm_decision3530_2026_public_expenditure_rationalization.md)
 - [PM Decision2170/2026 — minimum-wage decision](acquisition_tranche_pm_decision2170_2026_minimum_wage_arabic_text.md)
