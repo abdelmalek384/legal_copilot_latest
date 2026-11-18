@@ -12,10 +12,10 @@ Created `alternate_source_article_text_capture_laws_114_142_68_70_2026-11-18.md`
 |---|---:|---|
 | Law 114/1946 | 8 | Articles 1, 4–7 and 9–11; mixed original/historically amended wording; PDF mirror says through 6 March 2022 |
 | Law 142/1964 | 11 | Substantive Articles 1, 2, 8–11 and 26–30; full mirror says through 6 June 2018 |
-| Law 68/1947 | 5 | Articles 1, 2, 4–6; Article 1 is repealed, and Articles 2, 5, 6 carry replacement/amendment annotations |
+| Law 68/1947 | 8 | Articles 1, 2, 4–6, 12–14; Article 1 is a repealed marker; Articles 12–14 manually transcribed from original Gazette scan page |
 | Law 70/1964 | 4 | Articles 1–4; nominal base-law fee figures are historical and superseded |
 
-**Count treatment:** 28 text entries include one explicit repealed marker (Law 68/1947 Article 1). Thus 27 are non-repealed text entries in the supplemental capture. These are not yet added to the core 1,370 provision count because they are outside the defined Civil Code/Evidence/Building core set and await article-ID normalization, Gazette comparison and date-effective version checks. Do not add headings, repealed markers or duplicated versions to unique operative article counts.
+**Count treatment:** 31 text entries include one explicit repealed marker (Law 68/1947 Article 1). Thus 30 are non-repealed text entries in the supplemental capture. These are not yet added to the core 1,370 provision count because they are outside the defined Civil Code/Evidence/Building core set and await article-ID normalization, Gazette comparison and date-effective version checks. Do not add headings, repealed markers or duplicated versions to unique operative article counts.
 
 ## Source recovery and cross-checks
 
@@ -52,8 +52,8 @@ Created `alternate_source_article_text_capture_laws_114_142_68_70_2026-11-18.md`
 | Confirmed commercial reuse permission | 0% |
 
 Supplemental text-capture metrics:
-- 28 text entries captured in this checkpoint;
-- 27 non-repealed entries, one repealed marker;
+- 31 text entries captured in this checkpoint;
+- 30 non-repealed entries, one repealed marker;
 - 200 additional searchable headings remain a separate heading count;
 - 44 historical article-version events remain a separate event count;
 - no increase to the 1,370 core provision count.
