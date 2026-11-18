@@ -97,3 +97,15 @@ No lawyer verification or commercial reuse permission is claimed. The four secon
 5. Continue Civil Code extraction beyond Article 264, while backfilling any missing ranges earlier than Article 216.
 6. Continue Evidence Law extraction Articles 1–162; seven provisions 118–124 remain provisional until page-image verification. Correct the user's originally stated 1–117 range because the consolidated text extends through Article 162.
 7. Continue Buildings Law 119/2008 and Decision 144/2009 article-by-article extraction and amendment reconciliation.
+
+## 7. Further Civil Code extraction — Articles 265–302, 303–370 and 380–388
+
+After the initial 49-article batch (216–264), the government-hosted ETA PDF was used to transcribe a further **115 distinct provisions**:
+- Articles 265–302: 38 provisions (conditions, terms, alternative obligations, solidarity and indivisibility).
+- Articles 303–370: 68 provisions (assignment of rights/debt, payment and subrogation, tender/deposit, performance in substitution, novation, delegation, set-off and merger).
+- Articles 380–388: 9 provisions (limitation computation, suspension/interruption and waiver).
+
+The three sets are stored in checkpoint 86. Articles 371–379 were excluded because they were already recorded in checkpoint 60. Articles 389–417 are marked repealed in the base PDF and were not counted as operative provisions.
+
+**Checkpoint 94 cumulative Civil Code increment:** 164 new distinct article texts (Articles 216–370, except no skipped article in this interval; plus 380–388). **Civil Code property/contract extraction stream: 231 distinct provisions** (67 prior + 164 newly added). This is not a consecutive 1–231 extraction and does not establish that all provisions are current. It is a base-text extraction from the ETA government-hosted PDF; amendment/currentness reconciliation and page-image checking remain necessary, especially where OCR is defective.
+
