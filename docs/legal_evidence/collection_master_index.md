@@ -697,3 +697,10 @@
 - Decision 2731/2019 identified as adding Executive Regulation Articles 126 bis and 126 bis A on direct/indirect FDI data collection. MIFT's official 20 Jul 2026 notice confirms Article 126 bis A requires foreign-invested companies/establishments to submit FDI data to GAFI within 45 days after each quarter. Full 2019 Gazette text remains outstanding.
 - Consolidated Regulation footnotes identify further amendments: Decisions 1199/2020 (Article 76), 2467/2020 (Article 10), 910/2021 (Article 36), 2300/2022 (Articles 42–43), 4426/2022 (Article 42(1)), 2140/2023 (Articles 76/76 bis), 1203/2024 (Articles 10, 41–43 and 76 bis) and 2562/2024 (Articles 10 and 63). The full text of the six older amendments remains to be collected individually.
 - **Updated Agent 3 minimum:** 60 distinct legal instruments with some Arabic text surfaced; 549 article/provision text units surfaced. 13/13 law families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
+
+
+### Research Agent 3 — Investment Decision 2140/2023 full text
+
+- PM Decision 2140/2023, dated 4 Jun 2023, full three-article searchable text retrieved. Replaces Executive Regulation 2310/2017 Article 76 (private free-zone conditions) and inserts Article 76 bis (service private free zones). Source marks the decision in force.
+- Other amendments identified from the consolidated regulation footnotes but not individually downloaded: Decisions 1199/2020, 2467/2020, 910/2021, 2300/2022 and 4426/2022. Decision 4426/2022 Gazette issue 49 تابع, 8 Dec 2022; PDF embedded in iframe and not extracted.
+- **Updated Agent 3 minimum:** 61 distinct instruments with some Arabic text surfaced; 552 article/provision text units; 13/13 law families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
