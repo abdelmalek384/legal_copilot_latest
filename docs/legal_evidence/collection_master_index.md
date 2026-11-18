@@ -1,31 +1,31 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (acquisition-first registration tranche: Laws83/2006,186/2020,5/2021,9/2022 and Decision2332/2022 full Arabic text; mortgage and Building Regulation amendment chains expanded)
+**Last updated:** 2026-11-18 (acquisition-first registration tranche: full consolidated Decision8547/2018 for new urban communities, Decisions2333/2022 and73/2023, plus Laws83/2006,186/2020,5/2021,9/2022 and Decision2332/2022)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
 ## Current progress — consolidated acquisition dashboard (18 November 2026)
 
-<badge color="success">379 confirmed + 1 provisional instrument</badge> <badge color="success">42.5% confirmed text-source coverage</badge>
+<badge color="success">382 confirmed + 1 provisional instrument</badge> <badge color="success">42.9% confirmed text-source coverage</badge>
 
 ### Audited register totals
 
 | Measure | Current audited value |
 |---|---:|
-| Acquisition register | **380 unique records: 379 confirmed + 1 provisional candidate** |
+| Acquisition register | **383 unique records: 382 confirmed + 1 provisional candidate** |
 | Base laws | **78** |
 | Amending laws | **76** |
 | Executive regulations | 20 |
-| Executive-regulation amendments | **57** |
+| Executive-regulation amendments | **59** |
 | Judicial decisions | 21 |
 | Other decisions | 114 |
 | Other / unclassified | 14 |
-| Source-permission register | **143 unique source records** |
-| Full-text inventory | **169 rows / 162 unique instruments** |
+| Source-permission register | **146 unique source records** |
+| Full-text inventory | **172 rows / 165 unique instruments** |
 | Full/complete text-source records | **85 unique instruments (legacy tally; status recode pending)** |
-| Confirmed instrument text-source coverage | **161/379 (42.5%)** |
+| Confirmed instrument text-source coverage | **164/382 (42.9%)** |
 
-The 85-instrument full/complete tally remains a legacy status classification and requires a field-by-field recode against the live inventory. The 169 inventory rows cover 162 distinct IDs; seven rows are additional source/version snapshots for already inventoried instruments. Two newly added entries (Law148/2001 and PM Decision1/2001) record full searchable official regulator sources while local mirroring remains partial. This includes one provisional candidate (Decision 6199/2007) whose standalone instrument identity and Gazette metadata are unverified. Excluding the provisional candidate, 161 confirmed instruments have a text-inventory entry out of 379 confirmed instruments. Text-inventory coverage means a record exists, not that every instrument has a complete local transcription, authenticated Gazette page images, or current-law verification. The acquisition register and classification ledger each have 380 unique IDs (379 confirmed plus one provisional candidate); their unique-ID sets match after reconciliation. Earlier dashboard/checkpoint counts are historical snapshots.
+The 85-instrument full/complete tally remains a legacy status classification and requires a field-by-field recode against the live inventory. The 172 inventory rows cover 165 distinct IDs; seven rows are additional source/version snapshots for already inventoried instruments. Two newly added entries (Law148/2001 and PM Decision1/2001) record full searchable official regulator sources while local mirroring remains partial. This includes one provisional candidate (Decision 6199/2007) whose standalone instrument identity and Gazette metadata are unverified. Excluding the provisional candidate, 164 confirmed instruments have a text-inventory entry out of 382 confirmed instruments. Text-inventory coverage means a record exists, not that every instrument has a complete local transcription, authenticated Gazette page images, or current-law verification. The acquisition register and classification ledger each have 383 unique IDs (382 confirmed plus one provisional candidate); their unique-ID sets match after reconciliation. Earlier dashboard/checkpoint counts are historical snapshots.
 
 ### Substantive acquisition work in the latest pass
 
@@ -54,6 +54,7 @@ New or expanded Arabic text files:
 
 - **New locally mirrored complete operative Arabic texts:** [Ministerial Decisions 943/2024 and 1505/2025 amending Executive Regulation 144/2009](building_regulation_amendments_943_2024_and_1505_2025_full_arabic_text.md). Decision943 replaces Articles110 bis, 112 bis 1 and117 bis and repeals Decision410/2021 annexed forms; Decision1505 replaces Articles43 and50. Both texts are transcribed from official SIS-hosted Gazette issue PDFs. Decision943 has a publication conflict between issues216 (1 Oct 2024) and240 (30 Oct 2024); Decision1505 has a printed replacement heading "Article143" although its issuing clause says Article43. Both anomalies are preserved, not silently normalized.
 - **Historical Decision410/2021 text acquired:** [complete secondary Arabic transcription and Forms1–3](building_regulation_decision_410_2021_full_arabic_text_secondary_capture.md) now preserves the original inserted Articles110 bis,112 bis 1 and117 bis, alongside the three forms later expressly repealed/replaced by Decision943/2024. Original Gazette issue160 page-image verification remains outstanding; Form3's OCR insurance-rate string '(0.2?)' is quarantined for visual QA. The three inserted article IDs are counted as historical unique provisions outside the 1,370 core-code metric.
+- **New urban communities registration regulation acquired:** [full 36-article consolidated Decision8547/2018 text](new_urban_communities_registration_decision8547_2018_full_consolidated_arabic_text.md) now includes Decision2333/2022 replacements of Articles8 and9 plus Article8 bis, and Decision73/2023 replacement of Article25 plus Article25 bis. The source is a secondary legal-practitioner consolidation; original Gazette binaries remain outstanding.
 - **Real-estate registration amendment batch acquired:** [full Arabic texts of Laws83/2006,186/2020,5/2021,9/2022 and Minister of Justice Decision2332/2022](real_estate_registration_laws_83_2006_186_2020_5_2021_9_2022_and_decision2332_2022_full_texts.md) are now captured. Law83's attached fee tables A/B remain missing; Law186 Article35 bis commencement was deferred by Law5/2021 to 30 June 2023; Law9 replaces 12 provisions, inserts two and repeals five; Decision2332 replaces ten regulation provisions, inserts six and repeals three. Decisions2333–2336 remain outstanding.
 - **Law93/2018 acquired in full:** [complete 20-article Social Housing and Mortgage Finance Support Law plus six issuing articles](social_housing_law93_2018_full_arabic_text_and_law148_repeals.md) transcribed from the FRA-hosted Gazette issue23 bis (أ), 11 June 2018. Issuing Article4 expressly repeals Law148/2001 Articles5,25,36,36 bis and48 bis, represented as five separate repeal events; Law33/2014 is also repealed.
 - **PM Decision2/2015 acquired in full:** [complete 17-page Arabic text](mortgage_finance_pm_decision2_2015_full_arabic_text.md) from the SHMFF-hosted Official Gazette issue13 bis (ب), 1 April 2015. It replaces 37 regulation provisions, inserts seven, repeals twelve, changes two chapter titles and globally substitutes a defined term. OCR anomalies are explicitly flagged.
@@ -64,8 +65,8 @@ New or expanded Arabic text files:
 - **Five further Arabic replacement provisions captured:** [Decision 67/2014](building_regulation_decision_67_2014_replacement_provisions_arabic_capture.md) now has post-amendment wording for Articles51, 53(1)(6),57,58 and60, extracted from the secondary consolidated regulation and cross-checked against Laweg's issue31 publisher index and the official MHUC amendment list. The original Decision67 scan is image-only; the MELES PDF is request-copy restricted. This is provision text capture, not a complete transcription of the original amending decision.
 - **Additional locally mirrored amendment text:** [Housing Minister Decision 774/2014](building_regulation_decision_774_2014_full_arabic_text.md) now contains the full Arabic issuing provisions and replacement Article134. It also identifies the seven replacement/additional forms; those forms remain unacquired. Source is a secondary Laweg transcription, with Gazette metadata cross-checks.
 - **Mortgage finance source upgrade (not counted as complete local mirroring):** the official FRA now provides a searchable consolidated Law148/2001 PDF reflecting Law55/2014 amendments and Law93/2018 repeal markers, and a full 694-line searchable PM Decision1/2001 Executive Regulation PDF updated through the known amendment chain. Checkpoint87 already contains selected operative Arabic provisions; remaining provisions must be transcribed locally and versions normalized. Full-text inventory entries FT-0167 and FT-0168 point to these sources.
-- One hundred thirty-nine article-version events have now been added in the acquisition-first batches for Decisions410/2021,943/2024,1505/2025,774/2014,67/2014, Law143/2004, Law55/2014 and Decision32/2024. Fifty-five additional unique article IDs/provision bodies are captured outside the 1,370 core-code metric: three Building Regulation bis articles, eight Law148 bis articles, 20 Social Housing Law93 articles, eight Decision465/2005 inserted regulation provisions and seven Decision2/2015 inserted regulation provisions. The source-permission register now has 143 records; permission and commercial reuse remain unknown for the new sources.
-- Current text-source measures: 161/379 confirmed instruments = 42.5%; 162/380 total registered IDs = 42.6% when the provisional candidate is included. These measure the presence of full-text source/inventory records, not complete local transcriptions or current-law validation.
+- One hundred forty-five article-version events have now been added in the acquisition-first batches for Decisions410/2021,943/2024,1505/2025,774/2014,67/2014, Law143/2004, Law55/2014 and Decision32/2024. Ninety-one additional unique article IDs/provision bodies are captured outside the 1,370 core-code metric: three Building Regulation bis articles, eight Law148 bis articles, 20 Social Housing Law93 articles, eight Decision465/2005 inserted regulation provisions and seven Decision2/2015 inserted regulation provisions. The source-permission register now has 146 records; permission and commercial reuse remain unknown for the new sources.
+- Current text-source measures: 164/382 confirmed instruments = 42.9%; 165/383 total registered IDs = 43.1% when the provisional candidate is included. These measure the presence of full-text source/inventory records, not complete local transcriptions or current-law validation.
 
 ### Latest acquisition-first tranche — notarization amendment chain
 
@@ -76,7 +77,7 @@ New acquisition-first tranche added complete Arabic texts for Law88/2025 (14 art
 - Core unique article provisions previously validated: **1,370** (Civil Code 1,093; Evidence Law 163; Building Law 114).
 - Additional unique Arabic article/provision bodies captured in the 18 November notarization tranche: **112 complete** plus **8 incomplete/quarantined** (29 bodies from the 1947 notarization executive regulation; 15 operative provisions from Laws629/1955 and103/1976 and Decisions820/1963,1532/1976,11264/2016; 5 provisions from Decisions712/2008 and4807/2008, plus Article1 of Decision9200/2015; 5 articles from Law83/2006 and 6 from Decision5424/2006; 3 issuing articles each from Decisions2645/2015 and4476/2014; 14 articles from Law88/2025; 2 articles from Law67/2021; 2 articles from Decision1301/2025; 4 articles from Decision739/2025; 8 attached-rule articles from PM Decision2557/2026; 8 selected articles from PM Decision1985/2026; 3 inserted Building Regulation articles from Decision410/2021). These are outside the 1,370 core-code metric and are not added to it. Decision11264/2016 and Decision1532/1976 were merged into their existing inventory records, not duplicated.
 - Additional searchable article-heading entries: **200** (Laws114/1946: 70; 142/1964: 72; 68/1947: 14; 70/1964: 44), not fully extracted/versioned.
-- Historical article-version events: **316**; pre/post Arabic text snapshots are not normalized for every event.
+- Historical article-version events: **321**; pre/post Arabic text snapshots are not normalized for every event.
 - Secondary-hosted Gazette scan reproductions visually inspected: 26 pages across Laws114/1946,142/1964,68/1947,70/1964. Original Amiri Press binaries for those four statutes: **0**.
 - New original Amiri Press PDF bytes/hash archived locally in the latest pass: **0**. Some official PDFs were opened and visually inspected in the browser, but no local binary/hash was saved; DSpace request-a-copy restrictions remain.
 - Decision480/2026 land-regularization deadline remains unresolved; no candidate date should be represented as final.
