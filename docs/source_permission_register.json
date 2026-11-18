@@ -158,20 +158,22 @@
     {
       "source_id": "EG-ETA-TAX-LAWS",
       "authority": "Egyptian Tax Authority / Income Tax Authority portals",
-      "source_page": "https://portal.eta.gov.eg/ar/content/qwanyn-aldrybt-ly-alqymt-almdaft",
+      "source_page": "https://www.eta.gov.eg/sites/default/files/2026-08/law.no_.149.of_.2026.pdf",
       "material_types": [
         "VAT law index",
         "income tax law index",
-        "tax amendment listings"
+        "tax amendment listings",
+        "Law149/2026 official Gazette PDF (4 pages)",
+        "VAT Law67/2016 amendment text"
       ],
-      "access_status": "official_index_located",
+      "access_status": "Direct ETA-hosted four-page Official Gazette reproduction opened; issue30 bis (أ), 28 July 2026; text layer extracted. Ministry legislation portal labels Law149 in force but warns online legislation pages are guidance and Gazette is legal reference.",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
-      "permission_evidence": null,
+      "permission_evidence": " Public government-hosted PDF; no explicit bulk/republication/commercial reuse permission located. ",
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
-      "required_next_action": "Review site terms and seek written authorization for storing, downloading, OCR, indexing, commercial use, excerpts, and redistribution; acquire only original Gazette instruments under approved scope."
+      "required_next_action": "Preserve official PDF provenance; archive bytes/hash; obtain Amiri Press original if separately available; check later Gazette corrigenda/amendments."
     },
     {
       "source_id": "EG-MOF-TAX-LEGISLATION-INDEX-2026",
@@ -1979,13 +1981,15 @@
       "material_types": [
         "Ministerial Decision501/2026 reproduced Gazette issue225 supplement",
         "Egyptian Customs Import Circular30/2026",
-        "Annex2 item7 metal-scrap release conditions"
+        "Annex2 item7 metal-scrap release conditions",
+        "Customs Tariff Circular45/2026 transmitting Law149/2026",
+        "Customs Tariff Circular48/2026 transmitting official corrigendum to Law149/2026"
       ],
-      "access_status": "Official Egyptian Customs Authority / Ministry of Finance PDF inspected 18 Nov 2026. The PDF reproduces Decision501/2026 and the relevant Gazette pages, plus full Customs Circular30/2026 and Annex release conditions. PDF text layer and page images inspected.",
+      "access_status": "Official Customs Authority PDF Circular48/2026 opened; reproduces Cabinet Council of Advisers corrigendum published Official Gazette issue32 bis, 8 Aug 2026, correcting Art28 bis wording.",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
-      "permission_evidence": "Official government-hosted PDF at customs.gov.eg. Public access does not itself establish a licence for commercial reuse, bulk extraction or redistribution. No express licence found in this pass.",
+      "permission_evidence": "Official government-hosted PDF at customs.gov.eg. Public access does not itself establish a licence for commercial reuse, bulk extraction or redistribution. No express licence found in this pass. Circular PDF is publicly accessible; no bulk or commercial reuse permission established.",
       "terms_checked_on": "2026-11-18",
       "bulk_download_or_api": "Single PDF URL; no bulk/API permission established",
       "required_next_action": "Archive permitted PDF bytes and SHA-256; inspect terms; keep Gazette reproduction and administrative circular as separate legal instruments."
