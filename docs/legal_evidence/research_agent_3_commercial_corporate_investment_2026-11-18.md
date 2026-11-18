@@ -6213,3 +6213,322 @@ The MOF record gives the exact Gazette issue/date and marks the law "سارٍ"; 
 The Ministry of Finance PDF is the official government-hosted document and the primary-source locator, but its 115-page scan was not text-extractable in the current web reader. The full text quoted above is from a secondary searchable transcription and must be compared against the Gazette issue 37 مكرر (و) page images before treating every character as exact. The CBE's own law catalogue independently confirms Law 194/2020 and its Executive Regulation are official banking-law instruments. No later amending law has been identified in this checkpoint; currentness of all CBE board decisions/circulars remains open.
 
 **Collection status:** direct 115-page MOF PDF and official CBE catalogue located; full 241-article searchable Arabic transcription surfaced; ten provisions transcribed in this section (issuing Articles 1–2 and substantive Articles 7, 140–143, 218, 221, 222 and 235). No lawyer approval or rights clearance claimed.
+
+
+## 43. Importers Register Executive Regulation Decision 271/2026 — replaces Decision 846/2017
+
+### A. Official identity and repeal
+
+**Decision:** Minister of Investment and Foreign Trade Decision 271/2026 issuing the Executive Regulation of Importers Register Law 121/1982.  
+**Date:** 21 July 2026.  
+**Gazette:** الوقائع المصرية issue 157 تابع, 21 July 2026; effective 22 July 2026.  
+**Official MIFT legislation record:** https://mift.gov.eg/legislation/details/334  
+**GOEIC current legislation index:** https://www.goeic.gov.eg/ar/laws-and-decisions/list  
+**Full searchable Arabic text, 20 issuing/regulation provisions:** https://alhasswalawfirm.com/law-library/decree-271-2026  
+**Official Gazette PDF attachment exposed by the searchable text page:** https://alhasswalawfirm.com/law-library/decree-271-2026 (attachment: decree-271-2026-1790026504057-81263166.pdf)
+
+Decision 271/2026 expressly repeals Minister of Trade and Industry Decision 846/2017 and all conflicting provisions. This is a major currentness correction: Decision 846/2017 must be tagged historical/repealed from 22 July 2026, not presented as the current Importers Register Executive Regulation.
+
+The decision cites Law 173/2023, which permits limited registration of companies not wholly or majority Egyptian-owned under specified time-limited conditions. It also references Laws 121/1982, 34/1976, 159/1981, 17/1999, 80/2002, 3/2005, 91/2005, 67/2016, 72/2017, 176/2018, 181/2018, 194/2020 and 207/2020.
+
+### B. Verbatim issuing provisions
+
+**Verbatim — Decision Article 1:**
+
+> (المادة الأولى)
+>
+> يُعمل بأحكام اللائحة التنفيذية للقانون رقم ١٢١ لسنة ١٩٨٢ في شأن سجل المستوردين المرافقة.
+
+**Verbatim — Decision Article 2 (repeal of 846/2017):**
+
+> (المادة الثانية)
+>
+> يلغى قرار وزير التجارة والصناعة رقم ٨٤٦ لسنة ٢٠١٧ باللائحة التنفيذية للقانون رقم ١٢١ لسنة ١٩٨٢ في شأن سجل المستوردين، كما يلغى كل حكم يخالف أحكام اللائحة المرافقة.
+
+**Verbatim — Decision Article 3 (commencement):**
+
+> (المادة الثالثة)
+>
+> ينشر هذا القرار في الوقائع المصرية، ويعمل به من اليوم التالي لتاريخ نشره.
+
+### C. Selected provisions of the new 17-article Regulation
+
+**Verbatim — Regulation Article 1 (definitions):**
+
+> مادة (١)
+>
+> في تطبيق أحكام هذه اللائحة يقصد بالكلمات والعبارات التالية المعنى المبين قرين كل منها:
+>
+> ١- القانون: القانون رقم ١٢١ لسنة ١٩٨٢ في شأن سجل المستوردين.
+>
+> ٢- الوزير: الوزير المختص بشئون التجارة الخارجية.
+>
+> ٣- الهيئة: الهيئة العامة للرقابة على الصادرات والواردات.
+>
+> ٤- صاحب الشأن: التاجر الفرد، أو من له حق التوقيع والإدارة في شركات الأشخاص والشركات ذات المسئولية المحدودة وشركات الشخص الواحد، أو رئيس مجلس الإدارة أو نائبه أو المدير المسئول في شركات الأموال، وذلك طبقاً لما هو موضح بصحيفة القيد في السجل التجاري، أو الشخص الطبيعي المصري الجنسية الذي ينوب عن أي منهم بموجب توكيل رسمي.
+>
+> ٥- استيراد السلع بقصد الاتجار: ما يستورد من سلع تحمل الصفة التجارية لبيعها بحالتها عند الاستيراد أو بعد تعبئتها دون إجراء أي عملية تحويلية أو تكميلية عليها، بما في ذلك ما تستورده شركات التأجير التمويلي وفقاً لأحكام القانون رقم ١٧٦ لسنة ٢٠١٨، وكذا ما يتم استيراده من قبل الوكيل التجاري للسلع.
+
+**Verbatim — Regulation Article 2 (electronic register and published data):**
+
+> مادة (٢)
+>
+> تكون الهيئة هي الجهة المختصة بتطبيق أحكام القانون، وتمسك السجل لقيد الأشخاص الطبيعيين والشركات الراغبة في استيراد السلع بقصد الاتجار، على أن يتضمن السجل البيانات التي تحددها الهيئة، وعلى الأخص ما يأتي:
+>
+> أولاً - بالنسبة للشخص الطبيعي: بيانات الشخص وتتضمن الاسم والعنوان والبريد الإلكتروني ورقم الهاتف المحمول، ومجموعة السلع التي يقوم باستيرادها.
+>
+> ثانياً - بالنسبة للشخص الاعتباري: اسم الشركة وشكلها القانوني وغرضها، وبيانات التواصل وبخاصة العنوان ورقم الهاتف والبريد الإلكتروني، ومجموعة السلع التي يقوم باستيرادها، وأسماء مديري الشركة والمسئولين عن الاستيراد.
+>
+> ومع عدم الإخلال بسرية بيانات السجل الخاصة بتعاملات المستوردين وقيمها مع الجهات الخارجية أو المتعاملين بالداخل والمستندات المرتبطة بها، تتولى الهيئة نشر البيانات المشار إليها على الموقع الإلكتروني للهيئة، وعلى الهيئة تحديث بيانات السجل بصورة دورية.
+
+**Verbatim — Regulation Article 3 (electronic platform):**
+
+> مادة (٣)
+>
+> تتولى الهيئة خلال ستة أشهر من تاريخ العمل بهذه اللائحة إعداد منصة إلكترونية لتلقي طلبات القيد أو تجديد القيد أو إعادة القيد بالسجل، وكذا طلبات تعديل أو تحديث بيانات المستوردين، على أن يتم تقديم الطلبات من خلال تلك المنصة فور تفعيلها.
+
+**Verbatim — Regulation Article 4 (natural-person importer requirements):**
+
+> مادة (٤)
+>
+> يقدم طلب القيد أو إعادة القيد بالسجل بالنسبة للأشخاص الطبيعيين على النموذج الورقي أو الإلكتروني المعد بالهيئة لهذا الغرض، على أن يرفق بالطلب المستندات الآتية:
+>
+> ١- مستخرج رسمي من السجل التجاري للمحل الرئيسي يثبت أن رأس المال وقت تقديم الطلب لا يقل عن خمسمائة ألف جنيه، وأن الاستيراد ضمن نشاط طالب القيد أو إعادة القيد، وفي حالة تعذر ذلك يجوز إثبات رأس المال بتقديم آخر ميزانية مقدمة إلى مصلحة الضرائب عن السنة المالية السابقة تثبت أن رأس ماله لا يقل عن خمسمائة ألف جنيه.
+>
+> ٢- شهادة من الغرفة التجارية المختصة معتمدة من الاتحاد العام للغرف التجارية تثبت مزاولة طالب القيد أو إعادة القيد للأعمال التجارية لمدة سنتين متتاليتين سابقتين على الأقل على طلب القيد أو إعادة القيد.
+>
+> ٣- صورة بطاقة الرقم القومي أو جواز السفر لطالب القيد أو إعادة القيد والمدير المسئول والمسئولين عن الاستيراد، وجميع بيانات التواصل معهم، والمستند الدال على أن المسئول عن الاستيراد مؤمن عليه في التأمينات الاجتماعية.
+>
+> ٥- شهادة اجتياز الدورات التدريبية لطالب القيد أو إعادة القيد أو المدير المسئول والمسئولين عن الاستيراد الصادرة من مركز تدريب التجارة الخارجية بالوزارة المختصة بشئون التجارة الخارجية أو المراكز الأخرى التي يعتمدها الوزير.
+>
+> ٧- إيصال إيداع التأمين النقدي أو خطاب ضمان مصرفي صادر من أحد البنوك الخاضعة لإشراف ورقابة البنك المركزي المصري، على أن يكون سارياً لمدة القيد أو إعادة القيد والمهلة الممنوحة قانوناً لتجديده بمبلغ خمسين ألف جنيه.
+
+**Verbatim — Regulation Article 5 (company importer requirements — capital and ownership):**
+
+> مادة (٥)
+>
+> يقدم طلب القيد أو إعادة القيد بالسجل بالنسبة للشركات على النموذج الورقي أو الإلكتروني المعد بالهيئة لهذا الغرض، على أن يرفق بالطلب المستندات الآتية:
+>
+> أولاً بالنسبة لقيد شركات الأشخاص والشركات ذات المسئولية المحدودة وشركات الشخص الواحد:
+>
+> ١- مستخرج رسمي من السجل التجاري يثبت أن من أغراضها استيراد السلع بقصد الاتجار، وأن يكون قد مضى على قيدها سنة على الأقل، وأن يكون مركزها الرئيسي بجمهورية مصر العربية، وتم تأسيسها وفقاً لأحكام القوانين المصرية.
+>
+> ٣- المستند الدال على أن رأس المال المدفوع للشركة لا يقل عن مليوني جنيه.
+>
+> ٦- صورة معتمدة من مصلحة الضرائب عن آخر إقرار ضريبي للسنة أو جزء من السنة السابقة لتقديم طلب القيد أو إعادة القيد، يفيد أن حجم الأعمال لا يقل عن خمسة ملايين جنيه.
+>
+> ١١- إقرار من الممثل القانوني للشركة بأن (٥١٪) على الأقل من حصص الشركة مملوكة لمصريين، ويجوز قيد الشركات التي تكون حصص الشركاء فيها غير مملوكة للمصريين أو مملوكة لهم بنسبة تقل عن ٥١٪، على ألا يزيد إجمالي مدد القيد على عشر سنوات، ويجوز مدها لمدة واحدة لا تجاوز عشر سنوات بقرار من مجلس الوزراء بناء على عرض الوزير.
+>
+> ١٣- إيصال إيداع التأمين النقدي أو خطاب ضمان مصرفي صادر من أحد البنوك الخاضعة لإشراف ورقابة البنك المركزي المصري، على أن يكون سارياً لمدة القيد أو إعادة القيد والمهلة الممنوحة قانوناً لتجديده بمبلغ مائتي ألف جنيه.
+
+**Verbatim — Regulation Article 8 (decision period and five-year registration):**
+
+> مادة (٨)
+>
+> تتولى الهيئة البت في طلب القيد أو تجديد القيد أو إعادة القيد بالسجل خلال مدة لا تجاوز خمسة عشر يوماً من تاريخ تقديم الطلب مستوفياً كافة المستندات المطلوبة، ويعتبر انقضاء مهلة البت في الطلب دون رد بمثابة رفض للطلب.
+>
+> ويصدر قرار القيد أو إعادة القيد أو تجديد القيد بالسجل من رئيس الهيئة أو من يفوضه، وينشر القرار على الموقع الإلكتروني للهيئة، ويتم تحديث السجل وفقاً لذلك، وتكون مدة القيد بالسجل خمس سنوات قابلة للتجديد لمدد مماثلة، بشرط استمرار توفر شروط القيد أو إعادة القيد.
+
+**Verbatim — Regulation Article 9 (ongoing importer obligations):**
+
+> مادة (٩)
+>
+> يلتزم المستورد المقيد بالسجل بمراعاة ما يأتي:
+>
+> ١- أحكام القوانين المنظمة للتجارة، وقمع الغش والتدليس، والتموين والجمارك، والاستيراد والتصدير، والرقابة على المعادن الثمينة والأحجار ذات القيمة، والشركات، ومكافحة غسل الأموال، وحماية حقوق الملكية الفكرية، وحماية المنافسة ومنع الممارسات الاحتكارية، والبنك المركزي المصري، والضريبة على القيمة المضافة، والضريبة على الدخل، وحماية المستهلك، وأحكام الاتفاقيات الدولية ذات الصلة والنافذة في جمهورية مصر العربية.
+>
+> ٢- مطابقة السلع المستوردة للمواصفات القياسية المصرية المعتمدة.
+>
+> ٣- الإشارة إلى رقم القيد بالسجل في جميع العقود والفواتير والعناوين التجارية والإعلانات وجميع الأوراق والمطبوعات الأخرى التي تصدر عنه.
+>
+> ٥- موافاة الهيئة فوراً بالبريد الإلكتروني المخصص لذلك بأماكن تخزين الرسائل المستوردة، متضمناً العنوان والكميات والإحداثيات الجغرافية، والفواتير الإلكترونية الخاصة بعمليات البيع، والفواتير الخاصة بتوزيع السلع المستوردة متضمنة اسم الموزع وشكله القانوني ومقره وصورة حديثة من سجله التجاري.
+>
+> ٦- موافاة الهيئة بالقوائم المالية السنوية والإيضاحات المتممة لها وتقرير مراقب الحسابات فور اعتمادها وبحد أقصى أربعة أشهر من تاريخ انتهاء السنة المالية، والقوائم المالية ربع السنوية الدورية مرفقاً بها تقرير فحص محدود من مراقب الحسابات خلال خمسة وأربعين يوماً من نهاية الفترة.
+
+**Verbatim — Regulation Article 10 (changes to register data):**
+
+> مادة (١٠)
+>
+> يلتزم المستورد بإخطار الهيئة على النموذج المعد منها ورقياً أو إلكترونياً بكل ما يطرأ من تغييرات أو تعديلات على البيانات المقيدة في السجل خلال ستين يوماً على الأكثر من تاريخ حدوثها، على أن يرفق بالإخطار بيان بتلك التعديلات والمستندات الخاصة بذلك.
+>
+> إذا لم يقدم الإخطار خلال الميعاد المشار إليه في الفقرة الأولى من هذه المادة، فلا يجوز لصاحب الشأن الاحتجاج به قبل الغير، ومع ذلك يجوز للغير التمسك بهذا التعديل في مواجهة صاحب الشأن.
+
+**Verbatim — Regulation Article 13 (fees):**
+
+> مادة (١٣)
+>
+> تحدد رسوم القيد وإعادة القيد وتجديد القيد وتعديل البيانات وإصدار الصور والشهادات ورسوم النشر على النحو الآتي:
+>
+> ٥٠٠٠ جنيه رسم القيد لأول مرة ولإعادة القيد.
+>
+> ٢٠٠٠ جنيه رسم تجديد القيد.
+>
+> ١٠٠٠ جنيه عن كل مجموعة سلعية.
+>
+> ٥٠٠ جنيه رسم طلب تعديل أو تدوين بيانات فيما عدا إضافة وتعديل المجموعات السلعية.
+>
+> ٥٠٠ جنيه رسم النشر عن القيد أو التجديد أو التعديل.
+>
+> ١٠٠ جنيه رسم استخراج صورة من صحيفة السجل أو شهادة سلبية.
+
+**Verbatim — Regulation Article 14 (deregistration):**
+
+> مادة (١٤)
+>
+> يشطب قيد المستورد من السجل بقرار من رئيس الهيئة في أي من الحالات الآتية:
+>
+> ١- عدم تقديم طلب تجديد القيد بالسجل خلال التسعين يوماً التالية لانتهاء مدة القيد بالسجل.
+>
+> ٢- فقد شرط من الشروط الواجب توافرها للقيد في السجل.
+>
+> ٣- وفاة الشخص الطبيعي أو انقضاء الشركة المرخص لها بالاستيراد، وذلك دون الإخلال بحكم المادة (٦) من هذه اللائحة.
+>
+> ٤- صدور حكم نهائي ضد المستورد في إحدى الجرائم المنصوص عليها بالمادتين (٦)، (٨) من القانون.
+
+**Verbatim — Regulation Article 16 (suspension):**
+
+> مادة (١٦)
+>
+> يجوز وقف قيد المستورد في السجل لمدة لا تجاوز عامين في الحالات المنصوص عليها في المادة (٦ مكرراً) من القانون بقرار مسبب من الوزير.
+
+### D. Cross-law and operational significance
+
+- The new regulation expressly includes leasing-finance companies' imports and imports by commercial agents within the definition of import for trade (Article 1(5)).
+- It requires online applications and electronic linkage, and introduces training certificates for import managers, capital/turnover thresholds, security deposits and periodic financial reporting.
+- It requires detailed electronic reporting of warehouse locations/coordinates, electronic sales invoices and distribution invoices (Article 9).
+- Article 5 permits non-Egyptian-owned companies below the 51% Egyptian ownership threshold only within the time-limited registration mechanism; reconcile this with Law 173/2023 and Law 4/2026, not just the older Law 121 text.
+- Decision 271/2026 must replace 846/2017 in the active regulation pointer; retain 846/2017 only as a historical version.
+
+**Collection status:** full searchable 20-provision text surfaced (three issuing provisions plus 17 numbered regulation articles); 12 provisions transcribed above. Official MIFT record and GOEIC catalogue identify the current regulation; original Gazette PDF/image verification still required. No lawyer review or rights clearance claimed.
+
+## 44. Commercial Agency Executive Regulation amendment Decision 593/2025 — effective January 2026
+
+### A. Official provenance and status
+
+**Decision:** Minister of Investment and Foreign Trade Decision 593/2025 amending the Executive Regulation issued by Decision 342/1982 under Law 120/1982.  
+**Gazette:** الوقائع المصرية issue 20 تابع (أ), 25 January 2026.  
+**Effective:** 26 January 2026.  
+**Official GOEIC legislation catalogue:** https://www.goeic.gov.eg/ar/laws-and-decisions/list (current catalogue lists Decision 593/2025).  
+**Official Gazette DSpace record:** https://dspace.id.com.eg/items/ae370da9-bba8-4f99-ae12-be9b0c45dac3/full  
+**Full searchable Arabic text:** https://www.eastlaws.com/legislation-full-text/ar/egypt/minister-investment-foreign-trade-decision/25-01-2026/no-593?id=5282594&type=1  
+**MIFT official current Law 120/1982 catalogue:** https://www.mift.gov.eg/legislation/details/258
+
+The official GOEIC catalogue lists Decision 593/2025 as the amendment to Executive Regulation 342/1982. The DSpace Gazette record identifies the Ministry of Investment and Foreign Trade as author, Amiri Press as publisher, Arabic language, Gazette supplement and publication date. Decision 593/2025 changes the regulation's title to remove the real-estate-brokerage wording from the regulation title, but adds a separate real estate brokers register and obligations. It also updates the registers and filing requirements for commercial agents and intermediaries.
+
+### B. Verbatim decision provisions
+
+**Verbatim — Article 1 (regulation title):**
+
+> مادة (١)
+>
+> يستبدل مسمى "اللائحة التنفيذية لقانون تنظيم أعمال الوكالة التجارية وبعض أعمال الوساطة التجارية أو السمسرة العقارية" بمسمى "اللائحة التنفيذية لقانون تنظيم أعمال الوكالة التجارية وبعض أعمال الوساطة التجارية" أينما ورد في اللائحة المشار إليها وفي أي قرار آخر.
+
+**Verbatim — Article 2 (replacement of regulation articles):**
+
+> مادة (٢)
+>
+> يستبدل بنصوص المواد (١)، (٥)، (٦)، (٧)، (٨)، (١٠)، (١٥)، (١٦)، (١٧)، (٢٠)، (٣٠) و(٣٠ مكرراً) من اللائحة التنفيذية لقانون تنظيم أعمال الوكالة التجارية وبعض أعمال الوساطة التجارية المشار إليها المواد الآتية:
+>
+> مادة (١):
+>
+> تتولى الهيئة العامة للرقابة على الصادرات والواردات إمساك السجلات الآتية:
+>
+> (أ) سجل الوكلاء والوسطاء التجاريين.
+>
+> (ب) سجل مكاتب الخدمات العلمية والفنية والاستشارية للشركات والمنشآت الأجنبية.
+>
+> (ج) سجل السماسرة العقاريين.
+
+**Verbatim — replacement Article 5 (representatives):**
+
+> مادة (٥):
+>
+> يشترط فيمن ينوب عن صاحب الشأن (الوكيل أو الوسيط التجاري أو السمسار العقاري) أن يكون مصري الجنسية، وأن يكون موكلاً بتوكيل رسمي، وإذا كان من العاملين بالحكومة أو وحدات الحكم المحلي أو الهيئات العامة أو شركات ووحدات القطاع العام يتعين إخطار جهة عمله.
+
+**Verbatim — replacement Article 8 (registration number disclosure):**
+
+> مادة (٨):
+>
+> يلتزم الوكيل أو الوسيط التجاري أو السمسار العقاري الذي يتم قيده بأن يثبت رقم القيد في جميع أوراقه ومكاتباته.
+
+**Verbatim — replacement Article 10 (tax reporting):**
+
+> مادة (١٠):
+>
+> يتعين على الأشخاص الطبيعيين والاعتباريين والمنشآت من المنتجين أو التجار أو الموزعين المتعاملين مع الوكلاء أو الوسطاء التجاريين أو السماسرة العقاريين إخطار مصلحة الضرائب بالمبالغ التي يدفعونها للوكلاء أو الوسطاء التجاريين أو السماسرة العقاريين سواء على سبيل العمولة أو السمسرة أو المكافأة أو تحت أي مسمى آخر.
+>
+> كما يتعين عليهم عند دفعهم لهذه المبالغ للوكلاء أو الوسطاء التجاريين أو السماسرة العقاريين الالتزام بأحكام قانون الضريبة على الدخل الصادر بالقانون رقم ٩١ لسنة ٢٠٠٥ ولائحته التنفيذية المنظمة لقواعد الخصم لحساب الضريبة ومواعيد وإجراءات توريد المبالغ المخصومة تحت حساب الضريبة.
+
+**Verbatim — new Article 3 bis (real estate broker register):**
+
+> مادة (٣ مكرراً):
+>
+> يقيد في السجل المنصوص عليه في البند (ج) من المادة (١) من هذه اللائحة كل من يقوم بأعمال السمسرة أو السعي لإبرام العقود المتعلقة بالعقارات والأراضي المبنية أو الفضاء، سواء أعمال شرائها أو بيعها أو تأجيرها أو التوسط في شيء مما تقدم.
+>
+> ويشتمل السجل على البيانات والمعلومات الخاصة بالمقيدين به من واقع ملف القيد، بما فيها بياناتهم الشخصية الأساسية وبيانات محل مزاولتهم المهنة والكود الممنوح إليهم والفئة التي ينتمون إليها، وغيرها من البيانات والمعلومات والإحصائيات اللازمة لتنظيم نشاط السمسرة العقارية.
+>
+> وتجري الهيئة العامة للرقابة على الصادرات والواردات تحديثاً للسجل بشكل مستمر ومنتظم، بما يتفق ومستجدات هذا النشاط، وتنشر القائمة المحدثة المشتملة على السماسرة العقاريين على مستوى الجمهورية على الموقع الإلكتروني للهيئة.
+
+**Verbatim — new Article 15 bis (agent/mediator natural-person documentation):**
+
+> مادة (١٥ مكرراً):
+>
+> بالإضافة إلى المستندات المبينة بالمادة السابقة، يتعين على الشخص الطبيعي طالب القيد بسجل الوكلاء والوسطاء التجاريين تقديم المستندات الآتية:
+>
+> ١- صورة رسمية معتمدة من عقد الوكالة التجارية أو عقد الوساطة التجارية يتضمن طبيعة عمل الوكيل أو الوسيط التجاري ومسئولية أطراف العقد ونسبة العمولة المقررة وشروط تقاضيها والعملة التي تدفع بها.
+>
+> ٢- شهادة خبرة في مجال التوكيل تصدرها الغرفة التجارية المختصة، ويعتمدها الاتحاد العام للغرف التجارية.
+
+**Verbatim — new Article 16 bis (company ownership and nationality):**
+
+> مادة (١٦ مكرراً):
+>
+> بالإضافة إلى المستندات المشار إليها في المادة السابقة، يتعين على الشخص الاعتباري طالب القيد بسجل الوكلاء والوسطاء التجاريين تقديم المستندات التالية:
+>
+> ١- إقرار من المدير المسئول صاحب حق الإدارة والتوقيع أو من رئيس مجلس الإدارة أو العضو المنتدب - حسب الأحوال - بأن رأس مال الشركة مملوك بالكامل للمصريين، وإذا كان أحد الشركاء من أصل أجنبي وجب أن تكون قد انقضت عشر سنوات كاملة على تاريخ اكتسابه الجنسية المصرية.
+>
+> ٢- وإذا كان الشريك شخصاً اعتبارياً وجب تقديم ما يثبت تمتعه بالجنسية المصرية وأن أغلبية رأس ماله مملوكة لمصريين، مع مراعاة انقضاء عشر سنوات على اكتسابه الجنسية المصرية بالنسبة إلى كل من كان من أصل أجنبي من الشركاء والمساهمين.
+
+**Verbatim — new Article 16 bis/2 (electronic broker transaction register):**
+
+> مادة (١٦ مكرراً ٢):
+>
+> يلتزم السمسار العقاري بإمساك سجل إلكتروني من خلال الموقع الإلكتروني للهيئة العامة للرقابة على الصادرات والواردات تقيد فيه عقود السمسرة التي أبرمها وعمليات السمسرة العقارية التي أجراها، وثمن المعاملة، وتاريخ إجرائها، والعمولات والمبالغ التي تقاضاها، والبيانات الشخصية للمتعاقدين، والبيانات الخاصة بمحل التعاقد.
+>
+> ولحين إنشاء وتجهيز السجل الإلكتروني المشار إليه، يتعين عليه إمساك سجل ورقي وتقديمه للهيئة عند الطلب، وذلك دون الإخلال بحق الهيئة في الرقابة والتفتيش وفقاً لحكم المادة (٢٦) من القانون.
+
+**Verbatim — new Article 18 bis (update of register particulars):**
+
+> مادة (١٨ مكرراً):
+>
+> يقدم من صاحب الشأن أو وكيله طلب التعديل في بيانات القيد بسجل الوكلاء والوسطاء التجاريين أو سجل السماسرة العقاريين إلى الهيئة العامة للرقابة على الصادرات والواردات على النموذج المعد لذلك خلال ثلاثين يوماً من تاريخ حدوث التعديل أو التغيير في البيانات، ويرفق بهذا الطلب مستند رسمي يثبت إجراء التعديل، ويسحب من الوكيل أو الوسيط التجاري أو السمسار العقاري نموذج القيد السابق ويعطى نموذجاً جديداً مثبتاً به التعديل بذات رقم القيد.
+>
+> وإذا لم يقدم طلب التعديل في بيانات القيد خلال الميعاد المشار إليه، فلا يجوز لصاحب الشأن الاحتجاج به قبل الغير، ومع ذلك يجوز للغير التمسك بهذا التعديل في مواجهة صاحب الشأن.
+
+**Verbatim — Article 6 (repeal of old regulation provisions):**
+
+> مادة (٦)
+>
+> تلغى المادتان رقما (٢٦)، (٢٧) من اللائحة التنفيذية لقانون تنظيم أعمال الوكالة التجارية وبعض أعمال الوساطة التجارية المشار إليها.
+
+**Verbatim — Article 7 (transition period):**
+
+> مادة (٧)
+>
+> على مزاولي نشاط السمسرة العقارية المخاطبين بأحكام قانون الوكالة التجارية وبعض أعمال الوساطة التجارية أو السمسرة العقارية المشار إليه توفيق أوضاعهم خلال ستة أشهر من تاريخ العمل بهذا القرار.
+
+**Verbatim — Article 8 (commencement):**
+
+> مادة (٨)
+>
+> ينشر هذا القرار في الوقائع المصرية، ويعمل به من اليوم التالي لتاريخ نشره.
+
+### C. Currentness and cross-law implications
+
+1. Law 21/2022 amended Law 120/1982 and changed its title to include real estate brokerage. Decision 593/2025 implements a distinct register and transaction-record obligations for real estate brokers.
+2. Decision 593/2025 amends Decision 342/1982; the original Decision 342/1982 and amendments 84/1988, 111/2000 and 362/2005 remain historical components of the regulation chain.
+3. The decision requires Egyptian nationality for representatives and, for legal-person commercial agency applicants, full Egyptian ownership subject to the specified naturalization waiting period; do not generalize these conditions to all commercial companies outside this special registration context.
+4. Tax reporting and withholding obligations are cross-referenced to Income Tax Law 91/2005.
+5. The MIFT current catalogue lists Law 120/1982 as in force, Law 21/2022 as its amendment, and Decision 593/2025 as the latest Executive Regulation amendment. GOEIC lists Decision 593/2025 in its current decisions catalogue.
+
+**Collection status:** official GOEIC current catalogue and Official Gazette DSpace record obtained; Decision 593/2025 full searchable text surfaced, with 12 selected provisions transcribed. This is a material update to the commercial-agency and distribution-law collection. No lawyer review or rights clearance claimed.
