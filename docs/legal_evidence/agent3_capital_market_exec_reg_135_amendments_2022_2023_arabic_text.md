@@ -195,3 +195,33 @@ This supersedes the earlier status that the original Gazette decision was outsta
 
 ### Source correction
 The prior record's phrase "Decision 3456 adds Articles 35 bis 3 and 35 bis 4" is incorrect. The original Gazette page image establishes 35 bis 4, 35 bis 5 and 35 bis 6. The 2025 consolidated PDF and this Gazette scan must be used as the controlling sources for the provision IDs.
+
+
+## Additional amendment detail — Decision 345/2023: Article 154 subscription marketing
+
+The official FRA-hosted consolidated Executive Regulation PDF (July 2024 version) explicitly attributes the Article 154 amendment to PM Decision 345/2023 and gives both the current and former wording.
+
+**Current Article 154**
+> يجوز ترويج الاكتتاب في وثائق الصندوق من خلال شركة من الشركات المرخص لها بترويج وتغطية الاكتتاب في الأوراق المالية أو البنوك وذلك بموجب عقد يتم إبرامه مع الصندوق يتضمن بصفة خاصة حدود مسئولية شركة الترويج أو البنك وأتعابهما وشروط الاكتتاب ومدته، كما يجوز تسويق وثائق الصندوق من خلال شركات السمسرة وغيرها من الجهات الحاصلة على موافقة من الهيئة بذلك.
+>
+> ويُنشأ بالهيئة سجل لقيد الجهات الراغبة في تسويق الاكتتاب في وثائق الصندوق على النحو المشار إليه بالفقرة السابقة، ويضع مجلس إدارة الهيئة ضوابط وإجراءات القيد والشطب في هذا السجل.
+
+**Former wording before Decision 345/2023**
+> يجوز ترويج الاكتتاب في وثائق الصندوق من خلال شركة من الشركات المرخص لها بترويج وتغطية الاكتتاب في الأوراق المالية أو شركات السمسرة أو البنوك وغيرها من الجهات التي ترخص لها الهيئة بتلقي الاكتتابات، وذلك بموجب عقد يتم إبرامه مع الصندوق يتضمن بصفة خاصة حدود مسئولية شركة الترويج أو السمسرة ومقدار أتعابها وشروط الاكتتاب ومدته.
+
+Legal effect: the new wording narrows the primary promotion role to licensed securities-underwriting/promotion companies or banks, while allowing other brokerage/marketing channels only where FRA approval is obtained; it also creates an FRA register for entities marketing fund-unit subscriptions.
+
+**Decision 345/2023 — complete affected provision list now known**
+- Article 154 (fund-unit subscription promotion/marketing and FRA register).
+- Article 170(3)(1)–(2) (semiannual fund performance/risk reports and annual financial statements).
+- Article 171 (FRA Board rules for fund-company governance).
+
+Source: official FRA-hosted July 2024 consolidated Executive Regulation PDF, https://fra.gov.eg/wp-content/uploads/2024/07/لائحة-التنفيذية-من-قانون-سوق-المال-بصيغة-WORD-1.pdf and the official FRA January 2025 consolidated PDF. Original Gazette issue/page for Decision 345/2023 remains to be obtained.
+
+## Primary-source status correction
+- Decision 3456/2022: original official FRA-hosted Gazette scan acquired, 11 pages, issue 38 bis (أ), 28 September 2022, pages 3–13. The previous article-number correction (35 bis 4, 5 and 6) is confirmed by the scan.
+- Decision 4664/2022: original official FRA-hosted Gazette PDF acquired and text-extracted, 2 pages, issue 51 bis (د), 25 December 2022, pages 5–6. Articles 1–2 and new Articles 35 bis 7–8 are primary text.
+- Decision 1109/2022: official Amiri Press text page; full Article 358 bis captured.
+- Decision 345/2023: exact amended text is available in official FRA consolidated PDFs; original issuing decision/Gazette image remains outstanding.
+
+No new instrument count. This is a text/provenance expansion; cumulative Agent 3 count remains 202 documents / 1,996 provisional units pending full article-level deduplication.
