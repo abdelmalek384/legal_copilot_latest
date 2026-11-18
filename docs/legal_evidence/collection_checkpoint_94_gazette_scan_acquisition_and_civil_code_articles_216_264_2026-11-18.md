@@ -188,3 +188,11 @@ Checkpoint 114 records a new Ministry of Justice / Real Estate Publicity Authori
 
 Checkpoint 116 performed a repository-wide audit of explicit Arabic article headings across checkpoint 86 and checkpoints 95–106. It found **836 unique article numbers**, comprising **835 complete article texts plus partial Article 766(2)**. The previous cumulative count of 849 was provisional and overcounted 13 repeated/non-distinct headings. There are 313 article-number gaps through Article 1149, of which 29 (Articles 389–417) are repealed in the base text and 284 are not yet transcribed. See checkpoint 116 for the exact gap ranges and audit method.
 
+## 11. Further Civil Code extraction — Articles 674–738
+
+- Checkpoint 97 adds **39 provisions**, Articles 674–712: employment contract and agency authority, duties and liability.
+- Checkpoint 98 adds **26 provisions**, Articles 713–738: agency termination, deposit, hotel-keeper liability and judicial receivership.
+- Cumulative Civil Code extraction stream: **503 distinct provisions** (67 previously recorded + 436 newly transcribed in this continuation). This is not a consecutive range or verified current consolidation.
+- Agency provisions 701–702 distinguish general management authority from special authority for acts such as sale, mortgage, gifts, settlement and litigation. Receivership provisions 729–738 regulate preservation and administration of disputed movable/immovable assets and judicial appointment of a receiver.
+- Employment rules are expressly subject to special employment legislation under Article 675; do not apply the Civil Code chapter without checking the relevant labour-law version.
+
