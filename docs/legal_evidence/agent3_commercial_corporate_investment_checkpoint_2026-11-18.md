@@ -1978,3 +1978,51 @@ FRA's official financial-leasing/factoring legislation catalogue and contemporan
 - Four unique instruments with Arabic operative text surfaced: Law 176/2018, FRA Decision 137/2018, FRA Decision 163/2018 and FRA Decision 91/2023.
 - Seven issuing provision units counted: Law 176/2018 issuing Articles 1–4 and Decision 91/2023 Articles 1–3. The substantive provisions of Law 176 and the full regulation bodies of Decisions 137/163 are indexed from their texts but not separately added to the issuing-unit tally, to avoid inconsistent counting across the corpus.
 - Cumulative Agent 3 minimum: 128 unique instruments / 1,285 provision units.
+
+
+## 40. PPP Law 67/2010 — Gazette-original Law 153/2021 and PM Decision 3217/2022 acquired
+
+### Law 153/2021 — primary Official Gazette PDF
+
+- Instrument: Law 153/2021 amending Law 67/2010 on Private Sector Participation in Infrastructure, Services and Public Utilities Projects.
+- Official Gazette: issue 50 bis (A), 18 December 2021; effective 19 January 2022 (first day of the month following 30 days from publication).
+- Government Invest in Egypt / GAFI official-hosted Gazette PDF: https://www.investinegypt.gov.eg/PublishingImages/Lists/LawsAndRegulations/AllItems/تعديل%20بعض%20أحكام%20قانون%20مشاركة%20القطاع%20الخاص%20في%20مشروعات%20البنية%20الأساسية%20والخدمات%20والمرافق%20العامة%20بالقانون%20رقم%20153%20لسنة%202021.pdf
+- MELES archival record: https://dspace.id.com.eg/items/922f0e44-2c97-4d26-850e-809aefe85ada
+- Official Gazette PDF search text confirms Article 1 replaces Law 67/2010 provisions: Article 3(2), Article 4, Article 14(3), Article 15(1)(b), Articles 17, 18, 19, 20, 21, 23, 26, Article 28(1), Article 32(1)(c), Article 32 final paragraph and Article 39.
+- Article 2 updates statutory ministerial references (planning/economic development and other competent-ministry labels) to reflect the reorganized government portfolios.
+- Article 3 adds a third paragraph to the issuing Article 1 of Law 67/2010, empowering Cabinet to exclude PPP contracts concluded by administrative entities with the Sovereign Fund of Egypt, its sub-funds or their subsidiaries.
+- Article 4 publication/commencement.
+- Substantive impact: updates PPP project preparation, committee composition and authority, central/high committee responsibilities, tender and award procedures, project company/consortium rules, grievance and contract implementation framework. The 2021 law also moves the PPP procurement framework away from older committee structures and modifies bidder consortium participation restrictions.
+- **Exact Arabic text — Law 153/2021 Article 1 opening:**
+> يستبدل بنصوص المواد أرقام (٣/ فقرة ثانية)، (٤)، (١٤/ فقرة ثالثة)، (١٥/ فقرة أولى - بند ب)، (١٧)، (١٨)، (١٩)، (٢٠)، (٢١)، (٢٣)، (٢٦)، (٢٨/ فقرة أولى)، (٣٢/ فقرة أولى - بند ج)، (٣٢/ فقرة أخيرة)، (٣٩) من قانون تنظيم مشاركة القطاع الخاص في مشروعات البنية الأساسية والخدمات والمرافق العامة الصادر بالقانون رقم ٦٧ لسنة ٢٠١٠، النصوص الآتية:
+- **Exact Arabic text — new issuing-law exclusion paragraph:**
+> ولمجلس الوزراء أن يستثنى من أحكام القانون المرافق عقود مشروعات البنية الأساسية والخدمات والمرافق العامة التي تتم بنظام المشاركة والتي تبرمها الجهات الإدارية الخاضعة لأحكامه مع صندوق مصر السيادي للاستثمار والتنمية المنشأ بالقانون رقم ١٧٧ لسنة ٢٠١٨ بإنشاء صندوق مصر، أو أحد الصناديق الفرعية، أو أي من الشركات التابعة لأي منها.
+- Source hierarchy: government-hosted Gazette PDF is the preferred primary copy; Eastlaws, MELES and Manshurat are discovery/cross-check sources. The Law 67 consolidated text is a navigation aid only; store Law 153 as a distinct amendment instrument and preserve all superseded versions.
+
+### PM Decision 3217/2022 — comprehensive Executive Regulation amendment
+
+- Instrument: PM Decision 3217/2022 amending Executive Regulation Decision 238/2011 under Law 67/2010.
+- Full Arabic text published by the Amiri Press: https://www.alamiria.com/Sec/TashTxt?id=JRIfZHx3kaU%3D
+- Search-extracted Amiri Press text identifies the instrument and its long Article 1 replacement schedule; it replaces the heading of Chapter III and provisions of Regulation Articles 2, 3, 4, 27, 31, 32, 33, 34(1), 36(1), 38, 39, 42(1), 43, 45–50, 53–56, 62–63, 72, 74(3), 77, 78(1), 81 and 89.
+- **Exact Arabic text — Decision 3217/2022 Article 1 opening:**
+> يُستبدل عنوان "الباب الثالث: إجراءات التعاقد على المشروعات" بعنوان "الباب الثالث: إجراءات الطرح والترسية والتعاقد" من اللائحة التنفيذية لقانون تنظيم مشاركة القطاع الخاص فى مشروعات البنية الأساسية والخدمات والمرافق العامة المشار إليها، كما يُستبدل بنصوص المواد (2)، (3)، (4)، (27)، (31)، (32)، (33)، (/34 فقرة أولى)، (/36 فقرة أولى)، (38)، (39)، (/42 فقرة أولى)، (43)، (45)، (46)، (47)، (48)، (49)، (50)، (53)، (54)، (55)، (/56 فقرة أولى)، (/62 فقرة أولى)، (63)، (72)، (/74 فقرة ثالثة)، (77)، (/78 فقرة أولى)، (81)، (89) من اللائحة التنفيذية المشار إليها النصوص الآتية:
+- Among the material replacement rules:
+  - Regulation Article 2 requires annual project planning submissions to include developmental feasibility, preliminary technical and legal studies and evidence of land availability.
+  - The amended procurement chapter is titled “procedures for offering, award and contracting”, explicitly covering tender/award stages.
+  - Regulation Articles 27 onward revise the project selection, bidding, evaluation, negotiation and contract award steps.
+  - Article 89 is also replaced, affecting project implementation/contract execution requirements.
+- **Source limitation:** Amiri Press official text endpoint was discoverable and search-extracted, but direct page open returned a 502 during this session. Preserve the official endpoint; for full local ingestion retrieve the HTML/PDF from the Amiri Press or Gazette issue image rather than relying on snippets.
+- The exact Gazette issue/date of Decision 3217/2022 still needs confirmation from the Gazette header/page image. Do not infer it from the decision year or the current webpage date.
+
+### Cross-framework notes
+
+- Law 153/2021 is a statute amending Law 67/2010; PM Decision 3217/2022 is a regulation amending PM Decision 238/2011. Keep these authority levels separate.
+- Law 182/2018 on Public Contracts is a different procurement statute; PPP Law 67/2010 governs the special PPP contract model. The PPP statute's express exclusions and the 2021 Cabinet power to exclude Sovereign Fund contracts must be considered before applying ordinary procurement rules.
+- Decision 2735/2018 on the Supreme Committee for PPP is a separate institutional decision and still requires Gazette-original capture.
+- PM Decision 3217/2022's 2022 regulation text must be time-versioned; do not overwrite the original 2011 Executive Regulation.
+
+### Count increment
+
+- Two additional unique instruments with Arabic operative text surfaced: Law 153/2021 and PM Decision 3217/2022.
+- Seven issuing provision units counted: Law 153/2021 Articles 1–4 and PM Decision 3217/2022 Articles 1–3. The numerous nested Executive Regulation articles replaced by Article 1 of Decision 3217 are separately indexed in the text notes but not double-counted as issuing articles.
+- Cumulative Agent 3 minimum: 130 unique instruments / 1,292 provision units.
