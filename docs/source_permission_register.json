@@ -1108,6 +1108,23 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "one issue-level PDF locator; no bulk/API permission established",
       "required_next_action": "Obtain authorized page images/local issue PDF, inspect printed pages for both decisions, reconcile Decision 6910 date discrepancy, and keep collection/commercial reuse permissions unknown absent affirmative evidence."
+    },
+    {
+      "source_id": "EG-QADAYA-SCC-SECONDARY",
+      "authority": "Qadaya.net legal judgments archive (secondary reproduction)",
+      "source_page": "https://qadaya.net/",
+      "material_types": [
+        "Supreme Constitutional Court judgment reproductions",
+        "legal case summaries and headnotes"
+      ],
+      "access_status": "Publicly accessible page and full-text reproduction for SCC Case 2/24; underlying Gazette and official SCC source not verified",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Checked 2026-11-18. Qadaya.net provides a publicly accessible reproduction of the Supreme Constitutional Court judgment in Case 2/24 (14 December 2003) concerning Article 30 of Law 70/1964. No source-specific licence for bulk collection, OCR, indexing, commercial use, display or redistribution was identified. Public accessibility is not a reuse permission.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Inspect terms and obtain the original SCC judgment/Gazette issue; retain Qadaya as a secondary full-text source only until corroborated."
     }
   ]
 }
