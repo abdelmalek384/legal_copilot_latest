@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (expanded through checkpoint 160)
+**Last updated:** 2026-11-18 (expanded through checkpoint 161)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -1468,3 +1468,12 @@
 
 
 | checkpoint 156 — Agent 3 Companies Law 159/1981 + Executive Regulation 96/1982 text-depth expansion | Duplicate audit confirms both instruments already counted in checkpoint 64; no new instrument/provision increment. Inspected full FRA official consolidated Law 159 PDF (38 pp., 1,633 extracted lines; current consolidated text through Law 4/2018; base numbering through Art 165 plus inserted articles) and full secondary transcription of Executive Regulation 96/1982 (361 articles, updated through 21 Aug 2022). Captured Arabic text on company forms, electronic incorporation, LLCs, one-person companies, in-kind contributions, shareholder agreements, 5% shareholder challenge, capital/ownership rules and penalties; regulation text includes founders, incorporation, capital and subscription rules. MIFT official regulation download returned 502; secondary full text attributed to Court of Cassation portal. Full text, caveats and no-double-count rule: [agent3_companies_law159_exec_reg96_arabic_text_expansion_2026-11-18.md](agent3_companies_law159_exec_reg96_arabic_text_expansion_2026-11-18.md). Cumulative counts unchanged: **186 documents / 1,869 normalized units**; assigned-domain estimate **53% provisional**; whole corpus **2% provisional**; lawyer review 0%. |
+
+
+### Research Agent 1 — checkpoint 161: Law 143/1981 Arabic extraction and Law 12/1984 metadata correction (18 November 2026)
+
+- Added [collection_checkpoint_161_law_143_1981_article_extraction_and_law12_1984_metadata_2026-11-18.md](collection_checkpoint_161_law_143_1981_article_extraction_and_law12_1984_metadata_2026-11-18.md).
+- Added [law_143_1981_articles_1_29_arabic_extraction_v1_2026-11-18.md](law_143_1981_articles_1_29_arabic_extraction_v1_2026-11-18.md), extracting 27 complete article texts, one partial Article 2, and one Article 21 repeal marker from the official Ministry of Agriculture PDF. Eight of nine rendered page images were visually inspected; page index 4 (Articles 12–13) remains image-unverified.
+- The official MOA footnote states Law 12/1984 was published in Official Gazette issue 9 on **1 March 1984**, conflicting with an earlier secondary snippet saying 1 January 1984. EG-0236 and event EV-0020 now preserve the MOA metadata; effective date remains uncertified pending original Law 12/1984.
+- Law 143 article text count: 27 complete source-version texts + 1 partial + 1 repealed marker. The completed core count remains **1,370**; the source-version count across core + Law143 is **1,397**. These are not all current operative provisions.
+- Acquisition register remains **241 rows**, 241 unique IDs; source-permission register remains **63 unique records**. Completion estimates remain core 100%, broader civil/property/contract 15% provisional, whole Egyptian corpus 2% provisional.
