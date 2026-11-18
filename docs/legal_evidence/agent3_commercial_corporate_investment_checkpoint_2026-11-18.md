@@ -2391,3 +2391,40 @@ FRA's official financial-leasing/factoring legislation catalogue and contemporan
 - Three unique instruments with Arabic operative text surfaced: PM Decisions 2423/2024, 1539/2025 and 2482/2025.
 - Eight issuing provision units counted: Decision 2423/2024 Articles 1–3; Decision 1539/2025 Articles 1–2; Decision 2482/2025 Articles 1–3.
 - Cumulative Agent 3 minimum: 145 unique instruments / 1,337 provision units.
+
+
+## 47. Trade Names Law 55/1951 — Gazette scan visually inspected
+
+### Source and publication
+
+- Instrument: Law 55/1951 concerning Trade Names (قانون الأسماء التجارية).
+- Issued 26 March 1951; published in Official Gazette on 29 March 1951.
+- ITDA official Commercial Registry catalogue lists Law 55/1951 as a governing trade-name instrument: https://itda.gov.eg/sgl.aspx
+- ITDA directory exposes its PDF as CR_WorkGuide55.PDF (76,971 bytes) under https://www.itda.gov.eg/pdf/lowsgl/
+- Manshurat archival PDF record: https://manshurat.org/node/34687; PDF download: https://manshurat.org/file/44873/download?token=bPdNlwfM
+- The two-page scanned PDF was opened and both page images visually inspected. It contains the complete 1951 law text; OCR is not available in the browser. The same PDF bundle also includes an adjacent Law 56/1951 item; do not merge the adjacent instrument into Law 55/1951.
+
+### Substantive rules captured
+
+- Article 1: a person who owns a commercial establishment alone must use their personal name as an essential element of the trade name; the name must not imply falsely that the establishment belongs to a company.
+- Article 2: the trade name may include descriptive elements related to the nature of the business and may include an invented designation; in all cases it must correspond to reality and must not mislead or offend public interest.
+- The remaining provisions regulate company trade names, use and continuity of the name, changes and transfer/continuation issues, registration and publication, and sanctions/implementation. The exact full Arabic wording should be transcribed from the retained Gazette scan during the OCR/manual-ingestion pass.
+- **Exact Arabic text — Article 1:**
+> على من يملك بمفرده محلاً تجارياً أن يتخذ اسمه الشخصي عنصراً أساسياً في تكوين اسمه التجاري، ولا يجوز في هذه الحالة أن يتضمن الاسم التجاري بيانات تدعو إلى الاعتقاد بأن المحل التجاري مملوك لشركة.
+- **Exact Arabic text — Article 2:**
+> يجوز أن يتضمن الاسم التجاري بيانات خاصة بالأشخاص المذكورين فيه متعلقة بنوع التجارة المخصص لها، كما يجوز أن يتضمن تسمية مبتكرة.
+>
+> وفي جميع الأحوال يجب أن يطابق الاسم التجاري الحقيقة وألا يؤدي إلى التضليل أو يمس بالصالح العام.
+
+### Cross-links and status
+
+- This statute is directly relevant to Commercial Registry Law 34/1976 and its Executive Regulation 106/2018, and to Companies Law 159/1981 where company names/trade names are concerned.
+- Distinguish a statutory trade name from a trademark (which is governed by the IP framework) and from a company name reservation/non-confusion certificate (an administrative registration process).
+- ITDA's current work guide is operational guidance, not an amendment to Law 55/1951.
+- No amendment to Law 55/1951 was identified in the ITDA catalogue during this pass; absence from the visible catalogue is not proof that no later instrument exists.
+
+### Count increment
+
+- One unique instrument with Gazette-page-image Arabic text surfaced: Law 55/1951.
+- Twelve statutory provision units counted (Articles 1–12); exact full-text transcription remains pending manual/OCR extraction from the inspected scan.
+- Cumulative Agent 3 minimum: 146 unique instruments / 1,349 provision units.
