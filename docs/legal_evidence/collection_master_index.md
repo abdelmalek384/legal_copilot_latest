@@ -1,12 +1,12 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (Research Agent 1 checkpoint 196; Agent 3 continuation separately indexed)
+**Last updated:** 2026-11-18 (Research Agent 1 checkpoint 197; Agent 3 continuation separately indexed)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
 ## Current progress
 
-- **Latest register counts (checkpoint 196):** 250 canonical acquisition records; 66 base laws; 48 amending laws; 13 executive regulations; 35 executive-regulation amendments; 21 judicial decisions; 54 other decisions/circulars; 13 other/unclassified records; 82 unique source-permission records. These are provisional title-based instrument classes and are maintained separately.
+- **Latest register counts (checkpoint 197):** 250 canonical acquisition records; 66 base laws; 48 amending laws; 13 executive regulations; 35 executive-regulation amendments; 21 judicial decisions; 54 other decisions/circulars; 13 other/unclassified records; 84 unique source-permission records. These are provisional title-based instrument classes and are maintained separately.
 - **Priority full-text inventory:** 27 unique instruments after merging six duplicate inventory rows; historical IDs and reasons are preserved in the inventory alias map. Full-text source availability is distinct from complete extraction, Gazette authentication and currentness.
 - **Supplemental text captures:** checkpoint 189 added 17 article/provision texts (nine Building Law provisions that overlap the 1,370 core extraction and eight Decision 144/2009 provisions); checkpoint 188 added 16 Law 114 article texts, but most overlap existing article ranges in FT-0029 and earlier captures. Do not add these to unique article totals until the provision IDs and versions are deduplicated.
 - **Full-text and unique-provision counts:** priority inventory 27 unique instruments; 26 records have searchable/full text sources, with extraction completeness varying. The validated core unique provision count remains **1,370**; the additional 200 headings across four older property statutes are not yet unique article-body counts. Supplemental entries from checkpoints 185–194 remain outside that count until article/version deduplication.
@@ -30,10 +30,10 @@
 - Legal-source rights/permission: not presumed. Official public accessibility does not automatically establish commercial indexing, excerpt-display or redistribution rights.
 - Machine labels must remain `source-matched, not lawyer-reviewed` where applicable; no `verified` label without qualified Egyptian lawyer approval.
 
-## Current audited repository snapshot — checkpoint 196 (18 November 2026)
+## Current audited repository snapshot — checkpoint 197 (18 November 2026)
 
 - Acquisition register after instrument deduplication: **250 canonical instrument rows**, 250 unique canonical IDs, no duplicate legal instruments; 11 duplicate rows were consolidated and preserved in [the acquisition-ID alias map](../data/research/egypt_acquisition_register_aliases_2026-11-18.csv). The [provisional instrument-type ledger](../data/research/egypt_instrument_type_classification_2026-11-18.csv) provides the separate category counts.
-- Source-permission register: **78 unique source records**, no duplicate source IDs. These are assessments, not permissions granted.
+- Source-permission register: **84 unique source records**, no duplicate source IDs. These are assessments, not permissions granted.
 - Provisional instrument-type classification (250 canonical records; title/domain-based and subject to manual normalization): **66 base-law records; 48 amending-law records; 13 executive regulations; 35 executive-regulation amendment records; 21 judicial decisions; 54 other decisions/circulars/advisory authorities; 13 other/unclassified records**.
 - Priority full-text inventory: **27 unique instrument records** (33 historical rows before six duplicate inventory aliases were merged) (9 base laws, 5 executive regulations, 1 presidential decision, 9 executive-regulation amendments, 1 implementing decision, 1 fee decision, 1 annual valuation decision). Inventory status varies; 27 unique records do not mean 27 authenticated complete texts; 26 have a searchable/full-text source status, while Law 143/1981 is represented by 27 complete article bodies plus one partial article and a repeal marker. Six duplicate inventory IDs are preserved in [the full-text inventory alias map](../data/research/egypt_full_text_inventory_aliases_2026-11-18.csv).
 - Completed core unique article provisions: **1,370** (Civil Code 1,093; Evidence Law 163; Building Law 114).
@@ -48,6 +48,8 @@
 - SCC Case 42/17 and Case 101/26 operative Arabic text: [judgment capture](scc_case_42_17_and_101_26_text_and_article_effects_2026-11-18.md).
 
 ## Collection checkpoints
+
+| checkpoint 197 — Case42/17 Gazette metadata and source-register reconciliation | Added two publication-metadata leads for the 18 June 1998 judgment (issue35 تابع versus CRCICA issue25 تابع (ب)); updated EG-0262 and source register to 84 unique records | [checkpoint 197](collection_checkpoint_197_case42_gazette_metadata_and_source_register_reconciliation_2026-11-18.md) |
 
 | checkpoint 195 — deduplicated 44-provision text capture and inventory update | Consolidated one text body per provision for Law 168/2025 (18), Decision 200/2026 (24) and Decision 480/2026 (2); upgraded inventory to 44/44 text-complete and preserved Article20/Form3 discrepancy | [checkpoint 195](collection_checkpoint_195_deduplicated_44_provisions_and_inventory_update_2026-11-18.md) |
 
