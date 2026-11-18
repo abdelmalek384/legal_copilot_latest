@@ -140,3 +140,9 @@ Checkpoint 97 adds **48 distinct provisions**:
 
 The cumulative Civil Code extraction stream is now **486 distinct provisions** (67 prior + 419 newly transcribed in this continuation). This remains a non-consecutive base-text extraction set, not a current consolidated Civil Code. Special legislation and amendment histories remain to be reconciled.
 
+## 12. Further Civil Code extraction — Articles 739–771
+
+Checkpoint 98 adds 33 article-number records in the aleatory-contract and insurance chapters. **32 complete article texts** (739–765 and 767–771) were transcribed; Article 766(2) is incomplete in the source text extraction and remains quarantined. Articles 772–779 (suretyship) were already extracted in checkpoint 86.
+
+The cumulative Civil Code extraction stream is now **518 fully transcribed unique article provisions** (67 previously recorded + 451 newly transcribed in this continuation), plus one partial/quarantined Article 766(2). The count is not consecutive and does not imply currentness.
+
