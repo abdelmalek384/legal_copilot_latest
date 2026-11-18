@@ -12,20 +12,20 @@
 
 | Measure | Current audited value |
 |---|---:|
-| Acquisition register | **336 / 336 unique instrument IDs** |
-| Base laws | 74 |
-| Amending laws | 67 |
+| Acquisition register | **355 / 355 unique instrument IDs** |
+| Base laws | 76 |
+| Amending laws | 69 |
 | Executive regulations | 19 |
-| Executive-regulation amendments | 43 |
+| Executive-regulation amendments | 44 |
 | Judicial decisions | 21 |
-| Other decisions | 98 |
+| Other decisions | 112 |
 | Other / unclassified | 14 |
 | Source-permission register | **111 unique source records** |
-| Full-text inventory | **108 rows / 104 unique instruments** |
-| Full/complete text-source records | **85 unique instruments (25.3%)** |
-| Any text-inventory coverage | **104/336 (31.0%)** |
+| Full-text inventory | **131 rows / 127 unique instruments** |
+| Full/complete text-source records | **85 unique instruments (legacy tally; status recode pending)** |
+| Any text-inventory coverage | **127/355 (35.8%)** |
 
-The 25.3% figure means an instrument has a full/complete text-source record in the inventory; it does **not** mean every such instrument has a complete local transcription, authenticated Gazette page images, or current-law verification. The 23 remaining inventory rows are partial, external-only or incomplete; four duplicate IDs are source/version rows.
+The 85-instrument full/complete tally is a legacy status classification and requires a field-by-field recode against the live inventory. The 131 inventory rows cover 127 distinct instruments; four rows are duplicate source/version entries. Text-inventory coverage means a record exists, not that every instrument has a complete local transcription, authenticated Gazette page images, or current-law verification. The live acquisition CSV and type ledger agree at 355 unique IDs; earlier dashboard/checkpoint counts of 336, 273, 250 and 172 are historical snapshots.
 
 ### Substantive acquisition work in the latest pass
 
@@ -61,6 +61,9 @@ New or expanded Arabic text files:
 - The percentages above are acquisition/source-availability measures, not a claim of percentage completeness of Egyptian law as a whole.
 
 ## Collection checkpoints
+
+| checkpoint 239 — Research Agent 1 live-register audit, source provenance and continuation | Reconciles the live 355-record acquisition/type ledgers, 111 source assessments and 131-row text inventory; records Gazette/judgment blockers, Decision 480 deadline qualifications and current article/version coverage | [Research Agent 1 checkpoint 239](collection_checkpoint_239_research_agent1_session_update_2026-11-18.md) |
+
 
 | checkpoint 31 — Agent 3 licensing, solvency and governance capture | Added current FRA Decision 137/2018 partial text, 191/192 solvency rule captures and Decision 100/2020 governance scope; amendments/currentness caveats recorded | [Agent 3 checkpoint 31](agent3_progress_checkpoint_2026-11-18_31.md) |
 
