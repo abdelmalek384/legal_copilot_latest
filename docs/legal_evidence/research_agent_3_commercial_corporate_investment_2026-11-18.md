@@ -4808,3 +4808,109 @@ Decision 2467/2020 replaces the second paragraph of Article 10 of Executive Regu
 > ينشر هذا القرار فى الجريدة الرسمية، ويعمل به اعتباراً من اليوم التالى لتاريخ نشره.
 
 **Currentness:** Article 10 was subsequently amended by Decisions 1203/2024 and 2562/2024, and the industrial schedules under Decision 104/2022 were replaced by Decision 503/2026. Preserve Decision 2467/2020 as the historical Sector A version; apply the current consolidated Article 10 and current schedule version.
+
+
+## 46. Investment incentive sector schedules — PM Decisions 104/2022, 981/2022 and 983/2022
+
+### A. PM Decision 104/2022 — base Sector A/B sub-sector schedules
+
+**Decision:** Prime Minister Decision 104/2022, dated 4 January 2022.  
+**Gazette:** Official Gazette issue 52 bis (هـ), 4 January 2022.  
+**Effective:** 5 January 2022.  
+**Official Gazette DSpace item:** https://dspace.id.com.eg/items/a38127b8-2c98-45e3-b4ca-ed5220f53d48  
+**Official Amiri Press text:** https://www.alamiria.com/Sec/TashTxt?id=AAWyD55BtvA%3D (preamble reference only; later Decision 503/2026 text)  
+**Official Industrial Development Authority schedule page:** https://ida.gov.eg/ar/incentives  
+**Secondary full text and schedules:** https://www.eastlaws.com/legislation-full-text/ar/egypt/prime-minister-decision/04-01-2022/no-104?id=2043303&type=1
+
+Decision 104/2022 allocates investment sub-sectors across geographic Zones A and B under Law 72/2017 Article 11. The base decision covers six sectors: industry; tourism; communications and information technology; petroleum and natural resources; agriculture/animal/poultry/fish production; and transport. It contains two schedules (1) and (2), one for each zone.
+
+**Verbatim — Article 1:**
+
+> مادة (1)
+>
+> توزع القطاعات الفرعية لأنشطة الاستثمار بالنطاق الجغرافي لكل من القطاعين (أ) و(ب) طبقاً للجدولين المرافقين.
+
+**Verbatim — Article 2:**
+
+> مادة (2)
+>
+> تلتزم الشركات والمنشآت المخاطبة بأحكام هذا القرار بالحصول على الموافقات والتصاريح والتراخيص اللازمة من الجهات المختصة حسب طبيعة كل نشاط من الأنشطة الواردة بالجدولين المشار إليهما.
+
+**Verbatim — Article 3:**
+
+> مادة (3)
+>
+> ينشر هذا القرار في الجريدة الرسمية، ويعمل به من اليوم التالي لتاريخ نشره.
+
+The IDA official page exposes the industrial sub-sector schedule tables. Decision 503/2026 later replaces only the industrial sector distributions in schedules (1) and (2); the remaining sector distributions in Decision 104/2022 continue to provide the base schedules subject to later additions/amendments.
+
+### B. PM Decision 981/2022 — electricity, education and sports; single-use plastic alternatives
+
+**Decision:** Prime Minister Decision 981/2022, dated 14 March 2022.  
+**Official Amiri Press searchable text:** https://www.alamiria.com/Sec/TashTxt?id=Ad7+24xCrdg%3D  
+**Gazette:** Official Gazette issue 11 bis (أ), 14 March 2022.  
+**Effective:** 15 March 2022.
+
+Decision 981/2022:
+- Allocates sub-sectors in electricity/renewable energy, education and sports to Zones A and B under its own schedules.
+- Adds item 4 to Sector A industrial sub-sector 3 (wood, furniture, printing, packaging and chemical industries): safe environmentally friendly alternatives to single-use plastic products.
+- Adds item 21 to Sector B industrial sub-sector 3 with the same product category.
+- Requires companies to obtain necessary approvals/permits/licences.
+
+**Verbatim — Article 1:**
+
+> (المادة الأولى)
+>
+> توزع القطاعات الفرعية لأنشطة الاستثمار فى قطاعات (الكهرباء والطاقة المتجددة - التعليم - الرياضة) بالنطاق الجغرافى لكل من القطاعين (أ) و(ب) طبقاً للجدولين المرافقين.
+
+**Verbatim — Article 2:**
+
+> (المادة الثانية)
+>
+> تلتزم الشركات والمنشآت المخاطبة بأحكام المادة الأولى من هذا القرار بالحصول على الموافقات والتصاريح والتراخيص من الجهات المختصة حسب طبيعة كل نشاط لمنح الحوافز الواردة بالجدولين المرافقين.
+
+**Verbatim — Article 3 (addition to Sector A industrial schedule):**
+
+> (المادة الثالثة)
+>
+> يضاف إلى الجدول (1) بتحديد القطاعات الفرعية لأنشطة الاستثمار بالنطاق الجغرافى للقطاع (أ)، المرفق لقرار رئيس مجلس الوزراء رقم 104 لسنة 2022 المشار إليه، بالقطاع الفرعى رقم (3) المسمى "الصناعات الخشبية والأثاث والطباعة والتغليف والصناعات الكيماوية"، والمنبثق من قطاع الصناعة، بند برقم (4) نصه الآتى:
+>
+> "4- تصنيع البدائل الآمنة الصديقة للبيئة للمنتجات البلاستيكية أحادية الاستخدام".
+
+**Verbatim — Article 4 (addition to Sector B industrial schedule):**
+
+> (المادة الرابعة)
+>
+> يضاف إلى الجدول (2) بتحديد القطاعات الفرعية لأنشطة الاستثمار بالنطاق الجغرافى للقطاع (ب)، المرافق لقرار رئيس مجلس الوزراء رقم 104 لسنة 2022 المشار إليه، بالقطاع الفرعى رقم (3) المسمى "الصناعات الخشبية والأثاث والطباعة والتغليف والصناعات الكيماوية"، والمنبثق من قطاع الصناعة، بند برقم (21) نصه الآتى:
+>
+> "21- تصنيع البدائل الآمنة الصديقة للبيئة للمنتجات البلاستيكية أحادية الاستخدام".
+
+**Verbatim — Article 5:**
+
+> (المادة الخامسة)
+>
+> ينشر هذا القرار فى الجريدة الرسمية، ويعمل به من اليوم التالى لتاريخ نشره.
+
+### C. PM Decision 983/2022 — coordination for additional incentives under Article 13
+
+**Decision:** Prime Minister Decision 983/2022, 14 March 2022.  
+**Official Amiri Press searchable text:** https://www.alamiria.com/Sec/TashTxt?id=AnD1aRwA2n4%3D
+
+Decision 983/2022 implements Article 13 of Law 72/2017 by requiring GAFI to coordinate with ministries and competent authorities to identify projects that may be granted additional incentives appropriate to their nature, based on the sub-sector schedules under Decisions 104/2022 and 981/2022.
+
+**Verbatim — Article 1:**
+
+> (المادة الأولى)
+>
+> تتولى الهيئة العامة للاستثمار والمناطق الحرة التنسيق مع كافة الوزارات والجهات المعنية بالقطاعات الفرعية لأنشطة الاستثمار بالنطاق الجغرافى لكل من القطاعين (أ) و(ب) وفق حكم المادة (11) من قانون الاستثمار المشار إليه والصادر بشأنها قرارات رئيس مجلس الوزراء بتحديد توزيع القطاعات الفرعية للاستثمار المذكورة، لتحديد المشروعات الاستثمارية المقترح منحها الحوافز الإضافية الملائمة لطبيعة كل مشروع، وفقاً لأحكام المادة (13) من قانون الاستثمار المشار إليه.
+
+### D. Version chain and current schedules
+
+- Decision 104/2022 is the base sector/sub-sector distribution for Zones A and B.
+- Decision 981/2022 adds electricity/renewable energy, education and sports, and adds the single-use plastic alternatives items to the industrial schedule.
+- Decision 983/2022 establishes the GAFI inter-agency process for identifying projects for Article 13 additional incentives.
+- Decision 4427/2022 adds automotive research centres and accreditation laboratories to the industrial sub-sector 2 schedules.
+- Decision 503/2026 replaces the industrial sector sub-sector distributions in schedules (1) and (2) of Decision 104/2022, effective 17 February 2026. It does not replace the entire 104/2022 schedule package.
+- The separate industrial cash incentive under Law 160/2023 and Decision 77/2023 is not the same as the additional incentives under Law 72/2017 Article 13; keep these two incentive regimes separate in retrieval.
+
+**Collection status:** Decision 104/2022 full operative Articles 1–3 and schedule locators obtained; Decision 981/2022 full five-article text and key amendments transcribed; Decision 983/2022 full operative Article 1 text captured. The schedule tables should be downloaded and normalized as separate datasets; Decision 503/2026's replacement industrial schedules are current for the industrial sector. No lawyer approval or rights clearance claimed.
