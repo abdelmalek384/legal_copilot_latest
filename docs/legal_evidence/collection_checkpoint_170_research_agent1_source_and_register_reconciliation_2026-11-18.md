@@ -59,7 +59,7 @@ The JSON register contains 64 unique source IDs, no duplicates. Permission-state
 - 5: collection not allowed without explicit exception or licence / commercial reuse requires prior written permission;
 - 1: collection unknown / commercial reuse not allowed without explicit exception or licence.
 
-No permission state was upgraded. All 231 canonical acquisition records retain lawyer_reviewed=false and rights_cleared=false.
+No permission state was upgraded. All 233 canonical acquisition records retain lawyer_reviewed=false and rights_cleared=false.
 
 ## 3. Original Gazette PDF acquisition status
 
@@ -202,4 +202,4 @@ The 44-event historical article-version register currently records effects but l
 
 ## 11. Verification and rights
 
-No lawyer verification, commercial reuse permission, certified Amiri Press authentication, or general bulk collection permission is claimed. No restricted download was bypassed. All 231 canonical acquisition records remain lawyer_reviewed=false and rights_cleared=false.
+No lawyer verification, commercial reuse permission, certified Amiri Press authentication, or general bulk collection permission is claimed. No restricted download was bypassed. All 233 canonical acquisition records remain lawyer_reviewed=false and rights_cleared=false.
