@@ -867,3 +867,53 @@ Regulation Article 18 bis (changes to registration data):
 - Families amendment/currentness-complete: 0/13.
 - Lawyer-reviewed: 0%.
 - Whole-corpus estimate remains approximately 2%; no validated denominator exists for a more precise figure.
+
+
+## 24. Companies Law — 2022 executive-regulation amendment text and consolidated-source acquisition
+
+### Primary sources acquired
+
+- MIFT official Companies Law record: https://www.mift.gov.eg/legislation/details/252 . It marks Law 159/1981 as in force and lists statutory amendments 212/1994, 3/1998, 159/1998, 94/2005, 68/2009, 17/2015 and 4/2018. This is an official catalogue, not a consolidated-text substitute.
+- MIFT official Arabic Law 159/1981 PDF: https://www.mift.gov.eg/legislation/download/231 . The displayed consolidated version states it is amended through 15 September 2020. Do not treat it as proof of post-2020 currentness.
+- MIFT official Arabic Executive Regulation Decision 96/1982 PDF: https://www.mift.gov.eg/legislation/download/253 . Full searchable 3,416-line text acquired; its cover explicitly says amended through 21 August 2022. It contains the regulation issuing provisions and consolidated regulation articles. This is the strongest consolidated regulation text found in this pass, but it is not a Gazette original and cannot establish that no later amendments exist.
+- Official Amiri Press text of PM Decision 2928/2022: https://alamiria.com/Sec/TashTxt?id=IDnnBnh91PQ%3D . Gazette issue 33 bis (A), 21 August 2022. The DSpace Official Gazette record identifies the same decision and issue: https://dspace.id.com.eg/items/1b923c2d-4af6-411e-92d6-9ff0201623bd .
+- Official MIFT Law 4/2018 amendment PDF: https://www.mift.gov.eg/legislation/download/230 . It amends the Companies Law's scope, incorporation, capital, governance, shareholder and LLC provisions. MIFT's current law page lists it among the seven amendments.
+- ETA-hosted base Law 159/1981 PDF: https://portal.eta.gov.eg/sites/default/files/2024-10/law-159-1981.pdf . This is useful as the original/base text but should not be ingested as current consolidated law without overlaying amendments.
+
+### Exact Arabic text — PM Decision 2928/2022
+
+**Article 1:**
+> يُستبدل بنص الفقرة الأولى من المادة (٢٨٧ مكرر - ٢) من اللائحة التنفيذية لقانون شركات المساهمة وشركات التوصية بالأسهم والشركات ذات المسؤولية المحدودة وشركات الشخص الواحد المشار إليها النص الآتي:
+>
+> لا يجوز أن يقل الحد الأدنى لرأس مال شركة الشخص الواحد عن ألف جنيه، ويجب أن يدفع رأس المال بالكامل عند تأسيس الشركة.
+
+**Article 2:**
+> يُنشر هذا القرار في الجريدة الرسمية، ويُعمل به من اليوم التالي لتاريخ نشره.
+
+Decision metadata in the Amiri Press text: issued 21 August 2022; Official Gazette issue 33 bis (A); the operative amendment took effect on the day following publication. This replaces only the first paragraph of Executive Regulation Article 287 bis-2; do not mislabel it as a Companies Law statutory amendment.
+
+### Additional consolidated regulation provisions inspected
+
+The MIFT consolidated regulation text (amended through 21 August 2022) includes, among other things:
+- Regulation Article 2 bis: shareholders/partners may conclude an agreement regulating relations among themselves; its effect against other shareholders/partners depends on extraordinary general meeting approval by at least three-quarters of capital, with stricter requirements for specified voting, distribution, related-party or transfer/management restrictions.
+- Regulation Article 1: minimum founder counts and a six-month cure/one-person-company conversion route where the founder/shareholder count falls below the statutory threshold.
+- Regulation Article 287 bis-1: one-person company capital and prohibited activities; verify the article numbering and exact current version against the full consolidated source before relying on any minimum-capital statement. Decision 2928/2022 specifically amends Article 287 bis-2, not Article 287 bis-1.
+- The text contains multiple amendment footnotes, including Ministerial Decisions 16/2018, 256/2018, 32/2019, 144/2019 and PM Decision 2928/2022. Capture and reconcile each amending instrument rather than assuming the consolidated PDF's footnotes are a complete Gazette provenance trail.
+
+### Currentness and scope cautions
+
+- The MIFT catalogue's statutory amendment list ends at Law 4/2018; the official MIFT consolidated law download is dated through 15 September 2020. A 2026 MIFT announcement about possible changes to Executive Regulation 96/1982 is policy/development news, not an enacted amendment.
+- MIFT's 20 July 2026 announcement concerning annual financial-statement submission under Article 156 bis is a reporting lead, not itself a legislative instrument. Obtain the exact Gazette/legal basis and current Article 156 bis text before ingesting it as an operative rule.
+- The MIFT consolidated regulation is labelled amended through 21 August 2022. The 2026 proposal announcement does not establish enactment. Search for any post-2022 Gazette amendments before declaring the regulation current.
+- No rights clearance is inferred from public accessibility. Lawyer review remains required.
+
+**Incremental count:** PM Decision 2928/2022 is now counted as one additional unique instrument with Arabic operative text; its two issuing provisions are transcribed above. The Companies Law and Decision 96/1982 were already in the inventory and are not double-counted.
+
+## 25. Revised counts after Companies Law amendment capture
+
+- Unique instruments with Arabic text surfaced: 93 (92 + PM Decision 2928/2022).
+- Article/provision text units: 1,188 (1,186 + Decision 2928/2022 Articles 1–2).
+- Assigned families touched: 13/13.
+- Families amendment/currentness-complete: 0/13.
+- Lawyer-reviewed: 0%.
+- Whole-corpus coverage remains approximately 2%; no validated denominator exists.
