@@ -6,7 +6,7 @@
 
 ## 1. Captured base-law article text and historical status
 
-The supplemental text file `alternate_source_article_text_capture_laws_114_142_68_70_2026-11-18.md` contains base Articles 1–4.
+The canonical text file `alternate_source_arabic_text_capture_laws_114_142_68_70_and_building_reg_144_2009_2026-11-18.md` contains base Articles 1–19 and 24–34. This file adds only Article 21(9) as a pre-Case 10/16 historical text snapshot.
 
 Additional searchable text on the Notaries Union page confirms:
 - Article 19 is replaced by Law 83/2006.
@@ -18,7 +18,7 @@ Additional searchable text on the Notaries Union page confirms:
 - The base schedules A/B/C remain part of the statute but are repeatedly amended and cannot be served as current fees without the later amendments and annual ministerial decisions.
 
 ### Article 19 — current structure after Law 83/2006
-يتحدد الرسم النسبى المشار إليه فى المادة السابقة حسب الفئة الموضحة قرين كل تصرف أو موضوع فيما هو وارد بالجدولين حرفى (أ)،(ب) المرفقين بهذا القانون، وفى جميع الأحوال لا يقل هذا الرسم فى أى من الجدولين المشار إليهما عن عشرة جنيهات.
+The full text of Article 19 is already present in the canonical alternate-source capture file. It is not repeated here to avoid duplicate article text. Law 83/2006 replaced the earlier version; the historical/current version boundary is mapped in the amendment table below.
 
 ### Article 21(9) — pre-Case 10/16 wording, affected by constitutional invalidation
 الأراضى الفضاء والمعدة للبناء وما فى حكمها التى لم تربط عليها ضريبة الأراضى الفضاء على أساس القيمة الموضحة فى المحرر بحيث لا تقل عن قيمة الأراضى المماثلة محسوبة وفقًا للبند (7) من هذه المادة.
