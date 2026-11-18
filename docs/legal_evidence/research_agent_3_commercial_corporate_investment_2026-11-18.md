@@ -2445,3 +2445,90 @@ The searchable reproduction contains the three issuing provisions and 17 numbere
 - The new regulation requires an electronic platform within six months of 22 July 2026 (by 22 January 2027), then mandatory electronic filing once activated. Verify the actual platform launch separately before saying it is operational.
 - The DSpace Gazette PDF for Decision 271/2026 is access-restricted; the searchable law-firm text is a secondary transcription attributed to the Court of Cassation legislation portal. Record the restriction; do not redistribute or claim primary bytes were downloaded.
 - No lawyer verification or commercial reuse rights clearance claimed.
+
+
+## 24. Commercial Agency Law 120/1982 — 2025/2026 Executive Regulation reform and real-estate brokerage register
+
+### A. Ministerial Decision 593/2025 — amendment to Executive Regulation 342/1982
+
+**Official GOEIC catalogue entry:** https://www.goeic.gov.eg/ar/laws-and-decisions/list  
+**Official Gazette metadata (Amiri Press):** الوقائع المصرية, issue 20 تابع (أ), 25 January 2026; Ministry of Investment and Foreign Trade; DSpace record https://dspace.id.com.eg/items/ae370da9-bba8-4f99-ae12-be9b0c45dac3  
+**Searchable full text / transcription:** https://www.eastlaws.com/legislation-full-text/ar/egypt/minister-investment-foreign-trade-decision/25-01-2026/no-593?id=5282594&type=1  
+**Decision:** Minister of Investment and Foreign Trade Decision 593/2025, signed 16 December 2025, published 25 January 2026, effective 26 January 2026.
+
+The decision amends Ministerial Decision 342/1982 (Executive Regulation of Law 120/1982). It:
+- Replaces the title of the Executive Regulation to remove "real-estate brokerage" wording from the title.
+- Replaces Articles 1, 5, 6, 7, 8, 10, 15, 16, 17, 20, 30 and 30 bis.
+- Adds Articles 3 bis, 15 bis, 15 bis/1, 16 bis, 16 bis/1, 16 bis/2, 16 bis/3 and 18 bis.
+- Adds an annex containing real-estate brokerage training curriculum.
+- Repeals Articles 26 and 27.
+- Requires existing real-estate brokerage practitioners to regularize their status within six months from commencement.
+
+**Verbatim — amended Regulation Article 1 (three registers):**
+
+> مادة (١):
+>
+> تتولى الهيئة العامة للرقابة على الصادرات والواردات إمساك السجلات الآتية:
+>
+> (أ) سجل الوكلاء والوسطاء التجاريين.
+>
+> (ب) سجل مكاتب الخدمات العلمية والفنية والاستشارية للشركات والمنشآت الأجنبية.
+>
+> (ج) سجل السماسرة العقاريين.
+
+**Verbatim — new Regulation Article 3 bis (real-estate brokerage register):**
+
+> مادة (٣) مكرراً:
+>
+> يقيد في السجل المنصوص عليه في البند (ج) من المادة (١) من هذه اللائحة كل من يقوم بأعمال السمسرة أو السعي لإبرام العقود المتعلقة بالعقارات والأراضي المبنية أو الفضاء، سواء أعمال شرائها أو بيعها أو تأجيرها أو التوسط في شيء مما تقدم.
+>
+> ويشتمل السجل على البيانات والمعلومات الخاصة بالمقيدين به من واقع ملف القيد، بما فيها بياناتهم الشخصية الأساسية وبيانات محل مزاولتهم المهنة والكود الممنوح إليهم، والفئة التي ينتمون إليها، وغيرها من البيانات والمعلومات والإحصائيات اللازمة لتنظيم نشاط السمسرة العقارية.
+>
+> وتجري الهيئة العامة للرقابة على الصادرات والواردات تحديثاً للسجل بشكل مستمر ومنتظم، بما يتفق ومستجدات هذا النشاط، وتنشر القائمة المحدثة المشتملة على السماسرة العقاريين على مستوى الجمهورية على الموقع الإلكتروني للهيئة بما يتيح للجميع الاطلاع عليها.
+
+**Verbatim — new Regulation Article 16 bis/2 (transaction ledger):**
+
+> مادة (١٦) مكرراً/٢:
+>
+> يلتزم السمسار العقاري بإمساك سجل إلكتروني من خلال الموقع الإلكتروني للهيئة العامة للرقابة على الصادرات والواردات تقيد فيه عقود السمسرة التي أبرمها وعمليات السمسرة العقارية التي أجراها، وثمن المعاملة، وتاريخ إجرائها، والعمولات والمبالغ التي تقاضاها، والبيانات الشخصية للمتعاقدين، والبيانات الخاصة بمحل التعاقد.
+>
+> ولحين إنشاء وتجهيز السجل الإلكتروني المشار إليه، يتعين عليه إمساك سجل ورقي وتقديمه للهيئة العامة للرقابة على الصادرات والواردات عند الطلب، وذلك دون الإخلال بحق الهيئة في الرقابة والتفتيش وفقاً لحكم المادة (٢٦) من القانون.
+
+**Verbatim — new Regulation Article 18 bis (changes to registration data):**
+
+> مادة (١٨) مكرراً:
+>
+> يقدم من صاحب الشأن أو وكيله طلب التعديل في بيانات القيد بسجل الوكلاء والوسطاء التجاريين أو سجل السماسرة العقاريين إلى الهيئة العامة للرقابة على الصادرات والواردات على النموذج المعد لذلك خلال ثلاثين يوماً من تاريخ حدوث التعديل أو التغيير في البيانات، ويرفق بهذا الطلب مستند رسمي يثبت إجراء التعديل ويسحب من الوكيل أو الوسيط التجاري أو السمسار العقاري نموذج القيد السابق ويعطى نموذجاً جديداً مثبتاً به التعديل بذات رقم القيد.
+>
+> وإذا لم يقدم طلب التعديل في بيانات القيد خلال الميعاد المشار إليه، فلا يجوز لصاحب الشأن الاحتجاج به قبل الغير، ومع ذلك يجوز للغير التمسك بهذا التعديل في مواجهة صاحب الشأن.
+
+**Verbatim — Decision 593/2025 Article 7 (transition):**
+
+> مادة (٧)
+>
+> على مزاولي نشاط السمسرة العقارية المخاطبين بأحكام قانون الوكالة التجارية وبعض أعمال الوساطة التجارية أو السمسرة العقارية المشار إليه توفيق أوضاعهم خلال ستة أشهر من تاريخ العمل بهذا القرار.
+
+### B. Ministerial Decision 578/2025 — types and classes of real-estate brokers
+
+**Official GOEIC catalogue entry:** https://www.goeic.gov.eg/ar/laws-and-decisions/list  
+**Decision:** Minister of Investment and Foreign Trade Decision 578/2025, issued 16 December 2025, published in الوقائع المصرية issue 13, 17 January 2026, effective 18 January 2026.  
+**Searchable decision metadata/text:** https://www.eastlaws.com/legislation-full-text/ar/egypt/minister-investment-foreign-trade-decision/17-01-2026/no-578?id=5128845&type=1
+
+The decision determines the types and classes of real-estate brokers registered with GOEIC. Secondary summaries identify four types:
+- Sales broker (representing seller);
+- Purchase broker (representing buyer);
+- Dual broker (representing both sides under the required arrangement);
+- Rental broker.
+
+The same summaries identify four classes tied to annual contract values and minimum capital:
+- Class A: annual contracts over EGP 100 million; minimum capital EGP 1 million.
+- Class B: EGP 50–100 million; minimum capital EGP 500,000.
+- Class C: EGP 10–50 million; minimum capital EGP 250,000.
+- Class D: EGP 10 million or less; minimum capital EGP 20,000.
+A broker may be registered for more than one type/class. These numeric bands are from secondary text summaries and must be checked against the complete Decision 578 Gazette PDF before ingestion.
+
+### C. Statutory/regulatory interaction requiring legal review
+
+Law 21/2022 amended the title and terminology of Law 120/1982 to remove real-estate brokerage from the statute's general title/terminology, while Decisions 593/2025 and 578/2025 create/operate a GOEIC real-estate-broker register under the amended executive-regulation framework. The exact statutory basis, scope and relationship between the amended Law 120/1982 text, retained statutory provisions and these 2025/2026 ministerial decisions should be checked by an Egyptian lawyer. Do not resolve this potential hierarchy/ultra vires question by inference.
+
+**Collection status:** Decision 593/2025 official Gazette metadata and full searchable secondary transcription obtained; selected provisions transcribed. Decision 578/2025 official GOEIC listing and Gazette date/issue metadata obtained; category thresholds remain secondary-source transcription pending primary Gazette image verification. No lawyer approval or rights clearance claimed.
