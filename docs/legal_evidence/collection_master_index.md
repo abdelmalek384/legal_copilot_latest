@@ -1548,3 +1548,11 @@
 - Progress: broader civil/property/contract corpus **17% provisional** (up from 16%); whole corpus **2% provisional**. No lawyer verification or commercial reuse clearance.
 - Remaining work: full 136-article extraction and amendment redline; Law114 1946 regulation full text; Decision144 full normalization; Law142 Article37 judgment conflict; Decision480/2026 deadline.
 
+### Research Agent — checkpoint 167: constitutional scope verification for Law 142/1964 (18 November 2026)
+
+- Resolved the Article 37/38 ambiguity by obtaining the full text of SCC Case 42/17 (decided 6 June 1998). The operative ruling invalidates **Article 37(2)** only—the prohibition on acquisitive prescription contrary to the register—and Article 38 falls consequentially. Article 37(1), which gives the register evidentiary force for recorded data, is not invalidated by that operative ruling. LAW HUB's blanket shorthand "Article 37 unconstitutional" is overbroad.
+- Case 10/35 is a separate judgment decided 2 June 2018 and published 6 June 2018; it invalidated Articles 21 and 24 and caused Article 23 and Decision 553/1976 to fall. Official SCC text recovered.
+- Updated checkpoint 165 and 166 to remove the unresolved-conflict status and preserve the precise holdings.
+- Case 42/17 full text: https://mksegypt.org/ar/judgments-of-the-supreme-constitutional-court/15553. Case 10/35 official SCC text: https://www.sccourt.gov.eg/DjangoPortalResources/Rules_Html/12158_41_14_3_2.html.
+- No change to document or normalized-provision counts. This is a legal-version quality improvement, not a new statute text acquisition.
+
