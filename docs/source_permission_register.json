@@ -1228,7 +1228,7 @@
     {
       "source_id": "EG-LAWHUB-STATUTE-TEXTS",
       "authority": "Law Hub / Al-Mawsoua al-Qanuniya (secondary legal information site)",
-      "source_page": "https://lawhub.info/eg/",
+      "source_page": "https://lawhub.info/eg/; https://lawhub.info/eg/?p=12146",
       "material_types": [
         "Consolidated statute texts and amendment notes"
       ],
@@ -1394,6 +1394,23 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
       "required_next_action": "Seek an authenticated Amiri Press copy and written permission for local archiving, text extraction, indexing, commercial display and redistribution. Do not treat this electronic scan as valid for official circulation."
+    },
+    {
+      "source_id": "EG-MOHAMAH-SCC-REPRODUCTIONS",
+      "authority": "Mohamah.net legal information portal",
+      "source_page": "https://www.mohamah.net/law/عدم-دستورية-اختصاص-القضاء-العادي-بمنازعات-الأراضي-الصحراوية-حكم-المحكمة-الدستورية-العليا-المصرية",
+      "material_types": [
+        "secondary reproduction of Constitutional Court judgments",
+        "legal commentary and judgment text"
+      ],
+      "access_status": "public searchable judgment reproduction inspected 2026-11-18; terms not reviewed",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "The page reproduces the full text of Supreme Constitutional Court Case 101/26 (1 February 2009) concerning Article 22(1) of Law 143/1981. An official later SCC judgment independently confirms the earlier holding and Gazette publication metadata. Public access does not establish bulk extraction, local archiving, commercial indexing, excerpt display or redistribution permission.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Review terms and compare the transcription against the original SCC judgment and Gazette issue 7 bis (A), 15 February 2009. Keep collection and commercial reuse permission unknown absent affirmative written authorization."
     }
   ]
 }
