@@ -57,7 +57,7 @@ Retrieved the official MIFT consolidated PDF (3,416 extracted lines), explicitly
 - Law 159/1998: captured exact Article 46 replacement.
 - Law 212/1994: confirmed it inserted Article 21 bis, later repealed by Law 3/1998; full historic text remains unavailable and was not reconstructed.
 - Detailed files: [Laws 3/1998 and 94/2005](agent3_companies_law_amendments_3_1998_94_2005_text.md), [Laws 212/1994 and 159/1998](agent3_companies_law_amendments_212_1994_159_1998_text.md).
-- These are text-depth/versioning expansions of already-counted amendment instruments; no count change. Agent 3 remains **205 documents / 2,035 provisional units**, assigned completion **55% provisional**, lawyer review 0%.
+- These are text-depth/versioning expansions of already-counted amendment instruments; no count change. Agent 3 remains **207 documents / 2,039 provisional units**, assigned completion **55% provisional**, lawyer review 0%.
 
 
 ## Primary-source upgrades to the Companies Law amendment chain
@@ -134,3 +134,12 @@ Updated aggregate: **203 documents / 1,999 provisional units**; assigned-domain 
 - Added 2 instruments / 36 articles.
 
 Updated aggregate: **205 documents / 2,035 provisional numbered units**; assigned-domain completion remains **55% provisional**; lawyer review 0%.
+
+
+## Additional 2026 FRA corporate / capital-market decisions
+
+- **Decision 108/2026** (Official Gazette issue 152 supplement, 15 July): amends Decision 244/2023 to permit an incumbent auditor to continue auditing a company for up to two financial years after listing, if it audited that company for at least five years before listing. Full two-article text captured from secondary transcription; official Amiri Press DSpace file is request-only.
+- **Decision 109/2026** (Official Gazette issue 145 supplement, 7 July): sets CSDR digital-platform and custody service fees for REITs under Decision 125/2025. Articles 1–2 captured; fee schedule itself is image-only and currently inaccessible, so no amounts are inferred.
+- Full record: [FRA Decisions 108 and 109/2026](agent3_fra_decisions_108_109_2026_audit_and_reit_fees_arabic_text_partial.md).
+
+Updated aggregate: **207 documents / 2,039 provisional units**; assigned-domain completion remains **55% provisional**; lawyer review 0%.
