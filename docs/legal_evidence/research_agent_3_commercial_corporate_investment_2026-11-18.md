@@ -1699,3 +1699,113 @@ The 2026 decision amends Justice Minister Decision 2208/2019 on fees and deposit
 **Unresolved executive regulation question:** issuing Article 2 of Law 11/2018 directs the Justice Minister to issue implementing regulations and decisions within three months. This collection pass did not identify one comprehensive Executive Regulation. It is likely implemented through multiple Justice Minister decisions, Economic Court rules and expert schedules. Do not invent a single executive regulation number; build the implementing instrument inventory from the Ministry of Justice, Economic Courts and Amiri Press.
 
 **Collection classification:** full searchable text through Article 243 surfaced via secondary publisher; official Gazette metadata for Law 11/2021 and the 2026 expert-fee decision text located. The 2018 base Gazette PDF and full Arabic 2021 amendment Gazette scan need repository capture and verification. No lawyer review or rights clearance claimed.
+
+
+## 18. Public-Private Partnership Law 67/2010 — official Gazette text and Executive Regulation 238/2011 amendment chain
+
+### A. Law 67/2010 — official Gazette PDF acquired and searchable
+
+**Official Ministry of Finance-hosted Gazette scan/PDF:**  
+https://media.mof.gov.eg/mof-prd/1490_c21c703414.pdf
+
+The source is Official Gazette issue 19 bis (أ), dated 18 May 2010, 25 pages? The PDF text extraction contains the full law, with issuing provisions and numbered Articles 1–39. It is a government-hosted Official Gazette scan, searchable in the web reader.
+
+**Verbatim — issuing Article 1:**
+
+> (المادة الأولى)
+>
+> تسري أحكام القانون المرافق على عقود المشاركة مع القطاع الخاص وعقود الاستشارات الخاصة المتعلقة بها والتي تبرمها الجهات الإدارية، لتنفيذ مشروعات البنية الأساسية والخدمات والمرافق العامة وإتاحة خدماتها.
+>
+> ولا تسري على هذه العقود أحكام القانون رقم 129 لسنة 1947 بالتزامات المرافق العامة، والقرار بالقانون رقم 61 لسنة 1958 في شأن منح الامتيازات المتعلقة باستثمار موارد الثروة الطبيعية والمرافق العامة وتعديل شروط الامتياز، وقانون تنظيم المناقصات والمزايدات الصادر بالقانون رقم 89 لسنة 1998، وغيرها من القوانين الخاصة بمنح التزامات المرافق العامة.
+
+**Verbatim — issuing Article 2:**
+
+> (المادة الثانية)
+>
+> يصدر رئيس مجلس الوزراء اللائحة التنفيذية للقانون المرافق، بناءً على عرض الوزير المختص بالشئون المالية، وموافقة مجلس الوزراء وذلك خلال ثلاثة أشهر من تاريخ العمل به.
+
+**Verbatim — substantive Article 1 (definitions):**
+
+> مادة (١):
+>
+> في تطبيق أحكام هذا القانون يقصد بكل من الكلمات والعبارات الآتية المعاني المبينة قرين كل منها:
+>
+> الجهات الإدارية: الوزارات والهيئات العامة، الخدمية والاقتصادية، وغيرها من الأشخاص الاعتبارية العامة التي يصدر بتحديدها قرار من رئيس مجلس الوزراء.
+>
+> السلطة المختصة: الوزير المختص، أو رئيس مجلس إدارة الهيئة أو الممثل القانوني للشخص الاعتباري العام.
+>
+> القطاع الخاص: الشخص الاعتباري المصري أو الأجنبي الذي تقل نسبة مساهمة المال العام المصري في رأسماله عن (٢٠٪)، والتحالف بين اثنين أو أكثر من الأشخاص الاعتبارية المصرية أو الأجنبية الذي تقل نسبة مساهمة المال العام فيه عن (٢٠٪).
+>
+> المستثمر: القطاع الخاص الذي يشارك في المنافسة على الفوز بأحد عقود المشاركة طبقاً لأحكام هذا القانون.
+>
+> شركة المشروع: الشركة المساهمة المصرية التي يؤسسها صاحب العطاء الفائز ويكون غرضها الوحيد تنفيذ عقود المشاركة.
+>
+> عقد المشاركة: عقد تبرمه الجهة الإدارية مع شركة المشروع وتعهد إليها بمقتضاه بالقيام بكل أو بعض الأعمال المنصوص عليها في المادة (٢) من هذا القانون.
+
+**Verbatim — substantive Article 2 (project scope/term):**
+
+> مادة (٢):
+>
+> للجهات الإدارية أن تبرم عقود مشاركة تعهد بمقتضاها إلى شركة المشروع تمويل وإنشاء وتجهيز مشروعات البنية الأساسية والمرافق العامة وإتاحة خدماتها أو تمويل وتطوير هذه المرافق، مع الالتزام بصيانة ما يتم إنشاؤه أو تطويره، وتقديم الخدمات والتسهيلات اللازمة لكي يصبح المشروع صالحاً للاستخدام في الإنتاج أو تقديم الخدمة بانتظام واضطراد طوال فترة التعاقد.
+>
+> ولا يجوز أن تقل مدة العقد عن خمس سنوات ولا تزيد على ثلاثين سنة من تاريخ اكتمال أعمال البناء والتجهيز أو إتمام أعمال التطوير، وألا تقل قيمة العقد الإجمالية عن مائة مليون جنيه.
+>
+> ومع ذلك يجوز لمجلس الوزراء بناء على توصية اللجنة العليا لشئون المشاركة المنصوص عليها في المادة (١٤) من هذا القانون، الموافقة على إبرام عقد المشاركة لمدة تزيد على ثلاثين سنة إذا اقتضت ذلك مصلحة عامة جوهرية.
+
+**Verbatim — substantive Article 35 (governing law and arbitration):**
+
+> مادة (٣٥):
+>
+> يخضع عقد المشاركة لأحكام القانون المصري، ويقع باطلاً كل اتفاق يتم على خلاف ذلك.
+>
+> ويجوز بعد موافقة اللجنة العليا لشئون المشاركة الاتفاق على تسوية المنازعات الناشئة عن عقد المشاركة بطريق التحكيم، أو غيره من وسائل تسوية المنازعات غير القضائية وذلك طبقاً لما يتفق عليه في عقد المشاركة.
+
+The PDF contains substantive Articles 1–39. A source pagination typo occurs near the end (page labels inconsistent), so use the Gazette page images as controlling.
+
+### B. Executive Regulation — PM Decision 238/2011
+
+**Decision:** Prime Minister Decision 238/2011, issuing the Executive Regulation of Law 67/2010.  
+**Gazette:** Official Gazette issue 3 bis (ب), 23 January 2011.  
+**Searchable Arabic text (secondary legal publisher, transcribed from Gazette):** https://alhasswalawfirm.com/law-library/decree-238-2011  
+**Alternate full searchable text:** https://lawhub.info/eg/?p=12345
+
+The 2022 amending decision preamble expressly identifies Decision 238/2011 as the Executive Regulation. The full 2011 regulation text is available through the searchable secondary reproductions, but the original Gazette scan for issue 3 bis (ب) still needs acquisition and page-image comparison.
+
+### C. PM Decision 3217/2022 — amendments to the PPP Executive Regulation
+
+**Official Amiri Press indexed text:**  
+https://www.alamiria.com/Sec/TashTxt?id=JRIfZHx3kaU%3D
+
+The official text identifies Decision 3217/2022 as amending the Executive Regulation of Law 67/2010, Decision 238/2011. It replaces numerous provisions, including Articles 2, 3, 4, 27, 31, 32, 33, 34 (first paragraph), 36 (first paragraph), 38, 39, 42 (first paragraph), 43, 45–50, 53–56, 62 (first paragraph), 63, 72, 74 (third paragraph), 77, 78 (first paragraph), 81 and 89. It also adds provisions for private-sector initiated/unsolicited proposals (including Articles 62 bis 4 through 62 bis 7) and repeals Articles 40 and 41.
+
+**Verbatim — new Regulation Article 62 bis 4 (innovative private-sector proposal):**
+
+> المادة 62 مكرر 4
+>
+> يجوز للقطاع الخاص التقدم إلى الجهة الإدارية بمبادرة لتنفيذ مشروع من مشروعات البنية الأساسية والخدمات والمرافق العامة، إذا كان المشروع مبتكراً ومكتمل الدراسات والتمويل من القطاع الخاص، ويحقق للدولة مصلحة اقتصادية أو اجتماعية كأن يكون من مشروعات الاقتصاد الأخضر قليلة الانبعاثات الكربونية ذات الأثر الإيجابي على تحسين البيئة، ولم يكن مخططاً له من قبل الجهة الإدارية وقت تقديمه إليها.
+>
+> ويكون المشروع مبتكراً متى توافر فيه أي من الضوابط أو الخصائص الآتية:
+>
+> 1- إذا لم يسبق تنفيذه في جمهورية مصر العربية وقت تقديمه.
+>
+> 2- استعمال القطاع الخاص لحلول مبتكرة أو تقنيات جديدة في توفيره للمنتج أو الخدمة.
+>
+> 3- استخدام القطاع الخاص لتقنيات مبتكرة تعمل على تقليل الانبعاثات الكربونية.
+>
+> 4- استخدام القطاع الخاص لأساليب تمويلية مبتكرة.
+>
+> 5- استخدام القطاع الخاص لأساليب فنية وتكنولوجية وتقنية غير مسبوقة في تنفيذه تخفض من تكلفته على الدولة.
+>
+> 6- كون مقدم المبادرة صاحب حق ملكية فكرية على فكرة المشروع أو التقنيات المستخدمة لتنفيذه.
+>
+> 7- أي ضابط آخر لأوجه الابتكار أو التطوير غير المسبوق يصدر بتحديده قرار من اللجنة العليا.
+
+**Verbatim — new Regulation Article 62 bis 5 (proposal package):**
+
+> المادة 62 مكرر 5
+>
+> تقدم المبادرة من القطاع الخاص إلى الجهة الإدارية المختصة بالمشروع محل المبادرة مرفقاً بها دراسة الجدوى المعدة عن المشروع مبيناً بها وجه الابتكار المتحقق فيه في ضوء المعايير المبينة في هذه اللائحة وأسلوب تمويله، وأوجه النفع الذي سيعود من وراء تنفيذه على الجهة الإدارية والدولة، وما إذا كان المشروع يستلزم تخصيص قطعة أرض له، والمنتج أو الخدمة الناتجة عنه، فضلاً عن إقرار من مقدمه بقبول طرح المشروع للمنافسة العامة متى ارتأت اللجنة العليا ذلك وفقاً للمادة (62 مكرراً 6) من هذه اللائحة.
+
+**Version control:** Decision 3217/2022 is an amendment to Decision 238/2011, not a new law or a replacement of Law 67/2010. The Amiri Press page could not be opened by the web reader in this session, but its search-indexed text exposes the amendment preamble and inserted provisions. Obtain the Gazette issue and PDF, record its date/page, and verify the complete replaced article set against the current consolidated 238/2011 regulation.
+
+**Collection status:** full official Gazette scan/text of Law 67/2010 obtained; searchable text of Decision 238/2011 obtained from secondary legal publisher; official Amiri Press indexed amendment text for Decision 3217/2022 obtained, but Gazette scan/page-image QA outstanding. No lawyer approval or rights clearance claimed.
