@@ -99,3 +99,10 @@ The FRA's Decision 135/1993 page lists a 2025 predecessor as "1539/2025". The Of
 - Decision 2482: primary Gazette PDF obtained and pages 3–4 visually inspected.
 - Decision 1529: primary Gazette PDF obtained; page-image check pending.
 - Neither instrument is lawyer-reviewed; no reuse permission inferred.
+
+
+## Visual transcription correction — Decision 2482/2025 page images
+The Gazette page images on printed pages 4–5 have now been inspected. Correct the extraction-noise phrases in the Article 148 bis transcription above as follows:
+- "شريطة عدم مناعته الهيئة" is **"شريطة عدم ممانعة الهيئة"**.
+- "ومناعاً من البدء في إجراءات التنفيذ" is **"ومانعاً من البدء في إجراءات التنفيذ"**.
+These corrections are based on the page image, not contextual inference. Keep a raw extracted-text version in source diagnostics if needed, but ingest the visually corrected Gazette wording.
