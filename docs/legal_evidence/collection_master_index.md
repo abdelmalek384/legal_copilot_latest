@@ -2051,3 +2051,18 @@ No lawyer verification or commercial reuse permission is claimed. See checkpoint
 **Current live register counts after this tranche:** 287 acquisition records / 287 unique instrument IDs; 287 type classifications; 70 full-text inventory records; 104 source-permission records. Provisional type counts: 73 base laws, 56 amending laws, 18 executive regulations, 39 executive-regulation amendments, 21 judicial decisions, 67 other decisions/circulars and 13 other/unclassified. The core unique operative-provision count rises from 1,370 to 1,513 if all 143 newly transcribed/located units are counted; the Law 147 subset is externally searchable but not yet fully mirrored locally, so maintain a separate “locally mirrored full-text provisions” measure before treating all 143 as locally acquired text.
 
 No original Gazette binary hashes were added; no lawyer verification or commercial reuse permission is claimed.
+
+
+### Measurable progress snapshot — 18 November 2026 (post-tranche validation)
+
+- **Canonical instrument register:** 287 rows / 287 unique IDs (100% internal ID uniqueness).
+- **Full-text inventory coverage:** 70 inventory rows correspond to 66 unique instrument IDs, or **23.0% of the 287 registered instruments**. Four instruments have two inventory rows each (EG-0144, EG-0145, EG-0150, EG-0151); these are inventory/source/version entries, not four additional instruments.
+- **New acquisition batch:** 14/14 instruments registered and classified. **13/14 (92.9%)** have their operative Arabic text mirrored in the new tranche; Law 147/2026 has a full 112-article searchable transcription at an external legal-library source, but only selected provisions are mirrored locally.
+- **Provision-text measures:** 1,401 provision units locally mirrored on the prior 1,370 baseline plus 31 locally transcribed units in this tranche. A further 112 Law 147/2026 units are source-located but not fully mirrored locally, giving 1,513 source-located units in total. Keep “locally mirrored” and “externally source-located” as separate measures.
+- **Defined-code article representation:** Civil Code 1,149/1,149 numbered article/status entries; Evidence Law 163/163 provision units; Building Law 119/2008 114/114 substantive articles. These are representation counts, not a claim that historical wording, amendments or currentness are fully reconciled. Decision 144/2009 remains 184/185 extant base articles.
+- **Broader assigned-domain completion:** retain **55% provisional** as the inherited estimate only. Its denominator is not yet validated and it must not be conflated with the 23.0% full-text-inventory coverage metric. No defensible whole-Egyptian-corpus completion percentage is currently established.
+- **Source permissions:** 104 unique source records. Collection/reuse permission remains unknown unless a source-specific affirmative licence or written permission is recorded. No lawyer verification.
+
+### Remote-work Decision 982/2026 currentness lead
+
+Cabinet approved a *draft* decision to halt PM Decision 982/2026 at its 30 September 2026 meeting; official Cabinet announcement: https://cabinet.gov.eg/Meeting/Details/11910. The later publication of a final signed decision and its Gazette issue was not located in this pass. Accordingly, Decisions 1305, 1572, 2033, 2377 and 2590 remain separate historical continuation instruments; do not label the September continuation as current after September or treat Cabinet approval of a draft as a published repeal. Continue searching for the final Gazette instrument.
