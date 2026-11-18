@@ -758,3 +758,12 @@
 - PM Decision 1199/2020: Official Gazette issue 24 bis (ب), 15 Jun 2020, effective 16 Jun 2020; one-page Gazette PDF visually inspected. Adds a final paragraph to Investment Executive Regulation Article 76 permitting Cabinet case-by-case exemption from one or more private-free-zone conditions, on ministerial proposal and GAFI Board approval. Later Article 76 replacement by Decision 2140/2023 supersedes the 2020 wording.
 - PM Decision 2467/2020: Official Gazette issue 48 bis (أ), 26 Nov 2020, effective 27 Nov 2020; two-page Gazette PDF visually inspected. Replaces Regulation Article 10(2), defining Sector A to include the Suez Canal Economic Zone, Golden Triangle, New Administrative Capital and other areas meeting development indicators. Later amended by Decisions 1203/2024 and 2562/2024; industrial schedules further replaced by Decision 503/2026.
 - **Updated Agent 3 minimum:** 66 distinct instruments with some Arabic text surfaced; 563 article/provision text units; 13/13 families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
+
+
+### Research Agent 3 — Investment sector schedule decisions 104/2022, 981/2022 and 983/2022
+
+- PM Decision 104/2022: Gazette issue 52 bis (هـ), 4 Jan 2022; effective 5 Jan 2022. Establishes base sub-sector schedules for Zones A/B across industry, tourism, ICT, petroleum/natural resources, agriculture/animal/poultry/fisheries and transport. Official DSpace item and IDA schedule page located; Articles 1–3 transcribed.
+- PM Decision 981/2022: Gazette issue 11 bis (أ), 14 Mar 2022; effective 15 Mar 2022. Adds electricity/renewable energy, education and sports schedules and adds safe environmentally friendly alternatives to single-use plastics to industrial sub-sector 3 in both zones. Full five-article Amiri Press text transcribed.
+- PM Decision 983/2022: full Amiri Press text. Directs GAFI to coordinate with relevant ministries to identify projects eligible for additional incentives under Law 72/2017 Article 13 based on sector schedules.
+- Schedule version chain: Decision 104/2022 → additions under 981/2022 and 4427/2022 → industrial schedules replaced by Decision 503/2026 (effective 17 Feb 2026). Decision 503/2026 does not replace non-industrial schedules in the 104/2022 package.
+- **Updated Agent 3 minimum:** 69 distinct instruments with some Arabic text surfaced; 572 article/provision text units; 13/13 families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
