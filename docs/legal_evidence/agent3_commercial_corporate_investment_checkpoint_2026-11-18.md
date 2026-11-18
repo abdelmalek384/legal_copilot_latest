@@ -1146,3 +1146,74 @@ Primary catalogue record: https://www.mift.gov.eg/legislation/details/252
 - Source status: full Arabic text and Gazette issue metadata from a secondary legal-library reproduction; official MIFT attachment listing corroborates instrument identity, but an official Gazette scan is still required before treating the transcription as primary-source verified.
 
 **Incremental count:** one unique amendment instrument and two operative provision units (Decision 256/2018 Articles 1–2). Cumulative Agent 3 minimum: 103 instruments / 1,213 provision units.
+
+
+## 32. Companies Executive Regulation Decision 16/2018 — full Arabic amendment instrument acquired
+
+### Provenance and document identity
+
+- Instrument: Minister of Investment and International Cooperation Decision 16/2018 amending Executive Regulation 96/1982.
+- Full 23-page Arabic PDF reproduced here: https://www.amwalalghad.com/wp-content/uploads/2018/02/قرار-وزيرة-الاستثمار-والتعاون-الدولى-باصدار-اللائحة-التنفيذية-لتعديلات-قانون-الشركات.pdf
+- MELES catalogue record identifies the issuing ministry, Decision 16/2018, and Arabic/English bundle: https://dspace.id.com.eg/items/d2d4471c-5915-4cdc-9b83-26a19d3c1f92
+- Secondary academic citation identifies publication in الوقائع المصرية issue 34 تابع, 11 February 2018: https://repository.aaup.edu/bitstream/123456789/1385/1/أحكام%20تداول%20الأسهم%20العينية%20وأسهم%20المؤسسين%20في%20شركات%20المساهمة%20العامة.pdf
+- The MIFT official Law 159/1981 record lists Decision 16/2018 as an amendment attachment.
+- Text quality: full Arabic issuing text is extracted from the PDF, but the hosted copy is not an official Gazette domain. Obtain Gazette issue 34 تابع page images before elevating it to Gazette-original verified.
+
+### Structure of the decision
+
+- Article 1 changes the regulation's title and standardizes terminology from “balance sheet/profit and loss account” to “financial statements”.
+- Article 2 replaces 25 listed existing paragraphs/articles, including regulation Arts 1, 2, 5, 26, 27, 35, 44, 60, 73, 79 bis, 92, 104, 120, 136, 150, 208, 215, 216, 218, 225, 226, 227, 229, 244, 246 and 276.
+- Article 3 adds final paragraphs and new Articles 2 bis, 45 bis, 88, 49, 55, 189 bis, 228 bis, 240 bis, 240 bis-1, 244 bis, 245 bis, 281 and 286 (as listed in the instrument).
+- Article 4 adds a one-person-company chapter: Articles 287 bis through 287 bis-7.
+- Article 5 adds a company-division chapter: Articles 299 bis through 299 bis-5.
+- Article 6 adds a grievance chapter: Articles 299 bis-6 through 299 bis-12.
+- Article 7 publication and commencement: day following publication.
+
+### Selected operative Arabic provisions captured
+
+**New Article 2 bis — shareholders'/partners' agreements:**
+> يجوز للمساهمين أو الشركاء عند تأسيس الشركة أو بعد التأسيس إبرام اتفاق ينظم العلاقة فيما بينهم.
+>
+> ولا يسري هذا الاتفاق في حق باقي المساهمين أو الشركاء ما لم توافق عليه الجمعية العامة غير العادية للشركة بأغلبية لا تقل عن ثلاثة أرباع رأس المال، أو بأغلبية أكبر في الحالات التالية:
+>
+> ١. إذا ترتبت على الاتفاق حقوق إضافية في التصويت أو توزيعات الأرباح أو عند التصفية.
+>
+> ٢. إذا كان الاتفاق ينطبق عليه ضوابط عقود المعاوضة.
+>
+> ٣. إذا كان العقد يضع ضوابط أو قيود على التعامل على الأسهم أو على إدارة الشركة.
+
+**New Article 45 bis — unified electronic incorporation and post-incorporation services:**
+> تلتزم الهيئة بإنشاء نظام إلكتروني موحد لتقديم كافة خدمات تأسيس الشركات وما بعد التأسيس، يحتوي على البيانات والنماذج والمستندات اللازمة لتقديم خدمات التأسيس للشركات والمنشآت أياً كان شكلها ونظامها القانوني الخاضعة له وخدمات ما بعد التأسيس إلكترونياً، وإتاحة هذا النظام عبر شبكة المعلومات الدولية (الإنترنت).
+>
+> ويجوز للهيئة إتاحة هذا النظام واستخدامه عبر أجهزة الهاتف المحمول والأجهزة اللوحية وغيرها وذلك فور تفعيلها.
+>
+> ويكون هذا النظام هو المعول عليه دون غيره أمام جميع الجهات الأخرى.
+
+**New Article 189 bis — annual reporting to GAFI:**
+> تلتزم الشركات بتسليم الهيئة صورة من قوائمها المالية بعد اعتمادها من الجمعية العامة، ونموذج بيانات سنوي يصدر به قرار من رئيس الهيئة يتضمن على الأخص حجم العمالة والاستثمارات وتحديث لبيانات الشركة الأساسية والهيكل التنظيمي وفروع الشركة ومواقعها، على أن يتم تسليم النموذج سواء بمقر الهيئة أو من خلال موقع الشركة الإلكتروني من خلال الممثل الرسمي للشركة أو وكيله أو من ينوب عنه، ويعتمد هذا النموذج من مجلس إدارة الهيئة.
+
+**New Article 240 bis — cumulative voting and remote voting:**
+> يجوز أن ينص في النظام الأساسي للشركة على التصويت التراكمي في انتخاب أعضاء مجلس الإدارة، وذلك بمنح كل مساهم عدداً من الأصوات مساوياً لعدد الأسهم التي يملكها، ويجوز للمساهم أن يمنح كل الأصوات التي يملكها لمرشح واحد أو أكثر من مرشح، كما يجوز أن تختلف نسبة الأسهم التي يخصصها المساهم لكل مرشح على ألا تتجاوز في جميع الأحوال حصته الإجمالية على أن يلتزم من يقوم بفرز الأصوات بإثبات ذلك ضمن محضر الجمعية، وذلك استثناء من حكم الفقرة الخامسة من المادة (67) من القانون.
+
+The same Article 240 bis further permits electronic remote agenda presentation and voting for centrally deposited/listed companies, with a five-business-day pre-meeting voting window, ownership and eligibility checks, duplicate-vote prevention, and a mechanism for a shareholder who later attends in person to replace the remote vote.
+
+**New Article 287 bis-7 — founder's unlimited liability exceptions for one-person company:**
+> يسأل مؤسس شركة الشخص الواحد في جميع أمواله إذا قام بسوء نية بتصفية الشركة، أو أوقف نشاطها قبل انتهاء مدتها أو تحقق الغرض من إنشائها، أو إذا لم يقم بالفصل بين ذمته المالية والذمة المالية للشركة بالمخالفة لأحكام القانون، أو إذا أبرم عقوداً أو أجرى تصرفات باسم الشركة تحت التأسيس ولم تكن هذه العقود أو التصرفات لازمة لتأسيس الشركة.
+
+**New Article 299 bis-5 — legal succession after division:**
+> تكون الشركات الناشئة عن التقسيم خلفاً للشركة محل التقسيم، وتحل محلها حلولاً قانونياً فيما لها وما عليها وذلك في حدود ما آل إليها من الشركة محل التقسيم وفقا لما تضمنه قرار التقسيم، ولا يترتب على التقسيم أي إخلال حقوق الدائنين وحاملي سندات وصكوك التمويل التي أصدرتها الشركة قبل التقسيم، ويشترط لسريان التقسيم الحصول على موافقة الدائنين وجماعه وحاملي سندات وصكوك التمويل التي أصدرتها الشركة على التقسيم قبل السير في إجراءاته.
+
+### Critical currentness and conflict notes
+
+- Decision 16/2018 originally set one-person company minimum capital at EGP 50,000 in Article 287 bis-2. PM Decision 2928/2022 later substituted the first paragraph, lowering the minimum to EGP 1,000 and retaining full payment at incorporation. The 2018 amount is historical, not current.
+- Decision 16/2018's Regulation Article 136 imposed a lock-up on founders' shares and in-kind shares. However, Law 4/2018 amended statutory Companies Law Article 45 and excluded founders' cash-subscription shares from the two-year lock-up. The Court of Cassation's commercial/economic circuit held in appeal 2100/92, hearing 18 October 2023, that the inconsistent broader regulation restriction cannot override the statute. Case source: https://www.eastlaws.com/judgments-full-text/ar/egypt/cassation-civil/judicial-year-92/18-10-2023/no-2100?id=5082336&type=2 . This is a critical example for the corpus: preserve the regulation text, but mark the conflicting portion as legally ineffective to the extent of conflict; do not treat it as current rule.
+- Article 189 bis is an executive-regulation reporting mechanism. Do not confuse it with statutory Law 4/2018 Article 156 bis, which separately requires annual delivery of financial statements and a data form.
+- Decision 16/2018 is an implementing instrument, not an amendment to the Companies Law statute itself. Its new company-division chapter implements Law 4/2018's statutory split provisions.
+- The decision's Article 2 includes a long list of replacements. Article 3–6 create many new provisions. A complete machine-ingestion pass should store each nested regulation article independently, with a shared source-document reference and amendment lineage.
+
+### Count treatment
+
+- One new unique instrument with full Arabic text surfaced: Decision 16/2018.
+- Seven issuing articles are counted as provision units (Articles 1–7), consistent with the project rule of counting amendment decisions at the issuing-instrument article level rather than double-counting every nested regulation article.
+- Underlying replacement/new regulation provisions are indexed in the content notes above, but not added again to the numeric unit count.
+- Cumulative Agent 3 minimum: 104 unique instruments / 1,220 provision units.
