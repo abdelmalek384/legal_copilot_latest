@@ -6,26 +6,26 @@
 
 ## Current progress — consolidated acquisition dashboard (18 November 2026)
 
-<badge color="success">358 instruments indexed</badge> <badge color="success">37.4% have a text-inventory record</badge>
+<badge color="success">357 confirmed instruments + 1 provisional candidate</badge> <badge color="success">37.3% confirmed text-source coverage</badge>
 
 ### Audited register totals
 
 | Measure | Current audited value |
 |---|---:|
-| Acquisition register | **358 / 358 unique instrument IDs** |
+| Acquisition register | **358 records: 357 confirmed + 1 provisional candidate** |
 | Base laws | 76 |
 | Amending laws | 69 |
 | Executive regulations | 19 |
-| Executive-regulation amendments | 47 |
+| Executive-regulation amendments | **46 confirmed + 1 provisional candidate** |
 | Judicial decisions | 21 |
 | Other decisions | 112 |
 | Other / unclassified | 14 |
 | Source-permission register | **113 unique source records** |
 | Full-text inventory | **138 rows / 134 unique instruments** |
 | Full/complete text-source records | **85 unique instruments (legacy tally; status recode pending)** |
-| Any text-inventory coverage | **134/358 (37.4%)** |
+| Confirmed instrument text-source coverage | **133/357 (37.3%)** |
 
-The 85-instrument full/complete tally is a legacy status classification and requires a field-by-field recode against the live inventory. The 138 inventory rows cover 134 distinct instruments; four rows are duplicate source/version entries. Text-inventory coverage means a record exists, not that every instrument has a complete local transcription, authenticated Gazette page images, or current-law verification. The live acquisition CSV and type ledger agree at 355 unique IDs; earlier dashboard/checkpoint counts of 336, 273, 250 and 172 are historical snapshots.
+The 85-instrument full/complete tally is a legacy status classification and requires a field-by-field recode against the live inventory. The 138 inventory rows cover 134 distinct IDs; four rows are duplicate source/version entries. This includes one provisional candidate (Decision 6199/2007) whose standalone instrument identity and Gazette metadata are unverified. Excluding that candidate, 133 confirmed instruments have a text-inventory entry out of 357 confirmed instruments. Text-inventory coverage means a record exists, not that every instrument has a complete local transcription, authenticated Gazette page images, or current-law verification. The live acquisition CSV and type ledger agree at 358 unique IDs (357 confirmed plus one provisional candidate); earlier dashboard/checkpoint counts of 355, 336, 273, 250 and 172 are historical snapshots.
 
 ### Substantive acquisition work in the latest pass
 
@@ -52,7 +52,7 @@ New or expanded Arabic text files:
 
 ### Latest acquisition-first tranche — notarization amendment chain
 
-Three previously unregistered regulation amendments are now separately recorded: Decisions 712/2008 and 4807/2008 (complete secondary Arabic operative text), and Decision 6199/2007 (Article 34 bis attributed in a secondary consolidation only; standalone decision and Gazette metadata missing). Decision 1532/1976 was merged into its existing FT-0025 record rather than duplicated. The acquisition and classification registers now each contain 358 unique IDs; the text inventory contains 138 rows for 134 unique instruments. The 1947 regulation and amendment texts are in [the Arabic capture file](notarization_law68_1947_regulation_and_amendments_full_arabic_text_capture_2026-11-18.md).
+Two previously unregistered, text-recovered regulation amendments are now separately recorded: Decisions 712/2008 and 4807/2008 (complete secondary Arabic operative text). A third record, Decision 6199/2007, is provisional only: Article 34 bis is attributed in one secondary consolidation, but the standalone decision and Gazette metadata are missing; exclude it from confirmed-instrument subtotals. Decision 1532/1976 was merged into its existing FT-0025 record rather than duplicated. The acquisition and classification registers now each contain 358 unique IDs (357 confirmed plus one candidate); the text inventory contains 138 rows for 134 distinct IDs. The 1947 regulation and amendment texts are in [the Arabic capture file](notarization_law68_1947_regulation_and_amendments_full_arabic_text_capture_2026-11-18.md).
 
 ### Corpus depth and verification boundaries
 
