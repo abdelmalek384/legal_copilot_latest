@@ -1793,6 +1793,82 @@
       "permission_evidence": "Catalogue states digitized materials are believed to be public domain, but item-level rights and source of the original print should be reviewed before redistribution. No local bytes/hash archived.",
       "bulk_download_or_api": "No bulk/API permission established.",
       "required_next_action": "Acquire the PDF through authorized library access or download, hash exact bytes, visually verify the 56 repealed articles and record the edition's title page and publication data."
+    },
+    {
+      "source_id": "EG-MANSHURAT-LAW114-1946-GAZETTE-SCAN",
+      "authority": "Manshurat legal archive (secondary host); source scan reproduces Official Gazette / Egyptian Proceedings",
+      "source_page": "https://manshurat.org/node/69796",
+      "file_url": "https://manshurat.org/file/83333/download?token=Kv0YfwAI",
+      "material_types": [
+        "Original issue-page scan copy",
+        "Egyptian Proceedings issue 85",
+        "Law 114/1946"
+      ],
+      "access_status": "Public PDF scan copy; 6 pages; masthead shows Egyptian Proceedings issue 85, 24 August 1946. Secondary-hosted; not Amiri Press digital original; local bytes/hash not archived.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://manshurat.org/",
+      "terms_checked_on": null,
+      "permission_evidence": "Checked 2026-11-18. Public PDF access does not establish bulk acquisition, commercial reuse, republication or redistribution permission.",
+      "bulk_download_or_api": "No bulk/API permission established.",
+      "required_next_action": "Retain source citation and page metadata; acquire exact bytes through authorized process, hash locally, and obtain permission before commercial display/redistribution."
+    },
+    {
+      "source_id": "EG-MANSHURAT-LAW142-1964-GAZETTE-SCAN",
+      "authority": "Manshurat legal archive (secondary host); source scan reproduces Official Gazette",
+      "source_page": "https://manshurat.org/node/33844",
+      "file_url": "https://manshurat.org/file/44021/download?token=5Zwo9ziS",
+      "material_types": [
+        "Original issue-page scan copy",
+        "Official Gazette issue 69",
+        "Law 142/1964"
+      ],
+      "access_status": "Public PDF scan copy; 7 pages; catalogue records 24 March 1964 and issue 69. Secondary-hosted; not Amiri Press digital original; local bytes/hash not archived.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://manshurat.org/",
+      "terms_checked_on": null,
+      "permission_evidence": "Checked 2026-11-18. Public PDF access does not establish bulk acquisition, commercial reuse, republication or redistribution permission.",
+      "bulk_download_or_api": "No bulk/API permission established.",
+      "required_next_action": "Retain source citation and page metadata; acquire exact bytes through authorized process, hash locally, and obtain permission before commercial display/redistribution."
+    },
+    {
+      "source_id": "EG-MANSHURAT-LAW68-1947-GAZETTE-SCAN",
+      "authority": "Manshurat legal archive (secondary host); source scan reproduces Egyptian Proceedings",
+      "source_page": "https://manshurat.org/node/70547",
+      "file_url": "https://manshurat.org/file/82270/download?token=fuDVQjIu",
+      "material_types": [
+        "Original issue-page scan copy",
+        "Egyptian Proceedings issue 58",
+        "Law 68/1947"
+      ],
+      "access_status": "Public PDF scan copy; 2 pages; catalogue records issue 58, 3 July 1947; 66.59 KB. Secondary-hosted; not Amiri Press digital original; local bytes/hash not archived.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://manshurat.org/",
+      "terms_checked_on": null,
+      "permission_evidence": "Checked 2026-11-18. Public PDF access does not establish bulk acquisition, commercial reuse, republication or redistribution permission.",
+      "bulk_download_or_api": "No bulk/API permission established.",
+      "required_next_action": "Retain source citation and page metadata; acquire exact bytes through authorized process, hash locally, and obtain permission before commercial display/redistribution."
+    },
+    {
+      "source_id": "EG-MANSHURAT-LAW70-1964-GAZETTE-SCAN",
+      "authority": "Manshurat legal archive (secondary host); source scan reproduces Official Gazette",
+      "source_page": "https://manshurat.org/node/33668",
+      "file_url": "https://manshurat.org/file/43842/download?token=z-q7csZN",
+      "material_types": [
+        "Original issue-page scan copy",
+        "Official Gazette issue 67",
+        "Law 70/1964"
+      ],
+      "access_status": "Public PDF scan copy; 11 pages; masthead confirms issue 67 dated 22 March 1964; 234.53 KB. Secondary-hosted; not Amiri Press digital original; local bytes/hash not archived.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://manshurat.org/",
+      "terms_checked_on": null,
+      "permission_evidence": "Checked 2026-11-18. Public PDF access does not establish bulk acquisition, commercial reuse, republication or redistribution permission.",
+      "bulk_download_or_api": "No bulk/API permission established.",
+      "required_next_action": "Retain source citation and page metadata; acquire exact bytes through authorized process, hash locally, and obtain permission before commercial display/redistribution."
     }
   ]
 }
