@@ -1901,3 +1901,80 @@ The same Article 240 bis further permits electronic remote agenda presentation a
 - Ten issuing provision units counted: Decision 2/2015 Articles 1–6; Decision 32/2024 Articles 1–4.
 - The full amendment to Decision 2/2015 and the three-page Gazette text of Decision 32/2024 are now linked and summarized; the latter supersedes the EGP 50m mortgage-finance company capital threshold with EGP 100m.
 - Cumulative Agent 3 minimum: 141 instruments / 1,345 provision units.
+
+
+## 39. Financial Leasing and Factoring Law 176/2018 — statutory text and FRA implementing rules
+
+### Law 176/2018 — official FRA-hosted Arabic text
+
+- Instrument: Law 176/2018 promulgating the Law Regulating Financial Leasing and Factoring.
+- Issued 14 August 2018; Official Gazette publication 14 August 2018; effective the day following publication.
+- Official FRA Arabic PDF: https://fra.gov.eg/wp-content/uploads/2025/02/قانون-تنظيم-نشاطي-التأجير-التمويلي-والتخصيم.pdf
+- FRA current law record: https://fra.gov.eg/en/regulations/قانون-رقم-176-لسنة-2018-بإصدار-قانون-تنظيم-نش-2/
+- PDF text extraction gives the full law, including issuing Articles 1–4 and substantive Articles 1–75. The statute repeals Financial Leasing Law 95/1995 and PM Decision 1446/2003 (factoring rules).
+- Scope: licensing and supervision of leasing/factoring companies, leasing-contract registry, rights and duties of lessor/lessee, factoring assignment/notice, eligible receivables, confidentiality, governance, financial soundness, reporting, merger/acquisition approvals, enforcement and penalties.
+- **Selected exact Arabic text — issuing Article 1:**
+> تسرى أحكام القانون المرافق على نشاطى التأجير التمويلى والتخصيم.
+> ويُلغى القانون رقم 95 لسنة 1995 فى شأن التأجير التمويلى، كما يُلغى قرار رئيس مجلس الوزراء رقم 1446 لسنة 2003 بشأن الضوابط والأحكام الخاصة بنشاط التخصيم وكل حكم يخالف أحكام القانون المرافق.
+- **Selected exact Arabic text — Article 5 (leasing registry):**
+> تعد الهيئة سجلاً لقيد عقود التأجير التمويلي التي تبرم بين المؤجر المرخص له بممارسة النشاط طبقاً لأحكام هذا القانون والمستأجر متى أبرم العقد في جمهورية مصر العربية أو كان تنفيذها يقع فيها، وعقود البيع التي ترتبط بهذه العقود ويتم استناداً إليها، وكذلك أي تعديل لهذه العقود.
+- **Selected exact Arabic text — Article 37 (eligible factored receivable):**
+> يجب أن يتوافر في الحق المبيع للمخصم الشروط الآتية:
+> - أن يكون ناشئاً عن معاملات تجارية مرتبطة بنشاط كل من البائع والمدين، وليست ناشئة عن عمليات إقراض نقدي.
+> - أن يكون خالياً من أي حقوق حالية أو مستقبلية للغير.
+> - ألا يكون مقيداً أو مشروطاً بما لم يتفق المخصم والبائع على غير ذلك.
+- **Selected exact Arabic text — Article 64 (customer confidentiality):**
+> تلتزم الشركة بالمحافظة على السرية التامة لبيانات عملائها، وعدم إفشاء أي معلومات عنهم أو عن معاملاتهم إلى الغير بدون موافقتهم الكتابية المسبقة، وفي حدود هذه الموافقة، وذلك باستثناء الحالات التي يلزم فيها تقديم معلومات محددة، وفقاً لما تفرضه القوانين لكل من الهيئة، أو الجهات القضائية، أو جهات التمويل أو المخصصين أو شركات التصنيف أو الاستعلام الائتماني أو الجهات التي تباشر نشاط التوريق.
+- **Selected exact Arabic text — Article 68 (M&A control):**
+> وفي جميع الأحوال، لا يكون التصرف نافذاً في حالات الاندماج أو الاستحواذ على (٥٠٪) أو أكثر من رأس المال المصدر أو حقوق التصويت، إلا بعد الحصول على موافقة الهيئة.
+- Critical product note: Article 64 is a statutory confidentiality duty; do not treat customer records at a leasing/factoring company as generally disclosable. Article 68 creates a separate FRA prior-approval control for 50%+ acquisitions/mergers and must be cross-linked to general competition and corporate-control regimes.
+
+### FRA Board Decision 137/2018 — licensing and continued authorisation
+
+- Instrument: FRA Board Decision 137/2018 dated 13 September 2018 on licensing and continued licensing for financial leasing and factoring companies.
+- Official FRA page (updated text): https://fra.gov.eg/regulations/قرار-رقم-137-لعام-2018-2/
+- Official updated Arabic PDF is embedded/linked from the FRA record; the official 2023 amendment PDF reproduces the consolidated decision as amended.
+- The decision covers preliminary establishment approval, company form, ownership and financial-institution participation, founder eligibility, minimum capital, business plan, licensing application, ongoing prudential and governance conditions.
+- The consolidated 2023 PDF confirms Article 2 requires an Egyptian joint-stock company; Article 4 (as amended) sets minimum issued and paid-up capital at EGP 75 million in cash or equivalent foreign currency.
+- Source note: the EGP 75m threshold is the 2023 amended rule, not the original 2018 threshold. It must be kept time-versioned.
+
+### FRA Board Decision 163/2018 — factoring operating controls
+
+- Instrument: FRA Board Decision 163/2018 dated 31 October 2018 on executive controls for factoring.
+- Official Gazette/PDF hosted by FRA: https://fra.gov.eg/wp-content/uploads/fra_live_data/pdfs/UG43984UG43985.pdf
+- The 2018 decision defines factoring as purchase of current/future receivables arising from sale of goods/services, with associated administration services; transfers ownership of receivables and related guarantees/risks to the factor without recourse to the seller in ordinary factoring, while allowing a separate advance secured by receivables with recourse.
+- It authorizes complementary services including guarantee, accounting/administration, debtor information and collection; regulates debtor eligibility, seller disclosure and evidence, assignment methods, debtor notification and required notice particulars.
+- **Selected exact Arabic text — Article 1:**
+> تسري أحكام الضوابط التنفيذية الواردة بهذا القرار على نشاط التخصيم، ويقصد بهذا النشاط قيام شركة التخصيم بشراء الحقوق المالية الحالية والمستقبلية الناشئة عن بيع البضائع وتقديم الخدمات مع قيامها بتقديم بعض الخدمات المرتبطة بإدارة تلك الحقوق، ويتم ذلك عن طريق قيام البائع بإحالة حقوقه المالية موضوع العقد إلى المخصم.
+> وتنتقل ملكية الحقوق المالية المخصصة إلى المخصم بموجب عقد التخصيم، وذلك بما لها من ضمانات كما تنتقل إلى المخصم المخاطر المرتبطة بتحصيل تلك الحقوق بدون حق الرجوع على البائع.
+- **Selected exact Arabic text — Article 3:**
+> يجب أن يكون المدين تاجراً، وأن تتوافر عنه بيانات تجارية كافية، ويجوز أن يكون المدين أحد الأشخاص الاعتبارية العامة.
+> ويجوز أن يكون المدين مستهلكاً نهائياً وفقاً للضوابط الواردة بالمادة السابعة من هذا القرار.
+- **Selected exact Arabic text — Article 5 notification methods:** notice to the debtor may be by registered post with acknowledgement, agreed modern electronic means including email, or another method accepted by FRA that ensures debtor knowledge; notice must contain debtor, factor, seller, receivable and assignment-date information.
+
+### FRA Board Decision 91/2023 — Decision 137/2018 capital amendment
+
+- Instrument: FRA Board Decision 91/2023 dated 12 April 2023, published in Egyptian Gazette issue 91 تابع (أ), 19 April 2023.
+- Official FRA Arabic PDF: https://fra.gov.eg/wp-content/uploads/2023/05/قرار-91-2023-بتعديل-قرار-137-2018.pdf
+- Article 1 replaces Article 4(2) of Decision 137/2018: minimum issued and paid-up capital for a leasing/factoring company is EGP 75 million cash or equivalent foreign currency at CBE exchange rate.
+- Article 2 gives licensed companies up to one year to regularize, extendable by FRA Board for up to two further years for serious reasons.
+- Article 3 publication and commencement the day after Gazette publication.
+- This is a Gazette-published FRA Board decision, not a statute. Preserve the authority and hierarchy distinction.
+
+### Other FRA source leads, not yet counted as full text
+
+FRA's official financial-leasing/factoring legislation catalogue and contemporaneous official announcements identify further instruments:
+- Decision 139/2018: registration procedures for financial-leasing contracts.
+- Decision 164/2018: governance rules for licensed leasing/factoring companies (later amended/updated).
+- Decision 197/2018: amendment to factoring Decision 163/2018.
+- Decision 84/2021: amendment to Decision 163/2018.
+- Decision 91/2023: captured above.
+- Decision 164/2024: extension of capital-increase deadlines for leasing/factoring/consumer-finance/SME finance companies.
+- Decision 318/2025 and its 2026 amendment: foreign-currency financing rules for leasing/factoring; FRA's 8 August 2026 announcement says the 2026 amendment adds sale-and-leaseback financing for imports/assets/foreign liabilities and relaxes certain international factoring correspondent-factor requirements.
+- These leads need their exact Arabic decision texts and Gazette metadata. Do not treat FRA news releases as the operative decision.
+
+### Count increment
+
+- Four unique instruments with Arabic operative text surfaced: Law 176/2018, FRA Decision 137/2018, FRA Decision 163/2018 and FRA Decision 91/2023.
+- Seven issuing provision units counted: Law 176/2018 issuing Articles 1–4 and Decision 91/2023 Articles 1–3. The substantive provisions of Law 176 and the full regulation bodies of Decisions 137/163 are indexed from their texts but not separately added to the issuing-unit tally, to avoid inconsistent counting across the corpus.
+- Cumulative Agent 3 minimum: 128 unique instruments / 1,285 provision units.
