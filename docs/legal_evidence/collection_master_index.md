@@ -2509,3 +2509,9 @@ Added Law75/2026 (annual raises/special allowance/EGP750 incentive), Law77/2026 
 - **CBE Circular 27 October 2026:** official CBE catalogue lists a circular requiring prior CBE approval before amendments to banks' investment-fund policies. CBE PDF endpoint rejected retrieval; alternate Arabic CBE search results identify its document path, but full text remains outstanding.
 - **CBE Circular 12 October 2026:** official CBE catalogue lists a prohibition on bank credit facilities to consumer-finance companies for operations covered by an FRA circular dated 16 September 2026. The PDF endpoint is inaccessible; text remains outstanding.
 - **Decision 133/2026 official Gazette scan:** FRA listing is available, but its PDF endpoint returned authorization rejection; secondary transcription is provisional only.
+
+
+### Agent 3 — FRA Decision 227/2025 full text acquired (18 Nov 2026)
+
+- Added [Decision 227/2025](agent3_fra_decision227_2025_technology_infrastructure_cybersecurity_arabic_text.md): all five operative articles from the official FRA-hosted two-page Gazette PDF, issue 235 تابع (أ), 21 October 2025. Requires specified NBFI licensees to maintain technical infrastructure, information-security policies, IT/cyber governance and risk frameworks, annual cyber-risk insurance, annual penetration testing and annual information-security reports; compliance is a licensing-continuation condition. Transition periods differ: six months for infrastructure item (1), one year for items (2)–(6), excluding insurance companies from the stated transition grant.
+- New full-text instrument capture. Parent Decision 139/2023 is cited and should be linked to this control set; its exact current version and subsequent amendments should be checked during consolidation.
