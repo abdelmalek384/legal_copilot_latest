@@ -2266,3 +2266,8 @@ This is now a complete local searchable text transcription sourced from LAW HUB'
 - Law161/2026 now has a complete local searchable Arabic transcription of all 50 articles across two text files. Gazette page-image comparison remains outstanding.
 - Law149/2026 is captured from the ETA-hosted Gazette PDF, including the official issue32 bis corrigendum; original Amiri Press binary/hash not stored.
 - No newly acquired original Amiri Press PDF binary/hash was stored locally during this pass.
+
+
+### Decision3530/2026 — local Arabic extraction expanded
+
+Added a dedicated tranche containing all four issuing articles, all 12 general controls, the monthly savings/reporting matrix, selected restrictions by expenditure chapter and investment exceptions. The official Amiri Press text is indexed, but its page currently returns intermittent 502 responses. The detailed annex has not yet been fully transcribed locally; inventory status remains partial for that reason.
