@@ -168,7 +168,7 @@ The quoted Article 30 must be read subject to SCC Case 2/24 (constitutional), 14
 ## 6. Extraction failures and missing documents
 
 - Original Gazette scan of Law 68/1947 (publication 3 July 1947): missing.
-- Full current official Executive Regulation of Law 68/1947 and all amendments: not collected.
+- Full 35-article Executive Regulation of Law 68/1947 located in secondary searchable transcription; original Gazette and official consolidated bytes remain missing. Amendment texts/metadata for Decisions 820/1963, 1532/1976, 712/2008, 9200/2015 and 4730/2020 are recorded, but full text of the later three decisions remains outstanding.
 - Original Gazette texts for Laws 629/1955, 5/1964 and 103/1976: missing.
 - Original Gazette scan of Law 70/1964, issue 67, 22 March 1964: missing.
 - Original Gazette texts for Law 94/1980, Law 6/1991, Law 83/2006 and Law 67/2021: not archived as PDF bytes in this pass.
