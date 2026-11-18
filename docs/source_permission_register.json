@@ -1912,6 +1912,24 @@
       "terms_checked_on": "2026-11-18",
       "bulk_download_or_api": "Single PDF locator; no bulk/API permission established",
       "required_next_action": "Acquire PDF bytes through permitted access, calculate SHA-256, visually inspect all pages and annexes, and review reuse terms before commercial use."
+    },
+    {
+      "source_id": "EG-MOHP-HEALTH-INVESTMENT-GUIDE",
+      "authority": "Ministry of Health and Population, Egypt",
+      "source_page": "https://www.mohp.gov.eg/UserFiles/LibraryFiles/709026.pdf",
+      "material_types": [
+        "Health Investment Guide 2025",
+        "Law 87/2024 and PM Decision 2856/2024 references and legal extracts",
+        "health sector investment and concession guidance"
+      ],
+      "access_status": "Official Ministry-hosted PDF indexed; search result confirms Law87/2024 and Decision2856/2024. Full 1,155-line guide was previously opened in repository research; local bytes/hash not archived in this pass.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Official Ministry PDF is a secondary administrative guide and may reproduce or summarize legislation. No explicit licence authorizing local archiving, commercial use, full-text extraction, indexing or redistribution was identified.",
+      "terms_checked_on": "2026-11-18",
+      "bulk_download_or_api": "Single PDF locator; no bulk/API permission established",
+      "required_next_action": "Use guide only as corroboration/discovery; compare reproduced law text against Amiri Press and Gazette originals; inspect Ministry terms and do not infer commercial reuse permission."
     }
   ]
 }
