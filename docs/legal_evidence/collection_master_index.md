@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (expanded through checkpoint 139)
+**Last updated:** 2026-11-18 (expanded through checkpoint 140)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -1117,3 +1117,6 @@
 
 
 | checkpoint 120 — Agent 3 FRA FinTech / consumer / MSME finance | Captured Law 5/2022 full Arabic Gazette text and Companies Law supplementary cross-reference; Law 18/2020 consumer-finance regime and Law 158/2022 Article 6 bis paid-guarantee amendment; Law 141/2014 with Laws 201/2020 and 155/2022 MSME-finance amendments; catalogued FRA implementation-decision leads; cumulative Agent 3 minimum 132 instruments / 1,308 provision units |
+
+
+| checkpoint 121 — Agent 3 mortgage / movable collateral / MSME development | Captured ETA/FRA full Arabic texts for Law 148/2001 and PM Decision 1/2001; Law 115/2015 and Decision 108/2016; Law 152/2020 and PM Decision 654/2021; recorded amendments PM 465/2005, PM 2/2015, PM 908/2020, PM 4666/2022, PM 4278/2023; flagged 2026 MSME amendment as Cabinet-approved draft, not enacted law; cumulative Agent 3 minimum 138 instruments / 1,330 provision units |
