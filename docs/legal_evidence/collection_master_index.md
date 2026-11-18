@@ -383,9 +383,11 @@
 
 - New distinct legal instruments recorded in checkpoint 81: 8 (base/amending laws, executive regulation and ministerial decisions counted separately).
 - Full searchable Arabic text retrieved for 6 instruments; 2 additional instruments have partial text only.
-- At least 39 distinct article/provision texts are quoted or substantively extracted in checkpoint 81; this is an article-level excerpt count, not a claim that the full 8 instruments have been transcribed.
+- At least 39 distinct article/provision texts are quoted or substantively extracted in checkpoint 81; this is an article-level excerpt count, not a claim that the full 8 instruments have been transcribed.\n- Checkpoint 82 adds 48 distinct Civil Code article provisions from a government-hosted PDF, without counting Law 131/1948 again as a newly discovered instrument.
 - Overall corpus coverage remains approximately 2% (provisional). No reliable total denominator of unique Egyptian legal article texts is recorded, so the incremental percentage contribution cannot responsibly be calculated or used to revise the rounded whole-corpus estimate.
 - Checkpoint 81 adds material not previously recorded in the master index; it does not duplicate the Civil Code, Evidence, Building, rent or State-property checkpoints.
+
+| [collection_checkpoint_82_civil_code_property_contract_article_extraction_2026-11-18.md](collection_checkpoint_82_civil_code_property_contract_article_extraction_2026-11-18.md) | Government-hosted Arabic Civil Code extracts: sale, lease, agency, suretyship, easements and official mortgage (42 unique article provisions; no duplicate base instrument) |
 
 ## High-value primary-source portals
 
