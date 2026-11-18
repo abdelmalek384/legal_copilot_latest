@@ -746,3 +746,298 @@ The catalogue therefore identifies a 2026 regulatory change that must be checked
 GOEIC's official list identifies **Decision 271/2026** as issuing the Executive Regulation of Law 121/1982. The older GOEIC page still references Decision 846/2017 as the previous regulation; do not assume 846/2017 remains wholly operative. Retrieve Decision 271/2026 full text, record commencement and repeal/transitional provisions, then map 846/2017, Laws 7/2017, 173/2023 and 4/2026 article-by-article.
 
 **Updated provision count:** add 28 Law 120/1982 article texts (complete searchable text surfaced; key articles copied above) and two Law 4/2026 inserted provisions surfaced verbatim. Minimum count is now **111 provision/article units** (81 + 28 + 2). This is an evidence-surface count, not an assertion that 111 provisions are current, unique after legal amendments, or lawyer-approved.
+
+
+## 11. Companies Law 159/1981 and Executive Regulation 96/1982 — full official searchable texts retrieved
+
+### A. Companies Law 159/1981
+
+**Official Ministry of Investment and Foreign Trade source (PDF/text extraction):**  
+https://www.mift.gov.eg/legislation/download/231  
+**Official law detail/catalogue:** https://www.mift.gov.eg/legislation/details/252
+
+The Ministry labels the law **ساري** and the consolidated text **وفقاً لآخر تعديل صادر في 15 سبتمبر عام 2020**. The PDF is searchable and contains the law through numbered Article 184, including repealed/added provisions and amendment footnotes. It is a ministry-hosted consolidation, not a substitute for Gazette-by-Gazette source matching.
+
+**Verbatim — issuing Article 1:**
+
+> (المادة الأولى)
+>
+> تسري أحكام القانون المرافق على الشركات المساهمة وشركات التوصية بالأسهم والشركات ذات المسئولية المحدودة وشركات الشخص الواحد.
+>
+> ويلغى القانون رقم ٢٦ لسنة ١٩٥٤ بشأن بعض الأحكام الخاصة بشركات المساهمة وشركات التوصية بالأسهم والشركات ذات المسئولية المحدودة، كما يلغى القانون رقم ٢٤٤ لسنة ١٩٦٠ بشأن الاندماج في شركات المساهمة، ورقم ١٣٧ لسنة ١٩٦١ بتشكيل مجالس إدارة شركات المساهمة، وكذلك كل حكم يتعارض مع أحكام القانون المرافق.
+
+**Verbatim — substantive Article 1 (scope):**
+
+> مادة (١):
+>
+> تخضع لأحكام هذا القانون شركات المساهمة وشركات التوصية بالأسهم، والشركات ذات المسئولية المحدودة، وشركات الشخص الواحد، التي تتخذ مركزها الرئيسي في جمهورية مصر العربية، أو تزاول فيها نشاطها الرئيسي.
+>
+> وعلى كل شركة تؤسس في جمهورية مصر العربية أن تتخذ في مصر مركزاً رئيسياً لها.
+>
+> ويحدد عقد تأسيس الشركة عنوان مركزها الرئيسي الذي تتم فيه أعمال إدارتها، وتلتزم الشركة بشهر كل تعديل يطرأ على عنوان مركزها الرئيسي وإلا جاز اتخاذ الإجراءات بما فيها توجيه الإعلانات على عنوان مركزها الرئيسي المشهر بالسجل التجاري.
+
+**Verbatim — Article 1 bis (post-incorporation electronic services):**
+
+> مادة (١ مكرراً):
+>
+> مع عدم الإخلال بأحكام قانون سوق رأس المال الصادر بالقانون رقم ٩٥ لسنة ١٩٩٢، وقانون المناطق الاقتصادية ذات الطبيعة الخاصة الصادر بالقانون رقم ٨٣ لسنة ٢٠٠٢، وقانون الاستثمار رقم ٧٢ لسنة ٢٠١٧ المشار إليها، تتولى الهيئة تقديم خدمات التأسيس وما بعد التأسيس للشركات الخاضعة لأحكام هذا القانون.
+>
+> وتلتزم الهيئة بميكنة هذه الخدمات وتوحيد إجراءاتها وفقا لأحكام المادة (٥٠) من قانون الاستثمار الصادر بالقانون رقم ٧٢ لسنة ٢٠١٧، وتسري إجراءات التأسيس الإلكتروني دون غيرها من الإجراءات الواردة في أي قانون آخر فور تفعيلها.
+>
+> وتحدد اللائحة التنفيذية لهذا القانون ضوابط العمل بنظام التأسيس والخدمات الإلكترونية للشركات والمنشآت الخاضعة لأحكامه.
+
+**Verbatim — Article 2 (joint-stock company):**
+
+> مادة (٢):
+>
+> شركة المساهمة هي شركة ينقسم رأس مالها إلى أسهم متساوية القيمة يمكن تداولها على الوجه المبين في القانون.
+>
+> وتقتصر مسؤولية المساهم على أداء قيمة الأسهم التي اكتتب فيها ولا يسأل عن ديون الشركة إلا في حدود ما اكتتب فيه من أسهم.
+>
+> ويكون للشركة اسم تجاري يشتق من الغرض من إنشائها، ويجوز أن يتضمن الاسم التجاري للشركة اسما أو لقبا لواحد أو أكثر من مؤسسيها.
+
+**Verbatim — Article 4 bis (single-person company):**
+
+> مادة (٤ مكرراً):
+>
+> شركة الشخص الواحد هي شركة يمتلك رأسمالها بالكامل شخص واحد، سواء كان طبيعياً أو اعتبارياً، وذلك بما لا يتعارض مع أغراضها، ولا يسأل مؤسس الشركة عن التزاماتها إلا في حدود رأس المال المخصص لها.
+>
+> وتتخذ الشركة اسماً خاصاً لها يستمد من أغراضها أو من اسم مؤسسها، ويجب أن يتبع اسمها بما يفيد أنها شركة من شركات الشخص الواحد ذات مسؤولية محدودة، ويوضع على مركزها الرئيسي وفروعها - إن وجدت - وفي جميع مكاتباتها.
+
+**Verbatim — Article 137 (liquidation begins):**
+
+> مادة (١٣٧):
+>
+> تعتبر في حالة تصفية كل شركة بعد حلها أو انتهاء مدتها أو انقضائها لأي سبب غير الاندماج أو التقسيم، وتتم التصفية طبقاً لأحكام هذا القانون ونظام الشركة أو عقدها.
+
+**Verbatim — Article 155 (administrative oversight):**
+
+> مادة (١٥٥):
+>
+> تتولى الجهة الإدارية المختصة مراقبة تنفيذ الأحكام المنصوص عليها في هذا القانون ولائحته التنفيذية.
+>
+> ويكون للموظفين الفنيين من الدرجة الثالثة على الأقل بهذه الجهة وغيرها من الجهات التي تحددها اللائحة التنفيذية والذين يصدر باختيارهم قرار من الوزير المختص بالاتفاق مع وزير العدل صفة رجال الضبط القضائي في إثبات الجرائم التي تقع بالمخالفة لأحكام هذا القانون ولائحته التنفيذية.
+
+**Verbatim — Article 184 (foreign branches and representative offices):**
+
+> مادة (١٨٤):
+>
+> على فروع الشركات الأجنبية وما في حكمها، ومكاتب التمثيل أو الاتصال أو غيرها أن توفق أوضاعها طبقاً لأحكام هذا القانون خلال ثلاثة أشهر من تاريخ العمل به.
+
+**Amendment/version information explicitly recorded in the MIFT consolidation footnotes:**
+- Law 212/1994: inserted Article 21 bis (later repealed by Law 3/1998).
+- Law 3/1998: amended/replaced multiple provisions (including Articles 17, 33, 48, 68, 130; the consolidation footnotes identify the relevant Gazette issue 3 bis, 18 January 1998).
+- Law 159/1998: amendment identified in footnote to Article 33.
+- Law 94/2005: added Article 9 bis, amended Article 17, and repealed Article 21 bis.
+- Law 68/2009: amended Article 9 bis and identified further amendment references.
+- Law 17/2015: added item (هـ) to Article 17 (central depository evidence).
+- Law 4/2018: major amendment of multiple provisions including Articles 1, 2, 17, 25, 33, 35, 45, 48, 67, 68, 73, 85, 86, 98, 100, 128 and 175; Gazette issue 37 bis (ط), 16 January 2018.
+- Law 194/2020 (Central Bank Law): repealed Article 30, Gazette issue 37 bis (و), 15 September 2020.
+The Ministry's current catalogue lists seven prior amendments and eight associated legislative attachments. The above is an amendment graph lead based on consolidation footnotes; obtain each original Gazette instrument and map every altered paragraph before asserting a complete consolidated text.
+
+### B. Executive Regulation — Ministerial Decision 96/1982
+
+**Official MIFT source (full searchable Arabic PDF):**  
+https://www.mift.gov.eg/legislation/download/253
+
+The Ministry labels the source **وفقاً لآخر تعديل صادر في 21 من أغسطس عام 2022**. The document runs through numbered Article 324 and includes appendices. This is a consolidated regulatory text, not a complete archive of every amending decision.
+
+**Verbatim — issuing Article 1:**
+
+> (المادة الأولى)
+>
+> يعمل بأحكام اللائحة التنفيذية لقانون شركات المساهمة وشركات التوصية بالأسهم والشركات ذات المسؤولية المحدودة الصادر بالقانون رقم ١٥٩ لسنة ١٩٨١ والمرافقة لهذا القرار.
+
+**Verbatim — issuing Article 2 (competent authorities):**
+
+> (المادة الثانية)
+>
+> يقصد بالكلمات الآتية حيثما وردت باللائحة المرافقة العبارة الواردة قرين كل منها:
+>
+> القانون: قانون شركات المساهمة وشركات التوصية بالأسهم والشركات ذات المسؤولية المحدودة الصادر بالقانون رقم ١٥٩ لسنة ١٩٨١.
+>
+> الوزير: الوزير المختص بشئون الاستثمار.
+>
+> الهيئة: الهيئة العامة للاستثمار والمناطق الحرة، وذلك فيما عدا مواد الفرع الثاني من الباب الأول والمواد (٧٨، ٩٤، ١٠٢، ١٣٨، ٢٠٤، ٣٠٠) فتقوم كل من الهيئة العامة لسوق المال بمباشرة تنفيذ أحكام هذه المواد كل في حدود اختصاصها.
+>
+> الإدارة: قطاع شركات الأموال بالهيئة العامة للاستثمار والمناطق الحرة.
+
+**Verbatim — Regulation Article 1 (who may found):**
+
+> مادة (١)
+>
+> يجوز أن يكون مؤسساً في شركة المساهمة أو شركة التوصية بالأسهم كل شخص طبيعي تتوافر فيه الأهلية اللازمة وكذلك كل شخص معنوي يدخل في أغراضه تأسيس مثل تلك الشركات.
+>
+> وفيما عدا شركات الشخص الواحد، لا يجوز أن يقل عدد الشركاء المؤسسين في شركات المساهمة عن ثلاثة، وبالنسبة لشركات التوصية بالأسهم فلا يجوز أن يقل عدد الشركاء عن اثنين أحدهما متضامن.
+>
+> وإذا قل عدد الشركاء عن هذا النصاب، فعلى الشركة أن تبادر خلال ستة أشهر على الأكثر إلى استكماله أو يطلب من بقي من الشركاء خلال هذا الأجل تحويلها إلى شركة من شركات الشخص الواحد بعد إخطار الهيئة بذلك، وإلا اعتبرت الشركة منحلة بحكم القانون.
+
+**Verbatim — Regulation Article 2 bis (shareholders' agreement):**
+
+> مادة (٢) مكرراً
+>
+> يجوز للمساهمين أو الشركاء عند تأسيس الشركة أو بعد التأسيس إبرام اتفاق ينظم العلاقة فيما بينهم.
+>
+> ولا يسري هذا الاتفاق في حق باقي المساهمين أو الشركاء ما لم توافق عليه الجمعية العامة غير العادية للشركة بأغلبية لا تقل عن ثلاثة أرباع رأس المال، أو بأغلبية أكبر في الحالات الآتية:
+>
+> 1- إذا ترتبت على الاتفاق حقوق إضافية في التصويت أو توزيعات الأرباح أو عند التصفية.
+>
+> 2- إذا كان الاتفاق ينطبق عليه ضوابط عقود المعاوضة.
+>
+> 3- إذا كان العقد يضع ضوابط أو قيوداً على التعامل على الأسهم أو على إدارة الشركة.
+
+**Verbatim — Regulation Article 3 (form and authentication):**
+
+> مادة (٣)
+>
+> يجب أن يكون العقد الابتدائي لشركة المساهمة وشركة التوصية بالأسهم، وكذلك نظامها الأساسي موقعاً من المؤسسين أو من ينوب عنهم قانوناً.
+>
+> ويجب إفراغ العقد والنظام في ورقة رسمية، أو التصديق على التوقيعات الواردة فيهما أمام مكتب الشهر العقاري والتوثيق المختص، وذلك بعد موافقة اللجنة المنصوص عليها في المادة (١٨) من القانون.
+
+**Verbatim — Regulation Articles 316–322 (foreign representation offices):**
+The official consolidation includes these articles governing registration, permitted activity, inspection and annual reporting by foreign representative offices. The extracted text confirms Article 316 requires prior registration; Articles 317–318 set application documents and approval; Article 319 restricts the permitted activity to market/production study; Article 320 permits inspection; Article 321 requires annual reporting; Article 322 contains a transitional regularization provision. These provisions are reproduced in full in the source PDF; extract all individually during normalization.
+
+**Amendment instruments and version chain identified by the MIFT catalogue:**
+- Ministerial Decisions 408/1987, 204/1991, 461/1994, 40/1995, 471/1997, 496/1997, 492/1998, 1212/2004, 282/2005, 11/2008, 90/2009, 16/2010, 85/2010, 256/2018, 32/2019, 144/2019, 2928/2022 and related entries. MIFT's page reports 21 regulatory attachments/versions, including duplicate catalogue labels in some entries; do not count catalogue entries as distinct instruments without matching the underlying PDF.
+- Decision 2928/2022 replaces the first paragraph of Regulation Article 287 bis-2 with a minimum single-person-company capital of EGP 1,000 paid in full at incorporation. Official Amiri Press source: https://alamiria.com/Sec/TashTxt?id=IDnnBnh91PQ%3D
+- Decision 2928/2022 date: 21 August 2022; the MIFT consolidated Regulation is stated current through that date.
+- MIFT also lists Decisions 32/2019 and 144/2019, and other earlier amendments. Retrieve and compare the full PDFs individually.
+
+**Collection caveat:** the consolidated law and regulation are substantial searchable Arabic texts, but not Gazette-matched, byte-hashed, lawyer-reviewed or rights-cleared. The article numbering maxima (184 and 324) include repealed, inserted and bis provisions; they are not counts of unique operative articles. The Ministry's stated currentness is a portal metadata claim, not an independent check against later Official Gazette instruments.
+
+## 12. Commercial Code 17/1999 — full searchable Arabic government-hosted edition
+
+### A. Source and contents
+
+**Government-hosted PDF (Egyptian Tax Authority domain):**  
+https://www.eta.gov.eg/sites/default/files/2024-10/law-17-1999.pdf  
+Alternate portal host: https://portal.eta.gov.eg/sites/default/files/2024-10/law-17-1999.pdf
+
+The PDF is titled **قانون رقم 17 لسنة 1999 بإصدار قانون التجارة**, published in Official Gazette issue 19 (مكرر), 17 May 1999. The edition is a second edition prepared/reviewed by two Amiri Press officials, and is hosted on the official ETA domain. It contains searchable Arabic text of the Trade Law through Article 772 and appends the still-preserved first chapter of Book II of the 1883 Trade Code on partnerships. The edition's issuing provisions show amendments by Laws 168/2000, 150/2001 and 158/2003. It is an official-government-hosted historical/consolidated edition, but not a proof of currentness through 2026.
+
+**Verbatim — issuing Article 1:**
+
+> (المادة الأولى)
+>
+> يلغى قانون التجارة الصادر بالأمر العالي في ١٣ من نوفمبر سنة ١٨٨٣، عدا الفصل الأول من الباب الثاني منه والخاص بشركات الأشخاص، ويستعاض عنه بالقانون المرافق.
+>
+> ويلغى نص المادة (٣٣٧) من قانون العقوبات اعتباراً من أول أكتوبر سنة ٢٠٠١ كما يلغى كل حكم يتعارض مع أحكام القانون المرافق.
+
+**Verbatim — issuing Article 3 (as shown in the edition):**
+
+> (المادة الثالثة)
+>
+> ينشر هذا القانون في الجريدة الرسمية، ويعمل به اعتباراً من أول أكتوبر سنة ١٩٩٩، عدا الأحكام الخاصة بالشيك فيعمل بها اعتباراً من أول أكتوبر سنة ٢٠٠١.
+>
+> وتطبق على الشيك الصادر قبل هذا التاريخ الأحكام القانونية المعمول بها في تاريخ إصداره، إذا كان ثابت التاريخ أو تم إثبات تاريخه قبل أول أكتوبر سنة ٢٠٠٢.
+
+The edition's footnote identifies Law 168/2000 and Law 150/2001 as successive date changes and Law 158/2003 as the further replacement. A later consolidated source says the cheque provisions became operative on 1 October 2005; verify the final effective-date wording against the Gazette chain, not this old edition alone.
+
+**Verbatim — substantive Articles 1–5 (general commercial scope and acts):**
+
+> مادة (1)
+>
+> تسري أحكام هذا القانون على الأعمال التجارية، وعلى كل شخص طبيعي أو اعتباري ثبتت له صفة التاجر.
+>
+> مادة (2)
+>
+> 1- تسري على المواد التجارية أحكام الاتفاق بين المتعاقدين، فإذا لم يوجد هذا الاتفاق، سرت نصوص هذا القانون أو غيره من القوانين المتعلقة بالمواد التجارية، ثم قواعد العرف التجاري والعادات التجارية، فإذا لم يوجد عرف تجاري أو عادة تجارية وجب تطبيق أحكام القانون المدني.
+>
+> 2- لا يجوز تطبيق الاتفاقات بين المتعاقدين، أو قواعد العرف التجاري أو العادات التجارية متى تعارضت مع النظام العام في مصر.
+>
+> مادة (3)
+>
+> إذا كان العقد تجاريا بالنسبة إلى أحد طرفيه، فلا تسري أحكام القانون التجاري إلا على التزامات هذا الطرف وحده، وتسري على التزامات الطرف الآخر أحكام القانون المدني ما لم ينص القانون على غير ذلك.
+>
+> مادة (4)
+>
+> يعد عملا تجاريا:
+>
+> (أ) شراء المنقولات أيا كان نوعها بقصد بيعها أو تأجيرها بذاتها أو بعد تهيئتها في صورة أخرى، وكذلك بيع أو تأجير هذه المنقولات.
+>
+> (ب) استئجار المنقولات بقصد تأجيرها وكذلك تأجير هذه المنقولات.
+>
+> (ج) تأسيس الشركات التجارية.
+>
+> مادة (5)
+>
+> تعد الأعمال التالية تجارية إذا كانت مزاولتها على وجه الاحتراف:
+>
+> (أ) توريد البضائع والخدمات.
+>
+> (ب) الصناعة.
+>
+> (ج) النقل البري والنقل في المياه الداخلية.
+>
+> (د) الوكالة التجارية والسمسرة أيا كانت طبيعة العمليات التي يمارسها السمسار.
+>
+> (هـ) التأمين على اختلاف أنواعه.
+>
+> (و) عمليات البنوك والصرافة.
+
+**Verbatim — Articles 21–26 (commercial books and records):**
+
+> مادة (21)
+>
+> على كل تاجر يجاوز رأس ماله المستثمر في التجارة عشرين ألف جنيه أن يمسك الدفاتر التي تستلزمها طبيعة تجارته وأهميتها وعلى وجه الخصوص دفاتري اليومية والجرد بطريقة تكفل بيان مركزه المالي وماله من حقوق وما عليه من ديون متعلقة بالتجارة.
+>
+> مادة (22)
+>
+> 1- تقيد في دفتر اليومية جميع العمليات التجارية التي يجريها التاجر وكذلك مسحوباته الشخصية ويتم القيد يوماً بيوم فيما عدا المسحوبات الشخصية فيجوز أن تقيد إجمالاً شهراً فشهراً.
+>
+> مادة (23)
+>
+> 1- يقيد في دفتر الجرد تفصيل البضاعة الموجودة لدى التاجر في آخر سنته المالية أو بيان إجمالي عنها إذا كانت تفصيلاتها واردة بدفاتر أو قوائم مستقلة.
+>
+> 2- يقيد في دفتر الجرد صورة من الميزانية السنوية وحساب الأرباح والخسائر.
+>
+> مادة (24)
+>
+> على التاجر أن يحتفظ بصورة من المراسلات والبرقيات وغيرها من الوثائق التي يرسلها أو يتسلمها لشؤون تتعلق بتجارته.
+>
+> مادة (26)
+>
+> 1- يجب على التاجر أو ورثته الاحتفاظ بالدفاتر التجارية والوثائق المؤيدة للقيود الواردة بها مدة خمس سنوات تبدأ من تاريخ التأشير على الدفتر بانتهائه أو قفله.
+
+**Verbatim — Articles 30–33 (Commercial Register interface):**
+
+> مادة (٣٠)
+>
+> ١- يعد في الجهة الإدارية المختصة سجل تقيد فيه أسماء التجار أفراداً كانوا أم شركات.
+>
+> ٢- تسري فيما يتعلق بتعيين الخاضعين لواجب القيد في السجل التجاري ومواعيد القيد والبيانات اللازم قيدها وشطب القيد والجزاءات المقررة على مخالفة هذه الأحكام، القوانين والقرارات الخاصة بذلك.
+>
+> مادة (٣١)
+>
+> على كل من قيد بالسجل التجاري أن يبين على واجهة محله وفي جميع المراسلات والمطبوعات المتعلقة بتجارته اسمه التجاري ومكتب السجل التجاري المقيد به ورقم القيد.
+>
+> مادة (٣٢)
+>
+> ١- لكل شخص أن يحصل من مكتب السجل التجاري على صورة مستخرجة من صفحة القيد. وفي حالة عدم القيد يعطي المكتب شهادة سلبية.
+>
+> مادة (٣٣)
+>
+> ١- تكون البيانات المقيدة في السجل التجاري حجة على الغير من تاريخ قيدها في السجل ما لم ينص القانون على غير ذلك.
+>
+> ٢- لا يجوز الاحتجاج على الغير بأي بيان واجب القيد في السجل التجاري ولم يتم قيده إلا إذا ثبت علم الغير بمضمون البيان.
+
+**Commercial Code structure:** Book I commercial activity, trader, commercial books, register, business concern and stock exchange; Book II general commercial obligations and contracts (technology transfer, commercial sale, pledge, public warehouses, commercial agency, brokerage, transport); Book III banking operations; Book IV negotiable instruments (bill of exchange, promissory note, cheque); Book V bankruptcy and preventive composition. The attached preserved 1883 partnership chapter is a separate historical legal text and must not be conflated with the 1999 Code.
+
+### B. Commercial Code amendment chain / effective-date warning
+
+The official-government-hosted edition footnote and the Egyptian Customs legislation catalogue confirm:
+- Law 168/2000 — changed transitional/effective dates for cheque provisions.
+- Law 150/2001 — further changed dates and cheque-related provisions.
+- Law 158/2003 — further amended the effective-date provisions; Official Gazette issue 27, 3 July 2003.
+- Law 156/2004 — amended cheque provisions, including presentation periods; the full amending text still needs official Gazette capture.
+The Customs legislation catalogue lists the 168/2000, 150/2001 and 158/2003 amendment laws. The 2004 Law 156 amendment is corroborated in a consolidated commercial-law source but needs its Gazette PDF in this repository.
+
+**Critical bankruptcy status:** the 1999 edition still contains former Book V, Articles 550–772, but the bankruptcy/restructuring regime was replaced by Law 11/2018 on Restructuring, Preventive Composition and Bankruptcy, with later amendment Law 11/2021. Secondary consolidated legal text marks Articles 550 onward as repealed by Law 11/2018. Until the exact repeal clause and Gazette version are captured from the official 2018 Law, treat Commercial Code Articles 550–772 as historical/repealed content, never as current law. The new 2018 law and its 2021 amendment require their own article-by-article source package.
+
+**Text rights:** public government hosting does not itself prove permission for bulk commercial redistribution, model training or republication. Record as public-access source; rights clearance unknown.
+
+**New collection count (this checkpoint):**
+- 2 new base statutes with substantial full searchable Arabic text: Law 159/1981 and Law 17/1999.
+- 1 full searchable Executive Regulation: Decision 96/1982.
+- Article-number ranges surfaced: Law 159/1981 through 184; Regulation 96/1982 through 324; Commercial Code 17/1999 through 772, plus the preserved 1883 partnership chapter. These are numbering maxima, not verified counts of currently operative unique articles.
+- Key exact Arabic provisions transcribed above. Do not inflate the prior 111 provision-unit count by the maximum article numbers; add only article-level text after normalization and deduplication.
