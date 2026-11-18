@@ -1523,3 +1523,13 @@
 - Progress estimates: core defined article sets **100% text extraction**; broader civil/property/contract corpus **16% provisional** (up from 15%); whole Egyptian legal corpus **2% provisional**; lawyer verification and confirmed commercial reuse permissions **0%**.
 - Known source-quality flags: Law142 searchable page has flattened/repeated numbering; Law114 Article9 OCR overlap; Law70 Article2 item numbering anomalies and schedules outstanding; Decision144 page mixes historical/current wording and requires dated redline. Full extraction and Gazette validation remain open.
 
+### Research Agent — checkpoint 165: second-pass Arabic text expansion and source conflicts (18 November 2026)
+
+- Added [collection_checkpoint_165_second_pass_arabic_text_and_source_conflicts_2026-11-18.md](collection_checkpoint_165_second_pass_arabic_text_and_source_conflicts_2026-11-18.md).
+- Expanded Law142 text coverage with Articles 12, 14–19, 29–36 and further procedural text through Articles 41–66; exact normalized numbering and full article extraction remain pending.
+- Expanded Law114 text coverage with Article22, Article22bis, Article23 excerpt, Article35 and Article35bis, and inheritance procedure Articles48–53.
+- Expanded Law70 text coverage with schedule B examples, Articles34bis series and Article35 penalty text.
+- Added Decision144/2009 Article110 amendment overlay (Decisions410/2021 and943/2024) and Article111 engineering-drawing contents from searchable text.
+- Logged a material constitutional-case citation conflict in Law142 Article37: LAW HUB cites Case42/1998 and says Article37/38 invalidity, while prior research identifies Case42/17 (6 June 2018) invalidating Article37(2) with Article38 consequentially falling. Both judgment texts must be obtained before resolving scope.
+- Inventory stays **30**; acquisition register **241 unique instruments**; source register **64**; version events **44**; core normalized provisions **1,370**. No progress increase from excerpts alone; broad corpus **16% provisional**, whole corpus **2% provisional**.
+
