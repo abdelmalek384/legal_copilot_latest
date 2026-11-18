@@ -348,8 +348,6 @@ This supplement adds full searchable text sources for previously identified amen
 - Issued/published 4 January 2023; Official Gazette issue 52 bis (هـ); effective 5 January 2023.
 - Full searchable text metadata/source:
   https://www.eastlaws.com/legislation-full-text/ar/egypt/prime-minister-decision/04-01-2023/no-81?id=2074242&type=1
-- Secondary legal full-text transcription:
-  https://www.mksegypt.org/ar/decisions/...
 - This regulation is relevant to irrigation permissions, water resources, wells, drainage and land reclamation, but is not an amendment to Law 143/1981. The original Official Gazette PDF and complete article count remain outstanding.
 - Decision 81/2023 is a new related subordinate instrument discovered in this supplemental research.
 
@@ -380,11 +378,11 @@ This supplement adds full searchable text sources for previously identified amen
 ## 10. Metrics for this checkpoint
 
 - New base statutes in the original checkpoint 89 batch: 1 (Law 7/1991); supplemental research adds Law 12/1984 and Law 147/2021 as distinct related irrigation statutes.
-- Full searchable Arabic texts retrieved: 5 from official government/judicial hosts (Laws 10/1990, 24/2018, 143/1981, 7/1991 and 11/2024); Law 187/2020, Decision 20/2019 and Decision 198/1982 are also full searchable reproductions from secondary/Gazette-scan sources.
+- Full searchable Arabic texts retrieved: 6 from official government/judicial hosts (Laws 10/1990, 24/2018, 143/1981, 7/1991, 11/2024 and 147/2021); Law 12/1984, Law 187/2020, Decision 20/2019 and Decision 198/1982 are also full searchable reproductions from secondary/Gazette-scan sources.
 - New amendment instruments with full text retrieved in checkpoint 89: 3 (Laws 24/2018, 187/2020 and 11/2024); supplemental research adds full searchable texts of Laws 205/1991, 96/1995 and 72/1996. Law 55/1988 remains a metadata/consolidated-text-only record.
 - Executive regulation texts located: 3 in original checkpoint 89 (Decisions 20/2019 and 198/1982 plus PM Decision 81/2023 under Law 147/2021); original Gazette PDFs remain outstanding for all three.
 - At least 27 distinct statutory/regulatory article provisions quoted or substantively extracted in original checkpoint 89; supplemental research adds at least 6 further amendment/judgment provisions (Law 12/1984 Article 2, Laws 205/1991, 96/1995, 72/1996 and SCC Case 101/26 jurisdictional holding).
-- No new base-law discovery counted and no duplicate URL counted as a new instrument.
+- No duplicate base-law text or URL counted as a new instrument; supplemental research adds Law 12/1984 and Law 147/2021 as distinct related statutes.
 
 ## 11. Next actions
 
