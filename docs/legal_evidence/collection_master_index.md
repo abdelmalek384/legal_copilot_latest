@@ -704,3 +704,10 @@
 - PM Decision 2140/2023, dated 4 Jun 2023, full three-article searchable text retrieved. Replaces Executive Regulation 2310/2017 Article 76 (private free-zone conditions) and inserts Article 76 bis (service private free zones). Source marks the decision in force.
 - Other amendments identified from the consolidated regulation footnotes but not individually downloaded: Decisions 1199/2020, 2467/2020, 910/2021, 2300/2022 and 4426/2022. Decision 4426/2022 Gazette issue 49 تابع, 8 Dec 2022; PDF embedded in iframe and not extracted.
 - **Updated Agent 3 minimum:** 61 distinct instruments with some Arabic text surfaced; 552 article/provision text units; 13/13 law families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
+
+
+### Research Agent 3 — Investment Decision 2300/2022 full text
+
+- PM Decision 2300/2022, dated 27 Jun 2022, Official Gazette issue 25 bis (ج), full searchable text obtained. Replaced Executive Regulation 2310/2017 Article 42 and Article 43(2) for single approvals, including company-form, minimum capital (20% of project costs), financial solvency, feasibility, schedule and infrastructure declarations.
+- These 2022 provisions were later superseded by PM Decision 1203/2024 (17 Apr 2024), which replaced Articles 41–43 again. Preserve 2300/2022 as historical version; current answers must use the 2024 text.
+- **Updated Agent 3 minimum:** 62 distinct instruments with some Arabic text surfaced; 555 article/provision text units; 13/13 law families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
