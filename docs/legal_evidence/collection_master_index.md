@@ -2313,3 +2313,8 @@ Added Decision450/2026 and both attached forms from the official four-page ETA s
 - Source-permission register: **111 source records**.
 - New complete local text additions in this pass: Law149/2026 plus its official corrigendum; full local text of Law161/2026 (all 50 articles); PM Decision2170/2026; Finance Minister Decision450/2026 and both forms; and the official corrigendum for Laws149–151. Decision3530 and the five issue46 land decisions remain partial locally.
 - No new Amiri Press original PDF bytes/hash were stored locally. Official ETA-hosted PDFs were opened and visually inspected where noted; public accessibility is not treated as permission for bulk redistribution or commercial reuse.
+
+
+### Decision3530/2026 — complete annex text now transcribed
+
+The official Amiri Press TashTxt search result returned the complete annex, so the earlier partial status has been replaced with a full local transcription. The expanded file now contains all 13 general controls, all nine categories excluded from the rationalization rules, detailed spending restrictions for goods/services and social support, compensation rules, the full investment-project restrictions and exceptions, car-purchase ban, foreign-currency restrictions, savings matrix, deadline and accountability clause. The Amiri Press page itself intermittently returns 502; its indexed full text is captured. Gazette page-image comparison and original PDF hash remain outstanding.
