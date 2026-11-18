@@ -108,3 +108,15 @@ No percentage increase is justified by source/metadata corrections without addit
 ## 9. Rights and verification
 
 No lawyer verification, commercial reuse permission, publisher-certified original authentication, or bulk retrieval permission is claimed. The Alhasswa full text is a secondary-hosted reproduction attributed to the Court of Cassation portal; the seven-page Gazette scan is a secondary-hosted reproduction of printed pages.
+
+
+## Law 142/1964 amendment-chain verification update — 18 November 2026
+
+The full searchable LAW HUB text (592 lines) contains one express statutory replacement note: substantive Article 30 was replaced by Law 83/2006. No other statutory amendment marker was found in the text. The same consolidated page records corrigenda in Official Gazette issue 77, 2 April 1964, affecting Articles 62 and 65; these are corrections, not amending laws. The current identified chain is therefore:
+
+1. Law 83/2006, Official Gazette issue 26 bis (أ), 1 June 2006 — replaces Article 30.
+2. Corrigendum, Official Gazette issue 77, 2 April 1964 — corrects text of Articles 62 and 65 (not an amendment law).
+3. SCC Case 42/17 (6 June 1998) — invalidates only the second limb of Article 37 and causes Article 38 to fall.
+4. SCC Case 10/35 (2 June 2018; Gazette issue 22 bis (ط), 6 June 2018) — invalidates Articles 21 and 24, causes Article 23 and Justice Decision 553/1976 to fall.
+
+Case 42/17 Gazette publication has been cross-checked against the full searchable judgment transcription and the official SCC later judgment page: issue 35 تابع, 18 June 1998. The earlier issue 25 entry in this checkpoint was a metadata error and is superseded by this correction.
