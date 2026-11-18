@@ -909,3 +909,11 @@
 - PM Decision 3045/2023: Official Gazette issue 31 bis (و), 8 Aug 2023; effective 9 Aug 2023; FRA official record. Replaces multiple provisions on sukuk, fund disclosure/governance and securitization; adds ETF and ESG fund definitions, Article 179 bis/1 sustainable-development funds and Article 308 bis securitization programs. Selected provisions transcribed.
 - Both amend Executive Regulation Decision 135/1993, not Law 95/1992 itself. Read with 1539/2025 and 2482/2025.
 - **Updated Agent 3 minimum:** 80 distinct instruments with some Arabic text surfaced; 1,085 article/provision text units; 13/13 assigned families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
+
+
+### Research Agent 3 — PM Decision 4664/2022 carbon-market provisions
+
+- FRA official decision page and official carbon-market legislative index identify Decision 4664/2022 amending Capital Market Executive Regulation 135/1993. Gazette issue 51 bis (د), 25 Dec 2022; effective 26 Dec 2022.
+- Inserted Articles 35 bis/7 and 35 bis/8 transcribed from FRA's official consolidated 2025 Executive Regulation PDF: voluntary carbon-reduction certificates are tradable financial instruments (one unit = one tonne CO2e reduced); project approval and disclosure duties; inter-agency supervisory committee, registry and Exchange trading rules subject to FRA approval.
+- **Number-collision warning:** a separate Cabinet Decision 4664/2022 also establishes the national voluntary carbon trading system. Keep separate records by title, issuing authority and Gazette metadata; do not merge solely by decision number.
+- **Updated Agent 3 minimum:** 81 distinct instruments with some Arabic text surfaced; 1,087 article/provision text units; 13/13 assigned families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
