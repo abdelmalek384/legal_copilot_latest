@@ -144,3 +144,10 @@ ECA may, with Board approval, review a concentration below notification threshol
 
 ## Statutory threshold confirmation / correction — 18 November 2026
 The Amiri Press full text of Law 175/2022 has now been retrieved in search-indexed full text. It expressly inserts Article 19 bis with the worldwide threshold **EGP 7.5 billion**, not EGP 7.2 billion. The ECA June 2024 consolidated PDF shows EGP 7.2 billion and cites Law 15/2022; that footnote/text is inconsistent with the later Law 175 Gazette text and is quarantined as stale/editorially erroneous. The Law 175 full text states domestic threshold EGP 900m combined with two parties each >EGP 200m Egypt turnover, and worldwide threshold EGP 7.5bn combined with one party >EGP 200m Egypt turnover. This is the operative statutory threshold; do not conflate it with the separate EGP 7.5bn upper fee band in Decision 1120/2024 Article 59. The matching number is coincidental in legal function. Primary Amiri Press full text: https://alamiria.com/Sec/TashTxt?id=fS+Yv1+FkoI%3D.
+
+
+## Original Gazette issue-52 acquisition status
+- Amiri Press DSpace record located for Official Gazette issue 52 supplement (أ), issued 29 December 2022, 320.09 KB PDF: https://dspace.id.com.eg/items/1753ee2d-0b85-440b-8d84-9e98230de0e8/full.
+- The original bundle is **request-a-copy only**; click-through leads to a request form, not a direct download. Do not claim the Gazette binary has been downloaded or page-image inspected.
+- Amiri Press searchable Law 175/2022 text is accessible and provides the full inserted Article 19 bis threshold wording. It is primary publisher text, but the official Gazette page image/hash remains outstanding.
+- The ECA June 2024 PDF's 7.2bn threshold and Law 15/2022 footnote are retained as a source discrepancy, not operative current law. Law 175 Amiri Press text controls the current threshold at 7.5bn pending page-image comparison.
