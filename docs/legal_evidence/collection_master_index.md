@@ -15,6 +15,8 @@
 
 ## Collection checkpoints
 
+| checkpoint 97 — Agent 3 Capital Market Arabic text | Agent 3 checkpoint file: 11 additional provision-level texts from Law 95/1992 and Executive Regulation Decision 135/1993; cumulative 89 instruments / 1,148 provision units; OCR conflict flagged |
+
 | checkpoint 96 — Agent 3 Law 4/2026 and insolvency text expansion | Same Agent 3 checkpoint file: full inserted Arabic provisions of Importers Register Law 4/2026 and additional Law 11/2018 Articles 15–18 with 2021 amendment/source notes; cumulative count 89 instruments / 1,137 provision units |
 
 | [agent3_commercial_corporate_investment_checkpoint_2026-11-18.md](agent3_commercial_corporate_investment_checkpoint_2026-11-18.md) | Agent 3 source re-check plus Arabic text acquisition: Commercial Code 17/1999, Leasing/Factoring 176/2018, FRA Decision 7/2019 2026 consolidation, Competition amendment chain, and full inserted text of Importers Register Law 4/2026 |
@@ -1039,4 +1041,4 @@
 - Law 20/2024: Official Gazette issue 14 مكرر, 5 Apr 2024; effective 6 Apr 2024. MOF official record marks it in force; official Gazette DSpace and Amiri Press text obtained.
 - Replaces Consumer Protection Law 181/2018 Article 71 for Article 8 strategic-products offences. Current penalty: imprisonment at least one year and fine EGP 150,000–3 million or value of goods (whichever greater); recidivism 2–5 years and doubled fine limits; confiscation, possible closure up to six months, publication in two daily newspapers, possible licence cancellation.
 - Both replacement Article 71 and commencement Article 2 transcribed in Agent 3 file. Original Article 71 text is historical only.
-- **Updated Agent 3 minimum:** 89 distinct instruments with some Arabic text surfaced; 1,137 article/provision text units; 13/13 assigned families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
+- **Updated Agent 3 minimum:** 89 distinct instruments with some Arabic text surfaced; 1,148 article/provision text units; 13/13 assigned families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
