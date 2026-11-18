@@ -265,3 +265,11 @@ Critical legal scope:
 - Easement Article 1016 allows acquisition by legal act or inheritance, and by prescription only for apparent easements (including passage). Article 1027 sets 15 years (33 years for a servitude benefiting waqf property) for extinction by non-use.
 - Article 1022 remains unresolved: do not fill by inference; obtain the page image/original Gazette or authoritative edition.
 
+## 19. Further Civil Code extraction — Articles 1030–1068
+
+- Checkpoint 110 adds **20 provisions**, Articles 1030–1049: official mortgage definition, form, mortgagor capacity, collateral scope, mortgage over undivided shares, future/conditional debt and initial effects.
+- Checkpoint 111 adds **19 provisions**, Articles 1050–1068: enforcement, third-party effectiveness, registration, priority, right of pursuit, third-party acquirer and mortgage purging. Articles 1069–1070 are explicit source-text gaps and are not counted.
+- Cumulative Civil Code extraction stream: **802 distinct provisions** (67 previously recorded + 735 newly transcribed in this continuation). This is not a consecutive or verified current consolidation.
+- Core conveyancing/security rules captured: Article 1031 requires a formal instrument; Article 1035 requires specific immovable identification; Article 1053 requires registration for third-party effectiveness; Article 1057 ranks from registration; Articles 1064–1068 govern purging mechanics.
+- These must be reconciled with Law 114/1946 and amendments, execution procedure, insolvency rules and any later mortgage-specific legislation. OCR/image verification remains open.
+
