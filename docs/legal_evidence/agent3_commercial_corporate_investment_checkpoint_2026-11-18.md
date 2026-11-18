@@ -696,3 +696,126 @@ The ITDA official PDF establishes the primary-source file. The text below is tra
 - Families amendment/currentness-complete: 0/13.
 - Lawyer-reviewed: 0%.
 - Whole-corpus estimate remains approximately 2%; no validated denominator exists for a more precise figure.
+
+
+## 20. Commercial Agency Law 120/1982 — Decision 593/2025 Gazette amendment text surfaced
+
+### Primary/official source register
+- MIFT official law record for Law 120/1982 lists it as in force, shows Law 21/2022 as the statutory amendment, and identifies Executive Regulation Decision 342/1982 with amendments 84/1988, 111/2000, 362/2005, 827/2019 and latest Decision 593/2025: https://www.mift.gov.eg/legislation/details/258
+- GOEIC official legislation catalogue lists Decision 593/2025 as amending the Executive Regulation of Law 120/1982: https://www.goeic.gov.eg/ar/laws-and-decisions/list
+- GOEIC official-hosted Law 120/1982 Arabic PDF: https://www.goeic.gov.eg/upload/online/2017/03/documents/files/ar/210.pdf (28 statutory articles; searchable text, but older base text; must be reconciled with Law 21/2022).
+- Gazette metadata for Decision 593/2025: Official Gazette Supplement issue 20 (تابع أ), publication 25 January 2026; effective 26 January 2026. DSpace record identifies the Ministry of Investment and Foreign Trade as author and Amiri Press as publisher: https://dspace.id.com.eg/items/ae370da9-bba8-4f99-ae12-be9b0c45dac3
+- Full decision transcription: https://www.eastlaws.com/legislation-full-text/ar/egypt/minister-investment-foreign-trade-decision/25-01-2026/no-593?id=5282594&type=1
+- Secondary library copy with Arabic PDF and English translation: https://dspace.id.com.eg/items/63d55c41-fd45-416b-8d36-0a1bbe72c0b1
+- **Rights/verification:** GOEIC's catalogue is an official regulator source; the Gazette metadata record identifies Amiri Press and an original PDF bundle. The extracted operative text below is from a secondary legal transcription and must be checked against the Gazette PDF page images before product ingestion. The Gazette bundle is 2.26 MB and is not itself a government-hosted direct download in the source route used here.
+
+### Law 120/1982 — exact Arabic base-text excerpts (older text; amendment reconciliation required)
+
+**Article 1 (commercial agent and intermediary definitions):**
+> يقصد بالوكيل التجاري في مجال تطبيق أحكام هذا القانون كل شخص طبيعي او اعتباري يقوم بصفة معتادة ، دون ان يكون مرتبطا بعقد عمل او عقد تاجير خدمات بتقديم العطائات او بارام عمليات الشراء او البيع او التاجير او تقديم الخدمات باسم ولحساب المنتجين او التجار او الموزعين او باسمه ولحساب احد هؤلاء .
+>
+> كما يقصد بالوسيط التجاري من اقتصر نشاطه و لو عن صفقة واحدة على البحث عن متعاقد او التفاوض معه لاقناعه بالتعاقد وكذلك كل من قام باي عمل من اعمال الوكالة التجارية ولو على غير اعتياد ولمرة واحدة اوكان مرتبطا مع المنتج او التاجر او الموزع بعقد عمل .
+
+**Article 2 (mandatory registry):**
+> مع عدم الاخلال باحكام القانون رقم ٤ لسنة ١٩٧٦ في شان السجل التجاري تحظر مزاولة اي عمل من اعمال الوكالة التجارية او الوساطة التجارية الا لمن يكون اسمه مقيدا في سجل الوكلااء والوسطاء التجاريين المعد لذلك في وزارة الاقتصاد والتجارة الخارجية .
+
+**Article 3 (registration conditions):** The official GOEIC PDF contains the full natural-person and company eligibility conditions. The old text includes citizenship, capacity, reputation/criminal-history, insolvency and public-office restrictions; company ownership and management conditions; and a minimum capital requirement for partnerships. This base wording must be reconciled with Law 21/2022 and current regulations; do not quote it as an unamended current eligibility test.
+
+### Decision 593/2025 — operative text surfaced
+
+**Publication and commencement:** The decision transcription states publication in Official Gazette Supplement issue 20 (تابع أ) on 25 January 2026 and commencement on 26 January 2026 (the day after publication).
+
+**Article 1 — title replacement:**
+> يستبدل مسمى اللائحة التنفيذية لقانون تنظيم أعمال الوكالة التجارية وبعض أعمال الوساطة التجارية أو السمسرة العقارية " بمسمى " اللائحة التنفيذية لقانون تنظيم أعمال الوكالة التجارية وبعض أعمال الوساطة التجارية " أينما ورد في اللائحة المشار إليها وفي أي قرار آخر.
+
+**Article 2 — substituted regulation provisions (selected full provisions captured):**
+
+Regulation Article 1:
+> تتولى الهيئة العامة للرقابة على الصادرات والواردات إمساك السجلات الآتية:
+>
+> (أ) سجل الوكلاء والوسطاء التجاريين.
+>
+> (ب) سجل مكاتب الخدمات العلمية والفنية والاستشارية للشركات والمنشآت الأجنبية.
+>
+> (ج) سجل السماسرة العقاريين.
+
+Regulation Article 5:
+> يشترط فيمن ينوب عن صاحب الشأن (الوكيل أو الوسيط التجاري أو السمسار العقارى) أن يكون مصرى الجنسية، وأن يكون موكلا بتوكيل رسمي، وإذا كان من العاملين بالحكومة أو وحدات الحكم المحلى أو الهيئات العامة أو شركات ووحدات القطاع العام يتعين إخطار جهة عمله.
+
+Regulation Article 6:
+> يتم القيد في السجلات المشار إليها بالمادة (1) من هذه اللائحة على النماذج المعدة لذلك بالهيئة العامة للرقابة على الصادرات والواردات.
+
+Regulation Article 7:
+> يسلم لمن يقيد في أحد السجلات المشار إليها بالمادة (1) من هذه اللائحة ما يفيد قيده على النموذج المعد لذلك بالهيئة العامة للرقابة على الصادرات والواردات متضمنا اسمه ورقم قيده وبياناته التجارية.
+>
+> ولذوى الشأن الحصول على صورة مصدق عليها من المعلومات المقيدة في تلك السجلات أو شهادة سلبية بعدم إدراج أمر معين فيها.
+
+Regulation Article 8:
+> يلتزم الوكيل أو الوسيط التجاري أو السمسار العقاري الذي يتم قيده بأن يثبت رقم القيد في جميع أوراقه ومكاتباته.
+
+Regulation Article 10:
+> يتعين على الأشخاص الطبيعيين والاعتباريين والمنشآت من المنتجين أو التجار أو الموزعين المتعاملين مع الوكلاء أو الوسطاء التجاريين أو السماسرة العقاريين إخطار مصلحة الضرائب بالمبالغ التي يدفعونها للوكلاء أو الوسطاء التجاريين أو السماسرة العقاريين سواء على سبيل العمولة أو السمسرة أو المكافأة أو تحت أي مسمى آخر.
+>
+> كما يتعين عليهم عند دفعهم لهذه المبالغ للوكلاء أو الوسطاء التجاريين أو السماسرة العقاريين الالتزام بأحكام قانون الضريبة على الدخل الصادر بالقانون رقم 91 لسنة 2005 ولائحته التنفيذية المنظمة لقواعد الخصم لحساب الضريبة ومواعيد وإجراءات توريد المبالغ المخصومة تحت حساب الضريبة.
+
+**Article 3 — chapter heading change:**
+> يستبدل بعنوان الفصل الثاني من اللائحة التنفيذية لقانون تنظيم أعمال الوكالة التجارية وبعض أعمال الوساطة التجارية المشار إليها العنوان الآتي: " في القيد في سجلى الوكلاء والوسطاء التجاريين، والسماسرة العقاريين.
+
+**Article 4 — new regulation provisions (selected):**
+
+Regulation Article 3 bis (real-estate broker register):
+> يقيد في السجل المنصوص عليه في البند (ج) من المادة (1) من هذه اللائحة كل من يقوم بأعمال السمسرة أو السعى لإبرام العقود المتعلقة بالعقارات والأراضي المبنية أو الفضاء، سواء أعمال شرائها أو بيعها أو تأجيرها أو التوسط في شيء مما تقدم.
+>
+> ويشتمل السجل على البيانات والمعلومات الخاصة بالمقيدين به من واقع ملف القيد ، بما فيها بياناتهم الشخصية الأساسية وبيانات محل مزاولتهم المهنة والكود الممنوح إليهم، والفئة التي ينتمون إليها ، وغيرها من البيانات والمعلومات والإحصائيات اللازمة لتنظيم نشاط السمسرة العقارية
+>
+> وتجرى الهيئة العامة للرقابة على الصادرات والواردات تحديثا للسجل بشكل مستمر ومنتظم، بما يتفق ومستجدات هذا النشاط، وتنشر القائمة المحدثة المشتملة على السماسرة العقاريين على مستوى الجمهورية على الموقع الإلكتروني للهيئة.
+
+Regulation Article 15 bis (natural-person agent/mediator supporting documents):
+> بالإضافة إلى المستندات المبينة بالمادة السابقة، يتعين على الشخص الطبيعي طالب القيد بسجل الوكلاء والوسطاء التجاريين تقديم المستندات الآتية:
+>
+> 1- صورة رسمية معتمدة من عقد الوكالة التجارية أو عقد الوساطة التجارية يتضمن طبيعة عمل الوكيل أو الوسيط التجاري ومسئولية أطراف العقد ، ونسبة العمولة المقررة وشروط تقاضيها والعملة التي تدفع بها.
+>
+> 2- شهادة خبرة في مجال التوكيل تصدرها الغرفة التجارية المختصة، ويعتمدها الاتحاد العام للغرف التجارية.
+
+Regulation Article 16 bis (legal-person agent/mediator ownership declaration):
+> بالإضافة إلى المستندات المشار إليها في المادة السابقة، يتعين على الشخص الاعتباري طالب القيد بسجل الوكلاء والوسطاء التجاريين تقديم المستندات التالية:
+>
+> 1- إقرار من المدير المسئول صاحب حق الإدارة والتوقيع أو من رئيس مجلس الإدارة أو العضو المنتدب - حسب الأحوال - بأن رأس مال الشركة مملوك بالكامل المصريين وإذا كان أحد الشركاء من أصل أجنبي وجب أن تكون قد انقضت عشر سنوات كاملة على تاريخ اكتسابه الجنسية المصرية.
+>
+> 2- وإذا كان الشريك شخصا اعتباريا وجب تقديم ما يثبت تمتعه بالجنسية المصرية وأن أغلبية رأس ماله مملوكة لمصريين ، مع مراعاة انقضاء عشر سنوات على اكتسابه الجنسية المصرية بالنسبة إلى كل من كان من أصل أجنبي من الشركاء والمساهمين.
+
+Regulation Article 16 bis 2 (electronic register for real-estate brokers):
+> يلتزم السمسار العقاري بإمساك سجل الكتروني من خلال الموقع الإلكتروني للهيئة العامة للرقابة على الصادرات والواردات تقيد فيه عقود السمسرة التي أبرمها وعمليات السمسرة العقارية التي أجراها ، وثمن المعاملة ، وتاريخ إجرائها ، والعمولات والمبالغ التي تقاضاها ، والبيانات الشخصية للمتعاقدين، والبيانات الخاصة بمحل التعاقد.
+>
+> ولحين إنشاء وتجهيز السجل الإلكترونى المشار إليه، يتعين عليه إمساك سجل ورقى وتقديمه للهيئة العامة للرقابة على الصادرات والواردات عند الطلب.
+
+Regulation Article 18 bis (changes to registration data):
+> يقدم من صاحب الشأن أو وكيله طلب التعديل في بيانات القيد بسجل الوكلاء والوسطاء التجاريين أو سجل السماسرة العقاريين إلى الهيئة العامة للرقابة على الصادرات والواردات على النموذج المعد لذلك خلال ثلاثين يوما من تاريخ حدوث التعديل أو التغيير في البيانات، ويرفق بهذا الطلب مستند رسمى يثبت إجراء التعديل ويسحب من الوكيل أو الوسيط التجاري أو السمسار العقاري نموذج القيد السابق ويعطى نموذجا جديدا مثبتا به التعديل بذات رقم القيد.
+>
+> وإذا لم يقدم طلب التعديل في بيانات القيد خلال الميعاد المشار إليه، فلا يجوز لصاحب الشأن الاحتجاج به قبل الغير، ومع ذلك يجوز للغير التمسك بهذا التعديل في مواجهة صاحب الشأن.
+
+**Article 5 — training annex:** Adds an annex setting out a training course for real-estate brokerage. The full annex text and its examination/attendance conditions must be captured from the Gazette scan before product ingestion.
+
+**Article 6 — repeals:** Repeals regulation Articles 26 and 27.
+
+**Article 7 — transition:** Requires persons carrying on real-estate brokerage to regularize their status within six months from the decision's commencement.
+
+**Article 8 — publication/commencement:**
+> ينشر هذا القرار في الوقائع المصرية، ويعمل به من اليوم التالي لتاريخ نشره.
+
+### Amendment/currentness map and scope controls
+- Law 120/1982 → statutory amendment Law 21/2022 (full amended statute text still to acquire) → Executive Regulation Decision 342/1982 → amendments Decisions 84/1988, 111/2000, 362/2005, 827/2019 → Decision 593/2025 (published 25 January 2026; effective 26 January 2026).
+- Decision 593/2025 changes the regulation title to remove real-estate brokerage from the short title while separately creating a dedicated real-estate broker register and rules. Preserve the legal scope distinction: the underlying Law 120/1982 title/subject and its amended provisions may expressly encompass real-estate brokerage; the regulation's amended title alone does not repeal statutory scope.
+- Decision 593/2025 expressly assigns maintenance of the relevant registers to GOEIC and introduces a real-estate broker registry, electronic/temporary paper recordkeeping, and training.
+- GOEIC operational service pages are guidance, not a substitute for the Gazette decision. Example: https://www.goeic.gov.eg/ar/electronic-services/show/760
+- The MIFT record and GOEIC catalogue are official indexes; the detailed text here is secondary transcription pending page-image check of the official Gazette bundle.
+
+**Incremental counts:** 1 newly surfaced unique instrument with Arabic text (Decision 593/2025) and 8 decision-level provision units (Articles 1–8). The replaced/inserted regulation text is preserved as nested amendment text and is not separately double-counted.
+
+## 21. Revised counts after Commercial Agency amendment capture
+- Unique instruments with Arabic text surfaced: 92 (91 + Decision 593/2025).
+- Article/provision text units: 1,181 (1,173 + 8).
+- Assigned families touched: 13/13.
+- Families amendment/currentness-complete: 0/13.
+- Lawyer-reviewed: 0%.
+- Whole-corpus estimate remains approximately 2%; no validated denominator exists for a more precise figure.
