@@ -2426,6 +2426,22 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "Single public consolidated-text page; no bulk/API permission established",
       "required_next_action": "Obtain issue31 original scan and compare the five replacements; review source terms before any redistribution."
+    },
+    {
+      "source_id": "EG-RIWAQ-DECISION410-2021-BUILDING",
+      "authority": "Riwaq al-Jamal / Ahmed Azim El-Gamal legal blog (secondary transcription)",
+      "source_page": "https://ahmedazimelgamel.blogspot.com/2021/08/410-2021.html",
+      "material_types": [
+        "Full Arabic transcription of Decision410/2021, inserted Articles110 bis,112 bis 1,117 bis and Forms1–3"
+      ],
+      "access_status": "Public searchable secondary transcription; issue160/18 July 2021 metadata stated on page. Original Gazette PDF/page images not acquired.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Used as a secondary locator/transcription to capture the instrument and forms. No source-specific licence or written permission was reviewed or established; public access does not establish commercial reuse permission.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "Single public blog post; no bulk/API permission established",
+      "required_next_action": "Obtain and visually compare official Gazette issue160 page images, verify form layout and uncertain 0.2? string; review terms and obtain permission before redistribution."
     }
   ]
 }
