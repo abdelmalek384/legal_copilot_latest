@@ -2529,6 +2529,90 @@ A broker may be registered for more than one type/class. These numeric bands are
 
 ### C. Statutory/regulatory interaction requiring legal review
 
-Law 21/2022 amended the title and terminology of Law 120/1982 to remove real-estate brokerage from the statute's general title/terminology, while Decisions 593/2025 and 578/2025 create/operate a GOEIC real-estate-broker register under the amended executive-regulation framework. The exact statutory basis, scope and relationship between the amended Law 120/1982 text, retained statutory provisions and these 2025/2026 ministerial decisions should be checked by an Egyptian lawyer. Do not resolve this potential hierarchy/ultra vires question by inference.
+Law 21/2022 changed the statute's short title/terminology but did not simply remove real-estate brokerage from the substantive statute: the consolidated text retains the real-estate-broker definition, Article 2's registration requirement, new Article 2 bis (electronic register), new Article 3 bis (eligibility), and Articles 10 bis, 11 bis, 12 bis/12 bis A/12 bis B and related sanctions. Decisions 593/2025 and 578/2025 implement this statutory real-estate-broker framework. The precise relationship between the title substitution and retained statutory provisions should still be read from the complete Law 21/2022 Gazette text, but the existence of statutory authority for a real-estate broker register is explicit.
 
 **Collection status:** Decision 593/2025 official Gazette metadata and full searchable secondary transcription obtained; selected provisions transcribed. Decision 578/2025 official GOEIC listing and Gazette date/issue metadata obtained; category thresholds remain secondary-source transcription pending primary Gazette image verification. No lawyer approval or rights clearance claimed.
+
+
+## 25. Law 21/2022 — complete amendment map for Commercial Agency Law 120/1982
+
+**Official Gazette metadata:** Official Gazette issue 14 bis (ج), 11 April 2022; effective 12 April 2022.  
+**Official State Information Service confirmation:** https://sis.gov.eg/ar/الرئاسة/شئون-داخلية/القرارات-الرئاسية/الرئيس-السيسي-يوقع-تعديل-قانون-تنظيم-أعمال-الوكالة-التجارية-والوساطة/  
+**Searchable consolidated law and amendment footnotes:** https://lawhub.info/eg/?p=11706  
+**Secondary full amendment record:** https://www.eastlaws.com/legislation-full-text/ar/egypt/law/11-04-2022/no-21?id=2051982&sub=10412396&type=1
+
+The complete searchable Law 120/1982 text with Law 21/2022 amendments exposes the following amendment architecture:
+
+- Changes the short title/terminology for the statute and replaces specified expressions.
+- Inserts Article 2 bis establishing the electronic real-estate-brokerage register.
+- Replaces the first paragraph of Article 3 and adds the negative-list condition (Article 3, first paragraph item ط).
+- Adds Article 3 bis establishing eligibility and registration requirements for real-estate brokers.
+- Amends Articles 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 and 16 by terminology and/or substantive amendments.
+- Adds Article 10 bis (real-estate broker updates to registered data).
+- Adds Article 11 bis (real-estate broker transaction ledger).
+- Adds Article 12 bis (written brokerage contract), Article 12 bis A (verification of property information and confidentiality) and Article 12 bis B (non-cash payment for commission/amounts).
+- Amends Article 16 (unregistered practice penalties); adds Article 16 bis (cash-payment breach penalty) and Article 16 bis A (penalty for breach of Articles 10 bis, 11 bis, 12 bis and 12 bis A).
+- Amends Articles 17, 18, 19, 20 and 22; adds Article 20 bis (administrative settlement); adds Article 22 item (د).
+- Amends the authority/ministerial terminology in Article 28.
+
+**Verbatim — Article 2 bis (electronic register):**
+
+> المادة 2 مكرر
+>
+> ينشأ بالوزارة المختصة سجل إلكتروني لقيد السماسرة العقاريين يسمى سجل السمسرة العقارية تدون فيه بيانات ومعلومات المقيدين بسجل مزاولة مهنة السمسرة العقارية، بما فيها بياناتهم الشخصية الأساسية، وبيانات محل مزاولتهم المهنة، والكود الذي حصل عليه والفئة التي ينتمي إليها، وغيرها من البيانات والمعلومات والإحصائيات اللازمة لتنظيم نشاط السمسرة العقارية.
+>
+> وتجري الوزارة المختصة تحديثاً للسجل المشار إليه بالفقرة الأولى من هذه المادة بشكل مستمر ومنتظم، بما يتفق مع المستجدات في هذا النشاط، وتنشر القائمة المحدثة للسماسرة العقاريين على مستوى الجمهورية على الموقع الإلكتروني لها بما يتيح للجميع الاطلاع عليها.
+>
+> ولذوي الشأن الحصول على صورة مصدقة من المعلومات المقيدة في السجل المشار إليه بالفقرة الأولى من هذه المادة أو شهادة سلبية بعدم إدراج أمر معين فيه.
+>
+> ويصدر الوزير المختص القرارات اللازمة لتنفيذ أحكام هذه المادة، وتحديد فئات وأنواع السماسرة العقاريين الذين يدرجون بسجل السماسرة العقاريين.
+
+**Verbatim — Article 3 bis (broker eligibility):**
+
+> المادة 3 مكرر
+>
+> يشترط فيمن يقيد أو يجدد قيده في سجل السماسرة العقاريين المشار إليه في المادة (2) من هذا القانون، أن تتوافر فيه الشروط الآتية:
+>
+> أولاً – بالنسبة إلى قيد الأشخاص الطبيعيين:
+>
+> (أ) استيفاء الشروط المتطلبة بالبند أولاً من المادة (3) من هذا القانون.
+>
+> (ب) اجتياز طالب القيد دورة تدريبية متخصصة في مجال السمسرة العقارية قبل القيد بالسجل تتضمن قواعد قراءة الخرائط والمخططات وفقاً للقواعد التي يصدر بها قرار من الوزير المختص.
+>
+> (ج) استيفاء أية شروط أخرى متطلبة لفئات معينة من مزاولي مهنة السمسرة العقارية، على النحو الذي يصدر بتحديده قرار من الوزير المختص.
+>
+> ثانياً – بالنسبة إلى قيد الأشخاص الاعتباريين:
+>
+> (أ) أن يكون مركز الشركة الرئيسي في مصر، ويجوز استثناءً من ذلك وبقرار من الوزير المختص، ووفقاً للضوابط التي يحددها، قيد الشركات التي لها مقر في جمهورية مصر العربية.
+>
+> (ب) أن يكون من أغراض الشركة القيام بأعمال السمسرة العقارية طبقاً لنظامها الأساسي أو عقد تأسيسها.
+>
+> (ج) ألا يقل رأسمال الشركة المدفوع في تاريخ تقديم طلب القيد بالسجل عن عشرين ألف جنيه.
+>
+> (د) أن يكون جميع الشركاء المتضامنين، أو المديرين، أو أعضاء مجلس إدارة شركات المساهمة، أو القائمين بالإدارة الفعلية، بحسب الأحوال، ممن تتوفر في شأنهم الشروط المنصوص عليها في البند أولاً من هذه المادة، ويستثنى من شرط الجنسية الشركات التي يكون ضمن مؤسسيها أجانب بقرار من الوزير المختص.
+>
+> (هـ) استيفاء أية شروط أخرى متطلبة لقيد فئات معينة من مزاولي مهنة السمسرة العقارية، على النحو الذي يصدر بتحديده قرار من الوزير المختص.
+
+**Verbatim — Article 11 bis (transaction records):**
+
+> المادة 11 مكرر
+>
+> يلتزم السمسار العقاري بإمساك سجل تقيد فيه عمليات السمسرة العقارية التي أجراها، والعمولات والمبالغ التي تقاضاها، وثمن المعاملة، وتاريخ إجرائها، والبيانات الشخصية للمتعاقدين، والعربون الذي دفع لإتمامها، أو غيرها من المعلومات أو البيانات التي يصدر بتحديدها قرار من الوزير المختص.
+>
+> ويلتزم السمسار العقاري بتقديم السجل المشار إليه بالفقرة الأولى من هذه المادة، ونسخ من الوثائق والمعلومات والعقود التي يحتفظ بها، أو أي تعديل أو تغيير يطرأ عليها للوزارة المختصة، كما يلتزم بتقديم نسخ من الوثائق والمعلومات والعقود للمتعاقدين، كلما تعلق الأمر بمعاملاتهم.
+
+**Verbatim — Article 12 bis B (non-cash payment):**
+
+> المادة 12 مكرر (ب)
+>
+> تحصل العمولة المتفق عليها في عقد السمسرة العقارية أو أية مبالغ يتقاضاها السمسار العقاري بوسائل الدفع غير النقدي الواردة بقانون تنظيم استخدام وسائل الدفع غير النقدي الصادر بالقانون رقم 18 لسنة 2019.
+>
+> واستثناءً من قانون تنظيم استخدام وسائل الدفع غير النقدي المشار إليه يحظر دفع أي مبلغ من المبالغ المذكورة بصورة نقدية يتجاوز عشرة آلاف جنيه.
+
+**Verbatim — Article 20 bis (settlement):**
+
+> المادة 20 مكرر
+>
+> يجوز للوزير المختص التصالح عن أي من الجرائم المنصوص عليها في هذا القانون قبل إقامة الدعوى الجنائية، مقابل أداء مبلغ لا يقل عن مثلي الحد الأدنى ولا يجاوز الحد الأقصى للغرامة المقررة، ويجوز التصالح بعد إقامة الدعوى الجنائية وقبل صدور حكم فيها مقابل أداء مبلغ لا يقل عن أربعة أمثال الحد الأدنى ولا يجاوز الحد الأقصى للغرامة المقررة، كما يجوز التصالح بعد صدور الحكم الجنائي مقابل أداء مبلغ لا يقل عن الحد الأقصى للغرامة المقررة ولا يجاوز مثليه، ويترتب على التصالح انقضاء الدعوى الجنائية بالنسبة للجريمة التي تم التصالح في شأنها، وتأمر النيابة العامة بوقف تنفيذ العقوبة إذا حصل التصالح أثناء تنفيذ العقوبة ولو كان ذلك بعد صيرورة الحكم باتاً.
+
+**Important legal distinction:** Law 21/2022's Article 2 bis and Article 3 bis are the statutory basis for a separate electronic register and special eligibility for real-estate brokers. The later Executive Regulation Decision 593/2025 adds detailed register, training and transaction-ledger mechanics; Decision 578/2025 supplies the types/classes delegated by Article 2 bis and Article 3 bis. These instruments should be linked as statute → implementing regulation → classification decision.
