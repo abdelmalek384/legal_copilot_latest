@@ -141,7 +141,7 @@ Identified statutory chain:
 - Laws 69/1950, 222/1956, 136/1957, 82/1957, 181/1957, 5/1964, 25/1976, 223/1996, 186/2020, 5/2021 and 9/2022.
 - Law 5/2021 is a commencement deferral for Law 186/2020, not a substantive replacement.
 - Law 82/1957, Law 222/1956 and Law 181/1957 still require original Gazette verification; Law 25/1976 commencement metadata is disputed.
-- Executive Regulation Decree 2/1946 and Decision 825/1975 amendment chain include Decisions 948/1976, 11264/2016, 9310/2020 and 2332/2022. Full pre/post article versions and original issue scans remain incomplete.
+- Executive Regulation Decree 2/1946 and its amendment chain include Decisions 948/1976, 3003/1979, 9310/2020 and 2332/2022. Decision 825/1975 is the separate Executive Regulation under Law 142/1964; its amendment chain is handled under the Law 142 section and includes Decision 11264/2016. Full pre/post article versions and original issue scans remain incomplete.
 
 ### Law 142/1964
 
