@@ -1433,3 +1433,16 @@ The same Article 240 bis further permits electronic remote agenda presentation a
 - One unique instrument with Arabic operative text surfaced: Decision 41/2020.
 - Two issuing provisions counted (Articles 1–2); Article 1 contains three inserted statutory articles, each separately indexed in the legal text.
 - Cumulative Agent 3 minimum: 116 unique instruments / 1,253 provision units.
+
+
+### Primary-source upgrade — Law 198/2020 now visually verified against ITDA Gazette PDF
+
+- ITDA-hosted Arabic Gazette reproduction: https://www.itda.gov.eg/pdf/القانون%20رقم%20198%20لسنة%202020.pdf
+- Gazette issue 39 bis (ز), 30 September 2020; law issued 29 September 2020; effective the day after publication.
+- Both PDF pages have now been inspected as page images. This upgrades the three replacement provisions previously recorded from secondary transcription to Gazette-page-verified Arabic text.
+- Article 1 expressly replaces Companies Registry Law Articles 3, 8 first paragraph and 9 first paragraph.
+- Replacement Article 3 requires the applicant to be Egyptian and hold the relevant Chamber of Commerce approval for commercial activity; industrial establishments also require approval to conduct industrial activity from the competent Chamber of Industry.
+- Replacement Article 8 first paragraph requires the trader, manager/legal representative or branch manager to submit the registration/annotation request within the period set by the Executive Regulation to the Commercial Registry office covering the head office or branch.
+- Replacement Article 9 first paragraph requires renewal every five years from initial registration or the last renewal; application is made in the month before expiry; renewal requires payment of prescribed fees; a late application within 90 days after expiry is accepted with double fee.
+- The ITDA official catalogue continues to list the law as an amendment to Law 34/1976. Keep the official scan as primary evidence and the earlier laweg transcription only as a cross-check.
+- Count unchanged: Law 198/2020 remains one instrument / three replacement-provision units already included in the cumulative total.
