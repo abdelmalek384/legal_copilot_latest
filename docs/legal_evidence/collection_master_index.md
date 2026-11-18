@@ -425,3 +425,6 @@
 - Count unique instruments and unique article texts, not repeated references.
 - Record failed retrievals and conflicting metadata explicitly.
 - Never claim the entire Egyptian legal system is complete. The scope includes national laws, regulations, decisions, treaties, court judgments/principles and changes over time; it is a continuously maintained corpus.
+
+
+| [research_agent_3_commercial_corporate_investment_2026-11-18.md](research_agent_3_commercial_corporate_investment_2026-11-18.md) | Research Agent 3 verbatim Arabic excerpts/provenance for Competition 3/2005, E-Signature 15/2004, Leasing/Factoring 176/2018, Investment amendment 141/2019, Investment Law 72/2017 Articles 71–72; PPP and insolvency decision text leads. Adds text/provenance to existing discoveries; not new base-law counts. |
