@@ -51,3 +51,33 @@ EastLaws' searchable text exposes the beginning of Schedule 1, titled «القط
 - The two operative articles are transcribed from official Amiri Press searchable text as reproduced by multiple search results, with Gazette metadata corroborated by MELES DSpace and EastLaws.
 - Original Gazette PDF bytes and both full schedules remain outstanding. The Arabic DSpace PDF route requires a copy request; the Amiri Press HTML endpoint returned 502. Alternative acquisition target: GAFI/IDA investment incentive guidance and archived versions of Decision 104/2022 schedules to identify changes, but not to substitute for the new schedule.
 - Machine status: `source-matched, not lawyer-reviewed`; no lawyer review or commercial republication permission.
+
+
+## Alternative official implementation source — IDA announcement (4 March 2026)
+
+The full schedules remain unavailable, but the Industrial Development Authority (IDA) published an official implementation announcement that provides additional detail on the sectors/products added by Decision 503/2026:
+
+**Official source:** https://www.ida.gov.eg/ar/news/295
+
+The IDA states that Decision 503/2026 reorganizes and consolidates industrial activities benefiting from investment incentives under successive decisions since 2022, while adding new activities. It identifies the following examples:
+
+**Sector A — examples expressly listed by IDA:**
+- صناعة كافة أنواع السيارات والمركبات.
+- صناعة المواتير والمحركات الكهربائية.
+- مبخرات الثلاجات وكباسات التبريد.
+- ألواح الصاج الخاصة بصناعة الأجهزة الكهربائية والإلكترونية.
+- صناعة المواسير والأنابيب.
+- إنتاج مركزات أو معجون الفاكهة والخضر الطازجة.
+- إنتاج حامض الكبريتيك المركز.
+
+**Sector B — examples expressly listed by IDA:**
+- صناعة كافة أنواع السيارات والمركبات.
+- مبخرات الثلاجات.
+- إنتاج مركزات أو معجون الفاكهة والخضر الطازجة.
+- إنتاج حامض الكبريتيك المركز.
+
+The IDA announcement describes the special tax-base deduction as **50% of investment costs for projects in geographic Sector A** and **30% for projects in geographic Sector B**, applied over seven years. It says Sector A includes, by way of example, areas most in need of development, Upper Egypt governorates, the New Administrative Capital and the economic zone; Sector B comprises the rest of the Republic. These are implementation details from IDA, not a substitute for the schedules' exact legal wording.
+
+**Important distinction:** the 50%/30% incentive above is the special investment incentive tied to investment costs under Article 11 of Law 72/2017 and PM Decision 104/2022 as amended by Decision 503/2026. It is not the cash investment incentive of 35–55% of income tax under Article 11 bis (added by Law 160/2023) and PM Decision 77/2023.
+
+**Remaining gaps:** IDA's release gives examples, not the exhaustive product/activity schedules. Full Table 1 and Table 2 remain outstanding; do not determine eligibility solely from the examples.
