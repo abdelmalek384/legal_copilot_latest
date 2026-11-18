@@ -1376,6 +1376,24 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
       "required_next_action": "Review terms and seek written permission for local archiving, Arabic text extraction, indexing, commercial product use, excerpt display and redistribution."
+    },
+    {
+      "source_id": "EG-VETOGATE-GAZETTE-168-2025",
+      "authority": "VetoGate CDN (third-party host of a Gazette scan reproduction)",
+      "source_page": "https://cdn.vetogate.com/UploadCache/libfiles/556/3/0x0o/540.pdf",
+      "material_types": [
+        "Official Gazette scan reproduction",
+        "Law 168/2025",
+        "Law 169/2025"
+      ],
+      "access_status": "20-page PDF opened 2026-11-18; printed masthead/issue/date verified; scan says electronic copy is not valid for circulation",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "The PDF reproduces Official Gazette issue 32 bis (و), 13 August 2025, including Law 168/2025 and Law 169/2025. It is hosted on a third-party CDN and its own printed notice says the electronic copy is not valid for circulation. This is a scan reproduction, not an authenticated Amiri Press digital binary. Public access does not establish permission to archive, extract, index, commercially display or redistribute.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Seek an authenticated Amiri Press copy and written permission for local archiving, text extraction, indexing, commercial display and redistribution. Do not treat this electronic scan as valid for official circulation."
     }
   ]
 }
