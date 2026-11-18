@@ -558,3 +558,8 @@
 - PM Decision 104/2022 identified as the parent sector/sub-sector allocation schedule under Law 72/2017 for zones (A)/(B); full schedules still need acquisition.
 - PM Decision 503/2026: Official Amiri Press searchable text; Official Gazette issue 7 bis (أ), 16 Feb 2026; effective 17 Feb 2026. Replaces only industrial sub-sector schedules (1) and (2) of Decision 104/2022. MIFT confirms automotive and feeder industries added to incentive-eligible activities in both zones A and B.
 - PM Decision 1/2024: GAFI-hosted Gazette PDF; temporary extension of establishment period under Law 72/2017 Article 12(1) until 28 Oct 2026; expired on 29 Oct 2026 absent later extension (none identified in this pass).
+
+
+### Research Agent 3 — Capital Market 2025 amendment follow-up
+
+- PM Decision 1539/2025: Government media repository identifies Official Gazette issue 18 bis, 4 May 2025; FRA's current Decision 135/1993 amendment register includes it. Adds Regulation Article 35 bis/9 deeming Electricity Law 87/2015 energy-origin certificates tradable financial instruments on Egyptian exchanges. Full Arabic text transcribed in Agent 3 file.
