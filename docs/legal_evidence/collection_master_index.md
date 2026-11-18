@@ -720,3 +720,10 @@
 - PM Decision 2300/2022, dated 27 Jun 2022, Official Gazette issue 25 bis (ج), full searchable text obtained. Replaced Executive Regulation 2310/2017 Article 42 and Article 43(2) for single approvals, including company-form, minimum capital (20% of project costs), financial solvency, feasibility, schedule and infrastructure declarations.
 - These 2022 provisions were later superseded by PM Decision 1203/2024 (17 Apr 2024), which replaced Articles 41–43 again. Preserve 2300/2022 as historical version; current answers must use the 2024 text.
 - **Updated Agent 3 minimum:** 62 distinct instruments with some Arabic text surfaced; 555 article/provision text units; 13/13 law families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
+
+
+### Research Agent 3 — Investment Decision 4426/2022
+
+- PM Decision 4426/2022, Official Gazette issue 49 تابع, 8 Dec 2022. Official DSpace record found, but Arabic PDF is restricted via request-a-copy. Contemporaneous Arabic text confirms replacement of Executive Regulation 2310/2017 Article 42(1): eligible forms are Egyptian joint-stock or LLC; the earlier 20%-of-project-cost capital minimum is replaced with financial-solvency criteria set by GAFI Board; company must be incorporated after Law 72/2017 commencement.
+- Decision 4426/2022 was later superseded for Articles 41–43 by Decision 1203/2024. Keep as historical intermediate version, not current rule.
+- **Updated Agent 3 minimum:** 63 distinct instruments with some Arabic text surfaced; 557 article/provision text units; 13/13 families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
