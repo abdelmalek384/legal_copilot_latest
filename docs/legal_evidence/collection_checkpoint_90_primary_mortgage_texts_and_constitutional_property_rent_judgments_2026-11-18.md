@@ -176,3 +176,15 @@ No lawyer verification, commercial reuse permission, or official-Gazette-origina
 6. Obtain original Gazette scans for Law 114/1946, Law 142/1964, Decision 825/1975, Decision 2332/2022 and Decision 11264/2016.
 7. Obtain Law 143/1981 amendment instruments and Law 10/1990 implementing regulations' original Gazette copies.
 8. Reconcile all legal effects with Law 164/2025 and Law 165/2025 without conflating their statutory commencement and deferred constitutional effects.
+
+## Checkpoint 93 supplement — direct SCC source and operative effect date for Case 24/20
+
+- Case 24/20 (constitutional), judgment 9 November 2024, official SCC full text:
+  https://www.sccourt.gov.eg/SCC/faces/Rules_Html/15196_20_24_1_2.html
+- Official Gazette issue 45 bis (A), 10 November 2024; official DSpace issue metadata:
+  https://dspace.id.com.eg/items/569bafb7-fd62-4006-9626-43cdf2e26ac7/full
+- Operative holding: invalidates the first paragraph of each of Articles 1 and 2 of Law 136/1981 insofar as they fixed the annual rent for covered residential premises at a historical 7%/cost basis. The challenge to Article 5 was not successful; Case 89/18 had already rejected that challenge.
+- The Court deferred effect until the day after the end of the current ordinary House session. Official House release confirms approval of ending the fifth ordinary session on 8 July 2025; Presidential Decision 368/2025 made the closure effective 9 July 2025. Derived constitutional effect date: 10 July 2025.
+- House source: https://www.parliament.gov.eg/News_Show.aspx?frm=5532
+- Presidential closure report/source: https://www.shorouknews.com/news/view.aspx?cdate=16072025&id=28863f40-2e3c-4984-b3aa-2458c0acb422
+- Current rent treatment must be cross-read with subsequent Law 164/2025 and later legislation; do not treat the judgment alone as a current rent schedule.
