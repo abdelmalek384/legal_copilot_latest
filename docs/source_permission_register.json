@@ -2666,6 +2666,54 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "Single public article; no bulk/API permission established",
       "required_next_action": "Acquire Gazette issue75 bis (ج) and compare; verify Decision number and Article14 bis OCR; review terms before redistribution."
+    },
+    {
+      "source_id": "EG-ALBERONSI-DECISION8547-2018-CONSOLIDATED",
+      "authority": "Alber Onsy — legal practitioner website",
+      "source_page": "https://alberonsy.com/قرار-وزير-العدل-رقم-8547-لسنة-2018-باللائحة-التنفيذية-للقانون-رقم-27-لسنة-2018/",
+      "material_types": [
+        "Full 36-article consolidated Arabic text of Decision8547/2018 issuing the Executive Regulation of Law27/2018, updated with Decisions2333/2022 and73/2023"
+      ],
+      "access_status": "Public searchable secondary legal-practitioner transcription; page states last amendment 4 January 2023. Original Gazette binaries not archived.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Used to acquire complete consolidated Arabic text. No source licence or written commercial reuse permission was reviewed or established; public accessibility is not a reuse licence.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "Single public article page; no bulk/API permission established",
+      "required_next_action": "Review site terms and obtain permission before redistribution; compare all 36 articles with Gazette originals and later amendments."
+    },
+    {
+      "source_id": "EG-EGYPTIANLAWS-DECISION2333-2022-METADATA",
+      "authority": "Egyptianlaws.com legal-information site (secondary Gazette metadata)",
+      "source_page": "https://egyptianlaws.com/?p=182692",
+      "material_types": [
+        "Metadata for Minister of Justice Decision2333/2022 amending Decision8547/2018 Executive Regulation of Law27/2018; issue75 bis (ج), 30 March 2022"
+      ],
+      "access_status": "Public metadata page with image/iframe rather than accessible searchable text.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Used only to identify the instrument and Gazette issue/date; no licence or written reuse permission was reviewed or established.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "Single public metadata page; no bulk/API permission established",
+      "required_next_action": "Acquire original Gazette page images and complete Decision2333 text; review site terms before reuse."
+    },
+    {
+      "source_id": "EG-KANONMISR-DECISION73-2023-GAZETTE",
+      "authority": "KanonMisr legal document archive",
+      "source_page": "https://kanonmisr.com/ar/wp-content/uploads/2023/01/ilovepdf_merged-1.pdf",
+      "material_types": [
+        "Official Gazette issue4 تابع (أ), 4 January 2023; Minister of Justice Decision73/2023 amending Decision8547/2018 Executive Regulation of Law27/2018"
+      ],
+      "access_status": "Public merged Gazette PDF; the Decision73 pages have not been isolated or hash-archived in this pass.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Used for Gazette issue/date metadata and the amended regulation's publication. No source-specific licence or written permission for bulk ingestion, commercial display or redistribution was established.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "Single merged PDF; no bulk/API permission established",
+      "required_next_action": "Locate exact Decision73 page range, archive/hash if authorized and transcribe the original decision; review site terms."
     }
   ]
 }
