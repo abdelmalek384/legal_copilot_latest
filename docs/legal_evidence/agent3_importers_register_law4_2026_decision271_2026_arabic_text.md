@@ -1,6 +1,6 @@
 # Research Agent 3 — Importers' Register: Law 4/2026 and Executive Regulation Decision 271/2026 (Arabic text capture)
 
-**Status:** new 2026 instruments acquired from Gazette-indexed and legal-archive sources. The regulation record is incomplete at the transcription source: only Articles 1–17 are visible in the extracted page, although the source advertises 20 articles. Articles 18–20 must be recovered from the attached Gazette PDF before the regulation can be treated as a complete text.
+**Status:** two new 2026 instruments acquired. The complete 16-page Decision 271/2026 Gazette reproduction was opened and text-extracted; the regulation has 17 numbered articles (Articles 1–17), and Article 17 is the final provision. The secondary page's description of 20 articles was an erroneous count, not a missing-text gap.
 
 ## Instrument 1 — Law 4/2026 amending Law 121/1982 (Importers' Register)
 
@@ -152,7 +152,7 @@
 
 **المادة (١٧) — الإخطار بالأحكام:** تلتزم الجهات الإدارية المعنية بإخطار الهيئة بالأحكام النهائية المتعلقة بمخالفة القوانين المشار إليها في المادتين ٦ و٦ مكرراً من القانون.
 
-**Articles 18–20:** not visible in the accessible text extraction. The source advertises 20 regulatory articles, so the text record is explicitly incomplete; obtain pages from the official Gazette PDF before completing this section.
+**Article sequence check:** the 16-page Gazette reproduction ends with Article 17 on page 16. No Articles 18–20 exist in this instrument. The source page's “20 articles” description is inaccurate. The transcription remains subject to comparison with the official Gazette binary, but the text is now complete as to its numbered provisions.
 
 ## Version and relationship graph
 
@@ -165,12 +165,12 @@
 
 - The Official Gazette repository record identifies Decision 271/2026, issue 157 supplement, dated 21 July 2026, and provides the original PDF. The full text transcription is reproduced by a law firm and attributed to the Court of Cassation legislation portal.
 - The transcribed page contains apparent OCR/transcription errors, including a reversed year/number in the regulation title line, malformed words in Articles 4–5, and inconsistent spelling. The article summaries above are normalized for research navigation; exact operative wording must be compared with the Gazette PDF.
-- The 20-article claim is not yet matched by visible text: only 17 numbered regulation articles appear in the extracted page. Do not label the regulation complete.
+- Correction after opening the complete 16-page PDF: Decision 271/2026 contains 17 numbered regulation articles, ending at Article 17 on page 16. The earlier 20-article web description was inaccurate; there are no missing Articles 18–20.
 - Status: source-matched, not lawyer-reviewed. Gazette scan and text comparison outstanding. Public access does not establish commercial republication rights.
 
 ## Count treatment
 
 - Two distinct instruments newly captured: Law 4/2026 and Ministerial Decision 271/2026.
 - Law 4/2026: three issuing articles plus four inserted statutory provision units.
-- Decision 271/2026: three issuing articles plus 17 visible regulation articles; Articles 18–20 remain missing.
+- Decision 271/2026: three issuing articles plus all 17 regulation articles; the 16-page PDF confirms Article 17 is final.
 - Count as two unique instruments and 27 captured numbered units provisionally (7 Law 4 provision/issuing units + 20 Decision 271 visible issuing/regulation units); do not count missing Articles 18–20.
