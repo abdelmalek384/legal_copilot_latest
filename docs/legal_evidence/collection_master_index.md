@@ -515,3 +515,10 @@
 - Official MCIT source confirms original Executive Regulation Decision 109/2005 for Law 15/2004 was published in الوقائع المصرية issue 115, 25 May 2005, with 24 articles plus a technical annex.
 - Official ITIDA-hosted Gazette PDF (وقائع مصرية issue 95 تابع, 23 April 2020) contains Ministerial Decision **331/2020** amending the Executive Regulation of Law 15/2004, with revised text through Article 27 and a technical annex. Selected Articles 1, 4, 9 and 13 transcribed in Agent 3 file.
 - There is a decision-number discrepancy: secondary database references Decision 361/2020 for the same subject/publication date, while the official ITIDA Gazette scan clearly shows Decision 331/2020. Both records are preserved; do not merge until original Gazette issue and separate decision records are checked.
+
+
+### Research Agent 3 — Consumer Protection acquisition (2026-11-18)
+
+- CPA official 32-page Law 181/2018 PDF locator preserved; web OCR is unusable. Secondary searchable text used only as transcription aid.
+- Executive Regulation PM Decision 822/2019: Gazette issue 13 bis (أ), 1 April 2019, effective 2 April 2019; searchable secondary text Articles 1–23 surfaced and selected Articles 1, 13, 15, 17 and 19 transcribed. Full regulation beyond Article 23 remains uncollected.
+- Law 20/2024: official MOF record marks it in force; Amiri Press Gazette issue 14 bis, 5 April 2024, public DSpace item and Arabic PDF locator found. It replaces Consumer Protection Law Article 71 with increased penalties for Article 8 violations; full text transcribed in Agent 3 file.
