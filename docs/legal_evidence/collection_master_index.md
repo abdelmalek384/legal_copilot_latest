@@ -742,3 +742,10 @@
 - PM Decision 910/2021, published 10 May 2021, adds a paragraph to Executive Regulation 2310/2017 Article 36(3), item 4. It permits the Cabinet, for public-interest reasons, to exempt Article 20 single-approval projects from the foreign-currency capital condition after joint ministerial proposal, GAFI Board approval and CBE consultation.
 - Inserted paragraph text captured from contemporaneous reporting and confirmed by the consolidated regulation footnote; original Gazette PDF/issue/page still outstanding.
 - **Updated Agent 3 minimum:** 64 distinct instruments with some Arabic text surfaced; 559 article/provision text units; 13/13 families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
+
+
+### Research Agent 3 — Investment Decisions 1199/2020 and 2467/2020 Gazette text
+
+- PM Decision 1199/2020: Official Gazette issue 24 bis (ب), 15 Jun 2020, effective 16 Jun 2020; one-page Gazette PDF visually inspected. Adds a final paragraph to Investment Executive Regulation Article 76 permitting Cabinet case-by-case exemption from one or more private-free-zone conditions, on ministerial proposal and GAFI Board approval. Later Article 76 replacement by Decision 2140/2023 supersedes the 2020 wording.
+- PM Decision 2467/2020: Official Gazette issue 48 bis (أ), 26 Nov 2020, effective 27 Nov 2020; two-page Gazette PDF visually inspected. Replaces Regulation Article 10(2), defining Sector A to include the Suez Canal Economic Zone, Golden Triangle, New Administrative Capital and other areas meeting development indicators. Later amended by Decisions 1203/2024 and 2562/2024; industrial schedules further replaced by Decision 503/2026.
+- **Updated Agent 3 minimum:** 66 distinct instruments with some Arabic text surfaced; 563 article/provision text units; 13/13 families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
