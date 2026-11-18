@@ -1411,6 +1411,23 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
       "required_next_action": "Review terms and compare the transcription against the original SCC judgment and Gazette issue 7 bis (A), 15 February 2009. Keep collection and commercial reuse permission unknown absent affirmative written authorization."
+    },
+    {
+      "source_id": "EG-SAFHA1-FATWA453-2026",
+      "authority": "Safha1 (secondary news report of State Council Fatwa 453/2026)",
+      "source_page": "https://www.safha1.com/14033",
+      "material_types": [
+        "State Council advisory opinion report",
+        "Law 70/1964 fee interpretation"
+      ],
+      "access_status": "public secondary report inspected 2026-11-18; original signed fatwa not obtained; site terms not reviewed",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Article dated 10 June 2026 reports Fatwa 453/2026, file 37/2/964, issued at a 25 March 2026 sitting. The article's reasoning and stated conclusion appear internally inconsistent. This is not the signed Council of State opinion and cannot establish a settled interpretation.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Obtain the signed Fatwa 453/2026 and underlying request from the State Council; review site terms and seek written permission before commercial excerpt display or redistribution."
     }
   ]
 }
