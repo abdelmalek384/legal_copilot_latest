@@ -773,3 +773,10 @@
 - PM Decision 983/2022: full Amiri Press text. Directs GAFI to coordinate with relevant ministries to identify projects eligible for additional incentives under Law 72/2017 Article 13 based on sector schedules.
 - Schedule version chain: Decision 104/2022 → additions under 981/2022 and 4427/2022 → industrial schedules replaced by Decision 503/2026 (effective 17 Feb 2026). Decision 503/2026 does not replace non-industrial schedules in the 104/2022 package.
 - **Updated Agent 3 minimum:** 69 distinct instruments with some Arabic text surfaced; 572 article/provision text units; 13/13 families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
+
+
+### Research Agent 3 — PPP Decision 3217/2022 unsolicited-proposal provisions completed
+
+- The full searchable text of Executive Regulation 238/2011 now exposes inserted Articles 62 bis/6 and 62 bis/7 from Decision 3217/2022. Both provisions transcribed in Agent 3 file: the Higher Committee's approval/contract route for private-sector initiated proposals and the originator's preferential right (up to a 10% price gap) or alternative preference mechanism.
+- Article 62 bis/7's second alternative is truncated in the current searchable excerpt; full Gazette PDF/page-image verification remains mandatory before implementing the preference.
+- **Updated Agent 3 minimum:** 69 distinct instruments with some Arabic text surfaced; 574 article/provision text units; 13/13 families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
