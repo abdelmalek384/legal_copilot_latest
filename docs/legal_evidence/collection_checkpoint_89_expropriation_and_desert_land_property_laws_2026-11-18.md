@@ -280,11 +280,11 @@ The 2024 amendment changes ownership-composition restrictions for companies hold
 
 ## 9. Metrics for this checkpoint
 
-- New base statutes: 1 (Law 7/1991; Laws 10/1990 and 143/1981 were already indexed in checkpoint 32).
+- New base statutes in the original checkpoint 89 batch: 1 (Law 7/1991); supplemental research adds Law 12/1984 as a distinct related irrigation statute.
 - Full searchable Arabic texts retrieved: 5 from official government/judicial hosts (Laws 10/1990, 24/2018, 143/1981, 7/1991 and 11/2024); Law 187/2020, Decision 20/2019 and Decision 198/1982 are also full searchable reproductions from secondary/Gazette-scan sources.
-- New amendment instruments with full text retrieved: 3 (Law 24/2018, Law 187/2020 and Law 11/2024); historical amendment instruments for Law 143/1981 identified but not all collected in full.
+- New amendment instruments with full text retrieved in checkpoint 89: 3 (Laws 24/2018, 187/2020 and 11/2024); supplemental research adds full searchable texts of Laws 205/1991, 96/1995 and 72/1996. Law 55/1988 remains a metadata/consolidated-text-only record.
 - Executive regulation texts located: 2 (Decision 20/2019 under Law 10/1990, and Decision 198/1982 under Law 143/1981); Decision 20/2019 full searchable text, Decision 198/1982 secondary full text.
-- At least 27 distinct statutory/regulatory article provisions quoted or substantively extracted, including all nine articles of Law 7/1991.
+- At least 27 distinct statutory/regulatory article provisions quoted or substantively extracted in original checkpoint 89; supplemental research adds at least 6 further amendment/judgment provisions (Law 12/1984 Article 2, Laws 205/1991, 96/1995, 72/1996 and SCC Case 101/26 jurisdictional holding).
 - No new base-law discovery counted and no duplicate URL counted as a new instrument.
 
 ## 10. Next actions
