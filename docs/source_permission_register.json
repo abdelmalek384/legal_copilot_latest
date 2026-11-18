@@ -2250,6 +2250,22 @@
       "terms_checked_on": "2026-11-18",
       "bulk_download_or_api": "Single text route; no bulk/API permission established",
       "required_next_action": "Retry official text/PDF retrieval; acquire issue59 Gazette page image; confirm applicable reuse terms."
+    },
+    {
+      "source_id": "EG-DIWAN-ALOMRAN-DECISION2557-2026",
+      "authority": "Diwan Al-Omran legal database",
+      "source_page": "https://diwanalomran.com/legal/يعمل-بنظام-عمل-لجنة-تقدير-التعويض-عن-حظر/",
+      "material_types": [
+        "PM Decision2557/2026 issuing provisions and eight attached-rule articles; compensation procedure for architecturally distinguished buildings"
+      ],
+      "access_status": "Search-indexed Arabic text reproduces the two issuing articles and eight numbered rules; it identifies Official Gazette issue34 تابع, 20 Aug 2026. Forms1–3 are referenced but not included in retrieved text. Official Amiri Press search result corroborates operative text; direct fetch failed 502.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://diwanalomran.com/",
+      "permission_evidence": "No specific open licence or written permission was identified for this text. Public accessibility does not establish permission for bulk archiving, republication or commercial reuse. Used as a temporary secondary text source alongside the official Amiri Press search result.",
+      "terms_checked_on": "2026-11-18",
+      "bulk_download_or_api": "Single document page; no bulk/API permission established",
+      "required_next_action": "Review site terms and request permission before commercial reuse or redistribution; acquire Gazette issue34 تابع and forms from an authorized source."
     }
   ]
 }
