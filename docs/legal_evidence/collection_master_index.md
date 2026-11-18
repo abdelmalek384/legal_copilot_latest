@@ -2222,3 +2222,18 @@ Added **PM Decision1568/2026**, issuing the Executive Regulation of Foreign Asyl
 - Decision 271/2026 correction: full 16-page Gazette reproduction confirms **17 regulation articles**, with Article 17 final; the previous website description “20 articles” was wrong. The new regulation is complete as to numbered articles and repeals Decision 846/2017.
 - Conditional acquisition register after the previous 2 new instruments: 308 unique IDs (306 audited baseline + Law 4/2026 + Decision 271/2026), pending ledger-row reconciliation. No normalized-provision baseline change claimed from Decision 271 until OCR/text comparison is reconciled.
 - Status: source-matched, not lawyer-reviewed; original PDF binary/hash and commercial reuse rights not cleared.
+
+
+### New acquisition tranche — EG-0323 through EG-0328
+
+Added six additional 2026 laws and their Arabic operative text:
+- Law155/2026 — Universal Health Insurance contribution and collection amendments.
+- Law156/2026 — Military Technical College admissions, dismissal, cost recovery and graduate rights.
+- Law160/2026 — postpones commencement of Criminal Procedure Law174/2025 to 1 October 2027.
+- Law161/2026 — establishes Kayan University for Applied Sciences in the Armed Forces, transfers the Military Medical College and repeals Law74/2013; 50-article full searchable source found, with selected article blocks copied locally.
+- Law11/2026 — replaces Social Insurance and Pensions Law Art111 with revised 50-year Treasury instalment formula.
+- Law10/2026 — nuclear/radiation facilities definitions, licensing fee framework, controls and new settlement provision.
+
+**Text tranche:** [2026 laws 10, 11, 155, 156, 160, 161 and Decision3536](acquisition_tranche_2026_laws10_11_155_156_160_161_pm3536_2026-11-18.md).
+
+**Immediate follow-on acquisition leads:** Finance Minister decisions under Law155 Article3 (60-day deadline); PM fee-category decision required by Law10 Article32; PM implementation decision required by Law11 Article111; university bylaws and Defence Ministry decisions under Law161; and the full text of PM Decision3536 (already registered as EG-0318; no duplicate instrument ID added).
