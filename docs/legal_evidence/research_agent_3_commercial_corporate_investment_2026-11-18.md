@@ -356,7 +356,7 @@ The PDF is 32 pages and is hosted by the Consumer Protection Agency. The PDF rea
 - Additional official source inventory: ITDA index confirms Executive Regulation Decision 106/2018, amendment Law 198/2020 and Decision 41/2020 on beneficial-owner register.
 - Consumer Law 181/2018: official 32-page PDF opened but OCR unusable; no article count added.
 - **Unique legal text instruments surfaced in the session now: 10** if Law 21/2022 and Law 34/1976 are added to the earlier eight. Decision 109/2005 remains a publication-confirmed source lead only, not counted as text obtained.
-- **Minimum provision/article units now: 47** (previous 35, including Investment Law Articles 71–72, plus six manually transcribed Trade Register articles). These manual transcriptions remain subject to page-image verification.
+- **Minimum provision/article units now: 53** (previous 35, including Investment Law Articles 71–72, plus six manually transcribed Trade Register articles). These manual transcriptions remain subject to page-image verification.
 - No lawyer approval or rights clearance has been obtained.
 
 
@@ -407,3 +407,46 @@ The same ITDA-hosted 16-page official scan was visually inspected through pages 
 Article 10 appears across the page break and is not transcribed here because the full wording was not visible in the inspected extract. Articles 15 onward, schedules and later pages remain to be inspected. The base statute is therefore **partially visually transcribed, not fully extracted**.
 
 **Updated provision count:** add six further article texts (8, 9, 11, 12, 13, 14) to the prior 41; the minimum count is now **47 provision/article units**. Article 10 is intentionally excluded.
+
+
+### Trade Register Law 34/1976 — additional page-image transcription (Gazette scan pages 6–8)
+
+Pages 6–8 of the official ITDA-hosted scan were visually inspected. The following are manual transcriptions; the old fee schedule and penalties are historical text and must be reconciled against later amendments before use.
+
+**Article 16 (page 7):**
+
+> مادة 16 - يرد نصف الرسم المقرر فى حالة رفض طلب القيد أو التأشير أو التجديد.
+>
+> ولا تحصل رسوم على طلبات المحو من السجل التجارى.
+>
+> وتعفى من الرسوم المستخرجات والشهادات التى تطلبها مصالح الحكومة والهيئات العامة ووحدات الإدارة المحلية والغرف التجارية.
+
+**Article 17 (page 7):**
+
+> مادة 17 - تحظر مزاولة التجارة فى محل تجارى إلا لمن يكون اسمه مقيدا فى السجل الذى يقع فى دائرته المحل التجارى.
+>
+> وتكتسب صفة التاجر من تاريخ هذا القيد ما لم تثبت الصفة بطريقة أخرى.
+
+**Article 18 (page 7–8; opening paragraph visible):**
+
+> مادة 18 - مع عدم الإخلال بأية عقوبة أشد ينص عليها قانون آخر يعاقب بالحبس مدة لا تقل عن ثلاثة أشهر ولا تزيد على سنتين وبغرامة لا تقل عن مائة جنيه ولا تزيد على خمسمائة جنيه أو بإحدى هاتين العقوبتين:
+
+The remainder of the offence list continues beyond the inspected lines and is not transcribed here.
+
+**Article 19 (page 8):**
+
+> مادة 19 - كل مخالفة أخرى لأحكام هذا القانون أو القرارات المنفذة له يعاقب مرتكبها بغرامة لا تقل عن عشرة جنيهات ولا تجاوز مائة جنيه وتضاعف الغرامة فى حالة العود، وفى حالة مخالفة المادة 17 تأمر المحكمة فضلا عن الحكم بالغرامة بإغلاق المحل.
+
+**Article 20 (page 8):**
+
+> مادة 20 - يكون لأمناء مكاتب السجل التجارى ومن يقوم بأعمالهم الذين يصدر بتحديدهم قرار من وزير العدل بالاتفاق مع وزير التجارة صفة رجال الضبط القضائى فى تنفيذ أحكام هذا القانون.
+
+**Article 21 (page 8; manual transcription from image):**
+
+> مادة 21 - على القائمين بتطبيق أحكام قوانين الضرائب والقوى العاملة والتأمينات الاجتماعية وغيرها من القوانين التى تستلزم القيد فى السجل التجارى إخطار مكتب السجل التجارى المختص بأية مخالفة لأحكام هذا القانون.
+>
+> وعلى مكاتب السجل المدنى أن ترسل لمكتب السجل التجارى المختص فى نهاية كل شهر بيانا بالتجار والشركاء المتضامنين الذين توفوا خلال ذلك الشهر.
+
+**Article 15 fee schedule (pages 6–7):** the scan shows a table of fees set by the Minister of Trade, with columns for milliemes and pounds. The listed categories include registration/renewal for companies and individual traders, endorsements, negative certificates, extract pages/data certificates, file inspection, and publication of registration/renewal/endorsement data. The exact historical amounts are not copied here because the table's two monetary columns and current amendments require a careful visual transcription and legal-status check.
+
+**Updated provision count:** six additional complete article texts (16, 17, 19, 20, 21) plus the opening of Article 18 = six additional provision units. The minimum count is now **53 provision/article units** (47 previously + 6). Article 15's fee schedule and Article 18's remaining paragraphs are excluded from the count.
