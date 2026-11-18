@@ -833,3 +833,11 @@
 - 17 selected provisions transcribed in Agent 3 file, including commercial acts/trader status, commercial books and seven-year retention, commercial agency termination/non-renewal compensation and limitation periods, brokerage remuneration, company bankruptcy under the historical Code and preventive composition.
 - **Critical version boundary:** former Commercial Code bankruptcy regime (Articles 550 onward through 771) was replaced by Law 11/2018; treat these Code provisions as historical, not current insolvency procedure.
 - **Updated Agent 3 minimum:** 74 distinct instruments with some Arabic text surfaced; 1,008 article/provision text units across Agent 3 checkpoints; 13/13 assigned families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed. The complete PDF's 771 article texts are available from source, but are not yet individually normalized into the product corpus.
+
+
+### Research Agent 3 — Companies Law 159/1981 base-text reconciliation
+
+- ETA government-hosted Arabic PDF located: https://www.eta.gov.eg/sites/default/files/2024-10/law-159-1981.pdf (993 extracted lines; Articles 1–184). This is a historical/partially amended base text, labelled as amended by Law 3/1998, with selected notes for Laws 94/2005 and other changes. It is **not** a current consolidated version.
+- The master index already records the stronger MIFT consolidated source through 15 Sep 2020, and the 361-article Executive Regulation 96/1982 consolidation through 21 Aug 2022 plus 21 attachments/amendment records. The ETA PDF is added as a source cross-check, not a replacement for the MIFT consolidation.
+- Thirteen additional selected provisions from the ETA text are transcribed in Agent 3 file: company scope/types, founders and formation, in-kind contributions, shareholder inspection, foreign branches and representative offices. Their exact wording must be reconciled against later amendments (especially Law 4/2018).
+- **Updated Agent 3 minimum:** 74 distinct instruments with some Arabic text surfaced; 1,021 article/provision text units; 13/13 assigned families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
