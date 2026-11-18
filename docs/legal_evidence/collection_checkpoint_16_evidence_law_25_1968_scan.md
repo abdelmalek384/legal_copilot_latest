@@ -40,3 +40,10 @@ The scan visibly identifies:
 
 - Primary source located and 3 page images inspected.
 - No complete text extraction, amendment consolidation, lawyer review or rights clearance is claimed.
+
+## Checkpoint 93 supplement — official Ministry of Finance Evidence Law PDF
+
+- Direct Ministry of Finance PDF: https://media.mof.gov.eg/mof-prd/1299_705e8a7b67.pdf?response-content-disposition=attachment%3B+filename%3D%221299.pdf%22
+- Ministry legislation page: https://mof.gov.eg/ar/legislation/legislation-5fe86ae87bfc600007cc0271
+- PDF reproduces Official Gazette issue 22, 30 May 1968, printed pages 311–322; 12 pages total. PDF page indices 0,1,2,3,5,6,7,8,9,10,11 visually inspected; index 4 failed to render.
+- This upgrades the source from a Ministry listing to an official-hosted Gazette PDF reproduction. No local binary/hash acquired. Do not count previously extracted Articles 1–3 as new.
