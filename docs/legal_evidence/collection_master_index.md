@@ -1242,3 +1242,6 @@
 
 
 | checkpoint 133 — Agent 3 FRA Decision 100/2026 branch-rules amendment text | Captured two replacement clauses from secondary Arabic transcription; official Amiri Press DSpace metadata confirms Official Gazette issue 130 supplement (أ), 17 Jun 2026, but original PDF is request-only; FRA official announcement corroborates amendment; +1 instrument / +2 replacement provision units; cumulative Agent 3 minimum 154 instruments / 1,384 provision units; assignment estimate 31%, lawyer review 0%. Full provenance and text: [agent3_fra_decision_100_2026_amendment_to_branch_rules_2026-11-18.md](agent3_fra_decision_100_2026_amendment_to_branch_rules_2026-11-18.md) |
+
+
+| checkpoint 134 — Agent 3 FRA Decision 45/2026 key-position licensing | Captured Arabic Articles 1–2 from secondary transcription and visually inspected secondary Gazette page-16 image; DSpace confirms Amiri Press issue 45 supplement (أ), 24 Feb 2026, original bundle request-only; official FRA guide corroborates 14 key roles and licensing framework; +1 instrument / +2 provision units; cumulative Agent 3 minimum 155 instruments / 1,386 provision units; assignment estimate 31%, lawyer review 0%. Annex 1 and remaining articles need full transcription: [agent3_fra_decision_45_2026_key_positions_licensing_2026-11-18.md](agent3_fra_decision_45_2026_key_positions_licensing_2026-11-18.md) |
