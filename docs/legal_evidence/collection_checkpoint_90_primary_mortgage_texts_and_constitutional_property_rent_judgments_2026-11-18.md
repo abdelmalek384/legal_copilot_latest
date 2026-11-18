@@ -8,7 +8,7 @@ The master index and checkpoints 85–89 were inspected. This checkpoint does no
 **New amending statutes:** 0  
 **New executive/ministerial decisions:** 0  
 **Existing instruments upgraded with stronger source copies:** 2  
-**New primary judicial decisions located in full/official court-hosted form:** 3 (SCC Cases 10/35/2018, 39/32/2024 and 24/20/2024 are represented through official SCC-hosted judgment pages; Case 10/35 is quoted/recounted in a later SCC judgment rather than a separate direct judgment URL in this retrieval).
+**New official SCC judgment pages retrieved:** 5 (Cases 14/41/2022, 39/32/2024, 24/20/2024, 81/19/1999 and 108/19/2004). Case 10/35/2018 is confirmed through the later official SCC Case 14/41/2022 judgment, not through a separate direct judgment URL.
 
 No lawyer verification, commercial reuse permission, or official-Gazette-original byte verification is claimed.
 
