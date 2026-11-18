@@ -67,3 +67,26 @@ Updated untranscribed ranges:
 
 There are 1,149 numbered positions through the Civil Code's final Article 1149; excluding the 56 repealed positions leaves 1,093 non-repealed positions. Of those, 897 have article-number records (896 complete and one partial), leaving 196 non-repealed numbers without a text extraction.
 
+## Re-audit after checkpoint 118
+
+Checkpoint 118 filled Articles 89–140 (52 provisions). Updated deduplicated totals:
+- **949 unique article numbers identified**;
+- **948 complete article texts** plus partial/quarantined Article 766(2);
+- **56 repealed base-code numbers** (Articles 54–80 and 389–417);
+- **144 non-repealed article numbers not yet transcribed**.
+
+Updated untranscribed ranges:
+1. Articles 141–215 (75).
+2. Articles 371–379 (9).
+3. Articles 389–417 (29 repealed).
+4. Articles 448–451 (4).
+5. Articles 453–495 (43).
+6. Article 707 (1).
+7. Articles 709–713 (5).
+8. Article 715 (1).
+9. Article 1019 (1).
+10. Articles 1021–1022 (2).
+11. Articles 1024–1026 (3).
+
+The non-repealed universe remains 1,093 numbered positions (1,149 total less 56 repealed); 949 are identified, leaving 144 without an article text.
+
