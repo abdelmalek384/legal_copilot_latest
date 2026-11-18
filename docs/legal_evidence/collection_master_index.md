@@ -494,3 +494,10 @@
 - Law 11/2021 amendments: Official Gazette issue 16 bis (و), 28 April 2021, Amiri Press repository record located. The amendment replaces 25 listed provisions and inserts numerous provisions including Article 3 bis (electronic litigation), Article 20 bis (rescue financing), Article 36 bis, Article 57 bis and other additions. Full Arabic attachment is marked restricted in the repository; do not claim downloaded.
 - Justice Minister Decision 3715/2026 official Amiri Press text updates expert fees under Decision 2208/2019; this is a procedural/fee decision, not a substantive amendment to Law 11/2018.
 - The 2018 base Gazette scan and full 2021 amendment Gazette PDF remain to be captured/verified; no comprehensive executive regulation has yet been identified, so the implementing decision set remains an open collection task.
+
+
+### Research Agent 3 — Public-Private Partnership acquisition (2026-11-18)
+
+- Agent 3 file now includes official Ministry of Finance-hosted Gazette PDF/text for Law 67/2010, Official Gazette issue 19 bis (أ), 18 May 2010, substantive Articles 1–39.
+- Executive Regulation Decision 238/2011 (Official Gazette issue 3 bis (ب), 23 January 2011) full searchable text located via secondary reproductions; original Gazette scan still pending.
+- Official Amiri Press indexed text identifies PM Decision 3217/2022 amending Decision 238/2011. It replaces numerous provisions (including Articles 2–4, 27, 31–39, 42–56, 62–63, 72, 74, 77–78, 81 and 89), adds unsolicited/innovative private-sector proposal Articles 62 bis 4–7, and repeals Articles 40–41. Gazette issue/page image verification remains pending.
