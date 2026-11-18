@@ -2291,3 +2291,9 @@ Registered five PM decisions (EG-0330 to EG-0334) from Official Gazette issue46,
 A direct Amiri Press page was blocked, so I used the official Cabinet of Egypt meeting record dated 10 November 2026. It reproduces the substantive Arabic paragraphs describing the approved draft decision: committee powers, binding effect, quarterly meetings, technical secretariat, secretariat functions and local committees in eight coastal governorates. Those paragraphs are transcribed verbatim in [the Decision3536 Cabinet-text tranche](acquisition_tranche_pm_decision3536_2026_coastal_committee_official_cabinet_text.md).
 
 This materially improves the text record, but the Cabinet statement is not the promulgated Gazette itself. Exact final wording, article numbering and any changes must still be compared with issue45 bis (د). The source and inventory record now distinguish the official Cabinet draft description from the final decree.
+
+
+### Official tax-law corrigendum acquired — EG-0335
+
+Added the two-page Official Gazette corrigendum, issue32 bis (8 Aug 2026), correcting Laws149,150 and151/2026. The two-page scan was visually inspected; the Customs Authority's Circular48/2026 provides a searchable text layer for the Law149 and Law150 correction tables. Corrected Law150 phrase: «وإجراءات حوكمتها» (not «حكومتها»). Law149 corrections include removal of an extra «و» before «مد هذه المدة» and insertion of «حكم» in «في حكم الأجهزة الطبية». Law151 corrections include the replacement-article list, Article43 «وبغير أي تخفيض», Article52's closing sentence, Article56's second condition numbering, and the start year for Article4 tax periods (2023, not 2022). The final particle in Article6's repeal sentence is flagged for higher-resolution verification.
+[Full correction tranche](acquisition_tranche_official_corrigendum_laws149_150_151_2026.md)
