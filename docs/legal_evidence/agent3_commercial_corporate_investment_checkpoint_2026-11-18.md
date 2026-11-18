@@ -1738,3 +1738,88 @@ The same Article 240 bis further permits electronic remote agenda presentation a
 - Twenty-two provision units counted: Law 5/2022 issuing Articles 1–6; Law 18/2020 issuing Articles 1–7; Law 158/2022 Articles 1–2 (separate issuing clauses pending Gazette-image transcription; consolidated added Article 6 bis verified); Law 141/2014 selected core Articles 1–3; Law 201/2020 Articles 1–2; Law 155/2022 Articles 1–2.
 - The Law 5/2022 official PDF is text-extracted in full; the Law 18/2020 updated text includes the Law 158/2022 addition; the Law 141/2014 updated text incorporates 201/2020 and 155/2022. Do not count these consolidated copies as independent new instruments.
 - Cumulative Agent 3 minimum: 132 unique instruments / 1,308 provision units.
+
+
+## 41. Mortgage finance, movable collateral and MSME development — core statutes and executive regulations
+
+### Law 148/2001 — Real Estate Finance
+
+- Instrument: Law 148/2001 promulgating the Real Estate Finance Law.
+- Official Gazette: issue 25 bis, 24 June 2001; commencement after three months from publication.
+- ETA official Arabic PDF: https://portal.eta.gov.eg/sites/default/files/2024-10/law-148-2001.pdf
+- FRA updated-law record (2014 version): https://fra.gov.eg/en/regulations/قانون-رقم-148-لسنة-2001-لنشاط-التمويل-العقاري/
+- Ministry of Finance official legal record marks it in force: https://mof.gov.eg/ar/legislation/legislation-5fe86a307bfc600007cbfb10
+- Issuing Articles 1–4 captured in full. Article 1 applies the law to finance for purchasing, building, restoring or improving residential/administrative/service/commercial premises against mortgage/privilege or other accepted security; Article 2 creates the real-estate finance authority; Article 3 limits eligible providers and permits CBE-registered banks with approval; Article 4 requires affordability and sets loan-to-value/valuation standards.
+- Substantive law provisions include financing agreements, transfer of receivables, registration of mortgage security, assignment/securitization, enforcement/foreclosure, licensed finance companies, refinancing and the guarantee/support fund.
+- The ETA base text is not a fully consolidated current text. FRA identifies a 2014 updated version; later amendments and decisions must be overlaid before current use.
+
+### PM Decision 1/2001 — Executive Regulation of Law 148/2001
+
+- Instrument: PM Decision 1/2001 issuing the Executive Regulation of Law 148/2001.
+- Dated 9 December 2001; Gazette publication in the Government Bulletin issue 282 supplement; the FRA PDF reproduces the Arabic text.
+- FRA official Arabic PDF: https://fra.gov.eg/wp-content/uploads/2020/12/اللائحة-التنفيذية-للقانون-التمويل-العقاري.pdf
+- Full searchable Arabic text: 694 lines. Issuing Articles 1–3 are present; Article 1 issues the attached regulation, Article 2 defines the law/authority references, Article 3 publication/commencement.
+- Regulation Article 1 recognizes purchase, construction, renovation, improvement, finance lease, usufruct acquisition, murabaha and participation models. It also provides for real-estate refinancing.
+- The consolidated regulation footnotes amendments by PM Decision 465/2005 and PM Decision 2/2015; these two amending decisions must be acquired separately. Do not assume the unamended 2001 text is current.
+
+### Law 115/2015 — Movable Collateral
+
+- Instrument: Law 115/2015 on Regulation of Movable Collateral.
+- Presidential issuance dated 14 November 2015; effective after three months from publication.
+- FRA official Arabic full text: https://fra.gov.eg/wp-content/uploads/2021/01/قرار-رئيس-الجمهورية-رقم-115-لسنة-2015-بتاريخ-بشأن-تنظيم-الضمانات-المنقولة.pdf
+- The 31-article law is fully text-extracted from the FRA-hosted PDF.
+- Issuing Articles 1–5 address the scope of secured rights, Economic Court jurisdiction, treatment of pre-existing security interests, publication and delayed commencement.
+- Article 1 defines movable collateral broadly to include present/future tangible and present intangible assets, receivables, bank accounts, negotiable instruments, equipment/inventory, crops/livestock, fixtures and intellectual property.
+- Article 2 covers security rights over movable assets, conditional sales, buy-back rights, IP licences, receivables, leases exceeding six months, consignment goods and commercial-business pledges; excludes specified securities and certain future rights.
+- Article 4 creates a public electronic register. Article 5 establishes the electronic website and evidentiary force of certified register data.
+- Articles 6–17 govern registration, creation/perfection, multiple security rights, priority, assignment and continuation of security interests.
+- Article 20 protects properly registered collateral from entering the insolvency estate/general creditor pool if registration predates bankruptcy/insolvency/liquidation proceedings. This provision must be reconciled carefully with Law 11/2018 and its avoidance/secured-creditor provisions.
+- Articles 22–27 govern enforcement and sale; Articles 28–31 establish penalties and legal-person responsibility.
+
+### Ministerial Decision 108/2016 — Executive Regulation of Law 115/2015
+
+- Instrument: Minister of Investment Decision 108/2016 issuing the Executive Regulation of Movable Collateral Law 115/2015.
+- FRA official Arabic consolidated PDF (updated 2022): https://www.fra.gov.eg/wp-content/uploads/2021/01/لائحة-التنفيذية-لقانون-الضمانات-المنقولة-الاصدار-2.pdf
+- FRA official record marks it as updated in 2022 and lists earlier/amending instruments PM Decision 908/2020 and PM Decision 4666/2022: https://fra.gov.eg/regulations/اللائحة-التنفيذية-للضمانات-المنقوله-2/
+- Issuing Articles 1–2 captured: Article 1 issues the regulation; Article 2 publication/commencement.
+- The updated regulation contains detailed rules for eligible assets, registration forms and consent, electronic register operation, amendment/cancellation, search, priority, enforcement, and registration of court judgments and liquidation/bankruptcy events.
+- The FRA record also identifies FRA Board Decision 145/2016 concerning assignment, establishment and management of the register to a specialized company. This is a separate implementing decision, not the executive regulation itself.
+- Decision 908/2020 and Decision 4666/2022 are amendment leads. The consolidated PDF's footnotes and source record are not substitutes for the amending Gazette instruments.
+
+### Law 152/2020 — MSME Development
+
+- Instrument: Law 152/2020 promulgating the Medium, Small and Micro Enterprise Development Law.
+- Gazette: issue 28 bis (ج), 15 July 2020; effective 16 July 2020.
+- FRA official Arabic full PDF: https://fra.gov.eg/wp-content/uploads/2025/01/قانون-التنمية-لمشروعات-المتوسطة-والصغيرة.pdf
+- Ministry of Finance official legal record: https://mof.gov.eg/ar/posts/regulations/600e8f91804b06000713f2e2/بإصدار%20قانون%20تنمية%20المشروعات%20المتوسطة%20والصغيرة%20ومتناهية%20الصغر
+- Issuing Articles 1–4 captured: Article 1 issues the attached law; Article 2 requires the Executive Regulation and preserves non-conflicting existing rules; Article 3 repeals Small Enterprises Development Law 141/2004; Article 4 publication/commencement.
+- Article 1 defines medium/small/micro enterprises by turnover and paid/invested capital thresholds, including newly established industrial/non-industrial enterprises; it also defines informal-economy projects, temporary licensing, entrepreneurship projects, accreditation offices, incubators and accelerators.
+- The law provides MSME incentives, temporary licensing and regularization for informal projects, land allocation, one-stop service units, tax/customs benefits and government support mechanisms.
+- Important cross-law references: Commercial Register Law 34/1976, Industrial Register Law 24/1977, Income Tax Law 91/2005, Building Law 119/2008, Industrial Licensing Law 15/2017, Social Insurance Law 148/2019 and Public Shops Law 154/2019.
+- **2026 amendment status:** Cabinet approved a draft amendment on 17 February 2026 proposing new MSME turnover/capital thresholds and additional temporary-licensing rules. This is a draft approved by Cabinet, not itself an enacted amendment. No promulgated amending law/Gazette copy was acquired in this pass. Keep the existing Law 152 thresholds until a signed, published law is verified. Official SIS announcement: https://sis.gov.eg/en/media-center/news/cabinet-approves-amendments-to-msmes-law-to-boost-investment-jobs/
+
+### PM Decision 654/2021 — Executive Regulation of Law 152/2020
+
+- Instrument: PM Decision 654/2021 issuing the Executive Regulation of Law 152/2020.
+- Gazette: issue 13 bis (أ), 5 April 2021.
+- FRA official Arabic full PDF: https://fra.gov.eg/wp-content/uploads/2025/01/لائحة-التنفيذية-لقانون-تنمية.pdf
+- Official Gazette DSpace record: https://dspace.id.com.eg/items/f7af78e1-823d-48b6-ba63-0cc586c920f5
+- Issuing Articles 1–4 captured: Article 1 issues the regulation; Article 2 requires state/local authorities and state utility companies to provide requested information/documents; Article 3 repeals PM Decision 1241/2004 Executive Regulation; Article 4 publication/commencement.
+- The 911-line PDF includes the regulation's full Arabic text. It sets SME size thresholds, service-delivery units, temporary licensing, land allocation, one-stop licensing and accreditation offices.
+- Article 13 provides time limits for service units to identify missing documents and temporary licensing; Article 17 permits a final licence where authorities fail to respond within 30 days, subject to safety/documentation conditions.
+- PM Decision 4278/2023 added a final paragraph to Article 13 concerning temporary licensing of low-risk facilities before obtaining Civil Defence approval, subject to a one-year undertaking and consultant report. The exact amending Gazette instrument should be separately captured and linked; do not overwrite the pre-amendment text.
+
+### Currentness / amendment leads
+
+- Mortgage Finance Executive Regulation Decision 1/2001 has amendments PM Decision 465/2005 and PM Decision 2/2015. Obtain both Gazette texts and reconcile all affected regulation articles.
+- Movable Collateral Executive Regulation Decision 108/2016 has PM Decision 908/2020 and PM Decision 4666/2022. Obtain the Gazette originals and reconcile the 2022 updated FRA copy.
+- FRA Board Decision 145/2016 governs the movable-collateral registry operator/assignment; acquire its complete text and any later amendments.
+- MSME Executive Regulation Decision 654/2021 was amended by PM Decision 4278/2023 (Article 13 temporary licence/civil-defence paragraph). Acquire its Gazette original and identify any other post-2021 changes.
+- Cabinet's 17 February 2026 MSME amendment approval is only a draft lead. Do not ingest proposed thresholds as current law until promulgated and published.
+
+### Count increment
+
+- Six unique instruments with Arabic text surfaced: Law 148/2001, PM Decision 1/2001, Law 115/2015, Ministerial Decision 108/2016, Law 152/2020 and PM Decision 654/2021.
+- Twenty-two provision units counted: Law 148/2001 issuing Articles 1–4; Decision 1/2001 issuing Articles 1–3; Law 115/2015 issuing Articles 1–5; Decision 108/2016 issuing Articles 1–2; Law 152/2020 issuing Articles 1–4; Decision 654/2021 issuing Articles 1–4.
+- Full substantive texts are available from official FRA/ETA PDFs; complete article-by-article ingestion and amendment overlays remain separate tasks.
+- Cumulative Agent 3 minimum: 138 unique instruments / 1,330 provision units.
