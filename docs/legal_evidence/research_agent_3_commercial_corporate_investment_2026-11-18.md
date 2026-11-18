@@ -1210,3 +1210,94 @@ Official Gazette issue 29 bis (A), 20 July 2025. It replaces Regulation Article 
 Decision 2482/2025 states it takes effect the day after publication. This is a Gazette-matched 2025 amendment and should be integrated into the 2025 FRA consolidated regulation, checking whether the current 2025 consolidation includes all subsequent 2025 decisions 1539/2025 and 2482/2025. FRA's current page is the source for the amendment list, but the full text of Decisions 1539/2025 and 2423/2024 is not transcribed yet.
 
 **Collection status:** full searchable government regulator-hosted texts for both the base Law and Executive Regulation have been obtained. The 2025 Decision 2482 amendment has Gazette issue/date and full amendment text. The complete Gazette reconciliation of all 8 law amendments and all listed executive-regulation amendments remains outstanding. No lawyer review or rights clearance claimed.
+
+
+## 14. Central Bank and Banking Sector Law 194/2020 — official Gazette scan acquired
+
+### A. Source and text scope
+
+**Official Ministry of Finance legislation record:**  
+https://mof.gov.eg/ar/legislation/legislation-678cc4be953d480008b32c45  
+**Direct official Ministry of Finance PDF (115 pages):**  
+https://media.mof.gov.eg/mof-prd/qanwnrqm_194_lsnt_2020_39c565fe1c.pdf
+
+The Ministry record identifies Law 194/2020, dated 15 September 2020, Official Gazette issue 37 bis (و), and labels the law **سارٍ**. The direct PDF is the Gazette scan hosted by the Ministry of Finance; its first page shows the Gazette header and Law 194/2020 issuing provisions, and the final page is Gazette page 116 and contains Article 241. Thus the statute's numbering runs through Article 241. The official PDF is image-based and web text extraction returned no searchable lines; pages 2 and 116 were visually inspected. This is actual Gazette scan acquisition, but full text OCR/transcription is still required.
+
+**Verbatim — issuing Article 1 (manual transcription from official Gazette scan, PDF page 1):**
+
+> (المادة الأولى)
+>
+> تسري أحكام القانون المرافق على البنك المركزي والجهاز المصرفي وشركات الصرافة وشركات تحويل الأموال وشركات الاستعلام والتصنيف الائتماني وشركات ضمان الائتمان ومشغلي نظم الدفع ومقدمي خدمات الدفع.
+
+**Verbatim — issuing Article 2 (manual transcription from official Gazette scan, PDF page 1):**
+
+> (المادة الثانية)
+>
+> تسري على البنوك والشركات المخاطبة بأحكام القانون المرافق، فيما لم يرد في شأنه نص فيه أو في اللوائح والقرارات الصادرة تنفيذاً له، أحكام قانون شركات المساهمة وشركات التوصية بالأسهم والشركات ذات المسئولية المحدودة وشركات الشخص الواحد الصادر بالقانون رقم ١٥٩ لسنة ١٩٨١.
+>
+> ويكون البنك المركزي هو الجهة الإدارية المختصة، ومحافظ البنك المركزي هو الوزير المختص في تطبيق أحكام قانون شركات المساهمة وشركات التوصية بالأسهم والشركات ذات المسئولية المحدودة وشركات الشخص الواحد المشار إليه بالنسبة للجهات الخاضعة لإشرافه طبقاً لأحكام القانون المرافق.
+>
+> كما تسري أحكام قانون التجارة الصادر بالقانون رقم ١٧ لسنة ١٩٩٩ على معاملات البنوك مع عملائها تجاراً كانوا أو غير تجار أياً كانت طبيعة هذه المعاملات.
+
+**Verbatim — issuing Article 4 (text surfaced from searchable Gazette reproduction; verify against image):**
+
+> المادة الرابعة
+>
+> يلتزم المخاطبون بأحكام القانون المرافق بتوفيق أوضاعهم طبقاً لأحكامه وذلك خلال مدة لا تجاوز سنة من تاريخ العمل به، ولمجلس إدارة البنك المركزي مد هذه المدة لمدة أو لمدد أخرى لا تجاوز سنتين.
+
+**Verbatim — issuing Article 5 (text surfaced from searchable Gazette reproduction; verify against image):**
+
+> المادة الخامسة
+>
+> يصدر مجلس إدارة البنك المركزي اللوائح والقرارات المنفذة لأحكام القانون المرافق، وتنشر في الوقائع المصرية، وإلى أن تصدر هذه اللوائح والقرارات يستمر العمل باللوائح والقرارات القائمة بما لا يتعارض مع أحكامه.
+
+**Verbatim — substantive Article 1 (official text reproduced by FRA / CBE sources):**
+
+> المادة الأولى
+>
+> يقصد في تطبيق أحكام هذا القانون بالكلمات والعبارات التالية المعنى المبين قرين كل منها:
+>
+> البنك المركزي: البنك المركزي المصري.
+>
+> مجلس الإدارة: مجلس إدارة البنك المركزي.
+>
+> المحافظ: محافظ البنك المركزي.
+>
+> الجهات المرخص لها: البنوك، وشركات الصرافة، وشركات الاستعلام والتصنيف الائتماني، وشركات تحويل الأموال، وشركات ضمان الائتمان، ومشغلو نظم الدفع، ومقدمو خدمات الدفع.
+
+**Verbatim — substantive Article 2 (official CBE institutional summary):**
+
+> البنك المركزي جهاز رقابي مستقل، له شخصية اعتبارية عامة، يتبع رئيس الجمهورية، ويتمتع بالاستقلال الفني والمالي والإداري، ويؤخذ رأيه في مشروعات القوانين واللوائح المتعلقة بمجال عمله.
+
+**Key cross-sector implications:** issuing Article 2 expressly applies Law 159/1981 residually to regulated banks and companies, designates CBE as competent administrative authority and its Governor as competent minister for company-law purposes, and expressly applies Commercial Code 17/1999 to banks' transactions with customers whether merchants or non-merchants. This means corporate/commercial research must preserve CBE sector-specific overrides and cannot apply general Companies/Commercial Code rules without the CBE lex-specialis check.
+
+### B. Executive regulation and secondary CBE instruments — version-control warning
+
+CBE's official banking-laws index lists:
+- Law 194/2020;
+- CBE's statute;
+- "اللائحة التنفيذية لقانون البنك المركزي والجهاز المصرفي والنقد";
+- Presidential Decision 584/2021 establishing the Coordinating Council.
+Official index: https://www.cbe.org.eg/ar/laws-regulations/laws/banking-laws (page metadata last updated 23 March 2023).
+
+**Important unresolved issue:** the CBE page's generic "Executive Regulation of the Central Bank, Banking Sector and Money" entry may refer to the old Executive Regulation Decision 101/2004 issued under repealed Law 88/2003, not a new comprehensive regulation issued under Law 194/2020. Law 194/2020 issuing Article 5 instead directs the CBE Board to issue implementing regulations and decisions and continues prior regulations only insofar as they do not conflict. Do not index Decision 101/2004 as the new Law 194/2020 Executive Regulation without confirming its exact title, survival and conflict status.
+
+**Current regulatory instruments surfaced from CBE official pages:**
+- Rules for licensing and registration of Payment System Operators and Payment Service Providers, announced 19 June 2025.
+- Governance/internal-control instructions and fit-and-proper rules for payment system operators and payment service providers, announced 1 September 2025; CBE's oversight page last updated 28 August 2025.
+- CBE digital-bank licensing and supervisory rules, announced 12 July 2023.
+- Updated licensing, supervision and oversight framework for exchange companies, announced 14 May 2023.
+- New conditions and rules for registration/de-registration of accounting firms and external auditors, announced 4 June 2024.
+These are CBE-issued rules/instructions and press-release/catalogue leads; acquire each underlying circular/decision PDF and its effective date separately. Do not treat explanatory CBE webpages as the instrument text.
+
+### C. Gazette metadata and review status
+
+- Gazette: Official Gazette, issue 37 bis (و), 15 September 2020.
+- Official Gazette page 2 begins the issuing provisions (PDF page 1); final Gazette page 116 (PDF page 114) contains Article 241.
+- The direct Ministry PDF is 115 pages, including cover/metadata.
+- The Ministry warns its electronic texts are for guidance and the Official Gazette is the legal reference.
+- CBE's banking laws index page is dated last updated 23 March 2023 and is not sufficient to establish currentness of all post-2023 circulars.
+- No amending statute to Law 194/2020 was identified in this search; this is not proof that there are no amendments, corrections or relevant constitutional judgments.
+- No lawyer approval or rights clearance claimed.
+
+**Collection classification:** base statute — Gazette scan acquired; two issuing articles visually transcribed; selected other provisions from institutional text reproduced with explicit source-quality caveat; 241 article numbering confirmed; complete article-by-article text extraction pending. The generic CBE "executive regulation" remains an unresolved legacy instrument lead.
