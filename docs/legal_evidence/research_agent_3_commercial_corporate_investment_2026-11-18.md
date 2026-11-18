@@ -6062,3 +6062,154 @@ This is an official Egyptian Tax Authority-hosted copy. The title page says "ق�
 This source itself marks Article 14 as amended by Law 3/1998, Article 16 amended by Law 3/1998, Article 17 replaced by Law 3/1998 and partly supplemented by Law 94/2005, and Article 31 amended by Law 94/2005. The opening note also references Law 94/2005. It does not show the complete current effect of Law 4/2018 or later changes. The amendment sequence and current text must be reconstructed article-by-article from each amending Gazette instrument and the current GAFI version. The minimum count above is selected provisions, not a claim that the full 184-article PDF is the current consolidated law.
 
 **Collection status:** full Arabic text PDF (Articles 1–184, 993 extracted lines) retrieved from ETA government domain; 13 selected articles transcribed above. Source is a historical/partially amended compilation, not current consolidation. No lawyer review or rights clearance claimed.
+
+
+## 42. Central Bank Law 194/2020 — official Ministry of Finance PDF + full searchable text reconciliation
+
+### A. Official source now directly resolved
+
+**Instrument:** Law 194/2020 promulgating the Central Bank and Banking Sector Law.  
+**Gazette:** Official Gazette issue 37 مكرر (و), 15 September 2020.  
+**Official Ministry of Finance law record (status marked in force):** https://mof.gov.eg/ar/legislation/legislation-678cc4be953d480008b32c45  
+**Direct Ministry of Finance 115-page PDF:** https://media.mof.gov.eg/mof-prd/qanwnrqm_194_lsnt_2020_39c565fe1c.pdf  
+**CBE official banking-laws index:** https://www.cbe.org.eg/ar/laws-regulations/laws/banking-laws  
+**Full searchable Arabic transcription (secondary):** https://lawhub.info/eg/?p=11353
+
+The MOF record gives the exact Gazette issue/date and marks the law "سارٍ"; it explicitly cautions that its online legislation texts are guidance and the Official Gazette is the sole legal reference. The direct MOF PDF is 115 pages but the current web extraction did not yield a usable text layer. The LawHub page is searchable through the eight issuing provisions and substantive Articles 1–241. The CBE official index lists the law and its Executive Regulation, but the CBE page's current web access blocks direct PDF extraction.
+
+### B. Additional verbatim provisions from the searchable full text
+
+**Verbatim — issuing Article 1 (scope of regulated entities):**
+
+> المادة 1 إصدار
+>
+> تسري أحكام القانون المرافق على البنك المركزي والجهاز المصرفي وشركات الصرافة وشركات تحويل الأموال وشركات الاستعلام والتصنيف الائتماني وشركات ضمان الائتمان ومشغلي نظم الدفع ومقدمي خدمات الدفع.
+
+**Verbatim — issuing Article 2 (subsidiary application of Companies and Commercial Codes):**
+
+> المادة 2 إصدار
+>
+> تسري على البنوك والشركات المخاطبة بأحكام القانون المرافق، فيما لم يرد في شأنه نص فيه أو في اللوائح والقرارات الصادرة تنفيذاً له، أحكام قانون شركات المساهمة وشركات التوصية بالأسهم والشركات ذات المسئولية المحدودة وشركات الشخص الواحد الصادر بالقانون رقم 159 لسنة 1981.
+>
+> ويكون البنك المركزي هو الجهة الإدارية المختصة، ومحافظ البنك المركزي هو الوزير المختص في تطبيق أحكام قانون الشركات المشار إليه بالنسبة للجهات الخاضعة لإشرافه طبقاً لأحكام القانون المرافق.
+>
+> كما تسري أحكام قانون التجارة الصادر بالقانون رقم 17 لسنة 1999 على معاملات البنوك مع عملائها تجاراً كانوا أو غير تجار أياً كانت طبيعة هذه المعاملات.
+
+**Verbatim — Article 7 (CBE functions including competition protection):**
+
+> المادة 7
+>
+> يباشر البنك المركزي جميع الاختصاصات اللازمة لتحقيق أهدافه، وله على الأخص ما يأتي:
+>
+> (أ) إصدار النقد وإدارته، وتحديد فئاته ومواصفاته.
+>
+> (ب) وضع السياسة النقدية وتنفيذها، وإصدار الأوراق والأدوات المالية بما يتناسب مع طبيعة أمواله ونشاطه والدخول في عمليات السوق المفتوحة.
+>
+> (ج) وضع نظام وسياسة سعر الصرف الأجنبي وتنفيذها، وتنظيم سوق الصرف الأجنبي ورقابته.
+>
+> (د) إصدار اللوائح والتعليمات الرقابية للجهات المرخص لها والمسئولين الرئيسيين، والإشراف والرقابة عليها.
+>
+> (هـ) وضع سياسة إدارة المخاطر الكلية في النظام المصرفي وتنفيذها.
+>
+> (و) إدارة الأزمات المصرفية وتسوية أوضاع البنوك المتعثرة.
+>
+> (ى) العمل على حماية حقوق عملاء الجهات المرخص لها وتسوية المنازعات ذات الصلة.
+>
+> (ك) العمل على حماية المنافسة وتعزيزها ومنع الممارسات الاحتكارية بالجهات المرخص لها.
+
+**Verbatim — Article 140 (banking secrecy):**
+
+> المادة 140
+>
+> تكون جميع بيانات العملاء وحساباتهم وودائعهم وأماناتهم وخزائنهم في البنوك وكذلك المعاملات المتعلقة بها سرية، ولا يجوز الاطلاع عليها أو إعطاء بيانات عنها بطريق مباشر أو غير مباشر إلا بإذن كتابي من صاحب الحساب أو الوديعة أو الأمانة أو الخزينة أو من أحد ورثته أو من أحد الموصى لهم بكل هذه الأموال أو بعضها، أو من نائبه القانوني أو وكيله أو بناء على حكم قضائي أو حكم تحكيم.
+>
+> ومع عدم الإخلال بالاستعلامات الواردة بهذا القانون، يسري الحظر المنصوص عليه في الفقرة الأولى من هذه المادة على جميع الأشخاص والجهات بما في ذلك الجهات التي يخولها القانون سلطة الاطلاع أو الحصول على الأوراق أو البيانات المحظور إفشاء سريتها طبقاً لأحكام هذا القانون، ويظل هذا الحظر قائماً حتى ولو انتهت العلاقة بين العميل والبنك لأي سبب من الأسباب.
+
+**Verbatim — Article 141 (judicial access to confidential banking data):**
+
+> المادة 141
+>
+> إذا اقتضى كشف الحقيقة في جناية أو جنحة قامت الدلائل الجدية على وقوعها، يجوز للنائب العام أو من يفوضه من المحامين العامين الأول على الأقل، من تلقاء نفسه أو بناء على طلب جهة رسمية أو أحد من ذوي الشأن، أن يطلب من محكمة استئناف القاهرة الأمر بالاطلاع أو الحصول على أي بيانات أو معلومات تتعلق بالحسابات أو الودائع أو الأمانات أو الخزائن المنصوص عليها في المادة (140) من هذا القانون أو المعاملات المتعلقة بها.
+
+**Verbatim — Article 142 (professional confidentiality):**
+
+> المادة 142
+>
+> يحظر على كل من يتلقى أو يطلع بحكم مهنته أو وظيفته أو عمله بطريق مباشر أو غير مباشر على معلومات أو بيانات عن العملاء أو حساباتهم أو ودائعهم أو الأمانات أو الخزائن الخاصة بهم أو معاملاتهم إنشاؤها أو تمكين الغير من الاطلاع عليها وذلك في غير الحالات المرخص بها بمقتضى أحكام هذا القانون، ويستمر هذا الحظر بعد تركهم للعمل.
+
+**Verbatim — Article 143 (exceptions to banking secrecy):**
+
+> المادة 143
+>
+> لا تخل أحكام المادتين (140، 142) من هذا القانون بما يأتي:
+>
+> (أ) الواجبات المنوط أداؤها قانوناً بمراقبي حسابات البنوك، وبالاختصاصات المخولة قانوناً للبنك المركزي.
+>
+> (ب) التزام البنك بإصدار بيان بأسباب رفض صرف الشيك أو أمر الخصم المباشر بناءً على طلب صاحب الحق أو ما يفيد الوفاء الجزئي لأي منهما حالة عدم كفاية الرصيد.
+>
+> (ج) حق البنك أو جهة منح الائتمان أو التمويل في الكشف عن كل أو بعض البيانات الخاصة بمعاملات العميل اللازمة لمباشرة الإجراءات القانونية، أو لإثبات حق البنك أو الجهة في أي نزاع ينشأ مع العميل في شأن هذه المعاملات.
+>
+> (د) القوانين والأحكام الخاصة بتنظيم مكافحة غسل الأموال وتمويل الإرهاب.
+>
+> (هـ) ما تقدمه شركات الاستعلام والتصنيف الائتماني من معلومات وبيانات طبقاً للقواعد التي يحددها مجلس الإدارة.
+>
+> (و) اختصاص البنك المركزي في تبادل البيانات والمعلومات مع الجهات الأجنبية المناظرة في الدول الأخرى ولجنة الاستقرار المالي والهيئة العامة للرقابة المالية.
+>
+> (ز) الاطلاع على البيانات والمعلومات اللازمة لإعداد تقارير الفحص النافي للجهالة عند طلب الدمج أو الاستحواذ أو التقسيم على نسبة حاكمة من أسهم أي من البنوك.
+>
+> (ط) اطلاع مقدمي خدمات التعهيد على بيانات العملاء اللازمة لمباشرة الخدمات الموكلة إليهم.
+
+**Verbatim — Article 218 (customer-protection unit):**
+
+> المادة 218
+>
+> تنشأ بالبنك المركزي وحدة ذات طابع خاص لحماية حقوق عملاء الجهات المرخص لها، تتولى فحص الشكاوى المقدمة منهم ضد هذه الجهات، وذلك خلال ثلاثين يوماً من تاريخ تقديمها مستوفية المستندات المطلوبة.
+>
+> فإذا تبين للوحدة عدم صحة الشكوى يتم حفظها وإبلاغ مقدم الشكوى بذلك، أما إذا تبين صحة الشكوى ولم يتم حلها ودياً، تحال إلى لجنة فض المنازعات المنصوص عليها في المادة (219) من هذا القانون مرفقاً بها تقرير بنتائج الفحص.
+
+**Verbatim — Article 221 (competition rules for licensed entities):**
+
+> المادة 221
+>
+> لا تسري أحكام قانون حماية المنافسة ومنع الممارسات الاحتكارية الصادر بالقانون رقم 3 لسنة 2005 على الجهات المرخص لها، ويحظر عليها القيام بأي ممارسات احتكارية أو ضارة بالمنافسة، ويشمل ذلك على الأخص ما يأتي:
+>
+> (أ) الاتفاق على تحديد أسعار الخدمات محل التعامل أو شروط التعاقد عليها أو اقتسام الأسواق أو التقدم للمناقصات والمزايدات.
+>
+> (ب) تقييد إتاحة الخدمات بهدف الإضرار بالعملاء.
+>
+> (ج) تقديم خدمات بسعر يقل عن تكلفتها يترتب عليه الإضرار بالمنافسة.
+>
+> (د) إلزام العملاء أو مقدمي الخدمات أو الموردين بعدم التعامل مع جهات منافسة دون أسباب معقولة.
+>
+> وذلك كله طبقاً للضوابط والإجراءات التي يحددها مجلس الإدارة.
+
+**Verbatim — Article 222 (CBE competition-protection unit):**
+
+> المادة 222
+>
+> ينشأ بالبنك المركزي وحدة ذات طابع خاص، تختص بتلقي البلاغات عن أي ممارسات احتكارية أو ضارة بالمنافسة تتعلق بأي من الجهات المرخص لها، واتخاذ إجراءات التقصي والبحث وجمع الاستدلالات في شأنها.
+>
+> كما يسري ذلك على الأفعال التي ترتكب في الخارج إذا ترتب عليها منع حرية المنافسة أو تقييدها أو الإضرار بها في مصر.
+>
+> وفي حالة ثبوت الإخلال بحرية المنافسة أو القيام بممارسات احتكارية، يجوز لمجلس الإدارة تكليف الجهة المخالفة بتعديل أوضاعها وإزالة المخالفة فوراً أو خلال فترة زمنية محددة، وإلا وقع الاتفاق أو التعاقد المخالف باطلاً.
+
+**Verbatim — Article 235 (corporate criminal liability):**
+
+> المادة 235
+>
+> في الأحوال التي ترتكب فيها الجريمة بواسطة شخص اعتباري يعاقب المسئول عن الإدارة الفعلية للشخص الاعتباري المخالف بذات العقوبات المقررة على الأفعال التي ترتكب بالمخالفة لأحكام هذا القانون، متى ثبت علمه بها، وكانت الجريمة قد وقعت بسبب إخلاله بواجبات الوظيفة.
+>
+> ويكون الشخص الاعتباري مسئولاً بالتضامن معه عن الوفاء بما يحكم به من عقوبات مالية وتعويضات، إذا كانت الجريمة قد ارتكبت من أحد العاملين به باسمه نيابة عنه.
+
+### C. Important lex specialis and cross-law rules
+
+1. Under issuing Article 2, Companies Law 159/1981 is subsidiary where the CBE Law and its regulations/decisions do not provide otherwise. The CBE is the competent administrative authority and the Governor is the competent minister for covered entities.
+2. The same issuing Article applies Commercial Code 17/1999 to all bank-customer transactions, whether the customer is a trader or non-trader, regardless of transaction nature.
+3. Article 221 expressly disapplies Competition Law 3/2005 to CBE-licensed entities and establishes a separate CBE competition regime. ECA/Competition Law answers must not be mechanically applied to banks and other covered licensed entities without checking the CBE regime.
+4. Articles 140–143 govern banking secrecy and statutory exceptions. Article 143 includes due-diligence access for qualifying mergers, acquisitions and control transactions; Article 141 sets judicial/Prosecutorial access procedures.
+
+### D. Text and rights qualification
+
+The Ministry of Finance PDF is the official government-hosted document and the primary-source locator, but its 115-page scan was not text-extractable in the current web reader. The full text quoted above is from a secondary searchable transcription and must be compared against the Gazette issue 37 مكرر (و) page images before treating every character as exact. The CBE's own law catalogue independently confirms Law 194/2020 and its Executive Regulation are official banking-law instruments. No later amending law has been identified in this checkpoint; currentness of all CBE board decisions/circulars remains open.
+
+**Collection status:** direct 115-page MOF PDF and official CBE catalogue located; full 241-article searchable Arabic transcription surfaced; ten provisions transcribed in this section (issuing Articles 1–2 and substantive Articles 7, 140–143, 218, 221, 222 and 235). No lawyer approval or rights clearance claimed.
