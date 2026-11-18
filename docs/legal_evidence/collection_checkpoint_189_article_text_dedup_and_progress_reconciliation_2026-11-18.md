@@ -17,7 +17,7 @@ Removed duplicate blocks:
 - Law 70/1964 Articles 1–4 (already captured in the canonical file).
 - Law 70/1964 Article 19 wording was also removed from the fee-chain file because the canonical file already contains it; the new historical Article 21(9) paragraph remains.
 
-**Total duplicate article-text blocks removed: 27.** No legal instrument was deleted. The acquisition register and instrument IDs are unchanged by this text deduplication.
+**Total duplicate article-text blocks removed: 29 (26 from the four-statute supplemental file, two unchanged Law 68 Articles 13–14, and the Law 70 Article 21(9) paragraph now included in the full Article 21 text in checkpoint 190).** No legal instrument was deleted. The acquisition register and instrument IDs are unchanged by this text deduplication.
 
 ## 2. Current article-text capture by instrument
 
@@ -87,3 +87,15 @@ The 19% figure in checkpoint 170 was an earlier provisional estimate. Checkpoint
 ## 7. Rights and verification
 
 No lawyer verification, commercial reuse permission, certified original Gazette authenticity or bulk-collection permission is claimed. The 76-source permission register records assessments, not licences. Public accessibility does not establish commercial reuse rights.
+
+
+## 8. Checkpoint 190 integration
+
+Checkpoint 190 adds 41 additional distinct article-ID text bodies across three statutes: six Law 68/1947 articles (3,7,8,9,10,11), fifteen Law 142/1964 articles (12–21,23,24,37,38,39) and twenty Law 70/1964 articles/provisions (18–30,32,34 bis and its bis-1/bis-2/bis-3 series,35,39). It reports 39 complete bodies and two partial bodies. The checkpoint190 text file is `alternate_source_text_capture_law68_142_70_additional_provisions_2026-11-18.md`.
+
+This changes the prior per-instrument text picture:
+- Law 68 now has text for Articles 2–14 (13 non-repealed provisions) plus an original 1947 version of Article 12; Article 1 remains repealed.
+- Law 142 inventory retains 30 unique article IDs, including the checkpoint165 and checkpoint190 bodies and Articles 9–10 from the deduplicated file.
+- Law 70 has 30 bodies in the earlier canonical file plus 20 additional bodies in checkpoint190. Several IDs overlap earlier text or represent later versions; a normalized article-version diff is required before expressing a single coverage percentage. Schedules A/B/C remain outstanding.
+
+The Law 70 amendment-chain file no longer repeats Article 21(9); the full Article 21 text is now in checkpoint190. The Law 68 historical-version file retains only original Article 12, since Articles 13–14 are unchanged and already present in the canonical text file.
