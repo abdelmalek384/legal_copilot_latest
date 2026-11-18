@@ -324,3 +324,13 @@ The following provisions are new to the repository text capture. Previously capt
 
 ### Official Gazette verification note — Regulation Article 20
 The official SIS-hosted Gazette issue 3 bis (أ), 18 January 2026 PDF (https://mediadr.sis.gov.eg/xmlui/bitstream/handle/123456789/118973/OG3_20260118_2885.pdf?isAllowed=y&sequence=2), lines 263–268, reads **تقارير سنوية** in Executive Regulation Article 20. The attached Form 3 at lines 516–555 is titled **تقرير ربع سنوي**. LAW HUB's secondary transcription uses the quarterly wording in Article 20 and therefore conflicts with the official Gazette PDF text layer. Preserve the Gazette wording and flag the internal Article20/Form3 discrepancy; do not harmonize the two.
+
+
+## Final deduplicated coverage
+
+The provision bodies in this file are now deduplicated by instrument and article number:
+- Law 168/2025: 18/18 provisions (four issuing articles and fourteen substantive articles).
+- PM Decision 200/2026: 24/24 provisions (four issuing articles and twenty Executive Regulation articles).
+- Presidential Decision 480/2026: 2/2 operative articles.
+
+**Total: 44 unique provision texts, with no repeated article body.** The Article20 annual/quarterly discrepancy is retained as a source-conflict note, not a duplicate article text. Forms 1, 2 and 3 are captured in the separate full-text forms file. Original Gazette binary/hash acquisition remains a separate outstanding task.
