@@ -237,3 +237,11 @@ This checkpoint upgrades that existing lead with the full 14-article Law 168/202
   5. Confirm whether any further presidential extension or implementing fee decision has been issued after Decision 480/2026.
   6. Retrieve the current national land-regularization platform procedures and preserve the official administrative guidance separately from the legislation.
   7. Reconcile Law 168/2025 and Decision 200/2026 with Law 7/1991, Law 143/1981, Law 114/1946, Law 119/2008, Law 14/2012 and Law 147/2021, without merging their distinct legal effects.
+
+## Checkpoint 93 supplement — Law 168/2025 Article 3 application-period calculation
+
+- PM Decision 200/2026 came into force on 19 January 2026; Law 168/2025 Article 3 starts the first six-month application period from that date.
+- Under the general rule in Civil and Commercial Procedure Law Article 15 (day of triggering event excluded; corresponding final day included), the first six-month period is calculated as ending 19 July 2026.
+- If Presidential Decision 480/2026's "another equivalent period" runs consecutively from expiry of the first period, the second six-month period runs 20 July 2026 through 19 January 2027.
+- This is a conditional statutory-calendar calculation, not a certified deadline. Decision 480/2026 was published on 10 November 2026 after the original period had elapsed and does not expressly state whether the extension is retrospective or prospective, or how applications during the apparent 20 July–10 November gap are treated.
+- Until an official implementation notice or written authority response resolves that gap, 19 January 2027 is a candidate final date only. Article 11's separate criminal-action/surrender period is not expressly extended.
