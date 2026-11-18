@@ -245,3 +245,14 @@ Important scope note: Article 875(1) expressly directs heir identification, inhe
 - Article 934 is a central real-estate conveyancing provision: immovable ownership and other real rights do not transfer unless the Real Estate Publicity Law requirements are observed. Article 936 lists statutory pre-emption beneficiaries; Articles 940–944 prescribe notice, registration, price deposit and proceedings; Article 947 gives registered notice a defined priority effect.
 - Special laws and amendments remain to be reconciled; OCR/image verification is outstanding.
 
+## 17. Further Civil Code extraction — Articles 950–984
+
+Checkpoint 107 adds **35 distinct provisions**, Articles 950–984, covering transfer and loss of possession, possessory actions, good faith, acquisitive prescription, acquisition of movables by possession, fruits, expenses and liability for deterioration.
+
+Cumulative Civil Code extraction stream: **719 distinct provisions** (67 previously recorded + 652 newly transcribed in this continuation). This is not a consecutive or verified current consolidation.
+
+Critical legal scope:
+- Articles 958–962 provide possessory recovery, interference-prevention and new-works remedies, with strict one-year and prior-possession requirements.
+- Article 968 gives the general 15-year acquisitive-prescription text; Article 969 provides a five-year route for immovables/real rights only with good faith and registered valid cause.
+- Article 970 bars acquisitive prescription over specified State/public legal-person assets and charitable waqf property. The text has been amended historically; the applicable version and special public-land statutes must be checked.
+
