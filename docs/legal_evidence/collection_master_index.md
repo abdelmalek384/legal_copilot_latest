@@ -2424,3 +2424,11 @@ Added searchable full-text source and selected Arabic provisions for PM Decision
 
 ### Additional labour-regulation acquisition — EG-0356
 Added complete two-article Arabic transcription of PM Decision2652/2026 extending the regularization period for private employment agencies by six months under Labour Law14/2025 Article6. See [Arabic text](acquisition_tranche_2026_pm2652_2026-11-18.md). The exact deadline and original Gazette PDF/hash remain to be verified.
+
+
+### Agent 3 — FRA amendments and parallel credit-reporting regime (18 Nov 2026)
+
+- Added [Decision 115/2026](agent3_fra_decision115_2026_carbon_deadline_extension_arabic_text.md), full two-article text from FRA-hosted Gazette PDF, issue 130 (تابع أ), 17 June 2026. Extends Decision 36/2026's initial carbon-footprint report deadline from 30 June to 31 December 2026.
+- Added [Decision 100/2026](agent3_fra_decision100_2026_amend_decision44_branch_rules_arabic_text.md), full two-article text from FRA-hosted Gazette PDF, issue 130 (تابع أ), 17 June 2026. Replaces Decision 44/2026 Article 6(1) and Article 7(2), changing regional officer coverage and the disqualification/cure test. Decision 44's updated consolidation already incorporates these changes; this separate record preserves the amending instrument as its own source.
+- Added [Decision 175/2026](agent3_fra_decision175_2026_amend_msmf_credit_reporting_arabic_text.md), full five-article text from FRA-hosted Gazette PDF, issue 199 (تابع 1), 10 September 2026. Amends Decisions 173/2014 and 31/2015 to require real-time I-Score reporting by covered microfinance companies and Category A/B associations/NGOs, monthly data within five days, and electronic integration within three months.
+- These are 3 additional unique instrument IDs. All source-matched from official FRA-hosted Gazette PDF text layers; visual page-image QA, currentness beyond identified amendments, lawyer review and commercial reuse rights remain outstanding.
