@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (Research Agent 1 checkpoint 210; Agent 3 continuation separately indexed)
+**Last updated:** 2026-11-18 (Research Agent 1 checkpoint 211; Agent 3 continuation separately indexed)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -46,7 +46,7 @@
 - Priority full-text inventory: **27 unique instrument records** (33 historical rows before six duplicate inventory aliases were merged) (9 base laws, 5 executive regulations, 1 presidential decision, 9 executive-regulation amendments, 1 implementing decision, 1 fee decision, 1 annual valuation decision). Inventory status varies; 27 unique records do not mean 27 authenticated complete texts; 26 have a searchable/full-text source status, while Law 143/1981 is represented by 27 complete article bodies plus one partial article and a repeal marker. Six duplicate inventory IDs are preserved in [the full-text inventory alias map](../data/research/egypt_full_text_inventory_aliases_2026-11-18.csv).
 - Completed core unique article provisions: **1,370** (Civil Code 1,093; Evidence Law 163; Building Law 114).
 - Additional searchable article-heading entries: **200** (Laws 114/1946: 70; 142/1964: 72; 68/1947: 14; 70/1964: 44); not fully extracted/versioned.
-- Historical article-version events: **44**; pre/post Arabic text snapshots are not normalized for every event.
+- Historical article-version events: **48**; pre/post Arabic text snapshots are not normalized for every event.
 - Historical Gazette scan reproductions visually inspected: **26 pages** across Laws 114/1946, 142/1964, 68/1947 and 70/1964; all secondary-hosted. Original Amiri Press digital binaries for those four statutes: **0**.
 - Law 168/2025 and Presidential Decision 480/2026 original Amiri Press DSpace bundles are request-only; Decision 200/2026 has a publicly listed SIS full-issue PDF (1.893 MB), but no local PDF/hash was archived in this pass.
 - Lawyer verification: **0**. Commercial reuse permissions established by this research: **0**. All canonical acquisition records retain lawyer_reviewed=false and rights_cleared=false.
@@ -97,6 +97,7 @@
 
 | checkpoint 6 — Agent 3 FRA Decision 43/2026 fintech consumer-finance licensing pause | Added one distinct FRA Board decision and exact Arabic text of Articles 1–2; original Gazette binary/page-image check remains outstanding | [Agent 3 checkpoint 6](agent3_progress_checkpoint_2026-11-18_6.md) |
 
+| checkpoint 211 — Decision 144 amendment version events | Added four normalized event rows for Decision 200/2010 Articles 19, 26 and 27 and Decision 120/2025 Article 26(5); event register rises from 44 to 48 | [checkpoint 211](collection_checkpoint_211_decision144_amendment_version_events_2026-11-18.md) |
 | checkpoint 210 — Decision 144/2009 Articles 26–40 extraction | Added 15 complete Arabic article bodies (Arts 26–40); preserved Article 26 and 27 pre-amendment/current wording and amendment links; cumulative coverage rises to 48/185 (137 remain) | [checkpoint 210](collection_checkpoint_210_decision144_articles_26_40_full_text_2026-11-18.md) |
 | checkpoint 209 — Decision 144/2009 Articles 20–23 and 25 extraction | Added five complete Arabic base article bodies (Arts 20–23 and 25); cumulative Decision 144 coverage rises to 33/185 (152 remain) | [checkpoint 209](collection_checkpoint_209_decision144_articles_20_23_25_full_text_2026-11-18.md) |
 | checkpoint 208 — Decision 144/2009 full-Arabic-body count audit | Corrected cumulative full-text count to 28/185 complete Arabic base article bodies (157 remain); English summaries and partial excerpts are separately excluded from the complete-body count | [checkpoint 208](collection_checkpoint_208_decision144_full_arabic_body_count_audit_2026-11-18.md) |
