@@ -3,6 +3,8 @@
 **Date:** 18 November 2026  
 **Purpose:** separate complete Arabic article bodies from summaries, partial extracts and English descriptions. This supersedes the cumulative 45/185 figure in checkpoints 205–207.
 
+**Superseding note (checkpoint 210):** Articles 26–40 were subsequently transcribed; Articles 36–38 were upgraded from summaries to complete Arabic bodies. Cumulative complete Arabic-body coverage is now 48/185 (137 remain). See checkpoint 210.
+
 **Superseding note (checkpoint 209):** Articles 20–23 and 25 were subsequently transcribed. Cumulative complete Arabic-body coverage is now 33/185 (152 remain). See checkpoint 209.
 
 ## 1. Method
@@ -51,7 +53,7 @@ The existing corpus also has selected non-full text for Articles 36, 37, 38, 60�
 | Law 119/2008 substantive base articles | 114/114 complete Arabic bodies |
 | Decision 144/2009 substantive base articles | 28/185 complete Arabic bodies |
 | Decision 144/2009 base articles remaining | 157 |
-| Decision 144/2009 selected summaries/partial excerpts | 17 base article IDs; not full bodies |
+| Decision 144/2009 selected summaries/partial excerpts | 14 base article IDs; not full bodies |
 | Decision 144/2009 inserted bis provisions with summaries only | 3 |
 | Decision 144/2009 issuing provisions | 4; separate |
 | Core unique statutory article provisions | 1,370; unchanged |
