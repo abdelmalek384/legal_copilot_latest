@@ -2297,3 +2297,9 @@ This materially improves the text record, but the Cabinet statement is not the p
 
 Added the two-page Official Gazette corrigendum, issue32 bis (8 Aug 2026), correcting Laws149,150 and151/2026. The two-page scan was visually inspected; the Customs Authority's Circular48/2026 provides a searchable text layer for the Law149 and Law150 correction tables. Corrected Law150 phrase: «وإجراءات حوكمتها» (not «حكومتها»). Law149 corrections include removal of an extra «و» before «مد هذه المدة» and insertion of «حكم» in «في حكم الأجهزة الطبية». Law151 corrections include the replacement-article list, Article43 «وبغير أي تخفيض», Article52's closing sentence, Article56's second condition numbering, and the start year for Article4 tax periods (2023, not 2022). The final particle in Article6's repeal sentence is flagged for higher-resolution verification.
 [Full correction tranche](acquisition_tranche_official_corrigendum_laws149_150_151_2026.md)
+
+
+### Finance Minister Decision450/2026 — full four-page text capture
+
+Added Decision450/2026 and both attached forms from the official four-page ETA scan. The decision prescribes separate forms for tax and customs dispute applications under Law152/2026 and permits free electronic filing through the competent authority portal. The local transcription includes the issuing provisions and form fields. The Egyptian Proceedings issue/date and exact original Amiri Press bundle remain to be confirmed.
+[Decision450/2026 Arabic text and forms](acquisition_tranche_finance_decision450_2026_tax_customs_dispute_forms_arabic.md)
