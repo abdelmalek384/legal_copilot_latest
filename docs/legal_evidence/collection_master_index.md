@@ -2400,3 +2400,11 @@ Added the three-article stamp-tax amendment to Law111/1980. It replaces Article8
 
 ### New Arabic text tranche — EG-0348 to EG-0353
 Added full Arabic transcriptions for Laws 1/2026, 2/2026 and 74/2026 and PM Decision37/2026, plus a clearly labelled partial Arabic operative extract for PM Decision2402/2026. See [acquisition tranche](acquisition_tranche_2026_laws1_2_74_pm37_2402_2026-11-18.md). Decision2402 is deliberately not represented as a complete text; its original Gazette issue31 bis (ج) is still required.
+
+
+### Agent 3 — Capital Market and FRA NBFI text acquisitions (18 Nov 2026)
+
+- Added [PM Decision 2423/2024](agent3_pm_decision2423_2024_capital_market_exec_reg_arabic_text.md), full Arabic preamble and amended/inserted operative provisions (10 replacement provisions + 3 insertions) to Executive Regulation 135/1993. Gazette: issue 30 bis (أ), 28 July 2024. Text transcribed from an Egyptian lawyer's legal-library page; official FRA amendment catalogue and MELES DSpace Arabic-PDF metadata corroborate the instrument and scope. The Gazette PDF has not yet been visually reconciled page-by-page.
+- Added [FRA Decision 35/2026](agent3_fra_decision35_2026_directors_liability_insurance_arabic_text.md), complete preamble and three articles from FRA-hosted Gazette PDF, issue 39 (تابع أ), 17 February 2026. NBFI licensees with issued/paid capital above EGP 50m must carry annual insurance for board/executive liability with cover of at least 5% of average revenue over the prior three years; six-month transition for existing companies.
+- Added [FRA Decision 44/2026 updated text](agent3_fra_decision44_2026_nbfis_branch_rules_updated_arabic_text.md), all 17 operative articles from the FRA-hosted updated six-page consolidation. It incorporates Decision 100/2026 (20 May 2026) amendments to Articles 5 and 7, and repeals Decisions 142/2018 and 179/2020 plus specified provisions of Decision 7/2019. Original Gazette issue 45 (تابع أ), 24 February 2026. This is a regulator consolidation/text-layer transcription, not a Gazette page-image audit.
+- These are 3 new unique instrument IDs in the acquisition ledger; the Decision 44 amended consolidated text is one instrument, not a separate extra count. Status: source-matched, not lawyer-reviewed. Page-image QA, local hashes, currentness and commercial reuse permissions remain open.
