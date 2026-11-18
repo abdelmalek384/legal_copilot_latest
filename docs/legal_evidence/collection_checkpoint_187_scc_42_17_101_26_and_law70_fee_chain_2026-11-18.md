@@ -51,7 +51,7 @@ The 11-page Law 70/1964 Gazette scan was visually inspected in checkpoint 94. Sc
 - Fatwa 453/2026, file 37/2/964, sitting 25 March 2026: a secondary report dated 10 June 2026 describes the State Council General Assembly's interpretation of the Law 163/2019 and Law 67/2021 cap for balance-sheet certifications. The reported reasoning and conclusion are internally inconsistent. The original signed fatwa must be obtained before encoding a rule.
 - Decision 5424/2006 and Fatwa 453/2026 are now separately registered as EG-0264 and EG-0265 under other decisions/advisory authorities, not judicial decisions.
 
-## 4. Register counts after implementation
+## 4. Register counts after implementation and subsequent inventory deduplication
 
 | Category | Count |
 |---|---:|
@@ -63,14 +63,14 @@ The 11-page Law 70/1964 Gazette scan was visually inspected in checkpoint 94. Sc
 | Judicial decisions | 21 |
 | Other decisions/circulars/advisory authorities | 54 |
 | Other/unclassified | 13 |
-| Priority full-text inventory | 33 |
+| Priority full-text inventory | 27 unique instruments after six duplicate rows merged; alias map retained |
 | Core unique article provisions | 1,370 |
 | Additional searchable article headings | 200 |
 | Supplemental article/provision text entries | 56 |
 | Historical article-version events | 44 |
 | Source-permission register records | 76 |
 
-The 56 supplemental text entries include one explicit repealed Article 1 marker; 55 are non-repealed text-bearing entries, with varying completeness. These are not added to the core 1,370 until IDs and version states are normalized.
+The 56 supplemental text entries from checkpoints 185–186 include one explicit repealed Article 1 marker; 55 are non-repealed text-bearing entries, with varying completeness. Checkpoints 187–188 add further extracts but overlap existing core/older article ranges and are not added until deduplication. These are not added to the core 1,370 until IDs and version states are normalized.
 
 ## 5. Progress estimates
 
