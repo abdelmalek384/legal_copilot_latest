@@ -1279,3 +1279,16 @@
 
 
 | checkpoint 139 — Agent 3 Investment Law 72/2017 amendment chain | Added official MIFT/Amiri Press full Arabic Law 141/2019 (adds provisions to Arts 12, 48, 74 and 91 bis); captured Law 160/2023 amendments from FRA-hosted consolidated law PDF and official GAFI 42-page Nov 2025 cash-incentive guide (Article 11 bis, 35–55% cash incentive, 50% foreign-currency funding test, sector and operating conditions); MIFT July 2026 confirms quarterly FDI reporting under Art 74 + Executive Regulation Art 126 bis A; MIFT 2026 notice identifies PM Decision 503/2026 automotive incentives but Gazette text still outstanding; +2 amendment statutes / +11 amendment units; cumulative Agent 3 minimum **166 instruments / 2,698 normalized units**; assigned-domain estimate **40% provisional**; whole corpus **2% provisional**; lawyer review 0%. Full Arabic texts, implementation and caveats: [agent3_investment_law_72_amendments_2019_2023_incentives_2026.md](agent3_investment_law_72_amendments_2019_2023_incentives_2026.md) |
+
+
+### Research Agent 1 — checkpoint 150: historical amendment chains for Laws 114/1946 and 68/1947 (18 November 2026)
+
+- Added [collection_checkpoint_150_law_114_and_68_historical_amendment_chains_2026-11-18.md](collection_checkpoint_150_law_114_and_68_historical_amendment_chains_2026-11-18.md).
+- Added 16 source-backed or explicitly qualified historical instrument records, EG-0199–EG-0214:
+  - Law 114 chain leads: Laws 69/1950, 222/1956, 136/1957, 82/1957, 181/1957, 5/1964, 25/1976, 223/1996, 186/2020 and 5/2021.
+  - Law 68 chain leads: Laws 629/1955 and 103/1976.
+  - Executive regulation amendments: Decisions 948/1976 and 9310/2020 (Law 114); Decisions 4730/2020 and 1532/1976 (Law 68).
+- The historical chain preserves unresolved issues: Law 82/1957's provision/publication annotation; Law 222/1956 / 181/1957 insertion/repeal; Law 25/1976 commencement-date conflict; and the source tiers of original Gazette scans vs secondary consolidations.
+- Acquisition register now has **210 non-header data rows**, 210 unique IDs and zero duplicate IDs. This supersedes the earlier checkpoint snapshots (189, 191, 193, 194) as the current register count. Source-permission register remains **54 unique records**.
+- Core complete article provisions remain **1,370**. No article texts were added in checkpoint 150. Core extraction remains 100% at article-number level for the three defined statutes; broader civil/property/contract corpus remains 15% provisional; whole Egyptian corpus remains 2% provisional.
+- No lawyer verification or commercial reuse permission is claimed. All new register records keep lawyer/reuse flags false.
