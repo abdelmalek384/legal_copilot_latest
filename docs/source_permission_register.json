@@ -1683,6 +1683,60 @@
       "permission_evidence": "Checked 2026-11-18. DSpace item identifies Official Gazette issue 3 bis (A), 18 January 2026 and a 1.89 MB original bundle. Publicly accessible full text also exists via the SIS Media Digital Repository, Amiri Press transcription and legal-text repositories. Access does not establish permission for bulk collection, commercial indexing, redistribution or public display. No reuse permission inferred.",
       "bulk_download_or_api": "request-copy workflow; no bulk/API licence established",
       "required_next_action": "Obtain the original bundle through authorized request; archive and hash exact bytes; review applicable terms and seek explicit permission for local archiving, Arabic extraction, indexing, commercial use, excerpt display and redistribution."
+    },
+    {
+      "source_id": "EG-SCC-CASE101-26-OFFICIAL-HTML",
+      "authority": "Supreme Constitutional Court of Egypt",
+      "source_page": "https://www.sccourt.gov.eg/DjangoPortalResources/Rules_Html/3204_26_101_1_2.html",
+      "file_url": "https://www.sccourt.gov.eg/DjangoPortalResources/Rules_Html/3204_26_101_1_2.html",
+      "material_types": [
+        "Official full judgment HTML",
+        "Constitutional Court Case 101/26"
+      ],
+      "access_status": "Public official SCC HTML; full judgment and Gazette correction note text accessible; original Gazette PDF/page images not acquired.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": "Checked 2026-11-18. Official judicial text is publicly accessible, but no explicit bulk collection, commercial indexing, republication or redistribution licence was located.",
+      "bulk_download_or_api": "No documented bulk/API permission identified.",
+      "required_next_action": "Preserve source citation and verify HTML against the Gazette page images; seek permission before bulk redistribution or commercial display."
+    },
+    {
+      "source_id": "EG-MKSEGYPT-CASE42-17",
+      "authority": "MKSEgypt legal text repository (secondary)",
+      "source_page": "https://mksegypt.org/ar/judgments-of-the-supreme-constitutional-court/15553",
+      "file_url": "https://mksegypt.org/ar/judgments-of-the-supreme-constitutional-court/15553",
+      "material_types": [
+        "Full Arabic secondary transcription",
+        "Constitutional Court Case 42/17"
+      ],
+      "access_status": "Public searchable full-text transcription; original signed judgment and original Gazette scan not located.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://mksegypt.org/",
+      "terms_checked_on": null,
+      "permission_evidence": "Checked 2026-11-18. General site terms and Creative Commons footer are not an instrument-specific permission grant for bulk acquisition, commercial legal-database reuse or redistribution.",
+      "bulk_download_or_api": "No bulk/API permission established.",
+      "required_next_action": "Retain as a secondary text source; obtain original SCC judgment/Gazette page and review site-specific terms before commercial use or redistribution."
+    },
+    {
+      "source_id": "EG-LAWEG-CASE11-23",
+      "authority": "Laweg legal archive (secondary)",
+      "source_page": "https://www.laweg.net/Default.aspx?ID=5943&action=DisplayNews",
+      "file_url": "https://www.laweg.net/Default.aspx?ID=5943&action=DisplayNews",
+      "material_types": [
+        "Judgment order and reasoning reproduction",
+        "Constitutional Court Case 11/23"
+      ],
+      "access_status": "Public text reproduction; official SCC subject page separately available but JavaScript-only; original signed judgment/Gazette scan not acquired.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://www.laweg.net/",
+      "terms_checked_on": null,
+      "permission_evidence": "Checked 2026-11-18. Public availability does not establish bulk collection, commercial reuse, reproduction or redistribution permission.",
+      "bulk_download_or_api": "No bulk/API permission established.",
+      "required_next_action": "Retain only as secondary corroboration; obtain original SCC signed judgment and Gazette issue 19 bis (ب) scan; review terms before reuse."
     }
   ]
 }
