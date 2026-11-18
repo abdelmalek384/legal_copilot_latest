@@ -123,3 +123,8 @@ Official Amiri Press metadata identifies the following new legal material:
 - Egyptian Proceedings supplement issue254 تابع, 15 November 2026: Housing Ministry Decisions999,1000,1005,1007,1131,1132,1133,1135/2026. Official metadata lists a 10.09 MB Gazette PDF but direct request-copy is currently required: https://dspace.id.com.eg/items/a435c22c-2361-4d10-acd1-eceb27593c1d .
 
 The DSpace catalogue is primary publication metadata, but its item pages sometimes expose only a “request a copy” form rather than direct PDF download. Do not call the binary acquired until bytes are actually obtained and hashed.
+
+
+## Text-quality clarification
+
+The Arabic article bodies above are a **normalized text digest, not a verbatim diplomatic transcription**. Several clauses were condensed for readability, particularly Articles 1, 4, 5, 9, 10 and 13. Do not treat the repository copy as the complete legal text or quote it as an exact statutory reproduction. The linked LAW HUB page displays the full 18-article searchable Arabic text (lines/articles 1–18) and is the current full-text acquisition lead. Exact local transcription and Gazette page-image comparison remain outstanding. The inventory's “full 18-article text captured” means full source text is available at the linked source, not that the normalized digest in this file is a verbatim copy.
