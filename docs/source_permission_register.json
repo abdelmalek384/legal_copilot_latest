@@ -1779,18 +1779,19 @@
       "source_page": "https://ahmedazimelgamel.blogspot.com/2015/11/131-1948.html?hl=ar&m=0",
       "file_url": "https://ahmedazimelgamel.blogspot.com/2015/11/131-1948.html?hl=ar&m=0",
       "material_types": [
-        "Historical Civil Code text",
-        "Repealed Articles 54–80",
-        "Law 131/1948"
+        "Historical Civil Code text for all 56 repealed provisions",
+        "Articles54–80 (27 association provisions)",
+        "Articles389–417 (29 evidence/proof provisions)",
+        "Law131/1948"
       ],
-      "access_status": "Public searchable full text; 1948 text transcription available; not original Gazette page images.",
+      "access_status": "Public searchable secondary transcription used for all 56 historical repealed article bodies in the canonical 56-row CSV. Not original 1948 Gazette page images. LawHub independently cross-checks Articles389–417.",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": "https://www.blogger.com/",
       "terms_checked_on": null,
-      "permission_evidence": "Checked 2026-11-18. Public access does not establish bulk collection, commercial reuse, republication or redistribution permission. No source-specific reuse grant located.",
+      "permission_evidence": "Used as the primary secondary transcription for the 56 historical repealed bodies in the canonical CSV. LawHub is now linked as an alternate cross-check for Articles389–417. Public access does not establish bulk collection, commercial reuse, republication or redistribution permission.",
       "bulk_download_or_api": "No bulk/API permission established.",
-      "required_next_action": "Use as secondary text pending visual collation with contemporaneous 1948 print edition; seek permission before commercial display or redistribution."
+      "required_next_action": "Collate all 56 historical bodies against the 1948 printed edition and original Gazette pages; compare Articles389–417 with LawHub; seek permission before commercial display or redistribution."
     },
     {
       "source_id": "EG-LAWHUB-CIVILCODE-REPEALED-389-417",
