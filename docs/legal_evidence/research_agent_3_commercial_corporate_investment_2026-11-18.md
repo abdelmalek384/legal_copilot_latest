@@ -1415,3 +1415,178 @@ The FRA page confirms Decision 2310/2017 is the Executive Regulation of Law 72/2
 **2026 operational update:** MIFT's 20 July 2026 press release says Article 74 of Law 72/2017 and Article 126 bis (أ) of the Executive Regulation require companies/establishments with foreign participation to report FDI data to GAFI within 45 days after each quarter ends. The ministry explicitly describes this as a current obligation. Official source: https://www.mift.gov.eg/Blog/Details/300. This is current administrative explanation, not a substitute for the exact Gazette text of Article 126 bis (أ) and its amendments.
 
 **Collection status:** full searchable base statute and current amendment footnotes obtained; 94 article numbering confirmed. Law 141/2019 full amendment text already captured elsewhere in this file; Law 160/2023 identified in consolidated text but Gazette source capture pending. Decision 2310/2017 confirmed by FRA but full updated regulation PDF inaccessible in this session. No lawyer approval or rights clearance claimed.
+
+
+## 16. Competition Law 3/2005 — updated ECA Arabic edition and Gazette-matched 2024 merger-control regulation
+
+### A. ECA June 2024 consolidated Arabic booklet
+
+**Official Egyptian Competition Authority PDF (June 2024 edition):**  
+https://eca.org.eg/getattachment/ff331345-8276-43ec-9096-3fb3dfd281e7/نص-قانون-حماية-المنافسة.pdf
+
+The ECA edition contains the Law 3/2005 issuing provisions, the statute and the original Executive Regulation 1316/2005 in one 34-page booklet. The text is searchable and includes amendments and footnotes through the Law 175/2022 merger-control amendment. It is a regulator-hosted official text; its title/metadata and some internal page headings contain obvious OCR/typographical inconsistencies (including some headings misreading Law 3/2005 as Law 2/2005), so page-image/Gazette checking remains necessary.
+
+**Verbatim — substantive Article 1:**
+
+> مادة ١
+>
+> تكون ممارسة النشاط الاقتصادي على النحو الذي لا يؤدي إلى منع حرية المنافسة أو تقييدها أو الإضرار بها، وذلك كله وفق أحكام القانون.
+
+**Verbatim — Article 3 (relevant market):**
+
+> مادة ٣
+>
+> السوق المعنية في تطبيق أحكام هذا القانون هي السوق التي تقوم على عنصرين هما المنتجات المعنية والنطاق الجغرافي. وتكون المنتجات المعنية تلك التي يعد كل منها بديلاً عملياً وموضوعياً عن الآخر، ويعني النطاق الجغرافي منطقة جغرافية معينة تتجانس فيها ظروف التنافس مع أخذ ظروف التنافس المحتملة في الاعتبار، وذلك كله وفقاً للمعايير التي تبينها اللائحة التنفيذية بما يتفق مع أهداف وأحكام هذا القانون.
+
+**Verbatim — Article 4 (dominance threshold):**
+
+> مادة ٤
+>
+> السيطرة على سوق معينة في تطبيق أحكام هذا القانون هي قدرة الشخص الذي تزيد حصته على (٢٥٪) من تلك السوق على إحداث تأثير فعال على الأسعار أو حجم المعروض بها دون أن تكون لمنافسيه القدرة على الحد من ذلك.
+>
+> ويحدد الجهاز حالات السيطرة وفقاً للإجراءات التي تبينها اللائحة التنفيذية لهذا القانون.
+
+**Verbatim — Article 5 (extraterritorial application):**
+
+> مادة ٥
+>
+> تسري أحكام هذا القانون على الأفعال التي ترتكب في الخارج إذا ترتب عليها منع حرية المنافسة أو تقييدها أو الإضرار بها في مصر والتي تشكل جرائم طبقاً لهذا القانون.
+
+**Verbatim — Article 6 (competitor agreements):**
+
+> مادة ٦
+>
+> يحظر الاتفاق أو التعاقد بين أشخاص متنافسة في أية سوق معينة إذا كان من شأنه إحداث أي مما يأتي:
+>
+> (أ) رفع أو خفض أو تثبيت أسعار المنتجات محل التعامل.
+>
+> (ب) اقتسام الأسواق أو تخصيصها على أساس من المناطق الجغرافية أو مراكز التوزيع أو نوعية العملاء أو نوعية المنتجات أو الحصص السوقية أو المواسم أو الفترات الزمنية.
+>
+> (ج) التنسيق فيما يتعلق بالتقدم أو الامتناع عن الدخول في المناقصات والمزايدات والممارسات وسائر عروض التوريد.
+>
+> (د) تقييد عمليات التصنيع أو الإنتاج أو التوزيع أو التسويق للمنتجات ويشمل ذلك تقييد نوع المنتج أو حجمه أو الحد من توافره.
+
+The ECA edition's footnotes identify Laws 190/2008, 193/2008, 56/2014, 190/2014, 15/2019 and 175/2022. The ECA's public summary additionally confirms the 2008, 2014, 2019 and 2022 law changes and the regulatory amendments in 2010, 2016 and 2024. Exact Gazette copies of all historic amendments remain to be assembled.
+
+### B. Executive Regulation Decision 1316/2005 and amendment history
+
+**Official ECA Executive Regulation page:**  
+https://eca.org.eg/ar-eg/جهاز-حماية-المنافسة/القانون/اللائحة-التنفيذية  
+**Official ECA searchable PDF of Decision 1316/2005 and its attached regulation:**  
+https://eca.org.eg/getattachment/d1cf241d-1246-442b-b827-da1c1035fc2d/اللائحة-التنفيذية.pdf
+
+The ECA PDF contains the issuing decision and the regulation text. The original regulation includes articles through at least Article 47 in the source edition; 2024 Decision 1120 adds a new Chapter 9 with Articles 48–62. The official ECA page lists amendment attachments for PM Decision 2957/2010 and PM Decision 2509/2016.
+
+**Verbatim — Decision 1316/2005 issuing Article 1:**
+
+> المادة الأولى
+>
+> يعمل بأحكام اللائحة التنفيذية لقانون حماية المنافسة ومنع الممارسات الاحتكارية الصادر بالقانون رقم ٣ لسنة ٢٠٠٥ المرفقة.
+
+**Verbatim — Decision 1316/2005 issuing Article 2:**
+
+> المادة الثانية
+>
+> ينشر هذا القرار في الجريدة الرسمية، ويعمل به اعتباراً من اليوم التالي لتاريخ نشره.
+>
+> صدر برئاسة مجلس الوزراء في ١١ رجب سنة ١٤٢٦ هـ (الموافق ١٦ أغسطس سنة ٢٠٠٥م).
+
+### C. PM Decision 1120/2024 — Gazette source and full added Chapter 9
+
+**Decision:** Prime Minister Decision 1120/2024, dated 4 April 2024.  
+**Gazette:** Official Gazette issue 14 bis (أ), 4 April 2024.  
+**Effective date:** 1 June 2024.  
+**Official Gazette repository record:** https://dspace.id.com.eg/items/ad17d638-6e99-43c4-9ad3-adcda03d6ef1  
+**Full searchable Arabic text (secondary legal database, cross-check against Gazette PDF):** https://www.mksegypt.org/ar/decisions/21943  
+**Ministry of Finance official legislation catalogue entry:** https://mof.gov.eg/ar/legislation/decisions/cat-5fe2a20d7bfc600007cbce3a?page=7
+
+The Gazette repository metadata identifies the publisher as Amiri Press and the file as Official Gazette issue 14 bis (أ). The decision replaces Executive Regulation Articles 30 and 41 (first paragraph), adds Chapter 9 / Articles 48–62 on examination of economic concentrations, and repeals Articles 44, 44 bis and 45. The 2024 ECA consolidated regulation PDF contains the new Chapter 9 and footnotes that identify it as added by PM Decision 1120/2024.
+
+**Verbatim — new Regulation Article 48 (economic concentration definition):**
+
+> مادة (٤٨)
+>
+> التركز الاقتصادي هو كل تغيير في التحكم أو التأثير المادي في شخص أو عدة أشخاص، والذي يكون ناتجاً عن أي من الحالات الآتية:
+>
+> ١- اندماج شخص أو أكثر في شخص قائم يحتفظ بشخصيته القانونية عقب الاندماج، أو إنشاء شخص جديد عن طريق مزج اثنين على الأقل من الأشخاص، التي كانت مستقلة سابقاً، وانقضاء شخصيتها القانونية أو أي من أجزائها.
+>
+> ٢- استحواذ شخص أو أكثر، بطريقة مباشرة أو غير مباشرة، على التحكم أو التأثير المادي في شخص آخر أو جزء منه بموجب عقد، أو عن طريق شراء أوراق مالية أو أصول أو غيرها من الطرق، ويمكن أن يتم الاستحواذ بشكل فردي أو جماعي.
+
+**Verbatim — new Regulation Article 54 (substantive review factors):**
+
+> مادة (٥٤)
+>
+> يحظر التركز الاقتصادى إذا كان من شأنه الحد من حرية المنافسة أو تقييدها أو الإضرار بها.
+>
+> ويتولى الجهاز تقييم آثار التركز الاقتصادى على حرية المنافسة فى السوق فى ضوء العناصر الآتية:
+>
+> ١- هيكل السوق أو الأسواق المعنية، ومستوى المنافسة الفعلية أو المحتملة داخل مصر أو خارجها متى كانت مؤثرة فى أسواقها.
+>
+> ٢- الوضع السوقى للأشخاص المعنية بالتركز الاقتصادي، بما فى ذلك وضعهم الاقتصادى وملاءتهم المالية مقارنة بالاستثمارات الحالية والمحتملة فى السوق.
+>
+> ٣- البدائل المتاحة للموردين والعملاء والمستهلكين وقدرتهم على الوصول إلى موارد الإنتاج أو الأسواق المعنية وأنماط توريد المنتجات المعنية واستهلاكها.
+>
+> ٤- عوائق الدخول فى الأسواق المعنية والتوسع فيها.
+>
+> ٥- الأثر المحتمل للتركز الاقتصادى على المستهلك أو الاستثمارات القائمة أو المحتملة.
+>
+> ٦- الأثر المحتمل للتركز الاقتصادى على الابتكار أو التطوير.
+>
+> ٧- الآثار السلبية المحتمل وقوعها على حرية المنافسة.
+
+**Verbatim — new Regulation Article 55 (who must notify):**
+
+> مادة (٥٥)
+>
+> يقع واجب الإخطار المنصوص عليه فى المادتين (١٩ مكرراً أ) و(١٩ مكرراً هـ) من القانون، بحسب الأحوال، على الأشخاص الآتية:
+>
+> ١- الشخص أو الأشخاص المستحوذة فى حالة الاستحواذ الذى يؤدى إلى التحكم أو التأثير المادى بشكل فردى أو جماعى على شخص أو عدة أشخاص.
+>
+> ٢- الأشخاص المندمجة فى حالة الاندماج.
+>
+> ٣- الأشخاص المستحوذة فى حالة الاستحواذ على شخص بغرض إنشاء مشروع مشترك.
+>
+> ٤- الأشخاص القائمة على إنشاء مشروع مشترك.
+
+**Verbatim — new Regulation Article 61 (below-threshold review):**
+
+> مادة (٦١)
+>
+> يحق للجهاز، بعد موافقة المجلس، بدء فحص التركز الاقتصادى الذى لا يجاوز الحدود المبينة لواجب الإخطار، إذا قامت لديه أدلة أو قرائن من شأنها الحد من حرية المنافسة أو تقييدها أو الإضرار بها خلال فترة لا تجاوز سنة من تاريخ تنفيذ التركز الاقتصادي، وتعد قرائن على ذلك تحقق أى من الحالات الآتية:
+>
+> ١- الحد من التطور التكنولوجى أو الابتكار.
+>
+> ٢- التحكم فى الأسواق بأى فعل من شأنه أن يؤدى إلى زيادة أو خفض الأسعار.
+>
+> ٣- تقليل جودة المنتجات.
+>
+> ٤- خلق عوائق الدخول فى السوق أو التوسع فيه.
+
+**Verbatim — new Regulation Article 62 (FRA sectoral notification):**
+
+> مادة (٦٢)
+>
+> يلتزم الأشخاص بإخطار الهيئة العامة للرقابة المالية بالتركز الاقتصادى الذى يتم فى أى من الأنشطة الخاضعة لإشراف ورقابة الهيئة العامة للرقابة المالية قبل إبرام العقد، وعلى الهيئة استطلاع رأى الجهاز قبل الموافقة على تنفيذ التركز الاقتصادي.
+>
+> ويلتزم الأشخاص بإخطار الهيئة العامة للرقابة المالية بملف الإخطار كاملاً مستوفياً للبيانات والمستندات الواردة فى المادة (٥٦) من هذه اللائحة.
+
+**Regulatory commencement:** ECA confirms the ex-ante merger-control regime started on 1 June 2024 pursuant to Law 175/2022 and PM Decision 1120/2024. The ECA also publishes non-binding Q&A/guidance documents; distinguish these from binding law and regulations.
+
+### D. 2026 proposed replacement Competition Law — do not ingest as enacted law
+
+The Egyptian House of Representatives approved a government bill in final form on 22 April 2026. The bill aims to replace/update the competition law framework, strengthen ECA independence, introduce administrative financial sanctions for legal persons and establish a Higher Committee for Competitive Neutrality. The Parliament's own news service and ECA press release confirm parliamentary approval, but the official Ministry of Finance legislation catalogue still lists Law 3/2005 as **سارٍ**, and the ECA's current law page continues to identify Law 3/2005 and Law 175/2022. No promulgation number, Gazette issue or official text of the replacement statute was located in this collection pass.
+
+**Classification:** parliamentary bill approved, not yet established here as promulgated law. Do not load it as operative legislation unless and until Presidential promulgation and Official Gazette publication are obtained.
+
+### E. Consumer Protection Law 181/2018 — CPA official Gazette-text PDF
+
+**Official Consumer Protection Agency legislation page:** https://cpa.gov.eg/ar-eg/تشريعات  
+**Official 32-page PDF:** https://cpa.gov.eg/Portals/0/Law/CPA-Newlaw.pdf
+
+The CPA page identifies Law 181/2018 as the new Consumer Protection Law, dated 11 October 2018. The 32-page PDF was opened. The web text extraction returns severely corrupted Arabic glyphs, so no OCR output is copied as accurate law text. This is an official primary-source document locator and page-count confirmation, not a complete text extraction. A human should visually transcribe pages or acquire a better searchable official text. The CPA page currently exposes the Law PDF but not a clearly linked consolidated text of PM Decision 822/2019.
+
+**Verified separate CPA public explanation:** the CPA's official 22 December 2021 release reproduces Article 19's supplier obligation to notify the Agency of defects within seven days, immediately if health/safety risk exists, and the repair/replacement/refund duty. This is an agency explanation, not a substitute for checking the PDF: https://cpa.gov.eg/ar-eg/بيانات-اعلامية/ArtMID/654/ArticleID/6706
+
+**CPA legal source caution:** the official CPA legislation page lists the Law 181/2018, but current amendments and the complete Executive Regulation 822/2019 plus later decisions still need to be collected and matched.
+
+**Collection classification:** Law 3/2005 — official ECA updated booklet, full searchable statute; Executive Regulation 1316/2005 — official ECA searchable PDF; PM Decision 1120/2024 — Gazette issue/date and added Chapter 9 source verified, with Articles 48, 54, 55, 61 and 62 transcribed; 2026 replacement-law bill — legislative status lead only; Law 181/2018 — official CPA PDF acquired but OCR unusable. No lawyer approval or rights clearance claimed.
