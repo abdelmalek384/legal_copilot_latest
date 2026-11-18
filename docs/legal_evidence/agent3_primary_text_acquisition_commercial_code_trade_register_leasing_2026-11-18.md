@@ -286,3 +286,15 @@ The 772/21/84 counts describe article structures in the PDFs, not proof that eve
 - Law 176/2018 has an extensive FRA implementing-decision chain; the law itself delegates numerous material issues to FRA Board decisions. Decision 51/2026 and branch/key-position decisions are separately indexed in Agent 3 records.
 - Public access does not establish commercial reuse or redistribution permission. No rights clearance is claimed.
 - No lawyer verification. Status: `source-matched, not lawyer-reviewed`.
+
+
+## Post-acquisition duplicate audit — superseding count correction (18 Nov 2026)
+
+A deeper repository search after this file was created found that the prior Agent 3 checkpoint already contained:
+- Commercial Code 17/1999 official ETA PDF and source notes (Articles 1–771 plus retained 1883 partnership chapter);
+- Trade Register Law 34/1976 official-hosted base PDF, with Law 98/1996 note and warning that Articles 3, 8 and 9 were pre-Law 198/2020;
+- Financial Leasing and Factoring Law 176/2018 official FRA PDF and source notes.
+
+Therefore, the three statutes in this file are **not new unique instrument acquisitions** and must not add +3 instruments or +877 normalized provision units to cumulative totals. This document remains useful as an additional excerpt/transcription compilation, but its initial claim that the master index lacked these acquisitions was incomplete because the detailed prior Agent 3 checkpoint file was not searched before the initial count.
+
+The cumulative Agent 3 totals are corrected in the master index. No additional normalized provision units are credited from this file until the provision-level deduplication ledger confirms which excerpts were genuinely new. The separate 1883 legacy partnership segment remains historical text, not a second count of Law 17/1999.
