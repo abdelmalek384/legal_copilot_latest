@@ -4299,3 +4299,186 @@ The original Law 181/2018 Article 71 in the Gazette reproduction prescribed a mi
 Article 1(4) excludes financial and banking services governed by the Central Bank Law and non-bank financial-market regulation from the definition of "products" under this law. Article 36 also excludes banking/financial services and services connected to capital-market trading from the distance-contract chapter. This is an important lex-specialis boundary for the legal retrieval engine: Consumer Law 181/2018 should not be mechanically applied to bank/financial services without checking CBE/FRA law.
 
 **Collection status:** full 76-article Arabic Official Gazette reproduction obtained through WIPO Lex with Gazette issue/date visible; 23 article/provision texts transcribed in this section. CPA's own 32-page PDF remains official source locator; WIPO reproduction provides readable text. Law 20/2024 Article 71 replacement remains the current version. No lawyer approval or rights clearance claimed.
+
+
+## 39. Consumer Protection Executive Regulation 822/2019 — full 47-article text now retrieved
+
+### A. Full text source and Gazette provenance
+
+**Decision:** Prime Minister Decision 822/2019 issuing the Executive Regulation of Law 181/2018.  
+**Gazette:** Official Gazette issue 13 bis (أ), 1 April 2019; effective 2 April 2019.  
+**Full searchable text, 47 articles:** https://alhasswalawfirm.com/law-library/decree-822-2019  
+**Official indexed Gazette text:** https://www.laweg.net/framePlain.aspx?NID=140476&action=viewactivepages&itemid=113646&type=6  
+**Earlier partial searchable source:** https://lawhub.info/eg/?p=12689
+
+The previous checkpoint only surfaced Articles 1–23 from the LawHub page. The full 47-article text is now available from the searchable transcription attributed to the Court of Cassation legislation portal and the official Laweg Gazette index. Correct the earlier "23 articles only" status: full text through Article 47 has now been surfaced, but the underlying Gazette PDF/page-image comparison remains outstanding.
+
+### B. Additional verbatim provisions
+
+**Verbatim — Regulation Article 6 (mandatory product labelling):**
+
+> مادة (٦)
+>
+> يلتزم المورد بأن يضع على السلع البيانات الآتية:
+>
+> ١- اسم السلعة.
+>
+> ٢- بلد المنشأ.
+>
+> ٣- اسم المنتج أو المستورد واسمه التجاري وعنوانه وعلامته التجارية إن وجدت.
+>
+> ٤- تاريخ الإنتاج.
+>
+> ٥- مدة الصلاحية للسلع التي لها فترة زمنية لصلاحيتها للاستهلاك.
+>
+> ٦- شروط التداول والتخزين وطريقة الاستعمال.
+>
+> ٧- الأنواع والسمات والأبعاد والأوزان والمكونات.
+>
+> ٨- مدة الضمان للسلع المشمولة بالضمان.
+>
+> ٩- العمر الافتراضي.
+>
+> كما يلتزم المورد في الأحوال التي قد يؤدي فيها استخدام المنتج إلى الإضرار بصحة وسلامة المستهلك بأن يضع على المنتج ما يبين الطريقة الصحيحة لاستخدامه وكيفية الوقاية من الأضرار المحتملة وكيفية علاجها في حالة حدوثها.
+
+**Verbatim — Regulation Article 7 (total price display):**
+
+> مادة (٧)
+>
+> يلتزم المورد بأن يعلن عن السعر الشامل للسلعة التي يعرضها أو يقدمها للمستهلك، بكتابته بشكل واضح على السلعة ذاتها أو عبوتها، أو بوضع ملصق بالسعر الشامل على السلعة ذاتها أو عبوتها، أو بوضعه بشكل واضح على وحدات عرض السلعة، وذلك كله بحسب طبيعة السلعة.
+>
+> ويلتزم مقدم الخدمة بأن يعلن بطريقة واضحة عن بيانات الخدمة التي يقدمها، وخصائصها ومواعيدها، والسعر الشامل للحصول عليها وذلك في أماكن تقديمها للمستهلك.
+
+**Verbatim — Regulation Article 8 (deceptive conduct):**
+
+> مادة (٨)
+>
+> يلتزم المورد أو المعلن بتجنب أي سلوك خادع، وذلك متى انصب هذا السلوك على أي عنصر من العناصر الآتية:
+>
+> ١- طبيعة السلعة أو صفاتها الجوهرية أو العناصر التي تتكون منها أو كميتها.
+>
+> ٢- مصدر السلعة أو وزنها أو حجمها أو طريقة صنعها أو تاريخ إنتاجها أو تاريخ صلاحيتها أو شروط استعمالها أو محاذيره.
+>
+> ٣- خصائص المنتج والنتائج المتوقعة من استخدامه.
+>
+> ٤- السعر أو كيفية أدائه، ويدخل في ذلك أي مبالغ تتم إضافتها للسعر وعلى وجه الخصوص قيمة الضرائب المضافة.
+>
+> ٥- جهة إنتاج السلعة أو تقديم الخدمة.
+>
+> ٦- نوع الخدمة ومكان تقديمها ومحاذير استخدامها وصفاتها الجوهرية سواء انصبت على نوعيتها أو الفوائد من استخدامها.
+>
+> ٧- شروط التعاقد وإجراءاته، وخدمة ما بعد البيع، والضمان.
+>
+> ٨- الجوائز أو الشهادات أو علامات الجودة التي حصل عليها المنتج أو السلعة أو الخدمة.
+>
+> ٩- العلامات التجارية أو البيانات أو الشعارات.
+>
+> ١٠- وجود تخفيضات على السعر على خلاف الحقيقة.
+>
+> ١١- الكميات المتاحة من المنتجات.
+>
+> ١٢- العبارات أو الاشتراطات المبينة لحقوق المستهلك.
+>
+> ١٣- الإعلان عن توافر المنتج.
+>
+> ١٤- الإعلان عن المسابقات دون ذكر رقم وتاريخ إخطار الجهاز بالمسابقة.
+>
+> ١٥- الإعلان عن المنتجات التي يتطلب الإعلان عنها تصريحاً من الجهات المختصة دون الحصول عليه.
+
+**Verbatim — Regulation Article 9 (invoice):**
+
+> مادة (٩)
+>
+> يلتزم المورد بأن يسلم إلى المستهلك فاتورة تثبت التعامل أو التعاقد معه على المنتج، دون تحميل المستهلك أي أعباء إضافية مالية كانت أم غير مالية، على أن تتضمن البيانات الآتية:
+>
+> ١- اسم المورد واسم محله التجاري ورقم السجل التجاري ورقم تسجيله الضريبي.
+>
+> ٢- تاريخ التعامل أو التعاقد على المنتج.
+>
+> ٣- السعر الشامل للمنتج.
+>
+> ٤- نوعية المنتج وطبيعته ومواصفاته.
+>
+> ٥- حالة المنتج إذا كان مستعملاً.
+>
+> ٦- كمية المنتج من حيث العدد أو الوزن.
+>
+> ٧- ميعاد التسليم إذا كان التسليم آجلاً.
+>
+> ٨- توقيع أو ختم المورد أو من يمثله قانوناً.
+>
+> ٩- فترات الاستبدال والاسترجاع وطريقة التواصل مع الجهاز.
+>
+> ١٠- العمر الافتراضي للسلع التي لها عمر افتراضي.
+>
+> ١١- مدة الضمان للمنتجات المشمولة بالضمان.
+
+**Verbatim — Regulation Article 20 (home services receipt):**
+
+> مادة (٢٠)
+>
+> يلتزم مورد خدمات التشطيبات والصيانة والتركيبات المنزلية بأن يسلم للمستهلك، وقت التعاقد وقبل مباشرة الأعمال المتعاقد عليها، إيصالاً يثبت التعامل موضحاً به بيانات المورد وسجله التجاري وتاريخ التعاقد ومواصفات الأعمال المتفق عليها والتكلفة المتوقعة والتاريخ المتوقع لانتهاء الأعمال وما يرى المورد أو المستهلك ضرورة إضافته بالإيصال وذلك بحسب طبيعة المنتج والعرف التجاري.
+>
+> وإذا كانت قيمة الأعمال المتفق على أدائها تقل عن ألف جنيه يكتفى بتدوين اسم المورد والتاريخ وإجمالي التكلفة وبيان الأعمال المتفق عليها.
+>
+> فإذا لم يسلم المورد الإيصال على النحو المبين بالفقرة السابقة، يكون للمستهلك إثبات عناصر التعاقد بكافة طرق الإثبات.
+
+**Verbatim — Regulation Article 21 (repair and service-centre warranty):**
+
+> مادة (٢١)
+>
+> تلتزم مراكز الخدمة والصيانة بإبلاغ المستهلك ببيان بأعمال الصيانة والإصلاح اللازمة للمنتج، ومدة الإصلاح وتكلفته، ويجب عليها الحصول على موافقته الصريحة على هذه الأعمال قبل إجرائها.
+>
+> كما تلتزم بإصدار فاتورة للمستهلك توضح بها ما تم من أعمال الصيانة والأجزاء التي تم استبدالها من المنتج محل الخدمة.
+>
+> وتضمن المراكز المشار إليها سلامة المنتج في حدود خدمة الإصلاح وفقاً لطبيعة الخدمة وشروط التعاقد، والعرف التجاري وبحد أدنى ستة أشهر من تاريخ انتهاء الإصلاح.
+>
+> كما تلتزم عند تحقق شروط المسئولية عن سلامة الإصلاح إما برد ما حصلته من مقابل للخدمة أو بإعادة تقديم الخدمة دون أي تكلفة إضافية على المستهلك، وذلك ما لم يكن العيب قد نشأ لسبب أجنبي أو لخطأ المستهلك.
+
+**Verbatim — Regulation Article 32 (complaint response):**
+
+> مادة (٣٢)
+>
+> يجوز للمستهلك ولجمعيات حماية المستهلك التقدم بشكوى إلى الجهاز في حالة حدوث أية مخالفة لأحكام القانون أو هذه اللائحة، ولا يتقاضى الجهاز مقابلاً عن الشكاوى التي يتلقاها.
+>
+> ولا تتجاوز إجراءات فحص الشكوى والرد عليها ثلاثين يوماً من تاريخ قيدها.
+
+**Verbatim — Regulation Article 33 (complaint contents):**
+
+> مادة (٣٣)
+>
+> تقدم الشكوى إلى الجهاز عن طريق مكالمة هاتفية أو إرسالها بالبريد أو من خلال الموقع الإلكتروني للجهاز أو تقديمها مباشرة إلى أحد أفرع الجهاز، أو بأية وسيلة أخرى يحددها الجهاز، ويجب أن تكون الشكوى مشفوعة بالبيانات والمستندات الآتية:
+>
+> ١- اسم مقدم الشكوى وعنوانه ورقم هاتفه وبيانات الرقم القومي له وصفته ومصلحته في تقديمها.
+>
+> ٢- اسم المشكو في حقه وعنوانه أو موقعه الإلكتروني بحسب الأحوال وطبيعة نشاطه.
+>
+> ٣- بيانات المنتج محل الشكوى، وسعره الشامل والمستندات المؤيدة لهذه البيانات ومنها الفاتورة أو الضمان وأي مستندات أخرى تثبت العلاقة بين المورد والمستهلك.
+>
+> ٤- مضمون الشكوى.
+>
+> وللمستهلك أن يقدم أي بيانات أو مستندات أخرى يرى أنها مؤيدة لشكواه.
+
+**Verbatim — Regulation Article 40 (inspection record):**
+
+> مادة (٤٠)
+>
+> يجب أن يقتصر المحضر الذي يقوم بتحريره مأمور الضبط القضائي على إثبات الوقائع والمستندات والأقوال دون التعرض للتكييف القانوني ويجب أن يدون بالمحضر ما اتخذ من إجراءات على الأخص ما يأتي:
+>
+> ١- تاريخ وساعة ومكان فتح المحضر.
+>
+> ٢- اسم وصفة محرر المحضر.
+>
+> ٣- اسم وصفة الشخص الذي تمت الإجراءات في مواجهته سواء كان صاحب المنشأة أو المسئول عن إدارتها.
+>
+> ٤- إثبات الوقائع والمستندات والأقوال محل المخالفة.
+>
+> ٥- توقيع صاحب المنشأة أو المسئول عن إدارتها على المحضر، أو إثبات واقعة امتناعه عن التوقيع.
+>
+> ٦- توقيع محرر المحضر.
+
+### C. Full regulation version and currentness
+
+The full secondary transcription identifies 47 numbered regulation articles. The current text should still be compared against the Official Gazette issue 13 bis (أ) scan and any subsequent PM or CPA decisions. The official CPA website does not expose a clear consolidated 2025/2026 regulation PDF in the catalogue, so this remains an open currentness check.
+
+**Collection status:** Decision 822/2019 full searchable 47-article Arabic text now surfaced; nine additional article provisions transcribed in this section. Earlier "23 articles only" limitation is superseded. No lawyer approval or rights clearance claimed.
