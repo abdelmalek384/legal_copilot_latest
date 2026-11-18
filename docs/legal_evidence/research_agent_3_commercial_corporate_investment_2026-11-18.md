@@ -2213,3 +2213,235 @@ FRA official legislative catalogues:
 Unlike a statute with one conventional cabinet Executive Regulation, Law 176/2018 Article 2 and Articles 5, 36, 37, 39, 40, 45, 55, 56, 60 and 68 expressly delegate detailed requirements to FRA Board decisions. The practical regulatory corpus is therefore a set of activity-specific decisions, amendments, governance rules, registration rules, financial-reporting rules and circulars. No single comprehensive Executive Regulation of Law 176/2018 was identified in the FRA catalogue during this pass. Do not fabricate one.
 
 **Collection status:** full searchable Law 176/2018 through Article 84 obtained from official FRA PDF; key provisions transcribed. FRA decision chain for licensing, registration, factoring controls, governance, financial statements and M&A/liquidation located. The exact Gazette copies and full article-by-article text of each implementing decision still need to be added; no lawyer review or rights clearance claimed.
+
+
+## 23. Importers Register Law 121/1982 — full consolidated text, Laws 7/2017, 9/2018, 173/2023, 4/2026 and new Decision 271/2026
+
+### A. Law 121/1982 — full searchable Arabic text consolidated to 2 April 2026
+
+**Official MIFT law record:** https://mift.gov.eg/legislation/details/260  
+**GOEIC official law catalogue:** https://www.goeic.gov.eg/ar/laws-and-decisions/list/891  
+**Searchable full consolidated Arabic text (secondary legal publisher):** https://alhasswalawfirm.com/law-library/law-121-1982  
+**Alternative searchable text:** https://lawhub.info/eg/?p=11692
+
+MIFT identifies Law 121/1982 as **ساري** and its record lists the base law, amendments Law 7/2017 and Law 9/2018, and prior Executive Regulation Decision 846/2017. GOEIC's current official catalogue adds Law 173/2023 and Law 4/2026. The searchable text on the secondary legal publisher states it is current through 2 April 2026 and includes the amendment notes and all 15 original statutory articles plus inserted provisions (current article sequence reaches Article 14). This is a transcription aid, not an official consolidated Gazette copy.
+
+**Verbatim — Article 1 (registration requirement):**
+
+> مادة (١)
+>
+> لا يجوز لأي شخص طبيعي أو اعتباري استيراد السلع بقصد الاتجار إلا إذا كان مقيداً بسجل المستوردين المعد لذلك بوزارة الاقتصاد والتجارة الخارجية وفقاً لأحكام هذا القانون.
+>
+> وفي تطبيق أحكام الفقرة السابقة يعتبر استيراد الوكيل التجاري للسلع استيراداً بقصد الاتجار.
+
+**Verbatim — Article 2 (individual/company eligibility; selected current requirements):**
+
+> مادة (٢)
+>
+> يشترط فيمن يطلب القيد في سجل المستوردين أن تتوافر فيه الشروط الآتية:
+>
+> أولا: بالنسبة لقيد الأشخاص الطبيعيين:
+>
+> (أ) أن يكون مقيداً في السجل التجاري، وحائزاً على بطاقة ضريبية.
+>
+> (ب) أن يكون مصري الجنسية.
+>
+> (ج) أن يكون قد زاول الأعمال التجارية لمدة سنتين متتاليتين سابقتين على الأقل على طلب القيد، وتثبت مزاولة الأعمال التجارية بشهادة من الغرفة التجارية المختصة معتمدة من الاتحاد العام للغرف التجارية، وألا يقل حجم الأعمال في السنة الأخيرة من واقع الإقرار الضريبي المقدم لمصلحة الضرائب عن مليوني جنيه.
+>
+> (د) ألا يكون قد سبق الحكم عليه بحكم نهائي بعقوبة جناية، أو بعقوبة في جريمة مخلة بالشرف أو الأمانة، أو في إحدى الجرائم المنصوص عليها في قوانين قمع الغش والتدليس أو التموين أو الجمارك أو الاستيراد والتصدير أو الرقابة على المعادن الثمينة أو الشركات أو مكافحة غسل الأموال أو حماية حقوق الملكية الفكرية أو حماية المنافسة ومنع الممارسات الاحتكارية أو البنك المركزي أو الضريبة على القيمة المضافة أو الضريبة على الدخل أو حماية المستهلك أو في إحدى الجرائم المنصوص عليها في المادة (٨) من هذا القانون، وذلك كله ما لم يكن قد تم التصالح فيها أو رد إليه اعتباره.
+>
+> (هـ) ألا يكون قد صدر ضده حكم نهائي، لارتكابه إحدى جرائم التفالس بالتدليس أو بالتقصير ما لم يكن قد رد إليه اعتباره.
+>
+> (و) ألا يقل رأس المال المثبت في السجل التجاري عند طلب القيد عن خمسمائة ألف جنيه.
+
+The company eligibility conditions include commercial registration, Egypt headquarters/formation, trading/import purpose, minimum paid/source capital and annual turnover requirements, and the 51% Egyptian ownership baseline subject to the statutory exception introduced by Law 173/2023.
+
+**Verbatim — Article 2 bis (production/service companies exemption, added by Law 7/2017):**
+
+> مادة (٢) مكرراً
+>
+> يعفى من القيد في سجل المستوردين الشركات المسجلة التي تزاول نشاطاً إنتاجياً أو خدمياً وذلك في حدود ما تستورده من مستلزمات، باسمها ولحسابها لمزاولة هذا النشاط.
+
+**Verbatim — Article 3 bis (importer security, added by Law 7/2017):**
+
+> مادة (٣) مكرراً
+>
+> يشترط للقيد في سجل المستوردين إيداع تأمين نقدي أو تقديم خطاب ضمان مصرفي معادل ووفقاً للضوابط والإجراءات التي تحددها اللائحة التنفيذية وذلك على النحو الآتي:
+>
+> (١) ٥٠ ألف جنيه للأشخاص الطبيعيين.
+>
+> (ب) ٢٠٠ ألف جنيه للأشخاص الاعتبارية.
+>
+> ويرد هذا التأمين في حالة انتهاء مدة السجل، أو في حالة عدم الرغبة في تجديده.
+
+**Verbatim — Article 6 bis (suspension power, added by Law 173/2023):**
+
+> مادة (٦) مكرراً
+>
+> يجوز للوزير المختص بشئون التجارة الخارجية بقرار مسبب وقف قيد المستورد في سجل المستوردين لمدة لا تجاوز عامين، إذا خالف أحكام القوانين المنظمة للاستيراد والتصدير أو الجمارك أو الضرائب أو الرقابة على المعادن الثمينة أو حماية المستهلك، أو استورد سلعة بالمخالفة لأحكام القوانين المنظمة لقمع التدليس والغش أو بالمخالفة للمواصفات القياسية المصرية المعتمدة أو بالمخالفة لأحكام الاتفاقيات الدولية ذات الصلة والنافذة في جمهورية مصر العربية، متى كان يترتب على ذلك كله الإضرار بسلامة أو صحة المستهلك، أو بالصناعة الوطنية أو الاقتصادية القومية، أو بالنظام العام، أو الآداب العامة.
+
+**Verbatim — Article 7 last paragraph (added by Law 4/2026):**
+
+> ويجوز إعادة القيد في السجل في حالة قيام ورثة الشخص الطبيعي أو بعضهم بتأسيس شركة بغرض ممارسة ذات نشاط مورثهم خلال عام ونصف من تاريخ الوفاة، على أن تُعفى الشركة في هذه الحالة من الشروط المنصوص عليها في البند (ثانياً/أ) من المادة (٢) من هذا القانون.
+
+**Verbatim — Article 4 bis (added by Law 4/2026):**
+
+> مادة (٤) مكرراً:
+>
+> مع عدم الإخلال بحكم المادة (٢) من هذا القانون يجوز للجهة المختصة بالوزارة المختصة بشئون التجارة الخارجية حال إخطارها خلال ستين يوماً بتغيير أو تعديل الشكل القانوني للشركات المقيدة في سجل المستوردين أو تعديل رقم التسجيل الضريبي لها أن تقوم بقيد هذا التغيير أو التعديل، وفقاً للإجراءات التي تحددها اللائحة التنفيذية لهذا القانون، ويُعد ذلك بمثابة تعديل للبيانات في السجل.
+
+**Verbatim — Article 12 bis (settlement, added by Law 4/2026):**
+
+> مادة (١٢) مكرراً:
+>
+> للجهة المختصة بالوزارة المختصة بشئون التجارة الخارجية التصالح مع المتهم في الجرائم المنصوص عليها في المادتين (٨، ١٠) من هذا القانون، وذلك على النحو الآتي:
+>
+> ١- قبل رفع الدعوى الجنائية إلى المحكمة المختصة مقابل أداء مبلغ لا يقل عن الحد الأدنى للغرامة المقررة ولا يجاوز ثلث حدها الأقصى.
+>
+> ٢- بعد رفع الدعوى الجنائية إلى المحكمة المختصة وقبل صدور حكم بات فيها، مقابل أداء مبلغ لا يقل عن ثلاثة أمثال الحد الأدنى للغرامة المقررة ولا يجاوز ثلثي حدها الأقصى.
+>
+> ٣- بعد صيرورة الحكم باتاً، مقابل أداء مبلغ لا يقل عن الحد الأقصى للغرامة المقررة ولا يجاوز مثلي حدها الأقصى.
+>
+> ويترتب على التصالح انقضاء الدعوى الجنائية، وجميع الآثار المترتبة على الحكم، بحسب الأحوال، وتأمر النيابة العامة بوقف تنفيذ العقوبة إذا حصل التصالح أثناء تنفيذها ولو بعد صيرورة الحكم باتاً.
+
+**Verbatim — Article 8 (penalties, current text following Law 7/2017):**
+
+> مادة (٨)
+>
+> مع عدم الإخلال بأية عقوبة أشد ينص عليها قانون آخر، يعاقب بالحبس لمدة لا تجاوز عاماً وبغرامة لا تقل عن خمسين ألف جنيه ولا تزيد على مليون جنيه أو بإحدى هاتين العقوبتين، كل من ارتكب أياً من الأفعال الآتية:
+>
+> ١- استورد سلعاً بقصد الاتجار دون القيد في سجل المستوردين.
+>
+> ٢- قدم بسوء قصد بيانات غير صحيحة سواء كانت هذه البيانات متعلقة بالقيد في سجل المستوردين، أو بتجديد القيد في هذا السجل، أو تعديل بياناته.
+>
+> ٣- دون على إحدى المراسلات أو المطبوعات أو الأوراق المتعلقة بالأعمال الاستيرادية بيانات غير صحيحة في شأن القيد بالسجل.
+>
+> ٤- امتنع عن موافاة الجهة الإدارية التي يحددها وزير الاقتصاد والتجارة الخارجية بالبيانات التي تطلبها بشأن التصرف في الرسالة المستوردة وأماكن تخزينها أو توزيعها، أو امتنع عن تقديم فواتير البيع والتوزيع، أو قدم فواتير وهمية أو غير صحيحة، وذلك دون الإخلال بأحكام القوانين المتعلقة بحماية البيانات التجارية.
+>
+> وتضاعف عقوبة الغرامة بحديها في حالة العود.
+
+### B. Amendment history and exact 2026 legislative status
+
+- **Law 7/2017:** broad amendment of Law 121/1982. It amended multiple Article 2 eligibility requirements, added Article 2 bis (exemption for production/service companies importing their own inputs), Article 3 bis (deposit/bank guarantee), Article 6 bis (suspension), updated Articles 3, 4, 6, 8, 10, 11 and 12, and repealed Article 9 and other obsolete provisions. Official Gazette issue 9 bis (أ), 7 March 2017. GOEIC current catalogue lists it.
+- **Law 9/2018:** adds the final paragraph to Article 2 (ministerial extension of time to regularize). Official Gazette issue 5 bis (ج), 7 February 2018. The full amendment is referenced in the consolidated law's footnotes.
+- **Law 173/2023:** amends Law 121/1982 concerning foreign ownership in the Importers Register; it permits companies whose shares/quotas are not owned by Egyptians or are owned by Egyptians below 51% to be registered for a total period not exceeding ten years, extendable once for a further period not exceeding ten years by Prime Minister decision on ministerial proposal. It also adds Article 6 bis suspension power. Full Gazette text and issue/date/page still need retrieval.
+- **Law 4/2026:** Official Gazette issue 14 تابع (أ), 2 April 2026. Official Amiri Press indexed text: https://alamiria.com/Sec/TashTxt?id=ej7L8KHCh+c%3D. Official Gazette DSpace item: https://dspace.id.com.eg/items/1736ce1d-b76b-4207-bc58-69a17207e2f2. Adds Article 2 final paragraph (foreign-currency equivalent payments), Article 4 bis (company legal-form/tax-registration changes), Article 7 final paragraph (heirs' company re-registration), and Article 12 bis (settlement of offences). A pre-parliamentary bill draft proposed an additional Article 10(3), but the final enacted Law 4/2026 does **not** include it; do not ingest the draft provision as law.
+
+### C. New Executive Regulation — Ministerial Decision 271/2026
+
+**Official MIFT record:** https://mift.gov.eg/legislation/details/334  
+MIFT marks Decision 271/2026 as **ساري**, issued 21 July 2026 by the Ministry of Investment and Foreign Trade, and identifies it as the Executive Regulation of Law 121/1982.
+
+**Official GOEIC catalogue entry:** https://www.goeic.gov.eg/ar/laws-and-decisions/list  
+**Official Gazette metadata:** الوقائع المصرية issue 157 (تابع), 21 July 2026; Amiri Press publisher; DSpace record https://dspace.id.com.eg/items/75c6c046-b583-422b-ba45-dcbc1bbee146. The Gazette PDF is marked restricted access (request-a-copy workflow), so the Gazette image bytes were not downloaded.
+**Searchable Arabic text, transcribed from Official Gazette / Court of Cassation portal (secondary legal publisher):** https://alhasswalawfirm.com/law-library/decree-271-2026
+
+The searchable reproduction contains the three issuing provisions and 17 numbered regulatory articles (20 total including issuing provisions). Decision 271/2026 expressly repeals Ministerial Decision 846/2017 and every inconsistent rule; it takes effect the day after publication (22 July 2026).
+
+**Verbatim — Decision 271/2026 issuing Article 2 (repeal):**
+
+> مادة (الثانية)
+>
+> يلغى قرار وزير التجارة والصناعة رقم ٨٤٦ لسنة ٢٠١٧ باللائحة التنفيذية للقانون رقم ١٢١ لسنة ١٩٨٢ في شأن سجل المستوردين، كما يلغى كل حكم يخالف أحكام اللائحة المرافقة.
+
+**Verbatim — Regulation Article 2 (electronic register):**
+
+> مادة (٢)
+>
+> تكون الهيئة هي الجهة المختصة بتطبيق أحكام القانون، وتمسك السجل لقيد الأشخاص الطبيعيين والشركات الراغبة في استيراد السلع بقصد الاتجار، على أن يتضمن السجل البيانات التي تحددها الهيئة، وعلى الأخص ما يأتي:
+>
+> أولاً - بالنسبة للشخص الطبيعي:
+>
+> ١- بيانات الشخص وتتضمن الاسم والعنوان والبريد الإلكتروني ورقم الهاتف المحمول.
+>
+> ٢- مجموعة السلع التي يقوم باستيرادها.
+>
+> ثانياً - بالنسبة للشخص الاعتباري:
+>
+> ١- اسم الشركة وشكلها القانوني وغرضها.
+>
+> ٢- بيانات التواصل وبخاصة العنوان ورقم الهاتف والبريد الإلكتروني.
+>
+> ٣- مجموعة السلع التي يقوم باستيرادها.
+>
+> ٤- أسماء مديري الشركة والمسئولين عن الاستيراد.
+
+**Verbatim — Regulation Article 3 (electronic platform):**
+
+> مادة (٣)
+>
+> تتولى الهيئة خلال ستة أشهر من تاريخ العمل بهذه اللائحة إعداد منصة إلكترونية لتلقي طلبات القيد أو تجديد القيد أو إعادة القيد بالسجل، وكذا طلبات تعديل أو تحديث بيانات المستوردين، على أن يتم تقديم الطلبات من خلال تلك المنصة فور تفعيلها.
+
+**Verbatim — Regulation Article 8 (decision period and term):**
+
+> مادة (٨)
+>
+> تتولى الهيئة البت في طلب القيد أو تجديد القيد أو إعادة القيد بالسجل خلال مدة لا تجاوز خمسة عشر يوماً من تاريخ تقديم الطلب مستوفياً كافة المستندات المطلوبة، ويعتبر انقضاء مهلة البت في الطلب دون رد بمثابة رفض للطلب.
+>
+> ويصدر قرار القيد أو إعادة القيد أو تجديد القيد بالسجل من رئيس الهيئة أو من يفوضه، وينشر القرار على الموقع الإلكتروني للهيئة، ويتم تحديث السجل وفقاً لذلك وتكون مدة القيد بالسجل خمس سنوات قابلة للتجديد لمدد مماثلة، بشرط استمرار توفر شروط القيد أو إعادة القيد، حسب الأحوال.
+
+**Verbatim — Regulation Article 9 (ongoing importer obligations):**
+
+> مادة (٩)
+>
+> يلتزم المستورد المقيد بالسجل بمراعاة ما يأتي:
+>
+> ١- أحكام القوانين المنظمة للتجارة، وقمع الغش والتدليس، والتموين والجمارك، والاستيراد والتصدير، والرقابة على المعادن الثمينة والأحجار ذات القيمة، والشركات، ومكافحة غسل الأموال، وحماية حقوق الملكية الفكرية، وحماية المنافسة ومنع الممارسات الاحتكارية، والبنك المركزي المصري، والضريبة على القيمة المضافة، والضريبة على الدخل، وحماية المستهلك، وأحكام الاتفاقيات الدولية ذات الصلة والنافذة في جمهورية مصر العربية.
+>
+> ٢- مطابقة السلع المستوردة للمواصفات القياسية المصرية المعتمدة.
+>
+> ٣- الإشارة إلى رقم القيد بالسجل في جميع العقود والفواتير والعناوين التجارية والإعلانات، وجميع الأوراق والمطبوعات الأخرى التي تصدر عنه.
+>
+> ٤- زيادة مبلغ التأمين حال نقصانه أو في حالة تسييل خطاب الضمان المصرفي، بما يضمن استيفاء قيمة التأمين المقررة قانوناً طيلة مدة القيد وتجديد القيد وإعادة القيد بالسجل.
+>
+> ٥- موافاة الهيئة فوراً وعلى البريد الإلكتروني الذي تخصصه لهذا الغرض بأماكن تخزين الرسائل المستوردة، والفواتير الإلكترونية الخاصة بعمليات البيع، وفواتير توزيع السلع المستوردة متضمنة بيانات الموزع وسجله التجاري.
+>
+> ٦- موافاة الهيئة بالقوائم المالية السنوية والإيضاحات المتممة لها وتقرير مراقب الحسابات فور اعتمادها وبحد أقصى أربعة أشهر من تاريخ انتهاء السنة المالية للشركة، وموافاة الهيئة بالقوائم المالية ربع السنوية مرفقاً بها تقرير فحص محدود من مراقب الحسابات خلال خمسة وأربعين يوماً من نهاية الفترة.
+
+**Verbatim — Regulation Article 10 (60-day updates):**
+
+> مادة (١٠)
+>
+> يلتزم المستورد بإخطار الهيئة على النموذج المعد منها ورقياً أو إلكترونياً بكل ما يطرأ من تغييرات أو تعديلات على البيانات المقيدة في السجل خلال ستين يوماً على الأكثر من تاريخ حدوثها، على أن يرفق بالإخطار بيان بتلك التعديلات والمستندات الخاصة بذلك.
+>
+> إذا لم يقدم الإخطار خلال الميعاد المشار إليه في الفقرة الأولى من هذه المادة، فلا يجوز لصاحب الشأن الاحتجاج به قبل الغير، ومع ذلك يجوز للغير التمسك بهذا التعديل في مواجهة صاحب الشأن.
+
+**Verbatim — Regulation Article 11 (company legal form/tax number changes):**
+
+> مادة (١١)
+>
+> يلتزم المستورد المقيد بالسجل بإخطار الهيئة على النموذج المعد منها ورقياً أو إلكترونياً في حالة قيامه بتغيير أو تعديل شكله القانوني، أو تعديل رقم التسجيل الضريبي له خلال ستين يوماً من تاريخ التعديل، على أن يرفق بالإخطار ما يأتي:
+>
+> ١- مستخرج حديث من السجل التجاري للشركة متضمناً التعديلات.
+>
+> ٢- صورة من البطاقة الضريبية.
+>
+> ٣- خطاب من مصلحة الضرائب يتضمن أسباب تعديل رقم التسجيل الضريبي وتاريخه، في حالة إذا كان التعديل راجعاً إلى مصلحة الضرائب.
+>
+> وعلى الهيئة أن تقوم بقيد هذا التغيير أو التعديل بعد التأكد من صحته، ويعد ذلك بمثابة تعديل للبيانات في السجل.
+
+**Verbatim — Regulation Article 13 (fees):**
+
+> مادة (١٣)
+>
+> تحدد رسوم القيد وإعادة القيد وتجديد القيد وتعديل البيانات وإصدار الصور والشهادات ورسوم النشر على النحو الآتي:
+>
+> ٥٠٠٠ جنيه رسم القيد لأول مرة ولإعادة القيد.
+>
+> ٢٠٠٠ جنيه رسم تجديد القيد.
+>
+> ١٠٠٠ جنيه عن كل مجموعة سلعية.
+>
+> ٥٠٠ جنيه رسم طلب تعديل أو تدوين بيانات فيما عدا إضافة وتعديل المجموعات السلعية.
+>
+> ٥٠٠ جنيه رسم النشر عن القيد أو التجديد أو التعديل.
+>
+> ١٠٠ جنيه رسم استخراج صورة من صحيفة السجل أو شهادة سلبية، وتعفى من أداء هذا الرسم المستخرجات والشهادات التي تطلبها الوزارات والمصالح الحكومية والوحدات المحلية والهيئات العامة.
+
+### D. Critical 2026 status / source-rights notes
+
+- Decision 271/2026 repeals Decision 846/2017; do not continue treating 846/2017 as current.
+- Law 4/2026 final text is four insertions, not the wider pre-legislative draft. In particular, the proposed Article 10(3) non-notification offence did not appear in the final enacted text; the new Decision 271/2026 Regulation Article 10 instead implements the 60-day data-update obligation.
+- The new regulation requires an electronic platform within six months of 22 July 2026 (by 22 January 2027), then mandatory electronic filing once activated. Verify the actual platform launch separately before saying it is operational.
+- The DSpace Gazette PDF for Decision 271/2026 is access-restricted; the searchable law-firm text is a secondary transcription attributed to the Court of Cassation legislation portal. Record the restriction; do not redistribute or claim primary bytes were downloaded.
+- No lawyer verification or commercial reuse rights clearance claimed.
