@@ -9,7 +9,7 @@ Inspected:
 - The 40-source permission register.
 - Existing Law 114/1946, Law 142/1964, Law 68/1947, Law 70/1964, Civil Code and Evidence Law checkpoints.
 
-This checkpoint adds one new base statute (Law 119/2008), one amending statute (Law 23/2015), one executive regulation (Decision 144/2009), and three related ministerial/implementation decisions (410/2021, 943/2024 and 3866/2026). It upgrades the primary-source locator for Evidence Law 25/1968 and confirms a full official-government-hosted Civil Code PDF through Article 1149. Existing instruments are upgraded rather than double-counted.
+This checkpoint adds one new base statute (Law 119/2008), five amending statutes (Laws 23/2015, 54/1974, 23/1992, 18/1999 and 76/2007), one executive regulation (Decision 144/2009), and three related ministerial/implementation decisions (410/2021, 943/2024 and 3866/2026). It upgrades the primary-source locator for Evidence Law 25/1968 and confirms a full official-government-hosted Civil Code PDF through Article 1149. Existing instruments are upgraded rather than double-counted.
 
 ## 2. Building Law 119/2008 — full Official Gazette reproduction located
 
@@ -277,7 +277,7 @@ No attempt was made to bypass restricted DSpace access. No original PDF bytes or
 
 ### Acquisition register
 
-- Six new instrument records will be added as EG-0177–EG-0182.
+- Ten new instrument records have been added as EG-0177–EG-0186.
 - Evidence Law EG-0002 will be upgraded with the official Ministry of Finance PDF locator and 11/12-page visual-inspection status.
 - All lawyer-review and rights-clearance flags remain false.
 - No original Gazette binary download or SHA-256 is claimed for this checkpoint.
