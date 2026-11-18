@@ -2512,3 +2512,53 @@ FRA's official financial-leasing/factoring legislation catalogue and contemporan
 - Unique instrument count and provision-unit count remain unchanged: 146 instruments / 1,349 provision units. This tranche upgrades source coverage and identifies an exact corrigendum gap; it does not add a newly verified instrument.
 - Assignment completion estimate remains **31%**. The source acquisition is progressing, but currentness reconciliation is still 0/13 subject families complete.
 - Lawyer-reviewed / legally verified remains **0%**.
+
+
+## 52. Investment incentive geographic-allocation decisions — new instrument tranche
+
+These decisions implement the sector/geographic incentive framework under Investment Law 72/2017, particularly Articles 11 and 13. They are not amendments to the 133-article Decision 2310/2017 regulation; index them as linked implementing decisions and preserve their schedules as structured tables.
+
+### A. PM Decision 104/2022
+- Subject: distribution of investment activity sub-sectors across geographic Zones (A) and (B).
+- Gazette: issue 52 bis (هـ), 4 January 2022; effective 5 January 2022.
+- Official ETA index lists the PDF qarar-104-2022.pdf: https://www.eta.gov.eg/en/node/837
+- Full Arabic text/transcription lead: https://www.eastlaws.com/legislation-full-text/ar/egypt/prime-minister-decision/04-01-2022/no-104?id=2043303&type=1
+- Articles 1–3: Article 1 adopts attached tables allocating sub-sectors to Zones A/B; Article 2 requires covered companies/establishments to obtain the relevant approvals, permits and licences; Article 3 provides publication and commencement.
+- The attached tables are operative and must be captured as structured data, not reduced to prose.
+
+### B. PM Decision 981/2022
+- Subject: allocation of sub-sectors in electricity/renewable energy, education and sports across Zones A/B, and targeted additions to Decision 104/2022.
+- Gazette: issue 10 bis (د), 14 March 2022; source metadata and full Arabic text are exposed by Amiri Press: https://alamiria.com/Sec/TashTxt?id=Ad7+24xCrdg%3D
+- Articles 1–5: allocate the additional sectors using attached tables; require sectoral approvals/licences; add an environmentally friendly alternative-products item to the Zone A and Zone B tables under the industrial sub-sector; publication/commencement.
+- This decision modifies the Decision 104/2022 framework; retain the base schedules and the amendment overlay separately.
+
+### C. PM Decision 983/2022
+- Subject: GAFI coordination with ministries and relevant entities to identify projects proposed for additional incentives appropriate to their nature under Articles 11 and 13 of Law 72/2017.
+- Gazette: issue 10 bis (د), 14 March 2022.
+- Amiri Press full Arabic text: https://alamiria.com/Sec/TashTxt?id=AnD1aRwA2n4%3D
+- DSpace record and Arabic file metadata: https://dspace.id.com.eg/items/2baf880d-f355-4388-8ed5-92b0ce583867
+- Article 1 establishes the coordination/identification task. It is an implementation/administrative decision, not an amendment to Law 72 or Decision 2310.
+
+### D. PM Decision 4427/2022
+- Subject: adds research centres and accreditation laboratories associated with the automotive industry to the industrial sub-sector entry in both Zone A and Zone B schedules attached to Decision 104/2022.
+- Issued 8 December 2022; Gazette issue 49 (تابع), 8 December 2022.
+- Amiri Press full Arabic text: https://alamiria.com/Sec/TashTxt?id=HahVuRgveOc%3D
+- Articles 1–2: insert the new item in both tables; publication/commencement next day.
+
+### E. PM Decision 503/2026
+- Subject: replaces the industrial sub-sector distribution in tables (1) and (2) attached to Decision 104/2022 with the new distribution in its own attached tables.
+- Issued 16 February 2026; Amiri Press source: https://www.alamiria.com/Sec/TashTxt?id=AAWyD55BtvA%3D
+- Arabic operative text is surfaced by the official Amiri Press search result; the page itself timed out on open. Treat as official-source text discovery with page-level capture still required.
+- Articles 1–2: substitute the industrial-sector tables and provide publication/commencement next day.
+- This is a material currentness update to the incentive schedules. The 2022 industrial allocations must not be served as current without applying Decision 503/2026.
+
+### Cross-source correction: Decision 876/2023
+- A previous lead described Ministerial Decision 876/2023 as an investor-residency/banking amendment. That attribution is not supported by the legal-source evidence now found.
+- The Refugees Platform legal library identifies Decision 876/2023 as a Council of Ministers decision amending PM Decision 3099/2019 on granting Egyptian nationality to foreigners, not a general investor-residency decree: https://rpegy.org/papers/
+- The U.S. State Department 2024 Investment Climate Statement describes investor-residence/banking changes but appears to conflate that matter with Decision 876/2023. Do not cite Decision 876/2023 as the legal basis for investor residence. Re-open and classify the actual 2023 residency instrument separately before using it.
+
+### Count increment
+- Five additional unique PM decisions with Arabic operative text surfaced: 104/2022, 981/2022, 983/2022, 4427/2022 and 503/2026.
+- Thirteen issuing provision units counted: 104/2022 (3), 981/2022 (5), 983/2022 (1), 4427/2022 (2), 503/2026 (2). The schedules attached to these decisions are additional data tables and are not included in the provision-unit count.
+- Cumulative Agent 3 minimum: **151 unique instruments / 1,362 provision units**.
+- Working assignment completion estimate remains **31%**: the new instruments expand the inventory, but the total denominator is unknown and the decision schedules still need structured capture. Lawyer-reviewed / legally verified remains **0%**.
