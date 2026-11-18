@@ -1,0 +1,45 @@
+# Checkpoint 116 — Civil Code deduplication audit and remaining article gaps
+
+## Deduplication method
+
+A repository-wide article-number audit was run across the Civil Code extraction files:
+- checkpoint 86 (including all appended Civil Code supplements);
+- checkpoints 95–106.
+
+The audit counted explicit Arabic article headings (**مادة N**) and deduplicated by article number, not by URL, file count, or source count. Repeated article numbers across files were excluded from the unique total.
+
+## Corrected totals
+
+- **836 unique Civil Code article numbers identified** across the extraction set.
+- **835 article texts are transcribed**; Article 766(2) is incomplete in the available PDF text layer and remains quarantined. The Article 766 number is included in the 836 identified numbers but not in the complete-text count.
+- This corrects the prior provisional master-index total of 849, which had overcounted 13 repeated or non-distinct article headings in earlier checkpoint summaries.
+- The extracted set is non-consecutive and does not represent a fully consolidated or current Civil Code.
+- The Code is numbered through Article 1149. Articles 389–417 (29 numbers) are repealed in the base text and are not counted as operative current provisions for completion estimates.
+
+## Untranscribed article-number ranges
+
+The following article numbers were not found as explicit transcribed article headings in the audited Civil Code files:
+
+1. Articles 1–215 (215 numbers).
+2. Articles 371–379 (9 numbers).
+3. Articles 389–417 (29 numbers, repealed in the base text).
+4. Articles 448–451 (4 numbers).
+5. Articles 453–495 (43 numbers).
+6. Article 707 (1 number).
+7. Articles 709–713 (5 numbers).
+8. Article 715 (1 number).
+9. Article 1019 (1 number).
+10. Articles 1021–1022 (2 numbers).
+11. Articles 1024–1026 (3 numbers).
+
+Total gaps: **313 article numbers**, comprising 29 repealed base-text numbers and 284 other untranscribed numbers.
+
+Therefore, among the 1,120 article numbers remaining after excluding the 29 repealed numbers, 836 have been identified in the current extraction set (835 complete and one partial), while 284 have not yet been transcribed.
+
+## Key implications for continuation
+
+- Highest-volume gap: Articles 1–215, covering general obligations, contracts, nullity, rescission, agency/contractual rules and related civil-law foundations. This is the next priority.
+- Next gaps: Articles 448–495 (sale and related obligations) and Articles 453–495 require special care because Article 452 is already present in the audited source set.
+- Small gaps in the agency and real-security sequences (707, 709–713, 715, 1019, 1021–1022, 1024–1026) should be filled from the official government-hosted PDF and checked for repeal or numbering changes.
+- The base-code repeal of Articles 389–417 must be retained as a historical version status, not silently omitted or treated as operative.
+- The count is a source-extraction metric only. It does not measure amendment completeness, judicial interpretation coverage, Gazette-image verification, lawyer review or reuse rights.
