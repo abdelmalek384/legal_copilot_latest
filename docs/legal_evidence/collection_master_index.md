@@ -879,3 +879,11 @@
 - MIFT official announcement reports work on amendments to Executive Regulation 96/1982: shareholders' agreements, convertible notes/register, specialized capital-increase valuation companies/register, legal-form changes for sole proprietorships and continuity of commercial history.
 - Announcement is not an enacted legal instrument. Do not add it to operative legal sources or treat these proposals as law until the amending decision is published in the Official Gazette.
 - **Updated Agent 3 minimum:** 77 distinct instruments with some Arabic text surfaced; 1,065 article/provision text units; 13/13 assigned families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
+
+
+### Research Agent 3 — Capital Market Executive Regulation Decision 1539/2025
+
+- Prime Minister Decision 1539/2025: Official Gazette issue 18 مكرر, 4 May 2025; effective 5 May 2025. Official DSpace Gazette record and FRA's current Decision 135/1993 amendment register both identify the decision.
+- Adds Regulation Article 35 مكرراً 9: energy-source certificates under Electricity Law 87/2015 are financial instruments tradable on Egyptian exchanges. This amends Executive Regulation Decision 135/1993, not Capital Market Law 95/1992 itself.
+- Two issuing provisions and the inserted regulatory provision transcribed in Agent 3 file.
+- **Updated Agent 3 minimum:** 78 distinct instruments with some Arabic text surfaced; 1,068 article/provision text units; 13/13 assigned families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
