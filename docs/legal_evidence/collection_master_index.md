@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (expanded through checkpoint 132)
+**Last updated:** 2026-11-18 (expanded through checkpoint 133)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -1086,3 +1086,6 @@
 
 
 | checkpoint 113 — Agent 3 Investment Law 72/2017 amendment chain | Added official Arabic source routes for Law 72/2017 and Decision 2310/2017; captured Decisions 2300/2022, 2140/2023 and 1203/2024, Law 160/2023 including Article 11 bis cash incentive and golden-license changes; recorded 10 Aug 2023 corrigendum as unresolved text lead; cumulative Agent 3 minimum 115 instruments / 1,251 provision units |
+
+
+| checkpoint 114 — Agent 3 Trade Register Decision 41/2020 | Captured Gazette-original Decision 41/2020 (Egyptian Gazette 56 تابع, 8 Mar 2020), adding Companies/Trader beneficial-owner register provisions 13 bis-1 to 13 bis-3, immediate update/reporting and five-year post-cessation retention; cumulative Agent 3 minimum 116 instruments / 1,253 provision units |
