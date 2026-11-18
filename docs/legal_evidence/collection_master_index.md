@@ -377,7 +377,11 @@
 
 | [collection_checkpoint_80_electronic_signature_law_15_2004.md](collection_checkpoint_80_electronic_signature_law_15_2004.md) | Electronic Signature Law 15/2004, Executive Regulation 361/2020 and trust-services amendment Decision 467/2024 |
 
-| [collection_checkpoint_85_property_registration_land_registry_2026-11-18.md](collection_checkpoint_81_property_registration_land_registry_2026-11-18.md) | Law 114/1946, Law 9/2022, Law 142/1964, Decision 825/1975, Decision 2332/2022, Decision 11264/2016 and current 2026 cadastral commencement postponements 5207/2026 and 5208/2026; official/secondary source distinctions and extraction failures recorded |
+| [collection_checkpoint_85_property_registration_land_registry_2026-11-18.md](collection_checkpoint_85_property_registration_land_registry_2026-11-18.md) | Law 114/1946, Law 9/2022, Law 142/1964, Decision 825/1975, Decision 2332/2022, Decision 11264/2016 and current 2026 cadastral commencement postponements 5207/2026 and 5208/2026; official/secondary source distinctions and extraction failures recorded |
+
+| [collection_checkpoint_86_civil_code_property_contract_article_extraction_2026-11-18.md](collection_checkpoint_86_civil_code_property_contract_article_extraction_2026-11-18.md) | Government-hosted Arabic Civil Code extracts: sale, lease, agency, suretyship, easements and official mortgage (48 unique article provisions; no duplicate base instrument) |
+| [collection_checkpoint_87_mortgage_finance_law_148_2001_and_regulations_2026-11-18.md](collection_checkpoint_87_mortgage_finance_law_148_2001_and_regulations_2026-11-18.md) | Official FRA updated text for Mortgage Finance Law 148/2001 and PM Decision 1/2001 regulation; Gazette amendments Law 55/2014, Law 93/2018 and PM Decision 32/2024; missing amendment instruments and commencement discrepancy recorded |
+| [collection_checkpoint_88_legacy_rent_laws_and_judicial_amendments_2026-11-18.md](collection_checkpoint_88_legacy_rent_laws_and_judicial_amendments_2026-11-18.md) | Full searchable secondary texts and article extracts for Laws 49/1977, 136/1981, 6/1997, 14/2001, 4/1996, 137/2006 and Decision 237/1997; judicial invalidation map and missing Gazette sources |
 
 ## 2026-11-18 civil, property, registration and rent checkpoint
 
