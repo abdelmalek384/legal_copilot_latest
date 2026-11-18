@@ -140,3 +140,7 @@ ECA may, with Board approval, review a concentration below notification threshol
 - Decision 1120/2024 was already in Agent 3's source inventory, so this is a text-depth upgrade; no new unique-instrument count pending audit.
 - Do not add 15 new provisions to normalized total until comparing existing rows for Articles 48–62 and amended Articles 30/41.
 - Status: machine-collected; not lawyer-reviewed; source-matched only where matched against primary Gazette binary.
+
+
+## Statutory threshold confirmation / correction — 18 November 2026
+The Amiri Press full text of Law 175/2022 has now been retrieved in search-indexed full text. It expressly inserts Article 19 bis with the worldwide threshold **EGP 7.5 billion**, not EGP 7.2 billion. The ECA June 2024 consolidated PDF shows EGP 7.2 billion and cites Law 15/2022; that footnote/text is inconsistent with the later Law 175 Gazette text and is quarantined as stale/editorially erroneous. The Law 175 full text states domestic threshold EGP 900m combined with two parties each >EGP 200m Egypt turnover, and worldwide threshold EGP 7.5bn combined with one party >EGP 200m Egypt turnover. This is the operative statutory threshold; do not conflate it with the separate EGP 7.5bn upper fee band in Decision 1120/2024 Article 59. The matching number is coincidental in legal function. Primary Amiri Press full text: https://alamiria.com/Sec/TashTxt?id=fS+Yv1+FkoI%3D.
