@@ -563,3 +563,11 @@
 ### Research Agent 3 — Capital Market 2025 amendment follow-up
 
 - PM Decision 1539/2025: Government media repository identifies Official Gazette issue 18 bis, 4 May 2025; FRA's current Decision 135/1993 amendment register includes it. Adds Regulation Article 35 bis/9 deeming Electricity Law 87/2015 energy-origin certificates tradable financial instruments on Egyptian exchanges. Full Arabic text transcribed in Agent 3 file.
+
+
+### Research Agent 3 — CBE 2025–2026 circulars and Agent Banking Regulations
+
+- CBE circular of 3 Nov 2026 "القواعد المنظمة للوكلاء المصرفيين" — official 10-page searchable PDF, Board approval 28 Oct 2026. Full document opened; key Arabic provisions transcribed in Agent 3 file. It sets eligible agent entities, permitted services, prior CBE approval, KYC/AML, data confidentiality, bank responsibility, quarterly reporting and contract term (maximum three years, renewable).
+- CBE circular of 23 Aug 2026 on digital financial identity/eKYC: official PDF locator and regulatory-book Chapter 17/4 found; reader blocked, so no text count added.
+- CBE 2025 PSO/PSP licensing rules (19 Jun 2025) and governance/internal-control/fit-and-proper regulations (27 Aug/1 Sep 2025) identified with official PDF locators; reader blocked.
+- Other CBE instruments located: digital-bank licensing framework (12 Jul 2023); bank ownership/merger/divestiture/acquisition rules (2 May 2024); updated bank governance (19 Sep 2024); Code of Conduct for Banks (27 Mar 2025); board-meeting governance amendment (30 Nov 2025); credit-guarantee-company licensing framework (24 Sep 2026); separate KYC circulars (28 Sep 2026). Underlying PDFs remain to be collected and individually indexed.
