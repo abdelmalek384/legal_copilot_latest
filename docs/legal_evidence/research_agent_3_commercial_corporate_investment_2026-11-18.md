@@ -1301,3 +1301,117 @@ These are CBE-issued rules/instructions and press-release/catalogue leads; acqui
 - No lawyer approval or rights clearance claimed.
 
 **Collection classification:** base statute — Gazette scan acquired; two issuing articles visually transcribed; selected other provisions from institutional text reproduced with explicit source-quality caveat; 241 article numbering confirmed; complete article-by-article text extraction pending. The generic CBE "executive regulation" remains an unresolved legacy instrument lead.
+
+
+## 15. Investment Law 72/2017 — full searchable FRA text and current amendment evidence
+
+### A. Law 72/2017
+
+**Official FRA-hosted searchable Arabic PDF:**  
+https://fra.gov.eg/wp-content/uploads/2020/12/قانون-الاستثمار.pdf  
+**Official FRA legislative record for Executive Regulation Decision 2310/2017:**  
+https://fra.gov.eg/en/regulations/اللائحة-التنفيذية-لقانون-الاستثمار/
+
+The FRA PDF contains the full 94-article Law 72/2017 and issuing provisions, with embedded amendment footnotes. The text includes later changes by Law 141/2019 and Law 160/2023. The current PDF is on the regulator's official domain, but its upload date is 2020 and its internal footnotes show a later amendment; the PDF's exact consolidation cutoff date is not stated in the extracted text. Treat it as an updated text source, not as proof of all amendments through 2026.
+
+**Verbatim — issuing Article 1:**
+
+> المادة 1 إصدار
+>
+> يعمل فى شأن الاستثمار فى جمهورية مصر العربية بأحكام القانون المرافق.
+>
+> وتسرى أحكامه على الاستثمار المحلى والأجنبى أيا كان حجمه، ويكون الاستثمار وفقا لأحكام هذا القانون إما بنظام الاستثمار الداخلى أو بنظام المناطق الاستثمارية أو بنظام المناطق التكنولوجية، أو بنظام المناطق الحرة.
+
+**Verbatim — substantive Article 2 (investment principles):**
+
+> المادة 2
+>
+> يهدف الاستثمار في جمهورية مصر العربية إلى رفع معدلات النمو الاقتصادي للبلاد، وزيادة معدلات الإنتاج المحلي، وتوفير فرص العمل، وتشجيع التصدير، وزيادة التنافسية، بما يسهم في تحقيق التنمية الشاملة والمستدامة.
+>
+> وتعمل جميع أجهزة الدولة المختصة على جذب وتحفيز الاستثمارات المحلية والأجنبية.
+>
+> ويحكم الاستثمار المبادئ الآتية:
+>
+> 1- المساواة في الفرص الاستثمارية ومراعاة تكافؤ الفرص بغض النظر عن حجم المشروع ومكانه ودون تمييز بسبب الجنس.
+>
+> 2- دعم الدولة للشركات الناشئة وزيادة الأعمال والمشروعات متناهية الصغر والصغيرة والمتوسطة لتمكين الشباب وصغار المستثمرين.
+>
+> 3- مراعاة جميع النواحي ذات البعد الاجتماعي وحماية البيئة والصحة العامة.
+>
+> 4- حرية المنافسة ومنع الممارسات الاحتكارية وحماية المستهلك.
+>
+> 5- اتباع مبادئ الحوكمة والشفافية والإدارة الرشيدة وعدم تضارب المصالح.
+>
+> 6- العمل على استقرار السياسات الاستثمارية وثباتها.
+>
+> 7- سرعة إنجاز معاملات المستثمرين والتيسير عليهم بما يحقق مصالحهم المشروعة.
+>
+> 8- حق الدولة في الحفاظ على الأمن القومي والمصلحة العامة.
+
+**Verbatim — Article 3 (fair and equitable treatment):**
+
+> المادة 3
+>
+> تتمتع جميع الاستثمارات المقامة في جمهورية مصر العربية بالمعاملة العادلة والمنصفة.
+>
+> وتكفل الدولة للمستثمر الأجنبي معاملة مماثلة لتلك التي تمنحها للمستثمر الوطني.
+>
+> ويجوز استثناء بقرار من مجلس الوزراء تقرير معاملة تفضيلية للمستثمرين الأجانب تطبيقاً لمبدأ المعاملة بالمثل.
+>
+> ولا تخضع الأموال المستثمرة لأي إجراءات تعسفية أو قرارات تتسم بالتمييز.
+>
+> وفي مجال تطبيق أحكام هذا القانون، تكون جميع القرارات المتعلقة بشؤون المشروع الاستثماري مسببة، ويخطر ذو الشأن بها، وذلك على النحو الذي تنظمه اللائحة التنفيذية لهذا القانون.
+
+**Verbatim — Article 4 (expropriation/property safeguards):**
+
+> المادة 4
+>
+> لا يجوز تأميم المشروعات الاستثمارية.
+>
+> ولا يجوز نزع ملكية أموال المشروعات الاستثمارية إلا للمنفعة العامة، وبمقابل تعويض عادل يدفع مقدماً دون تأخير، وتكون قيمته معادلة للقيمة الاقتصادية العادلة للمال المنزوع ملكيته في اليوم السابق على صدور قرار نزع الملكية، وتكون التعويضات قابلة للتحويل دون قيد.
+>
+> ولا يجوز بالطريق الإداري فرض الحراسة على تلك المشروعات، ولا تفرض الحراسة عليها إلا بموجب حكم قضائي نهائي، كما لا يجوز التحفظ عليها إلا بموجب أمر أو حكم قضائي، ولا يكون ذلك كله إلا في الأحوال المبينة في القانون.
+
+**Verbatim — Article 6 (investor's rights):**
+
+> المادة 6
+>
+> للمستثمر الحق في إنشاء وإقامة المشروع الاستثماري وتوسيعه وتمويله من الخارج دون قيود بالعملة الأجنبية، كما يكون من حقه تملكه وإدارته، واستخدامه، والتصرف فيه، وجني أرباحه وتحويلها إلى الخارج، وتصفية المشروع، وتحويل ناتج هذه التصفية كله أو بعضه إلى الخارج، وذلك دون الإخلال بحقوق الغير.
+>
+> وتسمح الدولة بإتاحة جميع عمليات التحويل النقدي المتصل بالاستثمار الأجنبي بحرية وبدون إبطاء إلى أراضيها وإلى خارجها، بعملة قابلة للتحويل الحر كما تسمح الدولة بتحويل العملة المحلية إلى عملة قابلة للاستخدام بحرية دون تأخير.
+
+**Verbatim — Article 7 (import/export rights):**
+
+> المادة 7
+>
+> مع عدم الإخلال بأحكام القوانين واللوائح والقرارات المنظمة للاستيراد، يحق للمشروعات الاستثمارية الخاضعة لأحكام هذا القانون أن تستورد بذاتها أو عن طريق الغير، ما تحتاج إليه في إنشائها أو التوسع فيها أو تشغيلها من المواد الخام ومستلزمات الإنتاج والآلات وقطع الغيار ووسائل النقل المناسبة لطبيعة نشاطها، دون الحاجة إلى قيدها في سجل المستوردين.
+>
+> كما يحق لهذه المشروعات أن تصدر منتجاتها بالذات أو بالواسطة دون ترخيص وبغير حاجة لقيدها في سجل المصدرين.
+>
+> وتلتزم المشروعات الاستثمارية التي تقوم بالاستيراد أو التصدير وفقاً لأحكام هذه المادة سواء بنفسها أو عن طريق الغير بإخطار الهيئة بتقرير ربع سنوي عن الكميات والأنواع المستوردة أو المصدرة بحسب الأحوال.
+
+**Verbatim — Article 74(14), added by Law 141/2019 (foreign-investment data):**
+
+> 14- طلب المعلومات والبيانات اللازمة لحساب أصول الاستثمار الأجنبي المباشر وغير المباشر من الجهات العامة والخاصة للأغراض الإحصائية، وفقاً للممارسات الدولية المعمول بها، وذلك دون الإخلال باعتبارات الأمن القومي أو الحق في الخصوصية وسرية المعلومات وحماية حقوق الغير، ويكون للهيئة في سبيل ذلك إعداد نماذج واستبيانات لاستيفاء تلك المعلومات والبيانات وتطبيقها بجميع الوسائل بما فيها الوسائل الإلكترونية، على أن يصدر بها قرار من رئيس مجلس الوزراء، وتلتزم الجهات المشار إليها بموافاة الهيئة بهذه البيانات خلال الأجل الذي تحدده اللائحة التنفيذية لهذا القانون.
+
+**Verbatim — Article 91 bis, added by Law 141/2019:**
+
+> المادة 91 مكرر
+>
+> يعاقب المسؤول عن الإدارة الفعلية للشخص الاعتباري على مخالفة حكم البند (14) من المادة (74) من هذا القانون بالغرامة التي لا تجاوز خمسين ألف جنيه، إذا ثبت علمه بالمخالفة وكان إخلاله بالواجبات التي تفرضها عليه تلك الإدارة قد أسهم في وقوع الجريمة.
+
+### B. Amendment chain / 2023 update
+
+- Law 141/2019 amends Articles 12 and 48, adds item 14 to Article 74 and adds Article 91 bis. Official MIFT text: https://www.mift.gov.eg/legislation/download/169.
+- Law 160/2023 appears in the official FRA consolidated PDF footnotes: it amended the definition of "special incentives" in Article 1 and Article 9 (general incentives scope). The PDF's Article 1 footnote says the definition now includes incentives in Articles 11 and 11 bis, whereas the prior wording referenced Article 11 only. Article 9's footnote says the revised text explicitly extends general incentives to qualifying projects established before or after the law's commencement, regardless of legal form, except free-zone projects.
+- Law 160/2023's complete Gazette instrument, issue/date/page and every substituted provision still need to be captured separately. Do not infer this is the only post-2019 amendment.
+
+### C. Executive Regulation — Prime Minister Decision 2310/2017
+
+**Official FRA legislative record:** https://fra.gov.eg/en/regulations/اللائحة-التنفيذية-لقانون-الاستثمار/
+
+The FRA page confirms Decision 2310/2017 is the Executive Regulation of Law 72/2017 and provides an "updated version" link. The linked PDF at https://fra.gov.eg/wp-content/uploads/2020/12/5-1.pdf returned an access-denied response in the web reader, so I did not claim its full text was obtained. Retrieve the PDF through an alternate official GAFI/MIFT source or browser download and map all amendments.
+
+**2026 operational update:** MIFT's 20 July 2026 press release says Article 74 of Law 72/2017 and Article 126 bis (أ) of the Executive Regulation require companies/establishments with foreign participation to report FDI data to GAFI within 45 days after each quarter ends. The ministry explicitly describes this as a current obligation. Official source: https://www.mift.gov.eg/Blog/Details/300. This is current administrative explanation, not a substitute for the exact Gazette text of Article 126 bis (أ) and its amendments.
+
+**Collection status:** full searchable base statute and current amendment footnotes obtained; 94 article numbering confirmed. Law 141/2019 full amendment text already captured elsewhere in this file; Law 160/2023 identified in consolidated text but Gazette source capture pending. Decision 2310/2017 confirmed by FRA but full updated regulation PDF inaccessible in this session. No lawyer approval or rights clearance claimed.
