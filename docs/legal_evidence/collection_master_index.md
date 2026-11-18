@@ -396,6 +396,7 @@
 - Whole Egyptian legal collection estimate remains approximately 2% (provisional). No denominator of all unique Egyptian legal article texts is currently recorded, so an exact incremental percentage contribution from this tranche is not responsibly calculable.
 - Overall whole-corpus coverage remains approximately 2% as recorded in the existing index. This is provisional. The project does not yet record a denominator of all unique Egyptian legal article texts, so the incremental percentage contribution of these checkpoints cannot responsibly be calculated. Counts are based on unique instruments and article provisions, not URLs or catalogue entries.
 
+| [collection_checkpoint_91_notarization_and_registration_fees_laws_68_1947_70_1964_2026-11-18.md](collection_checkpoint_91_notarization_and_registration_fees_laws_68_1947_70_1964_2026-11-18.md) | Full searchable Arabic transcriptions and amendment graph for Notarization Law 68/1947 and Registration Fees Law 70/1964; Law 70 Articles 21 and 30 constitutional invalidity history and tariff decisions recorded |
 | [collection_checkpoint_90_primary_mortgage_texts_and_constitutional_property_rent_judgments_2026-11-18.md](collection_checkpoint_90_primary_mortgage_texts_and_constitutional_property_rent_judgments_2026-11-18.md) | Upgrades Law 148/2001 and PM Decision 1/2001 to official FRA-hosted Gazette/regulation PDFs; official SCC judgment records on Law 142/1964 Articles 21/23/24/30 and 37, plus rent-law judgments including Case 24/20/2024 invalidating the rent-freeze formula in Law 136/1981 Articles 1–2 subject to deferred effect |
 | [collection_checkpoint_89_expropriation_and_desert_land_property_laws_2026-11-18.md](collection_checkpoint_89_expropriation_and_desert_land_property_laws_2026-11-18.md) | Full text sources and amendment graph for Expropriation Law 10/1990, Laws 24/2018 and 187/2020, Desert Lands Law 143/1981, Law 7/1991, Law 11/2024 and executive regulations 20/2019 and 198/1982; Gazette gaps and exact-version cautions recorded |
 
@@ -408,6 +409,15 @@
 - Case 11/23 (5 May 2018) official SCC homepage summary confirms invalidation of non-residential lease extension for legal persons, with deferred effect; full judgment page still missing.
 - New base statutes, amending statutes, executive decisions and statutory article texts counted in this checkpoint: 0. This batch improves source tier and judicial-currentness coverage; it does not inflate the unique legal-instrument or article counts.
 - No national completion percentage recalculated: the corpus still lacks a validated denominator of all unique Egyptian legal article texts.
+
+
+### Research Agent 1 — Notarization and registration fee laws (checkpoint 91)
+
+- Checkpoint 91 upgrades two previously identified related statutes to full searchable Arabic text sources: Law 68/1947 (14 articles, secondary transcription; amendment chain includes Laws 629/1955, 5/1964 and 103/1976) and Law 70/1964 (44 articles plus schedules, secondary consolidated transcription through Law 67/2021).
+- Amendment chain leads for Law 70/1964: Laws 94/1980, 6/1991, 83/2006 and 67/2021; fee-table decisions 2936/1992 and 5424/2006.
+- Judicial currentness: SCC Case 2/24 (14 Dec 2003) invalidated Article 30 only insofar as it absolutely barred refunds after the applicant abandoned the requested service; Case 65/17 (1 Feb 1997) addressed specified provisions of the pre-1991 Article 21/26 valuation regime. Both direct SCC judgment pages/Gazette scans remain outstanding.
+- Checkpoint 85 source upgrades: IDSC DSpace Gazette metadata records found for Law 9/2022 issue 9 bis (A), 6 March 2022 and Decision 2332/2022 issue 75 supplement (C), 30 March 2022. The DSpace PDF bundles are request-only; accessible Gazette reproduction/secondary full text sources are retained separately. Full searchable secondary text of Decision 11264/2016 obtained; issue 30, 6 February 2017.
+- No new base-law discoveries counted; no URL or catalogue item is counted as a legal instrument or article. Checkpoint 91 adds selected article extracts only; full transcriptions are identified as source documents, not all reprinted in the checkpoint file.
 
 ## High-value primary-source portals
 
