@@ -146,3 +146,10 @@ Checkpoint 98 adds 33 article-number records in the aleatory-contract and insura
 
 The cumulative Civil Code extraction stream is now **518 fully transcribed unique article provisions** (67 previously recorded + 451 newly transcribed in this continuation), plus one partial/quarantined Article 766(2). The count is not consecutive and does not imply currentness.
 
+## 13. Further Civil Code extraction — suretyship and real-property co-ownership
+
+- Checkpoint 99 adds Articles 780–800 (21 provisions) completing the previously extracted Articles 772–779 suretyship sequence; Article 800's three paragraphs are fully transcribed.
+- Checkpoint 100 adds 34 provisions: Article 801, Article 806, Articles 814–825, and Articles 834–853. These cover the end of suretyship, general ownership restrictions, common walls, neighbour openings, partition, compulsory co-ownership and family property.
+- The cumulative Civil Code extraction stream is now **573 fully transcribed unique article provisions** (67 prior + 506 newly transcribed in this continuation). Article 766(2) remains one partial/quarantined provision and is excluded.
+- The extracted sequence is non-consecutive; Articles 389–417 are repealed in the base text, and other gaps remain. The set is not a current consolidated code and still needs amendments, special-law displacement and constitutional judgments mapped.
+
