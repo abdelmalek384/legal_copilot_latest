@@ -70,3 +70,10 @@ No legal instrument or provision is marked lawyer-verified. Continue with exact 
 - Search false positive excluded: Kuwait Law 13/2016 and Ministerial Decision 565/2017 are not Egyptian legislation.
 - Updated record: [commercial agency text and amendment chain](agent3_commercial_agency_law120_1982_law21_2022_reg342_1982_dec593_2025_arabic_text.md).
 - Text/source-quality expansion only; no new unique-instrument count. Last reconciled baseline remains **209 documents / 2,049 provisional units**; assigned-domain **55% provisional**, whole corpus **2%**, lawyer review **0%**.
+
+
+## Investment Regulation — primary-source acquisition
+- Official ETA-hosted original Gazette PDF for PM Decision 2310/2017 acquired (89 pages, Official Gazette issue 43 bis (أ), 28 October 2017). Visually inspected page images 7–10: issuing Articles 1–4, repeal of PM Decision 1820/2005, opening of regulation Article 1 and activity sectors. PDF text extraction is corrupted in parts, so page images and the secondary 140-article transcription are used together.
+- PM Decision 2562/2024 original operative text acquired from Invest in Egypt and GAFI official PDFs, corroborated by Amiri Press DSpace metadata (issue 32 bis (ط), 12 August 2024). All three articles transcribed. It replaces Article 63 with investment-zone board composition and adds Greater Cairo tourism activities to Sector A only, subject to a later PM decision defining activities and incentives.
+- Updated record: [Investment Executive Regulation 2310/2017](agent3_investment_exec_reg_2310_2017_140_articles_text_expansion.md).
+- No new instrument count; this is a source-quality/version overlay for already-counted instruments. Baseline remains 209 documents / 2,049 provisional units; assigned-domain 55% provisional; whole corpus 2%; lawyer review 0%.
