@@ -162,3 +162,17 @@ Instrument-category totals are not recomputed here because the register is a cat
 7. Complete Law 119/2008 visual OCR review and Decision 144/2009 original Gazette scan, forms, schedules and full amendment graph.
 8. Reconcile missing acquisition IDs EG-0076–EG-0079 against repository history; do not create replacement IDs without evidence.
 9. Keep `lawyer_reviewed=false`, `rights_cleared=false` and source-specific permission states unchanged absent documentary evidence.
+
+
+## 11. Follow-up direct SCC-page reconciliation
+
+A targeted follow-up located the direct official SCC HTML pages for two rent-law cases that an earlier scan-priority note had listed as missing:
+
+- **Case 81/19**, judgment 6 February 1999: official SCC page https://www.sccourt.gov.eg/DjangoPortalResources/Rules_Html/637_19_81_1_2.html . The Court invalidated only the final phrase of Article 18(b) of Law 136/1981 requiring urgent eviction execution to occur in the tenant's presence. The official page provides the full judgment text. Original Gazette scan remains a separate acquisition task.
+- **Case 108/19**, judgment 19 December 2004: official SCC page https://www.sccourt.gov.eg/DjangoPortalResources/Rules_Html/1617_19_108_1_2.html . The Court rejected the challenge as inadmissible, relying on Case 203/20 (14 April 2002), which had rejected the challenge to Law 6/1997. This is not a merits invalidation. Original Gazette scan remains a separate acquisition task.
+
+These are source-tier upgrades to already indexed judicial authorities, not new legal-instrument rows. The master index and checkpoint 90 already record the official SCC pages; checkpoint 147 now confirms the URLs and operative distinctions.
+
+### Case 42/17 Gazette metadata discrepancy
+
+The full text remains available only through secondary legal repositories; no direct official SCC Case 42/17 page or original Gazette scan was found in this follow-up. The reported Gazette publication is 18 June 1998, but issue numbering conflicts: checkpoint 90 and some references state issue 35 supplement, while a secondary scanned consolidation points to issue 25 supplement. Keep the issue number unresolved pending the actual Gazette page. The operative holding remains: invalidation of Law 142/1964 Article 37(2)'s bar on acquisitive prescription contrary to the register, with Article 38 falling consequentially; Article 37(1)'s evidentiary rule was not invalidated.
