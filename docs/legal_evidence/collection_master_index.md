@@ -866,3 +866,16 @@
 - The amended framework expressly creates the real estate brokers register, requires electronic/temporary paper records of broker transactions, commission amounts and client/property details, and updates commercial agent/mediator registration and ownership documents.
 - Twelve selected provisions transcribed in Agent 3 file. Current chain: Law 120/1982 as amended by Law 21/2022; Executive Regulation Decision 342/1982 as amended by Decisions 84/1988, 111/2000, 362/2005 and 593/2025.
 - **Updated Agent 3 minimum:** 76 distinct instruments with some Arabic text surfaced; 1,063 article/provision text units; 13/13 assigned families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
+
+
+### Research Agent 3 — Law 154/2026 state/public-owned company profit remittance
+
+- Official MOF law record marks Law 154/2026 in force; direct official two-page PDF reproduces Gazette issue 30 bis (أ), 28 Jul 2026.
+- Article 1 requires companies 100% owned by the State/public juridical persons, regardless of legal regime, to allocate 5% of distributable net profits after carried losses and before reserves; companies with public ownership exceeding 50% remit 4% capped at the public owner's share. Amounts are treated as tax revenues and paid to Treasury within four months of fiscal-year close. Cabinet may grant temporary exemptions for public-interest social/economic reasons.
+- Two articles transcribed in Agent 3 file. This is adjacent public-corporate-finance legislation, not an amendment to Companies Law 159/1981 or Public Business Sector Companies Law 203/1991.
+ 
+### Research Agent 3 — Companies Law Executive Regulation 2026 policy watch
+
+- MIFT official announcement reports work on amendments to Executive Regulation 96/1982: shareholders' agreements, convertible notes/register, specialized capital-increase valuation companies/register, legal-form changes for sole proprietorships and continuity of commercial history.
+- Announcement is not an enacted legal instrument. Do not add it to operative legal sources or treat these proposals as law until the amending decision is published in the Official Gazette.
+- **Updated Agent 3 minimum:** 77 distinct instruments with some Arabic text surfaced; 1,065 article/provision text units; 13/13 assigned families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
