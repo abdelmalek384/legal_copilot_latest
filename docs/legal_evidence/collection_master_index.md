@@ -1629,3 +1629,12 @@ Current Agent 3 progress checkpoint (18 Nov 2026, continued): [agent3_progress_c
 - FT-0030 upgraded to full searchable text; FT-0032 added for Law142. Full-text inventory now **32**; acquisition **242**; sources **64**; version events **44**; normalized core provisions **1,370**.
 - Broader civil/property/contract corpus estimate now **19% provisional** (up from 18%); whole Egyptian corpus remains **2% provisional**. No change to lawyer verification or rights clearance (both 0%).
 - Sources: https://lawhub.info/eg/?p=12146 ; https://lawhub.info/eg/?p=11694 ; https://mhuc.gov.eg/قطاع_الإسكان_والمرافق/قانون_التصالح_ولائحته_التنفيذيه/.
+
+### Research Agent — checkpoint 171: Law 70/1964 full text, schedules and Decision7657/2025 (18 November 2026)
+
+- Added collection_checkpoint_171_law70_full_text_and_2026_vehicle_schedule_2026-11-18.md and law_70_1964_full_text_schedules_and_amendment_chain_2026-11-18.md.
+- Recovered full searchable text for **44 numbered provisions** of Law70/1964 and Schedules A/B/C. Amendment footnotes establish Laws94/1980,6/1991,224/1996,225/1996,9/2003,3/2004,83/2006,163/2019,67/2021 and SCC Cases2/24 and10/16. Article2 numbering anomaly and schedule row normalization remain pending Gazette image audit.
+- Decision7657/2025 Amiri Press searchable text confirms 2026 vehicle valuation schedule valid 1 Jan–31 Dec 2026, replacing Decision278/2025 after 31 Dec 2025. Attached table values still need transcription.
+- FT-0028 upgraded; FT-0033 added. Full-text inventory **33**; acquisition **242**; sources **64**; version events **44**; normalized core provisions **1,370**.
+- Broader civil/property/contract estimate **20% provisional** (up from 19%); whole Egyptian legal corpus **2% provisional**. Lawyer verification and commercial reuse remain 0%.
+- Sources: https://alhasswalawfirm.com/law-library/law-70-1964 ; https://www.alamiria.com/Sec/TashTxt?id=99IsDvXE8+o%3D ; https://manshurat.org/node/33668.
