@@ -93,3 +93,37 @@ LAW HUB full text: https://lawhub.info/eg/?p=11694. EastLaws and Manshurat also 
 - Decision 144 has 185 base articles; the reported 198 current provisions are not an alternative base article count. They may include inserted articles/paragraphs; reconcile by article identifier and amendment status.
 - Law 142: searchable fallback is useful for article coverage; original Gazette scan and SCC operative orders still control.
 - Do not mark these texts as lawyer-reviewed or rights-cleared.
+
+
+## Inserted provisions — exact Arabic text recovery (Articles 112 bis and 112 bis 1)
+
+**Source:** LAW HUB consolidated Decision 144/2009 page, lines 2050–2087, inspected 18 November 2026. These are inserted provisions, not part of the 185 base-article count. Article 112 bis is attributed to Decision 109/2013; Article 112 bis 1 was added by Decision 410/2021 and amended by Decision 943/2024.
+
+### المادة 112 مكرر — exact Arabic text
+> في تطبيق أحكام المادة (46) من قانون البناء لا يُعد البدروم وغرف مرافق الخدمات بالسطح ضمن الأدوار المنصوص عليها بهذه المادة إلا أنها تحتسب ضمن تكلفة إنشاء المبنى.
+
+**Source amendment note:** مضافة بقرار وزير الإسكان والمجتمعات العمرانية رقم 109 لسنة 2013.
+
+### المادة 112 مكرر 1 — current text after Decision 943/2024
+> مع عدم الإخلال بأحكام المادة (۱۱۲) من هذه اللائحة تكون المستندات المطلوبة لإستخراج ترخيص بناء بالنسبة لوحدات الإدارة المحلية على النحو التالي:
+>
+> يقدم طلب الترخيص إلى المركز التكنولوجى المختص على النموذج المرفق بهذه اللائحة من المهندس أو المكتب الهندسى مرفقًا به المستندات الآتية:
+>
+> 1- المستندات الدالة على ملكية الأرض موضوع الترخيص.
+>
+> 2- صورة من بطاقة الرقم القومى لمن سيصدر الترخيص باسمه.
+>
+> 3- حضور المالك أو من يمثله قانونًا لتفويض المهندس أو المكتب الهندسى للسير فى إجراءات استخراج الترخيص.
+>
+> 4- حساب قيمة الأعمال طبقًا للنموذج المرفق والمنصوص عليه بهذه اللائحة.
+>
+> 5- شهادة صلاحية الأعمال للترخيص طبقًا للنموذج المرفق والمنصوص عليه بهذه اللائحة مرفقًا بها صورة بيان صلاحية الموقع للبناء من الناحية التخطيطية والاشتراطات البنائية الصادر عن الجهة الإدارية المختصة موقعة من المهندس أو المكتب الهندسى.
+>
+> 6- ثلاث نسخ من الرسومات الهندسية معتمدة من المهندس أو المكتب الهندسى.
+>
+> 7- وفى حالة المبانى التى تخضع لوثيقة التأمين طبقًا للمادة (46) من القانون يتعين بالإضافة إلى المستندات السابق ذكرها تقديم وثيقة تأمين مرفقًا بها نسخة الرسومات الإنشائية المعتمدة من مكتب المجمعة المصرية لتأمين المسئولية المدنية عن أخطار أعمال البناء والصادر على أساسها الوثيقة ودراسة التربة والنوتة الحسابية طبقًا للنماذج المرفقة بهذه اللائحة.
+
+**Amendment history preserved by the searchable source**
+- Added by Minister of Housing Decision 410/2021. The earlier text required, among other items, the insured licensing template issued by the Engineers Syndicate, the engineer/office's engineering-register extract, location coordinates, engineering stamp receipt, consultant certificate and a neighboring-property safety report.
+- Amended by Minister of Housing Decision 943/2024. The current text above replaces that earlier document set.
+- The current source is a secondary consolidated transcription. Obtain the Gazette PDFs for Decisions 410/2021 and 943/2024 and compare page images before treating the wording as authenticated.
