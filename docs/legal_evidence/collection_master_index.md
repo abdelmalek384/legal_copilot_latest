@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (Research Agent 1 checkpoint 225; Agent 3 continuation separately indexed)
+**Last updated:** 2026-11-18 (Research Agent 1 checkpoint 227; Agent 3 continuation separately indexed)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -108,6 +108,8 @@
 | checkpoint 6 — Agent 3 FRA Decision 43/2026 fintech consumer-finance licensing pause | Added one distinct FRA Board decision and exact Arabic text of Articles 1–2; original Gazette binary/page-image check remains outstanding | [Agent 3 checkpoint 6](agent3_progress_checkpoint_2026-11-18_6.md) |
 
 | checkpoint 220 — Decision 144/2009 Articles 77–90 extraction | Superseded subset capture; Articles 77–90 are duplicated in the complete Articles 77–93 capture at checkpoint 220; contributes no incremental unique article IDs | [subset checkpoint](collection_checkpoint_220_decision144_articles_77_90_full_text_2026-11-18.md) |
+| checkpoint 226 — Law 168/2025, PM Decision 200/2026 and Presidential Decision 480/2026 | Identified three Amiri Press Gazette original-bundle records; transcribed Law 168 and Decision 480; resolved PM Decision 200 commencement to 19 Jan 2026; working final Article 3 filing date 18 Jan 2027, subject to official confirmation | [checkpoint 226](collection_checkpoint_226_law168_pm200_presidential480_full_text_deadline_and_gazette_metadata_2026-11-18.md) |
+| checkpoint 227 — PM Decision 200/2026 full text | Added complete issuing provisions and all 20 Executive Regulation article bodies from full Arabic source transcription; original DSpace bundle identified but not locally archived/hash-verified | [checkpoint 227](collection_checkpoint_227_pm_decision200_2026_full_arabic_text_2026-11-18.md) |
 | checkpoint 225 — Decision 144/2009 Articles 147–185 extraction | Added 34 complete Arabic base article bodies (Arts 147–174, 177–178, 181–183, 185); Articles 175–176, 179–180 and 184 not duplicated; cumulative coverage 184/185 (99.5%), with Article 127 repealed | [checkpoint 225](collection_checkpoint_225_decision144_articles_147_185_full_text_2026-11-18.md) |
 | checkpoint 224 — Decision 144/2009 Articles 131–146 extraction | Added 15 complete base article bodies (Arts 131–143, 145–146); separately captured inserted Arts 135 bis and 139 bis; cumulative coverage 150/185 (35 remain) | [checkpoint 224](collection_checkpoint_224_decision144_articles_131_146_full_text_2026-11-18.md) |
 | checkpoint 223 — Decision 144/2009 Articles 118–130 extraction | Added 12 complete base article bodies (Arts 118–126, 128–130); captured inserted 117 bis and 124 bis; Article 127 repealed and excluded; cumulative coverage 135/185 (50 remain) | [checkpoint 223](collection_checkpoint_223_decision144_articles_118_130_full_text_2026-11-18.md) |
