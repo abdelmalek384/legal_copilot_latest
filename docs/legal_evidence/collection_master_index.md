@@ -2352,3 +2352,13 @@ Added six 2026 decisions from the Egyptian Proceedings:
 - **Housing Decision1056/2026**: approves a 16.76-feddan Greek Tower plan in New Cairo; Articles1–4 partly transcribed; map and full conditions outstanding.
 
 [Arabic text tranche](acquisition_tranche_aviation_finance_housing_decisions_638_895_896_1049_1056_1162_2026.md)
+
+
+### Audited acquisition snapshot — 18 November 2026, after EG-0345
+
+- **Acquisition register:** 329 rows / 329 unique instrument IDs.
+- **Classification ledger:** 329 rows / 329 unique IDs — 74 base laws; 65 amending laws; 19 executive regulations; 43 executive-regulation amendments; 21 judicial decisions; 94 other decisions; 13 other/unclassified.
+- **Full-text inventory:** 105 rows / 101 unique instruments. Four duplicate IDs are source/version rows. **82 unique instruments (24.9%)** have a record marked full/complete; 22 rows remain partial, external-only or incomplete. Source coverage is **101/329 = 30.7%**. These are inventory indicators, not authenticated or current-law coverage.
+- **Source-permission register:** 111 source records.
+- New local complete text sets in this pass include Law161/2026 (all 50 articles), PM Decision3530/2026 (complete annex), PM Decision2170/2026, Finance Decision450/2026 (both forms), PM Decision3531/2026, Cabinet Decision95/2026, Aviation Decision896/2026, Aviation Decision1162/2026, and Finance Decision638/2026. Other recently added instruments have partial local text pending original sources or annexes.
+- No new Amiri Press original PDF binary/hash was archived locally. Official indexed text, government-hosted scans and secondary reproductions are distinguished in the acquisition and permission registers.
