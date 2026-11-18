@@ -2548,3 +2548,11 @@ Added Law75/2026 (annual raises/special allowance/EGP750 incentive), Law77/2026 
 - Article 2 provides commencement on the day after Gazette publication (derived date: 2 September 2026). Decision 27/2026 concerns microenterprise-finance customer group insurance; Decision 28/2026 concerns consumer-finance customer cover for death/permanent total disability.
 - This is **one new distinct instrument and two operative issuing-article units**. The replaced contract-form item is included within Article 1 and is not double-counted as a third issuing article. Parent Decisions 27/2026 and 28/2026 are not recounted.
 - Source: https://www.fra.gov.eg/wp-content/uploads/2026/09/alamiria_2026_166.pdf. The PDF text layer was opened and fully inspected; original Amiri Press binary/hash and page-image QA remain outstanding. Public availability is not a commercial reuse licence. Status: source-matched, not lawyer-reviewed.
+
+
+### Agent 3 — FRA Decision 110/2026: futures clearing and settlement fee schedule (18 November 2026)
+
+- Added [Decision 110/2026 Arabic text](agent3_fra_decision110_2026_futures_clearing_settlement_fees_arabic_text.md): full preamble, all three issuing articles and 12-row service-fee schedule from official FRA-hosted Gazette PDF, issue 140 تابع, 30 June 2026, printed pages 2–3.
+- Article 1 sets maximum charges for 12 clearing/settlement services. Article 2 waives the fees in items 7–12 for one year from commencement; items 1–6 are outside that temporary waiver. Article 3 provides publication and commencement on the day following Gazette publication (derived date: 1 July 2026).
+- **One new distinct instrument, three issuing-article units.** Fee rows are not counted as separate articles.
+- Source: https://fra.gov.eg/wp-content/uploads/2026/07/alamiria_2026_110.pdf. Both PDF page text layers inspected; RTL/table visual QA and original Amiri Press binary/hash remain outstanding. No commercial reuse permission or lawyer review claimed.
