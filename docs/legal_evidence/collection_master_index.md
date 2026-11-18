@@ -1,11 +1,14 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (expanded through Agent 3 checkpoint 184)
+**Last updated:** 2026-11-18 (Research Agent 1 checkpoint 188; Agent 3 continuation separately indexed)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
 ## Current progress
 
+- **Latest register counts (checkpoint 188):** 250 canonical acquisition records; 66 base laws; 48 amending laws; 13 executive regulations; 35 executive-regulation amendments; 21 judicial decisions; 54 other decisions/circulars; 13 other/unclassified records. These are provisional title-based instrument classes and are maintained separately.
+- **Priority full-text inventory:** 27 unique instruments after merging six duplicate inventory rows; historical IDs and reasons are preserved in the inventory alias map. Full-text source availability is distinct from complete extraction, Gazette authentication and currentness.
+- **Supplemental text captures:** checkpoint 187 added 17 article/provision texts (nine Building Law provisions that overlap the 1,370 core extraction and eight Decision 144/2009 provisions); checkpoint 188 added 16 Law 114 article texts, but most overlap existing article ranges in FT-0029 and earlier captures. Do not add these to unique article totals until the provision IDs and versions are deduplicated.
 - **Overall corpus coverage estimate: approximately 2% (provisional).**
 - The estimate is deliberately conservative and has no validated national denominator. The defined core extraction set now contains **1,370 unique non-repealed article provisions** (Civil Code 1,093; Evidence Law 163; Building Law 114). Article-number extraction is complete for those three statutes, but source-image, amendment-version and currentness validation remain incomplete.
 - A further **200 numbered article headings** are identified in searchable texts for Laws 114/1946, 142/1964, 68/1947 and 70/1964; they are not yet normalized into historical article versions or current operative provisions. Law 114's 70 headings comprise 61 ordinary articles plus nine inserted bis provisions.
@@ -20,12 +23,12 @@
 - Legal-source rights/permission: not presumed. Official public accessibility does not automatically establish commercial indexing, excerpt-display or redistribution rights.
 - Machine labels must remain `source-matched, not lawyer-reviewed` where applicable; no `verified` label without qualified Egyptian lawyer approval.
 
-## Current audited repository snapshot — checkpoint 170 (18 November 2026)
+## Current audited repository snapshot — checkpoint 188 (18 November 2026)
 
 - Acquisition register after instrument deduplication: **250 canonical instrument rows**, 250 unique canonical IDs, no duplicate legal instruments; 11 duplicate rows were consolidated and preserved in [the acquisition-ID alias map](../data/research/egypt_acquisition_register_aliases_2026-11-18.csv). The [provisional instrument-type ledger](../data/research/egypt_instrument_type_classification_2026-11-18.csv) provides the separate category counts.
 - Source-permission register: **73 unique source records**, no duplicate source IDs. These are assessments, not permissions granted.
 - Provisional instrument-type classification (250 canonical records; title/domain-based and subject to manual normalization): **66 base-law records; 48 amending-law records; 13 executive regulations; 35 executive-regulation amendment records; 21 judicial decisions; 54 other decisions/circulars/advisory authorities; 13 other/unclassified records**.
-- Priority full-text inventory: **33 records** (14 base laws, 6 executive regulations, 1 presidential decision, 9 executive-regulation amendments, 1 implementing decision, 1 fee decision, 1 annual valuation decision). Inventory status varies; 33 records do not mean 33 authenticated complete texts.
+- Priority full-text inventory: **27 unique instrument records** (33 historical rows before six duplicate inventory aliases were merged) (14 base laws, 6 executive regulations, 1 presidential decision, 9 executive-regulation amendments, 1 implementing decision, 1 fee decision, 1 annual valuation decision). Inventory status varies; 27 unique records do not mean 27 authenticated complete texts. Six duplicate inventory IDs are preserved in [the full-text inventory alias map](../data/research/egypt_full_text_inventory_aliases_2026-11-18.csv).
 - Completed core unique article provisions: **1,370** (Civil Code 1,093; Evidence Law 163; Building Law 114).
 - Additional searchable article-heading entries: **200** (Laws 114/1946: 70; 142/1964: 72; 68/1947: 14; 70/1964: 44); not fully extracted/versioned.
 - Historical article-version events: **44**; pre/post Arabic text snapshots are not normalized for every event.
@@ -38,6 +41,10 @@
 - SCC Case 42/17 and Case 101/26 operative Arabic text: [judgment capture](scc_case_42_17_and_101_26_text_and_article_effects_2026-11-18.md).
 
 ## Collection checkpoints
+
+| checkpoint 188 — Law 114/1946 text recovery and SCC Cases 10/35, 42/17 and 101/26 | Added 16 article bodies from the 2022-updated Law 114 searchable PDF (overlap with prior article captures requires dedup); recorded exact operative scope for Case 42/17 and Case 101/26, and official SCC later-judgment corroboration for Case 10/35; Case 101/26 now has a direct official SCC judgment page in the acquisition register | [checkpoint 188](collection_checkpoint_188_land_registry_and_constitutional_judgment_text_recovery_2026-11-18.md) |
+
+| checkpoint 187 — Building Law 119/2008 and Decision 144/2009 text recovery | Official MHUC-hosted Gazette PDF text layer for Law 119/2008 (5 issuing + 114 substantive articles) and full 185-article secondary searchable Decision 144/2009 transcription; 17 complete provisions captured (9 Law 119/2008, 8 Decision 144/2009); 8 regulation provisions are not part of the 1,370 core count | [checkpoint 187](collection_checkpoint_187_building_law_119_2008_and_regulation_144_2009_text_recovery_2026-11-18.md) |
 
 | checkpoint 187 — SCC priority cases and Law 70 fee chain | Added separate records for Cases 42/17 and 101/26; captured operative text; mapped Law 70 amendments, SCC effects and 2026 fee-schedule blockers; acquisition register 250 rows, 21 judicial decisions | [checkpoint 187](collection_checkpoint_187_scc_42_17_101_26_and_law70_fee_chain_2026-11-18.md) |
 
