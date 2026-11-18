@@ -68,7 +68,7 @@ The 11-page Law 70/1964 Gazette scan was visually inspected in checkpoint 94. Sc
 | Additional searchable article headings | 200 |
 | Supplemental article/provision text entries | 56 |
 | Historical article-version events | 44 |
-| Source-permission register records | 73 |
+| Source-permission register records | 76 |
 
 The 56 supplemental text entries include one explicit repealed Article 1 marker; 55 are non-repealed text-bearing entries, with varying completeness. These are not added to the core 1,370 until IDs and version states are normalized.
 
