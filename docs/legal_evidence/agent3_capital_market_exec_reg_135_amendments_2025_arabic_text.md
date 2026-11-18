@@ -2,15 +2,15 @@
 
 ## Overview
 Two 2025 Prime Minister decisions amend Executive Regulation 135/1993 under Capital Market Law 95/1992:
-1. Decision **1529/2025** (Official Gazette issue 18 bis, 4 May 2025) inserts Article 35 bis 9, treating renewable-energy source certificates under Electricity Law 87/2015 as tradable financial instruments on Egyptian exchanges.
+1. Decision **1539/2025** (Official Gazette issue 18 bis, 4 May 2025) inserts Article 35 bis 9, treating renewable-energy source certificates under Electricity Law 87/2015 as tradable financial instruments on Egyptian exchanges.
 2. Decision **2482/2025** (Official Gazette issue 29 bis (أ), 20 July 2025) replaces Article 148, inserts Article 148 bis and adds a final paragraph to Article 156, regulating installment payments for private-placement private-equity and real-estate investment fund units and enforcement on default.
 
 Both are Prime Minister decisions amending the Executive Regulation, not amendments to Law 95/1992 itself.
 
-## Decision 1529/2025 — new tradable instrument (official Gazette PDF)
+## Decision 1539/2025 — new tradable instrument (official Gazette PDF)
 - Official Gazette issue 18 (مكرر), 4 May 2025, pp. 2–3.
 - Official PDF: https://www.egyptera.org/ar/download/DecreeNo1539Year2025.pdf
-- **Numbering discrepancy:** the PDF filename and FRA/MIFT consolidated catalogue refer to Decision 1539/2025, but the actual Gazette page text at the top of the PDF expressly says **قرار رئيس مجلس الوزراء رقم 1529 لسنة 2025**. Count this as one instrument (1529/2025) pending Amiri Press clarification; do not count 1539 separately.
+- **Numbering discrepancy:** the PDF filename and FRA/MIFT consolidated catalogue refer to Decision 1539/2025, but the actual Gazette page text at the top of the PDF expressly says **قرار رئيس مجلس الوزراء رقم 1539 لسنة 2025**. Count this as one instrument (1539/2025) pending Amiri Press clarification; 1539 is the correct number.
 - Type: Prime Minister decision.
 
 **Preamble (selected)**
@@ -104,14 +104,19 @@ Both are Prime Minister decisions amending the Executive Regulation, not amendme
 - Private placement subscription may close immediately once fully covered, subject to information-memorandum conditions.
 
 ## Source conflicts and rights
-- Decision 1529/2025: official Gazette PDF itself says 1529; filename and FRA/MIFT catalogue say 1539. Preserve this conflict, do not duplicate.
+- Decision 1539/2025: official Gazette PDF itself says 1529; filename and FRA/MIFT catalogue say 1539. Preserve this conflict, do not duplicate.
 - Decision 2482/2025: official FRA-hosted Gazette PDF and exact Arabic text.
 - Public Gazette access does not imply commercial republication permission.
 - No lawyer review.
 
 ## Accounting
-- +2 unique PM decisions (1529/2025 and 2482/2025); Decision 1539/2025 is treated as a conflicting catalogue label for 1529, not a separate instrument.
-- Decision 1529: 2 issuing articles + 1 inserted regulation article = 3 numbered units.
+- +2 unique PM decisions (1539/2025 and 2482/2025); Decision 1539/2025 is treated as a conflicting catalogue label for 1529, not a separate instrument.
+- Decision 1539: 2 issuing articles + 1 inserted regulation article = 3 numbered units.
 - Decision 2482: 4 issuing articles + 3 affected regulation provisions (148, 148 bis, 156 final paragraph) = 7 units.
 - Cumulative Agent 3 minimum: **196 documents / 1,950 normalized numbered units**.
 - Assigned-domain completion remains **55% provisional**; whole corpus **2% provisional**; lawyer review 0%.
+
+
+## Official Gazette number verification — corrected 18 November 2026
+
+The official two-page Gazette PDF hosted by the Egyptian Electric Utility and Consumer Protection Regulatory Agency was opened and text-extracted: https://www.egyptera.org/ar/download/DecreeNo1539Year2025.pdf. Its first page expressly prints «قرار رئيس مجلس الوزراء رقم ١٥٣٩ لسنة ٢٠٢٥» (Official Gazette issue 18 bis, 4 May 2025), and its second page inserts Article 35 bis 9. Therefore **1539/2025 is the correct decision number**. The earlier apparent 1529 reading was an OCR/reading error and is withdrawn. FRA's updated Regulation 135/1993 page also lists 1539/2025. Do not maintain a numbering conflict or separate 1529 instrument.
