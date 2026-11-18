@@ -212,3 +212,38 @@ The full issue contains three attached model forms:
 ولا يترتب على تحصيل المقابل المشار إليه أي حقوق لواضع اليد.
 
 **Count update:** six additional complete provisions were captured in this addendum: Law 168/2025 Articles 7, 11 and 12; PM Decision 200/2026 Executive Regulation Articles 13, 15 and 16. These are text additions to existing instrument IDs, not new legal instruments.
+
+
+## Further PM Decision 200/2026 text from an independent full-text mirror
+
+**Source:** https://alhasswalawfirm.com/law-library/decree-200-2026 . The page states that its 24 provisions are transcribed verbatim from the Official Gazette and attributed to the Court of Cassation legislation portal. The provisions below are additional to those already captured from the official SIS PDF, LAW HUB and MKSEgypt.
+
+### Executive Regulation Article 2 — direct agreement and exclusions
+يكون التصرف فى الأراضى المملوكة للدولة ملكية خاصة الخاضعة لأحكام هذه اللائحة بطريق الاتفاق المباشر، وفقا للقواعد والضوابط والشروط والإجراءات المُبيَّنة لاحقا.
+
+ولا يجوز التصرف فى تلك الأراضى إذا تعارض ذلك مع مقتضيات شئون الدفاع عن الدولة أو الأمن القومى أو الطيران المدني.
+
+### Executive Regulation Article 8 — inspection fees
+يكون رسم المعاينة بالنسبة للأراضى الزراعية أو الأراضى المستصلحة أو المستزرعة، أو الأراضى المتخللة لها، خمسمائة جنيه عن الفدان الواحد أو جزء منه.
+
+ويكون رسم المعاينة بالنسبة للأراضى المقام عليها بناء، أو الأراضى المتخللة لها، أو زوائد التنظيم، وفقًا للفئات الآتية:
+
+١ - ستة جنيهات عن كل متر بالنسبة للأراضى الواقعة خارج الزمام.
+
+٢ - ستة جنيهات عن كل متر مربع للأراضى داخل زمام القرى وتوابعها.
+
+٣ - ثمانية جنيهات عن كل متر مربع للأراضى داخل زمام المدن.
+
+٤ - عشرة جنيهات عن كل متر مربع للأراضى داخل عواصم المحافظات.
+
+### Executive Regulation Article 14 — payment for lease/use arrangements
+فى الحالات التى يتم التصرف فيها بالإيجار أو بالإيجار المنتهى بالتملك أو بالترخيص بالانتفاع، يتم سداد مقابل التصرف وفقًا للشروط التى ترد بالعقد المبرم بين الجهة الإدارية المختصة والمتعاقد.
+
+### Executive Regulation Article 20 — first paragraph only (partial capture)
+يظهر نص المادة (٢٠) فى مرآة الحصوة على النحو الآتى:
+
+تلتزم الجهة الإدارية المختصة بإعداد تقارير ربع سنوية عن موقف طلبات التقنين المقدمة إليها، وذلك وفق النموذج رقم (٣) المرافق لهذه اللائحة، ولها تشكيل لجان لمتابعة دورة طلبات التقنين وإعداد التقارير المشار إليها، وعرضها على مجلس الوزراء، ورئيس الجمهورية.
+
+The second paragraph of Article 20 is not transcribed in this file. The official SIS PDF text extraction renders the reporting frequency as “سنوية”, while this independent mirror and the attached Form 3 render it as “ربع سنوية”. The PDF screenshot endpoint could not be fetched in this session, so the printed page has not been visually adjudicated. Preserve the conflict; do not silently normalize the reporting frequency.
+
+**Coverage update:** three further complete regulation articles (2, 8, 14) and one partial article (20 first paragraph) are added. PM Decision 200/2026 now has 15 complete regulation articles and one partial Article 20 in the structured text file; Articles 1, 11, 12 and 19 remain to be transcribed.
