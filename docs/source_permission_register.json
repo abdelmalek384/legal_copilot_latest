@@ -1091,6 +1091,23 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "one issue-level PDF locator; no bulk/API permission established",
       "required_next_action": "Review SIS repository terms, obtain authorized local issue PDF and hash, inspect all attached valuation tables, and keep collection/reuse permissions unknown absent affirmative evidence."
+    },
+    {
+      "source_id": "EG-SIS-GAZETTE-295-2025-CADASTRAL-DECISIONS",
+      "authority": "Egyptian State Information Service digital repository; item identifies Amiri Press as Gazette publisher",
+      "source_page": "https://mediadr.sis.gov.eg/bitstream/handle/123456789/117440/WQ295_20251230_9062.pdf?isAllowed=y&sequence=2",
+      "material_types": [
+        "Egyptian Proceedings issue 295, 30 December 2025",
+        "Justice Minister Decisions 6910/2025 and 6911/2025 on cadastral commencement postponements under Law 142/1964"
+      ],
+      "access_status": "Search-indexed official SIS direct issue-level PDF; text extraction available; page-image screenshot retrieval failed in this session; local bytes/hash not archived",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Checked 2026-11-18. Search-indexed SIS-hosted PDF identifies Egyptian Proceedings issue 295 dated 30 December 2025 and exposes Decisions 6910/2025 and 6911/2025. The extracted text for Decision 6910 conflicts with the official Amiri Press searchable text on the postponement dates; Decision 6911 dates appear consistent across the extracted issue and Amiri Press text. Page-image verification could not be completed. No source-specific licence for bulk collection, OCR, indexing, commercial use, display or redistribution was identified.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "one issue-level PDF locator; no bulk/API permission established",
+      "required_next_action": "Obtain authorized page images/local issue PDF, inspect printed pages for both decisions, reconcile Decision 6910 date discrepancy, and keep collection/commercial reuse permissions unknown absent affirmative evidence."
     }
   ]
 }
