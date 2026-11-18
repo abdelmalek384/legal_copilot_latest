@@ -1434,3 +1434,12 @@
 
 
 | checkpoint 151 — Agent 3 CBE bank investments in corporate/securitization bonds (1 Jul 2026) | Captured substantive Arabic requirements from Hapi/BankyGate reproductions, corroborated by official CBE search and Book 4/Chapter 3 updated 1 Oct 2026: Board-approved investment policies; concentration limits by credit/investment portfolio, sector, issuer and securitization originator; minimum rating BBB and maturity caps; count exposures toward single-client/related-party limits; risk weights 100–300% by rating; pre-investment credit/cashflow study; quarterly performance monitoring and risk-committee reporting; auditor certificate for consumer-linked instalment/income cap; real-estate securitization only for delivered units; FRA compliance letter before NBFI exposures; CBE prior approval for bond collateral and prohibition where bank issued guarantees for same issue. Six-month transition to 1 Jan 2027. Original CBE PDF blocked; no article-unit increment. +1 CBE circular; cumulative Agent 3 **181 documents / 1,869 normalized units**; assignment estimate **49% provisional**; whole corpus **2% provisional**; lawyer review 0%. Full text/provenance: [agent3_cbe_bank_investments_corporate_and_securitization_bonds_1_jul_2026.md](agent3_cbe_bank_investments_corporate_and_securitization_bonds_1_jul_2026.md) |
+
+
+### Research Agent 1 — checkpoint 159: register integrity audit (18 November 2026)
+
+- Added [collection_checkpoint_159_register_integrity_audit_2026-11-18.md](collection_checkpoint_159_register_integrity_audit_2026-11-18.md).
+- Re-parsed the live acquisition CSV: **241 rows**, 241 unique IDs, zero duplicate IDs, zero malformed rows; all 241 records have exactly 12 columns. EG-0076–EG-0079 remain unresolved sequence gaps.
+- Confirmed all 241 records retain `lawyer_reviewed=false` and `rights_cleared=false`.
+- Re-parsed source-permission JSON: **63 unique source IDs**, no duplicates, all records have collection and commercial reuse permission fields. 57 are unknown/unknown; five prohibit collection without explicit exception and require written permission for commercial reuse; one is unknown collection / commercial reuse not allowed without explicit exception or licence.
+- Core completed article provisions remain **1,370**; additional searchable article-heading entries remain **200**. Completion estimates unchanged.
