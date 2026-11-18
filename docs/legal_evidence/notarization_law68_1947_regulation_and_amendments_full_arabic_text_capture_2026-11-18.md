@@ -8,8 +8,8 @@
 
 **Gazette:** الوقائع المصرية, issue 301 (as printed in the source), 10 November 1947.  
 **Commencement:** 1 January 1948.  
-**Source:** secondary-hosted page-image/text reproduction, https://temp.manshurat.org/file/83223/download?token=3absD83t. The web-extracted issue page contains the decree and 35 numbered articles. The same host catalogues the instrument at https://temp.manshurat.org/node/71486.  
-**Text quality:** 35 article headings are visible. OCR defects materially affect portions of Articles 6, 11 and 12; those portions are marked rather than reconstructed. The scan page must be checked before quoting the affected words.
+**Source:** secondary-hosted page-image/text reproduction, https://temp.manshurat.org/file/83223/download?token=3absD83t. The web-extracted issue page contains the decree and 35 numbered articles. The same host catalogues the instrument at https://temp.manshurat.org/node/71486. LAW HUB page 12091 is mislabeled as the 1947 regulation but its body is the text of Law 68/1947 itself; it is not used as the regulation text here.  
+**Text quality:** 35 article headings are visible. OCR defects materially affect portions of Articles 6, 8, 9, 11, 12 and 31; those portions are marked rather than reconstructed. The scan page must be checked before quoting the affected words. Article 1 of this 1947 executive regulation is not to be confused with Article 1 of Law 68/1947, repealed by Law 5/1964.
 
 ### الباب الأول: في تشكيل مكاتب التوثيق
 **مادة 1** — يقوم بالتوثيق موثقون وموثقون مساعدون يعينون بقرار من وزير العدل.
@@ -270,7 +270,7 @@
 
 - Decision 712/2008: secondary page located, but its embedded text iframe did not expose article bodies in the available extraction. Gazette issue 28, 4 February 2008. Source: https://egyptianlaws.com/?p=164897.
 - Decision 9200/2015: secondary page and PDF iframe located, but the text endpoint returned a restricted URL. Reported publication: الوقائع المصرية issue 278, 8 December 2015. Partial operative rule reported in secondary text: foreign male applicant marrying Egyptian female must provide investment certificates of EGP 50,000 in her name if age gap exceeds 25 years. Source: https://egyptianlaws.com/?p=161543; partial alternative: https://lawyeregypt.net/قرار-وزير-العدل-رقــم-9200-لسنة-2015-بشأن-ايداع-شهادات/.
-- Decision 4730/2020: secondary full text/source record confirms addition of Article 34 bis (ب), creating electronic registers in specified manual notarization offices. Gazette issue 161 تابع, 16 July 2020. Sources: https://ns1.manshurat.org/node/74270 and https://www.youm7.com/story/2020/7/16/4881839.
+- Decision 4730/2020: secondary full text/source record confirms addition of Article 34 bis (ب), creating electronic registers in specified manual notarization offices. Gazette issue 161 تابع, 16 July 2020. Sources: https://ns1.manshurat.org/node/74270 and https://www.youm7.com/story/2020/7/16/4881839. The operative text recovered from Youm7 is: «تنشأ دفاتر إلكترونية في مكاتب وفروع التوثيق اليدوية التي تصدر محرراتها مطبوعة من خلال الحاسب الآلي، وتستبدل بالدفاتر المشار إليها في المواد (14، 15، 16، 25، 28، 32، 33)، وتحفظ تلك الدفاتر على جهاز الحاسب الآلي للفرع مدرجًا بها أسماء ذوي الشأن، الثابتة في المحررات التي وثقت أو العرفية أو التي تصدق على التوقيعات الثابتة بها أو التي أثبت تاريخها». Decision's publication/commencement clause still needs page-image confirmation.
 - Decision 712/2008, 9200/2015 and 4730/2020 must be incorporated into a consolidated, article-by-article current version only after their exact wording and any intervening amendments are checked.
 
 ## H. Source and version warnings
