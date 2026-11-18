@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (expanded through checkpoint 92)
+**Last updated:** 2026-11-18 (expanded through checkpoint 93)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -396,6 +396,7 @@
 - Whole Egyptian legal collection estimate remains approximately 2% (provisional). No denominator of all unique Egyptian legal article texts is currently recorded, so an exact incremental percentage contribution from this tranche is not responsibly calculable.
 - Overall whole-corpus coverage remains approximately 2% as recorded in the existing index. This is provisional. The project does not yet record a denominator of all unique Egyptian legal article texts, so the incremental percentage contribution of these checkpoints cannot responsibly be calculated. Counts are based on unique instruments and article provisions, not URLs or catalogue entries.
 
+| [collection_checkpoint_93_building_law_evidence_law_constitutional_rent_and_source_reconciliation_2026-11-18.md](collection_checkpoint_93_building_law_evidence_law_constitutional_rent_and_source_reconciliation_2026-11-18.md) | Official Gazette reproduction of Building Law 119/2008; Law 23/2015 amendment and Decision 144/2009 regulation; Decisions 410/2021, 943/2024 and 3866/2026; official MoF Evidence Law PDF upgrade; official SCC Cases 101/26 and 24/20 full texts; conditional Law 168/2025 filing-period calculation |
 | [collection_checkpoint_92_state_private_property_law_168_2025_executive_regulation_and_2026_extension.md](collection_checkpoint_92_state_private_property_law_168_2025_executive_regulation_and_2026_extension.md) | Full 14-article Law 168/2025 text, 20-article PM Decision 200/2026 Executive Regulation and Presidential Decision 480/2026 extension; original DSpace Gazette bundles request-only; current filing-period computation flagged for verification |
 | [collection_checkpoint_91_notarization_and_registration_fees_laws_68_1947_70_1964_2026-11-18.md](collection_checkpoint_91_notarization_and_registration_fees_laws_68_1947_70_1964_2026-11-18.md) | Full searchable Arabic transcriptions and amendment graph for Notarization Law 68/1947 and Registration Fees Law 70/1964; Law 70 Articles 21 and 30 constitutional invalidity history and tariff decisions recorded |
 | [collection_checkpoint_90_primary_mortgage_texts_and_constitutional_property_rent_judgments_2026-11-18.md](collection_checkpoint_90_primary_mortgage_texts_and_constitutional_property_rent_judgments_2026-11-18.md) | Upgrades Law 148/2001 and PM Decision 1/2001 to official FRA-hosted Gazette/regulation PDFs; official SCC judgment records on Law 142/1964 Articles 21/23/24/30 and 37, plus rent-law judgments including Case 24/20/2024 invalidating the rent-freeze formula in Law 136/1981 Articles 1–2 subject to deferred effect |
@@ -425,9 +426,22 @@
 - Full searchable Arabic source texts newly located or upgraded: 23. This includes secondary transcriptions, official GPO text pages and official government/judiciary-hosted PDFs; it does not mean 23 original Amiri Press PDF files were downloaded.
 - Unique article/provision extracts added in the continuation: 58 (23 in checkpoint 91, 24 in checkpoint 92 and at least 11 in the checkpoint 89 supplements). These counts exclude duplicate URLs and duplicate article texts.
 - Judicial research: five official SCC-hosted judgment pages/records reviewed in checkpoint 90; additional full secondary judgment transcription and official later-case references for Case 42/17 and Case 101/26 recorded.
-- Acquisition register now has 172 instrument records, 12 columns per row, no duplicate IDs or malformed rows. This is a register count, not a legal-text/article count. All lawyer-review and rights-clearance flags remain false.
+- Acquisition register now has 178 instrument records, 12 columns per row, no duplicate IDs or malformed rows. This is a register count, not a legal-text/article count. All lawyer-review and rights-clearance flags remain false.
 - Assigned civil/property domain estimate remains approximately 15%; whole Egyptian legal collection remains approximately 2%. Both are provisional; no validated national denominator exists, so no exact incremental percentage is claimed.
 - Material access blockers: several DSpace original Gazette bundles require a request-a-copy workflow; the official GPO Decision 200/2026 page returned 502 on direct open; original Gazette PDFs and some direct SCC judgment pages remain missing. GitHub repository writes and register validation succeeded.
+
+### Research Agent 1 — checkpoint 93 update (18 November 2026)
+
+- Added six unique instrument records EG-0177–EG-0182: Law 119/2008, Law 23/2015, Decision 144/2009, Decision 410/2021, Decision 943/2024 and Decision 3866/2026.
+- Upgraded EG-0002 Evidence Law 25/1968 to the official Ministry of Finance 12-page Gazette PDF locator; 11 of 12 pages visually inspected; page index 4 failed to render. Existing Articles 1–3 were not recounted.
+- Located the full Ministry of Housing-hosted Gazette reproduction of Law 119/2008 (issue 19 bis (A), 11 May 2008; Articles 1–114 in 942 extracted lines) and an official SIS/Amiri Press full Gazette issue PDF for Decision 943/2024 (issue 216, 1 October 2024).
+- Located full secondary PDF of Decision 144/2009 Executive Regulation; original Gazette issue 82 supplement A scan remains outstanding.
+- Located official Amiri Press full text of Decision 3866/2026 postponing real-property-register commencement in City of Mansha'a to 1 July 2027.
+- Upgraded SCC Case 101/26 (1 February 2009) and Case 24/20 (9 November 2024) to direct official full judgment pages. Case 24/20's deferred effect is calculated as 10 July 2025 based on the judgment and Presidential Decision 368/2025 closure date.
+- Decision 480/2026: 19 January 2027 is the conditional consecutive-extension candidate; retrospective/prospective effect and applications during the 20 July–10 November 2026 gap remain unresolved.
+- Acquisition register: 178 instrument rows, 12 columns per row, no duplicate IDs or malformed rows. Source-permission register: 43 source entries. All lawyer-review and commercial-rights flags remain false.
+- New article extracts are not inflated: nine relatively high-confidence selected Law 119 provisions are transcribed in checkpoint 93; three additional OCR-corrupted provisions remain quarantined for page-image correction. No new Civil Code or Evidence Law article counts were added.
+- Domain and whole-corpus estimates remain approximately 15% and 2%, respectively; no percentage increase is justified without a validated unique-article denominator.
 
 ### Research Agent 1 — State private property regularization update (checkpoint 92)
 
@@ -442,7 +456,7 @@
 - Inspected the existing national source register, Phase 2 metadata-only document inventory, source-evidence register, source-permission register and initial statute acquisition register before updating.
 - Extended `data/research/egypt_initial_statute_acquisition_register_2026-11-17.csv` with 29 unique instrument records (EG-0144–EG-0172) for civil/property registration, notarization, desert land, expropriation, irrigation and mortgage-finance texts.
 - Upgraded existing EG-0070 Law 148/2001 from the earlier ETA PDF with no readable text layer to the official FRA-hosted Gazette reproduction with searchable Arabic text.
-- CSV validation: 172 instrument rows, 12 columns per row, no duplicate instrument IDs, and no malformed rows. This is a register count, not a count of unique full legal texts or articles.
+- CSV validation: 178 instrument rows, 12 columns per row, no duplicate instrument IDs, and no malformed rows. This is a register count, not a count of unique full legal texts or articles.
 - All new rows retain `lawyer_reviewed=false` and `rights_cleared=false`; no collection or commercial reuse permission is inferred. Phase 2 production inventory and source-permission register were not promoted or altered because their permission/review gates remain unknown.
 
 ### Research Agent 1 — desert-land amendment and jurisdiction supplement
