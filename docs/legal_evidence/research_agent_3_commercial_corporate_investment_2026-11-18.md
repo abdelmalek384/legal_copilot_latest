@@ -1041,3 +1041,172 @@ The Customs legislation catalogue lists the 168/2000, 150/2001 and 158/2003 amen
 - 1 full searchable Executive Regulation: Decision 96/1982.
 - Article-number ranges surfaced: Law 159/1981 through 184; Regulation 96/1982 through 324; Commercial Code 17/1999 through 772, plus the preserved 1883 partnership chapter. These are numbering maxima, not verified counts of currently operative unique articles.
 - Key exact Arabic provisions transcribed above. Do not inflate the prior 111 provision-unit count by the maximum article numbers; add only article-level text after normalization and deduplication.
+
+
+## 13. Capital Market Law 95/1992 and Executive Regulation Decision 135/1993 — FRA consolidated primary texts
+
+### A. Capital Market Law 95/1992
+
+**Official FRA-hosted consolidated Arabic text:**  
+https://fra.gov.eg/wp-content/uploads/2024/06/قانون-سوق-المال-بصيغة-WORD-4.pdf  
+FRA law detail and amendment register: https://fra.gov.eg/regulations/قانون-سوق-رأس-المال-رقم-95-لسنة-1992/
+
+FRA labels its law text as a consolidated 2022 version. It contains issuing provisions and the attached statute through Article 75, with the amendment footnotes embedded.
+
+**Verbatim — issuing Article 1:**
+
+> المادة 1 إصدار
+>
+> يعمل بأحكام القانون المرافق في شأن تنظيم سوق رأس المال.
+>
+> وتسري أحكام قانون شركات المساهمة وشركات التوصية بالأسهم والشركات ذات المسئولية المحدودة الصادر بالقانون رقم 159 لسنة 1981 فيما لم يرد به نص خاص في هذا القانون.
+
+**Verbatim — substantive Article 1 (shares):**
+
+> المادة 1
+>
+> يقسم رأسمال شركة المساهمة وحصة الشركاء غير المتضامنين في شركات التوصية بالأسهم إلى أسهم اسمية متساوية القيمة.
+>
+> ويحدد نظام الشركة قيمة السهم الاسمية بحيث لا تقل عن عشرة قروش ولا تزيد على ألف جنيه.
+>
+> ويكون السهم غير قابل للتجزئة.
+>
+> ويجوز إصدار أسهم جديدة عند زيادة رأس المال بقيمة مغايرة لقيمة الأسهم من الإصدارات السابقة، وتكون للأسهم الجديدة ذات حقوق والتزامات أسهم الإصدارات السابقة.
+
+**Verbatim — Article 2 (issuance notification):**
+
+> المادة 2
+>
+> يلتزم كل شخص اعتباري يرغب في إصدار أوراق مالية أن يخطر الهيئة بذلك، فإذا لم تعترض الهيئة خلال سبعة أيام عمل من تاريخ إخطارها يتم السير في إجراءات الإصدار،
+>
+> وتحدد اللائحة التنفيذية لهذا القانون بيانات الإخطار والمستندات التي ترفق به.
+
+**Verbatim — Article 4 (public offering):**
+
+> المادة ٤
+>
+> لا يجوز لأي شخص اعتباري مصري أو غير مصري، أياً كانت طبيعته أو النظام القانوني الخاضع له، طرح أوراق أو أدوات مالية في اكتتاب عام للجمهور إلا بناءً على نشرة اكتتاب معتمدة من الهيئة، وعلى النماذج التي تعدها الهيئة، ووفقاً للشروط والإجراءات التي تحددها اللائحة التنفيذية لهذا القانون، ويجب نشر ملخص نشرة الاكتتاب أو نشرة الطرح أو تقرير الإفصاح بغرض الطرح وفقاً لوسائل النشر التي يحددها مجلس إدارة الهيئة.
+>
+> ومع عدم الإخلال بحكم الفقرة السابقة، يصدر مجلس إدارة الهيئة الضوابط التي يجب الالتزام بها عند طرح أي أوراق أو أدوات مالية في اكتتاب عام أو طرح عام أو طرح خاص، وذلك بحسب نوع الورقة أو الأداة المالية.
+
+**Verbatim — Article 4 bis (definitions):**
+
+> المادة ٤ مكرر
+>
+> في تطبيق أحكام هذا القانون والقرارات الصادرة تنفيذاً له، يقصد بالعبارات التالية المعنى المبين قرين كل منها:
+>
+> الاكتتاب العام: عرض أوراق مالية أو أدوات مالية على أشخاص طبيعيين أو اعتباريين غير محددين سلفاً عند إصدار هذه الأوراق أو الأدوات.
+>
+> الطرح العام: عرض أوراق مالية أو أدوات مالية مصدرة على أشخاص طبيعيين أو اعتباريين غير محددين سلفاً.
+>
+> الطرح الخاص: عرض أوراق مالية أو أدوات مالية على أشخاص طبيعيين أو اعتباريين تتوافر فيهم شروط معينة سواء عند إصدار هذه الأوراق أو الأدوات أو بعد ذلك.
+>
+> الأدوات المالية: وثائق تغير الأوراق المالية، وتكون قابلة للقيد والتداول ببورصات الأوراق المالية.
+
+**Verbatim — Article 64 (confidentiality/market abuse penalty excerpt):**
+
+> المادة ٦٤
+>
+> مع عدم الإخلال بأية عقوبة أشد منصوص عليها في أي قانون آخر، يعاقب بالحبس مدة لا تقل عن سنتين، وبغرامة لا تقل عن خمسين ألف جنيه أو ما حققه المخالف من نفع مؤثم، أو تفوقه من خسائر أيهما أكبر، ولا تزيد على (٢٠) عشرين مليون جنيه أو مثلي ما حققه المخالف من نفع مؤثم أو تفوقه من خسائر أيهما أكبر، أو بإحدى هاتين العقوبتين كل من أفشى سراً اتصل به أو اطلع عليه بحكم عمله تطبيقاً لأحكام هذا القانون، أو حقق نفعاً منه هو أو زوجه أو أولاده، أو أثبت في تقاريره وقائع غير صحيحة، أو أغفل في هذه التقارير وقائع تؤثر في نتائجها، أو تعامل في الأوراق أو الأدوات المالية بالمخالفة للأحكام المنصوص عليها في المادة (٢٠) مكرراً من هذا القانون.
+
+**Amendment register exposed by FRA:**
+- Law 10/1995
+- Law 89/1996
+- Law 158/1998
+- Law 13/2004
+- Law 143/2004
+- Law 123/2008
+- Law 27/2014
+- Law 17/2018
+- Law 13/2022
+FRA page identifies these as prior instruments for the consolidated Law 95/1992. This is a strong amendment graph lead; collect each amending law's Gazette PDF and compare each affected article before treating the 2022 consolidation as fully reconciled.
+
+### B. Executive Regulation — Ministerial Decision 135/1993
+
+**Official FRA-hosted consolidated Arabic PDF:**  
+https://fra.gov.eg/wp-content/uploads/2025/01/لائحة-القانون-وفقا-لاخر-تعديل-الاصدار.pdf  
+FRA regulation page (updated 2025): https://fra.gov.eg/regulations/تعديلات-اللائحة-التنفيذية-لقانون-سوق/
+
+The document identifies Minister of Economy Decision 135/1993 dated 18 April 1993 and contains the Executive Regulation, with the searchable text extending through numbered Article 362 and appendices. The consolidated regulation includes a large number of inserted, repealed and renumbered provisions. Article-number maximum is not a unique-article count.
+
+**Verbatim — issuing Article 1:**
+
+> المادة ١ إصدار
+>
+> يعمل بأحكام اللائحة التنفيذية لقانون تنظيم سوق رأس المال الصادر بالقانون رقم ٩٥ لسنة ١٩٩٢ المرافقة لهذا القرار ويعمل فيما لم يرد فيه نص خاص باللائحة التنفيذية للقانون رقم ١٥٩ لسنة ١٩٨١ المشار إليه.
+
+**Verbatim — Regulation Article 1:**
+
+> المادة ١
+>
+> يكون للشركة رأس مال مصدر، ويجوز أن يحدد النظام الأساسي للشركة رأس مال مرخصاً به.
+>
+> ويقسم رأس مال الشركة المساهمة وحصة الشركاء غير المتضامنين في شركات التوصية بالأسهم إلى أسهم اسمية متساوية القيمة في كل إصدار.
+>
+> وفي جميع الإصدارات لا تجاوز مصاريف الإصدار الحد الذي يصدر به قرار من الهيئة.
+
+**Verbatim — Regulation Article 2:**
+
+> المادة ٢
+>
+> يحدد نظام الشركة القيمة الاسمية للسهم بحيث لا تقل عن عشرة قروش ولا تزيد على ألف جنيه ويشترط أن يكون رأس المال المصدر مكتتباً فيه بالكامل، وبمراعاة أحكام الحصص العينية، يجب على كل مكتتب أن يدفع نقداً، أو بوسيلة دفع أخرى مقبولة قانوناً، الربع على الأقل من القيمة الاسمية للأسهم النقدية فور الاكتتاب بالإضافة إلى مصروفات الإصدار.
+
+**Verbatim — Regulation Article 7 (issuance notice):**
+
+> المادة ٧
+>
+> على كل شركة ترغب في إصدار أوراق مالية أن تخطر الهيئة بذلك ويجب أن يتضمن الإخطار ويرفق به البيانات والمستندات الآتية:
+>
+> أولا- بالنسبة لإصدار الأسهم عند التأسيس
+>
+> ١. أنواع الأسهم المزمع إصدارها وشروط طرحها.
+>
+> ٢. إجمالي عدد الأسهم وبيان ما قد يطرح منها للاكتتاب العام.
+>
+> ٣. مصاريف الإصدار في حالة تقريرها وكيفية حسابها.
+>
+> ٤. شهادة من الجهة الإدارية المختصة تفيد الوفاء بالقدر المطلوب سداده قانونا من رأس المال.
+>
+> ٥. الإيصال الدال على سداد الرسوم المقررة للهيئة.
+
+### C. Key current regulation amendments / 2025 update
+
+FRA's 2025 updated Regulation page lists recent Prime Minister decisions amending Decision 135/1993, including:
+- PM Decision 2482/2025
+- PM Decision 1539/2025
+- PM Decision 2423/2024
+- PM Decision 3045/2023
+- PM Decision 4664/2022
+- PM Decision 3456/2022
+- PM Decision 1109/2022
+- PM Decision 1760/2020
+
+**Official Gazette text — PM Decision 2482/2025:**  
+https://fra.gov.eg/wp-content/uploads/2025/07/alamiria_2025_2482.pdf  
+Official Gazette issue 29 bis (A), 20 July 2025. It replaces Regulation Article 148, adds Article 148 bis, and adds a final paragraph to Article 156.
+
+**Verbatim — Article 148 replacement:**
+
+> مادة (١٤٨):
+>
+> يجوز لصناديق الملكية الخاصة وصناديق الاستثمار العقاري ذات الطرح الخاص إصدار وثائق تسدد قيمتها على دفعات على أن تنص مذكرة المعلومات على كيفية سداد قيمة دفعات الوثائق، وما يترتب على الإخلال بالسداد مع الالتزام بالأحكام الواردة في المادة (١٤٨ مكرراً) من هذه اللائحة.
+
+**Verbatim — inserted Article 148 bis (opening and investor notice):**
+
+> مادة (١٤٨ مكرراً):
+>
+> يجب على حامل الوثيقة أن يسدد الدفعات المستحقة من قيمة الوثائق التي اكتتب فيها في المواعيد الموضحة عنها بمذكرة المعلومات.
+>
+> وإذا لم يسدد حامل الوثيقة هذه المبالغ في مواعيدها مضافاً إليها مهلة السداد – إن وجدت – وجهت إليه الشركة إعذاراً على بريده الإلكتروني المسجل بسجلات الشركة، وباستخدام الرسائل النصية على رقم هاتفه المسجل لديها، وبما تقرره الهيئة من وسائل لهذا الغرض.
+>
+> على أن يتضمن الإعذار قيمة المبلغ المتأخر في سداده، والميعاد الذي كان مقرراً للسداد، وكافة الآثار المترتبة على التأخر في السداد بصيغة واضحة الدلالة، ويكون لحامل الوثيقة الرد على الشركة خلال يومي عمل من تاريخ وصول الإعذار إليه.
+
+**Verbatim — Article 156 final paragraph:**
+
+> مادة (١٥٦/ فقرة أخيرة):
+>
+> وفي حالة الطرح الخاص، يجوز غلق باب الاكتتاب فور تغطيته، وفقاً للشروط المنصوص عليها بمذكرة المعلومات.
+
+Decision 2482/2025 states it takes effect the day after publication. This is a Gazette-matched 2025 amendment and should be integrated into the 2025 FRA consolidated regulation, checking whether the current 2025 consolidation includes all subsequent 2025 decisions 1539/2025 and 2482/2025. FRA's current page is the source for the amendment list, but the full text of Decisions 1539/2025 and 2423/2024 is not transcribed yet.
+
+**Collection status:** full searchable government regulator-hosted texts for both the base Law and Executive Regulation have been obtained. The 2025 Decision 2482 amendment has Gazette issue/date and full amendment text. The complete Gazette reconciliation of all 8 law amendments and all listed executive-regulation amendments remains outstanding. No lawyer review or rights clearance claimed.
