@@ -132,7 +132,7 @@
 
 ## Verification and count
 
-- **31 new article texts:** Article 801, Article 806, Articles 814–825 (12), and Articles 834–853 (20).
+- **34 new article texts:** Article 801, Article 806, Articles 814–825 (12), and Articles 834–853 (20).
 - Articles 802–805, 807–813 and 826–833 were already extracted in checkpoint 86 and are not duplicated.
 - OCR anomalies in the PDF text layer have been normalized only where the intended word is clear; verify Articles 806, 815, 819, 824, 836–845, and 851–853 against page images.
 - This adds core property and co-ownership material, but not a full current code. Amendments, repeal, judicial invalidation and special-law displacement remain to be mapped.
