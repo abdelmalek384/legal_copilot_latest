@@ -2714,6 +2714,70 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "Single merged PDF; no bulk/API permission established",
       "required_next_action": "Locate exact Decision73 page range, archive/hash if authorized and transcribe the original decision; review site terms."
+    },
+    {
+      "source_id": "EG-MANSHURAT-LAW157-1947-GAZETTE-SCAN",
+      "authority": "Manshurat legal archive",
+      "source_page": "https://manshurat.org/file/83011/download?token=oTVSE6px",
+      "material_types": [
+        "One-page Gazette scan copy of Law157/1947 extending Law114/1946 Article58 transitional period; publication 1 January 1948"
+      ],
+      "access_status": "Public one-page image-only PDF scan copy; visually inspected and transcribed. Secondary host; not an authenticated Amiri Press digital binary.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Used for statutory text extraction and metadata. No source-specific licence or written permission for bulk ingestion, commercial display or redistribution was established.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "Single public PDF endpoint; no bulk/API permission established",
+      "required_next_action": "Acquire original Amiri Press issue page/binary and hash if authorized; review Manshurat terms before redistribution."
+    },
+    {
+      "source_id": "EG-LAWHUB-LAW5-1964",
+      "authority": "LawHub legal encyclopedia",
+      "source_page": "https://lawhub.info/eg/?p=11510",
+      "material_types": [
+        "Full 21-article Arabic text of Law5/1964 organizing the Real Estate Registration and Notarization Authority; includes Article5 repeals of Law114 and Law68 provisions"
+      ],
+      "access_status": "Public searchable secondary full-text transcription; Manshurat catalogue separately confirms Gazette issue5 and publication date.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://lawhub.info/eg/?p=11510",
+      "permission_evidence": "Used to capture statutory text. No source-specific licence or written commercial reuse permission was reviewed or established; public access does not grant commercial reuse.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "Single public HTML page; no bulk/API permission established",
+      "required_next_action": "Compare all articles against Gazette issue5 page images; review LawHub terms and obtain permission if required for redistribution."
+    },
+    {
+      "source_id": "EG-LAWHUB-DECISION65-1964",
+      "authority": "LawHub legal encyclopedia",
+      "source_page": "https://lawhub.info/eg/?p=12413",
+      "material_types": [
+        "Full ten-article Arabic text of Minister of Justice Decision65/1964 issuing Executive Regulation of Law5/1964"
+      ],
+      "access_status": "Public searchable secondary full-text transcription; AlberOnsy metadata identifies publication in Egyptian Proceedings on 19 March 1964.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://lawhub.info/eg/?p=12413",
+      "permission_evidence": "Used to capture full regulatory text. No source-specific licence or written commercial reuse permission was reviewed or established.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "Single public HTML page; no bulk/API permission established",
+      "required_next_action": "Acquire original Gazette page and verify publication metadata; review site terms before commercial redistribution."
+    },
+    {
+      "source_id": "EG-MKSEGYPT-LAW223-1996",
+      "authority": "MKSEgypt legal archive",
+      "source_page": "https://mksegypt.org/public/ar/laws/23973",
+      "material_types": [
+        "Full two-article Arabic text of Law223/1996 replacing Law114/1946 Article21 paragraph1"
+      ],
+      "access_status": "Public searchable secondary transcription; corroborating e-Lawyers Directory text available.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Used to capture legal text and publication metadata. No licence or written commercial reuse permission was reviewed or established; public accessibility is not a reuse licence.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "Single public HTML page; no bulk/API permission established",
+      "required_next_action": "Compare with Official Gazette issue27 bis original page; review archive terms before redistribution."
     }
   ]
 }
