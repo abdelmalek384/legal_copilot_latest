@@ -1617,6 +1617,24 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
       "required_next_action": "Request the relevant bound Official Gazette volume or scan from CRCICA/Amiri Press; verify whether issue25 تابع (ب) and issue35 تابع are separate same-day issues."
+    },
+    {
+      "source_id": "EG-MANSHURAT-CASE10-35-SCAN",
+      "authority": "Manshurat legal documents archive",
+      "source_page": "https://manshurat.org/node/65064; https://manshurat.org/file/75813/download?token=E2jG1O_x",
+      "material_types": [
+        "secondary-hosted scan reproduction of SCC judgment",
+        "Constitutional Case10/35",
+        "Official Gazette issue22 bis (T)"
+      ],
+      "access_status": "Public 10-page PDF opened and all pages visually inspected 2026-11-18; scan reproduces judgment pages16–25 of Official Gazette issue22 bis (T), 6 June 2018; not an official SCC-hosted binary; terms not reviewed",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "The PDF is a page-image scan of the full Case10/35 judgment and includes the Gazette header and pages16–25. The original signed SCC binary and official Amiri Press PDF were not acquired. Public access does not grant bulk collection, local archiving, commercial use, excerpt display or redistribution permission.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Seek official SCC/Amiri Press original file; review Manshurat terms and seek written permission before commercial archiving or redistribution; hash only after authorized local acquisition."
     }
   ]
 }
