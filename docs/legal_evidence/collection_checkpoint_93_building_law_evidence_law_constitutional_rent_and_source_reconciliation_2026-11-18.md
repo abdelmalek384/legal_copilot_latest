@@ -175,7 +175,7 @@ The 2024 changes affect:
 - It is a government-hosted statutory text, not an original Official Gazette scan or a certified consolidated text. Amendment/correction/currentness reconciliation remains separate.
 - Existing checkpoint 86 added 42 new article-level extracts (its text currently contains references to 50 distinct article numbers, including cross-references). Do not count the same extracts again.
 - New source discovery/upgrade: 1 official-government-hosted complete Civil Code PDF, not a new base law or new full text if the corpus already records a complete source.
-- New article texts in this checkpoint: 0; source confirmation and extraction boundary only.
+- New article texts from this Evidence Law source upgrade: 7 provisional terminal provisions (Articles 118–124) transcribed from the secondary consolidated PDF; Articles 1–3 already recorded in checkpoints 16/41 are not recounted.
 - Continue article-level extraction by stable identifiers, beginning with uncollected portions of ownership, possession, contracts, agency, lease, suretyship, easements, mortgage and privileges. Keep all source articles in their historical version and attach amendment links before claiming currentness.
 
 ## 8. Supreme Constitutional Court — Case 101/26 and desert-land jurisdiction
@@ -272,7 +272,7 @@ No attempt was made to bypass restricted DSpace access. No original PDF bytes or
 - New judicial decisions: 0 new case instruments (Case 101/26 and Case 24/20 are existing identified judgments upgraded to direct official full-text source).
 - Existing statutes source-upgraded: Evidence Law 25/1968, Civil Code 131/1948, and Law 142/1964 territorial implementation chain.
 - Full searchable or visual Gazette texts newly acquired/located: Law 119/2008 official-hosted Gazette reproduction; Decision 943/2024 full issue PDF; Evidence Law 25/1968 12-page Gazette reproduction (11/12 pages visually inspected). Decision 144/2009 full regulation is a secondary PDF only.
-- Unique new statutory article texts: 0 for the Evidence/Civil Code source upgrade (existing article extracts are not recounted); Law 119/2008 selected original provisions preserved above but article count is not treated as complete extraction until OCR corrections are done.
+- New article/provision texts preserved in this continuation: 9 selected Law 119/2008 provisions (four promulgation provisions and five substantive articles; three OCR-corrupted substantive articles quarantined); 7 provisional Evidence Law articles 118–124 from secondary consolidated text; and 19 new Civil Code articles 802–805, 807–813 and 826–833 in the checkpoint 86 supplement. The 19 Civil Code texts are not repeated here.
 - Judicial primary text upgrades: 2 (SCC Cases 101/26 and 24/20).
 
 ### Acquisition register
@@ -296,7 +296,7 @@ No attempt was made to bypass restricted DSpace access. No original PDF bytes or
 3. Obtain the original issue 16 bis B Gazette scan for Law 23/2015 and compare all substitutions/additions.
 4. Obtain original Gazette issue for Decision 410/2021 and build a version graph through Decision 943/2024 and later amendments.
 5. Complete visual/OCR review of Law 119/2008 Articles 1–114; correct obvious extraction errors before article-level ingestion.
-6. Render Evidence Law PDF index 4 through an alternate official route; inspect all pages; OCR Articles 1–117 and retrieve its amendments.
+6. Render Evidence Law PDF index 4 through an alternate official route; inspect all pages; OCR Articles 1–162 and retrieve its amendments.
 7. Continue Civil Code article-level extraction and build a complete 1–1149 article index with amendment status, historical version and Gazette page locator.
 8. Complete the Law 114/1946 amendment graph (including Laws 223/1996, 186/2020, 5/2021 and 9/2022) and Law 142/1964 amendment and territorial commencement graph.
 9. Obtain original SCC Gazette issue 45 bis (A) for Case 24/20 and the correction/official Gazette pages for Case 101/26.
