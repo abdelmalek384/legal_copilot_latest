@@ -2825,9 +2825,9 @@ The official CBE circulars database is a live index and should be queried by top
 
 ### A. Unique instruments with at least some Arabic text surfaced
 
-**Current minimum: 66 distinct legal instruments** with at least some Arabic legal text surfaced in this Agent 3 collection. This includes statutes, executive regulations, ministerial/prime-minister decisions and CBE circulars; a few are represented by selected provisions or secondary searchable reproductions rather than a full primary Gazette text. Publication-only source leads and unreadable official PDFs are excluded.
+**Current minimum: 69 distinct legal instruments** with at least some Arabic legal text surfaced in this Agent 3 collection. This includes statutes, executive regulations, ministerial/prime-minister decisions and CBE circulars; a few are represented by selected provisions or secondary searchable reproductions rather than a full primary Gazette text. Publication-only source leads and unreadable official PDFs are excluded.
 
-The 66 are:
+The 69 are:
 1. Competition Law 3/2005
 2. Executive Regulation Decision 1316/2005
 3. E-Signature Law 15/2004
@@ -2894,12 +2894,15 @@ The 66 are:
 64. Investment Executive Regulation amendment Decision 910/2021
 65. Investment Executive Regulation amendment Decision 1199/2020
 66. Investment Executive Regulation amendment Decision 2467/2020
+67. Investment sector schedule Decision 104/2022
+68. Investment sector schedule Decision 981/2022
+69. Investment additional-incentive coordination Decision 983/2022
 
 **Source-only / not counted as text obtained:** Trade Register Executive Regulation Decision 106/2018 (14.9 MB official PDF locator, download failed); original E-Signature Executive Regulation Decision 109/2005 (official publication confirmation only); PM Decision 104/2022 (parent schedules identified, full schedules not extracted); Consumer Protection Law 181/2018 (official PDF OCR unusable); CBE eKYC circular 23 August 2026 and CBE PSO/PSP 2025 licensing/governance PDFs (official locators but reader blocked).
 
 ### B. Article/provision text units
 
-**Current minimum: 563 article/provision text units surfaced.** This reconciles the previous 111-unit baseline with 452 additional individually surfaced article or regulatory-section texts in this checkpoint, including the 140 articles of the consolidated Investment Executive Regulation 2310/2017, two inserted FDI-reporting provisions (126 bis and 126 bis A), three provisions from Decision 2140/2023, three provisions from Decision 2300/2022, two provisions from Decision 4426/2022, two provisions from Decision 910/2021, and two each from Decisions 1199/2020 and 2467/2020. Counts are not deduplicated across consolidated and amending texts. It is a manual minimum, not a count of unique operative provisions after amendment normalization. It includes some regulatory sections (e.g., CBE Agent Banking numbered sections) and selected provisions, and does not count every article merely because a full searchable PDF spans a larger numbering range.
+**Current minimum: 572 article/provision text units surfaced.** This reconciles the previous 111-unit baseline with 461 additional individually surfaced article or regulatory-section texts in this checkpoint, including the 140 articles of the consolidated Investment Executive Regulation 2310/2017, two inserted FDI-reporting provisions (126 bis and 126 bis A), three provisions from Decision 2140/2023, three provisions from Decision 2300/2022, two provisions from Decision 4426/2022, two provisions from Decision 910/2021, two each from Decisions 1199/2020 and 2467/2020, and nine provisions across Decisions 104/2022, 981/2022 and 983/2022. Counts are not deduplicated across consolidated and amending texts. It is a manual minimum, not a count of unique operative provisions after amendment normalization. It includes some regulatory sections (e.g., CBE Agent Banking numbered sections) and selected provisions, and does not count every article merely because a full searchable PDF spans a larger numbering range.
 
 ### C. Assigned-domain coverage
 
