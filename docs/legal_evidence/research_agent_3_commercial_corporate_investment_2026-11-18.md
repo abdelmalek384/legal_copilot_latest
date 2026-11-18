@@ -6849,3 +6849,64 @@ FRA and Ministry of Environment material distinguishes this Capital Market Regul
 - FRA, in coordination with the Environment Ministry, forms a supervision committee, maintains a project/certificate database and approves exchange trading rules.
 
 **Collection status:** exact inserted Articles 35 bis/7 and 35 bis/8 transcribed from the FRA official consolidated 2025 Executive Regulation PDF; FRA decision page and carbon-market legislative index located. Original Gazette scan for Decision 4664/2022 still needs direct page-image verification. No lawyer review or rights clearance claimed.
+
+
+## 51. Capital Market Executive Regulation — PM Decision 3456/2022 (sustainability instruments)
+
+### A. Gazette and FRA record
+
+**Decision:** Prime Minister Decision 3456/2022 amending Executive Regulation Decision 135/1993 under Capital Market Law 95/1992.  
+**Gazette:** Official Gazette issue 38 bis (أ), 2 October 2022 (metadata reported in the published legal notice; original Gazette image should be cross-checked).  
+**Effective:** 3 October 2022 (day after publication).  
+**Official FRA decision record:** https://fra.gov.eg/regulations/قرار-رقم-3456-لسنة-2022/  
+**FRA updated Executive Regulation (2025 PDF):** https://fra.gov.eg/wp-content/uploads/2025/01/لائحة-التنفيذية-من-قانون-سوق-المال-بصيغة-نهائي-للموقع.pdf
+
+### B. Provisions attributed to Decision 3456/2022 in the FRA consolidated regulation
+
+**Verbatim — Regulation Article 35 bis/4 (sustainability-linked securitization and sukuk):**
+
+> المادة ٣٥ مكرراً ٤
+>
+> يجوز إصدار سندات توريق في المجالات المرتبطة بالسندات المشار إليها بالمادة (٣٥ مكرراً ٤) من هذه اللائحة بشرط اتفاق سياسات الجهة المحلية مع مبادئ التنمية المستدامة، أو أن تتوافر فيها أحد المعايير المتعلقة بأهداف التنمية المستدامة، أو أن تكون الحقوق المالية المحالة مرتبطة بمشروعات تستهدف تحقيق أهداف التنمية المستدامة، كما يجوز إصدار صكوك في المجالات المشار إليها لتمويل الجهات المستفيدة لمشروعات تستهدف تحقيق أهداف التنمية المستدامة.
+>
+> ويسري في شأن إصدار سندات التوريق والصكوك المشار إليها بالفقرة السابقة القواعد والإجراءات المنصوص عليها في المادة (٣٥ مكرراً ٥) من هذه اللائحة.
+
+**Verbatim — Regulation Article 35 bis/5 (issuance procedure for sustainability instruments):**
+
+> المادة ٣٥ مكرراً ٥
+>
+> مع عدم الإخلال بالأحكام والإجراءات المنظمة لإصدار السندات الواردة بهذا القانون وهذه اللائحة، يجوز إصدار السندات المشار إليها بالمادة (٣٥ مكرراً ٤) من هذه اللائحة وفق القواعد والإجراءات الآتية:
+>
+> أولاً - إجراءات إصدار السندات:
+>
+> ١- الحصول على موافقة الهيئة.
+>
+> ٢- اختيار أحد بنوك الاستثمار المرخص له من الهيئة والمروجين.
+>
+> ٣- الحصول على تصنيف ائتماني بمراعاة أحكام المادة (٣٤) من هذه اللائحة.
+>
+> ٤- إصدار تقرير من أحد مراقبي الحسابات المستقلين المقيدين لدى الهيئة بشأن توافق المشروعات المستهدفة مع الغرض من الإصدار، وكذا تقرير من إحدى المؤسسات الاستشارية المستقلة حال كون السندات المصدرة متعلقة بالبيئة.
+>
+> ٥- تسعير السندات وتحديد العائد عليها.
+>
+> ثانياً - الجهات المسموح لها بإصدار السندات:
+>
+> مع مراعاة أحكام المادة (٤) من القانون، يجوز للجهات التالية إصدار السندات المشار إليها بالمادة (٣٥ مكرراً ٤) من هذه اللائحة بمراعاة الفئات الواردة في كل نوع من أنواع تلك السندات:
+>
+> ١- الشركات والجهات والهيئات المصرية.
+>
+> ٢- الشركات والمؤسسات الدولية والإقليمية إذا كان إصدار السندات لتمويل مشروعات داخل مصر.
+
+**Verbatim — Regulation Article 148 (historical 2022 version, later replaced by Decision 2482/2025):**
+
+> المادة ١٤٨
+>
+> يجوز لصناديق الملكية الخاصة وصناديق الاستثمار العقاري غير المطروحة للاكتتاب العام إصدار وثائق تسدد قيمتها على دفعات على أن تنص مذكرة المعلومات على كيفية سداد قيمة دفعات الوثائق سواء في مواعيد معينة أو بناء على استدعاء مدير الاستثمار، وما يترتب على الإخلال بالسداد.
+
+The 2025 FRA consolidated regulation annotates Articles 35 bis/4 and 35 bis/5 as added by Decision 3456/2022 and Article 148 as amended by Decision 3456/2022. Article 148 was later replaced by PM Decision 2482/2025; the 2022 wording is historical, not the current text.
+
+### C. Legal effect
+
+Decision 3456/2022 is part of the legal basis for sustainability bonds, climate/transition bonds, sustainable-development instruments and related securitization/sukuk. It should be read with Decisions 3045/2023 (ESG/ETF and securitization programs), 2423/2024 (hedge funds and fund governance), 1539/2025 (energy certificates) and 2482/2025 (installment-paid fund units).
+
+**Collection status:** official FRA decision record and FRA consolidated Executive Regulation PDF located; three regulatory provisions transcribed, with the Article 148 version explicitly marked historical. Gazette issue/date is from secondary legal metadata and requires original issue-image confirmation. No lawyer review or rights clearance claimed.
