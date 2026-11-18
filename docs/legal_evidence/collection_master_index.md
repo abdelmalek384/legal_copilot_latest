@@ -2318,3 +2318,11 @@ Added Decision450/2026 and both attached forms from the official four-page ETA s
 ### Decision3530/2026 — complete annex text now transcribed
 
 The official Amiri Press TashTxt search result returned the complete annex, so the earlier partial status has been replaced with a full local transcription. The expanded file now contains all 13 general controls, all nine categories excluded from the rationalization rules, detailed spending restrictions for goods/services and social support, compensation rules, the full investment-project restrictions and exceptions, car-purchase ban, foreign-currency restrictions, savings matrix, deadline and accountability clause. The Amiri Press page itself intermittently returns 502; its indexed full text is captured. Gazette page-image comparison and original PDF hash remain outstanding.
+
+
+### Re-audited text coverage after complete Decision3530 annex
+
+- Instrument registers remain **320 unique acquisitions / 320 classifications**.
+- Classification types: 74 base laws; 65 amending laws; 19 executive regulations; 43 executive-regulation amendments; 21 judicial decisions; 85 other decisions; 13 other/unclassified.
+- Full-text inventory: **96 rows / 92 unique instruments**. **76 unique instruments (23.8%)** are now marked full/complete; 19 rows remain partial, external-only or incomplete. Unique instrument source coverage remains **92/320 = 28.8%**.
+- Decision3530/2026 has moved from partial to complete local Arabic transcription of its issuing articles and annex; only original Gazette page-image authentication, PDF hash and Finance Minister implementation rules remain.
