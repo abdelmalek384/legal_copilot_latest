@@ -61,3 +61,10 @@
 - The foreign-currency financing amendment to Decision 318/2025 is **FRA Decision 156/2026**, not Decision 168/2026. The official FRA Gazette PDF for Decision 156/2026 is https://fra.gov.eg/wp-content/uploads/2026/09/alamiria_2026_156.pdf; the FRA's current consolidated Decision 318/2025 PDF identifies the 5 August 2026 amendment history.
 - Remove the collision warning from active blockers; retain it here as provenance/history so the false secondary attribution is not reintroduced.
 - Updated Agent 3 capture: [Decision 156/2026 full Arabic amendment text](agent3_fra_decision_156_2026_foreign_currency_nbf_financing_amendment_arabic_text.md).
+## Official current-consolidation cross-check — 18 November 2026
+
+- The official FRA-hosted current consolidated Decision 179/2025 PDF is now available: https://fra.gov.eg/wp-content/uploads/2026/09/179_2025-%D9%88%D9%81%D9%82%D8%A7-%D9%84%D8%A7%D8%AE%D8%B1-%D8%AA%D8%B9%D8%AF%D9%8A%D9%84.pdf
+- It is marked updated through 5 August 2026 and footnotes Decision 168/2026 as the amendment replacing Article 2/Second/2 and adding Article 2/Second/3.
+- The current consolidated text confirms the minimum net equity EGP 500 million after excluding asset-revaluation differences, and the new borrowing cap linked to Article 160 of the Capital Market Law Executive Regulation.
+- The consolidated PDF also confirms the title change to «متطلبات حقوق الملكية والالتزامات». This is now an official current-text cross-check; the separate original Gazette binary for Decision 168/2026 remains outstanding.
+- See [Decision 179/2025 current consolidated Arabic text](agent3_fra_decision_179_2025_real_estate_fund_conversion_current_2026_arabic_text.md).
