@@ -2152,6 +2152,38 @@
       "terms_checked_on": "2026-11-18",
       "bulk_download_or_api": "No bulk/API permission established; manual page access only",
       "required_next_action": "Preserve attribution and license notice; verify page-specific license scope before redistribution."
+    },
+    {
+      "source_id": "EG-AHMEDAZIMELGAMEL-LEGAL-TEXTS",
+      "authority": "Riwaq al-Jamal / Ahmed Azim El-Gamel legal blog",
+      "source_page": "https://ahmedazimelgamel.blogspot.com/",
+      "material_types": [
+        "Arabic reproductions of ministerial decisions and technical circulars, including Decisions 712/2008 and 4807/2008 and notarization instructions"
+      ],
+      "access_status": "Searchable secondary text excerpts located; direct page access intermittently blocked by redirect/bot check.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "No affirmative collection, extraction, commercial reuse or redistribution licence was identified in the accessed pages. Public search indexing does not establish reuse permission.",
+      "terms_checked_on": "2026-11-18",
+      "bulk_download_or_api": "Not established",
+      "required_next_action": "Review site terms; obtain written permission for bulk/local archiving or commercial display if required; compare all reproduced provisions with original Gazette pages. Retain secondary-source label."
+    },
+    {
+      "source_id": "EG-ADNANLAWYER-LEGAL-TEXTS",
+      "authority": "Adnan Abdel Megid legal website",
+      "source_page": "https://adnanlawyer.online/",
+      "material_types": [
+        "Arabic consolidated reproductions of Law 68/1947, its executive regulation and selected amendment annotations including Decision 6199/2007"
+      ],
+      "access_status": "Searchable secondary consolidated text page accessible; standalone Decision6199/2007 source not located.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "No affirmative licence for collection, commercial reuse or redistribution was identified in the accessed material. The secondary consolidation is used as a discovery lead only.",
+      "terms_checked_on": "2026-11-18",
+      "bulk_download_or_api": "Not established",
+      "required_next_action": "Locate standalone Decision6199/2007 and Gazette publication metadata; review site terms and seek written authorization before bulk/local archiving or commercial redistribution."
     }
   ]
 }
