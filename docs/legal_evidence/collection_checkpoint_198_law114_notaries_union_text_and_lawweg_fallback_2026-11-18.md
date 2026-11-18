@@ -49,7 +49,7 @@ The year indexes list each law and search snippets expose the opening Article 1 
 | Judicial decisions | 21 |
 | Other decisions/circulars/advisory authorities | 54 |
 | Other/unclassified | 13 |
-| Source-permission records | 84 |
+| Source-permission records | 85 |
 | Priority full-text inventory | 27 unique instruments |
 | Searchable/full-text source records in inventory | 26 |
 | Core unique non-repealed article provisions | 1,370 |
