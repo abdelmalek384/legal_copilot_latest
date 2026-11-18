@@ -6,7 +6,7 @@
 
 ## 1. Captured base-law article text and historical status
 
-The canonical text file `alternate_source_arabic_text_capture_laws_114_142_68_70_and_building_reg_144_2009_2026-11-18.md` contains base Articles 1–19 and 24–34. This file adds only Article 21(9) as a pre-Case 10/16 historical text snapshot.
+The canonical text file `alternate_source_arabic_text_capture_laws_114_142_68_70_and_building_reg_144_2009_2026-11-18.md` contains base Articles 1–19 and 24–34. This file documents the amendment chain and constitutional effects; Article 21(9) full wording is captured in checkpoint 190 and is not duplicated here.
 
 Additional searchable text on the Notaries Union page confirms:
 - Article 19 is replaced by Law 83/2006.
@@ -20,10 +20,8 @@ Additional searchable text on the Notaries Union page confirms:
 ### Article 19 — current structure after Law 83/2006
 The full text of Article 19 is already present in the canonical alternate-source capture file. It is not repeated here to avoid duplicate article text. Law 83/2006 replaced the earlier version; the historical/current version boundary is mapped in the amendment table below.
 
-### Article 21(9) — pre-Case 10/16 wording, affected by constitutional invalidation
-الأراضى الفضاء والمعدة للبناء وما فى حكمها التى لم تربط عليها ضريبة الأراضى الفضاء على أساس القيمة الموضحة فى المحرر بحيث لا تقل عن قيمة الأراضى المماثلة محسوبة وفقًا للبند (7) من هذه المادة.
-
-This is the text before the constitutional effect of Case 10/16; do not treat the quoted valuation method as operative after the judgment's publication.
+### Article 21(9) — pre-Case 10/16 wording
+The full Article 21 text, including the historical wording of item (9), is now captured in `alternate_source_text_capture_law68_142_70_additional_provisions_2026-11-18.md` under checkpoint 190. It is not repeated here. SCC Case 10/16 invalidated Article 21, first section, item (9), and item (3) of Table 2 attached to Decision 2936/1992 fell consequentially. Do not treat the item (9) valuation method as operative after the judgment's publication.
 
 ## 2. Statutory amendment chain
 
