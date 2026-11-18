@@ -340,7 +340,7 @@ This supplement adds full searchable text sources for previously identified amen
 - Official source confirms the repeal and commencement:
   https://www.mwri.gov.eg/spa/wp-content/uploads/2021/11/قانون-147-لسنة-2021.pdf
 - This is a distinct current related statute. It replaces the 1984 irrigation statute; it does not expressly revive Article 21 of Law 143/1981, which was expressly repealed in 1984. Do not assume revival without an express legislative provision.
-- Law 147/2021 is amended by Law 167/2025 (Official Gazette issue 32 supplement (A), 7 August 2025) according to the updated text inventory; full amendment Gazette bytes should be separately acquired.
+- Law 147/2021 is amended by Law 167/2025 (Official Gazette issue 32 supplement (A), 7 August 2025); full Article 107 replacement text and official GPO page are now recorded above. Original Gazette bytes remain request-only.
 
 ### I. Executive Regulation of Law 147/2021 — PM Decision 81/2023
 
@@ -350,6 +350,27 @@ This supplement adds full searchable text sources for previously identified amen
   https://www.eastlaws.com/legislation-full-text/ar/egypt/prime-minister-decision/04-01-2023/no-81?id=2074242&type=1
 - This regulation is relevant to irrigation permissions, water resources, wells, drainage and land reclamation, but is not an amendment to Law 143/1981. The original Official Gazette PDF and complete article count remain outstanding.
 - Decision 81/2023 is a new related subordinate instrument discovered in this supplemental research.
+
+### J. Law 167/2025 — amendment to Water Resources and Irrigation Law 147/2021
+
+- Law No. 167/2025 amending certain provisions of Law 147/2021.
+- Official Gazette issue 32 supplement (A), 7 August 2025.
+- Official Amiri Press full-text page:
+  https://www.alamiria.com/Sec/TashTxt?id=K+G2F8Nz2Sw%3D
+- Official IDSC DSpace Gazette metadata:
+  https://dspace.id.com.eg/items/37bdd550-f6d8-46fe-88e7-288e014d9ce7/full
+  Metadata identifies the publisher as المطابع الأميرية, date 7 August 2025 and the 245.51 KB original Gazette bundle. The download is restricted/request-a-copy; original PDF bytes were not obtained.
+- Full searchable secondary text:
+  https://lawyeregypt.net/قانون-الموارد-المائية-والرى/
+- **Article 1 substitutes Article 107 of Law 147/2021** with increased penalties:
+  > يعاقب كل من يخالف أحكام أى من الفقرتين الأولى والثانية من المادة (70) من هذا القانون بالحبس مدة لا تقل عن شهر، وبغرامة لا تقل عن خمسين ألف جنيه ولا تزيد على خمسمائة ألف جنيه، أو بإحدى هاتين العقوبتين.
+  > ويعاقب كل من يخالف أحكام أى من الفقرات الأولى والثانية والثالثة من المادة (62) والمواد (76، 78، 90، 94) من هذا القانون بغرامة لا تقل عن (عشرين ألف جنيه) ولا تزيد على (مائتى ألف جنيه).
+  > وتضاعف العقوبة المنصوص عليها فى الفقرتين الأولى والثانية من هذه المادة فى حالة العود.
+  > وتضبط الآلات والمهمات المستخدمة فى ارتكاب أى من الجرائم المنصوص عليها فى الفقرتين الأولى والثانية من هذه المادة، وتقضى المحكمة بمصادرتها فى حالة الحكم بالإدانة.
+- **Article 2:**
+  > ينشر هذا القانون فى الجريدة الرسمية، ويعمل به اعتبارًا من اليوم التالى لتاريخ نشره.
+- The amendment is a penalty change in Article 107, not a general amendment to land-title or water-allocation rights. Preserve this distinction when linking it to desert-land cases.
+- Original Gazette PDF remains request-only; the official GPO full-text page and secondary text are available.
 
 ### G. Corrections and source-quality notes
 
