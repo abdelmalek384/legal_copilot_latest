@@ -123,3 +123,10 @@ All new material remains machine-collected and not lawyer-reviewed. Do not mark 
 - This supersedes the old 846/2017 regulation as the current rule set. Do not cite 846/2017 as operative after 22 July 2026.
 - Full record: [agent3_importers_register_law121_1982_law173_2023_law4_2026_dec271_2026_full_text.md](agent3_importers_register_law121_1982_law173_2023_law4_2026_dec271_2026_full_text.md).
 - No new unique instrument count pending deduplication; text/currentness upgrade only. Aggregate remains 209 / 2,049 last reconciled, assigned-domain 55% provisional, lawyer review 0%.
+
+## Companies Executive Regulation 96/1982 — full MIFT consolidation recovered
+- MIFT official PDF acquired: 3,416 extracted lines, consolidated through 21 August 2022, 361 numbered article headings, including inserted one-person-company chapter Articles 287 bis onward.
+- Captured exact Arabic for incorporation, founder eligibility, shareholder agreements, minimum capital, subscription/prospectus, in-kind contributions, bonds, board minutes, one-person company formation/capital/transfer and founder personal-liability exceptions. PM Decision 2928/2022 sets minimum one-person company capital at EGP 1,000 fully paid.
+- MIFT says 21 attachments; visible list has duplicate 256/2018 and 90/2009 entries and only 20 visible filenames. Need reconcile unique amendment IDs and obtain each Gazette delta. PDF title still omits one-person companies although body contains that chapter.
+- Record: [agent3_companies_exec_reg96_1982_mift_2022_full_text_expansion.md](agent3_companies_exec_reg96_1982_mift_2022_full_text_expansion.md).
+- No new unique instrument count; text-depth upgrade. Counts remain 209 / 2,049 last reconciled, assigned-domain 55% provisional, lawyer review 0%.
