@@ -256,3 +256,12 @@ Critical legal scope:
 - Article 968 gives the general 15-year acquisitive-prescription text; Article 969 provides a five-year route for immovables/real rights only with good faith and registered valid cause.
 - Article 970 bars acquisitive prescription over specified State/public legal-person assets and charitable waqf property. The text has been amended historically; the applicable version and special public-land statutes must be checked.
 
+## 18. Further Civil Code extraction — Articles 985–1029
+
+- Checkpoint 108 adds **30 provisions**, Articles 985–1014: usufruct, use, habitation, ḥikr and waqf tenure.
+- Checkpoint 109 adds **14 provisions**, Articles 1015–1021 and 1023–1029: easements. Article 1022 is flagged as a source-text extraction gap and is not counted.
+- Cumulative Civil Code extraction stream: **763 distinct provisions** (67 previously recorded + 696 newly transcribed in this continuation). This is not a consecutive or verified current consolidation.
+- Ḥikr is materially restricted by Article 1012 of the historical Civil Code text: no new ḥikr over non-waqf land from the Code's commencement, subject to its transitional rule for existing interests. Waqf and later statutory rules need reconciliation.
+- Easement Article 1016 allows acquisition by legal act or inheritance, and by prescription only for apparent easements (including passage). Article 1027 sets 15 years (33 years for a servitude benefiting waqf property) for extinction by non-use.
+- Article 1022 remains unresolved: do not fill by inference; obtain the page image/original Gazette or authoritative edition.
+
