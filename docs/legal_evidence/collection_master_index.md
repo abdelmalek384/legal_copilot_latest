@@ -679,3 +679,11 @@
 - Earlier extraction had stopped at Article 23; that limitation is superseded. Nine additional provisions (Articles 6–9, 20–21, 32–33 and 40) are transcribed in Agent 3 file.
 - Full original Gazette PDF/page-image comparison and later amendment/currentness review remain outstanding.
 - **Updated Agent 3 minimum:** 58 distinct instruments with some Arabic text surfaced; 407 article/provision text units; 13/13 families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
+
+
+### Research Agent 3 — Investment Executive Regulation full text and FDI reporting update
+
+- Full searchable 140-article consolidated text of PM Decision 2310/2017 now retrieved, Official Gazette issue 43 bis (أ), 28 Oct 2017, consolidated through 12 Aug 2024. It is reproduced from the Gazette/Court of Cassation legislation portal; FRA's official PDF link remains inaccessible to the reader. Selected Articles 8, 32 and 58 transcribed.
+- Decision 2731/2019 identified as adding Executive Regulation Articles 126 bis and 126 bis A on direct/indirect FDI data collection. MIFT's official 20 Jul 2026 notice confirms Article 126 bis A requires foreign-invested companies/establishments to submit FDI data to GAFI within 45 days after each quarter. Full 2019 Gazette text remains outstanding.
+- Consolidated Regulation footnotes identify further amendments: Decisions 1199/2020 (Article 76), 2467/2020 (Article 10), 910/2021 (Article 36), 2300/2022 (Articles 42–43), 4426/2022 (Article 42(1)), 2140/2023 (Articles 76/76 bis), 1203/2024 (Articles 10, 41–43 and 76 bis) and 2562/2024 (Articles 10 and 63). The full text of the six older amendments remains to be collected individually.
+- **Updated Agent 3 minimum:** 60 distinct legal instruments with some Arabic text surfaced; 549 article/provision text units surfaced. 13/13 law families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
