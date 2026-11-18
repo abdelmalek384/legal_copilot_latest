@@ -1659,3 +1659,82 @@ The same Article 240 bis further permits electronic remote agenda presentation a
 - Two unique instruments with Arabic legal text surfaced: Law 10/2009 and Law 176/2018.
 - Eight provision units counted: selected Law 10/2009 Articles 1–4; Law 176/2018 issuing Articles 1–4. The remaining 15 articles of Law 10/2009 and the substantive 50-article Law 176/2018 have searchable official text but are not added to the numeric count in this pass.
 - Cumulative Agent 3 minimum: 126 unique instruments / 1,286 provision units.
+
+
+## 40. Non-bank financial sector — FinTech, consumer finance and MSME-finance laws
+
+### Law 5/2022 — FinTech in non-bank financial activities
+
+- Instrument: Law 5/2022 regulating and advancing use of Financial Technology in non-bank financial activities.
+- Official Gazette: issue 5 bis (د), 8 February 2022; effective 9 February 2022.
+- FRA official Arabic Gazette PDF: https://www.fra.gov.eg/wp-content/uploads/2022/02/قانون-5-لسنة-2022-التكنولوجيا-المالية.pdf
+- Full searchable text was extracted from the 18-page official PDF.
+- Issuing Article 1 applies the law to non-bank financial activities using FinTech without prejudice to CBE Law 194/2020.
+- Issuing Article 2 expressly applies Companies Law 159/1981 supplementarily where the FinTech statute has no specific rule, together with the relevant non-bank financial statutes.
+- Issuing Article 3 gives the Economic Courts jurisdiction (except State Council matters); Article 4 requires regularization within six months of implementing decisions, with extension powers; Article 5 requires FRA Board implementation decisions within six months and preserves existing non-conflicting decisions until replaced; Article 6 publication/commencement.
+- Key statutory text:
+  - Article 1 definitions cover FinTech, digital platforms, cybersecurity/data security, digital identity, digital records, digital contracts, outsourcing, AI financial-advisor apps and digital microfinance/consumer-finance applications.
+  - Article 2 makes FRA the exclusive competent administrative authority, with powers to license, supervise, inspect, create regulatory sandboxes, set cybersecurity/data/device controls, use AI/data analytics for supervision, and receive complaints.
+  - Articles 3–8 govern establishment/licensing, ownership disclosure, technological infrastructure, outsourcing, the register of service providers, and digital applications.
+  - Article 11 gives qualifying electronic records and data evidentiary force equivalent to official documents; Article 13 imposes confidentiality duties; Articles 14–16 set enforcement, grievance and judicial-police mechanisms.
+  - Article 18–21 establish criminal penalties, including for unlicensed activity, breach of cyber/data controls, obstruction and breach of confidentiality.
+- This law creates an express Companies Law cross-reference. The company-form and corporate-governance requirements must be read with Law 159/1981 and FRA implementing decisions, not treated as a stand-alone fintech company code.
+
+### Law 18/2020 — Consumer Finance
+
+- Instrument: Law 18/2020 issuing the Consumer Finance Law.
+- Official Gazette: issue 11 bis (ك), 17 March 2020; effective the day after publication.
+- FRA official Arabic updated consolidated PDF (2022 version): https://fra.gov.eg/wp-content/uploads/2020/12/قانون-نشاط-التمويل-الاستهلاكي-2.pdf
+- Original Gazette reproduction: https://fra.gov.eg/wp-content/uploads/2020/12/UG50279UG50280.pdf
+- The issuing law contains seven articles:
+  1. Applies the attached Consumer Finance Law.
+  2. Treats licensed consumer-finance companies as non-bank financial service providers under Law 10/2009.
+  3. Excludes CBE-supervised bank financing and activities separately governed by mortgage finance, leasing, factoring, microfinance, and developer real-estate purchases.
+  4. Applies Companies Law 159/1981 and FRA Law 10/2009 supplementarily, but expressly disapplies Commercial Code 17/1999 and Law 100/1957 on certain commercial sales to covered consumer-finance companies/providers.
+  5. Assigns disputes to Economic Courts (subject to State Council jurisdiction).
+  6. Requires regularization, with FRA Board extension authority.
+  7. Publication/commencement.
+- This is an important negative cross-reference: unlike many non-bank financial statutes, the issuing provisions expressly exclude Commercial Code 17/1999 from application to covered consumer-finance companies/providers. Do not blindly retrieve the Commercial Code as the default governing law for every consumer-finance contract.
+- The 2022 FRA consolidated PDF identifies Article 6 bis as inserted by Law 158/2022 (see below).
+
+### Law 158/2022 — amendment to Consumer Finance Law 18/2020
+
+- Instrument: Law 158/2022 amending Law 18/2020.
+- Official Gazette: issue 30 bis (و), 3 August 2022; FRA's updated consolidated law explicitly footnotes Article 6 bis as added by Law 158/2022.
+- Official Gazette record at State Information Service repository: https://mediadr.sis.gov.eg/handle/123456789/7349
+- FRA updated consolidated Arabic text: https://fra.gov.eg/wp-content/uploads/2020/12/قانون-نشاط-التمويل-الاستهلاكي-2.pdf
+- New Article 6 bis regulates paid guarantee activity in consumer finance: only entities registered in the FRA register may practice it, except banks and credit-guarantee companies licensed under CBE Law 194/2020. FRA Board sets registration/removal rules and conditions; the guarantee contract must identify the guaranteed obligation, guarantees/security obtained, and guarantee fee.
+- The exact separate issuing decision text of Law 158/2022 should still be retained from the Gazette PDF; the updated consolidated PDF is sufficient to verify the inserted Article 6 bis and its amendment footnote, but not a substitute for a full amendment-instrument scan.
+
+### Law 141/2014 — MSME financing
+
+- Instrument: Law 141/2014 originally regulating microfinance activity; amended and retitled by Laws 201/2020 and 155/2022.
+- FRA official Arabic source, updated through 2022: https://fra.gov.eg/regulations/قانون-رقم-141-لسنة-2014/
+- FRA official base Arabic PDF: https://fra.gov.eg/wp-content/uploads/2025/02/قانون-رقم-141-لسنة-2014-بشأن-تنظيم-نشاط-التمويل-متناهي-الصغر.pdf
+- FRA framework page confirms Law 141/2014 and amendment Law 201/2020 govern non-bank MSME finance.
+- Law 201/2020: Official Gazette issue 41 (مكرر), 11 October 2020. Official FRA record: https://fra.gov.eg/regulations/قانون-رقم-201-لسنة-2020/ . Arabic full transcription: https://www.lawyeregypt.net/قانون-التمويل-متناهى-الصغر-رقم-141-لسنة-2014/ . It changes the statutory title and scope from microfinance only to financing medium, small and micro enterprises, and updates definitions, licensing, permitted providers and regulatory scope. The FRA's consolidated 2022 version includes this amendment.
+- Law 155/2022: Official Gazette issue 30 تابع (أ), 28 July 2022. Official FRA-hosted Amiri Press PDF: https://fra.gov.eg/wp-content/uploads/2025/03/alamiria_2022_155.pdf
+- Law 155/2022 Article 1 adds two new definitions to Article 2 (mediation in granting/collecting finance and paid guarantee) and inserts Articles 14 bis, 21 bis and 21 bis-1:
+  - Article 14 bis requires persons practicing mediation in granting/collecting MSME finance or paid guarantees to be registered in a special FRA register, with exceptions for banks and licensed credit-guarantee companies; it sets legal-person/natural-person safeguards.
+  - Article 21 bis criminalizes fraud/deception used to obtain MSME finance or avoid repayment, with imprisonment and a fine linked to twice the remaining finance balance, subject to the statutory alternatives.
+  - Article 21 bis-1 penalizes unregistered practice of financing mediation or paid guarantee activity with imprisonment and a fine of EGP 50,000–150,000, or either penalty.
+  - Article 2 publication/commencement the day after publication.
+- **Exact Arabic text — Law 155/2022 new Article 14 bis (core):**
+> لا يجوز ممارسة نشاط الوساطة فى منح أو تحصيل التمويل أو الكفالة بأجر فى تمويل المشروعات المتوسطة والصغيرة ومتناهية الصغر إلا بعد القيد بالسجل الذى تعده الهيئة لهذا الغرض، ويستثنى من ذلك البنوك وشركات ضمان الائتمان المرخص لها بموجب قانون البنك المركزى والجهاز المصرفى الصادر بالقانون رقم 194 لسنة 2020.
+- **Exact Arabic text — Law 155/2022 new Article 21 bis-1 (core):**
+> يعاقب بالحبس وبغرامة لا تقل عن خمسين ألف جنيه ولا تزيد على مائة وخمسين ألف جنيه، أو بإحدى هاتين العقوبتين، كل من مارس نشاط الوساطة فى منح أو تحصيل التمويل أو الكفالة بأجر فى تمويل المشروعات المتوسطة والصغيرة ومتناهية الصغر دون أن يكون مقيداً بالسجل المعد لهذا الغرض.
+- Law 155/2022 makes Law 141/2014's regime more than microcredit: it expressly covers MSME finance, finance intermediation and paid guarantees. Cross-link Law 194/2020 for bank/credit-guarantee exceptions and Law 152/2020 for MSME size definitions.
+
+### FRA implementing decision inventory leads
+
+- FinTech Law 5/2022 implementing decisions: Board Decision 58/2022 (establishment/licensing/approval), Decision 139/2023 (equipment, technological infrastructure, information systems and protection), Decision 140/2023 (digital identity, digital contracts, digital registry and use cases), Decision 141/2023 (outsourcing register), and Decision 57/2024 (robo-advisory rules). Official FRA list: https://fra.gov.eg/en/التكنولوجيا-المالية/
+- Consumer Finance Law 18/2020 implementing decisions include Board Decision 56/2020 (latest amendment April 2023), Decision 83/2021 (eligible goods/services), Chair Decision 869/2021 (model contracts), Chair Decision 457/2020 (consumer finance contract form), Decision 61/2023 (prepaid-card payment services), and Decision 187/2020 (customer services database). Official FRA current 2026 guide: https://fra.gov.eg/wp-content/uploads/2026/09/26-8-2026-دليل-الضوايط-والمعايير-والقواعد-المنظمة-لنشاط-التمويل-الاستهلاكي.pdf
+- MSME finance: FRA lists Decision 173/2014 updated in 2026 and Decision 31/2015 updated in 2025. These are regulatory rules, not amendments to Law 141 itself. Official FRA law/decision lists: https://fra.gov.eg/en/تشريعات-أنشطة-التمويل-غير-المصرفي-2/
+- The above decision numbers are leads only until each decision's full Arabic text, amendment chain, publication date and legal status are separately captured. Do not count them as instruments with full text in this checkpoint.
+
+### Count increment
+
+- Six unique instruments with Arabic text/source text surfaced: Law 5/2022, Law 18/2020, Law 158/2022, Law 141/2014, Law 201/2020 and Law 155/2022.
+- Twenty-two provision units counted: Law 5/2022 issuing Articles 1–6; Law 18/2020 issuing Articles 1–7; Law 158/2022 Articles 1–2 (separate issuing clauses pending Gazette-image transcription; consolidated added Article 6 bis verified); Law 141/2014 selected core Articles 1–3; Law 201/2020 Articles 1–2; Law 155/2022 Articles 1–2.
+- The Law 5/2022 official PDF is text-extracted in full; the Law 18/2020 updated text includes the Law 158/2022 addition; the Law 141/2014 updated text incorporates 201/2020 and 155/2022. Do not count these consolidated copies as independent new instruments.
+- Cumulative Agent 3 minimum: 132 unique instruments / 1,308 provision units.
