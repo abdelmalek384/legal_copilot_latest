@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (expanded through checkpoint 106)
+**Last updated:** 2026-11-18 (expanded through checkpoint 107)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -400,6 +400,7 @@
 - Whole Egyptian legal collection estimate remains approximately 2% (provisional). No denominator of all unique Egyptian legal article texts is currently recorded, so an exact incremental percentage contribution from this tranche is not responsibly calculable.
 - Overall whole-corpus coverage remains approximately 2% as recorded in the existing index. This is provisional. The project does not yet record a denominator of all unique Egyptian legal article texts, so the incremental percentage contribution of these checkpoints cannot responsibly be calculated. Counts are based on unique instruments and article provisions, not URLs or catalogue entries.
 
+| [collection_checkpoint_107_evidence_law_articles_125_162_extraction_2026-11-18.md](collection_checkpoint_107_evidence_law_articles_125_162_extraction_2026-11-18.md) | Evidence Law Articles 125–162: oath procedure, inspection, expert appointment, expert duties, reports, fees and challenges; amendments to Articles 148/148 bis recorded |
 | [collection_checkpoint_106_civil_code_special_security_rights_and_privileges_articles_1085_1149_2026-11-18.md](collection_checkpoint_106_civil_code_special_security_rights_and_privileges_articles_1085_1149_2026-11-18.md) | Civil Code Articles 1085–1149: judicial lien, possessory pledge, pledge of debts and statutory privileges, including contractors/architects |
 | [collection_checkpoint_105_civil_code_official_mortgage_articles_1030_1084_2026-11-18.md](collection_checkpoint_105_civil_code_official_mortgage_articles_1030_1084_2026-11-18.md) | Civil Code Articles 1030–1084: official mortgage creation, priority, enforcement, purchaser/hāʾiz rights, purification and extinction |
 | [collection_checkpoint_104_civil_code_use_habitation_and_emphyteusis_articles_996_1014_2026-11-18.md](collection_checkpoint_104_civil_code_use_habitation_and_emphyteusis_articles_996_1014_2026-11-18.md) | Civil Code Articles 996–1014: use/habitation, ḥikr/emphyteusis and waqf lease forms |
@@ -446,6 +447,14 @@
 - Acquisition register now has 182 instrument records, 12 columns per row, no duplicate IDs or malformed rows. This is a register count, not a legal-text/article count. All lawyer-review and rights-clearance flags remain false.
 - Assigned civil/property domain estimate remains approximately 15%; whole Egyptian legal collection remains approximately 2%. Both are provisional; no validated national denominator exists, so no exact incremental percentage is claimed.
 - Material access blockers: several DSpace original Gazette bundles require a request-a-copy workflow; the official GPO Decision 200/2026 page returned 502 on direct open; original Gazette PDFs and some direct SCC judgment pages remain missing. GitHub repository writes and register validation succeeded.
+
+### Research Agent 1 — checkpoint 107 Evidence Law update (18 November 2026)
+
+- Added 38 distinct Evidence Law article texts, Articles 125–162, from the LawHub consolidated transcription; the source is secondary and is cross-referenced with the official Ministry of Finance Gazette reproduction and WIPO Lex.
+- Articles 118–124, previously provisional in checkpoint 93, were source-compared and are not counted again. Evidence Law terminal extraction now contains 45 unique article texts, Articles 118–162, plus earlier opening provisions Articles 1–3 from checkpoints 16/41.
+- Article 148 is substituted and Article 148 bis inserted by Law 54/1974; monetary fine values in Articles 148 and 152 were later changed by Laws 23/1992 and 18/1999. The wider amendment map includes Laws 23/1992, 18/1999 and 76/2007 and still needs original Gazette comparison.
+- The complete statutory range is Articles 1–162. WIPO's OCR line labelled Article 163 duplicates Article 153 and is not counted. The official Ministry of Finance 12-page Gazette reproduction remains the primary government-hosted comparator; page index 4 still failed visual rendering.
+- No lawyer review or commercial reuse rights are claimed.
 
 ### Research Agent 1 — checkpoint 94 update (18 November 2026)
 
