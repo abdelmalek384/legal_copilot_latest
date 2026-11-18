@@ -2388,3 +2388,10 @@ Added Decision635 (Port Said temporary customs zone for Suez Canal Auto Trading)
 
 Added the three-article stamp-tax amendment to Law111/1980. It replaces Article83 bis: 0.5 per thousand on each side of listed-securities sales; 0.25 per thousand on each side for same-day trades; excludes listed investment-fund units and licensed market makers; and requires the settlement entity to withhold and remit within five days from the start of the following month. It also repeals Article5 of Law199/2020. MCDR reported implementation from the 29 July 2026 trading session.
 [Law153/2026 full Arabic text](acquisition_tranche_law153_2026_stamp_tax_listed_securities_arabic.md)
+
+
+### Agent 3 — FRA Decision 108/2026 auditor-register amendment
+
+- Added [FRA Board Decision 108/2026](agent3_fra_decision108_2026_auditor_register_amendment_arabic_text.md), full preamble and both operative articles from the FRA-hosted Official Gazette PDF.
+- Gazette: issue152 (تابع), 15 July 2026, pp. 2–3. It inserts a third paragraph into Article8 of FRA Decision244/2023: an auditor who had served a company for at least five years when its securities were offered on the Egyptian Exchange may continue auditing it for up to two financial years after the offering.
+- This is an amendment to the auditor-register regime, not to Companies Law159/1981. Page-image QA, local PDF hash, later-currentness review, lawyer review and commercial reuse permissions remain outstanding.
