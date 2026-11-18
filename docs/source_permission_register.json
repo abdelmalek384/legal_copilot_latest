@@ -515,13 +515,16 @@
         "Supreme Administrative Court judgments",
         "laws",
         "ministerial and other decisions",
-        "legal-document metadata and classifications"
+        "legal-document metadata and classifications",
+        "Law 187/2023 full text",
+        "Prime Minister Decision 1121/2024 executive regulation",
+        "Prime Minister Decision 36/2026 executive-regulation amendment"
       ],
-      "access_status": "public search and individual full-text pages located; site footer states Creative Commons Attribution 4.0 (CC BY 4.0); scope for underlying legal texts not independently confirmed",
+      "access_status": "public searchable Arabic full-text pages inspected for Law 187/2023, PM Decision 1121/2024 and PM Decision 36/2026; site footer states CC BY 4.0; underlying statutory text and editorial/database rights not independently resolved",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": "https://creativecommons.org/licenses/by/4.0/",
-      "permission_evidence": "The public documents catalogue and an individual Court of Cassation judgment page both display the statement: محتوى الموقع منشور برخصة المشاع الإبداعي — نَسب المُصنَّف 4.0 (Creative Commons Attribution 4.0 (CC BY 4.0)). The About page describes the operator as a company registered under Egyptian law and established in 2021. The site presents full text and metadata for judgments, laws and decisions. This is a site-level licence statement only; it has not been established whether it covers every underlying judgment, statutory text, third-party reproduction, editorial annotation, metadata field, or source-derived compilation, nor whether the operator holds rights sufficient to license all of those elements. No collection or commercial reuse permission is claimed. Additional sampled records also display the same footer: a Law No. 131/2009 amendment page (https://www.mksegypt.org/ar/laws/16785) and Prime Minister Decision No. 1639/2023 (https://www.mksegypt.org/ar/decisions/16784). The decision page's title date and reproduced signature date differ (15 June 2023 versus 30 April 2023), illustrating why the site's metadata and current-status labels must be independently checked against official publication records. Rights-context cross-check: WIPO Lex's consolidated Arabic/English record for Egyptian Law No. 82/2002 (amended through Law No. 178/2020) reproduces Article 141, which excludes official documents including laws, regulations, decisions and court judgments from copyright protection, while its final paragraph protects collections where selection/arrangement is creative. This distinguishes underlying official text from the archive's compilation, database selection, editorial summaries and arrangement. It does not authorize bulk extraction, bypass site access controls, or establish the archive's provenance/accuracy. Confirm post-2020 amendments and the precise scope with qualified counsel before changing permission status. Source: https://www.wipo.int/wipolex/ar/legislation/details/22066",
+      "permission_evidence": "The public documents catalogue and an individual Court of Cassation judgment page both display the statement: محتوى الموقع منشور برخصة المشاع الإبداعي — نَسب المُصنَّف 4.0 (Creative Commons Attribution 4.0 (CC BY 4.0)). The About page describes the operator as a company registered under Egyptian law and established in 2021. The site presents full text and metadata for judgments, laws and decisions. This is a site-level licence statement only; it has not been established whether it covers every underlying judgment, statutory text, third-party reproduction, editorial annotation, metadata field, or source-derived compilation, nor whether the operator holds rights sufficient to license all of those elements. No collection or commercial reuse permission is claimed. Additional sampled records also display the same footer: a Law No. 131/2009 amendment page (https://www.mksegypt.org/ar/laws/16785) and Prime Minister Decision No. 1639/2023 (https://www.mksegypt.org/ar/decisions/16784). The decision page's title date and reproduced signature date differ (15 June 2023 versus 30 April 2023), illustrating why the site's metadata and current-status labels must be independently checked against official publication records. Rights-context cross-check: WIPO Lex's consolidated Arabic/English record for Egyptian Law No. 82/2002 (amended through Law No. 178/2020) reproduces Article 141, which excludes official documents including laws, regulations, decisions and court judgments from copyright protection, while its final paragraph protects collections where selection/arrangement is creative. This distinguishes underlying official text from the archive's compilation, database selection, editorial summaries and arrangement. It does not authorize bulk extraction, bypass site access controls, or establish the archive's provenance/accuracy. Confirm post-2020 amendments and the precise scope with qualified counsel before changing permission status. Source: https://www.wipo.int/wipolex/ar/legislation/details/22066 Additional 18 Nov 2026 sampling: Law 187/2023 (https://www.mksegypt.org/public/index.php/ar/laws/17354), PM Decision 1121/2024 (https://mksegypt.org/ar/decisions/21945) and PM Decision 36/2026 (https://mksegypt.org/ar/decisions/34186) expose Arabic text and repeat the site's CC BY 4.0 footer. The licence's application to underlying official texts, third-party Gazette material, editorial arrangement and database compilation remains unresolved. Do not infer bulk-ingestion or rights clearance.",
       "permission_evidence_url": "https://www.mksegypt.org/ar/documents",
       "terms_checked_on": "2026-10-30",
       "bulk_download_or_api": "No public API or bulk-export facility established in this review; public search, section filters and pagination are visible. Do not crawl or bulk extract.",
@@ -1168,13 +1171,15 @@
         "full-text statutory reproductions attributed to Court of Cassation portal",
         "Law 114/1946 consolidated text through 6 March 2022",
         "Law 142/1964 consolidated text",
-        "Decree 825/1975 full text"
+        "Decree 825/1975 full text",
+        "Law 15/2017 industrial licensing statute full-text reproduction",
+        "Decision 1082/2017 industrial licensing executive regulation full-text reproduction"
       ],
-      "access_status": "Public searchable HTML and PDF inspected 2026-11-18; Law114 HTML page contains 70 headings and 578 lines; PDF mirror 574 lines; both secondary-hosted.",
+      "access_status": "Public searchable HTML full text inspected 2026-11-18 for Law 15/2017; secondary consolidation says updated through 2025. No original Gazette binary acquired through this source.",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
-      "permission_evidence": "The Law114 HTML page states 70 articles and consolidation through 6 March 2022; six additional article bodies (25,31,32,33,40,50) were transcribed in the latest Law114 text supplement. The PDF mirror has earlier selected article captures. These are secondary reproductions, not original Amiri Press binaries. Public access does not grant commercial reuse permission.",
+      "permission_evidence": "The Law114 HTML page states 70 articles and consolidation through 6 March 2022; six additional article bodies (25,31,32,33,40,50) were transcribed in the latest Law114 text supplement. The PDF mirror has earlier selected article captures. These are secondary reproductions, not original Amiri Press binaries. Public access does not grant commercial reuse permission. Additional 18 Nov 2026: full searchable Arabic reproduction of Law 15/2017 at https://alhasswalawfirm.com/law-library/law-15-2017 advertises 55 articles and updates through 2025. Public access and attribution to Court of Cassation legislation portal do not establish bulk extraction or commercial reuse permission.",
       "terms_checked_on": null,
       "bulk_download_or_api": "Individual pages/PDF attachments; no bulk/API permission established",
       "required_next_action": "Acquire original Gazette PDFs and verify the full 70-article consolidation against each amendment; obtain written permission for bulk extraction and commercial reuse; preserve repealed and inserted bis article versions separately."
@@ -1239,13 +1244,14 @@
         "Egyptian statutory full-text reproductions",
         "Civil Code and Evidence Law source pages",
         "Law 142/1964 full text (72 substantive headings plus issuing provisions)",
-        "Decision 144/2009 Executive Regulation searchable Arabic text and article-level source transcription"
+        "Decision 144/2009 Executive Regulation searchable Arabic text and article-level source transcription",
+        "Decision 1082/2017 industrial licensing executive regulation"
       ],
-      "access_status": "Public searchable text inspected 2026-11-18; Law142 page ?p=11694 exposes 592 lines with separate issuing and substantive provisions; Decision144 page ?p=12146 exposes issuing provisions, preliminary definitions, 185 base articles, amendment annotations and forms/schedules. Complete Arabic bodies for 184 extant Decision144 base articles (Articles 1–126 and 128–185) are captured across checkpoints 170 and 206–225; Article 127 is repealed. Inserted bis provisions are separately tracked with varying completeness.",
+      "access_status": "Public searchable full Arabic text inspected 2026-11-18 for Decision 1082/2017; source advertises 55 articles and amendment state through 27 July 2021.",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
-      "permission_evidence": "Five additional substantive Law142 article bodies (Articles3,5,6,7,22) were transcribed from page ?p=11694. Repeated numbering between issuing provisions and substantive law is explicitly separated. The site is a secondary legal information database; no commercial reuse or bulk extraction permission is established. Decision144/2009 source update: Complete Arabic body transcriptions for 184 extant Decision144 base articles (Articles 1–126 and 128–185) are preserved across checkpoints 170 and 206–225; Article 127 is repealed. Inserted provisions including 98 bis, 108 bis, 110 bis, 112 bis, 112 bis 1, 117 bis, 124 bis, 135 bis and 139 bis are tracked separately; text completeness varies.  No bulk extraction or commercial reuse permission is established. Checkpoint 221 adds full Arabic Articles 91–98 and inserted Article 98 bis; Articles 94 and 95 current/original wordings are preserved. Decision 109/2013 is an existing acquisition instrument; the original DSpace bundle is catalogued but download and hash remain outstanding. No reuse permission is established.",
+      "permission_evidence": "Five additional substantive Law142 article bodies (Articles3,5,6,7,22) were transcribed from page ?p=11694. Repeated numbering between issuing provisions and substantive law is explicitly separated. The site is a secondary legal information database; no commercial reuse or bulk extraction permission is established. Decision144/2009 source update: Complete Arabic body transcriptions for 184 extant Decision144 base articles (Articles 1–126 and 128–185) are preserved across checkpoints 170 and 206–225; Article 127 is repealed. Inserted provisions including 98 bis, 108 bis, 110 bis, 112 bis, 112 bis 1, 117 bis, 124 bis, 135 bis and 139 bis are tracked separately; text completeness varies.  No bulk extraction or commercial reuse permission is established. Checkpoint 221 adds full Arabic Articles 91–98 and inserted Article 98 bis; Articles 94 and 95 current/original wordings are preserved. Decision 109/2013 is an existing acquisition instrument; the original DSpace bundle is catalogued but download and hash remain outstanding. No reuse permission is established. Additional 18 Nov 2026: Decision 1082/2017 text at https://lawhub.info/eg/?p=12579 identifies Decision 298/2021 as adding a paragraph to Article 22 and Decision 444/2022 as adding Article 22 bis. The source is secondary; no bulk or commercial reuse permission is established.",
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
       "required_next_action": "Obtain written permission for bulk extraction and commercial use; compare the 72 substantive headings and all amendments against original Gazette scans and constitutional judgments. No extant base article bodies remain untranscribed; Article127 is repealed. Continue page-image/OCR verification; complete all inserted-provision versions, forms/schedules, amendment redlines and currentness; obtain written reuse permission before bulk/commercial use. preserve inserted provisions and all amendment versions separately; obtain Gazette image comparison and written reuse permission before any bulk/commercial reuse."
@@ -1869,6 +1875,43 @@
       "permission_evidence": "Checked 2026-11-18. Public PDF access does not establish bulk acquisition, commercial reuse, republication or redistribution permission.",
       "bulk_download_or_api": "No bulk/API permission established.",
       "required_next_action": "Retain source citation and page metadata; acquire exact bytes through authorized process, hash locally, and obtain permission before commercial display/redistribution."
+    },
+    {
+      "source_id": "EG-IDA-LEGAL-LIBRARY",
+      "authority": "Industrial Development Authority, Egypt",
+      "source_page": "https://www.ida.gov.eg/ar/laws",
+      "material_types": [
+        "industrial licensing Law 15/2017",
+        "Executive Regulation Decision 1082/2017",
+        "Law 187/2023 building violations reconciliation",
+        "Executive Regulation Decision 1121/2024",
+        "official PDF locators"
+      ],
+      "access_status": "Official agency legislation catalogue inspected 18 Nov 2026; catalogue lists the four instruments. Direct IDA-hosted PDF locator for Law 187/2023 identified; Law 15/2017 and Decision 1082/2017 official PDF links listed; Decision1121/2024 official link listed but previous request timed out.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Official IDA law catalogue at https://www.ida.gov.eg/ar/laws lists Law15/2017, Law187/2023, Decision1082/2017 and Decision1121/2024. Official Law187/2023 Gazette facsimile locator: https://www.ida.gov.eg/uploads/files/alamiria_2023_187.pdf. No explicit terms/licence authorizing local archiving, OCR, bulk extraction, commercial indexing, excerpt display or redistribution were identified.",
+      "terms_checked_on": "2026-11-18",
+      "bulk_download_or_api": "Individual official PDF links listed; no bulk/API permission established",
+      "required_next_action": "Obtain official PDF bytes/hash through permitted routes; inspect page images; review terms and rights; verify currentness and Gazette metadata; do not treat public hosting as commercial reuse permission."
+    },
+    {
+      "source_id": "EG-MOF-GAZETTE-DECISION1121-2024",
+      "authority": "Ministry of Finance, Arab Republic of Egypt",
+      "source_page": "https://media.mof.gov.eg/mof-prd/qrar_ryys_alwzrae_rqm_1121_lsnt_2024_b1608f1411.pdf",
+      "material_types": [
+        "Official Gazette issue 14 supplement (ب), 4 April 2024",
+        "PM Decision1121/2024 executive regulation to Law187/2023"
+      ],
+      "access_status": "Official government-hosted PDF locator returned by search; text extraction independently corroborated by secondary searchable text; local PDF bytes/hash not archived in this pass.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "The URL is on the Ministry of Finance government domain and identifies the Gazette issue/date in the filename/title metadata. No explicit licence or permission for local archiving, OCR, commercial indexing, excerpt display or redistribution was found.",
+      "terms_checked_on": "2026-11-18",
+      "bulk_download_or_api": "Single PDF locator; no bulk/API permission established",
+      "required_next_action": "Acquire PDF bytes through permitted access, calculate SHA-256, visually inspect all pages and annexes, and review reuse terms before commercial use."
     }
   ]
 }
