@@ -2442,6 +2442,54 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "Single public blog post; no bulk/API permission established",
       "required_next_action": "Obtain and visually compare official Gazette issue160 page images, verify form layout and uncertain 0.2? string; review terms and obtain permission before redistribution."
+    },
+    {
+      "source_id": "EG-GAFI-GAZETTE-LAW55-2014",
+      "authority": "General Authority for Investment and Free Zones (GAFI), government-hosted Gazette PDF repository",
+      "source_page": "https://gafiadmin.gafi.gov.eg/media/1zagiwtt/قانون-التمويل-العقاري.pdf",
+      "material_types": [
+        "Official Gazette issue26 bis (هـ), 2 July 2014; complete Arabic text of Presidential Decree-Law55/2014 amending Mortgage Finance Law148/2001"
+      ],
+      "access_status": "Public government-hosted PDF reproduction with searchable text layer; original Amiri Press binary/page-image archive not acquired.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Used for legal text acquisition and metadata. No source-specific licence or written permission for bulk ingestion, commercial display or redistribution was established. Government hosting/public access is not treated as a reuse grant.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "Single public PDF endpoint; no bulk/API permission established",
+      "required_next_action": "Review GAFI terms and obtain written permission if needed for commercial ingestion/display; archive source bytes/hash and visually compare all pages against Amiri Press original."
+    },
+    {
+      "source_id": "EG-MKSEGYPT-DECISION32-2024",
+      "authority": "MKSEgypt legal legislation portal",
+      "source_page": "https://mksegypt.org/ar/decisions/21995",
+      "material_types": [
+        "Full Arabic text of Cabinet Decision32/2024 amending PM Decision1/2001 Executive Regulation of Law148/2001"
+      ],
+      "access_status": "Public searchable full text. Page footer states content is published under Creative Commons Attribution 4.0; DSpace catalogue separately lists Arabic PDF attachment.",
+      "collection_permission": "allowed_with_attribution_for_site_displayed_text_only",
+      "commercial_reuse_permission": "allowed_with_attribution_for_site_displayed_text_only",
+      "terms_url": "https://creativecommons.org/licenses/by/4.0/",
+      "permission_evidence": "The page footer expressly states: محتوى الموقع منشور برخصة المشاع الإبداعي نسب المصنف 4.0. Scope recorded narrowly for the text displayed on this MKSEgypt page only, subject to attribution and licence terms. This does not establish rights in the DSpace PDF attachment, embedded Gazette scans, third-party material, or bulk/API extraction.",
+      "terms_checked_on": "2026-11-18",
+      "bulk_download_or_api": "No bulk/API permission established; manual page access only",
+      "required_next_action": "Preserve attribution and CC BY4.0 notice for displayed text; compare with DSpace Arabic PDF and Gazette page images; do not assume licence covers embedded third-party scans or bulk extraction."
+    },
+    {
+      "source_id": "EG-LAWYEREGYPT-LAW143-2004-ARTICLE11",
+      "authority": "Lawyer Egypt legal-information site (secondary consolidated statute transcription)",
+      "source_page": "https://lawyeregypt.net/قانون-التمويل-العقاري-رقم-148-لسنة-2001/",
+      "material_types": [
+        "Historical Article11 wording of Law148/2001 substituted by Law143/2004; prior wording; later Law55/2014 version context"
+      ],
+      "access_status": "Public searchable secondary consolidated Arabic text. FRA official consolidated PDF footnote confirms Law143/2004 and Gazette issue25 تابع (أ), 17 June 2004; original Law143 Gazette PDF was not obtained.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Used to capture the historical mortgage-specific replacement wording, not the complete Law143/2004 instrument. No licence or written commercial reuse permission was reviewed or established; public access is not a reuse licence.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "Single public text page; no bulk/API permission established",
+      "required_next_action": "Acquire full original Gazette issue25 تابع (أ), verify Article11 replacement against page image and capture remaining amendments to Laws95/1992 and93/2000; review site terms before reuse beyond citation."
     }
   ]
 }
