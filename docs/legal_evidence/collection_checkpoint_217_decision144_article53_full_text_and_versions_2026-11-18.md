@@ -4,6 +4,8 @@
 **Source:** LAW HUB searchable Arabic text, https://lawhub.info/eg/?p=12146, lines 1216–1345 as opened on 18 November 2026.  
 **Source tier:** secondary legal-text transcription. Article 53(1)(6) is identified as amended by Decision 67/2014. The full current and pre-amendment versions displayed by the source are preserved separately.
 
+**Superseding note (checkpoint 218):** Articles 60–63 have now also been transcribed. Cumulative complete Arabic-body coverage is 70/185 (115 remain). See checkpoint 218.
+
 ## Article 53 — current wording shown after Decision 67/2014
 تضم اشتراطات تقسيم الأراضي للمدن والقرى مجالين رئيسيين هما:
 
