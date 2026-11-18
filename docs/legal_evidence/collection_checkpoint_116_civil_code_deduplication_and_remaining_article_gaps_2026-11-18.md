@@ -100,3 +100,8 @@ The repository-wide deduplication audit was rerun after checkpoints 117–120. I
 
 The only article numbers without an operative base-text transcription are the repealed ranges 54–80 and 389–417. This is base-code extraction coverage, not amendment consolidation, page-image verification, legal validation, lawyer review or reuse clearance. OCR/source defects and historical/current version reconciliation remain open.
 
+
+
+## Final status after page-image completion of Article 766(2)
+
+Official PDF pages 63–64 were visually inspected. Article 766(2)'s complete text was recovered and added to checkpoint 98. The deduplicated Civil Code count is now **1,093 fully transcribed non-repealed article provisions**, with no partial or untranscribed non-repealed article numbers. The only untranscribed article-number ranges are Articles 54–80 and 389–417, both repealed in the base text (56 positions).
