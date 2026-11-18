@@ -164,3 +164,11 @@ Checkpoint 101 adds **64 distinct provisions**, Articles 854–917:
 
 Cumulative Civil Code extraction stream: **637 fully transcribed unique provisions** (67 prior + 570 new in this continuation). This is a non-consecutive base-text extraction, not a consolidated current code. Article 875 refers heir identification and shares to Sharia and relevant special laws; no inheritance-share rules are inferred from this Civil Code text.
 
+## 15. Further Civil Code extraction — Articles 918–1014
+
+- Checkpoint 102 adds **31 provisions**, Articles 918–948: accession to immovable/movable property, ownership of structures, transfer of real rights and pre-emption.
+- Checkpoint 103 adds **47 provisions**, Articles 949–995: possession, possessory actions, acquisitive prescription, fruits/expenses and usufruct. Article 970 is particularly important for state/public assets and inheritance rights.
+- Checkpoint 104 adds **19 provisions**, Articles 996–1014: use and habitation, emphyteusis/ḥikr, and special waqf lease forms.
+- The cumulative Civil Code extraction stream is now **734 fully transcribed distinct article provisions** (67 prior + 667 newly transcribed in this continuation). Articles 1015–1029 (easements) and 1030 onward (mortgages) were already indexed in checkpoint 86 and were not recounted.
+- Article 934's registration rule (checkpoint 102) must be read with Law 114/1946; Articles 970 and 999–1014 require historical versioning against state-property, waqf and land laws. No currentness is implied.
+
