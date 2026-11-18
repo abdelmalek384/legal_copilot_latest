@@ -411,6 +411,14 @@
 - No national completion percentage recalculated: the corpus still lacks a validated denominator of all unique Egyptian legal article texts.
 
 
+### Research Agent 1 — acquisition-register reconciliation
+
+- Inspected the existing national source register, Phase 2 metadata-only document inventory, source-evidence register, source-permission register and initial statute acquisition register before updating.
+- Extended `data/research/egypt_initial_statute_acquisition_register_2026-11-17.csv` with 29 unique instrument records (EG-0144–EG-0172) for civil/property registration, notarization, desert land, expropriation, irrigation and mortgage-finance texts.
+- Upgraded existing EG-0070 Law 148/2001 from the earlier ETA PDF with no readable text layer to the official FRA-hosted Gazette reproduction with searchable Arabic text.
+- CSV validation: 168 instrument rows, 12 columns per row, no duplicate instrument IDs, and no malformed rows. This is a register count, not a count of unique full legal texts or articles.
+- All new rows retain `lawyer_reviewed=false` and `rights_cleared=false`; no collection or commercial reuse permission is inferred. Phase 2 production inventory and source-permission register were not promoted or altered because their permission/review gates remain unknown.
+
 ### Research Agent 1 — desert-land amendment and jurisdiction supplement
 
 - Supplemental checkpoint 89 acquisition: full searchable text of Law 12/1984 (FAOLEX secondary reproduction) and official Ministry of Water Resources and Irrigation PDF for Law 147/2021. Law 147/2021 repealed Law 12/1984 from 17 October 2021; it does not expressly revive the 1984 repeal of Law 143/1981 Article 21.
