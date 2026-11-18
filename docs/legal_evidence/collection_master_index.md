@@ -660,3 +660,11 @@
 - 23 provisions transcribed in Agent 3 file, including definitions, consumer rights, supplier disclosure/Arabic language, price display, strategic goods, 14-day return, defect notification/recall, 30-day defective-goods remedy, 2-year durable-goods warranty, product liability, unfair terms, confidentiality, distance contracts, enforcement, penalties and corporate liability.
 - Law 20/2024 remains the current replacement of Article 71; the 2018 original Article 71 is historical and must not be used for current penalties. The law excludes financial/banking services from "products" and the distance-contract chapter excludes banking/financial services and capital-market-related services.
 - **Updated Agent 3 minimum:** 58 distinct instruments with some Arabic text surfaced; 398 article/provision text units; 13/13 families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
+
+
+### Research Agent 3 — Consumer Executive Regulation 822/2019 full text resolved
+
+- Full searchable text of Decision 822/2019 through all 47 numbered articles is now available from a secondary transcription attributed to the Court of Cassation legislation portal; official Laweg Gazette index confirms issue 13 bis (أ), 1 Apr 2019.
+- Earlier extraction had stopped at Article 23; that limitation is superseded. Nine additional provisions (Articles 6–9, 20–21, 32–33 and 40) are transcribed in Agent 3 file.
+- Full original Gazette PDF/page-image comparison and later amendment/currentness review remain outstanding.
+- **Updated Agent 3 minimum:** 58 distinct instruments with some Arabic text surfaced; 407 article/provision text units; 13/13 families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
