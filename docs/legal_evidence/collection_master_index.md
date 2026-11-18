@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (Research Agent 1 checkpoint 220; Agent 3 continuation separately indexed)
+**Last updated:** 2026-11-18 (Research Agent 1 checkpoint 221; Agent 3 continuation separately indexed)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -108,6 +108,7 @@
 | checkpoint 6 — Agent 3 FRA Decision 43/2026 fintech consumer-finance licensing pause | Added one distinct FRA Board decision and exact Arabic text of Articles 1–2; original Gazette binary/page-image check remains outstanding | [Agent 3 checkpoint 6](agent3_progress_checkpoint_2026-11-18_6.md) |
 
 | checkpoint 220 — Decision 144/2009 Articles 77–90 extraction | Added 14 complete Arabic base article bodies (Arts 77–90); cumulative coverage rises to 97/185 (88 remain) | [checkpoint 220](collection_checkpoint_220_decision144_articles_77_90_full_text_2026-11-18.md) |
+| checkpoint 221 — Decision 144/2009 Articles 94–108 full-text extraction | Added 14 complete base article bodies (Arts 94–103, 105–108); separately captured inserted Arts 98 bis and 108 bis and historical versions; cumulative coverage 114/185 (71 remain) | [checkpoint 221](collection_checkpoint_221_decision144_articles_94_108_full_text_2026-11-18.md) |
 | checkpoint 220 — Decision 144/2009 Articles 77–93 full-text extraction | Added 17 complete Arabic base article bodies (Arts 77–93); cumulative coverage rises to 100/185 (85 remain) | [checkpoint 220](collection_checkpoint_220_decision144_articles_77_93_full_text_2026-11-18.md) |
 | checkpoint 219 — Decision 144/2009 Articles 64–76 extraction | Added 13 complete Arabic base article bodies (Arts 64–76); cumulative coverage rises to 83/185 (102 remain) | [checkpoint 219](collection_checkpoint_219_decision144_articles_64_76_full_text_2026-11-18.md) |
 | checkpoint 218 — Decision 144/2009 Articles 60–63 extraction | Added full Arabic Articles 60–63; preserved Article 60 current/pre-amendment wording; cumulative coverage rises to 70/185 (115 remain) | [checkpoint 218](collection_checkpoint_218_decision144_articles_60_63_full_text_2026-11-18.md) |
