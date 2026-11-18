@@ -4703,3 +4703,22 @@ Decision 2300/2022 replaces Executive Regulation Article 42 and the second parag
 > يُنشر هذا القرار في الجريدة الرسمية، ويُعمل به من اليوم التالي لتاريخ نشره.
 
 **Currentness:** Decision 1203/2024 subsequently replaced Regulation Articles 41, 42 and 43, so the 2022 version of Article 42/43 above is historical. Current answers must use the 17 April 2024 text in section 33 and the consolidated Decision 2310/2017 version, not the 2022 requirements.
+
+
+## 43. Investment Executive Regulation amendment Decision 4426/2022 — revised single-approval company eligibility
+
+**Decision:** Prime Minister Decision 4426/2022.  
+**Gazette:** Official Gazette issue 49 (تابع), 8 December 2022.  
+**Official Gazette DSpace record:** https://dspace.id.com.eg/items/2a60f5eb-2f21-4dfe-8962-c1bb588dab88  
+**Arabic PDF access status:** DSpace file is restricted and routes to a request-a-copy workflow; the Gazette PDF bytes were not downloaded.  
+**Searchable text / contemporaneous report:** https://www.cairo24.com/1708475
+
+Decision 4426/2022 replaces item (1) of Article 42 of Executive Regulation 2310/2017, following the earlier 2300/2022 amendment. It removes the earlier minimum-capital ratio of 20% of project costs and replaces it with a requirement for financial solvency under criteria set by GAFI Board, while retaining the eligible company forms and post-commencement incorporation requirement.
+
+**Verbatim — replacement Regulation Article 42(1):**
+
+> 1- أن يتخذ شكل شركة مساهمة مصرية أو شركة ذات مسئولية محدودة وفقًا لأحكام قانون الاستثمار الصادر بالقانون رقم 72 لسنة 2017 أو قانون شركات المساهمة وشركات التوصية بالأسهم والشركات ذات المسئولية المحدودة وشركات الشخص الواحد الصادر بالقانون رقم 159 لسنة 1981، على أن يلتزم بتقديم ما يفيد الملاءة المالية لتنفيذ المشروع، طبقًا للمعايير التي يضعها مجلس إدارة الهيئة في هذا الشأن، وفي جميع الأحوال يجب أن تؤسس الشركة في تاريخ لاحق على تاريخ العمل بقانون الاستثمار المشار إليه.
+
+**Version note:** Decision 4426/2022 was later superseded in full for Articles 41–43 by Decision 1203/2024. Preserve the 4426 text as a historical intermediate version; current single-approval requirements must use the 17 April 2024 replacement.
+
+**Source rights:** the Official Gazette DSpace PDF is access-restricted; the transcribed Arabic clause is from contemporaneous secondary reporting and must be checked against a lawfully obtained Gazette copy before ingestion as primary text.
