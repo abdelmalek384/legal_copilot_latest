@@ -819,3 +819,51 @@ Regulation Article 18 bis (changes to registration data):
 - Families amendment/currentness-complete: 0/13.
 - Lawyer-reviewed: 0%.
 - Whole-corpus estimate remains approximately 2%; no validated denominator exists for a more precise figure.
+
+
+## 22. Public-private partnership (PPP) — official Gazette source acquisition
+
+### Primary source register
+- Law 67/2010, Official Gazette issue 19 bis (A), 18 May 2010: Ministry of Finance official Gazette PDF: https://media.mof.gov.eg/mof-prd/1490_c21c703414.pdf
+- Executive Regulation PM Decision 238/2011, Official Gazette issue 3 bis (B), 23 January 2011: official Invest in Egypt government PDF: https://www.investinegypt.gov.eg/PublishingImages/Lists/LawsAndRegulations/AllItems/اللائحة%20التنفيذية%20لقانون%20مشاركة%20القطاع%20الخاص%20في%20مشروعات%20البنية%20الأساسية%20والخدمات%20والمرافق%20العامة%20رقم%2067%20لسنة%202010.pdf
+- Official PPP Central Unit: https://pppcentralunit.mof.gov.eg/homear/atearspeech
+- World Bank PPP Legal Resource Center confirms the main current framework includes Law 67/2010 as amended in 2021 and Executive Regulation 238/2011 as amended by PM Decision 3217/2022: https://ppp.worldbank.org/library/ppp-laws-concession-laws-egypt
+- The official government source routes establish the base law and 2011 regulation. The 2021 amendment and 2022 regulatory amendment still require their own Gazette PDFs and article-by-article transcription. Do not treat the base 2010/2011 versions as consolidated current text.
+
+### Exact Arabic text — Law 67/2010 issuing provisions
+
+**Issuing Article 1:**
+> تسري أحكام القانون المرافق على عقود المشاركة مع القطاع الخاص وعقود الاستشارات الخاصة المتعلقة بها والتي تبرمها الجهات الإدارية، لتنفيذ مشروعات البنية الأساسية والخدمات والمرافق العامة وإتاحة خدماتها.
+>
+> ولا تسري على هذه العقود أحكام القانون رقم 129 لسنة 1947 بالتزامات المرافق العامة، والقرار بالقانون رقم 61 لسنة 1958 في شأن منح الامتيازات المتعلقة باستثمار موارد الثروة الطبيعية والمرافق العامة وتعديل شروط الامتياز، وقانون تنظيم المناقصات والمزايدات الصادر بالقانون رقم 89 لسنة 1998، وغيرها من القوانين الخاصة بمنح التزامات المرافق العامة.
+
+**Issuing Article 2:**
+> يصدر رئيس مجلس الوزراء اللائحة التنفيذية للقانون المرافق، بناءً على عرض الوزير المختص بالشئون المالية، وموافقة مجلس الوزراء وذلك خلال ثلاثة أشهر من تاريخ العمل به.
+
+**Issuing Article 3:**
+> ينشر هذا القانون في الجريدة الرسمية، ويعمل به من أول الشهر التالي لمرور ثلاثين يوماً على تاريخ نشره.
+
+### Exact Arabic text — Executive Regulation Decision 238/2011 issuing provisions
+
+**Issuing Article 1:**
+> يعمل بأحكام اللائحة التنفيذية لقانون تنظيم مشاركة القطاع الخاص في مشروعات البنية الأساسية والخدمات والمرافق العامة الصادر بالقانون رقم ٦٧ لسنة ٢٠١٠ المرفقة.
+
+**Issuing Article 2:**
+> ينشر هذا القرار في الجريدة الرسمية، ويعمل به اعتباراً من اليوم التالي لتاريخ نشره.
+
+### Amendment/currentness chain — not yet fully transcribed
+- Law 67/2010 was amended by Law 153/2021 (Official Gazette issue 50 bis (A), 18 December 2021). Secondary consolidated text indicates amendments to the procurement/selection methods and the Supreme Committee / PPP Central Unit process; obtain the official Gazette PDF before importing.
+- Executive Regulation Decision 238/2011 was amended by PM Decision 3217/2022, published 13 September 2022. The World Bank PPP legal repository identifies this as the current executive-regulation amendment. The decision's official Arabic text and annex must be acquired and reconciled article by article.
+- PM Decision 2735/2018 is identified as the current Supreme Committee structure/competence instrument replacing Decision 1875/2010; obtain the Gazette source and operative text.
+- PPP must remain distinct from Public Contracts Law 182/2018. Law 67/2010 is a special PPP framework and its issuing Article 1 expressly disapplies certain concession/public-tender laws for covered PPP contracts, subject to its own terms.
+- The Ministry of Finance PPP Unit's website explains programme practice and contract support, but its overview is guidance and not a substitute for legislation.
+
+**Incremental provision units:** 5 issuing provisions (Law 67/2010 Articles 1–3 and Decision 238/2011 Articles 1–2). The underlying law and regulation were already present as family/source leads; no new unique-instrument count is claimed in this checkpoint.
+
+## 23. Revised counts after PPP primary-source text capture
+- Unique instruments with Arabic text surfaced: 92 (unchanged).
+- Article/provision text units: 1,186 (1,181 + 5).
+- Assigned families touched: 13/13.
+- Families amendment/currentness-complete: 0/13.
+- Lawyer-reviewed: 0%.
+- Whole-corpus estimate remains approximately 2%; no validated denominator exists for a more precise figure.
