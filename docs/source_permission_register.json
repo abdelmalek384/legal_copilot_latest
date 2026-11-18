@@ -2394,6 +2394,22 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "Single public PDF; no bulk/API permission established",
       "required_next_action": "Obtain original Gazette issue282 supplement pages and hash; complete article-by-article transcription and reconcile amendment decisions 465/2005,1864/2008,1/2015,2/2015,32/2024."
+    },
+    {
+      "source_id": "EG-LAWEG-DECISION774-2014-BUILDING",
+      "authority": "Laweg legal archive (secondary transcription of Egyptian Proceedings issue 288)",
+      "source_page": "https://www.laweg.net/framePlain.aspx?NID=113308&action=viewactivepages&itemid=93077&type=6",
+      "material_types": [
+        "Full Arabic text of Housing Minister Decision774/2014 replacing Article134 of Building Regulation144/2009 and referring to seven forms"
+      ],
+      "access_status": "Public searchable Arabic transcription; publication metadata cross-checked against EastLaws and official Ministry of Housing amendment index. Original Gazette issue288 page image and attached forms not acquired.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Used as a secondary source transcription to capture operative legal text. No source-specific licence or written permission was reviewed or established; public accessibility does not establish commercial reuse permission.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "Single public text page; no bulk/API permission established",
+      "required_next_action": "Acquire official Gazette issue288 page images and seven forms; review Laweg terms and obtain permission before reuse beyond citation."
     }
   ]
 }
