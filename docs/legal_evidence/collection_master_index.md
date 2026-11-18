@@ -2326,3 +2326,9 @@ The official Amiri Press TashTxt search result returned the complete annex, so t
 - Classification types: 74 base laws; 65 amending laws; 19 executive regulations; 43 executive-regulation amendments; 21 judicial decisions; 85 other decisions; 13 other/unclassified.
 - Full-text inventory: **96 rows / 92 unique instruments**. **76 unique instruments (23.8%)** are now marked full/complete; 19 rows remain partial, external-only or incomplete. Unique instrument source coverage remains **92/320 = 28.8%**.
 - Decision3530/2026 has moved from partial to complete local Arabic transcription of its issuing articles and annex; only original Gazette page-image authentication, PDF hash and Finance Minister implementation rules remain.
+
+
+### Cabinet Decision95/2026 — full Arabic text acquired
+
+Added complete preamble and both operative articles from the official Amiri Press TashTxt source. Decision95/2026 amends Decision67/2024's single-approval project timetable for MAFI Agricultural Crops Manufacturing Co.; completion and commencement are now due by **31 March 2027**. Gazette issue46 (تابع), 12 November 2026; effective 13 November 2026.
+[Decision95/2026 full Arabic text](acquisition_tranche_cabinet_decision95_2026_mafi_project_timetable_arabic.md)
