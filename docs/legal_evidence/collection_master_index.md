@@ -20,7 +20,7 @@
 | Judicial decisions | 21 |
 | Other decisions | 114 |
 | Other / unclassified | 14 |
-| Source-permission register | **119 unique source records** |
+| Source-permission register | **122 unique source records** |
 | Full-text inventory | **148 rows / 144 unique instruments** |
 | Full/complete text-source records | **85 unique instruments (legacy tally; status recode pending)** |
 | Confirmed instrument text-source coverage | **143/367 (39.0%)** |
@@ -68,7 +68,8 @@ New acquisition-first tranche added complete Arabic texts for Law88/2025 (14 art
 
 ## Collection checkpoints
 
-| checkpoint 239 — Research Agent 1 live-register audit, source provenance and continuation | Reconciles the live 355-record acquisition/type ledgers, 119 source assessments and 146-row text inventory; records Gazette/judgment blockers, Decision 480 deadline qualifications and current article/version coverage | [Research Agent 1 checkpoint 239](collection_checkpoint_239_research_agent1_session_update_2026-11-18.md) |
+| checkpoint 240 — Research Agent 1 rent docket refresh and source-register update | Updates live source-permission register to 122; records reported Case 21/48 adjournment to 13 Dec 2026 and newly reported Case 44/48; confirms no new instrument/article counts and preserves Gazette/judgment/deadline blockers | [Research Agent 1 checkpoint 240](collection_checkpoint_240_research_agent1_rent_docket_refresh_and_source_register_2026-11-18.md) |
+| checkpoint 239 — Research Agent 1 live-register audit, source provenance and continuation | Historical snapshot: 355 acquisition records, 111 source assessments and 131-row inventory; superseded by checkpoint 240 and the current master dashboard/registers | [Research Agent 1 checkpoint 239](collection_checkpoint_239_research_agent1_session_update_2026-11-18.md) |
 
 
 | checkpoint 31 — Agent 3 licensing, solvency and governance capture | Added current FRA Decision 137/2018 partial text, 191/192 solvency rule captures and Decision 100/2020 governance scope; amendments/currentness caveats recorded | [Agent 3 checkpoint 31](agent3_progress_checkpoint_2026-11-18_31.md) |
