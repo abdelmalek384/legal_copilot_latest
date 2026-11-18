@@ -28,14 +28,14 @@ Removed duplicate blocks:
 | Law 68/1947 | Full 14-article searchable text; Articles 2–14 captured, Article1 text preserved with repeal marker. Original Gazette versions of Articles12–14 separately preserved. | 13/14 non-repealed = 92.9% |
 | Law 70/1964 | Full searchable consolidated text exists; 30 earlier article bodies plus 20 checkpoint190 article bodies/provisions (including bis series); some article IDs overlap and version diffs remain. | No single percentage assigned pending version normalization |
 | Law 168/2025 | Nine complete provisions plus one partial provision in the supplemental text file. Full 18-provision searchable text and a 20-page Gazette scan reproduction are available. | 9/18 complete = 50% |
-| PM Decision 200/2026 | Twelve complete regulation articles (3–7, 9–10, 13, 15–18) plus issuing Article4; all three attached forms mapped. Official SIS full-issue Gazette PDF opened. | 12/20 regulation articles = 60% |
+| PM Decision 200/2026 | Fifteen complete regulation articles (3–7, 9–10, 13, 15–18) plus issuing Article4; all three attached forms mapped. Official SIS full-issue Gazette PDF opened. | 12/20 regulation articles = 60% |
 | Presidential Decision 480/2026 | Both operative articles transcribed from secondary reproductions; original Amiri Press DSpace bundle remains request-copy only. | 2/2 = 100% text capture |
 
 These percentages measure text presence/coverage, not Gazette authentication, completeness of amendment history, legal currentness or lawyer verification. A heading count is not a count of unique operative provisions.
 
 ## 3. New unique text additions from checkpoints 185–188
 
-- 27 additional unique article/provision text entries in the state-land/property supplements: Law 142/1964 Articles 9–10 (2); Law 168/2025 (10 entries, including one partial); PM Decision 200/2026 (13 entries); Presidential Decision 480/2026 (2 entries). The 10 Law 168 entries include nine complete and one partial; the 13 Decision 200 entries include 12 regulation articles and issuing Article4.
+- 31 additional unique article/provision text entries in the state-land/property supplements: Law 142/1964 Articles 9–10 (2); Law 168/2025 (10 entries, including one partial); PM Decision 200/2026 (13 entries); Presidential Decision 480/2026 (2 entries). The 10 Law 168 entries include nine complete and one partial; the 13 Decision 200 entries include 12 regulation articles and issuing Article4.
 - Three original Law 68/1947 Gazette-version snapshots (Articles12–14) are separate historical versions of existing article numbers.
 - One historical paragraph snapshot for Law 70/1964 Article21(9) is retained in the Law70 amendment-chain file; it is not counted as a complete article body.
 - Checkpoint 188 added 16 Law 114 article bodies, of which six have article IDs not present in earlier captured ranges and ten overlap earlier article IDs (version-diff required).
