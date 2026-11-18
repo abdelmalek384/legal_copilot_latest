@@ -6801,3 +6801,51 @@ Decision Article 1 replaces provisions including Articles 16 (sukuk), 16 bis and
 Decision 3045/2023 is a major regulation update: sukuk issuance programs and disclosure; ETF and ESG fund definitions; sustainable-development funds; governance and reporting duties; and multi-issuance securitization programs. It must be read with subsequent Decisions 2423/2024, 1539/2025 and 2482/2025, and the FRA consolidated 2025 Executive Regulation text.
 
 **Collection status for Decisions 2423/2024 and 3045/2023:** official FRA records confirm both instruments; searchable Arabic texts and Gazette metadata located; selected operative provisions transcribed above. No lawyer review or rights clearance claimed.
+
+
+## 50. Capital Market Executive Regulation — PM Decision 4664/2022 (voluntary carbon market)
+
+### A. Gazette and official regulator source
+
+**Decision:** Prime Minister Decision 4664/2022 amending Executive Regulation Decision 135/1993 to recognize carbon-emission-reduction certificates as financial instruments and create the voluntary carbon trading market framework.  
+**Gazette:** Official Gazette issue 51 bis (د), 25 December 2022.  
+**Effective:** 26 December 2022.  
+**Official FRA decision page:** https://fra.gov.eg/regulations/قرار-رئيس-مجلس-الوزراء-رقم-4664-لسنة-2022-2/  
+**FRA official carbon-market legislative index:** https://fra.gov.eg/القرارات-و-الضوابط-التنظيمية-لسوق-الكربون/  
+**FRA 2025 consolidated Executive Regulation PDF:** https://fra.gov.eg/wp-content/uploads/2025/01/لائحة-التنفيذية-من-قانون-سوق-المال-بصيغة-نهائي-للموقع.pdf
+
+### B. Inserted provisions — exact Arabic text in FRA consolidated regulation
+
+**Verbatim — Regulation Article 35 bis/7 (voluntary carbon certificates):**
+
+> المادة ٣٥ مكرراً ٧
+>
+> تنشأ بالبورصة المصرية سوق طوعية لتداول "شهادات خفض الانبعاثات الكربونية". وتعد تلك الشهادات أدوات مالية قابلة للتداول، ويقصد بها "وحدات خفض انبعاثات غازات الاحتباس الحراري"، وتصدر لصالح أية جهة تنفذ مشروعات خفض انبعاثات غازات الاحتباس الحراري بعد الحصول على موافقة الجهات المعنية ذات الاختصاص، وتمثل كل "وحدة" طناً من ثاني أكسيد الكربون المكافئ تم تخفيضه.
+>
+> وتلتزم كافة الجهات الحكومية وقطاع الأعمال العام والقطاع الخاص وكافة مطوري المشروعات بإخطار الهيئة ووزارة البيئة بجميع المشروعات التي سوف يصدر لها شهادات خفض الانبعاثات الكربونية.
+>
+> وتلتزم الجهات المصدر لها شهادات خفض انبعاثات كربونية بالإفصاح عن أية أحداث أو تغييرات تطرأ بشأن الموافقات الصادرة لها من الجهات المعنية ذات الاختصاص طوال مدة الإصدار.
+
+**Verbatim — Regulation Article 35 bis/8 (supervision committee and registry):**
+
+> المادة ٣٥ مكرراً ٨
+>
+> تشكل بقرار من مجلس إدارة الهيئة بالتنسيق مع وزارة البيئة لجنة تضم في عضويتها ممثلين عن الجهات المعنية، تسمى "لجنة الإشراف والرقابة على وحدات خفض الانبعاثات الكربونية"، تتولى وضع القواعد الخاصة بإصدار شهادات خفض الانبعاثات الكربونية وإتاحتها للتداول، والإشراف والرقابة عليها ويحدد القرار الصادر بتشكيل اللجنة اختصاصاتها ونظام عملها.
+>
+> وتعد الهيئة قاعدة بيانات لتسجيل المشروعات التي صدر لها شهادات خفض الانبعاثات الكربونية، وتقوم بموافاة وزارة البيئة بتلك المشروعات بصورة شهرية.
+>
+> وتصدر البورصة المصرية قواعد وإجراءات التداول على تلك الشهادات، على ألا تكون سارية إلا بعد اعتمادها من الهيئة.
+
+### C. Related national voluntary carbon market system
+
+FRA and Ministry of Environment material distinguishes this Capital Market Regulation amendment from the Cabinet Decision 4664/2022 establishing the national system for voluntary carbon-reduction trading. The same decision number appears in both contexts; the legal corpus must store separate document records by issuing authority/title and Gazette metadata rather than merge them. The FRA decision modifies Regulation 135/1993; the separate Cabinet decision creates the national carbon-trading system. This number-collision is a retrieval and citation hazard.
+
+### D. Legal effect and status
+
+- Carbon-reduction certificates are financial instruments tradable on the Egyptian Exchange's voluntary market.
+- One unit represents one tonne of CO2-equivalent reduced.
+- Projects require approval from competent authorities; government, public business and private-sector entities and project developers must notify FRA and the Environment Ministry of projects issuing certificates.
+- Issuers must disclose events or changes affecting approvals during the issuance period.
+- FRA, in coordination with the Environment Ministry, forms a supervision committee, maintains a project/certificate database and approves exchange trading rules.
+
+**Collection status:** exact inserted Articles 35 bis/7 and 35 bis/8 transcribed from the FRA official consolidated 2025 Executive Regulation PDF; FRA decision page and carbon-market legislative index located. Original Gazette scan for Decision 4664/2022 still needs direct page-image verification. No lawyer review or rights clearance claimed.
