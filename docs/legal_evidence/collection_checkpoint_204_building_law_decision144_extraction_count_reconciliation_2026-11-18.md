@@ -4,6 +4,8 @@
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** correct stale extraction counts in the master index and full-text inventories after re-reading the actual article-bearing checkpoints.
 
+**Superseding note (checkpoint 205):** The Decision 144/2009 count in Section 2 below was incomplete because it omitted the 20 substantive article bodies in the working file summarized at checkpoint 170. Correct cumulative status is 33/185 base articles (152 remain) plus three inserted bis provisions; see checkpoint 205.
+
 ## 1. Finding: Law 119/2008 base article extraction is complete
 
 The master index and full-text inventory had been carrying a stale statement that only 9 of 114 substantive Law 119/2008 articles were captured and 105 remained. That statement confused the 9 text units newly included in checkpoint 189 with cumulative corpus extraction.
