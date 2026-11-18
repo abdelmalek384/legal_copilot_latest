@@ -1,6 +1,6 @@
 # Egyptian legal knowledge collection — master index
 
-**Last updated:** 2026-11-18 (expanded through checkpoint 104)
+**Last updated:** 2026-11-18 (expanded through checkpoint 106)
 **Repository:** `abdelmalek384/legal_copilot_latest`  
 **Purpose:** durable index of source discovery and text-extraction checkpoints. This is not a legal corpus release, consolidated code, rights clearance, or lawyer certification.
 
@@ -400,6 +400,8 @@
 - Whole Egyptian legal collection estimate remains approximately 2% (provisional). No denominator of all unique Egyptian legal article texts is currently recorded, so an exact incremental percentage contribution from this tranche is not responsibly calculable.
 - Overall whole-corpus coverage remains approximately 2% as recorded in the existing index. This is provisional. The project does not yet record a denominator of all unique Egyptian legal article texts, so the incremental percentage contribution of these checkpoints cannot responsibly be calculated. Counts are based on unique instruments and article provisions, not URLs or catalogue entries.
 
+| [collection_checkpoint_106_civil_code_special_security_rights_and_privileges_articles_1085_1149_2026-11-18.md](collection_checkpoint_106_civil_code_special_security_rights_and_privileges_articles_1085_1149_2026-11-18.md) | Civil Code Articles 1085–1149: judicial lien, possessory pledge, pledge of debts and statutory privileges, including contractors/architects |
+| [collection_checkpoint_105_civil_code_official_mortgage_articles_1030_1084_2026-11-18.md](collection_checkpoint_105_civil_code_official_mortgage_articles_1030_1084_2026-11-18.md) | Civil Code Articles 1030–1084: official mortgage creation, priority, enforcement, purchaser/hāʾiz rights, purification and extinction |
 | [collection_checkpoint_104_civil_code_use_habitation_and_emphyteusis_articles_996_1014_2026-11-18.md](collection_checkpoint_104_civil_code_use_habitation_and_emphyteusis_articles_996_1014_2026-11-18.md) | Civil Code Articles 996–1014: use/habitation, ḥikr/emphyteusis and waqf lease forms |
 | [collection_checkpoint_103_civil_code_possession_and_acquisitive_prescription_articles_949_995_2026-11-18.md](collection_checkpoint_103_civil_code_possession_and_acquisitive_prescription_articles_949_995_2026-11-18.md) | Civil Code Articles 949–995: possession, possessory actions, acquisitive prescription, movable possession and usufruct |
 | [collection_checkpoint_102_civil_code_accretion_transfer_and_preemption_articles_918_948_2026-11-18.md](collection_checkpoint_102_civil_code_accretion_transfer_and_preemption_articles_918_948_2026-11-18.md) | Civil Code Articles 918–948: accession, buildings on another's land, real-right transfer formalities and pre-emption |
