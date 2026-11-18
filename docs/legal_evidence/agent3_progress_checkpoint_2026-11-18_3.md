@@ -42,3 +42,10 @@ Record: [agent3_capital_market_exec_reg_135_1993_fra_2025_full_text_expansion.md
 
 ## Handling rule
 All text remains machine-collected and not lawyer-reviewed. No "verified" label. Use "source-matched, not lawyer-reviewed" only where the exact provision has actually been matched to a primary source. Keep source type, Gazette metadata, exact Arabic, amendment overlay, binary hash, and rights status separate.
+
+
+## Additional text-depth acquisitions — 18 November 2026
+- **Law 11/2021 bankruptcy amendment:** Official Gazette PDF (Invest in Egypt), issue 16 bis (و), 28 April 2021, pages 5–19. Extracted selected operative Arabic text for replaced provisions, new electronic-litigation Article 3 bis, new-money financing, creditor-class voting, information rights, trustee notifications to CBE/FRA/EGX/CSD, repeal list and commencement. [Text record](agent3_bankruptcy_law11_2021_primary_gazette_amendment_text.md).
+- **Capital Market Law 95/1992:** FRA updated Arabic compilation, 35 printed pages / 1,545 extracted lines, selected operative provisions and version notes captured. Law 13/2022 original Gazette overlay captured. [Text audit](agent3_capital_market_law95_1992_fra_updated_text_audit_2026-11-18.md).
+- FRA's catalogue confirms eight statutory amendments listed through Law 13/2022 and 23 amendments to Executive Regulation 135/1993, including PM Decisions 1539/2025 and 2482/2025. This makes the executive-regulation amendment chain the currentness bottleneck.
+- These are text-depth/source-quality upgrades for instruments already counted; **cumulative remains 209 documents / 2,049 provisional units**. Assigned-domain completion **55% provisional**, whole corpus **2% provisional**, lawyer review **0%**.
