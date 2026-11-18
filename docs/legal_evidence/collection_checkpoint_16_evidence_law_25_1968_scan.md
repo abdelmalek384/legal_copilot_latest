@@ -47,3 +47,7 @@ The scan visibly identifies:
 - Ministry legislation page: https://mof.gov.eg/ar/legislation/legislation-5fe86ae87bfc600007cc0271
 - PDF reproduces Official Gazette issue 22, 30 May 1968, printed pages 311–322; 12 pages total. PDF page indices 0,1,2,3,5,6,7,8,9,10,11 visually inspected; index 4 failed to render.
 - This upgrades the source from a Ministry listing to an official-hosted Gazette PDF reproduction. No local binary/hash acquired. Do not count previously extracted Articles 1–3 as new.
+
+## Supplement — full Evidence Law scope correction and amendment chain (18 November 2026)
+
+The statute continues through Article 163, not merely Article 117. The official Ministry of Finance PDF is 12 pages, issue 22 dated 30 May 1968; 11/12 pages were visually inspected, with PDF index 4 failing to render. WIPO Lex and the secondary consolidated PDF expose Articles 148–163 and confirm the additional expert provisions. Amendment chain identified: Law 54/1974 (Articles 148 and 148 bis), Law 23/1992, Law 18/1999, Law 76/2007. See checkpoint 93 for sources, amendment map and OCR cautions. No complete verified 163-article extraction is claimed.
