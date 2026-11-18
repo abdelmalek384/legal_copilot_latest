@@ -3863,3 +3863,165 @@ Law 13/2022 adds Article 10 bis (remote shareholder meetings and voting), adds p
 **Version note:** Law 143/2004 is the statutory origin of securitization companies and Article 65 bis; Law 13/2022 expands securitization to future cash flows and introduces mandatory electronic general-meeting attendance/voting. Both are included in FRA's current 2022 consolidated Law 95/1992. The FRA PDF should be treated as a consolidated text with embedded amendment footnotes, while the two amending statutes are preserved as separate legal instruments.
 
 **Collection status:** Law 143/2004 full searchable text and Law 13/2022 official FRA Gazette PDF opened. Fourteen provisions from Law 143/2004 and five provisions from Law 13/2022 transcribed. No lawyer approval or rights clearance claimed.
+
+
+## 36. Bankruptcy implementation — Justice Minister Decisions 1899/2018, 6214/2018, 2208/2019 and 3067/2021
+
+### A. Decision 1899/2018 — Bankruptcy Administration experts register
+
+**Decision:** Justice Minister Decision 1899/2018.  
+**Gazette:** الوقائع المصرية issue 57, 10 March 2018.  
+**Full searchable Arabic text (secondary transcription attributed to Court of Cassation legislation portal):** https://alhasswalawfirm.com/law-library/moj-decree-1899-2018  
+**Official indexed Gazette text:** https://www.laweg.net/framePlain.aspx?NID=137730&action=viewactivepages&itemid=111219&type=6
+
+The 15-article regulation establishes the Bankruptcy Administration Experts Register, with three lists: restructuring experts, bankruptcy trustees and appraisers. It defines eligibility, application documents, committee review, appointment, oath, appointment by Bankruptcy Administration judges, discipline, three-year registration and renewal.
+
+**Verbatim — Article 1:**
+
+> مادة (١)
+>
+> تُنشأ بوزارة العدل جداول لقيد الخبراء المتخصصين في المسائل التي تختص بها إدارة الإفلاس ويسمى "جدول خبراء إدارة الإفلاس" ويلحق بجداول خبراء المحاكم الاقتصادية.
+>
+> يتكون جدول خبراء إدارة الإفلاس من ثلاثة جداول:
+>
+> يقيد في الجدول الأول خبراء إعادة الهيكلة.
+>
+> يقيد بالجدول الثاني أمناء التفليسة.
+>
+> يقيد في الجدول الثالث الخبراء المثمنون.
+>
+> والمنصوص عليهم بالمادة (١٣) من قانون إعادة الهيكلة والصلح الواقي والإفلاس.
+
+**Verbatim — Article 3 (qualifications):**
+
+> مادة (٣)
+>
+> يشترط فيمن يقيد بجداول خبراء إدارة الإفلاس بالمحاكم الاقتصادية:
+>
+> ١- أن يكون حاصلاً على مؤهل عال مناسب من إحدى الجامعات أو المعاهد في أحد المجالات المتعلقة بأحكام قانون تنظيم إعادة الهيكلة والصلح الواقي والإفلاس، ويفضل الحاصلون على الدراسات العليا في تخصصاتهم.
+>
+> ٢- أن يكون محمود السيرة حسن السمعة.
+>
+> ٣- ألا تقل مدة خبرته في تخصصه عن خمس سنوات بعد حصوله على المؤهل الدراسي.
+>
+> ٤- ألا يكون قد سبق الحكم عليه بعقوبة سالبة للحرية في إحدى الجرائم المخلة بالشرف والأمانة، أو حكم عليه من مجلس تأديب لأمر مخل بواجبات عمله، أو سبق شهر إفلاسه، ولو كان قد رد إليه اعتباره.
+
+**Verbatim — Article 9 (appointment):**
+
+> مادة (٩)
+>
+> تكون الاستعانة بخبراء إدارة الإفلاس بموجب قرار من قضاة إدارة الإفلاس أو قضاة التفليسة.
+
+### B. Decision 6214/2018 — Restructuring expert operating rules
+
+**Decision:** Justice Minister Decision 6214/2018.  
+**Gazette:** الوقائع المصرية issue 181, 11 August 2018.  
+**Full searchable Arabic text:** https://alhasswalawfirm.com/law-library/moj-decree-6214-2018  
+**Official indexed Gazette text:** https://www.laweg.net/framePlain.aspx?ItemID=112189&NID=138890&Type=6&action=ViewActivePages
+
+The 10-article decision establishes the restructuring expert table in the Bankruptcy Administration, divides legal persons and natural persons into categories, governs the initial examination of restructuring applications, appointments, financial examination in bankruptcy/preventive composition proceedings, and reporting obligations to the committee established by Decision 1889/2018.
+
+**Verbatim — Article 1 (expert table structure):**
+
+> مادة (١)
+>
+> ينشأ جدول خبراء إعادة الهيكلة بإدارة الإفلاس بالمحاكم الاقتصادية ويقسم إلى قسمين:
+>
+> القسم الأول - الأشخاص الاعتبارية، وهي الشركات والمكاتب المتخصصة في مجال إعادة الهيكلة المالية والإدارية وإدارة الأصول.
+>
+> القسم الثاني - الأشخاص الطبيعية، ويتم تقسيمهم إلى جدولين بحسب الخبرات والتخصصات.
+
+**Verbatim — Article 3 (initial restructuring review):**
+
+> مادة (٣)
+>
+> على قاضي الإفلاس، بعد تقديم طلب إعادة الهيكلة، تكليف لجنة خبراء إعادة الهيكلة بفحص الطلب والتصريح لها بدخول مقرات التاجر مقدم الطلب الخاصة بأعماله التجارية بعد تقديم الأخير إقراراً بذلك وإيداعه الأمانة المقدرة.
+>
+> وعلى اللجنة إيداع تقريرها المبدئي في فترة لا تتجاوز شهراً من تاريخ تقديم الطلب، على أن يتضمن التقرير بيان مدى جدوى وقابلية إعادة هيكلة أعمال التاجر من عدمه، وفي الحالة الأولى بيان المكونات الأساسية التي تتضمنها خطة إعادة الهيكلة والتي ستقوم اللجنة بإعدادها.
+
+**Verbatim — Article 7 (financial position in bankruptcy/preventive composition):**
+
+> مادة (٧)
+>
+> للمحكمة حال نظر طلب الصلح الواقي من الإفلاس أو دعوى شهر الإفلاس، وبعد إيداع أمانة الخبير المقدرة من قبل المكلف بها، تكليف أحد خبراء جدول إعادة الهيكلة المالية من جدول الأشخاص الطبيعيين فحص وبيان الموقف المالي للتاجر وفقاً لطبيعة الدعوى المنظورة.
+
+### C. Decision 2208/2019 — fees and deposits of Bankruptcy Administration experts
+
+**Decision:** Justice Minister Decision 2208/2019.  
+**Gazette:** الوقائع المصرية issue 84, 10 April 2019.  
+**Full searchable Arabic text:** https://alhasswalawfirm.com/law-library/moj-decree-2208-2019  
+**Official indexed Gazette text:** https://www.laweg.net/framePlain.aspx?ItemID=113696&NID=140525&Type=6&action=ViewActivePages
+
+The 9-article decision fixes fees for restructuring expert committees, assistants, restructuring experts, bankruptcy estate committees, appraisers, bankruptcy trustees and preventive-composition trustees, supervisors and controllers. It is amended by Justice Minister Decision 3715/2026 (already captured in this file).
+
+**Verbatim — Article 1 (restructuring committee fees):**
+
+> مادة (الأولى)
+>
+> تقدر أتعاب لجنة خبراء إعادة الهيكلة أمام إدارة الإفلاس على النحو الآتي:
+>
+> ١- يكون الحد الأدنى عشرين ألف جنيه والحد الأقصى خمسين ألف جنيه عن إيداع اللجنة التقرير المبدئي الذي تحدد فيه مدى إمكانية وجدوى إعادة هيكلة أعمال التاجر من عدمه ونطاق الأعمال التي ستتضمنها خطة إعادة الهيكلة والتكلفة المالية اللازمة لإعداد الخطة.
+>
+> ٢- ويكون تقدير أتعاب اللجنة عن إيداع التقرير النهائي الذي يتضمن خطة إعادة الهيكلة شاملاً كافة بنودها وخطوات تنفيذها بواقع نسبة لا تقل عن اثنين في المائة (٢٪) ولا تزيد عن خمسة في المائة (٥٪) من رأس المال المدفوع للتاجر، على أن يكون الحد الأدنى خمسين ألف جنيه والحد الأقصى خمسمائة ألف جنيه، على أن يراعى عند تقدير قيمة الأتعاب الجهد المبذول ورأس مال التاجر المراد هيكلته.
+>
+> وتشمل تلك الأتعاب ما تكبدته اللجنة من مصاريف لأداء المأمورية.
+
+**Verbatim — Article 2 (assistant fee):**
+
+> مادة (الثانية)
+>
+> تقدر أتعاب المعاون في طلب إعادة الهيكلة على النحو التالي:
+>
+> يكون الحد الأدنى ثلاثة في المائة (٣٪) والحد الأقصى عشرة في المائة (١٠٪) من قيمة صافي الربح الناتج عن تنفيذ خطة إعادة الهيكلة، على أن يتم الصرف بصفة دورية حتى انتهاء الخطة بعد اعتماد التقارير الدورية المقدمة منه إلى قاضي الإفلاس، وذلك في حالة عدم اتفاق أطراف خطة إعادة الهيكلة على تحديد أتعاب المعاون.
+
+**Verbatim — Article 6 (trustee fees):**
+
+> مادة (السادسة)
+>
+> تقدر أتعاب أمناء التفليسة وأمناء الصلح الواقي من الإفلاس على النحو التالي:
+>
+> يكون الحد الأدنى خمسة آلاف جنيه والحد الأقصى خمسمائة ألف جنيه، وذلك بعد أن يقدم الأمين تقريراً عن أعماله في سبيل إدارته لإجراءات التفليسة أو الصلح الواقي ويجوز للقاضي المختص أن يأمر بصرف مبالغ تحت حساب الأتعاب قبل تقديم التقرير المشار إليه خصماً من أتعابه، على أن يراعى عند تقدير قيمة الأتعاب الجهد المبذول.
+>
+> وتشمل تلك الأتعاب ما تكبده من مصاريف لأداء المأمورية.
+
+### D. Decision 3067/2021 — economic-court expert fees
+
+**Decision:** Justice Minister Decision 3067/2021.  
+**Gazette:** الوقائع المصرية issue 123, 3 June 2021.  
+**Official Gazette DSpace record:** https://dspace.id.com.eg/items/7c3d0503-e825-48f4-9c66-ec0c246c5745  
+**Full searchable Arabic text:** https://egyptianlaws.com/?p=180792  
+**Alternative full text:** https://ahmedazimelgamel.blogspot.com/2021/06/3067-2021.html
+
+The 7-article decision sets economic-court expert fee bands and expressly covers appointments by the Bankruptcy Administration, Bankruptcy judges, orders, enforcement and urgent matters. It repeals Justice Minister Decision 3997/2009.
+
+**Verbatim — Article 1:**
+
+> مادة (١)
+>
+> تقدر أتعاب خبراء الجدول الخاص بالمحاكم الاقتصادية على النحو الآتي، ويراعى في هذا التقدير قيمة الدعوى وما بذل فيها من جهد:
+>
+> في الدعاوى معلومة القيمة التي لا تجاوز قيمتها عشرة ملايين جنيهاً يكون الحد الأدنى ألفي جنيه والحد الأقصى عشرة آلاف جنيه.
+>
+> في الدعاوى مجهولة القيمة وتلك معلومة القيمة التي تجاوز قيمتها عشرة ملايين جنيهاً يكون الحد الأدنى عشرة آلاف جنيه والحد الأقصى أربعون ألف جنيه.
+
+**Verbatim — Article 2 (Bankruptcy Administration appointment):**
+
+> مادة (٢)
+>
+> يكون الحد الأدنى لأتعاب الخبير ألفي جنيه والحد الأقصى ستة آلاف جنيه إذا كان الندب من هيئة التحضير، أو إدارة الإفلاس، أو قضاة دائرة الإفلاس، أو الأوامر، أو التنفيذ، أو المستعجل، أو إبداء الرأي الفني شفاهة.
+
+**Verbatim — Article 6 (repeal):**
+
+> مادة (٦)
+>
+> يلغى قرار وزير العدل رقم ٣٩٩٧ لسنة ٢٠٠٩ بشأن قواعد وإجراءات أتعاب أمانات خبراء المحاكم الاقتصادية.
+
+### E. Further bankruptcy implementation leads
+
+- **Decision 1889/2018:** establishes the committee to monitor implementation of Law 11/2018 and is repeatedly referenced in Decisions 1899/2018, 6214/2018 and 2208/2019. Its complete text and Gazette scan remain to be acquired.
+- **Decision 2215/2019** and **Decision 4143/2019:** related to registration/appointment of restructuring experts; Decision 1985/2024 amends the list of experts under Decision 2215/2019. These are personnel/register decisions, not amendments to Law 11/2018.
+- **Decision 3715/2026:** amended fee bands in Decision 2208/2019; the exact amendment text was preserved in the earlier section.
+
+**Currentness note:** Decision 3715/2026 changes the amounts in Decision 2208/2019; do not use the original 2019 fee figures without applying the 2026 substitutions. Decision 3067/2021 is a separate general economic-court expert-fee regime and repeals Decision 3997/2009, not Decision 2208/2019.
+
+**Collection status:** full searchable texts surfaced for Decisions 1899/2018 (15 articles), 6214/2018 (10 articles), 2208/2019 (9 articles) and 3067/2021 (7 articles); selected provisions transcribed above. Official Gazette/Laweg records confirm issue/date. Decision 1889/2018 remains a source lead. No lawyer review or rights clearance claimed.
