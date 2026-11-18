@@ -2266,6 +2266,22 @@
       "terms_checked_on": "2026-11-18",
       "bulk_download_or_api": "Single document page; no bulk/API permission established",
       "required_next_action": "Review site terms and request permission before commercial reuse or redistribution; acquire Gazette issue34 تابع and forms from an authorized source."
+    },
+    {
+      "source_id": "EG-MKSEGYPT-DECISION1985-2026",
+      "authority": "MKSEgypt legal memory / legislation database",
+      "source_page": "https://mksegypt.org/ar/decisions/34892",
+      "material_types": [
+        "PM Decision1985/2026 and Executive Regulation of State Planning Law18/2022; selected Arabic Articles1,5,11,23,35,39,43,44"
+      ],
+      "access_status": "Searchable Arabic full-text page contains the 44-article regulation and issuing clauses; selected articles transcribed locally. Page footer displays Creative Commons Attribution 4.0 (CC BY 4.0). Official Gazette page-image/PDF not acquired.",
+      "collection_permission": "cc_by_4_0_attributed_use_subject_to_license_scope",
+      "commercial_reuse_permission": "cc_by_4_0_applies_to_site_text_as_displayed_only; embedded_third_party_scans_and_materials_not_cleared",
+      "terms_url": "https://creativecommons.org/licenses/by/4.0/",
+      "permission_evidence": "The specific decision page displays the MKSEgypt CC BY 4.0 footer. The capture is limited to the site's text as displayed, with attribution and licence notice. This does not establish rights in embedded Gazette scans, third-party source documents, or material not owned by the site; no bulk/API permission or blanket right to ingest the whole site is claimed.",
+      "terms_checked_on": "2026-11-18",
+      "bulk_download_or_api": "No bulk/API permission established; manual page access only",
+      "required_next_action": "Preserve attribution and CC BY 4.0 notice for the displayed text; obtain Gazette page images from an authorized source; do not assume the site licence covers third-party scans or bulk extraction."
     }
   ]
 }
