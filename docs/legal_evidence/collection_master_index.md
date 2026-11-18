@@ -1239,3 +1239,6 @@
 
 - Resolved the earlier Gazette issue-number conflict for SCC Case 42/17. Egyptian State Council General Assembly Opinion 512 (file 58/1/595, session 10 March 2021) quotes the SCC holding and expressly cites Official Gazette **issue 25 (تابع), 18 June 1998**. Treat the competing issue 35 reference as a likely secondary metadata error.
 - The State Council opinion is a judicial-advisory cross-reference, not the original SCC judgment or Gazette scan. Those primary originals remain outstanding.
+
+
+| checkpoint 133 — Agent 3 FRA Decision 100/2026 branch-rules amendment text | Captured two replacement clauses from secondary Arabic transcription; official Amiri Press DSpace metadata confirms Official Gazette issue 130 supplement (أ), 17 Jun 2026, but original PDF is request-only; FRA official announcement corroborates amendment; +1 instrument / +2 replacement provision units; cumulative Agent 3 minimum 154 instruments / 1,384 provision units; assignment estimate 31%, lawyer review 0%. Full provenance and text: [agent3_fra_decision_100_2026_amendment_to_branch_rules_2026-11-18.md](agent3_fra_decision_100_2026_amendment_to_branch_rules_2026-11-18.md) |
