@@ -801,3 +801,12 @@
 - CBE's official Banking Laws index lists Law 194/2020 but no single comprehensive current Executive Regulation of Law 194/2020; the framework is supplemented by CBE Board regulations/circulars. Do not invent an Executive Regulation number.
 - The full-text source reports no amending law identified through 14 Oct 2026; 2025–2026 CBE circulars are subordinate instruments, not amendments to the statute.
 - **Updated Agent 3 minimum:** 69 distinct instruments with some Arabic text surfaced; 817 article/provision text units; 13/13 families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
+
+
+### Research Agent 3 — Capital Market Executive Regulation full text and Decision 2423/2024
+
+- FRA official 176-page PDF of Executive Regulation Decision 135/1993 (uploaded July 2024) opened with searchable text through 362 numbered articles and embedded amendment footnotes through 2023. Official link: https://fra.gov.eg/wp-content/uploads/2024/07/لائحة-التنفيذية-من-قانون-سوق-المال-بصيغة-WORD-4.pdf
+- Embedded amendment chain includes Decision 2479/2018, 1760/2020, 1109/2022, 4664/2022, 3456/2022, 3045/2023 and earlier decisions listed by FRA. The July 2024 PDF predates Decision 2423/2024 and must be overlaid.
+- PM Decision 2423/2024: Gazette issue 30 bis (أ), 28 Jul 2024; effective 29 Jul 2024; official FRA six-page PDF. It amends 10 provisions and inserts hedge-fund definition/Article 179 bis/2 and related provisions. Sixteen provision units transcribed in Agent 3 file.
+- FRA's current amendment register separately lists Decisions 2423/2024, 1539/2025 and 2482/2025. The latter two are already transcribed in sections 27 and 18.
+- **Updated Agent 3 minimum:** 70 distinct instruments with some Arabic text surfaced; 951 article/provision text units; 13/13 families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
