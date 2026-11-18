@@ -113,3 +113,56 @@ The quoted text above is selected operative wording from the secondary transcrip
 - Decision 109/2005 is superseded historical regulation, not counted as a new acquisition here.
 - Cumulative Agent 3 minimum: **188 documents / 1,923 normalized numbered units**.
 - Assigned-domain completion estimate: **55% provisional**; whole corpus: **2% provisional**.
+
+
+## Critical source correction — 18 November 2026
+
+Earlier wording in this file was inaccurate. Decision 467/2024 is titled "بتعديل اللائحة التنفيذية للقانون رقم 15 لسنة 2004" and adopts an attached amended Executive Regulation. Issuing Article 1 adopts that amended attachment; Article 2 defines its scope as trust services, trusted electronic transactions and IT activities; Article 3 provides publication/effectiveness and repeals conflicting decisions. Article 3 does **not expressly name Decision 109/2005** as repealed. Do not claim a specific express repeal of Decision 109/2005 without separate legal analysis.
+
+The attachment contains **49 numbered regulation articles (Articles 1–49)** followed by a technical annex. The ministerial decision itself has three issuing articles. Thus 52 is the combined count (3 issuing + 49 regulation articles), not 52 regulation articles.
+
+Official Amiri Press Gazette record: issue 141 (تابع), 2 July 2024, PDF WQ141_20240702_1217.pdf, 671.3 KB: https://mediadr.sis.gov.eg/handle/123456789/70196 . The primary Gazette PDF has not yet been downloaded and SHA-256 hashed. Full secondary transcription, attributed to the Court of Cassation legislative portal: https://alhasswalawfirm.com/law-library/decree-467-2024 .
+
+The previous selected passages in this file claiming explicit cyber-security incident-notification duties, routine penetration testing and a general certificate-status register were not verified against the cited transcription and are withdrawn. Do not ingest them as statutory quotations. The actual text includes electronic writing and evidence, automated trusted transactions, attribution and receipt of electronic messages, five trust services (signature, seal, timestamp, registered email and website authentication), licensing, HSM/PKI standards, inspection at least once every two years and licence suspension/cancellation.
+
+### Verified operative Arabic quotations from the full transcription
+
+**Issuing Article 1**
+> يعمل بأحكام اللائحة التنفيذية للقانون رقم ١٥ لسنة ٢٠٠٤ ، بتنظيم التوقيع الإلكترونى وبإنشاء هيئة تنمية صناعة تكنولوجيا المعلومات ، المُعدلة ، المُرفقة .
+
+**Issuing Article 2**
+> تسرى الأحكام والشروط والإجراءات المنصوص عليها فى هذه اللائحة فى شأن تنظيم خدمات الثقة والمعاملات الالكترونية الموثوق بها وأنشطة تكنولوجيا المعلومات .
+
+**Issuing Article 3**
+> ينشر هذا القرار فى الوقائع المصرية ، ويعمل به من اليوم التالى لتاريخ نشره ، ويلغى كل قرار يخالف أحكامه .
+
+**Regulation Article 2**
+> لا يجوز إنكار حجية المحرر أو الرسالة لمجرد أنه تم إنشاؤها أو حفظها أو إرسالها أو استقبالها فى شكل إلكترونى .
+>
+> وإذا وجب قانونًا أن يتم التعبير عن الإرادة فى شكل مكتوب ، فإنه يعتد بالكتابة الإلكترونية إذا كانت محفوظة أو مخزنة بشكل يمكن من الرجوع إليها والاطلاع عليها فى أى وقت .
+
+**Regulation Article 3**
+> فى مجال إبرام العقود أو تعديلها أو إنهائها يجوز أن يتم التعبير عن الإرادة ، سواء بالنسبة للإيجاب أو القبول ، فى شكل إلكترونى ، ما لم يتفق الأطراف أو ينص قانونًا على خلاف ذلك .
+
+**Regulation Article 5**
+> الهيئة هى السلطة الجذرية العليا للتصديق الإلكترونى فى جمهورية مصر العربية ، وتتولى إصدار المفاتيح الشفرية الجذرية الخاصة بالهيئة والمفاتيح الشفرية الخاصة بالجهات المرخص لها بإصدار شهادات التصديق الإلكترونى ، وحفظ المفاتيح الشفرية الخاصة بالأشخاص الطبيعيين والاعتباريين فى حالة التوقيع الإلكترونى عن بعد ، وإعداد ونشر قائمة مقدمى خدمات الثقة .
+
+**Regulation Article 14**
+> يشترط لمزاولة نشاط تقديم خدمات الثقة المنصوص عليها فى هذه اللائحة الحصول على ترخيص بذلك من الهيئة ، وفقًا للمعايير الفنية والتقنية المنصوص عليها بالملحق الفنى والتقنى المرفق بهذه اللائحة .
+
+**Regulation Article 30**
+> تقوم الهيئة بعد تسلمها الطلب وكافة المستندات والبيانات المطلوبة بفحصها والتأكد من سلامتها ، وتبت الهيئة فى طلب الحصول على الترخيص خلال مدة لا تتجاوز ستين يومًا من تاريخ استيفاء طالب الترخيص كافة الشروط والمتطلبات ، ما لم تخطر الهيئة طالب الترخيص بمد هذه المدة ، وفى حالة انقضاء هذه المدة دون إصدار الترخيص يعتبر الطلب مرفوضًا .
+
+**Regulation Article 45**
+> تقوم الهيئة بشكل دورى بالتفتيش على الجهات المرخص لها للتحقق من مدى التزامهم بأحكام القانون ولائحته التنفيذية والترخيص الممنوح لهم ، وذلك بواقع مرة واحدة كل سنتين على الأقل .
+
+**Regulation Article 47**
+> يحظر مزاولة أى نشاط من الأنشطة المنصوص عليها فى هذه اللائحة دون الحصول على ترخيص بذلك من الهيئة ، وفى حالة مخالفة هذه المادة يجوز للهيئة وقف النشاط جزئيا أو كليا بالإضافة إلى اتخاذ التدابير والإجراءات الأخرى المناسبة فى هذا الشأن .
+
+**Regulation Article 49**
+> مع عدم الإخلال بالعقوبات المنصوص عليها فى المادتين ٢٣ ، ٢٤ من القانون ، يجوز للهيئة فى حالة مخالفة المرخص له لشروط الترخيص ، أو توقفه عن مزاولة النشاط المرخص به أو اندماج منشأته فى جهة أخرى أو تنازله عن الترخيص للغير دون الحصول على موافقة كتابية مسبقة من الهيئة ، أن تصدر قرارًا مسببًا بإلغاء الترخيص أو وقفه لحين تدارك أو تصحيح المخالفة .
+
+### Correct count and status
+- One instrument (Decision 467/2024), already counted.
+- 3 issuing articles + 49 regulation articles = 52 numbered provisions; technical annex is structured separately.
+- Official Gazette metadata + full secondary transcription; original PDF/hash comparison still open; not lawyer-reviewed.
