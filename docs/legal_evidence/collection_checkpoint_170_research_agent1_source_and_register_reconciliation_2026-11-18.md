@@ -36,13 +36,13 @@ The historical article-version event register and priority full-text inventory n
 
 | Measure | Count | Qualification |
 |---|---:|---|
-| Canonical acquisition records | **231** | Unique legal instruments after 11 duplicate-row consolidations |
+| Canonical acquisition records | **233** | Unique legal instruments after 11 duplicate-row consolidations |
 | Source-permission records | **64** | Unique source assessments; not permissions granted |
 | Base-law records | **66** | Provisional title/domain classification |
 | Amending-law records | **48** | Provisional title/domain classification; includes transitional/deferral effects where identified |
 | Executive regulations | **13** | Original regulation instruments |
 | Executive-regulation amendment records | **35** | Subordinate instruments changing regulation text |
-| Judicial decisions | **4** | SCC judgment records currently represented in the acquisition register |
+| Judicial decisions | **6** | SCC judgment records currently represented in the acquisition register |
 | Other decisions/circulars | **52** | Ministerial, Cabinet, presidential and other subordinate decisions |
 | Other/unclassified instrument records | **13** | Requires manual type normalization |
 | Priority full-text inventory records | **33** | Mixed completeness; not all authenticated or complete |
@@ -117,9 +117,12 @@ No official circular, platform reopening notice or binding judgment was located 
 - **Case 101/26 (1 February 2009):** official SCC-hosted full judgment: https://www.sccourt.gov.eg/DjangoPortalResources/Rules_Html/3204_26_101_1_2.html . It invalidated Article 22(1) of Law 143/1981; Gazette issue 7 bis (A), 15 February 2009. Original Gazette scan remains outstanding.
 - **Rent Case 81/19 (6 February 1999):** official SCC full judgment: https://www.sccourt.gov.eg/DjangoPortalResources/Rules_Html/637_19_81_1_2.html . It invalidated only the final phrase of Article 18(b) of Law 136/1981 requiring execution of the urgent eviction judgment in the tenant's presence. Original Gazette scan remains outstanding.
 - **Rent Case 108/19 (19 December 2004):** official SCC full judgment: https://www.sccourt.gov.eg/DjangoPortalResources/Rules_Html/1617_19_108_1_2.html . It rejected the challenge as inadmissible, relying on Case 203/20 (14 April 2002); it is not a merits invalidation. Original Gazette scan remains outstanding.
-- **Rent Case 24/20 (9 November 2024):** original printed Gazette scan reproduction previously visually inspected (issue 45 bis (A), 10 November 2024, pp. 17–30); invalidity is limited to the first paragraphs of Law 136/1981 Articles 1 and 2 insofar as they fixed annual residential rent, with deferred effect. Do not describe it as blanket invalidation.
+- **Rent Case 24/20 (9 November 2024):** official SCC full judgment page now located at https://www.sccourt.gov.eg/SCC/faces/Rules_Html/15196_20_24_1_2.html. It invalidated the first paragraph of each of Law 136/1981 Articles 1 and 2 insofar as they fixed annual residential rent; effect is deferred to the day after the end of the then-current ordinary parliamentary session. The printed Gazette scan reproduction (issue 45 bis (A), 10 November 2024, pp. 17–30) was also visually inspected. Do not describe it as blanket invalidation.
+- **Rent Case 81/19 (6 February 1999):** official SCC full judgment page is now recorded in EG-0247. It invalidates only the final phrase of Article 18(b) requiring execution in the tenant's presence. Original Gazette judgment page remains outstanding.
+- **Rent Case 108/19 (19 December 2004):** official SCC full judgment page is now recorded in EG-0248. The challenge was inadmissible because Case 203/20 had already resolved the issue; it is not a merits invalidation. Original Gazette judgment page remains outstanding.
+- **Other rent-law judgment backlog from checkpoint 88:** Cases 6/9 (1995), 4/15 (1996), 3/18 (1997), 44/17 (1997), 116/18 (1997), 70/18 (2002), 144/20 (2000), 6/20 (2002), 4/23 (2003), 14/23 and 47/21 (2004), 116/27 (2008), and 11/23 (2018). These are identified in the Law 136 consolidated-text notes, but the original official SCC judgment pages/Gazette publication pages remain to be acquired or independently matched. Case 11/23 has a secondary full-text transcription and an SCC principles-page cross-reference, not the original direct judgment page.
 
-Judicial decisions remain a distinct category from statutory amendments. The acquisition register currently contains four explicit SCC case records; other judgment authorities are indexed as cross-references and not double-counted as separate statutory instruments.
+Judicial decisions remain a distinct category from statutory amendments. The acquisition register now contains six explicit SCC case records: Cases 10/35, 42/17, 101/26, 24/20, 81/19 and 108/19. Other rent-law judgment authorities remain indexed in the judicial research layer and are not double-counted as separate statutory instruments.
 
 ## 6. Amendment-chain reconciliation
 
@@ -179,7 +182,7 @@ The 44-event historical article-version register currently records effects but l
 - New base laws: 0.
 - New amending laws: 0.
 - New executive regulations: 0.
-- New judicial decisions: 0.
+- New judicial decisions: 2 (Cases 81/19 and 108/19; Case 24/20 source provenance upgraded, not a new instrument).
 - New full-text records: 0.
 - New unique article provisions: 0.
 - Changes are deduplication, source-status reconciliation, normalized type classification and corrected index metrics.
