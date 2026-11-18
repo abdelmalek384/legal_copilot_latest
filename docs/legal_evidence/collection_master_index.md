@@ -2197,3 +2197,6 @@ Added **PM Decision1568/2026**, issuing the Executive Regulation of Foreign Asyl
 - **Source-permission register:** 109 unique source records.
 - **Original Gazette PDF leads:** PM Decision1568/2026 has a direct original Gazette PDF at the SIS government portal and an Amiri Press DSpace item; bytes/hash are not yet stored locally. No new original binary was archived in this tranche.
 - **Unique normalized article provision count:** not recalculated. Partial extracts and summaries are not counted as complete unique provisions. The asylum regulation's complete 35-article searchable source is available; local extract remains partial.
+
+
+**Full-text status breakdown from the 81-row inventory audit:** 63 rows are explicitly marked as full-text acquisitions (63 unique instrument IDs); 18 rows are partial, external-only, or otherwise not complete. Four additional duplicate IDs remain source/version rows, so 77 unique instruments have at least one inventory record. “Full” here describes the acquisition record's source/text status; it does not guarantee original-Gazette authentication or a complete local verbatim mirror. The last separately validated core provision baseline remains 1,444 locally mirrored and 1,598 source-located units; it has not been recomputed in this pass and must not be added to paraphrase counts.
