@@ -302,3 +302,60 @@ No attempt was made to bypass restricted DSpace access. No original PDF bytes or
 9. Obtain original SCC Gazette issue 45 bis (A) for Case 24/20 and the correction/official Gazette pages for Case 101/26.
 10. Resolve the Decision 480/2026 filing-window gap through an official implementation notice or written authority response; preserve 19 January 2027 only as the conditional consecutive-extension date.
 11. Update the national unique-instrument/article denominators before revising assigned-domain or whole-corpus percentages.
+
+## 15. Evidence Law correction — the statute extends to Article 163, not Article 117
+
+The user-requested range of Articles 1–117 is not the complete enacted law. The full Evidence Law text and its expert provisions continue through Article 163. The WIPO Lex PDF and consolidated secondary PDF both expose the expert chapter and Articles 148–163; Article 148 bis was added by Law 54/1974.
+
+### Primary and secondary text locators
+
+- Official Ministry of Finance 12-page Gazette reproduction, Official Gazette issue 22, 30 May 1968:
+  https://media.mof.gov.eg/mof-prd/1299_705e8a7b67.pdf?response-content-disposition=attachment%3B+filename%3D%221299.pdf%22
+- WIPO Lex Arabic PDF of Law 25/1968, extracted through Article 163:
+  https://wipolex-res.wipo.int/edocs/lexdocs/laws/ar/eg/eg087ar_1.pdf
+- Secondary consolidated PDF with amendment notes and amendment texts (1,736 extracted lines):
+  https://kanonmisr.com/ar/wp-content/uploads/2021/08/قانون-الاثبات-المصري-رقم-25-وتعديلاته-في-ملف-واحد-pdf-1_compressed.pdf
+- Secondary full text:
+  https://www.notariesofegypt.org/article.php?id=152
+  https://lawhub.info/eg/?p=11334
+
+### Amendment chain located
+
+1. **Law 54/1974** — Official Gazette issue 27, 4 July 1974. Amends Evidence Law Articles 148 and 148 bis (expert duties, independence and disqualification). The secondary consolidated PDF's OCR for part of the amendment is materially corrupted; the exact replacement text must be checked against the Gazette.
+2. **Law 23/1992** — Official Gazette issue 22 bis, 1 June 1992 (date should be verified against original issue scan). Amends Article 5 and multiple monetary/procedural provisions including Articles 43, 60, 61 and 78. The amendment also includes other procedural statutes; only Evidence Law changes should be imported into this chain.
+3. **Law 18/1999** — Official Gazette issue 19 bis (A), 17 May 1999; effective 16 July 1999. Updates penalty and monetary thresholds in several Evidence Law provisions, including Articles 43, 56, 60, 61 and 78.
+4. **Law 76/2007** — Official Gazette issue 22 bis, 6 June 2007; effective 1 October 2007. Updates monetary thresholds in Evidence Law Articles 60 and 61 to EGP 1,000.
+
+### Verbatim Arabic — terminal provisions from WIPO Lex PDF (OCR transcription; verify against official Gazette page images)
+
+**مادة ١١٨:**
+> كل من وجهت إليه اليمين نكل عنها دون أن يردها على خصمه، وكل من ردت عليه اليمين نكل فيما نكل دعواه.
+
+**مادة ١١٩:**
+> للقاضي أن يوجه اليمين المتممة من تلقاء نفسه إلى أي من الخصمين ليبني على ذلك حكمه في موضوع الدعوى أو في قيمة ما يحكم به.
+
+**مادة ١٢٠:**
+> لا يجوز للخصم الذي وجهت إليه اليمين المتممة أن يردها على الخصم الآخر.
+
+**مادة ١٢١:**
+> لا يجوز للقاضي أن يوجه إلى المدعى عليه اليمين المتممة لتحديد قيمة المدعى به إلا إذا استحال تحديدها بطريقة أخرى.
+
+**مادة ١٢٢:**
+> يجب على من وجهت إليه اليمين أن يبين بالذات الواقعة التي يريد استحلافه عليها ويذكر صيغة اليمين بعبارة واضحة.
+
+**مادة ١٢٣:**
+> للمحكمة أن تعدل صيغة اليمين التي يطلبها الخصم بحيث يوجه بوضوح وردة على الواقعة المطلوب الحلف عليها.
+
+**مادة ١٢٤:**
+> إذا امتنع من وجهت إليه اليمين من حلفها جاز للمحكمة أن تعتبره عاقداً بها، ولا في مقابلها بالمدعى وجب عليه أن كان حاضراً بشخصه أن يحلفها فوراً.
+
+The OCR of the WIPO PDF is imperfect and the quoted Articles 118–124 must be checked against Gazette images before production use. The consolidated PDF is better for article text but is still secondary and has its own OCR defects.
+
+### Corrected metrics and ingestion rule
+
+- Full original statute range: Articles 1–163 (not 1–117).
+- Existing article count is not yet 163 extracted and verified. The Ministry Gazette reproduction is 12 pages; only 11/12 pages were visually inspected in this session.
+- New unique terminal article texts added in this continuation: 7 provisional transcriptions (Articles 118–124) from WIPO Lex; do not promote to production until image comparison.
+- Four amending laws located and separately registered as EG-0183–EG-0186.
+- Amendment original Gazette scans remain outstanding; no claim of lawyer review or reuse permission.
+
