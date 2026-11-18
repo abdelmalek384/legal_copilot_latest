@@ -207,3 +207,25 @@ Source: https://alhasswalawfirm.com/law-library/law-142-1964 . The page identifi
 - The eight new provisions in this addendum are Law 114 Articles 9–11 and Law 142 Articles 26–30.
 - These remain secondary-source text captures. The 2018 and 2022 consolidated cut-off dates are source claims, not independent Gazette-by-Gazette validation. Law 142 Articles 21 and 24 are unconstitutional and Article 23 fell consequentially under SCC Case 10/35; do not treat those provisions as operative. Article 37(2) and Article 38 are affected by SCC Case 42/17; article status must be represented from the exact judgment order.
 - No new instrument or duplicate acquisition record is created. No lawyer verification or commercial reuse permission is claimed.
+
+
+## Original Gazette page transcription — Law 68/1947, final issuing provisions
+
+**Source inspected:** https://manshurat.org/file/82270/download?token=fuDVQjIu — two-page scan of Egyptian Proceedings issue 58, 3 July 1947. Page index 1 (printed page 3) was visually opened. The following is a manual transcription of the final issuing provisions from the scan; it is a historical base-text capture, not the later amended text.
+
+### Original Article 12
+يصدر بمرسوم لائحة تنفيذية تشتمل على بيان عملية التوثيق وتنظيم دفاتره ودفاتر الفهارس والصور وعلى التنظيم الداخلي لمكاتب التوثيق وسير العمل فيها.
+
+### Original Article 13
+يلغى كل نص يتعارض مع أحكام هذا القانون.
+
+### Original Article 14
+على وزير العدل تنفيذ هذا القانون ويعمل به من أول يناير التالي لتاريخ نشره بالجريدة الرسمية.
+
+**Scan validation:** Gazette masthead, issue number/date and the three closing provisions are visible in the two-page scan. Manual transcription requires a second human comparison before production use. The original Law 68 scan also contains its own 1947 issuing provisions; do not confuse the original Article 1 with the later repeal marker in the amended LAW HUB text.
+
+## Revised count treatment
+
+- 31 article/provision text entries now captured: Law 114/1946 (8), Law 142/1964 (11), Law 68/1947 (8, including one repealed marker), Law 70/1964 (4).
+- 30 entries are non-repealed text entries; one is the repealed Article 1 marker. Law 68 Articles 12–14 above are original Gazette-page transcriptions and are not yet compared against the later amended text.
+- The 31-entry supplemental count remains separate from the 1,370 core provisions and from the 200 additional article-heading count.
