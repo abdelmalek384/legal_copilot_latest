@@ -1364,3 +1364,15 @@
 
 
 | checkpoint 145 — Agent 3 CBE margin-financing circular (22 Apr 2026) | Captured substantive Arabic clauses from secondary reproductions, cross-checked against official CBE circular catalogue and regulatory handbook Book 4/Chapter 1/Section 9; CBE Board approval 21 Apr, circular 22 Apr 2026. Rules require Board-approved internal policy, per-bank and per-client/related-party caps, security/sector concentration limits, off-EGX100 securities ≤10% of each client portfolio, daily mark-to-market, custody at lending bank, EGP-only financing, no own-bank shares, no financing client principal-shareholder/director purchases, credit reporting as unsecured facilities and six-month transition for existing portfolios; preserves 20 Jun 2001 short settlement-gap facility instruction. Original CBE PDF/signature/hash remains blocked; secondary Hapi/BankyGate text only. +1 CBE circular, no article-numbered unit increment; cumulative Agent 3 **175 documents / 1,869 normalized numbered units**; assigned-domain estimate **43% provisional**; whole corpus **2% provisional**; lawyer review 0%. Full text and caveats: [agent3_cbe_margin_financing_circular_22_apr_2026_partial_arabic_text.md](agent3_cbe_margin_financing_circular_22_apr_2026_partial_arabic_text.md) |
+
+
+### Research Agent 1 — checkpoint 156: Law 143/1981 statutory and executive regulation chain (18 November 2026)
+
+- Added [collection_checkpoint_156_law_143_1981_amendment_and_regulation_chain_2026-11-18.md](collection_checkpoint_156_law_143_1981_amendment_and_regulation_chain_2026-11-18.md).
+- Added two statutory amendments EG-0236–EG-0237: Law 12/1984 (repeals Article 21) and Law 55/1988 (replaces Article 12(2)).
+- Added seven Executive Regulation Decision 198/1982 amendments EG-0238–EG-0244: Decisions 305/1983, 105/1986, 1230/1990, 139/1990, 305/1990, 1057/1995 and 1012/2009. Article 45 is replaced twice (105/1986 then 1230/1990); Decision 1057/1995 is published in 1996; preserve number/year separately from Gazette publication year.
+- Law 143 chain now identifies Laws 12/1984, 55/1988, 205/1991, 96/1995, 72/1996 and 11/2024, plus Case 101/26 invalidation of Article 22(1). The 1982 Executive Regulation has seven identified amendments; original Gazette scans remain outstanding.
+- Updated Law 143 base-law source with official Ministry of Agriculture PDF and searchable consolidated text; 29 numbered articles identified.
+- Added five source-permission records (MOA, LawyerEgypt, Laweg, LawHub and EastLaws); source-permission register now has **63 unique records**, reuse rights unknown.
+- Acquisition register now has **240 rows**, 240 unique IDs, zero duplicates. Core completed provisions remain **1,370**; 200 additional numbered article entries from Laws 114/142/68/70 remain unnormalized. No new article texts transcribed in checkpoint 156.
+- Completion estimates unchanged: core article extraction 100% for three defined statutes; broader civil/property/contract 15% provisional; whole Egyptian corpus 2% provisional.
