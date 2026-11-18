@@ -130,3 +130,14 @@ All new material remains machine-collected and not lawyer-reviewed. Do not mark 
 - MIFT says 21 attachments; visible list has duplicate 256/2018 and 90/2009 entries and only 20 visible filenames. Need reconcile unique amendment IDs and obtain each Gazette delta. PDF title still omits one-person companies although body contains that chapter.
 - Record: [agent3_companies_exec_reg96_1982_mift_2022_full_text_expansion.md](agent3_companies_exec_reg96_1982_mift_2022_full_text_expansion.md).
 - No new unique instrument count; text-depth upgrade. Counts remain 209 / 2,049 last reconciled, assigned-domain 55% provisional, lawyer review 0%.
+
+## Companies Law 159/1981 statutory amendment text — 1994–2015 chain
+- Retrieved primary MIFT/Amiri Press texts for Laws 3/1998, 94/2005, 68/2009 and 17/2015; full Law 159/1998 Article 46 amendment text; and Law 212/1994 Gazette metadata.
+- Law 3/1998: immediate-notification incorporation, 10-day objection, 15-day cure/grievance, capital and treasury-share rules, financial statements, public subscription, repeals of Arts 21 bis, 22, 23, 36 and 92.
+- Law 159/1998: Article 46 limits pre-registration / early trading above issue price.
+- Law 94/2005: Article 31 nominal share value EGP 1–1,000; Article 77 board proxy; Article 17 final legal-personality/Sinai restriction; Article 48 bis employee/manager share incentive scheme; repeal Arts 83,91,93; extends Investment Law guarantees to Law159 and Commercial Code companies.
+- Law 68/2009: LLC capital determined by partners in the incorporation contract.
+- Law 17/2015: adds central-depository certificate to Article 17 incorporation documents.
+- Law 212/1994 added Article 21 bis but its full text is still unavailable and it was expressly repealed by Law 3/1998. Constitutional Court Judgment 25/22 separately invalidates Article17(b) newspaper approval requirement.
+- Record: [agent3_companies_law159_amendments_1994_2015_primary_texts.md](agent3_companies_law159_amendments_1994_2015_primary_texts.md).
+- No new unique law count; text/version-history upgrade. 209 / 2,049 remains last reconciled baseline; 55% provisional; lawyer review 0%.
