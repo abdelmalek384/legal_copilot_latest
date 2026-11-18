@@ -384,3 +384,12 @@ The 2026 decisions recite a long series of annual postponements, including 2025 
 7. Build a dated cadastral-section applicability table from every commencement and postponement decision; 2026 Decisions 5207/5208 are current only for their listed areas.
 8. Obtain Law 68/1947 and Law 70/1964 primary texts and link them without merging with the land-registration statutes.
 9. Have a qualified Egyptian property lawyer review title-effect rules, possession routes, succession, litigation notices, mortgage registration, long leases and territorial applicability.
+
+## Checkpoint 93 supplement — 2026 territorial postponement for Mansha'a
+
+- Justice Minister Decision 3866/2026, official Amiri Press text portal:
+  https://www.alamiria.com/Sec/TashTxt?id=w2+kg4dtC1Y%3D
+- Issued 30 June 2026. It postpones commencement of the real-property register in cadastral section "مدينة المنشأة" (Sohag) from 1 July 2026 to 1 July 2027, and permits Article 19 settlement forms for two months from 1 July 2026.
+- This is a territorial commencement postponement under Law 142/1964, not an amendment to the substantive title rules.
+- The preamble enumerates the historical postponement chain from 2002 through 2025; see checkpoint 93 for the complete sequence.
+- Exact Egyptian Proceedings issue metadata and original PDF remain outstanding; do not claim a Gazette original acquired.
