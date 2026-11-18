@@ -107,3 +107,11 @@ The last two figures remain unchanged. Two new tariff instruments and one proven
 ## 7. Rights and verification declaration
 
 No lawyer verification, commercial reuse permission, certified publisher authentication, or permission for bulk retrieval is claimed. Publicly accessible official-hosted text and Gazette reproductions do not imply a reuse licence. Preserve source-specific provenance and rights states.
+
+
+## 8. Additional judicial-source reconciliation — Case 42/17
+
+A full published Egyptian State Council General Assembly opinion (Opinion 512, file 58/1/595, session 10 March 2021) was opened and inspected:
+https://www.elmodawanaeg.com/الفتوى-رقم-512-،-ملف-رقم-58-1-595-،-بتاريخ-جلسة-2021-3-10/
+
+At lines 58–60 of the published opinion, the General Assembly quotes the SCC Case 42/17 holding and expressly cites Official Gazette **issue 25 (تابع), 18 June 1998**. This resolves the earlier secondary-source conflict in favour of issue 25; issue 35 should be treated as a likely metadata error unless an original Gazette page establishes otherwise. The opinion is a State Council judicial-advisory source, not the original SCC judgment or Gazette scan. Those originals remain outstanding.
