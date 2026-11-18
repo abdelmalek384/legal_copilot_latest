@@ -48,3 +48,13 @@ All material remains machine-collected. Do not label any provision verified unti
 ## Major source upgrade — Companies Executive Regulation 96/1982
 
 Retrieved the official MIFT consolidated PDF (3,416 extracted lines), explicitly updated through 21 August 2022. It contains the issuing text, consolidated regulation, Annexes 1–5 and amendment footnotes. Sequential numbered articles reach **324**, plus inserted bis provisions. This supersedes the earlier secondary-source label of 361 articles and the earlier report that the MIFT PDF was inaccessible. Captured Arabic text for one-person companies, merger, division, related-party information, inspection, foreign branches and transitional provisions. See [agent3_companies_exec_reg_96_1982_official_mift_consolidated_text_2022.md](agent3_companies_exec_reg_96_1982_official_mift_consolidated_text_2022.md). Original Gazette PDFs for all amendment events still need page-image comparison. No new instrument count; the 1,927 provision-unit aggregate remains provisional pending article-unit reconciliation.
+
+
+## Companies Law amendment chain text expansion
+
+- Law 3/1998: official MIFT/Amiri Press text obtained; captured replacement Articles 17, 18, 19, 21(1), 32, 33, 37, 39, 48 and 64; interim dividend distribution; and repeals of Articles 21 bis, 22, 23, 36 and 92.
+- Law 94/2005: captured amendments to Article 31(2), Article 77(4), Article 17 Sinai regime, new Article 48 bis employee incentive plans, and repeal of Articles 83, 91 and 93. Original Gazette image remains open.
+- Law 159/1998: captured exact Article 46 replacement.
+- Law 212/1994: confirmed it inserted Article 21 bis, later repealed by Law 3/1998; full historic text remains unavailable and was not reconstructed.
+- Detailed files: [Laws 3/1998 and 94/2005](agent3_companies_law_amendments_3_1998_94_2005_text.md), [Laws 212/1994 and 159/1998](agent3_companies_law_amendments_212_1994_159_1998_text.md).
+- These are text-depth/versioning expansions of already-counted amendment instruments; no count change. Agent 3 remains **190 documents / 1,927 provisional units**, assigned completion **55% provisional**, lawyer review 0%.
