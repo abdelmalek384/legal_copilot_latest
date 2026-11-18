@@ -426,7 +426,7 @@
 - Full searchable Arabic source texts newly located or upgraded: 23. This includes secondary transcriptions, official GPO text pages and official government/judiciary-hosted PDFs; it does not mean 23 original Amiri Press PDF files were downloaded.
 - Unique article/provision extracts added in the continuation: 58 (23 in checkpoint 91, 24 in checkpoint 92 and at least 11 in the checkpoint 89 supplements). These counts exclude duplicate URLs and duplicate article texts.
 - Judicial research: five official SCC-hosted judgment pages/records reviewed in checkpoint 90; additional full secondary judgment transcription and official later-case references for Case 42/17 and Case 101/26 recorded.
-- Acquisition register now has 178 instrument records, 12 columns per row, no duplicate IDs or malformed rows. This is a register count, not a legal-text/article count. All lawyer-review and rights-clearance flags remain false.
+- Acquisition register now has 182 instrument records, 12 columns per row, no duplicate IDs or malformed rows. This is a register count, not a legal-text/article count. All lawyer-review and rights-clearance flags remain false.
 - Assigned civil/property domain estimate remains approximately 15%; whole Egyptian legal collection remains approximately 2%. Both are provisional; no validated national denominator exists, so no exact incremental percentage is claimed.
 - Material access blockers: several DSpace original Gazette bundles require a request-a-copy workflow; the official GPO Decision 200/2026 page returned 502 on direct open; original Gazette PDFs and some direct SCC judgment pages remain missing. GitHub repository writes and register validation succeeded.
 
@@ -439,8 +439,8 @@
 - Located official Amiri Press full text of Decision 3866/2026 postponing real-property-register commencement in City of Mansha'a to 1 July 2027.
 - Upgraded SCC Case 101/26 (1 February 2009) and Case 24/20 (9 November 2024) to direct official full judgment pages. Case 24/20's deferred effect is calculated as 10 July 2025 based on the judgment and Presidential Decision 368/2025 closure date.
 - Decision 480/2026: 19 January 2027 is the conditional consecutive-extension candidate; retrospective/prospective effect and applications during the 20 July–10 November 2026 gap remain unresolved.
-- Acquisition register: 178 instrument rows, 12 columns per row, no duplicate IDs or malformed rows. Source-permission register: 43 source entries. All lawyer-review and commercial-rights flags remain false.
-- New article extracts are not inflated: nine relatively high-confidence selected Law 119 provisions are transcribed in checkpoint 93; three additional OCR-corrupted provisions remain quarantined for page-image correction. No new Civil Code or Evidence Law article counts were added.
+- Acquisition register: 182 instrument rows, 12 columns per row, no duplicate IDs or malformed rows. Source-permission register: 44 source entries. All lawyer-review and commercial-rights flags remain false.
+- New article extracts are not inflated: nine relatively high-confidence selected Law 119 provisions are transcribed in checkpoint 93; three additional OCR-corrupted provisions remain quarantined for page-image correction. No new Civil Code article extracts were added; seven provisional Evidence Law provisions (Articles 118–124) were transcribed from a secondary consolidated text and remain unverified against Gazette images.
 - Domain and whole-corpus estimates remain approximately 15% and 2%, respectively; no percentage increase is justified without a validated unique-article denominator.
 
 ### Research Agent 1 — State private property regularization update (checkpoint 92)
