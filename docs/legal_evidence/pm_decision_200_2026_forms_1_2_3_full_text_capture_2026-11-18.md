@@ -211,3 +211,10 @@ The forms below are transcribed as form structures/fields. Blank cells and dotte
 The official SIS Gazette PDF's Article 20 says the competent authority prepares **annual reports** ("تقارير سنوية") on the status of regularization applications. The attached Form 3 is explicitly titled **quarterly report** ("تقرير ربع سنوي"). LAW HUB's secondary transcription changes Article 20 to "تقارير ربع سنوية", which conflicts with the official Gazette PDF text layer.
 
 For legal text storage, preserve the official Gazette Article 20 wording ("سنوية") as the source text, preserve Form 3's "ربع سنوي" title, and create an internal inconsistency flag. Do not silently harmonize the article with the form. A page-image check or official correction/circular is needed before deciding whether this is a printing error or an intentional reporting cadence distinction.
+
+
+## Additional source-text anomalies in the forms
+
+1. The agricultural Form 1 declaration uses the word "التثمين" in the phrase "في حالة الموافقة على طلب التثمين" even though the form title and governing statute concern "تقنين وضع اليد". Preserve the printed/PDF text and flag it as a possible typographical or OCR anomaly; do not silently correct it.
+2. Form 2 moves from section "ثالثاً — جدول الإحداثيات" to "خامساً — قرار لجنة المعاينة". No section four heading or text is visible in the extracted PDF lines. Preserve the numbering gap; do not invent a missing section.
+3. Form 3 is expressly quarterly. This conflicts with the official SIS PDF text layer of Regulation Article 20 ("تقارير سنوية") and is also consistent with Law 168/2025 Article 14 ("تقارير ربع سنوية"). See checkpoint 193.
