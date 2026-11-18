@@ -1583,6 +1583,40 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
       "required_next_action": "Use only as a secondary cross-reference; obtain original Case11/23 judgment and Gazette scan; review terms and seek written permission before commercial use or redistribution."
+    },
+    {
+      "source_id": "EG-SADANY-CASE42-17-PUBMETADATA",
+      "authority": "Sadany & Khalifa legal firm case-law digest",
+      "source_page": "https://sadanykhalifa.com/ar/section-data/%D8%A7%D8%AD%D9%83%D8%A7%D9%85%20%D8%A7%D9%84%D8%AF%D9%88%D8%A7%D8%A6%D8%B1%20%D8%A7%D9%84%D9%85%D8%AF%D9%86%D9%8A%D8%A9%20%D8%A8%D9%85%D8%AD%D9%83%D9%85%D8%A9%20%D8%A7%D9%84%D9%86%D9%82%D8%B6/28",
+      "material_types": [
+        "Court of Cassation digest",
+        "Gazette publication metadata for SCC Case42/17"
+      ],
+      "access_status": "Public legal digest inspected 2026-11-18; reports SCC Case42/17 publication in Official Gazette issue35 (تابع), 18 June 1998",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Secondary Court of Cassation digest quotes Case42/17 and states publication in Official Gazette issue35 تابع dated 18 June 1998. It is a later judicial digest, not the original SCC judgment or Gazette scan. Public access does not establish bulk extraction or commercial reuse permission.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Acquire the original Gazette issue/page and original SCC signed judgment; independently verify the issue number against official Amiri Press holdings."
+    },
+    {
+      "source_id": "EG-CRCICA-GAZETTE-CATALOG-1998",
+      "authority": "CRCICA Library catalogue",
+      "source_page": "https://library.crcica.org/cgi-bin/koha/opac-detail.pl?biblionumber=1314&viewallitems=1",
+      "material_types": [
+        "Official Gazette library holdings catalogue",
+        "Gazette issue metadata"
+      ],
+      "access_status": "Public catalogue inspected 2026-11-18; lists Official Gazette issue25 تابع (ب), 18 June 1998",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "CRCICA holdings list issue25 تابع (ب) dated 18 June 1998. This is a catalogue record and does not provide a digital issue PDF. It may be a different same-day supplement from issue35 تابع cited in later Court of Cassation material; retain as a competing issue-number lead pending original scan.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Request the relevant bound Official Gazette volume or scan from CRCICA/Amiri Press; verify whether issue25 تابع (ب) and issue35 تابع are separate same-day issues."
     }
   ]
 }
