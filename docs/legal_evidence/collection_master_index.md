@@ -619,3 +619,11 @@
 - GAFI Decision 675/2025 forming the cash-incentive committee is a source lead only; full official decision text remains outstanding.
 - Investment schedule chain: PM Decision 104/2022 → Decision 4427/2022 → Decision 503/2026 (replaces industrial sector schedules). Decision 77/2023 is the separate cash incentive implementation instrument.
 - **Updated Agent 3 minimum:** 47 distinct instruments with some Arabic text surfaced; 295 article/provision text units; 13/13 law families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
+
+
+### Research Agent 3 — Electronic Signature 2024 currentness correction
+
+- Ministerial Decision 467/2024, dated 12 Jun 2024, published الوقائع المصرية issue 141 تابع, 2 Jul 2024, effective 3 Jul 2024, issues the revised Executive Regulation of Law 15/2004 (52 articles plus technical annex). Full searchable text located; selected provisions transcribed. It updates trusted electronic transactions, e-signature, e-seals, timestamps, electronic records, licensing and inspection. The technical annex's current RSA/DSA minimum is 3072 bits, with 4096 recommended.
+- Decision 467/2024 is the later regulation and supersedes the 2020 regulation text as the current full version; Decision 331/2020 remains historical. Earlier secondary reference to Decision 361/2020 remains unresolved and is not merged with 331/2020.
+- Ministerial Decision 724/2024 (dated 19 Sep 2024; Gazette issue 252, 13 Nov 2024) updates Annex 2 to Decision 152/2019 on mobile services subject to the IT Development Industry fee under Law 15/2004, including 5G services. It is a fee-schedule decision, not an amendment to Law 15/2004 itself.
+- **Updated Agent 3 minimum:** 49 distinct legal instruments with some Arabic text surfaced; 313 article/provision text units; 13/13 families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
