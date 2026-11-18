@@ -2330,6 +2330,38 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "Single public article; no bulk/API permission established",
       "required_next_action": "Verify case number, filing date and relief sought against official SCC docket/registry; review site terms and obtain permission before reuse beyond citation."
+    },
+    {
+      "source_id": "EG-SIS-GAZETTE-240-2024-BUILDING-DECISION-943",
+      "authority": "Egyptian State Information Service digital repository; PDF is Egyptian Proceedings issue 240 dated 30 October 2024",
+      "source_page": "https://mediadr.sis.gov.eg/xmlui/bitstream/handle/123456789/76568/WQ240_20241030_9914.pdf?isAllowed=y&sequence=2",
+      "material_types": [
+        "Official-government Gazette issue PDF reproduction and full Arabic text of Ministerial Decision 943/2024 amending Building Regulation Articles 110 bis, 112 bis 1 and 117 bis"
+      ],
+      "access_status": "Publicly accessible full-issue PDF. It reproduces Decision 943/2024 on pages 5–10. A separate SIS PDF for issue216 dated 1 October 2024 also reproduces the same text; publication/commencement conflict unresolved.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Source used to extract the legal instrument text and metadata. No source-specific licence, bulk ingestion permission or commercial reuse permission was reviewed or established. Public access is not a licence.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "Single public PDF endpoint; no bulk/API permission established",
+      "required_next_action": "Obtain Amiri Press clarification about duplicate issue216/issue240 publication and archive the original issue PDF bytes/hash if authorized; visually compare page images."
+    },
+    {
+      "source_id": "EG-SIS-GAZETTE-22-2026-BUILDING-DECISION-1505",
+      "authority": "Egyptian State Information Service digital repository; PDF is Egyptian Proceedings issue 22 dated 27 January 2026",
+      "source_page": "https://mediadr.sis.gov.eg/bitstream/handle/123456789/119498/WQ22_20260127_7900.pdf?isAllowed=y&sequence=2",
+      "material_types": [
+        "Official-government Gazette issue PDF reproduction and full Arabic text of Ministerial Decision 1505/2025 amending Building Regulation Articles 43 and 50"
+      ],
+      "access_status": "Publicly accessible full-issue PDF. Printed notice says the electronic copy is not valid for circulation. Decision text appears on pages 20–23.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Source used for legal research and Arabic text extraction. No source-specific licence or written permission was reviewed or established. Public accessibility and government hosting do not establish commercial reuse permission.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "Single public PDF endpoint; no bulk/API permission established",
+      "required_next_action": "Visually inspect pages 20–23, resolve Article 143/43 numbering discrepancy and archive/hash the source only if authorized."
     }
   ]
 }
