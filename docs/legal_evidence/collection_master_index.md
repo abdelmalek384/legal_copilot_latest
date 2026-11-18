@@ -2339,3 +2339,16 @@ Added complete preamble and both operative articles from the official Amiri Pres
 - **PM Decision3531/2026**: full preamble and both articles transcribed from official Amiri Press TashTxt. Transfers all shares of the Canal Mooring and Lighthouse Company and the Port Said Engineering and Marine Construction Company from the maritime holding company to the Suez Canal Authority; Companies Law159/1981 applies. Gazette issue45 bis (ب), 9 Nov 2026.
 - **Presidential Decision448/2026**: all three operative articles transcribed from secondary reproductions of Gazette issue44 bis (ج), 1 Nov 2026. Replaces Article1 of Decision222/2026 and allocates 26,690.45 feddans (112,122,142 m²) in Red Sea Governorate to the Ministry of Finance for public-debt reduction and sovereign sukuk. The preamble and coordinate map/table remain missing; some press headlines contain a decimal-place error, so the quoted operative figure is retained pending original page/annex verification.
 [Arabic text tranche](acquisition_tranche_pm3531_2026_and_presidential448_2026_arabic_text.md)
+
+
+### Six further ministerial decisions acquired — EG-0340 to EG-0345
+
+Added six 2026 decisions from the Egyptian Proceedings:
+- **Finance Decision638/2026**: appoints the chair of the Tenth Tax Appeal Committee; complete preamble and two articles transcribed; original DSpace PDF (496.25 KB) is request-a-copy restricted.
+- **Aviation Decision895/2026**: extends Egyptian Airports Company term to 8 December 2051; operative articles transcribed.
+- **Aviation Decision896/2026**: extends Aviation Information Technology Company term to 11 March 2053; full official Amiri Press text transcribed.
+- **Aviation Decision1162/2026**: revises the holding company's capital to EGP100bn authorized and EGP45.695bn issued/paid; full official Amiri Press text transcribed.
+- **Aviation Decision1049/2026**: revises Cairo Airport Company capital to EGP50bn authorized and EGP26.4bn issued/paid; operative text partial.
+- **Housing Decision1056/2026**: approves a 16.76-feddan Greek Tower plan in New Cairo; Articles1–4 partly transcribed; map and full conditions outstanding.
+
+[Arabic text tranche](acquisition_tranche_aviation_finance_housing_decisions_638_895_896_1049_1056_1162_2026.md)
