@@ -1566,6 +1566,23 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
       "required_next_action": "Compare against original SCC judgment and Gazette scan; review terms and seek written permission for commercial extraction or redistribution."
+    },
+    {
+      "source_id": "EG-MANSHURAT-CASE32-43-2023-RENT",
+      "authority": "Manshurat legal document archive",
+      "source_page": "https://manshurat.org/file/88745/download?token=CN_YyNd4",
+      "material_types": [
+        "secondary reproduction of SCC judgment",
+        "rent-law case 32/43/2023"
+      ],
+      "access_status": "Public PDF route opened 2026-11-18; PDF is a later Case32/43/2023 judgment that quotes the operative Case11/23 holding; it is not the original Case11/23 judgment; terms not reviewed",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "The PDF was initially treated as a possible Case11/23 text source, but its title/body identify Case32/43/2023. It contains a quotation of the 2018 Case11/23 operative order, not the original full judgment. No reuse rights are inferred.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Use only as a secondary cross-reference; obtain original Case11/23 judgment and Gazette scan; review terms and seek written permission before commercial use or redistribution."
     }
   ]
 }
