@@ -634,3 +634,13 @@
 - Law 143/2004: Official Gazette issue 25 bis (أ), 17 Jun 2004; full searchable Arabic text located, and FRA/MOF official records confirm its status. Adds securitization companies Chapter 3 / Articles 41 bis through 41 bis/8, Article 65 bis late-reporting penalty, and amends Real Estate Finance Law 148/2001 Article 11, Capital Market Law Articles 23–24 and Central Depository Law 93/2000 Article 18.
 - Law 13/2022: Official FRA PDF, Gazette issue 10 bis (ز), 14 Mar 2022. Adds Article 10 bis for remote general-meeting attendance/voting, expands securitization to future cash flows under Article 41 bis and adds a valuation paragraph to Article 41 bis/1, plus Article 65 bis penalty. Five provisions transcribed.
 - **Updated Agent 3 minimum:** 51 distinct legal instruments with some Arabic text surfaced; 332 article/provision text units; 13/13 law families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
+
+
+### Research Agent 3 — Bankruptcy implementing decisions (2018–2026)
+
+- Justice Minister Decision 1899/2018: Gazette issue 57, 10 Mar 2018; 15-article regulation establishing Bankruptcy Administration expert registers, qualifications, applications, appointments and renewals.
+- Justice Minister Decision 6214/2018: Gazette issue 181, 11 Aug 2018; 10-article regulation for restructuring expert table, initial application review, appointments and reporting.
+- Justice Minister Decision 2208/2019: Gazette issue 84, 10 Apr 2019; 9-article fee schedule for restructuring committees, assistants, trustees, appraisers and controllers; amended by Decision 3715/2026.
+- Justice Minister Decision 3067/2021: Gazette issue 123, 3 Jun 2021; 7-article general economic-court expert-fee regime, expressly covers Bankruptcy Administration appointments and repeals Decision 3997/2009.
+- Decision 1889/2018 (monitoring committee) and Decisions 2215/2019, 4143/2019, 1985/2024 (expert list/appointments) remain additional source leads; full text/relationship mapping outstanding.
+- **Updated Agent 3 minimum:** 55 distinct instruments with some Arabic text surfaced; 373 article/provision text units; 13/13 law families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
