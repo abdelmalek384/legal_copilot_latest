@@ -1664,6 +1664,25 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
       "required_next_action": "Obtain authenticated Amiri Press original issue8 bis (A); compare with consolidated 2024 text; review terms and seek written permission before commercial use or redistribution."
+    },
+    {
+      "source_id": "EG-DSpace-DECISION200-2026",
+      "authority": "Ibrachy & Dermarkar Repository; catalogue publisher metadata identifies Official Gazette / Amiri Press",
+      "source_page": "https://dspace.id.com.eg/items/c8ee628f-2d7b-4f33-ab68-a68db8c99eb1/full",
+      "file_url": "https://dspace.id.com.eg/items/c8ee628f-2d7b-4f33-ab68-a68db8c99eb1/full",
+      "material_types": [
+        "Official Gazette PDF bundle",
+        "PM Decision 200/2026",
+        "Executive Regulation of Law 168/2025"
+      ],
+      "access_status": "Original bundle metadata located; file labelled العدد 3 مكرر أ مؤمن.pdf (1.89 MB); download is request-copy restricted; no local bytes/hash archived. Public full-issue reproduction separately accessible from SIS.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": "Checked 2026-11-18. DSpace item identifies Official Gazette issue 3 bis (A), 18 January 2026 and a 1.89 MB original bundle. Publicly accessible full text also exists via the SIS Media Digital Repository, Amiri Press transcription and legal-text repositories. Access does not establish permission for bulk collection, commercial indexing, redistribution or public display. No reuse permission inferred.",
+      "bulk_download_or_api": "request-copy workflow; no bulk/API licence established",
+      "required_next_action": "Obtain the original bundle through authorized request; archive and hash exact bytes; review applicable terms and seek explicit permission for local archiving, Arabic extraction, indexing, commercial use, excerpt display and redistribution."
     }
   ]
 }
