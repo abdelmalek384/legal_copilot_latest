@@ -396,6 +396,7 @@
 - Whole Egyptian legal collection estimate remains approximately 2% (provisional). No denominator of all unique Egyptian legal article texts is currently recorded, so an exact incremental percentage contribution from this tranche is not responsibly calculable.
 - Overall whole-corpus coverage remains approximately 2% as recorded in the existing index. This is provisional. The project does not yet record a denominator of all unique Egyptian legal article texts, so the incremental percentage contribution of these checkpoints cannot responsibly be calculated. Counts are based on unique instruments and article provisions, not URLs or catalogue entries.
 
+| [collection_checkpoint_92_state_private_property_law_168_2025_executive_regulation_and_2026_extension.md](collection_checkpoint_92_state_private_property_law_168_2025_executive_regulation_and_2026_extension.md) | Full 14-article Law 168/2025 text, 20-article PM Decision 200/2026 Executive Regulation and Presidential Decision 480/2026 extension; original DSpace Gazette bundles request-only; current filing-period computation flagged for verification |
 | [collection_checkpoint_91_notarization_and_registration_fees_laws_68_1947_70_1964_2026-11-18.md](collection_checkpoint_91_notarization_and_registration_fees_laws_68_1947_70_1964_2026-11-18.md) | Full searchable Arabic transcriptions and amendment graph for Notarization Law 68/1947 and Registration Fees Law 70/1964; Law 70 Articles 21 and 30 constitutional invalidity history and tariff decisions recorded |
 | [collection_checkpoint_90_primary_mortgage_texts_and_constitutional_property_rent_judgments_2026-11-18.md](collection_checkpoint_90_primary_mortgage_texts_and_constitutional_property_rent_judgments_2026-11-18.md) | Upgrades Law 148/2001 and PM Decision 1/2001 to official FRA-hosted Gazette/regulation PDFs; official SCC judgment records on Law 142/1964 Articles 21/23/24/30 and 37, plus rent-law judgments including Case 24/20/2024 invalidating the rent-freeze formula in Law 136/1981 Articles 1–2 subject to deferred effect |
 | [collection_checkpoint_89_expropriation_and_desert_land_property_laws_2026-11-18.md](collection_checkpoint_89_expropriation_and_desert_land_property_laws_2026-11-18.md) | Full text sources and amendment graph for Expropriation Law 10/1990, Laws 24/2018 and 187/2020, Desert Lands Law 143/1981, Law 7/1991, Law 11/2024 and executive regulations 20/2019 and 198/1982; Gazette gaps and exact-version cautions recorded |
@@ -410,6 +411,14 @@
 - New base statutes, amending statutes, executive decisions and statutory article texts counted in this checkpoint: 0. This batch improves source tier and judicial-currentness coverage; it does not inflate the unique legal-instrument or article counts.
 - No national completion percentage recalculated: the corpus still lacks a validated denominator of all unique Egyptian legal article texts.
 
+
+### Research Agent 1 — State private property regularization update (checkpoint 92)
+
+- Full 14-article searchable Arabic text of Law 168/2025 acquired; the statute was already identified in checkpoint 89 and is not counted as a new base-law discovery. Official Gazette issue 32 bis (و), 13 August 2025; Law 168/2025 repeals Law 144/2017.
+- Full 20-article Executive Regulation of Law 168/2025 located in PM Decision 200/2026; Official Gazette issue 3 bis (A), 18 January 2026, effective 19 January 2026. Official Amiri Press full-text portal is indexed; secondary full transcription is archived in checkpoint 92.
+- Presidential Decision 480/2026 extends the Article 3 application period for another equivalent period. Official DSpace metadata confirms Official Gazette issue 45 bis (ج), 10 November 2026; original 178.37 KB Gazette PDF is request-only. Exact commencement/final deadline is not computed pending the original text and date-counting review.
+- Critical scope distinction: Decision 480/2026 extends the Article 3 filing period on its face; it does not expressly extend the separate Article 11 six-month criminal-action extinction/surrender period.
+- Acquisition register expanded by 3 records EG-0173–EG-0175; all retain lawyer_reviewed=false and rights_cleared=false. The project does not treat catalogue metadata as downloaded legal text.
 
 ### Research Agent 1 — acquisition-register reconciliation
 
