@@ -41,16 +41,16 @@ This conflicts with an earlier secondary search snippet saying issue 9 supplemen
 | Law 143 complete article texts | **27** |
 | Law 143 partial article texts | **1** |
 | Law 143 repealed markers | **1** |
-| Unique complete article texts across core set + Law 143 extraction | **1,397** |
+| Unique complete article texts across core set + Law 143 extraction | **1,398** |
 | New legal instruments in checkpoint 161 | **0** |
 | New article texts in checkpoint 161 | **27** |
 
-The 1,397 is a source-version extraction count, not a count of currently operative provisions. The 1,370 core count remains separately defined.
+The 1,398 is a source-version extraction count, not a count of currently operative provisions. The 1,370 core count remains separately defined.
 
 ## 5. Completion estimate
 
 - Core article-number extraction: **100%** for the three defined core statutes, subject to OCR/source-image and historical-version validation.
-- Law 143/1981: 27/28 non-repealed articles fully transcribed, one partial; Articles 12–13 need image verification and 2024 versions need integration.
+- Law 143/1981: 28/28 non-repealed articles fully transcribed; Articles 12–13 need image verification and 2024 versions need integration.
 - Broader civil/property/contract corpus: **15% provisional**.
 - Whole Egyptian legal corpus: **2% provisional**.
 
@@ -66,3 +66,7 @@ The 1,397 is a source-version extraction count, not a count of currently operati
 ## 7. Rights and verification
 
 No lawyer verification, commercial reuse permission, certified Gazette authentication or bulk retrieval permission is claimed. The source is an official Ministry PDF, not an authenticated Amiri Press original binary.
+
+
+### Checkpoint 163 follow-up correction
+Article 2 is now text-complete after FAOLEX cross-check; the remaining gap is final Gazette-page image/punctuation verification. Law 143 extraction count is 28 complete article texts plus one repealed Article 21 marker, not 27 complete plus one partial.
