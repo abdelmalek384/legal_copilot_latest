@@ -617,13 +617,15 @@
       "material_types": [
         "secondary summaries and partial transcriptions of Labour Ministry Decisions 249–252/2026",
         "watermarked reproduced Gazette page images",
-        "legal-news metadata"
+        "legal-news metadata",
+        "Decision547/2025 Gazette page-image reproduction",
+        "Decision501/2026 Gazette page-image reproduction and text"
       ],
-      "access_status": "public secondary news pages located for Decisions 249–252; some pages expose watermarked page-image galleries; footer states all rights reserved; no licence or bulk-export permission identified",
+      "access_status": "Public secondary-hosted page-image reproductions inspected 18 Nov 2026 for Decision547/2025 (two Gazette pages) and Decision501/2026 (two Gazette pages); text/page-image cross-check possible. These are not Amiri Press-hosted originals.",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
-      "permission_evidence": "Sampled Almasdar pages for Decisions 249, 251 and 252 display a copyright footer stating all rights reserved (©2014–2026). The site exposes secondary text excerpts and image links, but no explicit licence or terms authorizing bulk collection, redistribution, or commercial reuse were identified in this review. Public availability and watermarked images do not establish permission. No row-level text or image files were copied.",
+      "permission_evidence": "Sampled Almasdar pages for Decisions 249, 251 and 252 display a copyright footer stating all rights reserved (©2014–2026). The site exposes secondary text excerpts and image links, but no explicit licence or terms authorizing bulk collection, redistribution, or commercial reuse were identified in this review. Public availability and watermarked images do not establish permission. No row-level text or image files were copied. Decision547 page images: https://www.almasdar.com/Upload/libfiles/40/6/445.jpg and /446.jpg. Decision501 page images: https://www.almasdar.com/WebP/libfiles/46/2/576.webp and /577.webp. No commercial reuse permission established.",
       "permission_evidence_url": "https://www.almasdar.com/175150",
       "terms_checked_on": null,
       "bulk_download_or_api": "No API or bulk-export permission established; individual secondary articles and watermarked image links only",
@@ -1943,13 +1945,15 @@
       "material_types": [
         "Law4/2026 amending Importers Register Law121/1982",
         "Ministerial Decision271/2026 issuing replacement executive regulation to Law121/1982",
-        "current foreign-trade and import/export decisions"
+        "current foreign-trade and import/export decisions",
+        "Decision547/2025 amendment to Decision770/2005 Article69(1)",
+        "Decision501/2026 amendment to Decision770/2005 Annex2 item7"
       ],
-      "access_status": "Official GOEIC legislation catalogue inspected 18 Nov 2026; lists Law4/2026 and Decision271/2026. Catalogue is a legal locator and not itself the Gazette binary.",
+      "access_status": "Official GOEIC law and decision list inspected 18 Nov 2026; lists Decisions547/2025 and501/2026. Individual GOEIC page fetch timed out; operative text was recovered from secondary-hosted Gazette page images.",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
-      "permission_evidence": "Official agency list at https://www.goeic.gov.eg/ar/laws-and-decisions/list identifies Law4/2026 and Decision271/2026 and categorizes Decision271 as the executive regulation for Law121/1982. No explicit licence authorizing bulk collection, commercial use, excerpt display or redistribution was identified.",
+      "permission_evidence": "Official agency list at https://www.goeic.gov.eg/ar/laws-and-decisions/list identifies Law4/2026 and Decision271/2026 and categorizes Decision271 as the executive regulation for Law121/1982. No explicit licence authorizing bulk collection, commercial use, excerpt display or redistribution was identified. Decisions547/2025 and501/2026 are listed at https://www.goeic.gov.eg/ar/laws-and-decisions/list. Catalogue is a legal locator; no bulk/commercial reuse permission established.",
       "terms_checked_on": "2026-11-18",
       "bulk_download_or_api": "Individual catalogue records; no bulk/API permission established",
       "required_next_action": "Acquire original Gazette PDF through official publisher or permitted channel; inspect GOEIC terms and preserve source metadata; do not treat public catalogue as commercial reuse permission."
