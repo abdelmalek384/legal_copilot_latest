@@ -1607,3 +1607,55 @@ The same Article 240 bis further permits electronic remote agenda presentation a
 - Eight issuing provision units counted: Law 181/2018 Articles 1–4; Decision 822/2019 Articles 1–2; Law 20/2024 Articles 1–2.
 - Full Law 181 Arabic PDF and full Regulation text are located, but article-by-article extraction and amendment overlay remain incomplete.
 - Cumulative Agent 3 minimum: 124 unique instruments / 1,278 provision units.
+
+
+## 39. Non-bank financial regulation — FRA Law 10/2009 and Leasing/Factoring Law 176/2018
+
+### Law 10/2009 — FRA establishment and supervisory jurisdiction
+
+- Instrument: Law 10/2009 regulating supervision of non-bank financial markets and instruments.
+- Official Gazette: issue 9 bis, 1 March 2009.
+- Official Ministry of Finance Gazette PDF: https://media.mof.gov.eg/mof-prd/1450_a87c87f41b.pdf
+- FRA updated Arabic law record (2019 version): https://fra.gov.eg/en/regulations/قانون-رقم-10-لسنة-2009-بشأن-تنظيم-الرقابة-على/
+- The Gazette PDF text is searchable and covers 19 articles. It establishes the FRA, its legal personality and functions; assigns it supervision over capital markets, futures exchanges, insurance, mortgage finance, financial leasing, factoring and securitization; and transfers responsibilities from predecessor regulators.
+- **Exact Arabic text — Article 1:**
+> تنشأ هيئة عامة للرقابة على الأسواق والأدوات المالية غير المصرفية تسمى "الهيئة العامة للرقابة المالية"، تكون لها شخصية اعتبارية عامة، وتتبع الوزير المختص، ويشار إليها في تطبيق أحكام هذا القانون بـ "الهيئة".
+- **Exact Arabic text — Article 2:**
+> تختص الهيئة بالرقابة والإشراف على الأسواق والأدوات المالية غير المصرفية بما في ذلك أسواق رأس المال، وبورصات العقود الآجلة، وأنشطة التأمين، والتمويل العقاري، والتأجير التمويلي، والتخصيم، والتوريق.
+- **Exact Arabic text — Article 3 (relevant clause):**
+> تحل الهيئة محل كل من الهيئة المصرية للرقابة على التأمين، والهيئة العامة لسوق المال، والهيئة العامة لشئون التمويل العقاري، في تطبيق أحكام قانون الإشراف والرقابة على التأمين الصادر بالقانون رقم ١٠ لسنة ١٩٨١، وقانون سوق المال الصادر بالقانون رقم ٩٥ لسنة ١٩٩٢، وقانون الإيداع والقيد المركزي للأوراق المالية الصادر بالقانون رقم ٩٣ لسنة ٢٠٠٠، وقانون التمويل العقاري الصادر بالقانون رقم ١٤٨ لسنة ٢٠٠١.
+- Article 4 enumerates the FRA's regulatory powers, including licensing, inspections, disclosure, non-bank financial-market competition/transparency, customer protection and anti-manipulation.
+- Article 6 gives the FRA Board final decision-making authority and power to issue implementing rules/licensing rules, inspection rules and fees.
+- Articles 15–17 establish inspection/enforcement and executive-regulation mechanisms. The law's Article 15 gives designated FRA staff judicial-police status for specified non-bank financial laws; Article 16 regulates criminal prosecution/settlement gates; Article 17 directs issuance of the Executive Regulation.
+- FRA's later amended 2019 copy must be reconciled against original Law 10/2009 and subsequent amendments/decisions. Do not use the 2009 original as current consolidated text without this overlay.
+
+### Law 176/2018 — Financial Leasing and Factoring
+
+- Instrument: Law 176/2018 issuing the Law Regulating Financial Leasing and Factoring Activities.
+- Issued 14 August 2018; official FRA Arabic PDF: https://fra.gov.eg/wp-content/uploads/2025/02/قانون-تنظيم-نشاطي-التأجير-التمويلي-والتخصيم.pdf
+- FRA regulation record: https://fra.gov.eg/en/regulations/قانون-رقم-176-لسنة-2018-بإصدار-قانون-تنظيم-نش-2/
+- Gazette publication/effective date: official publication and issuance metadata to be checked against the Gazette scan; the FRA-hosted text is the official authority's Arabic full law.
+- Issuing Article 1 applies the law to financial leasing and factoring, repeals Leasing Law 95/1995 and PM Decision 1446/2003 on factoring rules, and repeals conflicting provisions.
+- Issuing Article 2 assigns disputes (except State Council matters) to the Economic Courts, including interim/substantive enforcement disputes and criminal cases under the law.
+- Issuing Article 3 requires existing leasing/factoring businesses to regularize their status within six months (extendable twice by FRA Board decision), failing which their licences are cancelled and portfolios must be liquidated or transferred to another licensee; pre-existing contracts retain the tax treatment applicable when concluded until expiry.
+- Issuing Article 4 publication and commencement on the day following publication.
+- Article 1 definitions distinguish financial leasing (temporary possession/use of an asset for periodic payments, with a lessee purchase option) and factoring (purchase of current/future financial rights arising from sale of goods or provision of services).
+- Article 3 gives FRA exclusive licensing authority for leasing/factoring, with specified microfinance entities also eligible under Law 141/2014 and FRA Board rules.
+- Article 5 creates an FRA register for financial-leasing contracts, related sale contracts and amendments; registration has third-party/priority consequences and must be cross-linked with the Movable Collateral Law 115/2015 register.
+- Article 28 gives a registered financial-leasing contract the force of an enforceable instrument, subject to the prescribed Economic Court enforcement process.
+- Factoring Articles 35–46 address domestic/international factoring, eligible receivables, assignment, debtor notice, defenses, security, future receivables, model contract and seller disclosure obligations.
+- Article 26 includes automatic termination triggers, including non-payment after notice and a 30-day period, death, bankruptcy/insolvency or company dissolution subject to the specified continuation mechanism. Cross-link Law 11/2018 insolvency provisions and company dissolution/liquidation rules.
+- The law's current implementing rules are issued by FRA Board decisions and circulars. Collect them as distinct instruments and distinguish binding Board decisions from non-binding guidance.
+
+### Commercial-law implications
+
+- Law 10/2009 is the institutional umbrella for FRA supervision. Law 176/2018 is the sector-specific statute governing financial leasing and factoring.
+- Leasing contracts, registered rights, asset title, lessee purchase options, repossession/enforcement, insolvency and factoring assignments need joint retrieval from Law 176/2018, Civil Code, Commercial Code 17/1999, Movable Collateral Law 115/2015, Insolvency Law 11/2018 and FRA Board rules.
+- The repeal of Law 95/1995 and PM Decision 1446/2003 is express in Law 176/2018 issuing Article 1; preserve those older texts as repealed historical materials only.
+- FRA's current legal catalogue includes Law 176/2018 and the 2019-updated Law 10/2009. Its board decision catalogue lists relevant corporate-governance rules, including Decision 100/2020 (updated 2024), and financial-leasing/factoring sector decisions. Those decisions require a dedicated inventory and version capture.
+
+### Count increment
+
+- Two unique instruments with Arabic legal text surfaced: Law 10/2009 and Law 176/2018.
+- Eight provision units counted: selected Law 10/2009 Articles 1–4; Law 176/2018 issuing Articles 1–4. The remaining 15 articles of Law 10/2009 and the substantive 50-article Law 176/2018 have searchable official text but are not added to the numeric count in this pass.
+- Cumulative Agent 3 minimum: 126 unique instruments / 1,286 provision units.
