@@ -2825,9 +2825,9 @@ The official CBE circulars database is a live index and should be queried by top
 
 ### A. Unique instruments with at least some Arabic text surfaced
 
-**Current minimum: 70 distinct legal instruments** with at least some Arabic legal text surfaced in this Agent 3 collection. This includes statutes, executive regulations, ministerial/prime-minister decisions and CBE circulars; a few are represented by selected provisions or secondary searchable reproductions rather than a full primary Gazette text. Publication-only source leads and unreadable official PDFs are excluded.
+**Current minimum: 72 distinct legal instruments** with at least some Arabic legal text surfaced in this Agent 3 collection. This includes statutes, executive regulations, ministerial/prime-minister decisions and CBE circulars; a few are represented by selected provisions or secondary searchable reproductions rather than a full primary Gazette text. Publication-only source leads and unreadable official PDFs are excluded.
 
-The 70 are:
+The 72 are:
 1. Competition Law 3/2005
 2. Executive Regulation Decision 1316/2005
 3. E-Signature Law 15/2004
@@ -2898,12 +2898,14 @@ The 70 are:
 68. Investment sector schedule Decision 981/2022
 69. Investment additional-incentive coordination Decision 983/2022
 70. Capital Market Executive Regulation amendment Decision 2423/2024
+71. Competition Law amendment Law 175/2022
+72. Competition Executive Regulation amendment Decision 1120/2024
 
 **Source-only / not counted as text obtained:** Trade Register Executive Regulation Decision 106/2018 (14.9 MB official PDF locator, download failed); original E-Signature Executive Regulation Decision 109/2005 (official publication confirmation only); PM Decision 104/2022 (parent schedules identified, full schedules not extracted); Consumer Protection Law 181/2018 (official PDF OCR unusable); CBE eKYC circular 23 August 2026 and CBE PSO/PSP 2025 licensing/governance PDFs (official locators but reader blocked).
 
 ### B. Article/provision text units
 
-**Current minimum: 951 article/provision text units surfaced.** This reconciles the previous 111-unit baseline with 840 additional individually surfaced article or regulatory-section texts in this checkpoint, including the 140 articles of the consolidated Investment Executive Regulation 2310/2017, the 249 provisions of Central Bank Law 194/2020 (243 additional beyond the six previously counted), the 362 numbered articles of the consolidated Capital Market Executive Regulation 135/1993 (359 additional beyond the three previously counted), 16 provisions from Decision 2423/2024, two inserted FDI-reporting provisions (126 bis and 126 bis A), and the previously listed amendment and statutory provisions. Counts include consolidated and amending texts and are not deduplicated. Counts are not deduplicated across consolidated and amending texts. It is a manual minimum, not a count of unique operative provisions after amendment normalization. It includes some regulatory sections (e.g., CBE Agent Banking numbered sections) and selected provisions, and does not count every article merely because a full searchable PDF spans a larger numbering range.
+**Current minimum: 991 article/provision text units surfaced.** This reconciles the previous 111-unit baseline with 880 additional individually surfaced article or regulatory-section texts in this checkpoint, including the 140 articles of the consolidated Investment Executive Regulation 2310/2017, the 249 provisions of Central Bank Law 194/2020 (243 additional beyond the six previously counted), the 362 numbered articles of the consolidated Capital Market Executive Regulation 135/1993 (359 additional beyond the three previously counted), 16 provisions from Decision 2423/2024, 16 provisions from Law 175/2022, 24 provisions from Decision 1120/2024, two inserted FDI-reporting provisions (126 bis and 126 bis A), and the previously listed amendment and statutory provisions. Counts include consolidated and amending texts and are not deduplicated. Counts are not deduplicated across consolidated and amending texts. It is a manual minimum, not a count of unique operative provisions after amendment normalization. It includes some regulatory sections (e.g., CBE Agent Banking numbered sections) and selected provisions, and does not count every article merely because a full searchable PDF spans a larger numbering range.
 
 ### C. Assigned-domain coverage
 
