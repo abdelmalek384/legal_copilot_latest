@@ -841,3 +841,12 @@
 - The master index already records the stronger MIFT consolidated source through 15 Sep 2020, and the 361-article Executive Regulation 96/1982 consolidation through 21 Aug 2022 plus 21 attachments/amendment records. The ETA PDF is added as a source cross-check, not a replacement for the MIFT consolidation.
 - Thirteen additional selected provisions from the ETA text are transcribed in Agent 3 file: company scope/types, founders and formation, in-kind contributions, shareholder inspection, foreign branches and representative offices. Their exact wording must be reconciled against later amendments (especially Law 4/2018).
 - **Updated Agent 3 minimum:** 74 distinct instruments with some Arabic text surfaced; 1,021 article/provision text units; 13/13 assigned families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
+
+
+### Research Agent 3 — Central Bank Law 194/2020 official PDF and full-text reconciliation
+
+- Ministry of Finance official law record marks Law 194/2020 as in force and identifies Official Gazette issue 37 مكرر (و), 15 Sep 2020. Direct official 115-page PDF now captured: https://media.mof.gov.eg/mof-prd/qanwnrqm_194_lsnt_2020_39c565fe1c.pdf. CBE official banking-law catalogue independently lists the law and Executive Regulation.
+- Full searchable Arabic transcription through Articles 1–241 located; ten provisions transcribed in Agent 3 file, including issuing Articles 1–2, Article 7, banking secrecy Articles 140–143, consumer complaints Article 218, special competition regime Articles 221–222, and corporate liability Article 235.
+- Cross-law rules: CBE Law issuing Article 2 makes Companies Law 159/1981 subsidiary and applies Commercial Code 17/1999 to bank-customer transactions. Article 221 disapplies Competition Law 3/2005 to CBE-licensed entities and substitutes a CBE competition regime. These are important retrieval routing rules.
+- The MOF PDF is official but was not text-extractable in the web reader; verbatim transcriptions above are from a secondary searchable page and require page-image comparison against the Gazette. No lawyer review.
+- **Updated Agent 3 minimum:** 74 distinct instruments with some Arabic text surfaced; 1,031 article/provision text units; 13/13 assigned families touched; 0/13 amendment/currentness-complete; 0% lawyer-reviewed.
