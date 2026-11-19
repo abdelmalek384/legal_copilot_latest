@@ -417,11 +417,11 @@
 Estimates are weighted across the assigned criminal-law domain and are not counts of links.
 
 - Discovery coverage: approximately 88% of assigned instrument families have concrete sources.
-- Actual Arabic text acquisition: approximately 48%. Newly acquired in this tranche: full 3,841-line Penal Code transcription; full 37-article secondary Weapons Law transcription; full 33-article Law 1/2024 transcription; full 1,636-line Child Regulation transcription; and operative text of several missing Penal Code and Child Law amendments.
-- Amendment and implementing-instrument mapping: approximately 35%. The Child Law chain and several Penal Code amendments are materially more complete, but Gazette-level collation and many amendments remain missing.
-- Article-level extraction and QA: approximately 31%. Selected articles and operative amendments extracted; no complete consolidated text has been lawyer-reviewed.
+- Actual Arabic text acquisition: approximately 54% (revised by late-pass addendum). Newly acquired in this tranche: full 3,841-line Penal Code transcription; full 37-article secondary Weapons Law transcription; full 33-article Law 1/2024 transcription; full 1,636-line Child Regulation transcription; and operative text of several missing Penal Code and Child Law amendments.
+- Amendment and implementing-instrument mapping: approximately 44% (revised by late-pass addendum). The Child Law chain and several Penal Code amendments are materially more complete, but Gazette-level collation and many amendments remain missing.
+- Article-level extraction and QA: approximately 37% (revised by late-pass addendum). Selected articles and operative amendments extracted; no complete consolidated text has been lawyer-reviewed.
 - Lawyer verification: 0%.
-- **Overall assigned-domain completion: approximately 33%.** This is not a claim that one-third of every law is fully collated; it is a weighted project estimate accounting for discovery, full text, amendments, versioning and QA.
+- **Overall assigned-domain completion at initial pass: approximately 33%; revised late-pass estimate: 37%.** This is not a claim that one-third of every law is fully collated; it is a weighted project estimate accounting for discovery, full text, amendments, versioning and QA.
 - National contribution using the earlier equal-weight 30-domain baseline: approximately 1.1 percentage points (33% / 30). This is a rough contribution, not a new audited national completion figure.
 
 ## 10. Next acquisition work — do not repeat this tranche
@@ -438,3 +438,154 @@ Estimates are weighted across the assigned criminal-law domain and are not count
 10. Continue obtaining the actual text of Law 80/2002 amendments, the 951/2003 regulation and its separate amendment decisions; use FRA and Ministry of Finance records as government sources.
 
 **No content in this tranche is lawyer-verified. Secondary transcriptions are not substitutes for Official Gazette copies.**
+
+
+---
+
+## 11. Further acquisition addendum — late 20 November 2026
+
+This addendum records additional instruments discovered after the initial 20 November tranche. It supersedes earlier statements in this file wherever a later amendment or repeal changes the legal position.
+
+### 11.1 Penal Code Law 185/2023 — verified source of the 4 December 2023 amendment date
+
+- Arabic title: قانون رقم 185 لسنة 2023 بتعديل بعض أحكام قانون العقوبات.
+- Gazette: العدد 48 مكرر (ب), 4 December 2023; effective 5 December 2023.
+- Full Arabic text from the Middle East Library for Economic Services transcription: https://mksegypt.org/ar/laws/17352
+- Official Amiri Press DSpace item and Arabic PDF attachment record: https://dspace.id.com.eg/items/838e5069-1850-4c04-b774-0a9d33ac1c0b/full
+- The official-repository record identifies the exact affected provisions: Penal Code Arts 306 bis (a), 306 bis (b), second paragraph, and 309 bis (b), third paragraph.
+- This confirms the 4 December 2023 “last amendment” date shown in the Penal Code secondary consolidation, but it does not establish that no subsequent amendment exists in the Penal Code as of this research date.
+
+#### Verbatim Arabic — Law 185/2023
+
+قانون رقم ١٨٥ لسنة ٢٠٢٣  
+بتعديل بعض أحكام قانون العقوبات
+
+(المادة الأولى)  
+يستبدل بنصوص المواد (٣٠٦ مكرراً أ، ٣٠٦ مكرراً ب/ فقرة ثانية، ٣٠٩ مكرراً ب/ فقرة ثالثة) من قانون العقوبات، النصوص الآتية:
+
+مادة (٣٠٦ مكرراً أ):  
+يُعاقب بالحبس مدة لا تقل عن سنتين ولا تجاوز أربع سنوات، وبغرامة لا تقل عن مائة ألف جنيه، ولا تزيد على مائتي ألف جنيه، أو بإحدى هاتين العقوبتين كل من تعرض للغير في مكان عام أو خاص أو مطروق بإتيان أمور أو إيحاءات أو تلميحات جنسية أو إباحية سواء بالإشارة أو بالقول أو بالفعل بأية وسيلة بما في ذلك وسائل الاتصالات السلكية أو اللاسلكية أو الإلكترونية، أو أية وسيلة تقنية أخرى.
+
+وتكون العقوبة الحبس مدة لا تقل عن ثلاث سنوات ولا تجاوز خمس سنوات، وبغرامة لا تقل عن مائتي ألف جنيه ولا تزيد على ثلاثمائة ألف جنيه، أو بإحدى هاتين العقوبتين إذا ارتكبت الجريمة في مكان العمل أو في إحدى وسائل النقل أو من شخصين فأكثر أو إذا كان الجاني يحمل سلاحاً أو إذا تكرر الفعل من الجاني من خلال الملاحقة والتتبع للمجني عليه. وإذا توافر ظرفان أو أكثر من الظروف المشددة الواردة بالفقرة الثانية من هذه المادة يكون الحد الأدنى لعقوبة الحبس أربع سنوات.
+
+وفي حالة العود تضاعف عقوبتا الحبس والغرامة في حديهما الأدنى والأقصى.
+
+مادة (٣٠٦ مكرراً ب/ فقرة ثانية):  
+فإذا كان الجاني ممن نص عليهم في الفقرة الثانية من المادة (٢٦٧) من هذا القانون أو ممن له سلطة وظيفية أو أسرية أو دراسية على المجني عليه أو مارس عليه أي ضغط تسمح له الظروف بممارسته عليه، أو إذا ارتكبت الجريمة في مكان العمل أو في إحدى وسائل النقل أو من شخصين فأكثر أو إذا كان الجاني يحمل سلاحاً تكون العقوبة السجن مدة لا تقل عن سبع سنوات، أما إذا توافر ظرفان أو أكثر من الظروف المشددة الواردة بهذه الفقرة تكون العقوبة السجن مدة لا تقل عن عشر سنوات.
+
+مادة (٣٠٩ مكرراً ب/ فقرة ثالثة):  
+وتكون العقوبة الحبس مدة لا تقل عن سنة وغرامة لا تقل عن عشرين ألف جنيه ولا تزيد على مائة ألف جنيه، أو بإحدى هاتين العقوبتين، إذا ارتكبت الجريمة في مكان العمل أو في إحدى وسائل النقل أو من شخصين أو أكثر أو إذا كان الجاني من أصول المجني عليه أو من المتولين تربيته أو ملاحظته أو ممن لهم سلطة عليه أو كان مسلماً إليه بمقتضى القانون أو بموجب حكم قضائي أو كان خادماً لدى الجاني، أما إذا اجتمع ظرفان أو أكثر من الظروف المشددة السابقة يضاعف الحد الأدنى للعقوبة.
+
+(المادة الثانية)  
+ينشر هذا القانون في الجريدة الرسمية، ويعمل به اعتباراً من اليوم التالي لتاريخ نشره.
+
+**Version control correction:** The Law 141/2021 transcription in §2.5 above is a historical intermediate version. The current text of the affected paragraphs must be updated by Law 185/2023. Preserve both amendment layers; do not simply overwrite history.
+
+### 11.2 Child Law 182/2023 — material repeals and institutional transfer
+
+- Arabic title: قانون رقم 182 لسنة 2023 بإصدار قانون إعادة تنظيم المجلس القومي للطفولة والأمومة وبتعديل بعض أحكام قانون الطفل الصادر بالقانون رقم 12 لسنة 1996.
+- Gazette: العدد 46 تابع, 16 November 2023; effective 17 November 2023.
+- Official Amiri Press Gazette item: https://dspace.id.com.eg/items/0e98229b-1fbe-4afc-bc50-f8c4fbe73440/full (Arabic PDF listed, 1.1 MB).
+- Official-repository law item with separate Arabic amendment PDF: https://dspace.id.com.eg/items/6b936ac3-c051-4217-bab2-0ef1083a5125
+- Full Arabic text transcription: https://www.mksegypt.org/public/index.php/ar/laws/17349
+- The law transfers the functions/assets/liabilities of the former National Council for Childhood and Motherhood and the Child and Motherhood Care Fund to the reorganized entities.
+- Crucially, its Article 4 repeals the fifth and sixth paragraphs of Child Law Art 97 and the entirety of Book/Part Nine of Child Law 12/1996. Do not continue to index those repealed provisions as current.
+- Article 12 of the attached reorganizing law creates the General Department for Child Rescue (الإدارة العامة لنجدة الطفل) with authority to receive complaints, process them, request investigation of reports, follow investigation outcomes and send reports to competent authorities.
+
+#### Verbatim Arabic — promulgating provisions
+
+(المادة الثانية)  
+يحل المجلس القومي للطفولة والأمومة المنظم وفق أحكام القانون المرافق محل المجلس القومي للطفولة والأمومة المنشأ بقانون الطفل الصادر بالقانون رقم 12 لسنة 1996 وقرار رئيس الجمهورية رقم 54 لسنة 1988 بشأن المجلس القومي للطفولة والأمومة وتؤول إليه جميع أصوله وموجوداته، ويكون له جميع حقوقه ويتحمل جميع التزاماته.
+
+كما يحل صندوق رعاية الطفولة والأمومة المنظم وفق أحكام القانون المرافق محل صندوق رعاية الطفولة والأمومة المنشأ بقانون الطفل المشار إليه وتؤول إليه جميع أصوله وموجوداته ويكون له جميع حقوقه ويتحمل جميع التزاماته.
+
+(المادة الرابعة)  
+تلغى الفقرتان الخامسة والسادسة من المادة (97) والباب التاسع من قانون الطفل المشار إليه ويلغى قرار رئيس الجمهورية رقم 54 لسنة 1988 المشار إليه، كما يلغى كل حكم يخالف أحكام هذا القانون والقانون المرافق.
+
+#### Verbatim Arabic — Child Rescue Department, attached law Art 12
+
+مادة (12)  
+ينشأ بالمجلس إدارة عامة لنجدة الطفل، تختص بتلقي الشكاوى من الأطفال والبالغين، ومعالجتها بما يحقق سرعة إنقاذ الطفل من كل عنف أو خطر أو إهمال. وتضم الإدارة في عضويتها ممثلين لوزارات العدل والداخلية والتضامن الاجتماعي والتنمية المحلية والصحة والسكان يختارهم الوزراء المختصون، وممثلين لمؤسسات المجتمع المدني يختارهم رئيس المجلس، ومن يرى الرئيس الاستعانة بهم. ولإدارة نجدة الطفل صلاحيات طلب التحقيق فيما يرد إليها من بلاغات، ومتابعة نتائج التحقيقات، وإرسال تقارير بما يتكشف لها إلى جهات الاختصاص.
+
+### 11.3 Child Law 12/2025 — repeal of Art 49
+
+- Law: قانون رقم 12 لسنة 2025 بإصدار قانون الضمان الاجتماعي.
+- Gazette: العدد 14 تابع, 3 April 2025; effective from the day following three months after publication (4 July 2025).
+- Official State Information Service DSpace Gazette item: https://mediadr.sis.gov.eg/handle/123456789/94714 (public; OG14_20250403_8923.pdf, 281.1 KB).
+- Government Ministry of Finance legislative record: https://mof.gov.eg/ar/legislation/legislation-685d75f1d16c6e0008d1ff9f
+- Full Arabic text: https://alhasswalawfirm.com/law-library/law-12-2025
+- Article 4 expressly repeals Art 49 of Child Law 12/1996. This is a direct cross-statute repeal, not a mere amendment to the social-security law.
+- Transitional clause preserves existing beneficiaries until their status is regularized under the new law and executive regulation within one year from commencement; the Cabinet may extend once for a similar period.
+
+#### Verbatim Arabic — Law 12/2025, Article 4
+
+(المادة الرابعة)  
+يُلغى قانون الضمان الاجتماعي الصادر بالقانون رقم ١٣٧ لسنة ٢٠١٠، والمادة ٤٩ من قانون الطفل الصادر بالقانون رقم ١٢ لسنة ١٩٩٦، كما يُلغى كل حكم يخالف أحكام هذا القانون والقانون المرافق له.
+
+ويستمر المستفيدون وفقاً لأحكام القانونين المشار إليهما بالفقرة الأولى من هذه المادة والقرارات المنفذة لهما، ومن بينهم المستفيدون من برنامج تكافل وكرامة، في الاحتفاظ بالمزايا المقررة لهم بموجبها، وذلك لحين توفيق أوضاعهم وفقاً لأحكام القانون المرافق ولائحته التنفيذية، وذلك خلال سنة من تاريخ العمل بها، ويجوز مد هذه المدة لمدة واحدة مماثلة بقرار يصدر من مجلس الوزراء بناء على عرض الوزير المعني بشئون التضامن الاجتماعي.
+
+### 11.4 Law 161/2021 — Child Law Art 50 amendment
+
+- Arabic title: قانون رقم 161 لسنة 2021 بتعديل بعض أحكام قانون المرور الصادر بالقانون رقم 66 لسنة 1973 وقانون الطفل الصادر بالقانون رقم 12 لسنة 1996.
+- Gazette: العدد 51 مكرر (ب), 27 December 2021; effective 28 December 2021.
+- Official Amiri Press DSpace Arabic PDF listing: https://dspace.id.com.eg/items/738e6c08-5bd8-473a-a5da-dbe0a08bbdce (Law.No.161-2021-AR.pdf, 154.48 KB).
+- Opened full Arabic PDF text transcription: https://elsayyad.net/UploadFiles/LegislationDetails/2021-161.pdf
+- The instrument also amends the Traffic Law. Its Child Law amendment substitutes the first paragraph of Art 50.
+
+#### Verbatim Arabic — substituted Child Law Art 50, first paragraph
+
+مادة (٥٠/ فقرة أولى):  
+فيما عدا ما ورد في شأنه نص خاص في قانون المرور، لا يجوز منح الطفل ترخيصاً بقيادة مركبة آلية.
+
+### 11.5 PM Decision 1143/2020 — further amendment of Child Executive Regulation 2075/2010
+
+- Arabic title: قرار رئيس مجلس الوزراء رقم 1143 لسنة 2020 بتعديل بعض أحكام اللائحة التنفيذية لقانون الطفل الصادرة بقرار رئيس مجلس الوزراء رقم 2075 لسنة 2010.
+- Gazette: العدد 23 مكرر, 9 June 2020.
+- Secondary full-text reproductions: https://egyptianlaws.com/?p=151831 and https://ahmedazimelgamel.blogspot.com/2025/12/1143-2020-2075-2010.html
+- The blog page is currently blocked by an anti-bot challenge; the search-indexed Arabic text is available. Do not bypass the challenge.
+- It changes terminology throughout: “اللقطاء” becomes “الأطفال المعثور عليهم”; “الأسر البديلة” and “مجهولي النسب” become “الأسر البديلة الكافلة” and “كريمي النسب”.
+- It replaces provisions in Arts 85 (b, e), 89 (1, 2), 89 bis, 90 first paragraph, 92 and 99; adds a final paragraph to Art 89 and new Arts 90 bis (a), 99 bis and 112 bis.
+- This amendment is important to the child-protection, foster-care and child-welfare implementing framework; its exact provisions must be collated against Decision 2075 before ingestion.
+
+### 11.6 Criminal Procedure Law 177/2020 — victim identity confidentiality
+
+- Arabic title: قانون رقم 177 لسنة 2020 بتعديل بعض أحكام قانون الإجراءات الجنائية الصادر بالقانون رقم 150 لسنة 1950.
+- Gazette: العدد 36 مكرر, 5 September 2020; effective 6 September 2020.
+- Full Arabic text reproduction: https://www.aldhshan.com/2026/02/177-2020-150-1950.html
+- Full text page opened; no Gazette PDF obtained.
+- Adds Art 113 bis to Law 150/1950. This is a criminal procedure safeguard relevant to sexual offences, offences against morality, and Child Law Art 96.
+- The provision remains part of the pre-commencement Law 150 framework until Law 174/2025 takes effect, subject to future transition and replacement analysis.
+
+#### Verbatim Arabic — new Art 113 bis
+
+مادة (١١٣ مكرراً):  
+لا يجوز لمأموري الضبط أو جهات التحقيق الكشف عن بيانات المجني عليه في أي من الجرائم المنصوص عليها في الباب الرابع من الكتاب الثالث من قانون العقوبات الصادر بالقانون رقم ٥٨ لسنة ١٩٣٧، أو في أي من المادتين (٣٠٦ مكرراً أ، ٣٠٦ مكرراً ب) من ذات القانون، أو في المادة (٩٦) من قانون الطفل الصادر بالقانون رقم ١٢ لسنة ١٩٩٦، إلا لذوي الشأن.
+
+### 11.7 Amendment-chain updates and corrections
+
+- Penal Code 185/2023 is now the verified source of the 4 December 2023 amendment date previously reported by the secondary consolidated Code. The current harassment/bullying paragraphs are the 185/2023 versions, not the intermediate 141/2021 or 189/2020 text.
+- Child Law 12/1996 chain must now include: 126/2008, 6/2015, 7/2015, 161/2021, 182/2023, 186/2023 and 12/2025; also check Law 64/2010 and all other cross-statute amendments before calling the chain complete.
+- Child Executive Regulation chain now includes: 2075/2010, 208/2014 and 1143/2020. The 2075/2010 original text is no longer the current text without applying these amendments.
+- Law 177/2020 must be included in the operative Law 150/1950 version, including the new Art 113 bis confidentiality safeguard.
+- Child Law Art 49 is repealed effective 4 July 2025. Do not serve it as current law.
+- Law 182/2023 repealed Art 97 paragraphs 5 and 6 and the entire ninth book/part of the Child Law. Do not serve those provisions as current law.
+
+### 11.8 Revised progress — 20 November 2026, late pass
+
+- Discovery coverage: approximately 90%.
+- Actual Arabic text acquisition: approximately 54%. Newly added full texts or substantive operative Arabic wording for Laws 185/2023, 182/2023, 12/2025, 161/2021, 177/2020 and Decision 1143/2020.
+- Amendment and implementing-instrument mapping: approximately 44%.
+- Article-level extraction and QA: approximately 37%.
+- Lawyer verification: 0%.
+- **Overall assigned criminal-law domain completion: approximately 37%.**
+- Rough equal-weight national contribution (30 domains): 1.23 percentage points (37% / 30). This is not a revised audited national completion estimate.
+
+### 11.9 Immediate next acquisition priorities
+
+1. Extract all provisions of Law 185/2023 and apply them to the Penal Code consolidated text, then search for any post-December-2023 amendment.
+2. Obtain the official Gazette scan/PDF of Law 182/2023 and collate the repealed Child Law provisions and the attached Council law.
+3. Acquire official Gazette PDF of Law 12/2025 and preserve its transitional clause; ensure Art 49 is excluded from current Child Law text.
+4. Download Law 161/2021 Arabic DSpace PDF and hash/preserve it; the secondary PDF text is already transcribed.
+5. Obtain the complete signed Decision 1143/2020 and extract every replacement/addition in Arts 85, 89, 89 bis, 90, 92, 99, 90 bis (a), 99 bis and 112 bis.
+6. Acquire the official Gazette PDF of Law 177/2020 and collate Art 113 bis with the Law 150/1950 consolidated text.
+7. Investigate Law 64/2010 and other amendments in the Child Law relation graph; do not assume the amendment list above is exhaustive.
