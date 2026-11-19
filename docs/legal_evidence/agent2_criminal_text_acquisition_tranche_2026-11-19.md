@@ -2578,3 +2578,102 @@ The Table 3 heading states that the listed substances and their salts, esters, e
 - **Remaining:** full 34-page Decision 44/2026 schedule transcription, visual comparison with superseded schedules, and original Gazette archiving/hash verification.
 - **Original Gazette PDFs locally archived and SHA-256 verified:** 0.
 - **Egyptian lawyer/pharmacist verified records:** 0.
+
+
+---
+
+## AB. AML/CFT acquisition pass — September–November 2026 guidance and targeted-sanctions instruments
+**Research date:** 19 November 2026.
+
+### AB1. FIU customer due diligence procedures for non-financial professions and businesses — September 2026
+
+**Full official-government-hosted Arabic text acquired:** 25-page PDF, 771 extracted lines:
+https://www.goeic.gov.eg/upload/online/2026/09/documents/files/ar/1991.pdf
+
+The General Administration for Anti-Money Laundering and Terrorist Financing states that the AML Unit's Board of Trustees approved this edition in September 2026 to replace the previous February 2020 edition. It applies to DNFBPs identified in Law 80/2002 and its Executive Regulations, including real-estate brokers, precious-metal/gem dealers, lawyers, accountants, casinos and company/trust service providers.
+
+**Key exact provisions in the full text:**
+- Section 2: risk-based customer acceptance policy, including enhanced due diligence for high-risk customers and documented refusal/termination criteria.
+- Section 3.2: CDD is required on relevant transactions and services, including cash transactions of precious-metal/gem dealers at or above USD 15,000 (single or linked transactions) and casino transactions at or above USD 3,000.
+- Section 3.2.2: suspicion of money laundering, predicate offences or terrorist financing triggers CDD regardless of transaction threshold; where CDD would tip off the customer, stop the CDD process and send a suspicious transaction report.
+- Sections 3.4–3.7: identify and verify beneficial owners, understand purpose and intended nature of the relationship, retain records and transaction analysis.
+- Section 7: risk assessment, high-risk factors, risk categorization and mitigation.
+- The procedures define negative lists to include UN targeted-financial-sanctions lists and domestic terrorist-entity/person lists under Law 8/2015.
+
+**Exact Arabic excerpt — introduction, lines 66–68:**
+
+> وعليه فقد اعتمد مجلس أمناء الوحدة هذا الإصدار من إجراءات العناية الواجبة بعملاء أصحاب المهن والأعمال غير المالية في سبتمبر 2026 ليحل محل النسخة السابق إصدارها عن الوحدة في فبراير 2020.
+
+**Exact Arabic excerpt — Section 3.2.2:**
+
+> وجود اشتباه في ارتكاب جريمة غسل أموال أو أية جريمة من الجرائم الأصلية المرتبطة بها، أو تمويل الإرهاب، حتى في حالة قيام العميل بعملية أقل من الحدود الواردة في البند السابق، مع مراعاة أنه في الأحوال التي تتوافر لدى الجهة مؤشرات تحملها على الاعتقاد بأن تطبيق إجراءات العناية الواجبة سوف يفصح للعميل عن هذا الاشتباه يتعين على الجهة عدم مواصلة تطبيق إجراءات العناية الواجبة، مع ضرورة إرسال إخطار اشتباه إلى الوحدة.
+
+### AB2. Targeted Financial Sanctions Mechanism — FIU Board Decision 1/2024
+
+**Full official 15-page Arabic PDF acquired:** Official Proceedings No.28 follow-up, 4 February 2024; decision issued 31 January 2024:
+https://fra.gov.eg/wp-content/uploads/2025/05/قرار-رقم-1-لسنة-2024.pdf
+
+Decision 1/2024 adopts the mechanism for implementing targeted financial sanctions under relevant UN Security Council decisions concerning terrorism, terrorist financing, proliferation of weapons of mass destruction and proliferation financing. The mechanism applies to financial institutions, DNFBPs, supervisory authorities and the listed government bodies.
+
+**Exact Arabic excerpt — issuance Art.1:**
+
+> تعتمد آلية تطبيق العقوبات المالية المستهدفة بموجب قرارات مجلس الأمن ذات الصلة بالإرهاب وتمويله وانتشار أسلحة الدمار الشامل وتمويله.
+
+The mechanism requires updates to the relevant sanctions lists and publication without delay. The PDF states that list updates are made within hours of the relevant decision, including additions, deletions or amendments. The mechanism also defines assets broadly to include tangible/intangible, movable/immovable and virtual assets, funds and economic resources.
+
+### AB3. FRA AML/CFT supervisory decision and 2026 circulars
+
+The FRA's official AML/CFT legislation page lists the following current instruments:
+https://fra.gov.eg/تشريعات-مكافحة-غسل-الأموال-وتمويل-الإرهاب/
+
+**FRA Board Decision 161/2024** — supervisory controls for AML/CFT at non-bank financial institutions. Issued 31 July 2024; published in Waqa'i No.225 follow-up, 13 October 2024; effective 14 October 2024. FRA lists a version updated in 2026. The official PDF endpoint is access-restricted; Eastlaws metadata and the FRA page are accessible. Earlier Decisions 2/2021, 62/2020, 23/2020, 121/2019 and 120/2019 appear as prior instruments.
+
+**Circular 5/2026** — dated 7 September 2026. The FRA's one-page official image states that the AML Unit approved updated September 2026 customer due diligence procedures for financial institutions supervised by FRA, replacing the previous version, and requires supervised institutions to update their AML/CFT policies, procedures and internal controls accordingly. Official image:
+https://fra.gov.eg/wp-content/uploads/2026/09/00.jpg
+
+**Circular 8/2026** — dated 8 November 2026. Full official one-page Arabic PDF:
+https://fra.gov.eg/wp-content/uploads/2026/11/كتاب-دوري-8.pdf
+
+It requires institutions to implement the September 2026 updated CDD procedures, update customer onboarding/KYC forms (including accessibility for persons with disabilities, illiterate customers and older persons), and submit board-approved updated procedures and forms with the annual AML/CFT report for 2026 by **31 January 2027**.
+
+**Exact Arabic excerpt — Circular 8/2026:**
+
+> وفي ضوء اعتماد مجلس أمناء وحدة مكافحة غسل الأموال وتمويل الإرهاب النسخة المحدثة من إجراءات العناية الواجبة بعملاء المؤسسات المالية الخاضعة لرقابة الهيئة لإصدار سبتمبر ٢٠٢٦ والتي تحل محل النسخة السابقة الصادرة في فبراير ٢٠٢٠.
+
+**Circular 10/2026** — FRA listing identifies its subject as the obligation of supervised institutions to maintain registers containing information about the beneficial owner. The FRA PDF endpoint returned “not authorized” in this pass; retain as metadata-only pending formal access:
+https://fra.gov.eg/wp-content/uploads/2026/11/كتاب-دوري10.pdf
+
+**Important missing-text issue:** the FRA's “view updated version” link for financial-institution CDD procedures still resolves to a May 2025 PDF endpoint, while Circulars 5 and 8 explicitly refer to a new September 2026 edition replacing the February 2020 version. The actual September 2026 financial-institution CDD manual has not been retrieved. Do not substitute the old PDF for the new edition.
+
+### AB4. CBE KYC circular for money-transfer companies — 28 September 2026
+
+The Central Bank of Egypt search index identifies a circular dated 28 September 2026 concerning KYC procedures for customers of money-transfer companies, under the AML/CFT category:
+https://www.cbe.org.eg/-/media/project/cbe/listing/circulars/2026/september/circular-dated-28-september-2026-regarding-kyc-for-money-transfer-companies.pdf
+
+The CBE search portal and direct PDF endpoint rejected browser access in this pass. The instrument is recorded as metadata-only; no access-control bypass was attempted.
+
+### AB5. FRA customer-data verification decisions — 2024–2026 amendment chain
+
+**FRA Board Decision 186/2024** — issued 28 August 2024; published in Waqa'i No.220 follow-up, 7 October 2024; effective 8 October 2024. It requires covered insurers, non-bank financial institutions using fintech and fintech outsourcing registrants to verify national ID data, mobile-number ownership and AML/asset-freeze list status through FRA electronic linkage. Official FRA full text, updated through later amendments:
+https://fra.gov.eg/wp-content/uploads/2025/02/186-2024-......وفقا-لاخر-تعديل-فى-28-1-2025.pdf
+
+**Decision 3/2025** — changes the title of Decision 186/2024 (as reflected in the FRA official consolidated PDF); exact standalone Gazette copy pending.
+
+**Decision 30/2025** — dated 28 December 2025; replaces Art.1 of Decision 186/2024. Exact Gazette issue/date to verify.
+
+**Decision 41/2026** — creates an exception for microinsurance policies: insurers may rely on the national ID card, KYC form and AML/asset-freeze list screening without mobile-number ownership inquiry in the specified microinsurance cases. Full text/official Gazette issue to retrieve:
+https://www.arabfinance.com/ar/news/newdetails/الرقابة-المالية-تعدل-ضوابط-التحقق-من-بيانات-عملاء-التأمين-متناهي-الصغر
+
+**Decision 133/2026** — published in Waqa'i No.163 follow-up, 29 July 2026; effective 30 July 2026. Amends Decision 186/2024 and extends the verification obligation to consumer-finance and microfinance companies/entities and licensed microfinance associations (categories A and B), subject to its terms. Official/secondary full text and metadata:
+https://www.eastlaws.com/legislation-full-text/ar/egypt/financial-regulation-decision/29-07-2026/no-133?id=5667300&type=1
+
+This is an AML/KYC-related supervisory chain; it is not a substitute for the criminal offences in Law 80/2002.
+
+### AB6. Progress update after tenth acquisition pass — 19 November 2026
+
+- **Estimated assigned criminal-law domain completion: 79%** (qualitative research-coverage estimate; not article-count, local corpus-ingestion or lawyer-verification metric). Prior pass: 77%.
+- **New distinct AML/CFT regulatory records added:** 13 — FIU Decision 1/2024; DNFBP CDD Procedures September 2026; financial-institution CDD Procedures September 2026 (text pending); FRA Circulars 5, 8 and 10/2026; FRA Decision 161/2024; FRA Decision 186/2024 and Decisions 3/2025,30/2025,41/2026,133/2026; CBE Circular 28 September 2026.
+- **Full texts acquired:** FIU Decision 1/2024 (15 pages); DNFBP CDD Procedures September 2026 (25 pages/771 lines); Circular 8/2026; official full text for Decision 186/2024 and later amendments accessible via consolidated sources.
+- **Important unresolved items:** actual financial-institution CDD procedures September 2026; Circular 10/2026 PDF; CBE 28 Sep 2026 circular; full updated Decision 161/2024; original Gazette scans.
+- **Original Gazette PDFs locally archived and SHA-256 verified:** 0.
+- **Egyptian lawyer/AML-specialist verified records:** 0.
