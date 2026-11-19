@@ -6128,9 +6128,19 @@
           "status": "full_gazette_derived_pdf_accessible_not_archived"
         },
         {
-          "url": "https://www.alamiria.com/Sec/TashTxt?id=...",
-          "source_role": "Official Amiri Press full text link to be resolved; Gazette No.46 follow-up, 16 Nov 2023",
-          "status": "official_metadata_text_link_pending"
+          "url": "https://mksegypt.org/public/ar/laws/17349",
+          "source_role": "Full Arabic text, Law182/2023, Gazette No.46 follow-up, 16 Nov 2023",
+          "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://alhasswalawfirm.com/law-library/law-182-2023",
+          "source_role": "Full 36-article Arabic text, updated through 2026",
+          "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://lawhub.info/eg/?p=12913",
+          "source_role": "Full text with issuance and transition provisions",
+          "status": "full_text_accessible_secondary"
         }
       ]
     },
