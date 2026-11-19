@@ -90,3 +90,34 @@ docs/legal_evidence/agent2_criminal_text_acquisition_tranche_2026-11-19.md
 
 All operative-status conclusions, repeal effects, and transitional interpretations remain subject to Egyptian criminal-procedure lawyer review. Do not mark any record lawyer-verified.
 
+
+
+---
+
+## 19 November 2026 — complete official Law 174/2025 text and Law 160/2026 commencement update
+
+The full official Ministry of Justice PDF for Law 174/2025 has now been acquired as a browser-readable source:
+https://moj.gov.eg/backend/api/documents/download/20F3150C-29F1-487E-A0F0-FCCE10CB207B
+
+It is Official Gazette No.45 bis (d), 12 November 2025, and contains 546 numbered articles. The source has not been downloaded into the repository or SHA-256 archived.
+
+### Current commencement status — corrected
+
+Law 160/2026 was published in Official Gazette No.39 bis (b), 30 September 2026, and entered into force on 1 October 2026. The official Amiri Press text is:
+https://www.alamiria.com/Sec/TashTxt?id=Aalg37zxdcU%3D
+
+Article 1 replaces the commencement wording in Article 6 of Law 174/2025 with the fixed date “الأول من أكتوبر لعام 2027”. Therefore:
+- Law 174/2025 is enacted but not yet in force.
+- Its commencement date is 1 October 2027.
+- CPL Law 150/1950 and Law 140/2014 remain operative through 30 September 2027, absent a later amendment.
+- The repeal provisions in Law 174 Article 4 do not take effect before the new Code commences.
+
+### Full Book Five text now acquired
+
+Articles 508–521 (international judicial cooperation, extradition, mutual legal assistance, controlled delivery and asset recovery) have been extracted into the Agent 2 acquisition dossier. Articles 508–510 and 512–513 are no longer outstanding. Article 517 and the later remote-hearing chapter contain OCR/numbering uncertainties requiring Gazette page-image collation.
+
+### Transition wording discrepancy
+
+The official Ministry of Justice PDF reads “مواد الجنايات” in issuance Article 2 for the preserved treatment of pre-commencement absentia judgments. Manshurat reads “مواد الجنح”. Prefer the official PDF text and retain the discrepancy until page-image verification.
+
+The current amendment chronology and full-source link are reflected in the inventory, queue and cross-check register. All current-status conclusions remain subject to Egyptian criminal-procedure lawyer verification.
