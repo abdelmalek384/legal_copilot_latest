@@ -453,7 +453,20 @@
         "EG-AML-80-2002",
         "EG-AML-AMEND-154-2022",
         "EG-AML-EXEC-951-2003",
-        "EG-AML-EXEC-AMEND-3331-2023"
+        "EG-AML-EXEC-AMEND-3331-2023",
+        "EG-AML-UNIT-DEC-1-2024",
+        "EG-AML-DNFBP-CDD-2026-09",
+        "EG-FRA-FINANCIAL-CDD-2026-09",
+        "EG-FRA-CIRCULAR-5-2026",
+        "EG-FRA-CIRCULAR-8-2026",
+        "EG-FRA-CIRCULAR-10-2026",
+        "EG-FRA-DECISION-161-2024",
+        "EG-FRA-DECISION-186-2024",
+        "EG-FRA-DECISION-3-2025",
+        "EG-FRA-DECISION-30-2025",
+        "EG-FRA-DECISION-41-2026",
+        "EG-FRA-DECISION-133-2026",
+        "EG-CBE-CIRCULAR-KYC-2026-09-28"
       ],
       "practice_areas": [
         "criminal",
@@ -461,7 +474,7 @@
         "commercial"
       ],
       "priority": "P0",
-      "action": "Use FRA updated Law 80/2002 and the full 951/2003 regulation updated through 3331/2023 as the text base; preserve Laws 78/2003, 181/2008, 36/2014, 17/2020, 154/2022 and PM Decrees 1463/2006, 2367/2008, 1569/2016, 2910/2019, 457/2020, 3331/2023 as separate amendment relations. Complete Gazette collation and resolve 457/2020 issue-date discrepancy.",
+      "action": "Acquire September2026 financial-institution CDD manual, Circular10/2026 beneficial-owner register requirements, full updated Decision161/2024 and CBE 28 Sep 2026 money-transfer KYC circular through formal regulator access; collate Decision186/2024 with amendments3/2025,30/2025,41/2026,133/2026; extract the full 25-page DNFBP CDD manual and FIU Decision1/2024 into normalized article/section text.",
       "candidate_sources": [
         "https://fra.gov.eg/wp-content/uploads/2024/05/قانون-مكافحة-غسل-الأموال-1.pdf",
         "https://fra.gov.eg/regulations/اللائحة-التنفيذية-لقانون-مكافحة-غسل-ا/",
@@ -470,9 +483,9 @@
       ],
       "source_type": "official Gazette/regulator text and secondary full-text candidates; exact source terms must be reviewed per item",
       "permission_state": "unknown_or_pending",
-      "acquisition_state": "full_updated_law_and_full_updated_executive_regulation_accessible_plus_457_2020_and_3331_2023_amendment_texts",
+      "acquisition_state": "AML_Law80_and_951_consolidations_plus_2024_targeted_sanctions_mechanism_and_2026_DNFBP_CDD_full_text_accessible",
       "legal_review_state": "not_started",
-      "blocker": "FRA updated PDFs and Gazette Decree 3331/2023 are readable; local archive/hash and reuse permission remain unresolved. Decree 457/2020 date conflict (Gazette No.8 bis / 23 Feb vs FRA footnote No.13 bis (e) / 31 Mar) requires original issue image check and full article crosswalk.",
+      "blocker": "Financial-institution CDD September2026 manual is referenced by FRA Circulars5/8 but the FRA current-version link resolves to a May2025 PDF endpoint. Circular10/2026, updated Decision161/2024 PDF and CBE 28 Sep 2026 KYC circular are access denied. Original Gazette scans not archived/hashed.",
       "required_evidence": [
         "FRA consolidated text SHA-256 and page range",
         "all five statutory amendments and full Art-by-Art map",
