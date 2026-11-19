@@ -510,6 +510,23 @@
       "legal_status": "official_PDF_reads_felony_matters_secondary_reads_misdemeanours_visual_Gazette_check_pending",
       "finding": "The official Ministry of Justice PDF for Official Gazette No.45 bis (d), 12 Nov 2025 reads 'الأحكام الغيابية الصادرة في مواد الجنايات' in issuance Art.2. The Manshurat full-text reproduction reads 'مواد الجنح'. Prefer the official PDF wording and retain the discrepancy pending page-image inspection.",
       "next_action": "Inspect the original Gazette page image for issuance Art.2, capture the exact word and preserve the source discrepancy; update any secondary consolidation only after visual confirmation."
+    },
+    {
+      "evidence_id": "XREF-CPL-150-MANSHURAT-189-2020-MISATTRIBUTION",
+      "document_id": "EG-CRIMINAL-PROCEDURE-150-1950",
+      "practice_areas": [
+        "criminal",
+        "criminal_procedure"
+      ],
+      "url": "https://alhasswalawfirm.com/law-library/law-150-1950",
+      "publisher": "Alhasswa full consolidated text attributed to Court of Cassation portal versus Manshurat metadata",
+      "source_class": "consolidation amendment metadata discrepancy",
+      "observed_title_ar": "قانون رقم 150 لسنة 1950 بإصدار قانون الإجراءات الجنائية",
+      "source_state": "full_consolidated_text_through_2024_accessible_metadata_misattribution_elsewhere",
+      "collection_permission": "unknown",
+      "legal_status": "current_until_30_sep_2027_law160_2026",
+      "finding": "The full consolidated text states updates through 16 Jan 2024 and includes Art.113 bis expressly added by Law177/2020 and felony appeals under Law1/2024. A separate Manshurat page labels Law189/2020 as the last CPL amendment, which is incorrect: Law189/2020 amended the Penal Code, while Law177/2020 amended CPL Art.113 bis. Preserve the metadata error and use the article-level footnotes in the consolidated code.",
+      "next_action": "Compare the 178-page consolidated PDF against original Gazette texts for Laws177/2020 and 1/2024, correct any project source metadata that attributes Law189/2020 to CPL, and acquire the original Gazette scans for the older footnoted amendments."
     }
   ],
   "guardrails": [
