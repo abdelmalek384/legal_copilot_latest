@@ -596,7 +596,8 @@
         "EG-CHILD-EXEC-AMEND-178-2016",
         "EG-CHILD-EXEC-AMEND-1783-2018",
         "EG-CHILD-EXEC-AMEND-1143-2020",
-        "EG-CHILD-EXEC-AMEND-208-2014"
+        "EG-CHILD-EXEC-AMEND-208-2014",
+        "EG-CHILD-CROSS-AMEND-12-2025"
       ],
       "practice_areas": [
         "criminal",
@@ -604,7 +605,7 @@
         "child_protection"
       ],
       "priority": "P1",
-      "action": "Build the complete current Child Law text through Law 12/2025 (including Art.49 repeal), segment all 194 articles of Decree 2075/2010, and collate Decrees 208/2014, 178/2016, 1783/2018 and 1143/2020 against original Gazette scans. Search for later implementing rules for Law 186/2023 Art.72 bis.",
+      "action": "Acquire original Gazette scans for Laws182/2023,186/2023 and Social Guarantee Law12/2025; verify repeal of Child Law Art.49 effective 4 Jul2025; normalize all 166 Child Law provisions and the 2075/2010 regulation through Decree1143/2020; compare Decrees208/2014,178/2016,1783/2018 and1143/2020 to original issues.",
       "candidate_sources": [
         "https://lawyeregypt.net/قانون-الطفل-المصرى-رقم-12-لسنة-1996",
         "https://www.laweg.net/framePlain.aspx?ItemID=8964&NID=7658&Type=6&action=ViewActivePages",
@@ -612,9 +613,9 @@
       ],
       "source_type": "official Gazette/regulator text and secondary full-text candidates; exact source terms must be reviewed per item",
       "permission_state": "unknown_or_pending",
-      "acquisition_state": "current_child_law_amendments_identified_through_2025_and_full_2075_regulation_consolidation_accessible_through_2020",
+      "acquisition_state": "full_166_article_Child_Law_current_through_Law12_2025_and_current_Executive_Regulations_text_accessible",
       "legal_review_state": "not_started",
-      "blocker": "Law 182/2023 Gazette-derived 16-page PDF acquired; Law 186/2023 Amiri Press text and institutional Arabic PDF accessible; Law 12/2025 full text identifies repeal of Art.49. Full original Gazette images for 186/2023 and 12/2025 and four executive regulation amendment Gazettes remain to inspect. Post-2020 rules implementing Art.72 bis are not yet located.",
+      "blocker": "Current full text is secondary-hosted; original Gazette scans for Laws182/2023,186/2023 and12/2025 are not locally archived. Child Executive Regulations text is consolidated through Decree1143/2020 but requires Gazette-page collation.",
       "required_evidence": [
         "complete 194-article regulation extraction",
         "Gazette publication and repeal clause for 3452/1997",
