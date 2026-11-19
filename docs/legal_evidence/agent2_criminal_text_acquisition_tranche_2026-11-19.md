@@ -2885,3 +2885,51 @@ https://mediadr.sis.gov.eg/xmlui/handle/123456789/12845
 
 The Manshurat relationship index identifies older Law 394 amendments including Laws 546/1954, 29/1968, 26/1978, 101/1980, 165/1981, 162/2003, 65/2010, 90/2012, 129/2014, 5/2019 and 163/2022. These must be reconciled with the full 53-article consolidation and original Gazette texts. The inventory already contains Interior Minister Decisions 1/1954 and 1300/2019; their current status and any subsequent schedule/implementation decisions remain to be checked.
 
+
+
+---
+
+## AG. Child Law 12/1996 — full current text through 3 April 2025 and new repeal by Social Guarantee Law 12/2025
+
+### AG1. Full current Arabic text acquired
+
+- Full 166-article current text, updated through 3 April 2025: https://alhasswalawfirm.com/law-library/child-law-12-1996
+- Full text page: https://lawyeregypt.net/قانون-الطفل-المصرى-رقم-12-لسنة-1996/
+- Full current article-by-article text and amendment footnotes: https://fahmqanon.com/laws/12-1996
+
+The current text includes Law 126/2008, Law 64/2010, Laws 6/2015 and 7/2015, Law 161/2021, Law 182/2023, Law 186/2023 and Law 12/2025. It runs through Art.144 bis (c), with 166 numbered/inserted provisions according to the consolidated source.
+
+### AG2. Law 186/2023 — full text and new Art.72 bis
+
+Law 186/2023 was published in Official Gazette No.49 (repeated), 10 December 2023; effective 11 December 2023. It replaces Arts.23,24,113 and114 and adds Art.72 bis.
+
+**Exact Arabic text — new Art.72 bis:**
+
+> للعاملـة في الدولة والقطاع العام وقطاع الأعمال العام والقطاع الخاص، بحسب الأحوال، حالة كفالتها أو حضانتها طفلاً عمره أقل من ستة أشهر ذات الحقوق الواردة بالمادتين (71، 72) من هذا القانون، وتحدد اللائحة التنفيذية القواعد المنظمة لذلك.
+
+The new provision extends the rights in Arts.71 and72 to a working woman who is fostering or has custody of a child under six months. The consolidated text also reflects Law 182/2023's institutional changes to the National Council for Childhood and Motherhood and Child and Motherhood Care Fund.
+
+### AG3. Law 12/2025 — Social Guarantee Law repeals Child Law Art.49
+
+Law 12/2025 is the Social Guarantee Law, not a standalone amendment law titled “Child Law amendment”. Its issuance Art.4 expressly repeals Art.49 of Child Law 12/1996. It was published in Official Gazette No.14 follow-up, 3 April 2025; Art.6 makes it effective on the day following the passage of three months from publication, i.e. **4 July 2025**.
+
+**Exact Arabic text — Law 12/2025, issuance Art.4:**
+
+> يُلغى قانون الضمان الاجتماعى الصادر بالقانون رقم ١٣٧ لسنة ٢٠١٠، والمادة ٤٩ من قانون الطفل الصادر بالقانون رقم ١٢ لسنة ١٩٩٦، كما يُلغى كل حكم يخالف أحكام هذا القانون والقانون المرافق له.
+
+This repeal must be reflected in the current Child Law consolidation and in any child-benefit or social-assistance analysis. Do not continue to cite Child Law Art.49 as operative after 4 July 2025.
+
+### AG4. Child Executive Regulations 2075/2010 — current full text and amendments
+
+The full current readable text of PM Decree 2075/2010 is available:
+https://lawhub.info/eg/?p=12124
+
+The text includes amendments by PM Decrees 208/2014, 178/2016, 1783/2018 and 1143/2020. PM Decree 1143/2020 was published in Official Gazette No.23 repeated, 9 June 2020. It updates the foster-family system, replaces outdated terminology, amends Arts.85,86,89,90,92 and99, and adds Arts.90 bis (a),99 bis and112 bis. The consolidated regulation reflects the 2020 amendments and is not superseded by the 2025 repeal of Child Law Art.49.
+
+### AG5. Current versioning and remaining checks
+
+- Law 12/1996 remains the Child Law, as amended through Law 12/2025.
+- Law 182/2023 reorganizes the National Council and the Child and Motherhood Care Fund; it repeals Art.97 paragraphs 5 and6 and the former Part Nine.
+- Law 186/2023 updates Arts.23,24,113,114 and adds Art.72 bis.
+- Law 12/2025 repeals Art.49 effective 4 July 2025.
+- Executive Regulation 2075/2010 remains the implementing regulation, as amended through Decree 1143/2020. Its full article text and all amendment instruments still require Gazette-page comparison.
