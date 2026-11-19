@@ -6871,14 +6871,8 @@
         "EG-PRISONS-GEO-EXEC-113-1962",
         "EG-PRISONS-GEO-EXEC-1654-1971"
       ],
-      "notes": "Foundational ministerial decision cited in all geographic correction-centre creation decisions. Full original text and Gazette issue metadata not yet located.",
-      "source_urls": [
-        {
-          "url": "https://www.alamiria.com/Sec/TashTxt?id=SlyJ4ubxPxU%3D",
-          "source_role": "Amiri Press full Arabic text or metadata source",
-          "status": "metadata_only_text_not_located"
-        }
-      ]
+      "notes": "Foundational ministerial decision cited in all geographic correction-centre creation decisions. Full original text and Gazette issue metadata not yet located. No direct text URL acquired. Recent Amiri Press geographic-centre decisions cite this instrument in their preambles, but those decisions are not the instrument's own text.",
+      "source_urls": []
     },
     {
       "document_id": "EG-PRISONS-GEO-EXEC-1654-1971",
@@ -6900,14 +6894,8 @@
         "EG-PRISONS-GEO-EXEC-113-1962",
         "EG-PRISONS-GEO-EXEC-1654-1971"
       ],
-      "notes": "Foundational internal regulation for geographic correction centres, cited in all recent centre-creation decisions. Full original text and Gazette issue metadata not yet located.",
-      "source_urls": [
-        {
-          "url": "https://www.alamiria.com/Sec/TashTxt?id=SlyJ4ubxPxU%3D",
-          "source_role": "Amiri Press full Arabic text or metadata source",
-          "status": "metadata_only_text_not_located"
-        }
-      ]
+      "notes": "Foundational internal regulation for geographic correction centres, cited in all recent centre-creation decisions. Full original text and Gazette issue metadata not yet located. No direct text URL acquired. Recent Amiri Press geographic-centre decisions cite this instrument in their preambles, but those decisions are not the instrument's own text.",
+      "source_urls": []
     },
     {
       "document_id": "EG-PRISONS-GEO-EXEC-1776-2023",
