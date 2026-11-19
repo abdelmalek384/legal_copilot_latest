@@ -6379,8 +6379,8 @@
     "complete_arabic_texts_accessible_at_source_estimate": ">20 laws/codes and implementing/treaty instruments",
     "new_inventory_records_added_this_session": 81,
     "inventory_total_documents": 166,
-    "acquisition_queue_items": 25,
-    "crosscheck_register_count": 18,
+    "acquisition_queue_items": 24,
+    "crosscheck_register_count": 19,
     "notes": "Approximate research progress, not an article-count or quality-assurance metric. Browser-readable PDFs and secondary full texts are not represented as locally archived/hash-verified files."
   }
 }
