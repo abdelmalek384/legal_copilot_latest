@@ -238,6 +238,34 @@
       "source_class": "international_organization_statutory_text",
       "permission": "unknown",
       "next_action": "Use Arabic law/treaty texts as UN repository and verify against Egyptian Gazette and ratification instruments."
+    },
+    "EG-MOF": {
+      "authority": "Egyptian Ministry of Finance — International Agreements Database",
+      "source_url": "https://mof.gov.eg/ar/legislation/",
+      "source_class": "government_primary_international_agreement_index_and_PDFs",
+      "permission": "unknown",
+      "next_action": "Use official MoF text as acquisition lead; ministry itself states Official Gazette remains controlling; archive only after source terms review."
+    },
+    "EG-MKSEGYPT": {
+      "authority": "Egyptian Legal and Judicial Portal (MKSEgypt)",
+      "source_url": "https://mksegypt.org/",
+      "source_class": "secondary_full_treaty_and_presidential_decision_transcriptions",
+      "permission": "unknown",
+      "next_action": "Use full treaty text as fallback; compare ratification and entry-into-force dates with Gazette and treaty exchange records."
+    },
+    "EG-ARAB-LEAGUE": {
+      "authority": "League of Arab States / Riyadh Agreement official copies hosted by justice ministries",
+      "source_url": "https://adala.justice.gov.ma/",
+      "source_class": "regional_treaty_primary_or_ministry_hosted_copy",
+      "permission": "unknown",
+      "next_action": "Verify Egyptian accession deposit and entry-into-force date with Arab League Secretariat; preserve reservations and 1997 amendment."
+    },
+    "EG-UN-TREATIES": {
+      "authority": "United Nations Treaty Collection / UNODC treaty text repositories",
+      "source_url": "https://treaties.un.org/",
+      "source_class": "multilateral_treaty_text_and_status",
+      "permission": "unknown",
+      "next_action": "Verify Egypt signature, ratification/accession date, reservations and entry into force in UNTC; preserve Arabic treaty text."
     }
   },
   "documents": [
@@ -441,7 +469,7 @@
         "Law 160/2026 and any subsequent instruments",
         "transition/repeal review"
       ],
-      "notes": "Treat enactment, publication, commencement and operative legal effect as separate fields; specialist review required. Important update: official-source discovery found Law 160/2026 changing the commencement date to 1 October 2027. Original commencement wording in Law 174/2025 is not sufficient to state current operative status. Full Arabic code text accessible. Official Gazette Art. 2 reads 'مواد الجنايات'; Manshurat full text reads 'مواد الجنح'. Retain discrepancy; official Gazette text controls pending counsel review. Law 160/2026 amended Art. 6 commencement to 1 Oct 2027.",
+      "notes": "Treat enactment, publication, commencement and operative legal effect as separate fields; specialist review required. Important update: official-source discovery found Law 160/2026 changing the commencement date to 1 October 2027. Original commencement wording in Law 174/2025 is not sufficient to state current operative status. Full Arabic code text accessible. Official Gazette Art. 2 reads 'مواد الجنايات'; Manshurat full text reads 'مواد الجنح'. Retain discrepancy; official Gazette text controls pending counsel review. Law 160/2026 amended Art. 6 commencement to 1 Oct 2027. Book Five international judicial cooperation/extradition excerpts Arts 511 and 514–521 transcribed in the Agent 2 tranche. Art. 511 sets incoming request channel and provisional detention ceiling; Arts 514–515 non-extradition grounds and challenge; Art. 517 controlled delivery; Arts 518–520 judicial assistance; Art. 521 presidential transfer/surrender. Full Articles 508–510 and 512–513 remain to be extracted.",
       "source_urls": [
         {
           "url": "https://dspace.id.com.eg/handle/123456789/4666",
@@ -3549,9 +3577,14 @@
       "review_status": "discovery_only",
       "required_related_records": [
         "Law 174/2025 Arts 514–521",
-        "Treaties and mutual legal assistance instruments"
+        "Treaties and mutual legal assistance instruments",
+        "Decision 278/2014",
+        "Riyadh Convention 1983",
+        "UNTOC 294/2003",
+        "Palermo Protocols 295/2003 and 297/2004",
+        "bilateral agreements"
       ],
-      "notes": "Two-article law, Gazette 46 follow-up, 13 Nov 2014; effective 14 Nov 2014. Repeal under Law 174/2025 is deferred with its commencement; new Code Article 521 and Arts 514–520 should be mapped.",
+      "notes": "Two-article law, Gazette 46 follow-up, 13 Nov 2014; effective 14 Nov 2014. Repeal under Law 174/2025 is deferred with its commencement; new Code Article 521 and Arts 514–520 should be mapped. New treaty research: Egypt's accession to Riyadh Convention 1983 approved by Presidential Decision 278/2014; Riyadh Art. 72 replaces 1952 Arab League agreements for states bound by it. Keep Law 83/1954 historical/potentially superseded pending accession deposit and entry-into-force verification. Law 174/2025 future Book Five Arts 511, 514–521 now transcribed in Agent 2 tranche.",
       "source_urls": [
         {
           "url": "https://www.aldhshan.com/2026/02/140-2014.html",
@@ -4223,6 +4256,418 @@
           "status": "full_text_accessible_secondary"
         }
       ]
+    },
+    {
+      "document_id": "EG-ARAB-EXTRADITION-83-1954",
+      "official_title_ar": "قانون رقم 83 لسنة 1954 بالموافقة على اتفاقية تسليم المجرمين المعقودة بين دول الجامعة العربية",
+      "practice_areas": [
+        "criminal",
+        "international_cooperation"
+      ],
+      "document_type": "historical_treaty_approval_law",
+      "instrument_number": 83,
+      "instrument_year": 1954,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": "full_text_accessible_not_archived",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "Riyadh Convention 1983",
+        "Decision 278/2014",
+        "Law 140/2014"
+      ],
+      "notes": "Historical approval of Arab League Extradition Convention signed 9 Jun 1953; includes Egyptian reservations. Assess replacement under Riyadh Agreement Art. 72 after Egyptian accession under Decision 278/2014; do not mark current without deposit-date/legal review.",
+      "source_urls": [
+        {
+          "url": "https://manshurat.org/file/44665/download?token=Uk23PdHT",
+          "source_role": "Official Gazette 14 bis (d), 20 Feb 1954, Law and attached convention text",
+          "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://manshurat.org/node/34483",
+          "source_role": "Instrument record and metadata",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-RIYADH-CONVENTION-1983",
+      "official_title_ar": "اتفاقية الرياض العربية للتعاون القضائي الموقعة في 6 أبريل 1983 وتعديل المادة 69 في 26 نوفمبر 1997",
+      "practice_areas": [
+        "criminal",
+        "international_cooperation"
+      ],
+      "document_type": "regional_judicial_cooperation_treaty",
+      "instrument_number": null,
+      "instrument_year": 1983,
+      "source_id": "EG-ARAB-LEAGUE",
+      "source_status": "full_text_accessible_not_archived",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "Decision 278/2014",
+        "Law 83/1954",
+        "bilateral treaties",
+        "UNTOC"
+      ],
+      "notes": "Egyptian accession approved by Presidential Decision 278/2014, subject to ratification. Arts 66–68 govern ratification/accession and entry into force; Art. 69 (amended 1997) preserves bilateral agreements and chooses the rule more conducive to cooperation; Art. 72 replaces the 1952 Arab League agreements for states bound by the Convention. Deposit/entry date for Egypt requires Arab League record.",
+      "source_urls": [
+        {
+          "url": "https://www.qanouni.org/ar/convention/1581",
+          "source_role": "Full 72-article Arabic text",
+          "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://adala.justice.gov.ma/api/uploads/2024/04/19/اتفاقية%20الرياض%20العربية-1713540273243.pdf",
+          "source_role": "Ministry of Justice hosted Arabic PDF",
+          "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://www.sahwanlaw.com/ar/laws/RAC1983.html",
+          "source_role": "Full text with 1997 Art. 69 amendment",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-RIYADH-ACCESSION-278-2014",
+      "official_title_ar": "قرار رئيس الجمهورية رقم 278 لسنة 2014 بشأن الموافقة على انضمام مصر إلى اتفاقية الرياض العربية للتعاون القضائي وتعديل المادة 69",
+      "practice_areas": [
+        "criminal",
+        "international_cooperation"
+      ],
+      "document_type": "presidential_treaty_accession_decision",
+      "instrument_number": 278,
+      "instrument_year": 2014,
+      "source_id": "EG-MANSURAT",
+      "source_status": "full_text_accessible_not_archived",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "Riyadh Convention 1983",
+        "Law 83/1954",
+        "Law 140/2014"
+      ],
+      "notes": "Issued 19 Aug 2014; Gazette published 4 Dec 2014. First page approves accession to Riyadh Convention 1983 and amendment of Art. 69 dated 26 Nov 1997, subject to ratification. Metadata effective date 10 Aug 2014 predates issue date; separate listing reports 8 Sep 2014. Verify deposit and entry into force with Arab League Secretariat.",
+      "source_urls": [
+        {
+          "url": "https://manshurat.org/file/6694/download?token=OWECKZVo",
+          "source_role": "Official Gazette 49, 4 Dec 2014, 38-page PDF; first page visually inspected",
+          "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://manshurat.org/node/3842",
+          "source_role": "Instrument metadata",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-UNTOC-294-2003",
+      "official_title_ar": "قرار رئيس الجمهورية رقم 294 لسنة 2003 بالموافقة على اتفاقية الأمم المتحدة لمكافحة الجريمة المنظمة عبر الوطنية",
+      "practice_areas": [
+        "criminal",
+        "international_cooperation"
+      ],
+      "document_type": "multilateral_treaty_approval_decision",
+      "instrument_number": 294,
+      "instrument_year": 2003,
+      "source_id": "EG-MOF",
+      "source_status": "full_text_accessible_not_archived",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "Law 64/2010",
+        "Law 82/2016",
+        "Riyadh Convention 1983",
+        "CPL 174/2025 future Arts 511–520"
+      ],
+      "notes": "UNTOC approval instrument; Ministry of Finance lists the treaty active. Articles 16 and 18 govern extradition and mutual legal assistance. Exact UN deposit/entry date and reservations must be verified in UNTC.",
+      "source_urls": [
+        {
+          "url": "https://media.mof.gov.eg/mof-prd/2003_294_b4ded04751.pdf",
+          "source_role": "Official Gazette 37, 9 Sep 2004, full Arabic PDF",
+          "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://ar.wikisource.org/wiki/اتفاقية_الأمم_المتحدة_لمكافحة_الجريمة_المنظمة_عبر_الوطنية",
+          "source_role": "Full Arabic Convention text",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-PALERMO-TRAFFICKING-295-2003",
+      "official_title_ar": "قرار رئيس الجمهورية رقم 295 لسنة 2003 بالموافقة على بروتوكول منع وقمع ومعاقبة الاتجار بالأشخاص وبخاصة النساء والأطفال",
+      "practice_areas": [
+        "criminal",
+        "international_cooperation"
+      ],
+      "document_type": "multilateral_protocol_approval_decision",
+      "instrument_number": 295,
+      "instrument_year": 2003,
+      "source_id": "EG-MOF",
+      "source_status": "full_text_accessible_not_archived",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "Law 64/2010",
+        "PM Decree 3028/2010",
+        "Decision 349/2024",
+        "UNTOC 294/2003"
+      ],
+      "notes": "Protocol to Prevent, Suppress and Punish Trafficking in Persons, Especially Women and Children, supplementing UNTOC. Relevant to Law 64/2010 and victim protection.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/legislation-5fea7d377bfc600007cc655a",
+          "source_role": "Official Ministry of Finance treaty record; marked active",
+          "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://media.mof.gov.eg/mof-prd/2003_295_6161158f4b.pdf",
+          "source_role": "Official Gazette 37, 9 Sep 2004, 16-page PDF",
+          "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://treaties.un.org/doc/treaties/2000/11/20001115%2011-38%20am/ch_xviii_12_ap.pdf",
+          "source_role": "UN Treaty Collection Arabic Protocol text",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-PALERMO-SMUGGLING-297-2004",
+      "official_title_ar": "قرار رئيس الجمهورية رقم 297 لسنة 2004 بالموافقة على الانضمام إلى بروتوكول مكافحة تهريب المهاجرين عن طريق البر والبحر والجو",
+      "practice_areas": [
+        "criminal",
+        "international_cooperation"
+      ],
+      "document_type": "multilateral_protocol_accession_decision",
+      "instrument_number": 297,
+      "instrument_year": 2004,
+      "source_id": "EG-MOF",
+      "source_status": "full_text_accessible_not_archived",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "Law 82/2016",
+        "Law 22/2022",
+        "PM Decree 983/2018",
+        "UNTOC 294/2003"
+      ],
+      "notes": "Approves Egypt's accession to the Smuggling of Migrants Protocol supplementing UNTOC. Relevant to Law 82/2016 and PM Decree 983/2018.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/legislation-5fea7bbd7bfc600007cc64be",
+          "source_role": "Official Ministry of Finance treaty record; marked active",
+          "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://media.mof.gov.eg/mof-prd/2004_297_fcd4bfe94d.pdf",
+          "source_role": "Official Gazette 21, 26 May 2005, 21-page PDF",
+          "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://ar.wikisource.org/wiki/بروتوكول_مكافحة_تهريب_المهاجرين_عن_طريق_البر_والبحر_والجو،_المكمل_لاتفاقية_الأمم_المتحدة_لمكافحة_الجريمة_المنظمة_عبر_الوطنية",
+          "source_role": "Full Arabic protocol text",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-BILATERAL-MLA-EXTRADITION-TURKEY-222-1989",
+      "official_title_ar": "قرار رئيس الجمهورية رقم 222 لسنة 1989 بشأن اتفاقية التعاون القضائي في المواد الجنائية وتسليم المجرمين بين مصر وتركيا",
+      "practice_areas": [
+        "criminal",
+        "international_cooperation"
+      ],
+      "document_type": "bilateral_judicial_cooperation_and_extradition_treaty",
+      "instrument_number": 222,
+      "instrument_year": 1989,
+      "source_id": "EG-MKSEGYPT",
+      "source_status": "full_text_accessible_not_archived",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "Riyadh Convention Art. 69",
+        "CPL 174/2025 Arts 511–521 future"
+      ],
+      "notes": "Agreement signed 4 Apr 1988. Decision issued 4 Jun 1989; published 26 Dec 1991. Entry date conflict: 12 Jan 1992 versus 2 Jan 1992. Verify exchange-of-ratification notices.",
+      "source_urls": [
+        {
+          "url": "https://mksegypt.org/public/ar/decisions/30632",
+          "source_role": "Full Arabic treaty and presidential decision text",
+          "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://manshurat.org/node/20932",
+          "source_role": "PDF record and metadata",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-BILATERAL-MLA-EXTRADITION-MOROCCO-229-1989",
+      "official_title_ar": "قرار رئيس الجمهورية رقم 229 لسنة 1989 بشأن اتفاقية التعاون القضائي في المواد الجنائية وتسليم المجرمين بين مصر والمغرب",
+      "practice_areas": [
+        "criminal",
+        "international_cooperation"
+      ],
+      "document_type": "bilateral_judicial_cooperation_and_extradition_treaty",
+      "instrument_number": 229,
+      "instrument_year": 1989,
+      "source_id": "EG-MKSEGYPT",
+      "source_status": "full_text_accessible_not_archived",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "Riyadh Convention Art. 69",
+        "CPL 174/2025 Arts 511–521 future"
+      ],
+      "notes": "Agreement signed Rabat 22 Mar 1989. Decision issued 4 Jun 1989. Publication metadata conflict: 20 Nov 1997 versus 7 Nov 1997; entry metadata 11 Sep 1997. Preserve discrepancy pending Gazette and treaty exchange check.",
+      "source_urls": [
+        {
+          "url": "https://www.mksegypt.org/ar/decisions/27512",
+          "source_role": "Full Arabic treaty and presidential decision text",
+          "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://manshurat.org/node/20931",
+          "source_role": "PDF record and metadata",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-BILATERAL-MLA-EXTRADITION-HUNGARY-129-1988",
+      "official_title_ar": "قرار رئيس الجمهورية رقم 129 لسنة 1988 بشأن اتفاقية المساعدة القضائية في المواد الجنائية وتسليم المجرمين بين مصر والمجر",
+      "practice_areas": [
+        "criminal",
+        "international_cooperation"
+      ],
+      "document_type": "bilateral_judicial_cooperation_and_extradition_treaty",
+      "instrument_number": 129,
+      "instrument_year": 1988,
+      "source_id": "EG-MANSURAT",
+      "source_status": "full_text_accessible_not_archived",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "Riyadh Convention Art. 69",
+        "CPL 174/2025 future"
+      ],
+      "notes": "Issued 26 Mar 1988; published 17 Nov 1988; entry metadata 3 Oct 1988 predates publication. Original treaty text accessible in PDF record; verify date by exchange of ratifications.",
+      "source_urls": [
+        {
+          "url": "https://manshurat.org/node/20933",
+          "source_role": "PDF record and metadata",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-BILATERAL-MLA-EXTRADITION-ROMANIA-76-2003",
+      "official_title_ar": "قرار رئيس الجمهورية رقم 76 لسنة 2003 بشأن اتفاقية التعاون القضائي في المواد الجنائية ونقل المحكوم عليهم وتسليم المجرمين بين مصر ورومانيا",
+      "practice_areas": [
+        "criminal",
+        "international_cooperation"
+      ],
+      "document_type": "bilateral_judicial_cooperation_extradition_transfer_treaty",
+      "instrument_number": 76,
+      "instrument_year": 2003,
+      "source_id": "EG-MANSURAT",
+      "source_status": "full_text_accessible_not_archived",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "Riyadh Convention Art. 69",
+        "Law 140/2014",
+        "CPL 174/2025 future"
+      ],
+      "notes": "Issued 22 Mar 2003; published 28 Aug 2003; entry metadata 10 Jul 2003 predates publication. Treaty covers criminal cooperation, transfer of sentenced persons and extradition; verify treaty notification.",
+      "source_urls": [
+        {
+          "url": "https://manshurat.org/node/37361",
+          "source_role": "PDF record and metadata",
+          "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://manshurat.org/node/20926",
+          "source_role": "Alternative record",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-BILATERAL-MLA-SWITZERLAND-177-2001",
+      "official_title_ar": "قرار رئيس الجمهورية رقم 177 لسنة 2001 بشأن اتفاقية التعاون القضائي في المواد الجنائية بين مصر والاتحاد السويسري",
+      "practice_areas": [
+        "criminal",
+        "international_cooperation"
+      ],
+      "document_type": "bilateral_mutual_legal_assistance_treaty",
+      "instrument_number": 177,
+      "instrument_year": 2001,
+      "source_id": "EG-MOF",
+      "source_status": "full_text_accessible_not_archived",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "Riyadh Convention Art. 69",
+        "CPL 174/2025 future Arts 511–520"
+      ],
+      "notes": "Official Ministry of Finance lists the treaty as active; full 19-page PDF available. Extract scope, central authorities, service, evidence, search/seizure, bank records, confidentiality and refusal grounds.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/legislation-5fea7dcc7bfc600007cc664d",
+          "source_role": "Official Ministry of Finance treaty record; marked active",
+          "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://media.mof.gov.eg/mof-prd/2001_177_c317b57cfe.pdf",
+          "source_role": "Official PDF, 19 pages",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-BILATERAL-EXTRADITION-PAKISTAN-233-1994",
+      "official_title_ar": "قرار رئيس الجمهورية رقم 233 لسنة 1994 بشأن اتفاقية تسليم المجرمين بين مصر وباكستان",
+      "practice_areas": [
+        "criminal",
+        "international_cooperation"
+      ],
+      "document_type": "bilateral_extradition_treaty",
+      "instrument_number": 233,
+      "instrument_year": 1994,
+      "source_id": "EG-MANSURAT",
+      "source_status": "full_text_accessible_not_archived",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "Riyadh Convention Art. 69",
+        "CPL 174/2025 future Arts 514–521"
+      ],
+      "notes": "Approves extradition agreement signed Islamabad 14 Jul 1994 subject to ratification. Treaty Article 14 provides entry into force after exchange of ratification instruments; exchange date must be obtained.",
+      "source_urls": [
+        {
+          "url": "https://manshurat.org/file/50795/download?token=7arjmwr3",
+          "source_role": "Official Gazette 31 follow-up, 4 Aug 1994, full text and agreement",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
     }
   ],
   "next_actions": [
@@ -4384,6 +4829,34 @@
     {
       "id": "ACT-CRIM-2026-11",
       "action": "Extract Telecom Law 10/2003 current Arts 64–69 and 77–87, and e-signature Law 15/2004, Decree 109/2005 and 2020/2024 amendments.",
+      "owner": "Research Agent 2",
+      "status": "not_started",
+      "blocking": false
+    },
+    {
+      "id": "ACT-CRIM-2026-12",
+      "action": "Obtain Arab League Secretariat deposit record for Egypt's Riyadh Convention accession under Decision 278/2014; confirm entry into force and supersession of Law 83/1954 under Art. 72.",
+      "owner": "Research Agent 2",
+      "status": "not_started",
+      "blocking": false
+    },
+    {
+      "id": "ACT-CRIM-2026-13",
+      "action": "Extract full UNTOC, Palermo Trafficking and Smuggling Protocols and verify Egypt's treaty status/reservations in UN Treaty Collection; map to Laws 64/2010 and 82/2016.",
+      "owner": "Research Agent 2",
+      "status": "not_started",
+      "blocking": false
+    },
+    {
+      "id": "ACT-CRIM-2026-14",
+      "action": "Obtain exchange-of-ratification and entry-into-force notices for bilateral agreements with Turkey, Morocco, Hungary, Romania, Switzerland and Pakistan; extract their full procedural clauses.",
+      "owner": "Research Agent 2",
+      "status": "not_started",
+      "blocking": false
+    },
+    {
+      "id": "ACT-CRIM-2026-15",
+      "action": "Extract Law 174/2025 Book Five Arts 508–510 and 512–513 from the official Gazette PDF; preserve current/future version status and compare with existing treaties.",
       "owner": "Research Agent 2",
       "status": "not_started",
       "blocking": false
@@ -4758,6 +5231,29 @@
         "publisher": "Supreme Constitutional Court / MCIT / ITIDA / Gazette repository",
         "observed_title": "Data Protection, Telecom and Electronic Signature statutes and regulations",
         "finding": "Full Law 151/2020 official PDF and full Decision 816/2025 text accessible; Telecom Law 10/2003 and Law 172/2022 located; e-signature Law 15/2004, Decree 109/2005 and amendments 307/2010, 331/2020, 467/2024 identified.",
+        "status": "full_text_accessible_selected_articles_persisted"
+      },
+      {
+        "evidence_id": "SRC-EXTRADITION-REGIONAL-UNTOC-BILATERAL-2026",
+        "document_ids": [
+          "EG-ARAB-EXTRADITION-83-1954",
+          "EG-RIYADH-CONVENTION-1983",
+          "EG-RIYADH-ACCESSION-278-2014",
+          "EG-UNTOC-294-2003",
+          "EG-PALERMO-TRAFFICKING-295-2003",
+          "EG-PALERMO-SMUGGLING-297-2004",
+          "EG-BILATERAL-MLA-EXTRADITION-TURKEY-222-1989",
+          "EG-BILATERAL-MLA-EXTRADITION-MOROCCO-229-1989",
+          "EG-BILATERAL-MLA-EXTRADITION-HUNGARY-129-1988",
+          "EG-BILATERAL-MLA-EXTRADITION-ROMANIA-76-2003",
+          "EG-BILATERAL-MLA-SWITZERLAND-177-2001",
+          "EG-BILATERAL-EXTRADITION-PAKISTAN-233-1994"
+        ],
+        "source_type": "official Gazette and Ministry of Finance treaty PDFs plus full Arabic treaty text",
+        "url": "https://mof.gov.eg/ar/legislation/",
+        "publisher": "Egyptian Ministry of Finance / Manshurat Gazette copy / regional justice ministry repositories",
+        "observed_title": "Egyptian extradition and international criminal cooperation treaty corpus",
+        "finding": "Egypt's accession to Riyadh 1983 approved by Decision 278/2014; UNTOC and both Palermo Protocols have official MoF Gazette PDFs and active status records; six bilateral judicial cooperation/extradition treaties located with full text or official record. Entry-into-force metadata conflicts retained.",
         "status": "full_text_accessible_selected_articles_persisted"
       }
     ],
