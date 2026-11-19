@@ -2537,3 +2537,44 @@ https://www.youm7.com/story/2026/11/15/الجريدة-الرسمية-تنشر-ق
 - **Outstanding:** original Gazette PDF for Decision 1739/2026, exact full text for Decision 1265/2025 and 176/2026, Law 15/2018 standalone Gazette text, and the full foundational geographic-centre instruments 113/1962 and 1654/1971.
 - **Original Gazette PDFs locally archived and SHA-256 verified:** 0.
 - **Egyptian lawyer-verified records:** 0.
+
+
+---
+
+## AA. Narcotics schedule acquisition — Decision 242/2026 table entries transcribed from official page images
+**Research date:** 19 November 2026.
+
+The official EDA-hosted 4-page PDF for Minister of Health Decision 242/2026 was opened and its Gazette page images visually inspected, including the amended schedule page. The text layer is incomplete, but the image is legible.
+
+**Decision metadata:** issued 20 July 2026; published in Waqa'i No.179, 17 August 2026; Article 2 makes it effective the following day, 18 August 2026. Official PDF:
+https://dev.edaegypt.gov.eg/media/lydpgqi5/لمكافحة-المخدرات_2026_242-وزير-الصحة.pdf
+
+**Article 1:** replaces item 12 in Table 1, Section I(B), of Minister of Health Decision 44/2026 and adds entries to Table 3.
+
+**Replacement item 12 — Arabic/English names visible on the official image:**
+- فينلافاكسين — Venlafaxine
+- ديسفينلافاكسين — Desvenlafaxine
+- كاربيدوبا — Carbidopa
+- ليفودوبا — Levodopa
+- فوسكاربيدوبا — Foscarbidopa
+- ميلفودوبا — Melevodopa
+- فوسليفودوبا — Foslevodopa
+
+**Table 3 additions, entries 57–61:**
+- 57 — أميل نيتريت — Amyl nitrite
+- 58 — أيزو أميل نيتريت — Isoamyl nitrite
+- 59 — أيزو بروبيل نيتريت — Isopropyl nitrite
+- 60 — أيزو بيوتيل نيتريت — Isobutyl nitrite
+- 61 — كانابيديول — Cannabidiol (CBD)
+
+The Table 3 heading states that the listed substances and their salts, esters, ethers, mixtures and related preparations are covered as specified in the schedule. The names above are transcribed from the official page image; verify Arabic transliteration and chemical nomenclature with a pharmacist/toxicologist before using them in charging or classification logic.
+
+**Remaining Decision 44/2026 work:** the official EDA PDF is 34 pages. The introductory provisions are OCR-readable, but most schedule tables are image-based. Full schedule-by-schedule OCR and row comparison against the superseded schedules remains open. Do not treat the selected rows from Decision 242/2026 as the complete current narcotics schedules.
+
+### AA1. Progress update after schedule-text pass — 19 November 2026
+
+- **Estimated assigned criminal-law domain completion: 77%** (qualitative research-coverage estimate; not article-count, local corpus-ingestion or lawyer-verification metric). Prior pass: 76%.
+- **Newly extracted:** exact replacement of Decision 44/2026 Table 1, Section I(B), item 12; exact Table 3 entries 57–61 from Decision 242/2026 official page image.
+- **Remaining:** full 34-page Decision 44/2026 schedule transcription, visual comparison with superseded schedules, and original Gazette archiving/hash verification.
+- **Original Gazette PDFs locally archived and SHA-256 verified:** 0.
+- **Egyptian lawyer/pharmacist verified records:** 0.
