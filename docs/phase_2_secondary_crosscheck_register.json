@@ -527,6 +527,40 @@
       "legal_status": "current_until_30_sep_2027_law160_2026",
       "finding": "The full consolidated text states updates through 16 Jan 2024 and includes Art.113 bis expressly added by Law177/2020 and felony appeals under Law1/2024. A separate Manshurat page labels Law189/2020 as the last CPL amendment, which is incorrect: Law189/2020 amended the Penal Code, while Law177/2020 amended CPL Art.113 bis. Preserve the metadata error and use the article-level footnotes in the consolidated code.",
       "next_action": "Compare the 178-page consolidated PDF against original Gazette texts for Laws177/2020 and 1/2024, correct any project source metadata that attributes Law189/2020 to CPL, and acquire the original Gazette scans for the older footnoted amendments."
+    },
+    {
+      "evidence_id": "XREF-CPL-252-1952-VS-252-1953",
+      "document_id": "EG-CPL-AMEND-252-1952",
+      "practice_areas": [
+        "criminal",
+        "criminal_procedure"
+      ],
+      "url": "https://lawhub.info/eg/?p=11570",
+      "publisher": "LawHub full consolidated CPL text and Al-Dhshan separate 252/1953 full-text page",
+      "source_class": "same-number-different-year amendment instrument distinction",
+      "observed_title_ar": "قانون رقم 252 لسنة 1952 / قانون رقم 252 لسنة 1953 بتعديل قانون الإجراءات الجنائية",
+      "source_state": "two_distinct_year_number_records_secondary_sources_require_original_Gazette_check",
+      "collection_permission": "unknown",
+      "legal_status": "historical_amendments_distinct_pending_original_issue_verification",
+      "finding": "LawHub's CPL consolidation identifies Law252/1952, Gazette No.42 bis, 20 Dec 1952, as repealing Arts.19 and 20. Al-Dhshan separately reproduces Law252/1953, published 21 May 1953. Treat these as two distinct instruments, not a single misdated record, pending Gazette scan verification.",
+      "next_action": "Acquire Gazette No.42 bis, 20 Dec 1952 and the relevant May 1953 Gazette issue; verify titles, provisions and publication dates, then maintain separate inventory records."
+    },
+    {
+      "evidence_id": "XREF-CPL-107-1962-VS-107-1963",
+      "document_id": "EG-CPL-AMEND-107-1962",
+      "practice_areas": [
+        "criminal",
+        "criminal_procedure"
+      ],
+      "url": "https://www.aldhshan.com/2025/12/107-1962.html",
+      "publisher": "Al-Dhshan full amendment text versus older CPL transcription",
+      "source_class": "year typo in secondary text",
+      "observed_title_ar": "قانون رقم 107 لسنة 1962 بتعديل بعض أحكام قانون الإجراءات الجنائية",
+      "source_state": "full_1962_text_accessible_older_source_says_1963",
+      "collection_permission": "unknown",
+      "legal_status": "working_identity_107_1962_original_Gazette_check_pending",
+      "finding": "Full amendment text and Official Gazette No.136, 17 Jun 1962 identify Law107/1962. One older consolidated-code transcription misprints the amendment year as 1963. The current full 2024 consolidation identifies Law107/1962.",
+      "next_action": "Acquire Official Gazette No.136, 17 Jun 1962 and correct the secondary 1963 typo in project source metadata."
     }
   ],
   "guardrails": [
