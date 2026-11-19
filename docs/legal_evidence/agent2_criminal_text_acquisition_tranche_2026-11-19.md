@@ -571,3 +571,330 @@ Law 174/2025 Article 4 repeals Law 140/2014 when the new Criminal Procedure Law 
 12. Search special criminal laws relevant to evidence/investigation (Terrorism Law 94/2015, organized-crime, trafficking, corruption, public funds, and sector-specific offence laws) as a separate extension, not as a substitute for the assigned core.
 
 **Do not repeat a source discovery already recorded above unless the next action obtains missing Arabic text, a missing Gazette copy, a later amendment, or a legal-status verification.**
+
+---
+
+## F. Further Arabic text acquisition — terrorism, trafficking, migration, privacy, telecom and e-signature
+
+These related instruments govern criminal offences, special investigation powers, judicial cooperation, electronic evidence and data access. Texts below are selected verbatim provisions; full source texts are linked and their acquisition states are recorded separately.
+
+### F1. Anti-Terrorism Law 94/2015 and Law 15/2020
+
+Full Arabic text (secondary reproduction): https://manshurat.org/node/14679
+
+Law 94/2015 was issued and published 15 August 2015 and commenced 16 August 2015. The source identifies Law 15/2020 (3 March 2020) as its latest amendment. Law 15/2020 replaces Art. 1(f) and Arts 3 and 13, changes references from الأموال to الأموال أو الأصول الأخرى, and adds a paragraph to Art. 39.
+
+**Issuance Art. 1:**
+
+> يُعمل بأحكام قانون مكافحة الإرهاب المرافق، وتسري على ما لم يرد في شأنه نص في هذا القانون أحكام قانوني العقوبات والإجراءات الجنائية.
+
+**Art. 40 — temporary investigative retention:**
+
+> لمأمور الضبط القضائي، لدى قيام خطر من أخطار جريمة الإرهاب ولضرورة تقتضيها مواجهة هذا الخطر، الحق في جمع الاستدلالات عنها والبحث عن مرتكبيها والتحفظ عليهم لمدة لا تجاوز أربع وعشرين ساعة.  
+> ويحرر مأمور الضبط القضائي محضراً بالإجراءات، ويعرض المتحفظ عليه صحبة المحضر على النيابة العامة أو سلطة التحقيق المختصة بحسب الأحوال.  
+> وللنيابة العامة أو سلطة التحقيق المختصة، لذات الضرورة المنصوص عليها في الفقرة الأولى من هذه المادة وقبل انقضاء المدة المنصوص عليها فيها، أن تأمر باستمرار التحفظ، لمدة أربعة عشر يوماً، ولا تجدد إلا مرة واحدة، ويصدر الأمر مسبباً من محام عام على الأقل أو ما يعادلها.
+
+**Art. 41 — notice and lawyer contact:**
+
+> يبلغ مأمور الضبط القضائي كل من يتحفظ عليه وفقاً للمادة (٤٠) من هذا القانون بأسباب ذلك، ويكون له حق الاتصال بمن يرى إبلاغه من ذويه بما وقع والاستعانة بمحام، وذلك دون الإخلال بمصلحة الاستدلال.
+
+**Art. 45 — search:**
+
+> في الأحوال التي يجوز فيها التحفظ على مرتكب جريمة إرهابية أو حبسه احتياطياً، ولدى قيام خطر أو خوف من ضياع الأدلة، لمأمور الضبط القضائي أن يستصدر إذناً مسبباً من النيابة العامة أو سلطة التحقيق المختصة، بحسب الأحوال، بتفتيش مسكن المتحفظ عليه أو المحبوس احتياطياً، وضبط الأشياء والمتعلقات الخاصة بالجريمة التي يجرى التفتيش بشأنها.
+
+**Art. 46 — interception/surveillance:**
+
+> للنيابة العامة أو سلطة التحقيق المختصة، بحسب الأحوال، في جريمة إرهابية أن تأذن بأمر مسبب لمدة لا تزيد على ثلاثين يوماً، بمراقبة وتسجيل المحادثات والرسائل التي ترد على وسائل الاتصال السلكية واللاسلكية وغيرها من وسائل الاتصال الحديثة، وتسجيل وتصوير ما يجري في الأماكن الخاصة أو عبر شبكات الاتصال أو المعلومات أو المواقع الإلكترونية وما يدون فيها، وضبط المكاتبات والرسائل العادية أو الإلكترونية والمطبوعات والطرود والبرقيات بجميع أنواعها.
+
+**Art. 48 — account information:**
+
+> للنائب العام أو من يفوضه من المحامين العامين على الأقل أو سلطة التحقيق المختصة، بحسب الأحوال، أن يأمر بالاطلاع أو الحصول على أية بيانات أو معلومات تتعلق بالحسابات أو الودائع أو الأمانات أو الخزائن أو المعاملات المتعلقة بها، إذا اقتضى ذلك كشف الحقيقة في أعمال الاستدلال أو التحقيق على ارتكاب المتهم أو اشتراكه في أية جريمة إرهابية قامت الدلائل الكافية على وقوعها.
+
+Law 15/2020 text: https://www.eglf.org/قانون-15-لسنة-2020/
+
+### F2. Terrorist Entities and Terrorists Lists — Law 8/2015
+
+**Full official Gazette PDF hosted by FRA:**  
+https://fra.gov.eg/wp-content/uploads/2021/11/قانون-8-لسنة-2015-فى-شأن-تنظيم-قوائم-الكيانات-الإرهابية.pdf
+
+Gazette No. 7 bis (z), 17 February 2015; effective 18 February 2015.
+
+Amendments identified: Law 11/2017, Law 2/2020 and Law 14/2020. Law 2/2020 replaces Art. 5. Law 14/2020 changes Art. 1 definitions and Art. 7 consequences, and adds paragraphs to Arts 6 and 9.
+
+**Art. 3 — application and filing:**
+
+> تختص دائرة أو أكثر من دوائر الجنايات بمحكمة استئناف القاهرة تحددها الجمعية العمومية للمحكمة سنوياً تكون منعقدة في غرفة المشورة، بنظر طلبات الإدراج على قائمتي الكيانات الإرهابية والإرهابيين.  
+> ويقدم طلب الإدراج من النائب العام إلى الدائرة المختصة مشفوعاً بالتحقيقات والمستندات المؤيدة لهذا الطلب.  
+> وتفصل الدائرة المختصة في طلب الإدراج بقرار مسبب خلال سبعة أيام من تاريخ تقديم الطلب لها مستوفياً المستندات اللازمة.
+
+**Art. 4 — duration:**
+
+> يكون الإدراج على أي من القائمتين لمدة لا تجاوز ثلاث سنوات.
+
+**Art. 6 — challenge:**
+
+> لذوي الشأن وللنيابة العامة الطعن في القرار الصادر في شأن الإدراج على أي من القائمتين المشار إليهما خلال ستين يوماً من تاريخ نشر القرار أمام الدائرة الجنائية بمحكمة النقض التي تحددها الجمعية العمومية للمحكمة سنوياً، وذلك وفقاً للإجراءات المعتادة للطعن.
+
+**Art. 9 — international cooperation:**
+
+> في مجال مكافحة أنشطة الكيانات الإرهابية والإرهابيين، تتعاون الجهات القضائية والأجهزة المصرية المعنية بشئون الإرهاب - كل في حدود اختصاصه وبالتنسيق بينها - مع نظيراتها الأجنبية، من خلال تبادل المعلومات والمساعدات والإنابات القضائية وتسليم الأشخاص والأشياء واسترداد الأموال ونقل المحكوم عليهم، وإخطار الدول والمنظمات المعنية بالقرارات المشار إليها في هذا القانون، وغير ذلك من صور التعاون القضائي والمعلوماتي، وذلك كله وفقاً للقواعد التي تقررها الاتفاقيات الدولية النافذة في جمهورية مصر العربية، أو وفقاً لمبدأ المعاملة بالمثل.
+
+Amendment texts: https://www.eglf.org/قانون-2-لسنة-2020/ and https://www.eglf.org/قانون-14-لسنة-2020/
+
+### F3. Human Trafficking Law 64/2010 and Executive Regulations 3028/2010
+
+**Full Arabic Law 64/2010:**  
+https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/89881/eg%2064%20of%202010.pdf  
+Additional Arabic text updated to 2025: https://lawyeregypt.net/قانون-مكافحة-الاتجار-بالبشر-رقم-64-لسنة-2010/
+
+Gazette No. 18 bis, 9 May 2010; effective 10 May 2010.
+
+**Art. 1 — organized criminal group:**
+
+> الجماعة الإجرامية المنظمة: الجماعة المؤلفة وفق تنظيم معين من ثلاثة أشخاص على الأقل للعمل بصفة مستمرة أو لمدة من الزمن بهدف ارتكاب جريمة محددة أو أكثر من بينها جرائم الاتجار بالبشر وحدها أو مع غيرها وذلك من أجل الحصول بشكل مباشر أو غير مباشر على منفعة مادية أو معنوية.
+
+**Art. 2 — trafficking conduct (opening):**
+
+> يعتبر مرتكباً لجريمة الاتجار بالبشر كل من يتعامل بأية صورة في شخص طبيعي بما في ذلك البيع أو العرض للبيع أو الشراء أو الوعد بهما أو الاستخدام أو النقل أو التسليم أو الإيواء أو الاستقبال أو التسلم سواء في داخل البلاد أو عبر حدودها الوطنية...
+
+**Art. 5 — base penalty:**
+
+> يعاقب كل من ارتكب جريمة الاتجار بالبشر بالسجن المشدد وبغرامة لا تقل عن خمسين ألف جنيه ولا تجاوز مائتي ألف جنيه أو بغرامة مساوية لقيمة ما عاد عليه من نفع أيهما أكبر.
+
+**Art. 11 — actual management liability (opening):**
+
+> يعاقب المسؤول عن الإدارة الفعلية للشخص الاعتباري إذا ارتكبت أي من الجرائم المنصوص عليها في هذا القانون بواسطة أحد العاملين بالشخص الاعتباري باسمه ولصالحه بذات العقوبات المقررة عن الجريمة المرتكبة إذا ثبت علمه بها أو إذا كانت الجريمة قد وقعت بسبب إخلاله بواجبات وظيفته.
+
+**Art. 16 — extraterritorial application (opening):**
+
+> مع مراعاة حكم المادة (٤) من قانون العقوبات، تسري أحكام هذا القانون على كل من ارتكب خارج جمهورية مصر العربية من غير المصريين جريمة الاتجار بالبشر المنصوص عليها في المادتين ٥ و٦ منه، متى كان الفعل معاقباً عليه في الدولة التي وقع فيها تحت أي وصف قانوني...
+
+**Art. 21 — victim non-liability:**
+
+> لا يعد المجني عليه مسؤولاً مسؤولية جنائية أو مدنية عن أي جريمة من جرائم الاتجار بالبشر متى نشأت أو ارتبطت مباشرة بكونه مجنياً عليه.
+
+#### PM Decree 3028/2010 — Executive Regulations
+
+Complete 28-article Arabic text: https://alhasswalawfirm.com/law-library/decree-3028-2010  
+Alternative: https://www.aldhshan.com/2026/02/3028-2010-64-2010.html  
+Official regulator PDF directory: https://fra.gov.eg/wp-content/uploads/2021/11/
+
+Gazette No. 47 bis, 30 November 2010; effective 1 December 2010. A secondary source says the text is updated through 2025; the amending instruments behind that claim must be identified.
+
+**Regulation Art. 3 — child victim / consent:**
+
+> تقوم جريمة الاتجار في البشر دائماً في حق مرتكبها إذا كان المجنى عليه طفلاً أو من عديمي الأهلية.  
+> ولا يستطيع مرتكب جريمة الاتجار بالبشر أن يتمسك برضاء المجنى عليه لدرء مسئوليته الجنائية طالما استخدم الجاني معه الوسائل والأساليب التي نص عليها القانون في ارتكاب جريمة الاتجار بالبشر.
+
+**Regulation Art. 5 — international cooperation:**
+
+> تقوم الجهات المشار إليها في المادة السابقة في سبيل تحقيق المكافحة بتبادل المعلومات وإجراء التحريات عن مرتكبي الجريمة وملاحقتهم وتقديم المساعدات فيما بينها, واتخاذ إجراءات المساعدات والإنابات القضائية وتسليم المجرمين والأشياء, واسترداد الأموال, ونقل المحكوم عليهم...
+
+**Regulation Art. 6 — asset tracing/freezing:**
+
+> تتولى المحاكم والنيابات المختصة بنظر جرائم الاتجار بالبشر في جمهورية مصر العربية ومن خلال إدارة التعاون الدولي والثقافي بوزارة العدل ومكتب التعاون الدولي وتنفيذ الأحكام ورعاية المسجونين بمكتب النائب العام اتخاذ ما يلزم من إجراءات قانونية بالتعاون مع الجهات القضائية الأجنبية لتعقب أو ضبط أو تجميد الأموال موضوع جرائم الاتجار أو عائداتها أو الحجز عليها, وذلك كله مع عدم الإخلال بحقوق الغير حسنى النية.
+
+**Regulation Art. 8 — victim non-liability:**
+
+> المجني عليه في جريمة الاتجار في البشر لا يكون مسئولاً مدنياً أو جنائياً عن أي جريمة أخرى يرتكبها تنفيذاً لاستغلاله في جريمة الاتجار في البشر متى نشأت الجريمة الأخرى أو ارتبطت بكونه مجنياً عليه في جريمة الاتجار بالبشر.
+
+**Related decisions:** PM Decision 192/2017; PM Decision 1123/2017; PM Decision 60/2020; Social Solidarity Minister Decision 289/2021; Presidential Decision 349/2024 organizing the Fund for Assisting Victims of Human Trafficking (Gazette 34 bis (a), 26 August 2024): https://hrightsstudies.sis.gov.eg/media/28148/العدد-34-مكرر-ا-مو-م-من.pdf
+
+Correction: PM Decision 2353/2010 is reported as a committee-reconstitution decision, not the Executive Regulations. The Executive Regulations are PM Decree 3028/2010.
+
+### F4. Illegal Migration and Migrant Smuggling Law 82/2016, Law 22/2022 and Decree 983/2018
+
+**Full 38-article Arabic Law 82/2016:**  
+https://alhasswalawfirm.com/law-library/law-82-2016  
+**Official Gazette PDF hosted by FRA:**  
+https://fra.gov.eg/wp-content/uploads/2021/11/قانون-رقم-82-لسنة-2016-لمكافحة-الهجرة-غير-الشرعية-وتهريب-المهاجرين.pdf
+
+Gazette No. 44 bis (a), 7 November 2016; effective 8 November 2016.
+
+**Law 22/2022** amends Arts 6, 7, 8 and 15; issued/published 11 April 2022; effective 12 April 2022. Full amendment text: https://dfatermasr.net/القانون-رقم-22-لسنة-2022-بشأن-تعديل-بعض-أحكام/  
+Consolidated text updated through 11 April 2022: https://lawyeregypt.net/قانون-مكافحة-الهجرة-غير-الشرعية/
+
+**Current Art. 6 (opening):**
+
+> يعاقب بالسجن المشدد وبغرامة لا تقل عن مائتي ألف جنيه ولا تزيد عن خمسمائة ألف جنيه أو بغرامة مساوية لقيمة ما عاد عليه من نفع أيهما أكبر كل من ارتكب جريمة تهريب المهاجرين أو الشروع فيها أو توسط في ذلك.
+
+**Current Art. 7 (opening):**
+
+> تكون العقوبة السجن المؤبد، وغرامة لا تقل عن مليون جنيه ولا تزيد على خمسة ملايين جنيه، أو غرامة مساوية لقيمة ما عاد على الجاني من نفع أيهما أكبر إذا ارتكبت أي من الجرائم المنصوص عليها بالفقرة الأولى من المادة (٦) من هذا القانون في أي من الحالات الآتية...
+
+**Current Art. 8:**
+
+> يعاقب بالسجن وبغرامة لا تقل عن مائتي ألف جنيه ولا تزيد على خمسمائة ألف جنيه كل من هيأ أو أدار مكاناً لإيواء المهاجرين المهربين أو جمعهم أو نقلهم أو سهل أو قدم لهم أية خدمات مع ثبوت علمه بذلك.
+
+**Current Art. 15 (opening):**
+
+> يعاقب بالحبس مدة لا تقل عن سنة وبغرامة لا تقل عن خمسين ألف جنيه ولا تزيد على مائتي ألف جنيه، أو بإحدى هاتين العقوبتين، كل من علم بارتكاب أي من الجرائم المنصوص عليها في هذا القانون أو بالشروع فيها ولم يبلغ السلطات المختصة بذلك.
+
+#### PM Decree 983/2018 — Executive Regulations
+
+Full Arabic text: https://lawhub.info/eg/?p=12572  
+Gazette reproduction: https://www.laweg.net/framePlain.aspx?NID=138273&action=viewactivepages&itemid=111688&type=6
+
+Gazette No. 19 bis (z), 15 May 2018; Decree 983/2018 issued 16 May 2018.
+
+**Regulation Art. 1 — transnational crime:**
+
+> الجريمة ذات الطابع عبر الوطني: أية جريمة ارتكبت في أكثر من دولة، أو ارتكبت في دولة واحدة وتم الإعداد أو التخطيط لها أو التوجيه أو الإشراف عليها أو تمويلها في دولة أخرى أو بواسطتها أو ارتكبت في دولة واحدة عن طريق جماعة إجرامية منظمة تمارس أنشطة إجرامية في أكثر من دولة، أو ارتكبت في دولة واحدة وكانت لها آثار في دولة أخرى.
+
+**Regulation Art. 10 — asset tracing/freezing:**
+
+> مع عدم الإخلال بحقوق غير الحسنى النية، تتولى المحاكم والنيابات المختصة بنظر جرائم تهريب المهاجرين في جمهورية مصر العربية ومن خلال إدارة التعاون الدولي والثقافي بوزارة العدل ومكتب التعاون الدولي وتنفيذ الأحكام ورعاية المسجونين بمكتب النائب العام اتخاذ ما يلزم من إجراءات قانونية بالتعاون مع الجهات القضائية الأجنبية لتعقب أو ضبط أو تجميد الأموال موضوع جرائم تهريب المهاجرين أو عائداتها أو الحجز عليها.
+
+**Regulation Art. 11 — foreign criminal judgments:**
+
+> تتولى النيابة العامة من خلال مكتب التعاون الدولي وتنفيذ الأحكام ورعاية المسجونين بمكتب النائب العام الأمر بتنفيذ الأحكام الجنائية الصادرة من الجهات القضائية الأجنبية المختصة بضبط أو تجميد أو مصادرة أو استرداد الأموال المتحصلة من جرائم تهريب المهاجرين وعائداتها وذلك وفق القوانين النافذة والإجراءات التي تضمنتها الاتفاقيات الثنائية أو متعددة الأطراف النافذة في جمهورية مصر العربية، أو وفقاً لمبدأ المعاملة بالمثل...
+
+Law 82/2016 Art. 2 transfers the former coordinating committee from Law 64/2010 into the national committee; Law 64 itself is not repealed.
+
+### F5. Personal Data Protection Law 151/2020 and Ministerial Decision 816/2025
+
+**Official full Arabic Law 151/2020 PDF (723 extracted lines):**  
+https://escc.gov.eg/assets/docs/law-151-2020.pdf
+
+Gazette No. 28 bis (e), 15 July 2020. Issuance Art. 7 makes it effective after three months from the day following publication.
+
+**Issuance Art. 3(4) — judicial-data exclusion:**
+
+> البيانات الشخصية المتعلقة بمحاضر الضبط القضائي والتحقيقات والدعاوى القضائية.
+
+**Issuance Art. 5 — jurisdiction:**
+
+> تختص المحاكم الاقتصادية بنظر الجرائم التي ترتكب بالمخالفة لأحكام القانون المرافق.
+
+**Art. 34 — judicial-police status:**
+
+> يكون للعاملين بالمركز الذين يصدر بتحديدهم قرار من وزير العدل بناءً على اقتراح الوزير المختص صفة الضبطية القضائية في إثبات الجرائم التي تقع بالمخالفة لأحكام هذا القانون.
+
+**Art. 36 — unlawful processing/disclosure (opening):**
+
+> يعاقب بغرامة لا تقل عن مائة ألف جنيه ولا تجاوز مليون جنيه كل حائز أو متحكم أو معالج جمع أو عالج أو أفشى أو أتاح أو تداول بيانات شخصية معالجة إلكترونياً بأي وسيلة من الوسائل في غير الأحوال المصرح بها قانوناً أو بدون موافقة الشخص المعني بالبيانات.
+
+**Art. 41 — sensitive data:**
+
+> يعاقب بالحبس مدة لا تقل عن ثلاثة شهور وبغرامة لا تقل عن خمسمائة ألف جنيه ولا تجاوز خمسة ملايين جنيه، أو بإحدى هاتين العقوبتين، كل حائز أو متحكم أو معالج جمع أو أتاح أو تداول أو عالج أو أفشى أو خزن أو نقل أو حفظ بيانات شخصية حساسة بدون موافقة الشخص المعني بالبيانات أو في غير الأحوال المصرح بها قانوناً.
+
+**Art. 46 — obstruction of judicial officers:**
+
+> يعاقب بالحبس مدة لا تقل عن ستة أشهر وبغرامة لا تقل عن مائتي ألف جنيه ولا تجاوز مليوني جنيه، أو بإحدى هاتين العقوبتين، كل من منع أحد العاملين بالمركز ممن يتمتعون بصفة الضبطية القضائية من أداء عمله.
+
+**Art. 47 — corporate-management liability:**
+
+> يعاقب المسؤول عن الإدارة الفعلية للشخص الاعتباري المخالف بذات العقوبات المقررة عن الأفعال التي ترتكب بالمخالفة لأحكام هذا القانون، إذا ثبت علمه بها، وكان إخلاله بالواجبات التي تفرضها عليه تلك الإدارة قد أسهم في وقوع الجريمة.
+
+#### Minister of Communications and IT Decision 816/2025 — Executive Regulations
+
+Gazette Waqa'i' No. 244 follow-up (a), 1 November 2025; effective 2 November 2025. Full 43-article Arabic text: https://alhasswalawfirm.com/law-library/decree-816-2025  
+Metadata: https://www.eastlaws.com/legislation-full-text/ar/egypt/tech-minister-decision/01-11-2025/no-816?id=5008447&type=1
+
+**Regulation Art. 2 (collection):**
+
+> يكون جمع البيانات الشخصية ومعالجتها وحفظها وتأمينها وفقا للضوابط والمعايير القياسية والإجراءات والسياسات الآتية.
+
+It requires authorization/licensing, consent and purpose notice subject to exceptions, approved collection mechanisms, defined retention periods, confidentiality and security procedures.
+
+**Regulation Art. 4 (processing):**
+
+> تكون معالجة البيانات الشخصية وفقا للضوابط والمعايير والإجراءات السياسات الآتية.
+
+The secondary page says updated through 2026, but no amending instrument after 816/2025 has been identified. Do not infer a 2026 amendment from that label.
+
+### F6. Telecommunications Law 10/2003 and Law 172/2022
+
+Full Arabic text (secondary): https://lawhub.info/eg/?p=11621  
+Official MCIT legislation index: https://mcit.gov.eg/ar/TeleCommunications/Regulations/Laws_and_Legislations
+
+Law 10/2003, Gazette No. 5 bis (a), 4 February 2003; effective 5 February 2003.
+
+**Art. 69 — judicial-police status:**
+
+> يجوز بقرار من وزير العدل بالاتفاق مع الوزير المختص تخويل العاملين الذين يحددهم الجهاز والقوات المسلحة وأجهزة الأمن القومي صفة مأموري الضبط القضائي بالنسبة إلى الجرائم التي تقع بالمخالفة لأحكام هذا القانون وتكون متعلقة بأعمال وظائفهم.
+
+**Law 172/2022:** Gazette No. 51 bis (e), 26 December 2022; effective 27 December 2022. Replaces Art. 44 first paragraph and Art. 77. Gazette PDF record: https://dspace.id.com.eg/items/380cc2e4-a7fc-4068-9337-33addccf8ede
+
+**Current Art. 77 (opening):**
+
+> مع مراعاة حكم الفقرة الأخيرة من المادة (٤٨) من هذا القانون، يعاقب بالحبس مدة لا تقل عن سنة ولا تجاوز خمس سنوات، وبغرامة لا تقل عن مليوني جنيه ولا تجاوز خمسة ملايين جنيه، أو بإحدى هاتين العقوبتين كل من قام باستيراد أو تصنيع أو تجميع أو تسويق أي معدة من معدات الاتصالات دون الحصول على تصريح من الجهاز بالمخالفة للمادة (٤٤/ فقرة أولى) من هذا القانون.
+
+The current text also criminalizes unauthorized possession, use, installation and operation of telecom equipment and provides an aggravated national-security limb. Map Arts 64–69 and 77–87 to telecom-provider obligations and the exact procedural authorization required; do not infer blanket interception powers.
+
+### F7. Electronic Signature Law 15/2004 and Executive Regulations
+
+**Official Arabic Gazette PDF hosted by ITIDA:** https://itida.gov.eg/English/Documents/1.pdf  
+Gazette No. 17 follow-up (d), 22 April 2004; effective 23 April 2004.
+
+**Art. 14:**
+
+> للتوقيع الإلكتروني، في نطاق المعاملات المدنية والتجارية والإدارية، ذات الحجية المقررة للتوقيعات في أحكام قانون الإثبات في المواد المدنية والتجارية، إذا روعي في إنشائه وإتمامه الشروط المنصوص عليها في هذا القانون والضوابط الفنية والتقنية التي تحددها اللائحة التنفيذية لهذا القانون.
+
+**Art. 15:**
+
+> للكتابة الإلكترونية وللمحررات الإلكترونية، في نطاق المعاملات المدنية والتجارية والإدارية، ذات الحجية المقررة للكتابة والمحررات الرسمية والعرفية في أحكام قانون الإثبات في المواد المدنية والتجارية، متى استوفت الشروط المنصوص عليها في هذا القانون وفقاً للضوابط الفنية والتقنية التي تحددها اللائحة التنفيذية لهذا القانون.
+
+These articles expressly concern civil, commercial and administrative transactions; they are not a standalone criminal-evidence rule. For criminal digital evidence use Law 175/2018 Art. 11 and its Executive Regulations Art. 9.
+
+#### Ministerial Decision 109/2005 — Executive Regulations
+
+Gazette Waqa'i' No. 115, 25 May 2005; effective 26 May 2005. Full Arabic text (475 lines): https://lawhub.info/eg/?p=12201  
+Government MCIT confirmation: https://mcit.gov.eg/Ar/Media_Center/Press_Room/Press_Releases/1158
+
+**Regulation Art. 2 — secure signature system:**
+
+> تكون منظومة تكوين بيانات إنشاء التوقيع الإلكتروني مؤمنة متى استوفت ما يأتي:  
+> (أ) الطابع المتفرد لبيانات إنشاء التوقيع الإلكتروني.  
+> (ب) سرية بيانات إنشاء التوقيع الإلكتروني.  
+> (ج) عدم قابلية الاستنتاج أو الاستنباط لبيانات إنشاء التوقيع الإلكتروني.  
+> (د) حماية التوقيع الإلكتروني من التزوير، أو التقليد، أو التحريف، أو الاصطناع أو غير ذلك من صور التلاعب، أو من إمكان إنشائه من غير الموقع.  
+> (هـ) عدم إحداث أي إتلاف بمحتوى أو مضمون المحرر الإلكتروني المراد توقيعه.  
+> (و) ألا تحول هذه المنظومة دون علم الموقع علماً تاماً بمضمون المحرر الإلكتروني قبل توقيعه له.
+
+**Amendments to Decision 109/2005:**
+- Decision 307/2010 — identified by the regulation's amendment note; full text pending.
+- Decision 331/2020 — dated 19 April 2020; Gazette No. 95 follow-up, 23 April 2020. Official-hosted PDF: https://esignature-egypt.com/English/Documents/E-Signature%20executive%20directive.pdf
+- Decision 467/2024 — dated 12 June 2024; published Waqa'i' No. 141 follow-up, 2 July 2024; effective 3 July 2024. Official Gazette archive: https://dspace.id.com.eg/items/2985ae5e-f38f-4b3b-b8f8-040e4976ba84 ; SIS record: https://mediadr.sis.gov.eg/handle/123456789/70196 ; text metadata: https://www.eastlaws.com/legislation-full-text/ar/egypt/tech-minister-decision/02-07-2024/no-467?id=2137048&type=1
+
+Decision 467/2024 updates trust-service regulation, including electronic signature, seal, timestamp, registered electronic mail and website authentication. Full amended regulation must be collated against the 2005 text and 2020 amendment.
+
+### F8. Related instruments and corrections
+
+- Law 82/2016 is amended by Law 22/2022 (Arts 6, 7, 8, 15).
+- PM Decree 983/2018 is the Executive Regulations for Law 82/2016; Arts 10–11 cover asset tracing and enforcement of foreign criminal judgments.
+- PM Decree 3028/2010 is the Executive Regulations for Law 64/2010. Decision 2353/2010 concerns committee reconstitution, not the regulation.
+- Presidential Decision 349/2024 organizes the Human Trafficking Victims Assistance Fund under Law 64/2010 Art. 27.
+- Law 151/2020 Art. 3(4) excludes data relating to police reports, investigations and judicial proceedings from the attached Data Protection Law.
+- Ministerial Decision 816/2025 issues the 43-article Executive Regulations for Law 151/2020.
+- Law 172/2022 amends Telecom Law 10/2003 Arts 44 and 77.
+- Electronic Signature Law 15/2004 Executive Regulations have at least Decisions 307/2010, 331/2020 and 467/2024.
+- Law 8/2015 amendments: 11/2017, 2/2020, 14/2020.
+- Law 94/2015 amendment: 15/2020.
+
+## H. Updated progress
+
+**Estimated criminal-law domain completion: 49%** (up from 45% at the first tranche; approximate research rubric, not a measured article-count metric).
+
+This tranche adds 20 new inventory records covering terrorism, terrorist listings, human trafficking, migrant smuggling, data protection, telecom and electronic signature. It adds full Arabic text sources and selected exact articles, including special investigation powers, victim protection, digital data offences and evidence-related rules.
+
+**Complete Arabic texts accessible at source:** at least 20 laws/codes and executive/ministerial instruments across the assigned and directly related criminal/evidence domain. This is a source-access count, not a count of fully archived or lawyer-approved documents.
+
+**Full official text locally archived and hash-verified:** 0 in this session. Browser-readable official PDFs are not represented as local archived files.
+
+**Article-level full extraction:** incomplete; selected articles are persisted in this file.  
+**Lawyer verification:** 0%.  
+**Whole-project coverage:** not computable without the master index denominator and weighting.
+
+## I. Next acquisition actions
+
+1. Extract the 2024 current Executive Regulations of Electronic Signature under Decision 467/2024; collate Decisions 331/2020 and 307/2010.
+2. Extract all 43 articles of Data Protection Executive Regulations 816/2025 and all 49 articles of Law 151/2020, preserving Arts 3(4), 34 and 36–49.
+3. Extract Law 94/2015 Arts 40–48 and the complete 2020 amendment; search for any post-2020 amendment.
+4. Build the full current Law 8/2015 consolidation after Laws 11/2017, 2/2020 and 14/2020.
+5. Extract all 28 articles of Decree 3028/2010 and Presidential Decision 349/2024; collect the later committee and victim-support decisions.
+6. Extract Law 82/2016 as amended by Law 22/2022 and all 487 lines of Decree 983/2018.
+7. Obtain original Gazette PDFs for Law 22/2022, Decision 467/2024 and Presidential Decision 349/2024; hash only after lawful download.
+8. Collect Palermo Protocols, Arab Convention on Combating Organized Crime, extradition and mutual legal assistance treaties, and Egyptian ratification instruments.
+9. Extract current Telecom Law 10/2003 Arts 64–69 and 77–87; map each provider duty to the specific criminal-investigation authorization.
+10. Continue with missing texts and schedules already in the acquisition queue; do not repeat discovery absent a new amendment or better text source.
