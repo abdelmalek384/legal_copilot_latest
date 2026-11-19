@@ -1766,3 +1766,16 @@ Replaces:
 
 It increases penalties and aggravating circumstances for sexual harassment and specified exploitation/abuse contexts. This is the latest amendment identified in the present search, but a 2024–2026 Gazette sweep remains required.
 
+
+
+## P. Current consolidated progress — 19 November 2026
+
+- **Estimated assigned criminal-law domain completion: 58%** (rough research rubric; not article-count completeness).
+- **Inventory:** 166 unique document records, including 81 new records added in this session.
+- **Acquisition queue:** 24 active collection tasks.
+- **Cross-check register:** 19 discrepancy/source-audit entries.
+- **Complete Arabic texts accessible at source:** more than 20 laws, codes, treaties and implementing instruments; selected article text has been persisted throughout this dossier.
+- **Official files locally archived and SHA-256 verified in this session:** 0.
+- **Egyptian lawyer-verified records:** 0.
+- **Contribution to total Egyptian legal knowledge coverage:** not computable without the master index denominator and weighting method.
+
