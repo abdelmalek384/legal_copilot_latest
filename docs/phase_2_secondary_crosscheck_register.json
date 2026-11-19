@@ -339,6 +339,22 @@
       "legal_status": "current_until_2027-10-01_pending_intervening_lawyer_review",
       "finding": "Confirmed major amendments include Laws 95/2003, 145/2006, 74/2007, 71/2009, 83/2013, 49/2014, 138/2014, 16/2015, omnibus Law 11/2017, Law 177/2020 and Law 1/2024. Older candidates 271/1955,107/1962,37/1972,170/1981 and 23/1992 remain metadata-only. Original Law 150 Gazette No. 90 publication date remains conflicted: 15 Oct 1950 versus 15 Oct 1951.",
       "next_action": "Collect and compare original Gazette pages for each amendment and complete the article-by-article current consolidation. Confirm original issue No. 90 date and effective date."
+    },
+    {
+      "evidence_id": "XREF-PENAL-58-1937-AMENDMENTS-2020-2023",
+      "document_id": "EG-PENAL-CODE-58-1937",
+      "practice_areas": [
+        "criminal"
+      ],
+      "url": "https://dspace.id.com.eg/items/cdd29154-1f0e-4f12-86f6-0184791301c7",
+      "publisher": "Official Gazette/Dspace amendment PDFs; Eastlaws and Manshurat full Arabic text",
+      "source_class": "official amendment PDFs and full secondary statutory texts",
+      "observed_title_ar": "قانون العقوبات رقم 58 لسنة 1937 — تعديلات 2020 إلى 2023",
+      "source_state": "full_text_sources_accessible_selected_amendments_persisted",
+      "collection_permission": "unknown",
+      "legal_status": "current_candidate_pending_full_consolidation_and_lawyer_review",
+      "finding": "Confirmed Laws 189/2020 (Art.309 bis b bullying), 10/2021 (Arts242 bis and 242 bis a FGM), 71/2021 (Art186 bis trial-session recording), 141/2021 (Arts306 bis a/b harassment), 150/2021 (Art80 a state secrets) and 185/2023 (Arts306 bis a, 306 bis b second para, 309 bis b third para). No post-185/2023 amendment found in this pass through 19 Nov 2026.",
+      "next_action": "Extract complete amendment texts, collate against original Gazette, and perform an exhaustive 2024–2026 Official Gazette search before asserting Law 185/2023 is the last amendment."
     }
   ],
   "guardrails": [
