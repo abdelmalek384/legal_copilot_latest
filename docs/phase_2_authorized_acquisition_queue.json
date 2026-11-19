@@ -507,13 +507,16 @@
       "queue_item_id": "ACQ-016",
       "document_ids": [
         "EG-WEAPONS-394-1954",
-        "EG-WEAPONS-AMEND-163-2022"
+        "EG-WEAPONS-AMEND-163-2022",
+        "EG-WEAPONS-AMEND-5-2019",
+        "EG-WEAPONS-EXEC-1300-2019",
+        "EG-WEAPONS-EXEC-1-1954"
       ],
       "practice_areas": [
         "criminal"
       ],
       "priority": "P1",
-      "action": "Obtain authorized Gazette text for Law 394/1954, Law 163/2022, Law 5/2019 and all other amendments; collect the full Interior Minister implementing decrees and current weapon schedules.",
+      "action": "Acquire original Gazette scans for Laws 5/2019 and 163/2022; visually collate Art.1 bis, 25 bis, 26 bis, 26 bis (a)/(b), and Arts.4,8,10,12,26,30; obtain full original Ministerial Decision 1/1954 and all later implementing decisions; verify the 2015 schedule decision and all changes through 19 Nov 2026.",
       "candidate_sources": [
         "https://manshurat.org/node/7414",
         "https://register.cc.gov.eg/publications/30/download",
@@ -522,22 +525,33 @@
       ],
       "source_type": "official Gazette/regulator text and secondary full-text candidates; exact source terms must be reviewed per item",
       "permission_state": "unknown_or_pending",
-      "acquisition_state": "full_text_accessible_not_archived_or_selected_excerpts_only",
+      "acquisition_state": "full_consolidated_law_and_official_2022_amendment_pdf_plus_full_2019_amendment_and_2019_decision_text_accessible",
       "legal_review_state": "not_started",
-      "blocker": "Court portal terms and restricted database policy must be respected; secondary text is accessible but original official text and reuse permissions are not secured.",
+      "blocker": "Law 163/2022 original Gazette PDF and full 2019 decision transcription accessible; Law 5/2019 Gazette scan not archived. 1954 Ministerial Decision page is image-only; number 1/1954 is only confirmed through Decision 1300/2019 preamble. Complete schedule instrument and post-2022 amendment status still require primary verification.",
       "required_evidence": [
         "Law 163/2022 original Gazette PDF and SHA-256",
         "full 53-article statute and all amendments",
         "Decree 770/1954 and subsequent amendments",
         "Egyptian weapons-lawyer review"
-      ]
+      ],
+      "last_researched_on": "2026-11-19"
     },
     {
       "queue_item_id": "ACQ-017",
       "document_ids": [
         "EG-CHILD-12-1996",
         "EG-CHILD-AMEND-126-2008",
-        "EG-CHILD-EXEC-2075-2010"
+        "EG-CHILD-EXEC-2075-2010",
+        "EG-CHILD-AMEND-6-2015",
+        "EG-CHILD-AMEND-7-2015",
+        "EG-CHILD-AMEND-161-2021",
+        "EG-CHILD-AMEND-182-2023",
+        "EG-CHILD-AMEND-186-2023",
+        "EG-SOCIAL-SECURITY-12-2025",
+        "EG-CHILD-EXEC-AMEND-178-2016",
+        "EG-CHILD-EXEC-AMEND-1783-2018",
+        "EG-CHILD-EXEC-AMEND-1143-2020",
+        "EG-CHILD-EXEC-AMEND-208-2014"
       ],
       "practice_areas": [
         "criminal",
@@ -545,7 +559,7 @@
         "child_protection"
       ],
       "priority": "P1",
-      "action": "Segment and extract all 194 articles of Decree 2075/2010 and collate Law 12/1996 / Law 126/2008 against original Gazette sources; preserve Decree 3452/1997 as repealed historical text; check post-2020 child-protection amendments.",
+      "action": "Build the complete current Child Law text through Law 12/2025 (including Art.49 repeal), segment all 194 articles of Decree 2075/2010, and collate Decrees 208/2014, 178/2016, 1783/2018 and 1143/2020 against original Gazette scans. Search for later implementing rules for Law 186/2023 Art.72 bis.",
       "candidate_sources": [
         "https://lawyeregypt.net/قانون-الطفل-المصرى-رقم-12-لسنة-1996",
         "https://www.laweg.net/framePlain.aspx?ItemID=8964&NID=7658&Type=6&action=ViewActivePages",
@@ -553,9 +567,9 @@
       ],
       "source_type": "official Gazette/regulator text and secondary full-text candidates; exact source terms must be reviewed per item",
       "permission_state": "unknown_or_pending",
-      "acquisition_state": "full_law_and_full_194_article_executive_regulation_accessible_secondary_with_gazette_issue_and_repeal_clause",
+      "acquisition_state": "current_child_law_amendments_identified_through_2025_and_full_2075_regulation_consolidation_accessible_through_2020",
       "legal_review_state": "not_started",
-      "blocker": "Full text is readable from secondary sources; full Gazette PDF for Decree 2075/2010 and post-2020 amendments still need visual inspection. Permission for local archive and reuse unresolved.",
+      "blocker": "Law 182/2023 Gazette-derived 16-page PDF acquired; Law 186/2023 Amiri Press text and institutional Arabic PDF accessible; Law 12/2025 full text identifies repeal of Art.49. Full original Gazette images for 186/2023 and 12/2025 and four executive regulation amendment Gazettes remain to inspect. Post-2020 rules implementing Art.72 bis are not yet located.",
       "required_evidence": [
         "complete 194-article regulation extraction",
         "Gazette publication and repeal clause for 3452/1997",
