@@ -117,36 +117,50 @@
       "queue_item_id": "ACQ-004",
       "document_ids": [
         "EG-CRIMINAL-PROCEDURE-150-1950",
-        "EG-CRIMINAL-PROCEDURE-174-2025",
-        "EG-CRIMINAL-PROCEDURE-160-2026"
+        "EG-CPL-AMEND-95-2003",
+        "EG-CPL-AMEND-145-2006",
+        "EG-CPL-AMEND-74-2007",
+        "EG-CPL-AMEND-71-2009",
+        "EG-CPL-AMEND-83-2013",
+        "EG-CPL-AMEND-49-2014",
+        "EG-CPL-AMEND-138-2014",
+        "EG-CPL-AMEND-16-2015",
+        "EG-TERROR-LISTS-AMEND-11-2017",
+        "EG-CPL-AMEND-177-2020",
+        "EG-CPL-AMEND-1-2024",
+        "EG-CPL-AMEND-271-1955",
+        "EG-CPL-AMEND-107-1962",
+        "EG-CPL-AMEND-37-1972",
+        "EG-CPL-AMEND-170-1981",
+        "EG-CPL-AMEND-23-1992"
       ],
       "practice_areas": [
         "criminal"
       ],
       "priority": "P0",
-      "action": "Acquire authorized copies of Law 150/1950 and Gazette issues for Laws 174/2025 and 160/2026; full Arabic Law 174 text is now accessible from Ministry of Justice Gazette PDF and secondary HTML, and Law 150 secondary full text is located. Map repeal/commencement/transitional effect before assigning operative status.",
+      "action": "Acquire/normalize the full Arabic current Law 150/1950 text and amendment chain, including Laws 95/2003, 145/2006, 74/2007, 71/2009, 83/2013, 49/2014, 138/2014, 16/2015, 11/2017, 177/2020 and 1/2024. Preserve older amendment candidates 271/1955, 107/1962, 37/1972, 170/1981 and 23/1992 until original Gazette text is found. Keep Law 150 operative until 1 Oct 2027 absent further amendment.",
       "candidate_sources": [
-        "https://moj.gov.eg/backend/api/documents/download/20F3150C-29F1-487E-A0F0-FCCE10CB207B",
-        "https://temp.manshurat.org/content/qnwn-ljrt-ljnyy-rqm-174-lsn-2025-0",
-        "https://dspace.id.com.eg/handle/123456789/4666",
-        "https://dspace.id.com.eg/handle/123456789/8851",
-        "https://alhasswalawfirm.com/law-library/law-150-1950"
+        "https://manshurat.org/node/14419/relations",
+        "https://manshurat.org/node/14577",
+        "https://manshurat.org/node/14420",
+        "https://manshurat.org/node/14421",
+        "https://manshurat.org/node/67605",
+        "https://manshurat.org/sites/default/files/qnwn_rqm_1_lsn_2024.pdf",
+        "https://fra.gov.eg/wp-content/uploads/2017/04/alamiria_2017_11.pdf",
+        "https://www.laweg.net/framePlain.aspx?ItemID=18326&NID=18336&Type=6&action=ViewActivePages"
       ],
       "source_type": "official text and Gazette metadata candidates",
       "permission_state": "unknown_or_pending",
-      "acquisition_state": "law174_official_pdf_text_accessible_law150_secondary_text_accessible",
+      "acquisition_state": "amendment_chain_partially_mapped_full_text_sources_for_major_amendments",
       "legal_review_state": "urgent_review_required",
-      "blocker": "Original source terms and authorized storage/indexing/commercial display method remain unknown; Law 150 complete amendment consolidation and counsel review pending.",
+      "blocker": "Manshurat consolidated page incorrectly labels Law 189/2020 as the last CPL amendment; actual CPL amendment is Law 177/2020 (Art. 113 bis), while Law 189/2020 amends Penal Code Art. 309 bis (b). Original Gazette PDFs for older amendments and date discrepancy in original Law 150 publication remain to be checked.",
       "required_evidence": [
-        "complete Gazette issues and page ranges",
-        "original-file SHA-256",
-        "commencement clauses",
-        "provision-level relationship map",
-        "Egyptian criminal-procedure lawyer sign-off",
-        "full 552-article extraction and Gazette collation",
-        "Law 174 Art. 2 source discrepancy log: official PDF says الجنايات, secondary HTML says الجنح",
-        "Law 174 Arts 514–520 extradition text",
-        "Law 150 complete amendment chain including Law 1/2024"
+        "Law 177/2020 full text and Art. 113 bis; separate Law 189/2020 Penal Code record",
+        "Law 1/2024 Gazette text and all amended/new felony-appeal articles",
+        "full original texts and article maps for 95/2003,145/2006,74/2007,71/2009,83/2013,49/2014,138/2014,16/2015,11/2017",
+        "older candidate amendment texts 271/1955,107/1962,37/1972,170/1981,23/1992",
+        "original Waqa'i' No. 90 issue date: 15 Oct 1950 versus 15 Oct 1951",
+        "Egyptian lawyer review of current/transition status and all amendment effects"
       ]
     },
     {
