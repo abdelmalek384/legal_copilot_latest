@@ -450,9 +450,10 @@ This addendum records additional instruments discovered after the initial 20 Nov
 
 - Arabic title: قانون رقم 185 لسنة 2023 بتعديل بعض أحكام قانون العقوبات.
 - Gazette: العدد 48 مكرر (ب), 4 December 2023; effective 5 December 2023.
+- **Official Gazette PDF (SIS digital repository):** https://mediadr.sis.gov.eg/bitstream/handle/123456789/49252/OG48_20231204_0120.pdf?isAllowed=y&sequence=2 — full issue 48 bis (b), pages 6–7, opened and text layer inspected.
 - Full Arabic text from the Middle East Library for Economic Services transcription: https://mksegypt.org/ar/laws/17352
 - Official Amiri Press DSpace item and Arabic PDF attachment record: https://dspace.id.com.eg/items/838e5069-1850-4c04-b774-0a9d33ac1c0b/full
-- The official-repository record identifies the exact affected provisions: Penal Code Arts 306 bis (a), 306 bis (b), second paragraph, and 309 bis (b), third paragraph.
+- The official Gazette PDF body identifies the exact affected provisions as Penal Code Arts 306 bis (a), 306 bis (b), second paragraph, and 309 bis (b), third paragraph. **OCR/printing discrepancy:** the Gazette PDF text layer at the amendment lead-in appears to render the third reference as “309” without “مكرراً ب”, while the actual replacement heading/body on the next page expressly reads “مادة (309 مكرراً ب / فقرة ثالثة)”. Preserve this discrepancy and prefer the operative body/page image over a normalized metadata label.
 - This confirms the 4 December 2023 “last amendment” date shown in the Penal Code secondary consolidation, but it does not establish that no subsequent amendment exists in the Penal Code as of this research date.
 
 #### Verbatim Arabic — Law 185/2023
