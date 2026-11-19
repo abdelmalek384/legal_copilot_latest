@@ -1931,3 +1931,129 @@ This pass did not establish a new primary Gazette text or complete the 163/2022 
 - **Egyptian lawyer-verified records:** 0.
 - **Outstanding source/use permission:** unknown for local storage, bulk retrieval, commercial indexing and public display; no permission inferred from public readability.
 - **Next acquisition focus:** complete schedule OCR and Law 182 amendments; exact prison regulation amendment PDFs; AML Decree 457 Gazette-date conflict; then return to the remaining criminal procedure and evidence instruments.
+
+
+---
+
+## S. Acquisition pass — child-law current amendments and weapons legislation
+**Research date:** 19 November 2026. This pass corrects the earlier “post-2020 amendments not yet identified” status for Child Law 12/1996 and expands the weapons text set.
+
+### S1. Child Law 12/1996 — current amendment chain extended through 2025
+
+**Newly acquired complete amendment texts / authoritative text paths:**
+- Law 182/2023, 16-page Gazette-derived PDF, Official Gazette No. 46 follow-up, 16 Nov 2023: https://alhasswalawfirm.com/uploads/files/law-182-2023-1789187066518-373514976.pdf
+- Law 182/2023 full text and Gazette metadata: https://alhasswalawfirm.com/law-library/law-182-2023
+- Law 186/2023, Amiri Press official text: https://alamiria.com/Sec/TashTxt?id=MVvKfrT%2F9dg%3D
+- Law 186/2023 Arabic PDF in MELES institutional repository: https://dspace.id.com.eg/items/83e5a2b8-181a-4eb7-8ae1-d405cb9b5ca5
+- Law 12/2025 (Social Security Law) full text, Official Gazette No.14 follow-up, 3 Apr 2025: https://alhasswalawfirm.com/law-library/law-12-2025
+- Law 6/2015: https://ahmedazimelgamel.blogspot.com/2015/06/6-2015-12-1996.html
+- Law 7/2015: https://ahmedazimelgamel.blogspot.com/2015/06/7-2015-12-1996.html
+- Law 161/2021: https://ahmedazimelgamel.blogspot.com/2025/12/161-2021-66-1973-12-1996.html
+- Current full Child Law reproduction states it is amended through 3 Apr 2025: https://lawyeregypt.net/قانون-الطفل-المصرى-رقم-12-لسنة-1996/
+
+**Statutory amendment chain now identified for Child Law 12/1996:** Law 126/2008; Decree-Law 6/2015; Decree-Law 7/2015; Law 161/2021; Law 182/2023; Law 186/2023; and Law 12/2025 (Social Security Law, which repeals Child Law Art. 49). Law 182/2023 and Law 186/2023 were not present in the previous acquisition list; Law 12/2025 is the newest identified amendment affecting the current Child Law text.
+
+**Law 182/2023 — exact legal effect:**
+- Official Gazette No.46 follow-up, 16 November 2023; Article 6 makes it effective the day after publication (17 November 2023).
+- Article 4 expressly repeals paragraphs 5 and 6 of Child Law Art. 97 and the whole of Chapter IX, as well as Presidential Decree 54/1988 on the National Council for Childhood and Motherhood.
+- It transfers the former Council and Child and Motherhood Care Fund into the newly reorganized Council/Fund framework.
+- The 16-page PDF reproduces the Gazette text. The first pages show the repeal clause and commencement; preserve the full statute as a distinct instrument, not merely as an annotation to Law 12/1996.
+
+**Exact Arabic excerpt — Law 182/2023, Article 4:**
+
+> تلغى الفقرتان الخامسة والسادسة من المادة (97) والباب التاسع من قانون الطفل المشار إليه، كما يلغى قرار رئيس الجمهورية رقم 54 لسنة 1988 المشار إليه، كما يلغى كل حكم يخالف أحكام هذا القانون والقانون المرافق.
+
+**Law 186/2023 — exact legal effect:**
+- Official Gazette No.49 bis, 10 December 2023; effective 11 December 2023.
+- Article 1 replaces Child Law Arts. 23, 24, 113 and 114.
+- Article 2 adds Art. 72 bis.
+- Amended Arts. 113–114 address failure to supervise a child and failure to perform duties by a person entrusted with a child, including a judicial option to order rehabilitation/training programmes in the circumstances specified in Art. 113.
+- New Art. 72 bis extends the rights under Arts. 71 and 72 to a female worker who is fostering or has custody of a child under six months, subject to executive-regulation rules.
+
+**Exact Arabic excerpt — Law 186/2023, Art. 72 bis:**
+
+> للعاملة فى الدولة والقطاع العام وقطاع الأعمال العام والقطاع الخاص، بحسب الأحوال، حالة كفالتها أو حضانتها طفلاً عمره أقل من ستة أشهر ذات الحقوق الواردة بالمادتين (71، 72) من هذا القانون، وتحدد اللائحة التنفيذية القواعد المنظمة لذلك.
+
+The Amiri Press search result reproduces the full Arabic text of the replacement provisions. The MELES institutional repository hosts an Arabic PDF, but its abstract only summarizes Arts. 23, 24, 113, 114 and new Art. 72 bis. The actual PDF should be archived and visually checked.
+
+**Law 12/2025 — cross-statute repeal correcting the current consolidation:**
+- Social Security Law 12/2025, Official Gazette No.14 follow-up, 3 April 2025.
+- Article 4 expressly repeals Child Law Art. 49 as well as repealing Social Security Law 137/2010.
+- Article 6 states commencement on the day following the lapse of three months from publication; calculated commencement is 4 July 2025. Confirm against the original Gazette before treating this date as production-grade.
+- This is not a standalone Child Law amendment title; inventory it as Social Security Law 12/2025 with an explicit cross-reference to Child Law Art. 49.
+
+**Exact Arabic excerpt — Law 12/2025, Article 4:**
+
+> يُلغى قانون الضمان الاجتماعي الصادر بالقانون رقم 137 لسنة 2010، والمادة 49 من قانون الطفل الصادر بالقانون رقم 12 لسنة 1996، كما يُلغى كل حكم يخالف أحكام هذا القانون والقانون المرافق له.
+
+**Earlier amendments recovered from current text annotations:**
+- Law 6/2015, Official Gazette No.3 bis (z), 21 Jan 2015; effective 22 Jan 2015; replaces “سنتين” in Child Law Art. 46(1) with “ثلاثة أشهر”.
+- Law 7/2015, Official Gazette No.6 follow-up (a), 5 Feb 2015; effective 6 Feb 2015; replaces the 21-year age references in Arts. 110 and 141 with 18 years.
+- Law 161/2021, Official Gazette No.51 bis (b), 27 Dec 2021; effective 28 Dec 2021; replaces Child Law Art. 50(1) with the rule that, except where the Traffic Law provides otherwise, a child may not be granted a motor-vehicle driving licence.
+
+### S2. Child Law Executive Regulations — PM Decree 2075/2010 amendment chain
+
+The full 194-article text at LawHub is annotated through PM Decree 1143/2020. New distinct amending-instrument records added for:
+- PM Decree 208/2014 — amendment of Arts. 85 and 87 (exact Gazette issue/date and full original text still require inspection; current consolidated text shows the amendments).
+- PM Decree 178/2016 — Egyptian Proceedings No.19 follow-up (a), 24 Jan 2016; changes the minimum age wording in Arts. 85 and 87 to children older than three months; replaces Arts. 89, 90, 99 and 102; adds Arts. 91 bis and 94 bis; repeals listed provisions.
+- PM Decree 1783/2018 — Official Gazette No.37 bis (a), 18 Sep 2018; amends foster-care provisions including Arts. 89, 90, 93, 99 and 101; adds Arts. 89 bis, 90 bis, 96 bis and 98 bis.
+- PM Decree 1143/2020 — Official Gazette No.23 bis, 9 Jun 2020; effective the day after publication (10 Jun 2020); amends terminology and Arts. 85, 89, 89 bis, 90, 92 and 99; adds Arts. 90 bis (a), 99 bis and 112 bis.
+
+**Full Arabic text sources:**
+- Decree 2075/2010 consolidated through 2020: https://lawhub.info/eg/?p=12124
+- Decree 178/2016 full transcription: https://ahmedazimelgamel.blogspot.com/2025/12/178-2016-2075-2010.html
+- Decree 1783/2018 full transcription: https://ahmedazimelgamel.blogspot.com/2018/09/1783-2018-2075-2010.html
+- Decree 1143/2020 full transcription: https://ahmedazimelgamel.blogspot.com/2025/12/1143-2020-2075-2010.html
+- Decree 208/2014 current-text relation: https://lawhub.info/eg/?p=12124
+- Decree 1783/2018 metadata/text lead: https://egyptianlaws.com/?p=146344
+- Decree 178/2016 metadata/text lead: https://egyptianlaws.com/?p=145145
+
+**Remaining child regulation gaps:** acquire original Gazette images for Decrees 208/2014, 178/2016, 1783/2018 and 1143/2020; confirm exact 208/2014 issue metadata; search for any post-2020 regulation or ministerial rules implementing Law 186/2023 Art. 72 bis; complete an article-by-article current consolidation through Law 12/2025. Do not use repealed Art. 49 in current law outputs.
+
+### S3. Weapons and Ammunition Law — Law 394/1954, Law 5/2019, Law 163/2022 and ministerial decisions
+
+**Full/current text and Gazette sources:**
+- Law 394/1954 current 53-article Arabic text, current-text reproduction states updated through November 2022: https://mizanai.vercel.app/laws
+- Full Arabic consolidated statute with amendments: https://lawhub.info/eg/?p=11748
+- Law 163/2022, official Gazette No.44 follow-up (a), 3 Nov 2022 PDF hosted by Al-Ahram Gate: https://gate.ahram.org.eg/media/News/2022/11/6/2022-638033396014725011-472.pdf
+- Law 5/2019 full text: https://www.eglf.org/كتاب-دوري-2-لسنة-2019-بشأن-قانون-الاسلحة/
+- Interior Minister Decision 1300/2019 full Arabic text: https://www.mohamah.net/law/نصوص-ومواد-القرار-رقم-1300-لسنة-2019-باجراءات/
+- Laweg image-only record for the 1954 ministerial decision “قرار بشأن الأسلحة وذخائرها”: https://www.laweg.net/Default.aspx?ItemID=75&Type=14&action=ViewActivePages&قرار-بشأن-الأسلحة-وذخائرها=
+- SCC judgment 1/47, dated 9 Sep 2026, Gazette No.37 follow-up, 10 Sep 2026: https://www.eastlaws.com/legislation-full-text/ar/egypt/constitutional-court/10-09-2026/no-1?id=5669806&type=1
+
+**Law 5/2019:**
+- Official Gazette No.6 follow-up, 7 February 2019; effective 8 February 2019.
+- Adds Art. 1 bis, authorizing licensing of sound, air-pressure and gas-pressure pistols/rifles and their ammunition listed in Table 5 under Interior Minister conditions.
+- Replaces Arts. 25 bis and 28(1) and provides associated licensing/criminal penalty changes.
+- Full Arabic text located in secondary legal reproductions; Gazette visual check still required.
+
+**Law 163/2022:**
+- Official Gazette No.44 follow-up (a), 3 November 2022; Article 4 makes it effective 4 November 2022.
+- Replaces provisions in Arts. 4, 8, 10, 12, 26 and 30; adds Art. 4(6), Art. 26 bis, Art. 26 bis (a), and Art. 26 bis (b).
+- Art. 26 bis criminalizes unlicensed importation of firearms, parts, ammunition and explosives, with life imprisonment and a fine up to EGP 500,000; where the specified security/terrorist purpose is established, the text prescribes death.
+- Art. 26 bis (a) penalizes breach of Art. 11 bis restrictions on carrying/displaying weapons in specified places.
+- Art. 26 bis (b) creates a network-site/account and publication/broadcast offence involving images or videos of covered weapons when used to incite violence by showing force, threatening or intimidating others. The penalty escalates where the weapons are unlicensed and further escalates where committed in the course of unlicensed weapons/ammunition trade.
+- Art. 30(1) also provides for confiscation and blocking the site used in the Art. 26 bis (b) offence, without prejudice to bona fide third-party rights.
+
+**Exact Arabic excerpt — Law 163/2022, Art. 26 bis (b):**
+
+> مع عدم الإخلال بأي عقوبة أشد، يعاقب بالحبس مدة لا تقل عن ستة أشهر ولا تجاوز سنتين، وبغرامة لا تجاوز عشرة آلاف جنيه أو بإحدى هاتين العقوبتين كل من أنشأ أو أدار أو استخدم موقعاً أو حساباً خاصاً على شبكة معلوماتية يعرض صوراً أو مقاطع فيديو للأسلحة المنصوص عليها في هذا القانون، وكل من نشر أو بث بإحدى طرق العلانية شيئاً مما ذكر سلفاً للتحريض على العنف باستعراض القوة أو التلويح بها أو تخويف الغير.
+
+**Interior Minister Decision 1300/2019:**
+- Published in Egyptian Proceedings No.158 follow-up (b), 14 July 2019.
+- Full secondary Arabic text acquired. It regulates permits for sound pistols/rifles and air/gas-pressure weapons and ammunition, including eligibility, applications and supporting medical/criminal-record documentation.
+- The decision's preamble cites Interior Minister Decision 1/1954 “بشأن الأسلحة وذخائرها”, which is catalogued by Laweg only as an image-based page. Number 1/1954 is a secondary cross-reference; do not treat it as visually verified from the Laweg record yet.
+- Separate 1954 decision record created as metadata-only, image-only source. The search did not verify any supposed “770/1954” number; do not use that number.
+
+**Current judicial status lead:** SCC case 1/47 (constitutional), dated 9 September 2026 and published in Official Gazette No.37 follow-up on 10 September 2026, held that the Court lacked jurisdiction over the challenge to Law 394/1954 Art. 35 bis and found inadmissible the challenge to Art. 9 of Interior Minister Decision 1300/2019 insofar as it barred silencers/sound suppressors and telescopes for sound/air/gas-pressure pistols and rifles. This is not a merits ruling declaring either provision unconstitutional. Preserve the distinction.
+
+**Remaining weapons gaps:** acquire the full original Gazette issue for Law 5/2019 and visually collate it; verify every change made by Law 163/2022 against the official scan; acquire the full original text and amendments of the 1954 ministerial decision (number 1/1954 per the 2019 decision's preamble); identify all subsequent ministerial decisions implementing Arts. 1 bis, 11 bis, 12, 15 and 37; inspect the 2015 schedule instrument cited by some consolidations; and check for any post-November-2022 amendments through 19 November 2026.
+
+### S4. Progress update after second acquisition pass — 19 November 2026
+
+- **Estimated assigned criminal-law domain completion: 63%** (qualitative research-coverage estimate; not an article-count, local corpus-ingestion or lawyer-verification metric). Prior pass: 61%.
+- **Inventory:** 168 prior records retained; 13 distinct amendment/implementing instrument records added; no duplicate base-law records created. Total inventory: 181 records.
+- **Newly upgraded areas:** Child Law 12/1996 amendment chain now identified through 2025, including the Art.49 repeal; Child Law Executive Regulations 2075/2010 amendment chain extended through 1143/2020; Law 394/1954 and Law 163/2022 official Gazette PDF text acquired; Law 5/2019 and Decision 1300/2019 full Arabic reproductions located.
+- **Original Gazette/regulator PDFs locally archived and SHA-256 verified:** 0.
+- **Egyptian lawyer-verified records:** 0.
+- **Next acquisition focus:** finish child-law implementing instruments and current consolidation; obtain the original 1954 weapons decision and full Law 5/2019 Gazette scan; then continue to cybercrime, AML/narcotics and criminal-procedure acquisition gaps.
