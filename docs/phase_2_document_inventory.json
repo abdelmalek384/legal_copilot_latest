@@ -3549,7 +3549,7 @@
       "instrument_number": 12,
       "instrument_year": 1996,
       "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
-      "source_status": "full_text_accessible_not_archived",
+      "source_status": "full_166_article_current_consolidation_accessible_through_Law12_2025",
       "collection_permission": "unknown",
       "legal_status": "unknown",
       "review_status": "discovery_only",
@@ -3557,7 +3557,7 @@
         "Law 126/2008",
         "PM Decree 2075/2010"
       ],
-      "notes": "Current Arabic text must be read through Law 12/2025, not stopped at Law 186/2023. Identified amendments: 126/2008, 6/2015, 7/2015, 161/2021, 182/2023 (repeals Art.97(5),(6) and Chapter IX), 186/2023 (replaces Arts.23,24,113,114 and adds 72 bis), and Law 12/2025 Social Security (repeals Art.49). Full secondary current text and official/secondary amendment texts are listed in the 19 Nov 2026 dossier.",
+      "notes": "Full current 166-article Arabic text updated through 3 Apr 2025, including Laws126/2008,64/2010,6/2015,7/2015,161/2021,182/2023,186/2023 and12/2025. Law12/2025 Social Guarantee Law Art.4 repeals Child Law Art.49; effective 4 Jul 2025. Law186/2023 replaces Arts.23,24,113,114 and adds Art.72 bis. Law182/2023 reorganizes NCCM/Child and Motherhood Care Fund, repeals Art.97 paras5-6 and former Part Nine.",
       "source_urls": [
         {
           "url": "https://lawyeregypt.net/قانون-الطفل-المصرى-رقم-12-لسنة-1996",
@@ -3583,6 +3583,16 @@
           "url": "https://www.yahyadhshan.com/2026/07/12-1996.html",
           "source_role": "Current Child Law reproduction states latest amendment 3 Apr 2025; secondary",
           "status": "full_text_accessible_not_archived"
+        },
+        {
+          "url": "https://alhasswalawfirm.com/law-library/child-law-12-1996",
+          "source_role": "Full 166-article current text updated 3 Apr 2025",
+          "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://fahmqanon.com/laws/12-1996",
+          "source_role": "Current text and amendment chronology through Law12/2025",
+          "status": "full_text_accessible_secondary"
         }
       ]
     },
@@ -3624,7 +3634,7 @@
       "instrument_number": 2075,
       "instrument_year": 2010,
       "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
-      "source_status": "full_text_accessible_not_archived",
+      "source_status": "full_current_text_accessible_with_amendments_through_1143_2020",
       "collection_permission": "unknown",
       "legal_status": "unknown",
       "review_status": "discovery_only",
@@ -3633,7 +3643,7 @@
         "Law 126/2008",
         "PM Decree 3452/1997 historical"
       ],
-      "notes": "Full 194-article Arabic text accessible at LawHub, consolidated through PM Decree 1143/2020. Amendment chain now includes PM Decrees 208/2014, 178/2016, 1783/2018 and 1143/2020. The 2016, 2018 and 2020 instruments have full secondary transcriptions; 208/2014 is confirmed in the consolidated text but exact Gazette metadata/original text remains to inspect. Check for post-2020 implementing rules for Law 186/2023 Art.72 bis.",
+      "notes": "Full readable text of PM Decree2075/2010 available in LawHub and Ahmed Azim; includes amendments by Decrees208/2014,178/2016,1783/2018 and1143/2020. Decree1143/2020 Gazette No.23 repeated,9 Jun2020, updates foster-family terminology and Arts.85,86,89,90,92,99 and adds Arts.90 bis(a),99 bis,112 bis. Child Law Art.49 repeal by Law12/2025 does not repeal this implementing regulation.",
       "source_urls": [
         {
           "url": "https://alhasswalawfirm.com/law-library/decree-2075-2010",
@@ -3674,6 +3684,11 @@
           "url": "https://egyptianlaws.com/?p=145145",
           "source_role": "PM Decree 178/2016 metadata/full text lead",
           "status": "full_text_accessible_not_archived"
+        },
+        {
+          "url": "https://ahmedazimelgamel.blogspot.com/2026/02/2075-2010-12-1996.html",
+          "source_role": "Full Arabic text updated through Decree1143/2020",
+          "status": "full_text_accessible_secondary"
         }
       ]
     },
@@ -6111,6 +6126,11 @@
           "url": "https://alhasswalawfirm.com/uploads/files/law-182-2023-1789187066518-373514976.pdf",
           "source_role": "Arabic full-text or consolidated-text source",
           "status": "full_gazette_derived_pdf_accessible_not_archived"
+        },
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=...",
+          "source_role": "Official Amiri Press full text link to be resolved; Gazette No.46 follow-up, 16 Nov 2023",
+          "status": "official_metadata_text_link_pending"
         }
       ]
     },
@@ -6139,6 +6159,16 @@
           "url": "https://alamiria.com/Sec/TashTxt?id=MVvKfrT%2F9dg%3D",
           "source_role": "Arabic full-text or consolidated-text source",
           "status": "official_text_and_institutional_pdf_accessible_not_archived"
+        },
+        {
+          "url": "https://alhasswalawfirm.com/law-library/child-law-12-1996",
+          "source_role": "Full current consolidated text with Law186/2023 Art.72 bis and replacement provisions",
+          "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://www.aldhshan.com/2026/02/186-2023-12-1996.html",
+          "source_role": "Full Arabic text reproduction of Law186/2023",
+          "status": "full_text_accessible_secondary"
         }
       ]
     },
@@ -8012,6 +8042,34 @@
           "status": "full_text_accessible_secondary"
         }
       ]
+    },
+    {
+      "document_id": "EG-CHILD-CROSS-AMEND-12-2025",
+      "official_title_ar": "قانون رقم 12 لسنة 2025 بإصدار قانون الضمان الاجتماعي",
+      "practice_areas": [
+        "criminal",
+        "child",
+        "social_protection"
+      ],
+      "document_type": "cross_statute_repeal",
+      "instrument_number": 12,
+      "instrument_year": 2025,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": "full_49_article_text_accessible_secondary_official_Gazette_metadata",
+      "collection_permission": "unknown",
+      "legal_status": "current_effective_4_jul_2025_repeals_Child_Law_Art49",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-CHILD-12-1996"
+      ],
+      "notes": "Official Gazette No.14 follow-up, 3 Apr 2025. Issuance Art.4 repeals Social Guarantee Law137/2010 and Child Law12/1996 Art.49. Art.6 makes the law effective on the day following three months from publication, 4 Jul 2025. Full 49-article Arabic text is available and host states copied from Court of Cassation portal.",
+      "source_urls": [
+        {
+          "url": "https://alhasswalawfirm.com/law-library/law-12-2025",
+          "source_role": "Full 49-article Arabic text and Gazette metadata",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
     }
   ],
   "next_actions": [
@@ -8984,18 +9042,18 @@
     "agent": "Research Agent 2",
     "domain": "Egyptian criminal law and procedure",
     "as_of": "2026-11-19",
-    "estimated_domain_completion_percent": 84,
+    "estimated_domain_completion_percent": 85,
     "previous_session_estimate_percent": 58,
     "whole_project_contribution_percent": null,
     "whole_project_contribution_reason": "Cannot calculate without master-index denominator and domain weights.",
     "lawyer_verified_percent": 0,
     "official_full_text_files_archived_and_hash_verified_in_this_session": 0,
     "complete_arabic_texts_accessible_at_source_estimate": ">20 laws/codes and implementing/treaty instruments",
-    "new_inventory_records_added_this_session": 158,
-    "inventory_total_documents": 239,
+    "new_inventory_records_added_this_session": 159,
+    "inventory_total_documents": 240,
     "acquisition_queue_items": 24,
     "crosscheck_register_count": 38,
-    "notes": "Qualitative research-coverage estimate, not article-count or lawyer-QA metric. This pass improved source and text coverage for AML, child justice, prisons and narcotics schedules. Two new amendment-instrument records were added without duplicating base laws. Publicly readable source text is not represented as locally archived/hash-verified; permission for storage/indexing/commercial use remains unknown. Cross-check register expanded to 22 entries for AML Decree 457/2020 date conflict, Prisons Law 14/2022 publication metadata conflict, and Decision 242/2026 schedule OCR verification. Second acquisition pass identified Child Law amendments through 2025 (including Art.49 repeal), four Child Law Executive Regulation amendments through 2020, and weapons Law 5/2019, Law 163/2022, Decision 1300/2019. 13 distinct records added, bringing total to 181. Research estimate increased to 63%; still 0 local original files archived/hash verified and 0 lawyer-verified records. Cross-check register now includes the Child Law Art.49 repeal in Social Security Law 12/2025, the 2075/2010 executive-regulation amendment chain, and SCC judgment 1/47 (2026) on weapons provisions. Progress metadata reconciled to the 58% baseline recorded before the current acquisition work; 96 net-new inventory records are now counted cumulatively (81 prior tranche + 15 added in the two current passes). Third acquisition pass upgraded cybercrime Law 175/2018 and Decree 1699/2020, Personal Data Law 151/2020 and Decree 816/2025, Human Trafficking Law 64/2010 and Decree 3028/2010, and Illegal Migration Law 82/2016 and Decree 983/2018. No duplicate base-law records added. Key source conflicts logged. Cross-check register includes Cybercrime Executive Regulation 1699/2020 vs ESCC 635/2020 heading conflict and Human Trafficking Executive Regulation 3028/2010 vs one secondary 2038/2010 miscitation. Fourth acquisition pass acquired full official 546-article Law 174/2025 PDF and Law 160/2026 official Amiri Press text/Gazette metadata; extracted all Book Five Arts.508–521. Current commencement fixed at 1 Oct 2027; CPL150/1950 and Law140/2014 remain operative until then. Official/secondary Art.2 transition wording discrepancy recorded. Fifth acquisition pass acquired the full 178-page consolidated Arabic Law150/1950 text through Law1/2024, including Art.113 bis added by Law177/2020 and the felony appeal amendments. Full text is secondary-hosted but attributes source to Court of Cassation Legislation Portal; original portal endpoint returned 502. Footnotes reveal additional older amendment instruments requiring individual Gazette acquisition. Sixth acquisition pass added 10 distinct CPL historical amendment records and upgraded Law107/1962 to full Arabic text. Acquired multiple full amendment texts and expanded the historical chronology; original Gazette scans remain unarchived. Seventh acquisition pass upgraded Penal Code Law58/1937 to a full 540-article, 179-page Arabic consolidation updated through 4 Dec 2023 and added separate amendment records for Laws5/2018,164/2019 and6/2020. Later amendment records cross-linked to the full code and Gazette metadata. Eighth acquisition pass added 13 distinct prison amendment and geographic-centre decision records; full text sources acquired for Laws49/2014,106/2015,6/2018 and seven recent centre-creation decisions. Foundational Decisions113/1962 and1654/1971 remain metadata-only; Decision1265/2022 full text still pending. Ninth acquisition pass added Law15/2018 and geographic-centre decisions1265/2025,176/2026 and1739/2026; latest located instrument was published 14 Nov 2026 and effective 15 Nov 2026. Narcotics schedule pass visually transcribed Decision242/2026 replacement Table1 item12 and Table3 entries57–61 from the official EDA PDF. Full 34-page Decision44/2026 schedule transcription remains open. Tenth acquisition pass added 13 AML/CFT regulatory records, including full FIU Decision1/2024, full September2026 DNFBP CDD procedures, and FRA 2026 circulars/decision chain. Financial-institution CDD September2026 full text and several regulator PDFs remain inaccessible or unretrieved. Eleventh acquisition pass added eight terrorism/asset-freezing records: Law94/2015, its amendments11/2017,15/2020,149/2021; Law8/2015 and amendments2/2020,14/2020; and Law22/2018 asset-management law. Full current Arabic texts and amendment relations linked. Official-source upgrade: FRA-hosted original Law94/2015 PDF and Law22/2018 PDF acquired; FRA updated Law8/2015 link identified but document endpoint denied. Original files still not locally archived/hashed. Twelfth acquisition pass upgraded AML Executive Regulations Decree951/2003 to the official FRA-hosted 1,109-line consolidated Arabic text through Decree3331/2023 and added five separate amendment records (1463/2006,2367/2008,1569/2016,2910/2019,457/2020). Article12bis statistics, Art.21bis beneficial-owner register, Art.28bis(b) parallel financial investigations and Art.50bis(a) immediate freezing extracted. Gazette date/number conflicts retained. Thirteenth acquisition pass upgraded Drug Law182/1960 to a full 56-article consolidated Arabic text and added six historical amendment records (206/1960,40/1966,16/1973,61/1977,45/1984,122/1989). Linked Law19/2020 full text. EDA index lists Law19/2020 as latest statute amendment; LawyerEgypt's 22 Apr2024 'latest amendment' label is flagged as likely source revision date pending identification of a 2024 instrument. Weapons-law pass upgraded Law394/1954 to a full 53-article consolidated Arabic text through Law163/2022, cross-linked Law5/2019 and Law163/2022 primary/secondary texts, and added Gazette issue metadata.",
+    "notes": "Qualitative research-coverage estimate, not article-count or lawyer-QA metric. This pass improved source and text coverage for AML, child justice, prisons and narcotics schedules. Two new amendment-instrument records were added without duplicating base laws. Publicly readable source text is not represented as locally archived/hash-verified; permission for storage/indexing/commercial use remains unknown. Cross-check register expanded to 22 entries for AML Decree 457/2020 date conflict, Prisons Law 14/2022 publication metadata conflict, and Decision 242/2026 schedule OCR verification. Second acquisition pass identified Child Law amendments through 2025 (including Art.49 repeal), four Child Law Executive Regulation amendments through 2020, and weapons Law 5/2019, Law 163/2022, Decision 1300/2019. 13 distinct records added, bringing total to 181. Research estimate increased to 63%; still 0 local original files archived/hash verified and 0 lawyer-verified records. Cross-check register now includes the Child Law Art.49 repeal in Social Security Law 12/2025, the 2075/2010 executive-regulation amendment chain, and SCC judgment 1/47 (2026) on weapons provisions. Progress metadata reconciled to the 58% baseline recorded before the current acquisition work; 96 net-new inventory records are now counted cumulatively (81 prior tranche + 15 added in the two current passes). Third acquisition pass upgraded cybercrime Law 175/2018 and Decree 1699/2020, Personal Data Law 151/2020 and Decree 816/2025, Human Trafficking Law 64/2010 and Decree 3028/2010, and Illegal Migration Law 82/2016 and Decree 983/2018. No duplicate base-law records added. Key source conflicts logged. Cross-check register includes Cybercrime Executive Regulation 1699/2020 vs ESCC 635/2020 heading conflict and Human Trafficking Executive Regulation 3028/2010 vs one secondary 2038/2010 miscitation. Fourth acquisition pass acquired full official 546-article Law 174/2025 PDF and Law 160/2026 official Amiri Press text/Gazette metadata; extracted all Book Five Arts.508–521. Current commencement fixed at 1 Oct 2027; CPL150/1950 and Law140/2014 remain operative until then. Official/secondary Art.2 transition wording discrepancy recorded. Fifth acquisition pass acquired the full 178-page consolidated Arabic Law150/1950 text through Law1/2024, including Art.113 bis added by Law177/2020 and the felony appeal amendments. Full text is secondary-hosted but attributes source to Court of Cassation Legislation Portal; original portal endpoint returned 502. Footnotes reveal additional older amendment instruments requiring individual Gazette acquisition. Sixth acquisition pass added 10 distinct CPL historical amendment records and upgraded Law107/1962 to full Arabic text. Acquired multiple full amendment texts and expanded the historical chronology; original Gazette scans remain unarchived. Seventh acquisition pass upgraded Penal Code Law58/1937 to a full 540-article, 179-page Arabic consolidation updated through 4 Dec 2023 and added separate amendment records for Laws5/2018,164/2019 and6/2020. Later amendment records cross-linked to the full code and Gazette metadata. Eighth acquisition pass added 13 distinct prison amendment and geographic-centre decision records; full text sources acquired for Laws49/2014,106/2015,6/2018 and seven recent centre-creation decisions. Foundational Decisions113/1962 and1654/1971 remain metadata-only; Decision1265/2022 full text still pending. Ninth acquisition pass added Law15/2018 and geographic-centre decisions1265/2025,176/2026 and1739/2026; latest located instrument was published 14 Nov 2026 and effective 15 Nov 2026. Narcotics schedule pass visually transcribed Decision242/2026 replacement Table1 item12 and Table3 entries57–61 from the official EDA PDF. Full 34-page Decision44/2026 schedule transcription remains open. Tenth acquisition pass added 13 AML/CFT regulatory records, including full FIU Decision1/2024, full September2026 DNFBP CDD procedures, and FRA 2026 circulars/decision chain. Financial-institution CDD September2026 full text and several regulator PDFs remain inaccessible or unretrieved. Eleventh acquisition pass added eight terrorism/asset-freezing records: Law94/2015, its amendments11/2017,15/2020,149/2021; Law8/2015 and amendments2/2020,14/2020; and Law22/2018 asset-management law. Full current Arabic texts and amendment relations linked. Official-source upgrade: FRA-hosted original Law94/2015 PDF and Law22/2018 PDF acquired; FRA updated Law8/2015 link identified but document endpoint denied. Original files still not locally archived/hashed. Twelfth acquisition pass upgraded AML Executive Regulations Decree951/2003 to the official FRA-hosted 1,109-line consolidated Arabic text through Decree3331/2023 and added five separate amendment records (1463/2006,2367/2008,1569/2016,2910/2019,457/2020). Article12bis statistics, Art.21bis beneficial-owner register, Art.28bis(b) parallel financial investigations and Art.50bis(a) immediate freezing extracted. Gazette date/number conflicts retained. Thirteenth acquisition pass upgraded Drug Law182/1960 to a full 56-article consolidated Arabic text and added six historical amendment records (206/1960,40/1966,16/1973,61/1977,45/1984,122/1989). Linked Law19/2020 full text. EDA index lists Law19/2020 as latest statute amendment; LawyerEgypt's 22 Apr2024 'latest amendment' label is flagged as likely source revision date pending identification of a 2024 instrument. Weapons-law pass upgraded Law394/1954 to a full 53-article consolidated Arabic text through Law163/2022, cross-linked Law5/2019 and Law163/2022 primary/secondary texts, and added Gazette issue metadata. Child-law pass upgraded Law12/1996 to full 166-article current text through Law12/2025; recorded cross-statute repeal of Art.49 effective 4 Jul2025; linked Law186/2023 Art.72bis and full Child Executive Regulations 2075/2010 through Decree1143/2020.",
     "last_acquisition_pass_increment_percent": 1,
     "last_acquisition_pass_date": "2026-11-19"
   }
