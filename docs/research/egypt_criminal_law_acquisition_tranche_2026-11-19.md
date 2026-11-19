@@ -233,9 +233,9 @@ The official PDF's final pages expose provisions on international criminal coope
 ### Law 80/2002
 
 - Arabic title: قانون مكافحة غسل الأموال رقم 80 لسنة 2002; Official Gazette issue 20 bis, 22 May 2002.
-- Official FRA AML page lists a consolidated copy updated in 2022: https://fra.gov.eg/en/تشريعات-خاصة-بمكافحة-غسل-الاموال/
-- Official CBE consolidated PDF link: https://www.cbe.org.eg/-/media/project/cbe/page-content/rich-text/aml-and-cft/laws/aml-law-80-of-2002_ar.pdf (not downloaded).
-- FRA PDF link was identified but automated fetch returned Request Rejected; do not bypass.
+- Official FRA consolidated Arabic PDF was successfully opened: https://fra.gov.eg/wp-content/uploads/2024/05/قانون.pdf (650 extracted lines). It includes Law 80/2002 with amendment annotations for Laws 78/2003, 181/2008, 36/2014, 17/2020 and 154/2022. It is an official regulator-hosted consolidated text, but still needs comparison to the individual Gazette amendment texts and any post-2022 changes.
+- FRA official page lists the same consolidated version updated in 2022: https://fra.gov.eg/regulations/قانون-رقم-80-لسنة-2002-بإصدار-قانون-مكافحة-غسل-الأموال/
+- CBE consolidated PDF remains an additional government-hosted source: https://www.cbe.org.eg/-/media/project/cbe/page-content/rich-text/aml-and-cft/laws/aml-law-80-of-2002_ar.pdf
 - Official Ministry of Finance record lists Law 78/2003 and PM Decision 951/2003: https://mof.gov.eg/ar/legislation/legislation-5fe86a207bfc600007cbfa89
 - Amendment leads: Laws 78/2003, 181/2008, 36/2014, 17/2020 and 154/2022. Gazette citation for 154/2022 still missing. The 2022 consolidated copy is not proof of no later amendments.
 
@@ -244,9 +244,28 @@ The official PDF's final pages expose provisions on international criminal coope
 - Arabic title: قرار رئيس مجلس الوزراء رقم 951 لسنة 2003 بإصدار اللائحة التنفيذية لقانون مكافحة غسل الأموال.
 - Ministry of Finance official record says current/in force and links a PDF: https://mof.gov.eg/ar/legislation/legislation-5fe86a147bfc600007cbfa10
 - FRA official page says updated in 2023 and lists prior amendments: PM Decisions 1463/2006, 2367/2008, 1569/2016, 2910/2019 and 3331/2023: https://fra.gov.eg/regulations/اللائحة-التنفيذية-لقانون-مكافحة-غسل-الأموال/
-- FRA updated PDF automated fetch rejected; Ministry PDF resolves to a 23-page PDF but text was not extracted.
-- Related instruments identified: PM Decision 3331/2023; Attorney General Decision 2722/2019 establishing a specialised AML/CTF prosecution; Attorney General Circular 6/2019; FRA Board Decisions 121/2019, 23/2020, 139/2023 and 140/2023. Full texts and Gazette details remain outstanding.
-- Status: official government listing/PDF links located, not full Arabic text obtained.
+- Official FRA Gazette PDF of Decision 3331/2023 was successfully opened: https://fra.gov.eg/wp-content/uploads/2023/09/3331.pdf (722 extracted lines). Gazette issue 35 تابع (أ), 31 August 2023; effective 1 September 2023.
+- Decision 3331/2023 replaces numerous provisions of the 951/2003 regulation (including Art 1 and multiple risk, due diligence, reporting, beneficial ownership, international cooperation and targeted-financial-sanctions provisions), adds new provisions, and materially updates the regulatory framework.
+- Verbatim Arabic — Decision 3331/2023, Article 1 opening and operative replacement list:
+
+قرار رئيس مجلس الوزراء رقم ٣٣٣١ لسنة ٢٠٢٣  
+بتعديل بعض أحكام اللائحة التنفيذية لقانون مكافحة غسل الأموال الصادرة بقرار رئيس مجلس الوزراء رقم ٩٥١ لسنة ٢٠٠٣
+
+(المادة الأولى)  
+يستبدل بنصوص المواد ١ و٣ و٤ و١٢ مكرراً و١٥ و٢١ مكرراً و٢٢ مكرراً (أ) و٢٢ مكرراً (ب) و٢٢ مكرراً (ج) و٢٢ مكرراً (د) و٢٧ و٢٩ و٣١ و٣٢ و٣٤ و٣٦ و٤٣ مكرراً (أ) و٤٢ مكرراً (ب) و٤٧ و٤٨ و٤٩ و٥٠ و٥٢ و٥٣ من اللائحة التنفيذية لقانون مكافحة غسل الأموال المشار إليها، النصوص الآتية:
+
+مادة (١):  
+في تطبيق أحكام هذه اللائحة والقرارات الصادرة تنفيذاً لقانون مكافحة غسل الأموال المشار إليه، تكون لكل من الكلمات والعبارات التالية المعنى المبين قرين كل منها ما لم ينص على خلاف ذلك القانون:
+
+**الأموال أو الأصول:**  
+جميع الأصول المالية والافتراضية والموارد الاقتصادية ومنها النفط والموارد الطبيعية الأخرى والممتلكات والعملات الوطنية أو الأجنبية، والأوراق المالية أو التجارية أياً كان نوعها أو قيمتها، سواء كانت مادية أو معنوية، منقولة أو ثابتة، أياً كانت وسيلة الحصول عليها، والوثائق والأدوات القانونية، والمستندات والصكوك والمحررات المثبتة لكل ما تقدم أياً كان شكلها بما في ذلك الشكل الرقمي أو الإلكتروني، وجميع الحقوق المتعلقة بأي منها بما في ذلك الائتمان المصرفي والشيكات السياحية والشيكات المصرفية والاعتمادات المستندية، وأية عوائد أو أرباح أو مصادر دخل أخرى مترتبة على أو متولدة من هذه الأموال أو الأصول، أو أية أصول أخرى يحتمل استخدامها للحصول على تمويل أو منتجات أو خدمات، وكذا تشمل الأصول الافتراضية والتي لها قيمة رقمية يمكن تداولها أو نقلها أو تحويلها رقمياً ويمكن استخدامها كأداة للدفع أو الاستثمار.
+
+(المادة الثالثة)  
+ينشر هذا القرار في الجريدة الرسمية، ويعمل به من اليوم التالي لتاريخ نشره.
+
+- Official Ministry of Finance PDF for Decision 951/2003 resolves to a 23-page file but the text layer is not extracted in this pass. FRA's page says the 951/2003 regulation is updated in 2023 and lists prior amendments 1463/2006, 2367/2008, 1569/2016, 2910/2019 and 3331/2023.
+- Related instruments identified: Attorney General Decision 2722/2019 establishing a specialised AML/CTF prosecution; Attorney General Circular 6/2019; FRA Board Decisions 121/2019, 23/2020, 139/2023 and 140/2023. Full texts and Gazette details remain outstanding.
+- Status: Law 80/2002 consolidated Arabic text and Decision 3331/2023 amending Gazette text obtained; full base Executive Regulation 951/2003 still not extracted.
 
 ## 10. Drug control Law 182/1960 and 2026 schedule substitution
 
@@ -298,8 +317,11 @@ The official PDF's final pages expose provisions on international criminal coope
 (أ) مراكز إصلاح وتأهيل عمومية.
 
 - Base law PDF record: https://manshurat.org/node/12357 (301.52 KB; metadata and download link visible, not downloaded).
-- Interior Minister Decision 79/1961, اللائحة الداخلية للسجون: https://manshurat.org/node/12358. Metadata reports issuance 16 December 1961, publication/effect 28 December 1961. This is a ministerial decision, not a law.
-- Search results identify Law 106/2015 as an earlier amendment to Art 13. Full amendment chain, internal regulations, classification, visits, discipline, health and rehabilitation rules remain to be collected.
+- Interior Minister Decision 79/1961, اللائحة الداخلية للسجون: https://manshurat.org/node/12358. This is a ministerial decision, not a law. A secondary legal-library page provides a 101-article Arabic text and states it is based on the Official Gazette and current through 21 June 2022: https://alhasswalawfirm.com/law-library/decree-79-1961
+- Its amendment notes identify decisions 1318/1970, 1582/1973, 2270/1973, 765/1974, 1413/1976, 989/1977, 350/1978, 578/1978, 487/1979, 9876/1999, 668/2002, 16630/2003, 1058/2008, 39/2010, 2262/2010, 335/2011, 1675/2011, 1342/2013, 3320/2014, 345/2017, Law 14/2022 and Decision 1265/2022. The secondary source cites Gazette dates for many but not all; individually collect each Gazette instrument.
+- The 2022 implementing update is Decision 1265/2022, Gazette publication 21 June 2022, replacing several provisions (including Arts 11, 15 bis, 59, 73(2), 75, 82 bis and 85/3) of the internal regulation. This is a key update absent from the initial instrument list.
+- Base Law 396/1956 amendment Law 14/2022: Gazette issue 11 bis (B), 20 March 2022; effective 21 March 2022. It replaces Arts 1, 2, 31 and 81; Article 2 changes terminology throughout and Article 3 repeals Arts 3, 4, 34 and Art 90(3), with other textual deletions. Full text lead: https://www.eastlaws.com/legislation-full-text/ar/egypt/law/20-03-2022/no-14?id=2049925&sub=10392046&type=1
+- Full amendment chain, internal regulations, classification, visits, discipline, health and rehabilitation rules remain to be collated against Gazette sources.
 
 ## 13. Extradition and international criminal cooperation
 
