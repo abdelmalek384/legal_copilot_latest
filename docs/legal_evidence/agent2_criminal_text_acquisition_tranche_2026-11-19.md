@@ -2677,3 +2677,57 @@ This is an AML/KYC-related supervisory chain; it is not a substitute for the cri
 - **Important unresolved items:** actual financial-institution CDD procedures September 2026; Circular 10/2026 PDF; CBE 28 Sep 2026 circular; full updated Decision 161/2024; original Gazette scans.
 - **Original Gazette PDFs locally archived and SHA-256 verified:** 0.
 - **Egyptian lawyer/AML-specialist verified records:** 0.
+
+
+---
+
+## AC. Terrorism offences, terrorist-list procedure and asset-freezing law — full Arabic texts
+**Research date:** 19 November 2026.
+
+### AC1. Anti-Terrorism Law 94/2015 — current text and amendments
+
+**Full Arabic text sources:**
+- Current consolidated text: https://lawhub.info/eg/?p=11550
+- Full text reproduction: https://ns1.manshurat.org/node/14679
+- Original Official Gazette copy: https://www.cyrilla.org/ar/document/4555
+
+The current text incorporates Law 11/2017, Law 15/2020 and Law 149/2021. Law 15/2020 is a substantive amendment to the definition of funds/assets, terrorist financing and Art.13 criminalization; Law 149/2021 amends Art.4 concerning emergency measures. Law 11/2017 is a linked amendment to both Law 94/2015 and Law 8/2015.
+
+**Law 15/2020 — exact amendment effect:**
+- Replaces Art.1(f) to include virtual assets, proceeds and economic resources, and the rights and instruments relating to them.
+- Replaces Art.3's definition of terrorist financing to cover direct and indirect provision/collection/transfer of funds, assets, weapons, training places, safe havens, documents and other support, including travel for terrorist purposes.
+- Replaces Art.13 to criminalize financing travel by persons outside their state of residence/nationality for committing, planning, preparing, participating in or assisting terrorist acts, including activity by legal persons.
+
+**Law 149/2021:** replaces Art.4 emergency-measure provisions and the time/approval framework for presidential security measures. The full current text includes the 2021 wording; obtain the original Gazette image for exact transitional wording.
+
+### AC2. Terrorist Entities and Terrorists Lists Law 8/2015 — current text and amendments
+
+**Full current Arabic text:**
+https://fra.gov.eg/تشريعات-مكافحة-غسل-الأموال-وتمويل-الإرهاب/
+https://lawhub.info/eg/?p=11552
+
+Amendment chain identified:
+- Law 11/2017 — linked amendments to Law 8/2015 and Law 94/2015.
+- Law 2/2020 — amends provisions of Law 8/2015.
+- Law 14/2020 — replaces definitions of “terrorist entity” and “funds” in Art.1 and replaces Art.7.
+
+**Exact amendment effect — Law 14/2020:** the Laweg Gazette index states that it replaces the definitions of “الكيان الإرهابى” and “الأموال” in Art.1 and replaces Art.7 of Law 8/2015. Full text and Gazette entry:
+https://www.laweg.net/Default.aspx?FIID=257&action=LegsCates
+
+Law 8/2015 is central to terrorist-entity designation, listing and associated asset restrictions. The full current text should be versioned separately from Law 94/2015; do not merge their offences, procedures or legal effects.
+
+### AC3. Asset preservation, inventory, management and disposition — Law 22/2018
+
+**Full 17-article Arabic text acquired, consolidated through 2026:**
+https://alhasswalawfirm.com/law-library/law-22-2018
+
+Official Gazette No.16 bis, 21 April 2018. The statute regulates the Committee for the Preservation, Inventory, Management and Disposition of Funds of Terrorist Groups and Terrorists, implementation of civil-court judgments, inventory of assets, administration and disposition, and procedural safeguards. It is a distinct asset-management statute and must be cross-linked to Laws 8/2015, 94/2015 and AML Law 80/2002.
+
+### AC4. Progress update after terrorism-law acquisition pass — 19 November 2026
+
+- **Estimated assigned criminal-law domain completion: 81%** (qualitative research-coverage estimate; not article-count, local corpus-ingestion or lawyer-verification metric). Prior pass: 79%.
+- **New distinct records added:** eight — Law 94/2015; Laws 11/2017, 15/2020 and 149/2021; Law 8/2015; Laws 2/2020 and 14/2020; Law 22/2018.
+- **Full texts acquired:** current consolidated Law 94/2015; current consolidated Law 8/2015; full 17-article Law 22/2018; full amendment texts or official Gazette-index text for Laws 11/2017,15/2020,2/2020,14/2020 and149/2021.
+- **Outstanding:** original Gazette scans for the amendment chain; exact full original Law 149/2021 text and Law 2/2020; article-by-article cross-check against the official Court of Cassation portal; no executive regulations for these laws identified in this pass.
+- **Original Gazette PDFs locally archived and SHA-256 verified:** 0.
+- **Egyptian lawyer/AML-specialist verified records:** 0.
