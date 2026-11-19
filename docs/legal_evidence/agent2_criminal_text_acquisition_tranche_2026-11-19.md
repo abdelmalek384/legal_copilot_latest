@@ -1670,3 +1670,99 @@ The full 33-article Arabic text is accessible from the SIS-hosted Gazette PDF an
 > ينشر هذا القانون في الجريدة الرسمية، ويعمل به اعتباراً من اليوم التالي لتاريخ نشره.
 
 This amendment commenced 17 January 2024. Law 174/2025 issuance Article 3 separately protects the transitional position of cases not decided by felony courts from the date Law 1/2024 came into force. Keep both transition rules in the version model.
+
+---
+
+## O. Penal Code 58/1937 — additional 2021 amendments and post-2023 check
+
+### O1. Current amendment chronology update
+
+The Penal Code amendment chain now includes these later instruments, in addition to the earlier annotations and Law 185/2023:
+
+| Instrument | Subject / articles | Source state |
+|---|---|---|
+| Law 189/2020 | Adds Art. 309 bis (b), bullying | Full Gazette PDF text accessible |
+| Law 10/2021 | Replaces Arts 242 bis and 242 bis (a), female genital mutilation | Full Arabic Gazette text accessible |
+| Law 71/2021 | Adds Art. 186 bis, unauthorized recording/publication of criminal trial sessions | Full Arabic Gazette text accessible |
+| Law 141/2021 | Replaces Arts 306 bis (a) and 306 bis (b), sexual harassment | Full official Gazette PDF hosted by DSpace / text accessible |
+| Law 150/2021 | Replaces Art. 80(a), state secrets / national defence information | Full Arabic Gazette PDF hosted by DSpace |
+| Law 185/2023 | Replaces Art. 306 bis (a), Art. 306 bis (b) second paragraph and Art. 309 bis (b) third paragraph | Full Arabic text and Gazette PDF record accessible |
+
+**No Penal Code amending statute after Law 185/2023 was identified in this pass through 19 November 2026.** This is a negative search result, not proof that no such instrument exists. Recheck the Official Gazette before treating 185/2023 as the definitive latest amendment.
+
+### O2. Law 10/2021 — female genital mutilation
+
+- Gazette No. 16 bis (w), 28 April 2021; effective 29 April 2021.
+- Full Gazette text: https://www.elmodawanaeg.com/wp-content/uploads/2021/08/10.pdf
+- Eastlaws: https://www.eastlaws.com/legislation-full-text/ar/egypt/law/28-04-2021/no-10?id=2016749&sub=10227115&type=1
+
+**Article 1 (opening):**
+
+> يستبدل بنصي المادتين (٢٤٢ مكرراً) و(٢٤٢ مكرراً/أ) من قانون العقوبات، النصان الآتيان:
+
+**New Article 242 bis (opening):**
+
+> يعاقب بالسجن مدة لا تقل عن خمس سنوات كل من أجرى ختاناً لأنثى بإزالة أي جزء من أعضائها التناسلية الخارجية بشكل جزئي أو تام أو ألحق إصابات بتلك الأعضاء، فإذا نشأ عن ذلك الفعل عاهة مستديمة تكون العقوبة السجن المشدد مدة لا تقل عن سبع سنوات، أما إذا أفضى الفعل إلى الموت تكون العقوبة السجن المشدد لمدة لا تقل عن عشر سنوات.
+
+The amendment increases penalties and provides aggravated consequences where the perpetrator is a physician or nursing professional, including professional-practice disqualification and closure consequences.
+
+### O3. Law 71/2021 — recording criminal trial sessions
+
+- Gazette No. 23 bis, 13 June 2021; effective 14 June 2021.
+- Full Arabic text: https://lawyeregypt.net/قانون-تسجيل-أو-تصوير-جلسة-محاكمة-71-لسنة-2021/
+- PDF: https://kanonmisr.com/ar/wp-content/uploads/2021/06/القانون-71-لسنة-2021-بتعديل-بعض-أحكام-قانون-العقوبات-1.pdf
+
+**Article 1 — new Article 186 bis:**
+
+> مع عدم الإخلال بأي عقوبة أشد يعاقب بغرامة لا تقل عن مائة ألف جنيه ولا تزيد على ثلاثمائة ألف جنيه كل من صور أو سجل كلمات أو مقاطع أو بث أو نشر أو عرض بأي طريق من طرق العلانية لوقائع جلسة محاكمة مخصصة لنظر دعوى جنائية دون تصريح من رئيس المحكمة المختصة بعد أخذ رأى النيابة العامة.  
+> ويُحكم فضلاً عن ذلك بمصادرة الأجهزة أو غيرها مما يكون قد استخدم في الجريمة، أو ما نتج عنها، أو محو محتواها، أو إعدامه، بحسب الأحوال.  
+> وتُضاعف الغرامة في حالة العـود.
+
+This is directly relevant to criminal evidence and court-recording policy. It must be cross-linked with Law 174/2025's future rules on evidence, media and trial publicity.
+
+### O4. Law 141/2021 — sexual harassment
+
+- Gazette No. 32 bis (a), 15 August 2021; effective 16 August 2021.
+- Full Arabic text: https://lawyeregypt.net/قانون-رقم-141-لسنة-2021-بتعديل-قانون-العقوبات/
+- Official Gazette PDF record: https://dspace.id.com.eg/items/cdd29154-1f0e-4f12-86f6-0184791301c7
+- Gazette text copy: https://serviceapi.egyptianlaws.com/Images/Index?T=1&folder=3&path=2021-8-15-2021-141.pdf
+
+**Article 1** replaces Penal Code Arts 306 bis (a) and 306 bis (b), expressly including electronic means of communication and other technical means in the sexual-harassment offence.
+
+**New Article 306 bis (a) (opening):**
+
+> يعاقب بالحبس مدة لا تقل عن سنتين، ولا تجاوز أربع سنوات، وبغرامة لا تقل عن مائة ألف جنيه ولا تزيد عن مائتي ألف جنيه، أو بإحدى هاتين العقوبتين كل من تعرض للغير في مكان عام أو خاص، أو مطروق بإتيان أمور أو إيحاءات أو تلميحات جنسية، أو إيحائية سواء بالإشارة أو بالقول أو بالفعل بأية وسيلة بما في ذلك وسائل الاتصالات السلكية أو اللاسلكية أو الإلكترونية، أو أية وسيلة تقنية أخرى.
+
+### O5. Law 150/2021 — state secrets
+
+- Gazette No. 46 bis, 20 November 2021; effective 21 November 2021.
+- Official DSpace record with Arabic PDF: https://dspace.id.com.eg/items/a6361f52-7211-435a-af37-a1da5f1b7408
+- Eastlaws full article metadata: https://www.eastlaws.com/legislation-full-text/ar/egypt/law/20-11-2021/no-150?id=2038708&sub=10327246&type=1
+- Manshurat PDF record: https://manshurat.org/node/74640
+
+**Article 1** replaces Penal Code Art. 80(a). The new provision concerns unlawful disclosure, publication or transmission of information relating to state secrets and national defence, including by information technology means, with aggravated consequences according to the circumstances.
+
+The full Article 80(a) replacement text must be transcribed from the Gazette PDF and cross-referenced with the Cybercrime Law and the current National Security classification regime.
+
+### O6. Law 189/2020 — bullying, corrected classification
+
+- Gazette No. 36 bis (b), 5 September 2020; effective 6 September 2020.
+- Full Gazette PDF text: https://www.elwatannews.com/data/iframe/pdf/1095256981600164645.pdf
+- Manshurat: https://manshurat.org/node/67632
+
+Adds Article 309 bis (b), criminalizing bullying based on use of force/control, exploitation of vulnerability or a characteristic such as sex, race, religion, physical description, health/mental condition or social status, for intimidation, ridicule, degradation or social exclusion. This is a Penal Code amendment, not a Criminal Procedure amendment.
+
+### O7. Law 185/2023 — latest amendment identified
+
+- Gazette No. 48 bis (b), 4 December 2023; effective 5 December 2023.
+- Full Arabic text: https://mksegypt.org/public/ar/laws/17352
+- Eastlaws: https://www.eastlaws.com/legislation-full-text/ar/egypt/law/04-12-2023/no-185?id=2102522&type=1
+- PDF record: https://manshurat.org/content/tdyl-bd-hkm-qnwn-lqwbt-blqnwn-rqm-185-lsn-2023
+
+Replaces:
+- Art. 306 bis (a);
+- Art. 306 bis (b), second paragraph;
+- Art. 309 bis (b), third paragraph.
+
+It increases penalties and aggravating circumstances for sexual harassment and specified exploitation/abuse contexts. This is the latest amendment identified in the present search, but a 2024–2026 Gazette sweep remains required.
+
