@@ -482,7 +482,7 @@
         "commercial"
       ],
       "priority": "P0",
-      "action": "Acquire original Gazette scans for terrorism-law amendment chain; normalize all articles of Laws94/2015,8/2015 and22/2018; verify Law149/2021 and Law2/2020 standalone text; link targeted financial sanctions Decision1/2024 and AML/FRA 2026 circulars to the terrorist-list and asset-freezing provisions.",
+      "action": "Acquire original Gazette scans for terrorism-law amendment chain; normalize all articles of Laws94/2015,8/2015 and22/2018; verify Law149/2021 and Law2/2020 standalone text; link targeted financial sanctions Decision1/2024 and AML/FRA 2026 circulars to the terrorist-list and asset-freezing provisions. Preserve official FRA PDFs for Law94/2015 and Law22/2018 as primary source links; obtain a formal copy of updated Law8/2015 from FRA; visually collate Law22/2018 against the 7-page official PDF.",
       "candidate_sources": [
         "https://fra.gov.eg/wp-content/uploads/2024/05/قانون-مكافحة-غسل-الأموال-1.pdf",
         "https://fra.gov.eg/regulations/اللائحة-التنفيذية-لقانون-مكافحة-غسل-ا/",
@@ -493,7 +493,7 @@
       "permission_state": "unknown_or_pending",
       "acquisition_state": "AML_CFT_2026_updates_and_terrorism_asset_freezing_laws_full_texts_acquired",
       "legal_review_state": "not_started",
-      "blocker": "Full current Law94/2015 and Law8/2015 consolidations and Law22/2018 full 17-article text acquired. Standalone original Gazette scans for Laws11/2017,15/2020,149/2021,2/2020,14/2020 remain pending; Law149/2021 and Law2/2020 standalone text not fully acquired.",
+      "blocker": "Full current Law94/2015 and Law8/2015 consolidations and Law22/2018 full 17-article text acquired. Standalone original Gazette scans for Laws11/2017,15/2020,149/2021,2/2020,14/2020 remain pending; Law149/2021 and Law2/2020 standalone text not fully acquired. Official FRA 24-page original Law94/2015 PDF and 7-page Law22/2018 PDF now accessible; Law8/2015 updated FRA endpoint remains Request Rejected. The readable current text for Law22 is still the secondary 17-article transcription.",
       "required_evidence": [
         "FRA consolidated text SHA-256 and page range",
         "all five statutory amendments and full Art-by-Art map",
