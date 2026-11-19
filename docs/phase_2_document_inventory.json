@@ -457,7 +457,7 @@
         "replacement code instrument(s)",
         "commencement postponement/transition instrument(s)"
       ],
-      "notes": "Full 178-page Arabic consolidated text accessible at Alhasswa; host states copied verbatim from Court of Cassation Legislation Portal and updated through 16 Jan 2024. PDF runs through numbered Art.560 and includes article-level amendment footnotes, Law177/2020 Art.113 bis and Law1/2024 amendments including Arts.419 bis–419 bis 9 and terminology substitutions. Court of Cassation portal endpoint returned 502; the PDF is secondary-hosted, not an original Gazette scan. Remains operative through 30 Sep 2027 under Law160/2026 commencement of Law174/2025.",
+      "notes": "Full 178-page Arabic consolidated text accessible at Alhasswa; host states copied verbatim from Court of Cassation Legislation Portal and updated through 16 Jan 2024. PDF runs through numbered Art.560 and includes article-level amendment footnotes, Law177/2020 Art.113 bis and Law1/2024 amendments including Arts.419 bis–419 bis 9 and terminology substitutions. Court of Cassation portal endpoint returned 502; the PDF is secondary-hosted, not an original Gazette scan. Remains operative through 30 Sep 2027 under Law160/2026 commencement of Law174/2025. Consolidated footnotes and a new amendment pass identify and acquire older instruments: Laws 426/1954, 627/1955, 121/1956, 113/1957, 63/1975, 174/1998, 340/1952, 252/1952 and Decree-Law 353/1952. Law107/1962 full text acquired. Distinguish Law252/1952 from separate Law252/1953; Law43/1958 remains unacquired.",
       "source_urls": [
         {
           "url": "https://www.alamiria.com/Sec/TashTxt?id=YbxnlD3e4Qc%3D",
@@ -5622,19 +5622,24 @@
       "instrument_number": 107,
       "instrument_year": 1962,
       "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
-      "source_status": "metadata_only",
+      "source_status": "full_text_accessible_secondary",
       "collection_permission": "unknown",
       "legal_status": "historical_amendment_current_effect_in_consolidation",
       "review_status": "discovery_only",
       "required_related_records": [
         "Law 150/1950"
       ],
-      "notes": "Amends CPL Art. 151 and related provisions; metadata only.",
+      "notes": "Full Arabic text acquired. Official Gazette No.136, 17 Jun 1962. Replaces 'مستشار الإحالة' with 'غرفة الاتهام' in listed provisions and makes further procedural amendments. The full consolidated code and most sources identify Law107/1962; one older transcription misprints 107/1963.",
       "source_urls": [
         {
           "url": "https://manshurat.org/node/14419/relations",
           "source_role": "Law 150/1950 amendment relations / consolidated annotations",
           "status": "metadata_only"
+        },
+        {
+          "url": "https://www.aldhshan.com/2025/12/107-1962.html",
+          "source_role": "Full Arabic text reproduction",
+          "status": "full_text_accessible_secondary"
         }
       ]
     },
@@ -6276,6 +6281,276 @@
           "url": "https://www.laweg.net/Default.aspx?ItemID=75&Type=14&action=ViewActivePages&قرار-بشأن-الأسلحة-وذخائرها=",
           "source_role": "Laweg image-only source record",
           "status": "metadata_image_only"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CPL-AMEND-426-1954",
+      "official_title_ar": "قانون رقم 426 لسنة 1954 بتعديل بعض أحكام قانون الإجراءات الجنائية",
+      "practice_areas": [
+        "criminal",
+        "criminal_procedure"
+      ],
+      "document_type": "historical_statutory_amendment",
+      "instrument_number": 426,
+      "instrument_year": 1954,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": "full_text_accessible_Laweg",
+      "collection_permission": "unknown",
+      "legal_status": "historical_amendment_current_effect_embedded_in_consolidated_Law150_text",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-CRIMINAL-PROCEDURE-150-1950"
+      ],
+      "notes": "Official Proceedings No.63 bis, 5 Aug 1954. Replaces CPL Arts.9(2),10(1),39; full Arabic text acquired.",
+      "source_urls": [
+        {
+          "url": "https://www.laweg.net/framePlain.aspx?ItemID=20871&NID=22302&Type=6&action=ViewActivePages",
+          "source_role": "Full Arabic text or amendment-footnote source",
+          "status": "full_text_accessible_Laweg"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CPL-AMEND-627-1955",
+      "official_title_ar": "قانون رقم 627 لسنة 1955 بتعديل نص المادة 381 من قانون الإجراءات الجنائية",
+      "practice_areas": [
+        "criminal",
+        "criminal_procedure"
+      ],
+      "document_type": "historical_statutory_amendment",
+      "instrument_number": 627,
+      "instrument_year": 1955,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": "full_text_operating_excerpt_accessible",
+      "collection_permission": "unknown",
+      "legal_status": "historical_amendment_current_effect_embedded_in_consolidated_Law150_text",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-CRIMINAL-PROCEDURE-150-1950"
+      ],
+      "notes": "Replaces Art.381 with felony-court application of misdemeanour/misdemeanour-procedure rules unless otherwise provided. Laweg Gazette year index and later consolidated text provide exact operative wording.",
+      "source_urls": [
+        {
+          "url": "https://www.laweg.net/Default.aspx?Year=1955&action=LegsYears",
+          "source_role": "Full Arabic text or amendment-footnote source",
+          "status": "full_text_operating_excerpt_accessible"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CPL-AMEND-121-1956",
+      "official_title_ar": "قانون رقم 121 لسنة 1956 بتعديل بعض أحكام قانون الإجراءات الجنائية",
+      "practice_areas": [
+        "criminal",
+        "criminal_procedure"
+      ],
+      "document_type": "historical_statutory_amendment",
+      "instrument_number": 121,
+      "instrument_year": 1956,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": "full_text_accessible_secondary",
+      "collection_permission": "unknown",
+      "legal_status": "historical_amendment_current_effect_embedded_in_consolidated_Law150_text",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-CRIMINAL-PROCEDURE-150-1950"
+      ],
+      "notes": "Egyptian Proceedings No.24 bis, 25 Mar 1956. Replaces Arts.63,64,162,210,214,232; full Arabic text acquired.",
+      "source_urls": [
+        {
+          "url": "https://www.aldhshan.com/2026/02/121-1956.html",
+          "source_role": "Full Arabic text or amendment-footnote source",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CPL-AMEND-113-1957",
+      "official_title_ar": "قانون رقم 113 لسنة 1957 بتعديل بعض أحكام قانون الإجراءات الجنائية",
+      "practice_areas": [
+        "criminal",
+        "criminal_procedure"
+      ],
+      "document_type": "historical_statutory_amendment",
+      "instrument_number": 113,
+      "instrument_year": 1957,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": "full_text_accessible_secondary",
+      "collection_permission": "unknown",
+      "legal_status": "historical_amendment_current_effect_embedded_in_consolidated_Law150_text",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-CRIMINAL-PROCEDURE-150-1950"
+      ],
+      "notes": "Published 19 Mar 1957. Amends Art.123 concerning identity, charge notification and recording accused's statements at first appearance in investigation.",
+      "source_urls": [
+        {
+          "url": "https://www.aldhshan.com/2026/02/113-1957.html",
+          "source_role": "Full Arabic text or amendment-footnote source",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CPL-AMEND-63-1975",
+      "official_title_ar": "قانون رقم 63 لسنة 1975 بتعديل بعض أحكام قانوني العقوبات والإجراءات الجنائية",
+      "practice_areas": [
+        "criminal",
+        "criminal_procedure"
+      ],
+      "document_type": "historical_statutory_amendment",
+      "instrument_number": 63,
+      "instrument_year": 1975,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": "full_text_accessible_secondary",
+      "collection_permission": "unknown",
+      "legal_status": "historical_amendment_current_effect_embedded_in_consolidated_Law150_text",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-CRIMINAL-PROCEDURE-150-1950"
+      ],
+      "notes": "Official Gazette No.31, 31 Jul 1975. Adds CPL Art.160 bis and amends Penal Code; cross-link Penal Code Law58/1937.",
+      "source_urls": [
+        {
+          "url": "https://www.aldhshan.com/2026/02/63-1975.html",
+          "source_role": "Full Arabic text or amendment-footnote source",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CPL-AMEND-174-1998",
+      "official_title_ar": "قانون رقم 174 لسنة 1998 بتعديل بعض أحكام قانون الإجراءات الجنائية وقانون العقوبات",
+      "practice_areas": [
+        "criminal",
+        "criminal_procedure"
+      ],
+      "document_type": "historical_statutory_amendment",
+      "instrument_number": 174,
+      "instrument_year": 1998,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": "full_text_accessible_secondary",
+      "collection_permission": "unknown",
+      "legal_status": "historical_amendment_current_effect_embedded_in_consolidated_Law150_text",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-CRIMINAL-PROCEDURE-150-1950"
+      ],
+      "notes": "Official Gazette No.51 bis, 20 Dec 1998. Replaces multiple CPL provisions, including Arts.63,208 bis (a)-(c),233,260,267,309,323,324,325 bis,401,402,412; adds Arts.18 bis,18 bis(a),24 bis,251 bis.",
+      "source_urls": [
+        {
+          "url": "https://mksegypt.org/ar/laws/24110",
+          "source_role": "Full Arabic text or amendment-footnote source",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CPL-AMEND-340-1952",
+      "official_title_ar": "قانون رقم 340 لسنة 1952 بشأن تعديل المادة 17 من قانون الإجراءات الجنائية والمادة الأولى من القانون رقم 150 لسنة 1950",
+      "practice_areas": [
+        "criminal",
+        "criminal_procedure"
+      ],
+      "document_type": "historical_statutory_amendment",
+      "instrument_number": 340,
+      "instrument_year": 1952,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": "full_text_accessible_secondary",
+      "collection_permission": "unknown",
+      "legal_status": "historical_amendment_current_effect_embedded_in_consolidated_Law150_text",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-CRIMINAL-PROCEDURE-150-1950"
+      ],
+      "notes": "Egyptian Proceedings No.16 bis, 18 Dec 1952. Amends Art.17 on interruption of limitation and deletes the transitional paragraph added by Law178/1951.",
+      "source_urls": [
+        {
+          "url": "https://www.aldhshan.com/2026/02/340-1952-17-150-1950-150-1950.html",
+          "source_role": "Full Arabic text or amendment-footnote source",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CPL-AMEND-252-1952",
+      "official_title_ar": "قانون رقم 252 لسنة 1952 بتعديل قانون الإجراءات الجنائية",
+      "practice_areas": [
+        "criminal",
+        "criminal_procedure"
+      ],
+      "document_type": "historical_statutory_amendment",
+      "instrument_number": 252,
+      "instrument_year": 1952,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": "full_text_partial_secondary",
+      "collection_permission": "unknown",
+      "legal_status": "historical_amendment_current_effect_embedded_in_consolidated_Law150_text",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-CRIMINAL-PROCEDURE-150-1950"
+      ],
+      "notes": "LawHub identifies Official Proceedings No.42 bis, 20 Dec 1952, repealing CPL Arts.19 and 20. Exact full instrument text not yet acquired.",
+      "source_urls": [
+        {
+          "url": "https://lawhub.info/eg/?p=11570",
+          "source_role": "Full Arabic text or amendment-footnote source",
+          "status": "full_text_partial_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CPL-AMEND-252-1953",
+      "official_title_ar": "قانون رقم 252 لسنة 1953 بشأن تعديل قانون الإجراءات الجنائية",
+      "practice_areas": [
+        "criminal",
+        "criminal_procedure"
+      ],
+      "document_type": "historical_statutory_amendment",
+      "instrument_number": 252,
+      "instrument_year": 1953,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": "full_text_accessible_secondary",
+      "collection_permission": "unknown",
+      "legal_status": "historical_amendment_current_effect_embedded_in_consolidated_Law150_text",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-CRIMINAL-PROCEDURE-150-1950"
+      ],
+      "notes": "Separate instrument from Law252/1952; Aldhshan text reports publication 21 May 1953. Full text source acquired; original Gazette issue to inspect.",
+      "source_urls": [
+        {
+          "url": "https://www.aldhshan.com/2026/02/252-1953.html",
+          "source_role": "Full Arabic text or amendment-footnote source",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CPL-AMEND-353-1952",
+      "official_title_ar": "مرسوم بقانون رقم 353 لسنة 1952 بتعديل بعض أحكام قانون الإجراءات الجنائية",
+      "practice_areas": [
+        "criminal",
+        "criminal_procedure"
+      ],
+      "document_type": "historical_statutory_amendment",
+      "instrument_number": 353,
+      "instrument_year": 1952,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": "metadata_located_text_partial",
+      "collection_permission": "unknown",
+      "legal_status": "historical_amendment_current_effect_embedded_in_consolidated_Law150_text",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-CRIMINAL-PROCEDURE-150-1950"
+      ],
+      "notes": "Current consolidated code identifies repeal of Arts.66 and 68 and amendment of Art.53. Separate full instrument text not located in this pass.",
+      "source_urls": [
+        {
+          "url": "https://lawhub.info/eg/?p=11570",
+          "source_role": "Full Arabic text or amendment-footnote source",
+          "status": "metadata_located_text_partial"
         }
       ]
     }
@@ -7054,6 +7329,29 @@
         "observed_title": "Current consolidated Criminal Procedure Law 150/1950 through amendments of 16 Jan 2024",
         "finding": "Full 178-page Arabic consolidated code acquired, running through numbered Art.560, with article-level amendment footnotes. Includes Art.113 bis added by Law177/2020 and Law1/2024 changes including Arts.419 bis–419 bis 9. Court of Cassation source endpoint is linked but returned 502; host states its reproduction is verbatim from the official portal. Underlying older amendment Gazette texts still require acquisition.",
         "status": "full_consolidated_text_accessible_secondary_original_portal_endpoint_failed"
+      },
+      {
+        "evidence_id": "SRC-CRIM-CPL-HISTORICAL-AMENDMENTS-2026-11-19",
+        "document_ids": [
+          "EG-CPL-AMEND-426-1954",
+          "EG-CPL-AMEND-627-1955",
+          "EG-CPL-AMEND-121-1956",
+          "EG-CPL-AMEND-113-1957",
+          "EG-CPL-AMEND-63-1975",
+          "EG-CPL-AMEND-174-1998",
+          "EG-CPL-AMEND-340-1952",
+          "EG-CPL-AMEND-252-1952",
+          "EG-CPL-AMEND-252-1953",
+          "EG-CPL-AMEND-353-1952",
+          "EG-CPL-AMEND-107-1962",
+          "EG-CRIMINAL-PROCEDURE-150-1950"
+        ],
+        "source_type": "full Arabic amendment texts and current consolidated-code footnotes",
+        "url": "https://www.laweg.net/framePlain.aspx?ItemID=20871&NID=22302&Type=6&action=ViewActivePages",
+        "publisher": "Laweg / Alhasswa / Al-Dhshan / MKSEgypt / LawHub",
+        "observed_title": "Older amendment instruments to CPL Law 150/1950",
+        "finding": "Acquired full Arabic texts for Laws426/1954, 121/1956, 113/1957, 63/1975, 174/1998, 340/1952 and 107/1962; acquired operative text for Law627/1955; identified Law252/1952, Law252/1953 and Decree-Law353/1952 as separate historical amendment instruments. Full text footnotes from the consolidated code confirm the amendment relations. Law43/1958 remains unresolved.",
+        "status": "multiple_historical_full_texts_accessible_original_Gazette_scans_not_archived"
       }
     ],
     "temporal_review_alerts": [
@@ -7079,18 +7377,18 @@
     "agent": "Research Agent 2",
     "domain": "Egyptian criminal law and procedure",
     "as_of": "2026-11-19",
-    "estimated_domain_completion_percent": 69,
+    "estimated_domain_completion_percent": 71,
     "previous_session_estimate_percent": 58,
     "whole_project_contribution_percent": null,
     "whole_project_contribution_reason": "Cannot calculate without master-index denominator and domain weights.",
     "lawyer_verified_percent": 0,
     "official_full_text_files_archived_and_hash_verified_in_this_session": 0,
     "complete_arabic_texts_accessible_at_source_estimate": ">20 laws/codes and implementing/treaty instruments",
-    "new_inventory_records_added_this_session": 96,
-    "inventory_total_documents": 181,
+    "new_inventory_records_added_this_session": 106,
+    "inventory_total_documents": 191,
     "acquisition_queue_items": 24,
-    "crosscheck_register_count": 29,
-    "notes": "Qualitative research-coverage estimate, not article-count or lawyer-QA metric. This pass improved source and text coverage for AML, child justice, prisons and narcotics schedules. Two new amendment-instrument records were added without duplicating base laws. Publicly readable source text is not represented as locally archived/hash-verified; permission for storage/indexing/commercial use remains unknown. Cross-check register expanded to 22 entries for AML Decree 457/2020 date conflict, Prisons Law 14/2022 publication metadata conflict, and Decision 242/2026 schedule OCR verification. Second acquisition pass identified Child Law amendments through 2025 (including Art.49 repeal), four Child Law Executive Regulation amendments through 2020, and weapons Law 5/2019, Law 163/2022, Decision 1300/2019. 13 distinct records added, bringing total to 181. Research estimate increased to 63%; still 0 local original files archived/hash verified and 0 lawyer-verified records. Cross-check register now includes the Child Law Art.49 repeal in Social Security Law 12/2025, the 2075/2010 executive-regulation amendment chain, and SCC judgment 1/47 (2026) on weapons provisions. Progress metadata reconciled to the 58% baseline recorded before the current acquisition work; 96 net-new inventory records are now counted cumulatively (81 prior tranche + 15 added in the two current passes). Third acquisition pass upgraded cybercrime Law 175/2018 and Decree 1699/2020, Personal Data Law 151/2020 and Decree 816/2025, Human Trafficking Law 64/2010 and Decree 3028/2010, and Illegal Migration Law 82/2016 and Decree 983/2018. No duplicate base-law records added. Key source conflicts logged. Cross-check register includes Cybercrime Executive Regulation 1699/2020 vs ESCC 635/2020 heading conflict and Human Trafficking Executive Regulation 3028/2010 vs one secondary 2038/2010 miscitation. Fourth acquisition pass acquired full official 546-article Law 174/2025 PDF and Law 160/2026 official Amiri Press text/Gazette metadata; extracted all Book Five Arts.508–521. Current commencement fixed at 1 Oct 2027; CPL150/1950 and Law140/2014 remain operative until then. Official/secondary Art.2 transition wording discrepancy recorded. Fifth acquisition pass acquired the full 178-page consolidated Arabic Law150/1950 text through Law1/2024, including Art.113 bis added by Law177/2020 and the felony appeal amendments. Full text is secondary-hosted but attributes source to Court of Cassation Legislation Portal; original portal endpoint returned 502. Footnotes reveal additional older amendment instruments requiring individual Gazette acquisition.",
+    "crosscheck_register_count": 31,
+    "notes": "Qualitative research-coverage estimate, not article-count or lawyer-QA metric. This pass improved source and text coverage for AML, child justice, prisons and narcotics schedules. Two new amendment-instrument records were added without duplicating base laws. Publicly readable source text is not represented as locally archived/hash-verified; permission for storage/indexing/commercial use remains unknown. Cross-check register expanded to 22 entries for AML Decree 457/2020 date conflict, Prisons Law 14/2022 publication metadata conflict, and Decision 242/2026 schedule OCR verification. Second acquisition pass identified Child Law amendments through 2025 (including Art.49 repeal), four Child Law Executive Regulation amendments through 2020, and weapons Law 5/2019, Law 163/2022, Decision 1300/2019. 13 distinct records added, bringing total to 181. Research estimate increased to 63%; still 0 local original files archived/hash verified and 0 lawyer-verified records. Cross-check register now includes the Child Law Art.49 repeal in Social Security Law 12/2025, the 2075/2010 executive-regulation amendment chain, and SCC judgment 1/47 (2026) on weapons provisions. Progress metadata reconciled to the 58% baseline recorded before the current acquisition work; 96 net-new inventory records are now counted cumulatively (81 prior tranche + 15 added in the two current passes). Third acquisition pass upgraded cybercrime Law 175/2018 and Decree 1699/2020, Personal Data Law 151/2020 and Decree 816/2025, Human Trafficking Law 64/2010 and Decree 3028/2010, and Illegal Migration Law 82/2016 and Decree 983/2018. No duplicate base-law records added. Key source conflicts logged. Cross-check register includes Cybercrime Executive Regulation 1699/2020 vs ESCC 635/2020 heading conflict and Human Trafficking Executive Regulation 3028/2010 vs one secondary 2038/2010 miscitation. Fourth acquisition pass acquired full official 546-article Law 174/2025 PDF and Law 160/2026 official Amiri Press text/Gazette metadata; extracted all Book Five Arts.508–521. Current commencement fixed at 1 Oct 2027; CPL150/1950 and Law140/2014 remain operative until then. Official/secondary Art.2 transition wording discrepancy recorded. Fifth acquisition pass acquired the full 178-page consolidated Arabic Law150/1950 text through Law1/2024, including Art.113 bis added by Law177/2020 and the felony appeal amendments. Full text is secondary-hosted but attributes source to Court of Cassation Legislation Portal; original portal endpoint returned 502. Footnotes reveal additional older amendment instruments requiring individual Gazette acquisition. Sixth acquisition pass added 10 distinct CPL historical amendment records and upgraded Law107/1962 to full Arabic text. Acquired multiple full amendment texts and expanded the historical chronology; original Gazette scans remain unarchived.",
     "last_acquisition_pass_increment_percent": 2,
     "last_acquisition_pass_date": "2026-11-19"
   }
