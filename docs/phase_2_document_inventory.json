@@ -3656,7 +3656,7 @@
         "Law 14/2022",
         "Interior Minister Decree 79/1961"
       ],
-      "notes": "Full Arabic statute text accessible at Notaries of Egypt; Official Proceedings No.96 bis (b), 29 Nov 1956. Law 19/2020 adds Art.52 bis and repeals a paragraph of Narcotics Law Art.46 bis (a); Law 14/2022 replaces Arts.1,2,31,81 and deletes/repeals listed provisions. Current text requires full Gazette collation. Amendment chain cross-confirmed through Laws49/2014,106/2015,6/2018,19/2020 and14/2022, plus older Laws57/1968,5/1972,23/1973,87/1973,119/1974,91/1976 and152/2001. Geographic-centre implementation also relies on Interior Minister Decisions113/1962 and1654/1971, and later centre-specific decisions 1776/2023,332/2024,426/2024,535/2024,60/2026,415/2026,514/2026,557/2026.",
+      "notes": "Full Arabic statute text accessible at Notaries of Egypt; Official Proceedings No.96 bis (b), 29 Nov 1956. Law 19/2020 adds Art.52 bis and repeals a paragraph of Narcotics Law Art.46 bis (a); Law 14/2022 replaces Arts.1,2,31,81 and deletes/repeals listed provisions. Current text requires full Gazette collation. Amendment chain cross-confirmed through Laws49/2014,106/2015,6/2018,19/2020 and14/2022, plus older Laws57/1968,5/1972,23/1973,87/1973,119/1974,91/1976 and152/2001. Geographic-centre implementation also relies on Interior Minister Decisions113/1962 and1654/1971, and later centre-specific decisions 1776/2023,332/2024,426/2024,535/2024,60/2026,415/2026,514/2026,557/2026. Additional amendment Law15/2018 changes statutory references from Prisons Authority/Prisons Sector to Prisons Sector. Latest geographic-centre decisions located through 14 Nov 2026 include 1265/2025 (Al-Raml), 176/2026 (South Port Said) and 1739/2026 (Menouf), in addition to the 2023–2026 instruments already indexed.",
       "source_urls": [
         {
           "url": "https://www.notariesofegypt.org/article.php?id=469",
@@ -7045,6 +7045,120 @@
           "status": "official_Amiria_full_text_accessible"
         }
       ]
+    },
+    {
+      "document_id": "EG-PRISONS-AMEND-15-2018",
+      "official_title_ar": "قانون رقم 15 لسنة 2018 بتعديل بعض أحكام القانون رقم 396 لسنة 1956 في شأن تنظيم السجون",
+      "practice_areas": [
+        "criminal",
+        "prisons"
+      ],
+      "document_type": "statutory_amendment",
+      "instrument_number": 15,
+      "instrument_year": 2018,
+      "source_id": "EG-SECONDARY-CONSOLIDATED-LAW",
+      "source_status": "amendment_text_embedded_in_full_Law396_consolidation_standalone_Gazette_text_pending",
+      "collection_permission": "unknown",
+      "legal_status": "historical_amendment_current_effect_embedded_in_Law396",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-PRISONS-396-1956"
+      ],
+      "notes": "Replaces the statutory name 'مصلحة السجون / قطاع مصلحة السجون' with 'قطاع السجون' throughout Law396/1956. The full consolidated Law396 text shows the amendment relation; standalone original Gazette text and exact issue/date still to acquire. Later Law14/2022 further replaces terminology with correction and rehabilitation centres.",
+      "source_urls": [
+        {
+          "url": "https://lawhub.info/eg/?p=12219",
+          "source_role": "Full consolidated Law396 text showing Law15/2018 amendment annotation",
+          "status": "full_text_in_consolidation"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-PRISONS-GEO-EXEC-1265-2025",
+      "official_title_ar": "قرار وزير الداخلية رقم 1265 لسنة 2025 بشأن إنشاء مركز الإصلاح الجغرافي بالرمل بمديرية أمن الإسكندرية",
+      "practice_areas": [
+        "criminal",
+        "prisons"
+      ],
+      "document_type": "implementing_ministerial_decision",
+      "instrument_number": 1265,
+      "instrument_year": 2025,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": "full_text_accessible_secondary",
+      "collection_permission": "unknown",
+      "legal_status": "implementation_under_Law396_1956_Art2_3",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-PRISONS-396-1956",
+        "EG-PRISONS-GEO-EXEC-113-1962",
+        "EG-PRISONS-GEO-EXEC-1654-1971"
+      ],
+      "notes": "Waqa'i No.183, 19 Aug 2025; effective 20 Aug 2025. Establishes Al-Raml geographic correction centre at Second Raml Police Department, Alexandria Security Directorate.",
+      "source_urls": [
+        {
+          "url": "https://www.dostor.org/5181906",
+          "source_role": "Full text summary and Gazette metadata",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-PRISONS-GEO-EXEC-176-2026",
+      "official_title_ar": "قرار وزير الداخلية رقم 176 لسنة 2026 بشأن إنشاء مركز الإصلاح الجغرافي بجنوب بورسعيد",
+      "practice_areas": [
+        "criminal",
+        "prisons"
+      ],
+      "document_type": "implementing_ministerial_decision",
+      "instrument_number": 176,
+      "instrument_year": 2026,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": "full_text_accessible_secondary",
+      "collection_permission": "unknown",
+      "legal_status": "implementation_under_Law396_1956_Art2_3",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-PRISONS-396-1956",
+        "EG-PRISONS-GEO-EXEC-113-1962",
+        "EG-PRISONS-GEO-EXEC-1654-1971"
+      ],
+      "notes": "Published 8 Mar 2026; effective 9 Mar 2026. Establishes South Port Said geographic correction centre at South Police Department.",
+      "source_urls": [
+        {
+          "url": "https://www.youm7.com/story/2026/3/8/الجريدة-الرسمية-تنشر-قرار-وزير-الداخلية-بإنشاء-مركز-الإصلاح-الجغرافي/7332277",
+          "source_role": "Full text summary and Gazette metadata",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-PRISONS-GEO-EXEC-1739-2026",
+      "official_title_ar": "قرار وزير الداخلية رقم 1739 لسنة 2026 بشأن إنشاء مركز الإصلاح الجغرافي بقسم شرطة منوف بمديرية أمن المنوفية",
+      "practice_areas": [
+        "criminal",
+        "prisons"
+      ],
+      "document_type": "implementing_ministerial_decision",
+      "instrument_number": 1739,
+      "instrument_year": 2026,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": "full_text_summary_and_Gazette_metadata_accessible",
+      "collection_permission": "unknown",
+      "legal_status": "implementation_under_Law396_1956_Art2_3",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-PRISONS-396-1956",
+        "EG-PRISONS-GEO-EXEC-113-1962",
+        "EG-PRISONS-GEO-EXEC-1654-1971"
+      ],
+      "notes": "Waqa'i No.253, 14 Nov 2026; effective 15 Nov 2026. Establishes Menouf geographic correction centre, Menoufia Security Directorate, covering Menouf Police Department area.",
+      "source_urls": [
+        {
+          "url": "https://www.cairo24.com/2529467",
+          "source_role": "Full text summary and Gazette metadata",
+          "status": "full_text_summary_and_Gazette_metadata_accessible"
+        }
+      ]
     }
   ],
   "next_actions": [
@@ -7892,6 +8006,22 @@
         "observed_title": "Prisons and geographic correction-centre implementing decisions, 2014–2026",
         "finding": "Acquired full Arabic texts for Laws49/2014,106/2015 and6/2018; official Amiri Press text for geographic-centre decisions 1776/2023,332/2024,426/2024,60/2026,415/2026,514/2026 and557/2026; full secondary text for Decision535/2024. Identified foundational geographic-centre decisions113/1962 and1654/1971 and added separate records pending original text. Resolved the 415/2026 vs514/2026 secondary misnumbering for Aswan/Blaṭ.",
         "status": "multiple_full_texts_accessible_foundational_regulations_pending_original_Gazette_archive"
+      },
+      {
+        "evidence_id": "SRC-CRIM-PRISONS-GEO-2025-2026-11-19",
+        "document_ids": [
+          "EG-PRISONS-AMEND-15-2018",
+          "EG-PRISONS-GEO-EXEC-1265-2025",
+          "EG-PRISONS-GEO-EXEC-176-2026",
+          "EG-PRISONS-GEO-EXEC-1739-2026",
+          "EG-PRISONS-396-1956"
+        ],
+        "source_type": "consolidated statute amendment notes and Waqa'i-reported ministerial decisions",
+        "url": "https://www.cairo24.com/2529467",
+        "publisher": "Cairo24 / Youm7 / LawHub consolidated Law396 text",
+        "observed_title": "Latest prison-sector and geographic-centre decisions through 14 Nov 2026",
+        "finding": "Identified Law15/2018 statutory renaming amendment and geographic-centre decisions 1265/2025 (Al-Raml), 176/2026 (South Port Said), and 1739/2026 (Menouf). Decision1739/2026 was published in Waqa'i No.253 on 14 Nov 2026 and became effective 15 Nov 2026. All are distinct instruments under Law396/1956 Art.2(3).",
+        "status": "metadata_and_full_text_summaries_accessible_original_Gazette_scan_pending"
       }
     ],
     "temporal_review_alerts": [
@@ -7917,19 +8047,19 @@
     "agent": "Research Agent 2",
     "domain": "Egyptian criminal law and procedure",
     "as_of": "2026-11-19",
-    "estimated_domain_completion_percent": 75,
+    "estimated_domain_completion_percent": 76,
     "previous_session_estimate_percent": 58,
     "whole_project_contribution_percent": null,
     "whole_project_contribution_reason": "Cannot calculate without master-index denominator and domain weights.",
     "lawyer_verified_percent": 0,
     "official_full_text_files_archived_and_hash_verified_in_this_session": 0,
     "complete_arabic_texts_accessible_at_source_estimate": ">20 laws/codes and implementing/treaty instruments",
-    "new_inventory_records_added_this_session": 122,
-    "inventory_total_documents": 207,
+    "new_inventory_records_added_this_session": 126,
+    "inventory_total_documents": 211,
     "acquisition_queue_items": 24,
     "crosscheck_register_count": 33,
-    "notes": "Qualitative research-coverage estimate, not article-count or lawyer-QA metric. This pass improved source and text coverage for AML, child justice, prisons and narcotics schedules. Two new amendment-instrument records were added without duplicating base laws. Publicly readable source text is not represented as locally archived/hash-verified; permission for storage/indexing/commercial use remains unknown. Cross-check register expanded to 22 entries for AML Decree 457/2020 date conflict, Prisons Law 14/2022 publication metadata conflict, and Decision 242/2026 schedule OCR verification. Second acquisition pass identified Child Law amendments through 2025 (including Art.49 repeal), four Child Law Executive Regulation amendments through 2020, and weapons Law 5/2019, Law 163/2022, Decision 1300/2019. 13 distinct records added, bringing total to 181. Research estimate increased to 63%; still 0 local original files archived/hash verified and 0 lawyer-verified records. Cross-check register now includes the Child Law Art.49 repeal in Social Security Law 12/2025, the 2075/2010 executive-regulation amendment chain, and SCC judgment 1/47 (2026) on weapons provisions. Progress metadata reconciled to the 58% baseline recorded before the current acquisition work; 96 net-new inventory records are now counted cumulatively (81 prior tranche + 15 added in the two current passes). Third acquisition pass upgraded cybercrime Law 175/2018 and Decree 1699/2020, Personal Data Law 151/2020 and Decree 816/2025, Human Trafficking Law 64/2010 and Decree 3028/2010, and Illegal Migration Law 82/2016 and Decree 983/2018. No duplicate base-law records added. Key source conflicts logged. Cross-check register includes Cybercrime Executive Regulation 1699/2020 vs ESCC 635/2020 heading conflict and Human Trafficking Executive Regulation 3028/2010 vs one secondary 2038/2010 miscitation. Fourth acquisition pass acquired full official 546-article Law 174/2025 PDF and Law 160/2026 official Amiri Press text/Gazette metadata; extracted all Book Five Arts.508–521. Current commencement fixed at 1 Oct 2027; CPL150/1950 and Law140/2014 remain operative until then. Official/secondary Art.2 transition wording discrepancy recorded. Fifth acquisition pass acquired the full 178-page consolidated Arabic Law150/1950 text through Law1/2024, including Art.113 bis added by Law177/2020 and the felony appeal amendments. Full text is secondary-hosted but attributes source to Court of Cassation Legislation Portal; original portal endpoint returned 502. Footnotes reveal additional older amendment instruments requiring individual Gazette acquisition. Sixth acquisition pass added 10 distinct CPL historical amendment records and upgraded Law107/1962 to full Arabic text. Acquired multiple full amendment texts and expanded the historical chronology; original Gazette scans remain unarchived. Seventh acquisition pass upgraded Penal Code Law58/1937 to a full 540-article, 179-page Arabic consolidation updated through 4 Dec 2023 and added separate amendment records for Laws5/2018,164/2019 and6/2020. Later amendment records cross-linked to the full code and Gazette metadata. Eighth acquisition pass added 13 distinct prison amendment and geographic-centre decision records; full text sources acquired for Laws49/2014,106/2015,6/2018 and seven recent centre-creation decisions. Foundational Decisions113/1962 and1654/1971 remain metadata-only; Decision1265/2022 full text still pending.",
-    "last_acquisition_pass_increment_percent": 2,
+    "notes": "Qualitative research-coverage estimate, not article-count or lawyer-QA metric. This pass improved source and text coverage for AML, child justice, prisons and narcotics schedules. Two new amendment-instrument records were added without duplicating base laws. Publicly readable source text is not represented as locally archived/hash-verified; permission for storage/indexing/commercial use remains unknown. Cross-check register expanded to 22 entries for AML Decree 457/2020 date conflict, Prisons Law 14/2022 publication metadata conflict, and Decision 242/2026 schedule OCR verification. Second acquisition pass identified Child Law amendments through 2025 (including Art.49 repeal), four Child Law Executive Regulation amendments through 2020, and weapons Law 5/2019, Law 163/2022, Decision 1300/2019. 13 distinct records added, bringing total to 181. Research estimate increased to 63%; still 0 local original files archived/hash verified and 0 lawyer-verified records. Cross-check register now includes the Child Law Art.49 repeal in Social Security Law 12/2025, the 2075/2010 executive-regulation amendment chain, and SCC judgment 1/47 (2026) on weapons provisions. Progress metadata reconciled to the 58% baseline recorded before the current acquisition work; 96 net-new inventory records are now counted cumulatively (81 prior tranche + 15 added in the two current passes). Third acquisition pass upgraded cybercrime Law 175/2018 and Decree 1699/2020, Personal Data Law 151/2020 and Decree 816/2025, Human Trafficking Law 64/2010 and Decree 3028/2010, and Illegal Migration Law 82/2016 and Decree 983/2018. No duplicate base-law records added. Key source conflicts logged. Cross-check register includes Cybercrime Executive Regulation 1699/2020 vs ESCC 635/2020 heading conflict and Human Trafficking Executive Regulation 3028/2010 vs one secondary 2038/2010 miscitation. Fourth acquisition pass acquired full official 546-article Law 174/2025 PDF and Law 160/2026 official Amiri Press text/Gazette metadata; extracted all Book Five Arts.508–521. Current commencement fixed at 1 Oct 2027; CPL150/1950 and Law140/2014 remain operative until then. Official/secondary Art.2 transition wording discrepancy recorded. Fifth acquisition pass acquired the full 178-page consolidated Arabic Law150/1950 text through Law1/2024, including Art.113 bis added by Law177/2020 and the felony appeal amendments. Full text is secondary-hosted but attributes source to Court of Cassation Legislation Portal; original portal endpoint returned 502. Footnotes reveal additional older amendment instruments requiring individual Gazette acquisition. Sixth acquisition pass added 10 distinct CPL historical amendment records and upgraded Law107/1962 to full Arabic text. Acquired multiple full amendment texts and expanded the historical chronology; original Gazette scans remain unarchived. Seventh acquisition pass upgraded Penal Code Law58/1937 to a full 540-article, 179-page Arabic consolidation updated through 4 Dec 2023 and added separate amendment records for Laws5/2018,164/2019 and6/2020. Later amendment records cross-linked to the full code and Gazette metadata. Eighth acquisition pass added 13 distinct prison amendment and geographic-centre decision records; full text sources acquired for Laws49/2014,106/2015,6/2018 and seven recent centre-creation decisions. Foundational Decisions113/1962 and1654/1971 remain metadata-only; Decision1265/2022 full text still pending. Ninth acquisition pass added Law15/2018 and geographic-centre decisions1265/2025,176/2026 and1739/2026; latest located instrument was published 14 Nov 2026 and effective 15 Nov 2026.",
+    "last_acquisition_pass_increment_percent": 1,
     "last_acquisition_pass_date": "2026-11-19"
   }
 }
