@@ -1295,3 +1295,109 @@ Working estimates after obtaining the full Law 174/2025 Official Gazette text an
 - **Overall assigned criminal-law domain completion: approximately 54%**.
 
 The new Criminal Procedure Code's full PDF is acquired but not yet article-QA'd; its future-effective status is now correctly recorded. Decision 896/2026 adds a current implementing instrument to the Penal Code Article 293 cluster.
+
+
+---
+
+# 19. Further AML acquisition — full consolidated regulation, Law 36/2014 and source-number discrepancies
+
+## 19.1 Current consolidated Executive Regulation 951/2003 — full 1,099-line Arabic text
+
+A complete Arabic consolidation of PM Decision 951/2003 is now available from the FRA as a 1,099-line PDF text extraction:
+https://www.fra.gov.eg/wp-content/uploads/2020/12/UG49849UG49850.pdf
+
+A second FRA consolidated PDF, dated 2025, is available here:
+https://fra.gov.eg/wp-content/uploads/2025/04/اللائحة-التنفيذية-لقانون-مكافحة-غسل-الأموال-1-1.pdf
+
+A later FRA web transcription of the current regulation is available here:
+https://fra.gov.eg/wp-content/uploads/2024/06/لائحة-القانون-وفقا-لاخر-تعديل-الاصدار.pdf
+
+The current regulation text covers:
+- definitions of funds/assets, proceeds, virtual assets, beneficial ownership, legal arrangements and politically exposed persons;
+- covered financial institutions and designated non-financial businesses/professions;
+- AML Unit powers and reporting;
+- customer due diligence and suspicious transaction reporting;
+- recordkeeping, supervisory controls, targeted financial sanctions and freezing;
+- risk-based supervision and enforcement.
+
+This is a significant acquisition: the regulation itself is now available as a full Arabic text source, not just as an amendment list. It remains necessary to QA the consolidated text against the Gazette amending instruments.
+
+## 19.2 Law 36/2014 — full amendment content identified; complete Gazette PDF still to be image-extracted
+
+Law 36/2014 was published in Official Gazette issue 20 تابع (أ), 15 May 2014, effective 16 May 2014. The complete instrument is indexed at:
+- Eastlaws full-text record: https://www.eastlaws.com/legislation-full-text/ar/egypt/law/15-05-2014/no-36?id=1757981&sub=8591182&type=1
+- Secondary full text: https://www.aldhshan.com/2026/02/36-2014-80-2002.html
+- Manshurat PDF catalogue: https://manshurat.org/node/13962
+- FRA consolidated Law 80/2002 text with amendment footnotes: https://fra.gov.eg/wp-content/uploads/2024/05/قانون-مكافحة-غسل-الأموال-1.pdf
+
+The Eastlaws text identifies the principal operative changes:
+- replaces Articles 1, 2, Article 4 first paragraph, Article 5 second paragraph, Articles 6–10, 12, 15 and 16;
+- changes the second paragraph of Article 4 by replacing “ولها أن تتيحها” with “وأن تضع الوسائل الكفيلة بإتاحتها”;
+- adds Article 16 bis and Article 21;
+- adjusts the Unit's role, law-enforcement cooperation, predicate offences, powers, freezing and seizure, penalties and legal-person liability.
+
+The regulator's consolidation confirms that the Article 2 offence definition was replaced in 2014, including the knowledge/intentional-act formulation:
+**مادة (٢):**
+يعد مرتكباً لجريمة غسل الأموال كل من علم أن الأموال متحصلة من جريمة أصلية، وقام عمداً بأي مما يلي:
+١- تحويل متحصلات أو نقلها، وذلك بقصد إخفاء المال أو تمويه طبيعته أو مصدره أو مكانه أو صاحبه أو صاحب الحق فيه أو تغيير حقيقته أو الحيلولة دون اكتشاف ذلك أو عرقلة التوصل إلى مرتكب الجريمة الأصلية.
+٢- اكتساب المتحصلات أو حيازتها أو استخدامها أو إدارتها أو حفظها أو إيداعها أو ضمانها أو استثمارها أو التلاعب في قيمتها أو إخفاء أو تمويه الطبيعة الحقيقية لها أو لمصدرها أو مكانها أو كيفية التصرف فيها أو حركتها أو ملكيتها أو الحقوق المتعلقة بها.
+
+The official Gazette PDF itself remains to be extracted and checked article-by-article; the above is a regulator-hosted consolidation, not a verbatim full copy of the amending instrument.
+
+## 19.3 Law 78/2003 — two-page Arabic Gazette PDF acquired; text extraction blocked
+
+Manshurat catalogue confirms Law 78/2003 was issued and published on 8 June 2003, effective 9 June 2003. The attached Arabic PDF was opened as a two-page document but its text layer and screenshot retrieval were unavailable through the current reader.
+
+- Catalogue and attachment: https://manshurat.org/node/13879
+- Ministry of Finance legislation index: https://mof.gov.eg/ar/legislation/legislation-5fe86a207bfc600007cbfa89
+- FRA consolidated Law 80/2002 source (with amendment notes): https://fra.gov.eg/wp-content/uploads/2024/05/قانون-مكافحة-غسل-الأموال-1.pdf
+
+Status: **Arabic PDF acquired as a reference object; full transcription not yet acquired.** Do not claim complete text acquisition.
+
+## 19.4 AML Executive Regulation amendment-number discrepancies — retain all variants
+
+The current and historical consolidated sources contain conflicting amendment numbers. These are source-integrity issues, not typographical details to be silently harmonized.
+
+| Instrument | Variant(s) encountered | Evidence/status |
+|---|---|---|
+| 2006 amendment | 1463 / 1432 / 1433 | 2025 FRA consolidated title block says 1463; 2020 FRA PDF title block says 1463; its footnote says 1432; another FRA index/search result says 1433. Original Gazette cover still needs image check. |
+| 2008 amendment | 2367 / 2362 / 3367 | 2025 FRA consolidated title block and MELES catalogue say 2367; 2020 FRA title block says 3367; footnote says 2362. Original Gazette issue 37 تابع (ب), 11 Sep 2008, must be checked. |
+| 2019 amendment | 2910 / 2911 | FRA consolidation and filename use 2910; the text extracted from the purported Gazette issue 47 bis (د), 27 Nov 2019, displays “رقم 2911 لسنة 2019” in the heading and has a full operative text. Keep 2911 as the heading transcription, 2910 as catalogue/filename number, until Gazette page image is checked. |
+| 2016 amendment | 1569 | Confirmed by FRA, Manshurat catalogue and MELES DSpace record; an erratum/corrigendum was published in issue 24 bis (ب), 21 June 2016. The corrigendum must be separately captured. |
+| 2020 amendment | 457 | Full text acquired; Official Gazette issue 8 bis, 23 Feb 2020. |
+| 2023 amendment | 3331 | Full text acquired; Official Gazette issue 35 تابع (أ), 31 Aug 2023. |
+
+### Source files for the discrepancy audit
+- FRA current 2025 consolidated PDF: https://fra.gov.eg/wp-content/uploads/2025/04/اللائحة-التنفيذية-لقانون-مكافحة-غسل-الأموال-1-1.pdf
+- FRA 2020 consolidated PDF with variant headings/footnotes: https://www.fra.gov.eg/wp-content/uploads/2020/12/UG49849UG49850.pdf
+- FRA 2019 Gazette PDF file named 2910 but body heading says 2911: https://fra.gov.eg/wp-content/uploads/2020/12/alamiria_2019_2910.pdf
+- PM Decision 1569/2016 catalogue: https://manshurat.org/node/20911
+- MELES Decision 1569/2016 record: https://dspace.id.com.eg/items/785034ed-de20-4bb3-a7c2-de0f2020c413
+- PM Decision 1463/2006 secondary full text/PDF: https://www.be-tax.com/uploads/images/74/Mawso3a5.pdf
+- PM Decision 2367/2008 Supreme Court research PDF: https://register.cc.gov.eg/storage/publications/pdfs/TJp0YufBFD7m89oLO6JXssVusmpUXZmEorlHGrXi.pdf
+
+## 19.5 AML status update
+
+The AML acquisition set now includes:
+- full consolidated Law 80/2002 (FRA, 2022 consolidation);
+- Laws 154/2022 and 181/2008 actual amendment text;
+- Law 36/2014 amendment provisions in the regulator consolidation and full secondary text route;
+- Law 78/2003 two-page Arabic PDF object, not yet transcribed;
+- full consolidated PM Decision 951/2003 Arabic text;
+- full PM Decisions 457/2020 and 3331/2023 text;
+- PM Decision 2911/2019 operative Gazette text, with 2910/2911 discrepancy flagged;
+- PM Decisions 1463/2006, 2367/2008 and 1569/2016 source objects/catalogues found, full extraction/corrigendum QA still open.
+
+Do not state that every historical AML amendment is fully transcribed until the 2003, 2006, 2008, 2016 and 2019 instruments have been individually compared against the Gazette images.
+
+## 19.6 Progress recalibration
+
+Working estimates after this further AML pass:
+- Discovery coverage: **97%**.
+- Actual Arabic text acquisition: **76%**.
+- Amendment and implementing-instrument mapping: **74%**.
+- Article-level extraction and QA: **59%**.
+- Lawyer verification: **0%**.
+- **Overall assigned criminal-law domain completion: approximately 55%**.
+
+The principal improvement is access to the complete consolidated AML Executive Regulation and the full amendment text of Law 36/2014 via a regulator consolidation. The remaining AML gap is exact Gazette-image reconciliation of older amendment numbers and full standalone transcription of Law 78/2003.
