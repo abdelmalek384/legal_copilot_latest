@@ -2358,3 +2358,58 @@ It replaces “مستشار الإحالة” with “غرفة الاتهام”
 - **Outstanding:** Law 43/1958, original Gazette scans for 1950s instruments, and article-by-article reconciliation of every footnote.
 - **Original Gazette PDFs locally archived and SHA-256 verified:** 0.
 - **Egyptian lawyer-verified records:** 0.
+
+
+---
+
+## X. Acquisition pass — full Penal Code 58/1937 and additional amendments through 2023
+**Research date:** 19 November 2026.
+
+### X1. Full current Arabic text acquired
+
+- Full 179-page Arabic PDF, 540 articles, text updated through 4 December 2023: https://alhasswalawfirm.com/uploads/files/581937-1788831615343-760524606.pdf
+- Full text page: https://alhasswalawfirm.com/law-library/law-58-1937
+- The host states the text is copied verbatim from the Court of Cassation Legislation Portal and reproduces the original Gazette No.71, 5 August 1937, with article-level amendment notes through Law 185/2023.
+- Official Court of Cassation portal endpoint is linked from the page but has not been successfully opened in this pass. The acquired PDF is secondary-hosted, not an original Gazette scan.
+
+**Current statutory amendment chain newly cross-confirmed:** Law 164/2019; Law 6/2020; Law 189/2020; Law 10/2021; Law 71/2021; Law 141/2021; Law 150/2021; and Law 185/2023. The 2023 consolidation expressly records Law 185/2023 as the latest amendment, effective 5 December 2023. No post-4 December 2023 amendment was identified in this search pass; exhaustive Gazette verification through 19 November 2026 remains open.
+
+### X2. Additional Penal Code amendment texts acquired
+
+**Law 5/2018** — Official Gazette No.3 bis (c), 24 January 2018; effective 25 January 2018. Full Arabic text:
+https://www.eastlaws.com/legislation-full-text/ar/egypt/law/24-01-2018/no-5?id=1896685&sub=9360652&type=1
+
+It replaces Arts. 283, 289 and 290; adds Art.106 bis and a second paragraph to Art.111; and repeals Art.288.
+
+**Law 164/2019** — Official Gazette No.50 follow-up, 12 December 2019; effective 13 December 2019. Full Arabic text:
+https://www.eastlaws.com/legislation-full-text/ar/egypt/law/12-12-2019/no-164?id=1967588&sub=9867550&type=1
+
+It replaces Arts.115 bis, 369, 370, 371, 372 and 372 bis.
+
+**Law 6/2020** — Official Gazette No.5 bis, 2 February 2020; effective 3 February 2020. Full Arabic text:
+https://www.eglf.org/قانون-6-لسنة-2020-تعديل-قانون-العقوبات/
+
+It replaces Art.293 concerning non-payment of court-ordered maintenance, nursing, custody or housing expenses after notice and proof of ability to pay.
+
+### X3. Later amendments — full text and Gazette metadata cross-linked
+
+- Law 189/2020, Gazette No.36 bis (b), 5 September 2020; effective 6 September 2020: adds Art.309 bis (b), bullying. The current full code reproduces the provision and later Law 185/2023 replacement.
+- Law 10/2021, Gazette No.16 bis (w), 28 April 2021; effective 29 April 2021: replaces Arts.242 bis and 242 bis (a), FGM offences and penalties. Full Arabic text: https://www.lawyeregypt.net/قانون-رقم-10-لسنة-2021-بشأن-عقوبة-ختان-الاناث/
+- Law 71/2021, Gazette No.23 bis, 13 June 2021; effective 14 June 2021: adds Art.186 bis, prohibiting unauthorized recording, filming, broadcasting or publication of criminal-trial sessions. Full text: https://lawyeregypt.net/قانون-تسجيل-أو-تصوير-جلسة-محاكمة/
+- Law 141/2021, Gazette No.32 bis (a), 15 August 2021; effective 16 August 2021: replaces Arts.306 bis (a) and 306 bis (b) on sexual harassment. Full Arabic text: https://lawyeregypt.net/قانون-رقم-141-لسنة-2021-بتعديل-قانون-العقوبات/
+- Law 150/2021, Gazette No.46 bis, 20 November 2021; effective 21 November 2021: replaces Art.80 (a), state secrets and disclosure. MELES item metadata and Arabic PDF request page: https://dspace.id.com.eg/items/a6361f52-7211-435a-af37-a1da5f1b7408
+- Law 185/2023, Gazette No.48 bis (b), 4 December 2023; effective 5 December 2023: replaces Arts.306 bis (a), 306 bis (b) second paragraph and 309 bis (b) third paragraph. Full Arabic text: https://mksegypt.org/public/ar/laws/17352. MELES original Arabic PDF is request-copy restricted: https://dspace.id.com.eg/items/838e5069-1850-4c04-b774-0a9d33ac1c0b
+
+**Exact Arabic excerpt — current Art.309 bis (b), as reproduced in the full code:**
+
+> يعد تنمرا كل قول أو استعراض قوة أو سيطرة للجاني أو استغلال ضعف للمجني عليه أو لحالة يعتقد الجاني أنها تسئ للمجني عليه كالجنس أو العرق أو الدين أو الأوصاف البدنية أو الحالة الصحية أو العقلية أو المستوى الاجتماعي بقصد تخويفه أو وضعه موضع السخرية أو الحط من شأنه أو إقصائه من محيطه الاجتماعي.
+
+The consolidated text footnote records that Art.309 bis (b) was added by Law 189/2020 and its third paragraph was later replaced by Law 185/2023.
+
+### X4. Progress update after seventh acquisition pass — 19 November 2026
+
+- **Estimated assigned criminal-law domain completion: 73%** (qualitative research-coverage estimate; not article-count, local corpus-ingestion or lawyer-verification metric). Prior pass: 71%.
+- **Penal Code status:** complete 540-article Arabic text accessible in a 179-page PDF, updated through Law 185/2023; three additional amendment records added for Laws 5/2018, 164/2019 and 6/2020.
+- **Original Gazette PDFs locally archived and SHA-256 verified:** 0.
+- **Egyptian lawyer-verified records:** 0.
+- **Remaining Penal Code work:** obtain original Gazette scans for amendments; verify whether any Law 58/1937 amendment occurred after 4 December 2023; compare 2023 consolidated text against the original amendment instruments and the official Court of Cassation portal.
