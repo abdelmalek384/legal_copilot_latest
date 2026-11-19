@@ -355,6 +355,57 @@
       "legal_status": "current_candidate_pending_full_consolidation_and_lawyer_review",
       "finding": "Confirmed Laws 189/2020 (Art.309 bis b bullying), 10/2021 (Arts242 bis and 242 bis a FGM), 71/2021 (Art186 bis trial-session recording), 141/2021 (Arts306 bis a/b harassment), 150/2021 (Art80 a state secrets) and 185/2023 (Arts306 bis a, 306 bis b second para, 309 bis b third para). No post-185/2023 amendment found in this pass through 19 Nov 2026.",
       "next_action": "Extract complete amendment texts, collate against original Gazette, and perform an exhaustive 2024–2026 Official Gazette search before asserting Law 185/2023 is the last amendment."
+    },
+    {
+      "evidence_id": "XREF-AML-457-2020-GAZETTE-DATE",
+      "document_id": "EG-AML-EXEC-AMEND-457-2020",
+      "practice_areas": [
+        "criminal",
+        "financial_regulation"
+      ],
+      "url": "https://www.laweg.net/framePlain.aspx?ItemID=115318&NID=142337&Type=6&action=ViewActivePages",
+      "publisher": "Laweg full Arabic reproduction; FRA consolidated 951/2003 regulation; secondary Gazette references",
+      "source_class": "consolidated-regulation footnote versus Gazette issue metadata discrepancy",
+      "observed_title_ar": "قرار رئيس مجلس الوزراء رقم 457 لسنة 2020 بتعديل بعض أحكام اللائحة التنفيذية لقانون مكافحة غسل الأموال",
+      "source_state": "full_text_accessible_date_conflict_unresolved",
+      "collection_permission": "unknown",
+      "legal_status": "amendment_relation_confirmed_commencement_date_pending_original_gazette",
+      "finding": "The 2023 FRA consolidated regulation annotates provisions as amended by PM Decree 457/2020; Laweg and other secondary transcriptions identify Official Gazette No.8 bis, 23 Feb 2020. The FRA 2024 consolidated PDF's footnote instead states issue 13 bis (e), 31 Mar 2020. The instrument exists and is part of the amendment chain, but the original Gazette issue/date and exact commencement must be visually checked.",
+      "next_action": "Obtain both candidate Official Gazette issue scans (No.8 bis, 23 Feb 2020 and No.13 bis (e), 31 Mar 2020), identify the actual decree publication, inspect its commencement clause, and correct the FRA footnote or Laweg metadata only after primary evidence."
+    },
+    {
+      "evidence_id": "XREF-PRISONS-LAW-14-2022-PUBLICATION-DATE",
+      "document_id": "EG-PRISONS-AMEND-14-2022",
+      "practice_areas": [
+        "criminal",
+        "prisons"
+      ],
+      "url": "https://dfatermasr.net/الاكْتفاء-بتغيير-اسم-السجون-ليس-الحل-قا-2/",
+      "publisher": "Dafater Masr full text; Official Gazette issue metadata; Manshurat and Eastlaws catalogue records",
+      "source_class": "full secondary text and catalogue metadata discrepancy",
+      "observed_title_ar": "قانون رقم 14 لسنة 2022 بتعديل بعض أحكام القانون رقم 396 لسنة 1956 في شأن تنظيم السجون",
+      "source_state": "full_secondary_text_accessible_gazette_issue_date_preferred_catalogue_conflict",
+      "collection_permission": "unknown",
+      "legal_status": "amendment_relation_confirmed_commencement_awaiting_original_scan",
+      "finding": "Dafater Masr transcription and Eastlaws metadata identify Official Gazette No.11 bis (b), 20 Mar 2022, with commencement 21 Mar 2022. A Manshurat catalogue page reports 13 Mar issuance, 14 Mar publication and 15 Mar commencement. The date in the Gazette issue title and full text is stronger than the conflicting catalogue metadata, but the original scan should be visually inspected.",
+      "next_action": "Acquire and visually inspect Official Gazette No.11 bis (b), 20 Mar 2022; record signature, publication and next-day commencement from the original pages; retain catalogue discrepancy in audit history."
+    },
+    {
+      "evidence_id": "XREF-DRUGS-DECISION-242-2026-SCHEDULE-OCR",
+      "document_id": "EG-DRUGS-DECISION-242-2026",
+      "practice_areas": [
+        "criminal",
+        "controlled_substances"
+      ],
+      "url": "https://dev.edaegypt.gov.eg/media/lydpgqi5/لمكافحة-المخدرات_2026_242-وزير-الصحة.pdf",
+      "publisher": "Egyptian Drug Authority official-hosted Gazette PDF; EDA regulatory index; secondary Gazette reports",
+      "source_class": "official schedule scan with incomplete OCR",
+      "observed_title_ar": "قرار وزير الصحة والسكان رقم 242 لسنة 2026 بشأن تعديل الجداول الملحقة بالقانون رقم 182 لسنة 1960",
+      "source_state": "official_pdf_accessible_ocr_partial_visual_check_started",
+      "collection_permission": "unknown",
+      "legal_status": "published_17_aug_2026_effective_18_aug_2026_pending_specialist_schedule_verification",
+      "finding": "The official EDA-hosted 4-page PDF confirms Official Proceedings No.179, 17 Aug 2026; issuance 20 Jul 2026; Article 1 replaces item 12 of Table 1, section I(B), and adds/changes Table 3 entries; Article 2 commences the day after publication. OCR does not capture all chemical entries; page images 10–12 visually inspected.",
+      "next_action": "Transcribe all amended schedule rows from the original page images, preserve chemical names and scope language exactly, compare against Decision 44/2026, and obtain specialist verification of nomenclature."
     }
   ],
   "guardrails": [
