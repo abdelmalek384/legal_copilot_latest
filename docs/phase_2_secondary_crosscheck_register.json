@@ -237,6 +237,40 @@
       "legal_status": "current_candidate_pending_lawyer_review",
       "finding": "Issuance Art. 3(4) excludes data relating to police reports, investigations and judicial proceedings from the attached Data Protection Law. Art. 34 grants judicial-police status to designated Centre staff.",
       "next_action": "Extract all 49 law articles and Decision 816/2025; review interplay with Law 175/2018 and sectoral retention/disclosure rules."
+    },
+    {
+      "evidence_id": "XREF-RIYADH-ACCESSION-278-2014-ENTRY",
+      "document_id": "EG-RIYADH-ACCESSION-278-2014",
+      "practice_areas": [
+        "criminal",
+        "international_cooperation"
+      ],
+      "url": "https://manshurat.org/file/6694/download?token=OWECKZVo",
+      "publisher": "Official Gazette 49, 4 Dec 2014; Manshurat PDF image visually inspected",
+      "source_class": "official Gazette accession decision and regional treaty text",
+      "observed_title_ar": "قرار رئيس الجمهورية رقم 278 لسنة 2014 بشأن الموافقة على انضمام مصر إلى اتفاقية الرياض العربية للتعاون القضائي",
+      "source_state": "official_gazette_image_read_accession_date_conflict",
+      "collection_permission": "unknown",
+      "legal_status": "accession_approved_entry_into_force_date_pending",
+      "finding": "The Gazette image confirms approval of Egypt's accession to the Riyadh Agreement 1983 and the 1997 amendment to Art. 69, subject to ratification. Issuance date is 19 Aug 2014 and Gazette publication 4 Dec 2014. Manshurat metadata says effective 10 Aug 2014, before issuance; a separate listing reports 8 Sep 2014. Riyadh Art. 68 makes accession binding 30 days after deposit; the deposit/entry date must be verified from the Arab League Secretariat before applying Art. 72 supersession of the 1952 agreements.",
+      "next_action": "Obtain Arab League accession/deposit record, date of instrument deposit, and any Egyptian reservation/notification. Preserve Law 83/1954 historical until lawyer confirms treaty status and entry into force."
+    },
+    {
+      "evidence_id": "XREF-BILATERAL-EXTRADITION-DATES-1988-2003",
+      "document_id": "EG-BILATERAL-MLA-EXTRADITION-TURKEY-222-1989",
+      "practice_areas": [
+        "criminal",
+        "international_cooperation"
+      ],
+      "url": "https://manshurat.org/node/20932",
+      "publisher": "Manshurat and MKSEgypt full treaty transcriptions",
+      "source_class": "bilateral treaty full text and metadata discrepancy",
+      "observed_title_ar": "اتفاقيات التعاون القضائي الجنائي وتسليم المجرمين بين مصر وتركيا والمغرب والمجر ورومانيا",
+      "source_state": "full_text_or_pdf_records_accessible_metadata_conflicts",
+      "collection_permission": "unknown",
+      "legal_status": "bilateral_treaties_status_pending_entry_into_force_check",
+      "finding": "Several treaty records report entry-into-force dates before Gazette publication: Turkey 222/1989 (2 Jan vs 12 Jan 1992), Hungary 129/1988 (3 Oct 1988 before 17 Nov 1988 publication), Romania 76/2003 (10 Jul 2003 before 28 Aug 2003 publication). Morocco 229/1989 has 7 Nov vs 20 Nov 1997 publication metadata conflict and 11 Sep 1997 entry date. These may reflect international exchange/notification dates, but must not be normalized without the ratification record.",
+      "next_action": "Obtain bilateral exchange-of-ratification notes and Gazette issue page images; keep issuance, Gazette publication, international entry into force and domestic commencement as separate fields."
     }
   ],
   "guardrails": [
