@@ -417,9 +417,9 @@
 Estimates are weighted across the assigned criminal-law domain and are not counts of links.
 
 - Discovery coverage: approximately 88% of assigned instrument families have concrete sources.
-- Actual Arabic text acquisition: approximately 54% (revised by late-pass addendum). Newly acquired in this tranche: full 3,841-line Penal Code transcription; full 37-article secondary Weapons Law transcription; full 33-article Law 1/2024 transcription; full 1,636-line Child Regulation transcription; and operative text of several missing Penal Code and Child Law amendments.
-- Amendment and implementing-instrument mapping: approximately 44% (revised by late-pass addendum). The Child Law chain and several Penal Code amendments are materially more complete, but Gazette-level collation and many amendments remain missing.
-- Article-level extraction and QA: approximately 37% (revised by late-pass addendum). Selected articles and operative amendments extracted; no complete consolidated text has been lawyer-reviewed.
+- Actual Arabic text acquisition: approximately 56% (revised by subsequent Penal Code acquisition). Newly acquired in this tranche: full 3,841-line Penal Code transcription; full 37-article secondary Weapons Law transcription; full 33-article Law 1/2024 transcription; full 1,636-line Child Regulation transcription; and operative text of several missing Penal Code and Child Law amendments.
+- Amendment and implementing-instrument mapping: approximately 46% (revised by subsequent Penal Code acquisition). The Child Law chain and several Penal Code amendments are materially more complete, but Gazette-level collation and many amendments remain missing.
+- Article-level extraction and QA: approximately 39% (revised by subsequent Penal Code acquisition). Selected articles and operative amendments extracted; no complete consolidated text has been lawyer-reviewed.
 - Lawyer verification: 0%.
 - **Overall assigned-domain completion at initial pass: approximately 33%; revised late-pass estimate: 37%.** This is not a claim that one-third of every law is fully collated; it is a weighted project estimate accounting for discovery, full text, amendments, versioning and QA.
 - National contribution using the earlier equal-weight 30-domain baseline: approximately 1.1 percentage points (33% / 30). This is a rough contribution, not a new audited national completion figure.
@@ -577,7 +577,7 @@ This addendum records additional instruments discovered after the initial 20 Nov
 - Amendment and implementing-instrument mapping: approximately 44%.
 - Article-level extraction and QA: approximately 37%.
 - Lawyer verification: 0%.
-- **Overall assigned criminal-law domain completion: approximately 37%.**
+- **Overall assigned criminal-law domain completion: approximately 39% (latest acquisition pass).**
 - Rough equal-weight national contribution (30 domains): 1.23 percentage points (37% / 30). This is not a revised audited national completion estimate.
 
 ### 11.9 Immediate next acquisition priorities
@@ -589,3 +589,77 @@ This addendum records additional instruments discovered after the initial 20 Nov
 5. Obtain the complete signed Decision 1143/2020 and extract every replacement/addition in Arts 85, 89, 89 bis, 90, 92, 99, 90 bis (a), 99 bis and 112 bis.
 6. Acquire the official Gazette PDF of Law 177/2020 and collate Art 113 bis with the Law 150/1950 consolidated text.
 7. Investigate Law 64/2010 and other amendments in the Child Law relation graph; do not assume the amendment list above is exhaustive.
+
+
+## 12. Further Penal Code amendments — Laws 150/2021 and 71/2021
+
+### 12.1 Law 150/2021 — State defence secrets, Penal Code Art 80(a)
+
+- Arabic title: قانون رقم 150 لسنة 2021 بتعديل بعض أحكام قانون العقوبات.
+- Gazette: العدد 46 مكرر, 20 November 2021; effective 21 November 2021.
+- Official Amiri Press DSpace law item with Arabic PDF attachment: https://dspace.id.com.eg/items/a6361f52-7211-435a-af37-a1da5f1b7408/full
+- Official Gazette issue bundle: https://dspace.id.com.eg/items/fff595e9-7e78-4d07-a504-b725756388f8/full
+- Full current Article 80(a) transcription: https://lawhub.info/eg/?p=11750
+- Secondary contemporary report with operative text: https://www.masrawy.com/news/news_regions/details/2021/11/22/2127818/غرامة-وحبس-ما-التعديلات-الجديدة-لأحكام-قانون-العقوبات-مستند
+- The amendment increases the monetary fine and adds express liability for unauthorized collection of military-force data and use of information-technology methods. This instrument was missing from the prior amendment chain.
+- Status: T2 official Gazette/file listing; T3 full operative text from consolidated transcription; Arabic PDF bytes not locally preserved.
+
+#### Verbatim Arabic — substituted Art 80(a)
+
+مادة (٨٠ أ):  
+مع عدم الإخلال بأي عقوبات أشد ينص عليها أي قانون آخر، يعاقب بالحبس مدة لا تقل عن ستة أشهر ولا تزيد على خمس سنوات وبغرامة لا تقل عن خمسة آلاف جنيه ولا تجاوز خمسين ألف جنيه:
+
+١- كل من حصل بأية وسيلة غير مشروعة على سر من أسرار الدفاع عن البلاد ولم يقصد تسليمه أو إفشاءه لدولة أجنبية أو لأحد ممن يعملون لمصلحتها.  
+٢- كل من أذاع بأية طريقة سراً من أسرار الدفاع عن البلاد.  
+٣- كل من نظم أو استعمل أية وسيلة من وسائل التراسل بقصد الحصول على سر من أسرار الدفاع عن البلاد أو تسليمه أو إذاعته.  
+٤- كل من قام بجمع الاستبيانات أو الإحصائيات أو إجراء الدراسات لأي معلومات أو بيانات تتعلق بالقوات المسلحة أو مهامها أو أفرادها الحاليين أو السابقين بسبب وظيفتهم دون تصريح كتابي من وزارة الدفاع.
+
+فإذا وقعت الجريمة في زمن الحرب، أو باستعمال وسيلة من وسائل الخداع أو الغش أو التخفي أو إخفاء الشخصية أو الجنسية أو المهنة أو الصفة، أو بإحدى وسائل تقنية المعلومات، أو كان الجاني من ضباط القوات المسلحة أو أحد أفرادها أو من العاملين المدنيين لديها كانت العقوبة السجن.
+
+ويعاقب بالعقوبات نفسها على الشروع في ارتكاب هذه الجرائم.
+
+### 12.2 Law 71/2021 — unauthorized recording/publication of criminal hearings, Art 186 bis
+
+- Arabic title: قانون رقم 71 لسنة 2021 بتعديل بعض أحكام قانون العقوبات.
+- Gazette: العدد 23 مكرر, 13 June 2021; effective 14 June 2021.
+- Official Amiri Press DSpace Arabic PDF record: https://dspace.id.com.eg/items/e7d7c33c-a153-4e24-8f19-92cacd5dd2ba
+- Full Arabic text: https://lawyeregypt.net/قانون-تسجيل-أو-تصوير-جلسة-محاكمة/
+- Additional reproduction: https://www.elmodawanaeg.com/قانون-رقم-71-لسنة-2021-بتعديل-بعض-أحكام-قانون/
+- Adds Penal Code Art 186 bis criminalizing recording, photographing, broadcasting, publishing or displaying proceedings of a criminal trial session without authorization from the presiding judge after consulting the Public Prosecution.
+- Status: T2 official DSpace Arabic PDF record; T3 complete operative text transcription.
+
+#### Verbatim Arabic — new Art 186 bis
+
+مادة (١٨٦ مكرراً):  
+مع عدم الإخلال بأي عقوبة أشد يعاقب بغرامة لا تقل عن مائة ألف جنيه ولا تزيد على ثلاثمائة ألف جنيه كل من صور أو سجل كلمات أو مقاطع أو بث أو نشر أو عرض بأي طريق من طرق العلانية لوقائع جلسة محاكمة مخصصة لنظر دعوى جنائية دون تصريح من رئيس المحكمة المختصة بعد أخذ رأي النيابة العامة.
+
+ويُحكم فضلاً عن ذلك بمصادرة الأجهزة أو غيرها مما يكون قد استخدم في الجريمة، أو ما نتج عنها، أو محو محتواها، أو إعدامه، بحسب الأحوال.
+
+وتُضاعف الغرامة في حالة العود.
+
+(المادة الثانية)  
+ينشر هذا القانون في الجريدة الرسمية، ويعمل به من اليوم التالي لتاريخ نشره.
+
+### 12.3 Penal Code amendment chain — additions now recorded
+
+The Penal Code amendment inventory in this repository now explicitly includes:
+- Law 6/2020 — Art 293 (maintenance non-payment);
+- Law 189/2020 — Art 309 bis (b) (bullying);
+- Law 10/2021 — Arts 242 bis and 242 bis (a) (female genital mutilation);
+- Law 71/2021 — Art 186 bis (unauthorized criminal hearing recording/publication);
+- Law 141/2021 — Arts 306 bis (a) and (b), later amended by Law 185/2023;
+- Law 150/2021 — Art 80(a) (State defence secrets);
+- Law 185/2023 — Arts 306 bis (a), 306 bis (b) second paragraph, and 309 bis (b) third paragraph.
+
+This is a working list of identified recent amendments, not a certified exhaustive amendment history.
+
+## 13. Revised progress — after further Penal Code acquisition
+
+- Discovery coverage: approximately 91%.
+- Actual Arabic text acquisition: approximately 56%.
+- Amendment and implementing-instrument mapping: approximately 46%.
+- Article-level extraction and QA: approximately 39%.
+- Lawyer verification: 0%.
+- **Overall assigned criminal-law domain completion: approximately 39%.**
+- Rough equal-weight national contribution (30 domains): approximately 1.30 percentage points (39% / 30). Not an audited national completion figure.
+
