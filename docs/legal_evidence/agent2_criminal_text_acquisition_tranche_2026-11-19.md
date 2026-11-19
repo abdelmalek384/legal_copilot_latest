@@ -1610,3 +1610,63 @@ Do not lock 1950 or 1951 without inspecting the original Waqa'i' No. 90. The pri
 ### N6. Status update
 
 The Criminal Procedure Law 150/1950 amendment chain is materially more complete than the v0.1 dossier. The high-priority missing original instruments are now Law 95/2003, Law 145/2006, Law 83/2013, Law 49/2014, Law 138/2014, Law 16/2015, Law 11/2017, Law 177/2020 and Law 1/2024. Several are already accessible as full Arabic texts or Gazette PDFs; the remaining older amendment candidates are metadata-only and must be separated from verified text.
+
+
+### N7. Law 1/2024 — selected exact provisions on felony appeals
+
+The full 33-article Arabic text is accessible from the SIS-hosted Gazette PDF and a full secondary transcription:
+- Official Gazette PDF: https://hrightsstudies.sis.gov.eg/media/9281/القانون-رقم-1-لسنة-2024-بتعديل-قانون-الا-جرا-ءات-الجنا-ي-ية.pdf
+- SIS Gazette record: https://mediadr.sis.gov.eg/handle/123456789/51750
+- Full 33-article text: https://alhasswalawfirm.com/law-library/law-1-2024
+
+**Article 1** also substitutes terminology in multiple CPL provisions and replaces the second paragraph of Art. 151. The new Art. 151 paragraph provides that, outside the court term, the matter is handled by the Misdemeanour Appeal Court sitting in chambers when referring to a first-instance felony court or appealing before the felony appeal court.
+
+**Article 3 — new felony-appeal chapter:**
+
+> يضاف عنوان «الفصل الأول: فى استئناف مواد الجنح» إلى عنوان الباب الثانى «فى الاستئناف» من الكتاب الثالث من قانون الإجراءات الجنائية، كما يضاف إلى الباب الثانى من الكتاب الثالث من قانون الإجراءات الجنائية فصل ثانى بعنوان (فى استئناف مواد الجنايات) يتضمن المواد أرقام ٤١٩ مكرراً، ٤١٩ مكرراً ١، ٤١٩ مكرراً ٢، ٤١٩ مكرراً ٣، ٤١٩ مكرراً ٤، ٤١٩ مكرراً ٥، ٤١٩ مكرراً ٦، ٤١٩ مكرراً ٧، ٤١٩ مكرراً ٨، ٤١٩ مكرراً ٩، نصوصها الآتية:
+
+**Article 419 bis:**
+
+> لكل من النيابة العامة والمتهم أن يستأنف الأحكام الحضورية الصادرة من محكمة جنايات أول درجة.
+
+**Article 419 bis (1):**
+
+> يجوز استئناف الأحكام الصادرة فى الدعوى المدنية من محكمة جنايات أول درجة من المدعى بالحقوق المدنية أو المسئول عنها أو المتهم فيما يختص بالحقوق المدنية وحدها، إذا كانت التعويضات المطلوبة تزيد على النصاب الذى تحكم فيه المحكمة الابتدائية نهائياً.
+
+**Article 419 bis (2):**
+
+> يجوز للنيابة العامة أن تستأنف الأحكام الغيابية الصادرة فى مواد الجنايات.
+
+**Article 419 bis (3):**
+
+> يُتبع فى نظر الاستئناف والفصل فيه جميع الأحكام المقررة للاستئناف فى مواد الجنح، ما لم ينص القانون على خلاف ذلك.
+
+**Article 419 bis (4) — appeal time limits:**
+
+> يحصل الاستئناف بتقرير فى قلم كتاب المحكمة التى أصدرت الحكم، وذلك خلال أربعين يوماً من تاريخ صدور الحكم.  
+> فإذا كان الاستئناف مرفوعاً من هيئة قضايا الدولة يجب أن يكون التقرير موقعاً من مستشار بها على الأقل.  
+> وإذا كان مرفوعاً من النيابة العامة فيجب أن يكون التقرير موقعاً من محام عام على الأقل.  
+> وللنائب العام أن يستأنف الحكم خلال ستين يوماً من تاريخ صدوره، وله أن يقرر بالاستئناف فى قلم كتاب المحكمة المختصة بنظر الاستئناف.
+
+**Article 419 bis (7) — order of oral submissions:**
+
+> تسمع المحكمة أقوال المستأنف، والأوجه التى يستند إليها فى استئنافه، وأوجه دفاعه ودفوعه، كما تسمع باقى الخصوم، على أن يكون المتهم آخر من يتكلم.
+
+**Article 419 bis (8) — death sentence:**
+
+> إذا كان الحكم صادراً حضورياً بعقوبة الإعدام، ولم يجر استئنافه خلال الميعاد المقرر قانوناً، وجب على النيابة العامة اتباع حكم المادة ٤٦ من قانون حالات وإجراءات الطعن أمام محكمة النقض الصادر بالقانون رقم ٥٧ لسنة ١٩٥٩.
+
+**Article 419 bis (9) — execution pending appeal:**
+
+> لا يترتب على استئناف الحكم الصادر من محكمة جنايات أول درجة وقف تنفيذ الحكم، إلا إذا رأت محكمة الجنايات المستأنفة وقف التنفيذ، أو كان الحكم صادراً بالإعدام.  
+> وإذا تخلف المحكوم عليه أو وكيله بغير عذر عن الحضور في الجلسة المحددة لنظر استئنافه أو في أى جلسة تالية تندب له المحكمة محامياً للدفاع عنه وتفصل في الاستئناف.
+
+**Article 4 — transition:**
+
+> لا تسري أحكام هذا القانون إلا على الدعاوى التي لم يُفصل فيها من محاكم الجنايات اعتباراً من تاريخ العمل بهذا القانون.
+
+**Article 5 — commencement:**
+
+> ينشر هذا القانون في الجريدة الرسمية، ويعمل به اعتباراً من اليوم التالي لتاريخ نشره.
+
+This amendment commenced 17 January 2024. Law 174/2025 issuance Article 3 separately protects the transitional position of cases not decided by felony courts from the date Law 1/2024 came into force. Keep both transition rules in the version model.
