@@ -2846,3 +2846,42 @@ The current schedules are not simply the historical schedules attached to Law 18
 
 LawyerEgypt labels the consolidated Drug Law “according to the latest amendment issued 22 April 2024”, but EDA's official amendment index lists the latest statutory amendment as Law 19/2020. No Law 182/1960 amendment dated 22 April 2024 has been identified. Keep the consolidated text as a useful readable source but do not claim a 2024 amendment without an instrument number and Gazette reference.
 
+
+
+---
+
+## AF. Weapons and Ammunition Law 394/1954 — full current text and 2022 amendment primary source
+
+### AF1. Full current Arabic text acquired
+
+- Full 53-article Arabic text, host states copied verbatim from the Court of Cassation Legislation Portal and updated through 3 November 2022:
+https://alhasswalawfirm.com/law-library/law-394-1954
+- Full current text: https://lawhub.info/eg/?p=11748
+- Original 1954 text reproduction: https://manshurat.org/node/7414
+
+The current consolidation includes Law 5/2019 and Law 163/2022 and the related schedules. It must be used instead of the original 1954 text alone.
+
+### AF2. Law 5/2019 — full text and operative additions
+
+Law 5/2019 was published in Official Gazette No.6 follow-up, 7 February 2019; effective 8 February 2019. Full text:
+https://www.laweg.net/framePlain.aspx?ItemID=113261&NID=140067&Type=6&action=ViewActivePages
+
+It:
+- Replaces Arts.25 bis and 28(1) concerning unlicensed possession/trading of white weapons and specified sound/air/gas weapons.
+- Adds Art.1 bis authorizing possession of sound pistols/rifles, air-pressure and gas-pressure weapons and their ammunition in accordance with Interior Ministry conditions.
+- Adds Art.25 bis (a) penalties for violating Art.1 bis.
+- Adds Schedule 5 for sound/air/gas weapons and ammunition.
+- Requires existing holders/manufacturers to regularize within six months of the implementing Interior Ministry decision.
+
+### AF3. Law 163/2022 — official Gazette PDF acquired
+
+Law 163/2022 was published in Official Gazette No.44 follow-up (a), 3 November 2022. Official PDF reproduction:
+https://gate.ahram.org.eg/media/News/2022/11/6/2022-638033396014725011-472.pdf
+
+It replaces specified paragraphs in Arts.4,8,10,12,26 and30. The amendments address surrender of revoked/cancelled licensed weapons, monthly storage fees up to EGP500 after 60 days, doubled fees after 90 days, administrative seizure for arrears, licence and custody rules, and revised penalties. Official Gazette issue metadata:
+https://mediadr.sis.gov.eg/xmlui/handle/123456789/12845
+
+### AF4. Amendment and implementing-decision queue
+
+The Manshurat relationship index identifies older Law 394 amendments including Laws 546/1954, 29/1968, 26/1978, 101/1980, 165/1981, 162/2003, 65/2010, 90/2012, 129/2014, 5/2019 and 163/2022. These must be reconciled with the full 53-article consolidation and original Gazette texts. The inventory already contains Interior Minister Decisions 1/1954 and 1300/2019; their current status and any subsequent schedule/implementation decisions remain to be checked.
+
