@@ -457,7 +457,7 @@
         "replacement code instrument(s)",
         "commencement postponement/transition instrument(s)"
       ],
-      "notes": "Critical temporal-status review required. Do not infer operative status from the existence of replacement legislation. Full Arabic secondary text located. Keep current/historical status time-scoped and pending lawyer review; Law 1/2024 amendment checkpoint already exists and should not be duplicated. Current-code evidence provisions Arts 86–89 on expert oath, written report, defence expert and expert challenge captured from full secondary text. Keep as current candidate until Law 174/2025 commencement. Corrected amendment chain: Law 177/2020 (not Law 189/2020) adds Art. 113 bis. Law 189/2020 amends Penal Code Art. 309 bis (b) on bullying. Additional amendments located: 95/2003, 145/2006, 74/2007, 71/2009, 83/2013, 49/2014, 138/2014, 16/2015, omnibus Law 11/2017 and Law 1/2024. Older relation candidates 271/1955, 107/1962, 37/1972, 170/1981 and 23/1992 are separately recorded as metadata-only pending original text.",
+      "notes": "Remains the operative Criminal Procedure Code through 30 Sep 2027, absent a later amendment. Law 174/2025 Art.4 repeals it only when the new Code commences on 1 Oct 2027 under Law 160/2026. Continue to use the current amended Law 150 text until that date; preserve historical version and transition mapping.",
       "source_urls": [
         {
           "url": "https://www.alamiria.com/Sec/TashTxt?id=YbxnlD3e4Qc%3D",
@@ -491,7 +491,7 @@
       "instrument_number": 174,
       "instrument_year": 2025,
       "source_id": "EG-AMIRI-PRESS",
-      "source_status": "discovery_only",
+      "source_status": "full_official_546_article_Gazette_pdf_accessible_not_archived",
       "collection_permission": "unknown",
       "legal_status": "unknown",
       "review_status": "discovery_only",
@@ -501,7 +501,7 @@
         "Law 160/2026 and any subsequent instruments",
         "transition/repeal review"
       ],
-      "notes": "Treat enactment, publication, commencement and operative legal effect as separate fields; specialist review required. Important update: official-source discovery found Law 160/2026 changing the commencement date to 1 October 2027. Original commencement wording in Law 174/2025 is not sufficient to state current operative status. Full Arabic code text accessible. Official Gazette Art. 2 reads 'مواد الجنايات'; Manshurat full text reads 'مواد الجنح'. Retain discrepancy; official Gazette text controls pending counsel review. Law 160/2026 amended Art. 6 commencement to 1 Oct 2027. Book Five international judicial cooperation/extradition excerpts Arts 511 and 514–521 transcribed in the Agent 2 tranche. Art. 511 sets incoming request channel and provisional detention ceiling; Arts 514–515 non-extradition grounds and challenge; Art. 517 controlled delivery; Arts 518–520 judicial assistance; Art. 521 presidential transfer/surrender. Full Articles 508–510 and 512–513 remain to be extracted. Further official Gazette extracts now captured for future code Arts 24–27, 32, 34, 54–56, 64, 80–81 and 99–103. Preserve OCR numbering anomaly for the second displayed 'Art. 27' in the arrest chapter; sequence indicates Article 37, pending visual Gazette collation.",
+      "notes": "Official Ministry of Justice-hosted PDF of Official Gazette No.45 bis (d), 12 Nov 2025, full 2,386-line text ending at Art.546. Enacted but not yet in force: Law 160/2026 fixed commencement at 1 Oct 2027. Issuance Art.2 official PDF reads pre-commencement absentia judgments in felony matters (مواد الجنايات), whereas Manshurat reads misdemeanours (مواد الجنح); official PDF preferred, page-image review pending. Art.4 repeals CPL150/1950 and Law140/2014 only when new Code commences. Book Five Arts.508–521 fully extracted in dossier.",
       "source_urls": [
         {
           "url": "https://dspace.id.com.eg/handle/123456789/4666",
@@ -522,6 +522,11 @@
           "url": "https://temp.manshurat.org/content/qnwn-ljrt-ljnyy-rqm-174-lsn-2025-0",
           "source_role": "full 3,167-line secondary Arabic text",
           "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://www.manshurat.org/content/qnwn-ljrt-ljnyy-rqm-174-lsn-2025-0",
+          "source_role": "Secondary full text; Art.2 wording discrepancy with official PDF",
+          "status": "full_text_accessible_not_archived"
         }
       ]
     },
@@ -535,7 +540,7 @@
       "instrument_number": 160,
       "instrument_year": 2026,
       "source_id": "EG-AMIRI-PRESS",
-      "source_status": "discovery_only",
+      "source_status": "official_Amiria_full_text_and_Gazette_issue_metadata_pdf_restricted",
       "collection_permission": "unknown",
       "legal_status": "unknown",
       "review_status": "discovery_only",
@@ -545,7 +550,7 @@
         "Law 150/1950",
         "commencement and transition analysis"
       ],
-      "notes": "The official Amiri Press result states the amendment replaces the earlier commencement wording with 1 October 2027; it states the amending law itself takes effect the day after publication. Gazette issue metadata points to issue 39 bis (B), 30 September 2026. Preserve the original text and have an Egyptian criminal-procedure lawyer verify the operative-law and transition analysis. Collection permission remains unknown.",
+      "notes": "Law 160/2026 published Official Gazette No.39 bis (b), 30 Sep 2026; effective 1 Oct 2026. Art.1 replaces Law174/2025 Art.6 commencement phrase with fixed date 1 Oct 2027; Art.2 makes Law160 effective the day after publication. Amiri Press official text accessible. DSpace official Gazette PDF is restricted and requires formal copy request; no bypass attempted.",
       "source_urls": [
         {
           "url": "https://www.alamiria.com/Sec/TashTxt?id=Aalg37zxdcU%3D",
@@ -561,6 +566,11 @@
           "url": "https://parliament.gov.eg/News_Show.aspx?frm=5874",
           "source_role": "official parliamentary corroboration",
           "status": "discovered"
+        },
+        {
+          "url": "https://dspace.id.com.eg/items/1b1e2a48-59d9-4307-b215-1ac3a07b4ee3",
+          "source_role": "Official Gazette No.39 bis (b), 30 Sep 2026 metadata; PDF restricted/request-copy",
+          "status": "full_text_accessible_not_archived"
         }
       ]
     },
@@ -3736,7 +3746,7 @@
         "Palermo Protocols 295/2003 and 297/2004",
         "bilateral agreements"
       ],
-      "notes": "Two-article law, Gazette 46 follow-up, 13 Nov 2014; effective 14 Nov 2014. Repeal under Law 174/2025 is deferred with its commencement; new Code Article 521 and Arts 514–520 should be mapped. New treaty research: Egypt's accession to Riyadh Convention 1983 approved by Presidential Decision 278/2014; Riyadh Art. 72 replaces 1952 Arab League agreements for states bound by it. Keep Law 83/1954 historical/potentially superseded pending accession deposit and entry-into-force verification. Law 174/2025 future Book Five Arts 511, 514–521 now transcribed in Agent 2 tranche.",
+      "notes": "Law 140/2014 remains operative through 30 Sep 2027, absent a later amendment. Law 174/2025 Art.4 repeals it only when the new Criminal Procedure Code commences on 1 Oct 2027 under Law 160/2026. Future extradition/transfer procedure is now in Law 174/2025 Book Five Arts.508–521.",
       "source_urls": [
         {
           "url": "https://www.aldhshan.com/2026/02/140-2014.html",
@@ -6990,6 +7000,21 @@
         "observed_title": "Cybercrime, Personal Data Protection, Human Trafficking and Migrant Smuggling text acquisition",
         "finding": "Acquired full official Law 175/2018 PDF, FRA full PM Decree 1699/2020 text, official Law 151/2020 PDF, full 43-article Arabic Decree 816/2025 reproduction, full Law 64/2010 and Decree 3028/2010 texts, official Law 82/2016 PDF and full Decree 983/2018 text. Extracted cybercrime retention/search/hash rules, personal-data criminal offences and digital-evidence/breach-reporting rules, victim-protection/MLA rules and migrant-smuggling extradition/asset recovery provisions. Source conflicts: ESCC cybercrime-regulation PDF heading says 635/2020 while FRA and all full-text sources identify 1699/2020; one SIS report says 2038/2010 while Gazette-derived full text confirms Decree 3028/2010.",
         "status": "full_text_accessible_selected_text_persisted_official_files_not_archived"
+      },
+      {
+        "evidence_id": "SRC-CRIM-CPL-174-2025-160-2026-2026-11-19",
+        "document_ids": [
+          "EG-CRIMINAL-PROCEDURE-174-2025",
+          "EG-CRIMINAL-PROCEDURE-160-2026",
+          "EG-CRIMINAL-PROCEDURE-150-1950",
+          "EG-EXTRADITION-140-2014"
+        ],
+        "source_type": "official Ministry of Justice full Gazette PDF, Amiri Press official text and Gazette issue metadata",
+        "url": "https://moj.gov.eg/backend/api/documents/download/20F3150C-29F1-487E-A0F0-FCCE10CB207B",
+        "publisher": "Ministry of Justice / General Authority for Amiri Press / official Gazette repository",
+        "observed_title": "Complete Criminal Procedure Code 174/2025 and commencement amendment Law 160/2026",
+        "finding": "Full official Law 174/2025 text acquired as a 2,386-line PDF ending at Art.546; complete Book Five Arts.508–521 extracted. Law 160/2026 official Amiri Press text and Gazette No.39 bis (b) metadata confirm commencement is 1 Oct 2027, not 1 Oct 2026. CPL150/1950 and Law140/2014 remain operative until new Code commencement. Official Law174 Art.2 reads felony absentia judgments, unlike Manshurat secondary text reading misdemeanours.",
+        "status": "full_official_text_accessible_book_five_transcribed_original_files_not_archived"
       }
     ],
     "temporal_review_alerts": [
@@ -7015,7 +7040,7 @@
     "agent": "Research Agent 2",
     "domain": "Egyptian criminal law and procedure",
     "as_of": "2026-11-19",
-    "estimated_domain_completion_percent": 65,
+    "estimated_domain_completion_percent": 67,
     "previous_session_estimate_percent": 58,
     "whole_project_contribution_percent": null,
     "whole_project_contribution_reason": "Cannot calculate without master-index denominator and domain weights.",
@@ -7025,8 +7050,8 @@
     "new_inventory_records_added_this_session": 96,
     "inventory_total_documents": 181,
     "acquisition_queue_items": 24,
-    "crosscheck_register_count": 27,
-    "notes": "Qualitative research-coverage estimate, not article-count or lawyer-QA metric. This pass improved source and text coverage for AML, child justice, prisons and narcotics schedules. Two new amendment-instrument records were added without duplicating base laws. Publicly readable source text is not represented as locally archived/hash-verified; permission for storage/indexing/commercial use remains unknown. Cross-check register expanded to 22 entries for AML Decree 457/2020 date conflict, Prisons Law 14/2022 publication metadata conflict, and Decision 242/2026 schedule OCR verification. Second acquisition pass identified Child Law amendments through 2025 (including Art.49 repeal), four Child Law Executive Regulation amendments through 2020, and weapons Law 5/2019, Law 163/2022, Decision 1300/2019. 13 distinct records added, bringing total to 181. Research estimate increased to 63%; still 0 local original files archived/hash verified and 0 lawyer-verified records. Cross-check register now includes the Child Law Art.49 repeal in Social Security Law 12/2025, the 2075/2010 executive-regulation amendment chain, and SCC judgment 1/47 (2026) on weapons provisions. Progress metadata reconciled to the 58% baseline recorded before the current acquisition work; 96 net-new inventory records are now counted cumulatively (81 prior tranche + 15 added in the two current passes). Third acquisition pass upgraded cybercrime Law 175/2018 and Decree 1699/2020, Personal Data Law 151/2020 and Decree 816/2025, Human Trafficking Law 64/2010 and Decree 3028/2010, and Illegal Migration Law 82/2016 and Decree 983/2018. No duplicate base-law records added. Key source conflicts logged. Cross-check register includes Cybercrime Executive Regulation 1699/2020 vs ESCC 635/2020 heading conflict and Human Trafficking Executive Regulation 3028/2010 vs one secondary 2038/2010 miscitation.",
+    "crosscheck_register_count": 28,
+    "notes": "Qualitative research-coverage estimate, not article-count or lawyer-QA metric. This pass improved source and text coverage for AML, child justice, prisons and narcotics schedules. Two new amendment-instrument records were added without duplicating base laws. Publicly readable source text is not represented as locally archived/hash-verified; permission for storage/indexing/commercial use remains unknown. Cross-check register expanded to 22 entries for AML Decree 457/2020 date conflict, Prisons Law 14/2022 publication metadata conflict, and Decision 242/2026 schedule OCR verification. Second acquisition pass identified Child Law amendments through 2025 (including Art.49 repeal), four Child Law Executive Regulation amendments through 2020, and weapons Law 5/2019, Law 163/2022, Decision 1300/2019. 13 distinct records added, bringing total to 181. Research estimate increased to 63%; still 0 local original files archived/hash verified and 0 lawyer-verified records. Cross-check register now includes the Child Law Art.49 repeal in Social Security Law 12/2025, the 2075/2010 executive-regulation amendment chain, and SCC judgment 1/47 (2026) on weapons provisions. Progress metadata reconciled to the 58% baseline recorded before the current acquisition work; 96 net-new inventory records are now counted cumulatively (81 prior tranche + 15 added in the two current passes). Third acquisition pass upgraded cybercrime Law 175/2018 and Decree 1699/2020, Personal Data Law 151/2020 and Decree 816/2025, Human Trafficking Law 64/2010 and Decree 3028/2010, and Illegal Migration Law 82/2016 and Decree 983/2018. No duplicate base-law records added. Key source conflicts logged. Cross-check register includes Cybercrime Executive Regulation 1699/2020 vs ESCC 635/2020 heading conflict and Human Trafficking Executive Regulation 3028/2010 vs one secondary 2038/2010 miscitation. Fourth acquisition pass acquired full official 546-article Law 174/2025 PDF and Law 160/2026 official Amiri Press text/Gazette metadata; extracted all Book Five Arts.508–521. Current commencement fixed at 1 Oct 2027; CPL150/1950 and Law140/2014 remain operative until then. Official/secondary Art.2 transition wording discrepancy recorded.",
     "last_acquisition_pass_increment_percent": 2,
     "last_acquisition_pass_date": "2026-11-19"
   }
