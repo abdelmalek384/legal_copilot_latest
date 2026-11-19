@@ -448,7 +448,7 @@
         "commercial"
       ],
       "priority": "P0",
-      "action": "Obtain authorized FRA consolidated Arabic AML Law and Executive Regulations; extract full Law 80/2002 as amended through 154/2022 and PM Decree 951/2003 as updated through PM Decree 3331/2023; reconcile Decree 457/2020.",
+      "action": "Use FRA updated Law 80/2002 and the full 951/2003 regulation updated through 3331/2023 as the text base; preserve Laws 78/2003, 181/2008, 36/2014, 17/2020, 154/2022 and PM Decrees 1463/2006, 2367/2008, 1569/2016, 2910/2019, 457/2020, 3331/2023 as separate amendment relations. Complete Gazette collation and resolve 457/2020 issue-date discrepancy.",
       "candidate_sources": [
         "https://fra.gov.eg/wp-content/uploads/2024/05/قانون-مكافحة-غسل-الأموال-1.pdf",
         "https://fra.gov.eg/regulations/اللائحة-التنفيذية-لقانون-مكافحة-غسل-ا/",
@@ -457,15 +457,16 @@
       ],
       "source_type": "official Gazette/regulator text and secondary full-text candidates; exact source terms must be reviewed per item",
       "permission_state": "unknown_or_pending",
-      "acquisition_state": "full_text_accessible_not_archived_or_selected_excerpts_only",
+      "acquisition_state": "full_updated_law_and_full_updated_executive_regulation_accessible_plus_457_2020_and_3331_2023_amendment_texts",
       "legal_review_state": "not_started",
-      "blocker": "FRA PDFs are readable but exact terms for local archiving, commercial indexing and excerpt display have not been reviewed. Decree 457/2020 is an unresolved amendment-chain conflict.",
+      "blocker": "FRA updated PDFs and Gazette Decree 3331/2023 are readable; local archive/hash and reuse permission remain unresolved. Decree 457/2020 date conflict (Gazette No.8 bis / 23 Feb vs FRA footnote No.13 bis (e) / 31 Mar) requires original issue image check and full article crosswalk.",
       "required_evidence": [
         "FRA consolidated text SHA-256 and page range",
         "all five statutory amendments and full Art-by-Art map",
         "Decrees 1463/2006, 2367/2008, 1569/2016, 2910/2019, 3331/2023 and 457/2020 reconciliation",
         "Egyptian AML lawyer review"
-      ]
+      ],
+      "last_researched_on": "2026-11-19"
     },
     {
       "queue_item_id": "ACQ-015",
@@ -481,7 +482,7 @@
         "health_regulation"
       ],
       "priority": "P0",
-      "action": "Acquire the complete current Arabic Narcotics Law and all amendment instruments; OCR and version every schedule under Decision 44/2026 as amended by Decision 242/2026. Preserve old schedules as historical snapshots.",
+      "action": "Transcribe the EDA-hosted 14-page Law 182/1960 scan and complete 34-page Decision 44/2026 schedules; incorporate Decision 242/2026 (Official Proceedings No.179, 17 Aug 2026, effective 18 Aug) as an amendment to item 12 in Table 1 I(B) and Table 3. Preserve historical schedules and check for post-August 2026 instruments.",
       "candidate_sources": [
         "https://edaegypt.gov.eg/ar/المرجع-التنظيمي-لهيئة-الدواء-المصرية/القوانين-واللوائح-التنفيذية/تعديلات-قانون-رقم-182-لسنة-1960/",
         "https://dev.edaegypt.gov.eg/media/dkjooww3/قرار-وزارة-الصحة-والسكان-رقم-44-لسنة-2026-ar-2026_.pdf",
@@ -490,16 +491,17 @@
       ],
       "source_type": "official Gazette/regulator text and secondary full-text candidates; exact source terms must be reviewed per item",
       "permission_state": "unknown_or_pending",
-      "acquisition_state": "full_text_accessible_not_archived_or_selected_excerpts_only",
+      "acquisition_state": "official_eda_scans_for_law_182_and_full_2026_schedule_decisions_44_242_accessible",
       "legal_review_state": "not_started",
-      "blocker": "Official EDA-hosted PDFs are readable, but full schedule OCR, original-file hashes and terms for storage/reuse remain incomplete.",
+      "blocker": "Law 182 PDF OCR is unavailable; 34-page Decision 44 schedules and 4-page Decision 242 amendment require full visual transcription. Original files not locally archived/hashed; reuse permission unknown.",
       "required_evidence": [
         "full Law 182 Arabic text and amendment chain",
         "full 34-page Decision 44 schedules",
         "full Decision 242 amended schedule items",
         "SCC judgment case 33/47 and subsequent schedule decisions",
         "Egyptian criminal/drug-control lawyer review"
-      ]
+      ],
+      "last_researched_on": "2026-11-19"
     },
     {
       "queue_item_id": "ACQ-016",
@@ -543,7 +545,7 @@
         "child_protection"
       ],
       "priority": "P1",
-      "action": "Obtain authorized complete Child Law 12/1996 text, Law 126/2008, current Executive Regulations 2075/2010 and all amendments; keep Decree 3452/1997 as historical only.",
+      "action": "Segment and extract all 194 articles of Decree 2075/2010 and collate Law 12/1996 / Law 126/2008 against original Gazette sources; preserve Decree 3452/1997 as repealed historical text; check post-2020 child-protection amendments.",
       "candidate_sources": [
         "https://lawyeregypt.net/قانون-الطفل-المصرى-رقم-12-لسنة-1996",
         "https://www.laweg.net/framePlain.aspx?ItemID=8964&NID=7658&Type=6&action=ViewActivePages",
@@ -551,15 +553,16 @@
       ],
       "source_type": "official Gazette/regulator text and secondary full-text candidates; exact source terms must be reviewed per item",
       "permission_state": "unknown_or_pending",
-      "acquisition_state": "full_text_accessible_not_archived_or_selected_excerpts_only",
+      "acquisition_state": "full_law_and_full_194_article_executive_regulation_accessible_secondary_with_gazette_issue_and_repeal_clause",
       "legal_review_state": "not_started",
-      "blocker": "Full secondary text is accessible, but official Gazette copy of Decree 2075/2010 and post-2020 amendment chain are not established.",
+      "blocker": "Full text is readable from secondary sources; full Gazette PDF for Decree 2075/2010 and post-2020 amendments still need visual inspection. Permission for local archive and reuse unresolved.",
       "required_evidence": [
         "complete 194-article regulation extraction",
         "Gazette publication and repeal clause for 3452/1997",
         "post-2020 amendment search",
         "Egyptian juvenile-justice lawyer review"
-      ]
+      ],
+      "last_researched_on": "2026-11-19"
     },
     {
       "queue_item_id": "ACQ-018",
@@ -575,7 +578,7 @@
         "human_rights"
       ],
       "priority": "P1",
-      "action": "Obtain current consolidated Law 396/1956, Laws 19/2020 and 14/2022, and complete Interior Minister Decree 79/1961 with amendments. Preserve historical text and terminology changes.",
+      "action": "Complete the Law 396/1956 article map with Laws 19/2020 and 14/2022; acquire Decree 1265/2022 and all Gazette amendments to Decree 79/1961, especially 1675/2011, 1342/2013, 3320/2014, 345/2017 and 1265/2022; check post-June-2022 changes.",
       "candidate_sources": [
         "https://www.notariesofegypt.org/article.php?id=469",
         "https://temp.manshurat.org/file/87963/download?token=oPuxA7uk",
@@ -584,16 +587,17 @@
       ],
       "source_type": "official Gazette/regulator text and secondary full-text candidates; exact source terms must be reviewed per item",
       "permission_state": "unknown_or_pending",
-      "acquisition_state": "full_text_accessible_not_archived_or_selected_excerpts_only",
+      "acquisition_state": "full_law_396_1956_law_14_2022_and_101_article_decree_79_1961_consolidation_accessible_secondary",
       "legal_review_state": "not_started",
-      "blocker": "Secondary text and a Gazette-text copy are readable; original consolidated statute, Decree 79/1961 updates and reuse terms remain unverified.",
+      "blocker": "Original Gazette PDFs for Laws 19/2020 and 14/2022 and Decree 79/1961 amendment instruments are not locally archived/hashed. Decree 1265/2022 full text not yet acquired; post-June-2022 status unverified.",
       "required_evidence": [
         "full 396/1956 text and article change map",
         "Law 19/2020 Article 52 bis and Narcotics Art 46 bis (a) change",
         "Law 14/2022 title/terminology substitutions",
         "all amendments to Decree 79/1961",
         "Egyptian prison-lawyer review"
-      ]
+      ],
+      "last_researched_on": "2026-11-19"
     },
     {
       "queue_item_id": "ACQ-019",
