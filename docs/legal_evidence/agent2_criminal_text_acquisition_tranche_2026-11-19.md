@@ -2230,3 +2230,52 @@ The complete 14-article text of Book Five (international judicial cooperation, e
 - **Transition correction:** official Law 174 Art.2 says felony absentia judgments (“مواد الجنايات”); a secondary reproduction says misdemeanours (“مواد الجنح”). The official PDF wording is preferred; the discrepancy remains logged.
 - **Original Gazette PDFs locally archived and SHA-256 verified:** 0.
 - **Egyptian lawyer-verified records:** 0.
+
+
+---
+
+## V. Acquisition pass — current consolidated Criminal Procedure Law 150/1950 text through Law 1/2024
+**Research date:** 19 November 2026.
+
+### V1. Full current Arabic text acquired
+
+- Full 178-page PDF reproduction of the current Code: https://alhasswalawfirm.com/uploads/files/1501950-1788831619834-5385881.pdf
+- Full text page: https://alhasswalawfirm.com/law-library/law-150-1950
+- The host states the text is reproduced verbatim from the Court of Cassation Legislation Portal and reflects amendments through 16 January 2024. The official portal link is exposed at https://cc.gov.eg/legislation_single/3012435102 but returned a 502 error in this pass; no bypass attempted.
+- The PDF contains the full text, article-level amendment footnotes, and runs through numbered Art.560. It includes Law 177/2020 Art.113 bis and the Law 1/2024 changes to felony-court terminology and Arts.419 bis–419 bis 9.
+- This is a secondary-hosted reproduction of a Court of Cassation portal text, not an original Gazette scan. It is readable and suitable as a temporary consolidation base, subject to comparison against the Gazette amendments.
+
+**Exact Arabic excerpt — Law 150/1950 Art.113 bis (added by Law 177/2020):**
+
+> لا يجوز لمأموري الضبط أو جهات التحقيق الكشف عن بيانات المجني عليه في أي من الجرائم المنصوص عليها في الباب الرابع من الكتاب الثالث من قانون العقوبات الصادر بالقانون رقم 58 لسنة 1937، أو في أي من المادتين (306 مكررا / أ ، 306 مكررا / ب) من ذات القانون، أو في المادة (96) من قانون الطفل الصادر بالقانون رقم 12 لسنة 1996، إلا لذوي الشأن.
+
+**Law 1/2024 additions and current article crosswalk:** the consolidated text incorporates the nine new felony-appeal provisions, Arts.419 bis through 419 bis 9, and footnotes the terminology replacements in Arts.11, 12, 13, 529, 536 and 524. The Law 1/2024 original Gazette PDF is separately linked in the inventory.
+
+### V2. Amendment chronology expanded from consolidated-code footnotes
+
+The current full text's article-level footnotes expose additional older amendment instruments not previously represented as separate records in the inventory. The footnotes identify, among others:
+- Laws 178/1951 and 228/1951 (issuance provisions);
+- Decree-Laws 353/1952, 340/1952 and 252/1952;
+- Law 426/1954;
+- Laws 271/1955, 627/1955, 121/1956 and 113/1957;
+- Law 43/1958;
+- Laws 107/1962, 37/1972 and 63/1975;
+- Law 170/1981;
+- Law 23/1992;
+- Laws 95/2003, 145/2006, 74/2007, 71/2009, 83/2013, 49/2014, 138/2014, 16/2015, 11/2017, 177/2020 and 1/2024.
+
+This expands the older amendment queue beyond the previously listed metadata-only candidates. The full consolidation footnotes establish the amendment relations, but the underlying Gazette texts for the older instruments have not all been acquired. They remain separate acquisition targets and must not be treated as fully verified from footnotes alone.
+
+**Metadata correction:** a Manshurat page for a different CPL consolidation says the last amendment was Law 189/2020. That attribution is wrong for CPL: the actual text inserts Art.113 bis under Law 177/2020, while Law 189/2020 amended the Penal Code. The full 2024 consolidation page correctly states that it reflects amendments through 16 January 2024.
+
+### V3. Current operative status
+
+Law 150/1950 remains the operative Criminal Procedure Code through 30 September 2027, absent a later amendment. Law 174/2025 repeals it only when the new Code commences on 1 October 2027 under Law 160/2026. Use this current consolidated Law 150 text for present-day procedure, while retaining the 174/2025 text as future law.
+
+### V4. Progress update after fifth acquisition pass — 19 November 2026
+
+- **Estimated assigned criminal-law domain completion: 69%** (qualitative research-coverage estimate; not article-count, local corpus-ingestion or lawyer-verification metric). Prior pass: 67%.
+- **Newly upgraded:** full 178-page consolidated Law 150/1950 text, article-level footnotes through Law 1/2024, and the official Court of Cassation source endpoint.
+- **Current CPL coverage:** both current Law 150/1950 and future Law 174/2025 now have complete readable Arabic text sources. The current code's older amendment chain is materially expanded, but original Gazette acquisition for older amendments remains open.
+- **Original Gazette PDFs locally archived and SHA-256 verified:** 0.
+- **Egyptian lawyer-verified records:** 0.
