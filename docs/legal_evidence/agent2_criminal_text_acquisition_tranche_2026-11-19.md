@@ -2808,3 +2808,41 @@ The inventory now separates the five amendment instruments (1463/2006, 2367/2008
 ### AD4. Current status correction
 
 The official FRA-hosted consolidated 951/2003 PDF is now accessible and supersedes the earlier note that the current official PDF endpoint was unavailable. The current consolidated text is through 31 August 2023. The original amendment Gazette PDFs remain unarchived; the 2026 CDD guidance and supervisory circulars in Section AB are later operational instruments and do not amend the 951/2003 regulation itself.
+
+
+---
+
+## AE. Drug Law 182/1960 — complete consolidated text and historical amendment chain
+
+### AE1. Full current Arabic text acquired
+
+- Full consolidated text page and downloadable PDF/Word: https://lawyeregypt.net/قانون-مكافحة-المخدرات-رقم-182-لسنة-1960-المعدل/
+- Full current text: https://lawhub.info/eg/?p=11739
+- Official EDA amendment index listing the historical amendment instruments: https://edaegypt.gov.eg/ar/المرجع-التنظيمي-لهيئة-الدواء-المصرية/القوانين-واللوائح-التنفيذية/تعديلات-قانون-رقم-182-لسنة-1960/
+- Official EDA original-law PDF remains linked in the inventory.
+
+The consolidated text contains the 56 numbered provisions, current text and article-level footnotes. The host labels it “updated 22 April 2024”; however, the EDA official amendment index lists Law 19/2020 as the latest statutory amendment and lists no 2024 amending law. Treat 22 April 2024 as a source revision/review date unless an actual 2024 amending instrument is located. The schedules are now separately superseded by Minister of Health Decision 44/2026 and amended by Decision 242/2026.
+
+### AE2. Amendment chain recovered from EDA index and consolidated text
+
+- Law 206/1960 — adds substances to Table 1; issued 11 July 1960, published Official Gazette No.155 follow-up, 12 July 1960; effective 13 July 1960.
+- Law 40/1966 — replaces Arts.33,34,35,36 and 40; adds Art.48 bis; Gazette No.187, 18 August 1966.
+- Law 16/1973 — replaces paragraphs 3,4 and 6 of Art.37; Gazette No.14, 5 April 1973.
+- Law 61/1977 — adds paragraphs to Art.42 concerning confiscated tools and vehicles; Gazette No.47, 24 November 1977.
+- Law 45/1984 — replaces Art.27(1), Art.38 and Art.44; Gazette No.13 bis (w), 31 March 1984.
+- Law 122/1989 — replaces Arts.33–41, Art.42(1), Arts.43–45 and Art.50; adds Arts.34 bis, 37 bis (a)–(d), 46 bis, 46 bis (a), 48 bis (a) and 52 bis; replaces Table 1. Gazette No.26 bis, 4 July 1989; effective 5 July 1989.
+- Law 134/2019 — adds Art.1 bis on synthetic drugs and empowers the competent minister to set controls/criteria; Gazette No.28 bis (a), 16 July 2019.
+- Law 19/2020 — repeals the second paragraph of Art.46 bis (a) of the Drug Law; Gazette No.11 bis (l), 18 March 2020; effective 19 March 2020. The same law adds Prisons Law Art.52 bis, excluding specified drug offences from conditional release except the Art.37 felony.
+
+**Exact Arabic excerpt — Law 19/2020, Article 2:**
+
+> تلغى الفقرة الثانية من المادة (٤٦ مكرراً "أ") من القانون رقم ١٨٢ لسنة ١٩٦٠ فى شأن مكافحة المخدرات وتنظيم استعمالها والاتجار فيها.
+
+### AE3. Schedule status
+
+The current schedules are not simply the historical schedules attached to Law 182/1960. Minister of Health Decision 44/2026 replaced the attached schedules; Decision 242/2026 later amended Table 1, Section I(B), item 12 and added Table 3 entries 57–61. The 34-page Decision 44/2026 image-based schedules still require full page-by-page transcription. All older schedule amendments are historical and must be versioned separately from the 2026 schedules.
+
+### AE4. Source-version discrepancy
+
+LawyerEgypt labels the consolidated Drug Law “according to the latest amendment issued 22 April 2024”, but EDA's official amendment index lists the latest statutory amendment as Law 19/2020. No Law 182/1960 amendment dated 22 April 2024 has been identified. Keep the consolidated text as a useful readable source but do not claim a 2024 amendment without an instrument number and Gazette reference.
+
