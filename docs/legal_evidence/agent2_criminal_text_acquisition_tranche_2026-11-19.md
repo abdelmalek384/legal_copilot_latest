@@ -2731,3 +2731,17 @@ Official Gazette No.16 bis, 21 April 2018. The statute regulates the Committee f
 - **Outstanding:** original Gazette scans for the amendment chain; exact full original Law 149/2021 text and Law 2/2020; article-by-article cross-check against the official Court of Cassation portal; no executive regulations for these laws identified in this pass.
 - **Original Gazette PDFs locally archived and SHA-256 verified:** 0.
 - **Egyptian lawyer/AML-specialist verified records:** 0.
+
+
+### AC5. Official-source upgrade — FRA-hosted primary PDFs
+
+The FRA AML/CFT legislation index directly links the anti-terrorism and terrorist-list laws and the asset-management statute:
+https://fra.gov.eg/تشريعات-مكافحة-غسل-الأموال-وتمويل-الإرهاب/
+
+- **Law 94/2015:** 24-page FRA-hosted PDF of the original law acquired. It contains the 2015 enactment text; use the current LawHub consolidation for later changes by Laws 11/2017, 15/2020 and 149/2021.
+  https://fra.gov.eg/wp-content/uploads/2020/12/UG49861UG49862.pdf
+- **Law 8/2015:** FRA's official legislation page links the updated version, but the document endpoint returned “Request Rejected”. Retain the official index as source evidence and use the current secondary consolidated text until a formal copy is available.
+- **Law 22/2018:** 7-page FRA-hosted PDF of the statute acquired. The PDF text layer is poorly encoded; the 17-article Alhasswa transcription remains the readable working text.
+  https://fra.gov.eg/wp-content/uploads/2025/05/قانون-رقم-22-لسنة-2018-بتنظيم-إجراءات-التحفظ-والحصر-والإدارة-والتصرف-في-أموال-الجماعات-الإرهابية-والإرهابيين-.pdf
+
+These are primary regulator-hosted copies, but none has been downloaded into the repository or SHA-256 archived.
