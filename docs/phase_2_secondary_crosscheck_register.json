@@ -1,13 +1,17 @@
 {
   "schema_version": "1.0",
   "register_id": "EG-PHASE2-SECONDARY-CROSSCHECKS-BATCH-3",
-  "checked_on": "2026-10-23",
+  "checked_on": "2026-11-19",
   "purpose": "Identify useful cross-check and acquisition leads for foundational statutes. These links are not permission grants and secondary text must not be promoted to primary-source status.",
   "evidence": [
     {
       "evidence_id": "XREF-CIVIL-CODE-131-1948-MANSHURAT",
       "document_id": "EG-CIVIL-CODE-131-1948",
-      "practice_areas": ["civil", "commercial", "property"],
+      "practice_areas": [
+        "civil",
+        "commercial",
+        "property"
+      ],
       "url": "https://manshurat.org/node/69432",
       "publisher": "Manshurat — legal information platform",
       "source_class": "secondary legal database / source-discovery lead",
@@ -27,7 +31,9 @@
     {
       "evidence_id": "XREF-PENAL-CODE-58-1937-MANSHURAT",
       "document_id": "EG-PENAL-CODE-58-1937",
-      "practice_areas": ["criminal"],
+      "practice_areas": [
+        "criminal"
+      ],
       "url": "https://manshurat.org/node/23881",
       "publisher": "Manshurat — legal information platform",
       "source_class": "secondary legal database / source-discovery lead",
@@ -48,7 +54,11 @@
     {
       "evidence_id": "XREF-IP-LAW-82-2002-WIPOLEX",
       "document_id": "EG-IP-LAW-82-2002",
-      "practice_areas": ["intellectual_property", "commercial", "technology"],
+      "practice_areas": [
+        "intellectual_property",
+        "commercial",
+        "technology"
+      ],
       "url": "https://www.wipo.int/wipolex/en/legislation/details/22066",
       "publisher": "World Intellectual Property Organization — WIPO Lex",
       "source_class": "international legal database / consolidated-text cross-check",
@@ -68,7 +78,9 @@
     {
       "evidence_id": "XREF-IP-LAW-82-2002-GAFI",
       "document_id": "EG-IP-LAW-82-2002",
-      "practice_areas": ["intellectual_property"],
+      "practice_areas": [
+        "intellectual_property"
+      ],
       "url": "https://www.gafi.gov.eg/English/StartaBusiness/Laws-and-Regulations/Documents/IntellectualPropertyRightsLaw.pdf",
       "publisher": "General Authority for Investment and Free Zones (GAFI)",
       "source_class": "government-hosted reference PDF / version not established",
@@ -82,7 +94,10 @@
     {
       "evidence_id": "XREF-REAL-ESTATE-REGISTRATION-114-1946-MANSHURAT",
       "document_id": "EG-PROPERTY-LAND-REGISTRATION-COLLECTION",
-      "practice_areas": ["property", "civil"],
+      "practice_areas": [
+        "property",
+        "civil"
+      ],
       "url": "https://manshurat.org/node/69796",
       "publisher": "Manshurat — legal information platform",
       "source_class": "secondary legal database / source-discovery lead",
@@ -103,7 +118,9 @@
     {
       "evidence_id": "XREF-FAMILY-COURTS-LAW-10-2004-MANSHURAT",
       "document_id": "EG-FAMILY-COURTS-LAW-10-2004",
-      "practice_areas": ["family"],
+      "practice_areas": [
+        "family"
+      ],
       "url": "https://manshurat.org/node/7336",
       "publisher": "Manshurat — legal information platform",
       "source_class": "secondary legal database / source-discovery lead",
@@ -124,7 +141,9 @@
     {
       "evidence_id": "XREF-CRIMPROC-LAW-174-2025-NATLEX",
       "document_id": "EG-CRIMINAL-PROCEDURE-174-2025",
-      "practice_areas": ["criminal"],
+      "practice_areas": [
+        "criminal"
+      ],
       "url": "https://natlex.ilo.org/dyn/natlex2/r/natlex/fe/details?p3_isn=119035",
       "publisher": "International Labour Organization — NATLEX",
       "source_class": "international legal database / historical cross-check",
@@ -134,6 +153,90 @@
       "legal_status": "stale_for_current_commencement_without_2026_amendment",
       "finding": "Useful to locate the 2025 enactment but predates Law 160/2026, which official source discovery indicates changed the commencement date. This record must not be used alone to describe current operative status.",
       "next_action": "Review ILO terms, acquire authorized Gazette texts for both Laws 174/2025 and 160/2026, and obtain criminal-procedure counsel sign-off."
+    },
+    {
+      "evidence_id": "XREF-CRIMPROC-174-ART2-MOJ-MANSURAT",
+      "document_id": "EG-CRIMINAL-PROCEDURE-174-2025",
+      "practice_areas": [
+        "criminal"
+      ],
+      "url": "https://moj.gov.eg/backend/api/documents/download/20F3150C-29F1-487E-A0F0-FCCE10CB207B",
+      "publisher": "Ministry of Justice Gazette PDF compared with Manshurat",
+      "source_class": "official text versus secondary transcription discrepancy",
+      "observed_title_ar": "قانون الإجراءات الجنائية 174 لسنة 2025 — المادة الثانية من مواد الإصدار",
+      "source_state": "official_text_accessible_secondary_variant_found",
+      "collection_permission": "unknown",
+      "legal_status": "future_commencement_2027-10-01_pending_lawyer_review",
+      "finding": "Official Gazette PDF reads مواد الجنايات; Manshurat full text reads مواد الجنح. Use the Gazette wording for the official-text field and preserve the secondary variant in the audit trail.",
+      "next_action": "Visually collate the Gazette page image, save authorized original/hash and obtain Egyptian lawyer confirmation."
+    },
+    {
+      "evidence_id": "XREF-CYBER-EXEC-1699-635",
+      "document_id": "EG-CYBERCRIME-EXEC-1699-2020",
+      "practice_areas": [
+        "criminal",
+        "technology"
+      ],
+      "url": "https://masaar.net/ar/egypt_laws/اللائحة-التنفيذية-لقانون-مكافحة-جرائم-تقنية-المعلومات/",
+      "publisher": "Masaar full Arabic text with regulatory cross-check",
+      "source_class": "secondary full text and Gazette metadata cross-check",
+      "observed_title_ar": "قرار رئيس مجلس الوزراء رقم 1699 لسنة 2020",
+      "source_state": "full_secondary_text_accessible_1699_supported",
+      "collection_permission": "unknown",
+      "legal_status": "current_candidate_pending_lawyer_review",
+      "finding": "PM Decree 1699/2020 is supported by Gazette metadata and full Arabic text. An ESCC-hosted PDF path previously surfaced with header 635/2020; it is quarantined and not accepted as the implementing regulation pending provenance clarification.",
+      "next_action": "Obtain Gazette 35 follow-up (c), 27 Aug 2020, and compare all articles/annexes. Do not create a separate 635 record without Gazette proof."
+    },
+    {
+      "evidence_id": "XREF-DRUGS-SCHEDULE-44-242-2026",
+      "document_id": "EG-DRUGS-DECISION-242-2026",
+      "practice_areas": [
+        "criminal",
+        "health_regulation"
+      ],
+      "url": "https://edaegypt.gov.eg/ar/المرجع-التنظيمي-لهيئة-الدواء-المصرية/القوانين-واللوائح-التنفيذية/",
+      "publisher": "Egyptian Drug Authority official schedule index",
+      "source_class": "official regulator index and Gazette PDFs",
+      "observed_title_ar": "قراري وزير الصحة والسكان 44 لسنة 2026 و242 لسنة 2026",
+      "source_state": "official_pdf_sources_accessible",
+      "collection_permission": "unknown",
+      "legal_status": "242_2026_amends_44_2026_schedule",
+      "finding": "Decision 44/2026 replaced all schedules annexed to Law 182/1960; Decision 242/2026 subsequently replaces item 12 in Table 1 section I(B) and amends Table 3. The earlier unverified status for 242 is superseded.",
+      "next_action": "OCR all schedules from both official EDA PDFs, preserve version snapshots and effective dates, and obtain the cited SCC judgment."
+    },
+    {
+      "evidence_id": "XREF-PRISONS-14-2022-TITLE",
+      "document_id": "EG-PRISONS-AMEND-14-2022",
+      "practice_areas": [
+        "criminal",
+        "prisons"
+      ],
+      "url": "https://temp.manshurat.org/file/87963/download?token=oPuxA7uk",
+      "publisher": "Gazette text PDF copy",
+      "source_class": "Gazette-text reproduction and statutory-title cross-check",
+      "observed_title_ar": "القانون رقم 14 لسنة 2022 بتعديل بعض أحكام قانون تنظيم السجون",
+      "source_state": "text_accessible_article_2_checked",
+      "collection_permission": "unknown",
+      "legal_status": "amendment_current_candidate",
+      "finding": "Art. 2 replaces the statute title with في شأن تنظيم السجون while replacement Art. 1 uses مراكز الإصلاح والتأهيل for facilities. The prior blanket statement that the law was renamed to correction centres is inaccurate.",
+      "next_action": "Visually collate the Gazette page and keep statute title separate from facility terminology."
+    },
+    {
+      "evidence_id": "XREF-PDATA-151-2020-ART3-4",
+      "document_id": "EG-PERSONAL-DATA-151-2020",
+      "practice_areas": [
+        "technology",
+        "criminal"
+      ],
+      "url": "https://escc.gov.eg/assets/docs/law-151-2020.pdf",
+      "publisher": "Supreme Constitutional Court-hosted Official Gazette PDF",
+      "source_class": "official court-hosted Gazette text",
+      "observed_title_ar": "قانون حماية البيانات الشخصية 151 لسنة 2020 — المادة الثالثة من مواد الإصدار",
+      "source_state": "official_pdf_text_accessible",
+      "collection_permission": "unknown",
+      "legal_status": "current_candidate_pending_lawyer_review",
+      "finding": "Issuance Art. 3(4) excludes data relating to police reports, investigations and judicial proceedings from the attached Data Protection Law. Art. 34 grants judicial-police status to designated Centre staff.",
+      "next_action": "Extract all 49 law articles and Decision 816/2025; review interplay with Law 175/2018 and sectoral retention/disclosure rules."
     }
   ],
   "guardrails": [
