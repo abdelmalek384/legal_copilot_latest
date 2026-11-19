@@ -406,6 +406,58 @@
       "legal_status": "published_17_aug_2026_effective_18_aug_2026_pending_specialist_schedule_verification",
       "finding": "The official EDA-hosted 4-page PDF confirms Official Proceedings No.179, 17 Aug 2026; issuance 20 Jul 2026; Article 1 replaces item 12 of Table 1, section I(B), and adds/changes Table 3 entries; Article 2 commences the day after publication. OCR does not capture all chemical entries; page images 10–12 visually inspected.",
       "next_action": "Transcribe all amended schedule rows from the original page images, preserve chemical names and scope language exactly, compare against Decision 44/2026, and obtain specialist verification of nomenclature."
+    },
+    {
+      "evidence_id": "XREF-CHILD-LAW-12-2025-ART49-REPEAL",
+      "document_id": "EG-SOCIAL-SECURITY-12-2025",
+      "practice_areas": [
+        "criminal",
+        "child_law"
+      ],
+      "url": "https://alhasswalawfirm.com/law-library/law-12-2025",
+      "publisher": "Alhasswa full Arabic text reproduced from Official Gazette No.14 follow-up, 3 Apr 2025; current Child Law consolidations",
+      "source_class": "cross-statute repeal in Social Security Law",
+      "observed_title_ar": "قانون رقم 12 لسنة 2025 بإصدار قانون الضمان الاجتماعي",
+      "source_state": "full_text_accessible_secondary_gazette_metadata_present",
+      "collection_permission": "unknown",
+      "legal_status": "art49_child_law_repealed_commencement_calculated_4_jul_2025_original_scan_pending",
+      "finding": "Article 4 of Social Security Law 12/2025 expressly repeals Art.49 of Child Law 12/1996. The Social Security Law is published in Official Gazette No.14 follow-up on 3 Apr 2025. Article 6 states commencement on the day following the lapse of three months from publication, calculated as 4 Jul 2025. Child Law consolidated reproductions that continue to show Art.49 without a repealed marker are stale.",
+      "next_action": "Acquire original Gazette No.14 follow-up scan and confirm the statutory commencement calculation; mark Art.49 repealed in the current Child Law corpus and retain historical text separately."
+    },
+    {
+      "evidence_id": "XREF-WEAPONS-SCC-1-47-2026",
+      "document_id": "EG-WEAPONS-EXEC-1300-2019",
+      "practice_areas": [
+        "criminal",
+        "weapons",
+        "constitutional_law"
+      ],
+      "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/constitutional-court/10-09-2026/no-1?id=5669806&type=1",
+      "publisher": "Eastlaws reproduction of Supreme Constitutional Court judgment; Official Gazette No.37 follow-up, 10 Sep 2026",
+      "source_class": "judicial status cross-check",
+      "observed_title_ar": "المحكمة الدستورية العليا رقم 1 لسنة 47 قضائية الصادر بتاريخ 09/09/2026",
+      "source_state": "full_text_accessible_secondary_gazette_metadata_present",
+      "collection_permission": "unknown",
+      "legal_status": "jurisdictional_and_admissibility_disposition_not_merits_invalidation",
+      "finding": "SCC case 1/47, dated 9 Sep 2026 and published 10 Sep 2026, held lack of jurisdiction over the challenge to Law 394/1954 Art.35 bis and inadmissibility of the challenge to Art.9 of Decision 1300/2019 concerning silencers/suppressors and telescopes for sound/air/gas-pressure weapons. It did not declare those provisions unconstitutional on the merits.",
+      "next_action": "Obtain the original judgment Gazette PDF, capture its operative order and reasoning, and link it to Law 394/1954 Art.35 bis and Decision 1300/2019 Art.9."
+    },
+    {
+      "evidence_id": "XREF-CHILD-EXEC-2075-AMENDMENT-CHAIN",
+      "document_id": "EG-CHILD-EXEC-2075-2010",
+      "practice_areas": [
+        "criminal",
+        "child_law"
+      ],
+      "url": "https://lawhub.info/eg/?p=12124",
+      "publisher": "LawHub full 194-article regulation text and secondary full transcriptions",
+      "source_class": "consolidated regulation amendment-chain cross-check",
+      "observed_title_ar": "قرار رئيس مجلس الوزراء رقم 2075 لسنة 2010 بإصدار اللائحة التنفيذية لقانون الطفل",
+      "source_state": "full_consolidated_text_accessible_secondary",
+      "collection_permission": "unknown",
+      "legal_status": "amendment_chain_identified_through_1143_2020_original_gazettes_pending",
+      "finding": "The full Decree 2075/2010 text identifies amendments by Decrees 208/2014, 178/2016, 1783/2018 and 1143/2020. The 2016, 2018 and 2020 amendments have secondary full Arabic transcriptions; Decree 208/2014 is confirmed in the consolidated text as amending Arts.85 and 87 but its original full text and Gazette metadata remain unavailable in the acquired source set.",
+      "next_action": "Obtain original Gazette issues for all four amendments, complete exact article replacement map, and verify whether any post-2020 regulation was issued to implement Law 186/2023 Art.72 bis."
     }
   ],
   "guardrails": [
