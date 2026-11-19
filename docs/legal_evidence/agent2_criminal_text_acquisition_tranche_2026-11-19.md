@@ -1779,3 +1779,155 @@ It increases penalties and aggravating circumstances for sexual harassment and s
 - **Egyptian lawyer-verified records:** 0.
 - **Contribution to total Egyptian legal knowledge coverage:** not computable without the master index denominator and weighting method.
 
+
+
+---
+
+## Q. Acquisition pass — AML, child justice, prisons, narcotics schedules
+**Research date:** 19 November 2026  
+**Method:** acquired readable Arabic text and original Gazette/regulator PDF access paths; no restricted source bypassed. The sources below are browser-readable, not locally archived or hash-verified. Source permission for storage, indexing, display and redistribution remains unknown.
+
+### Q1. Anti-Money Laundering Law — Law 80/2002 and amendments
+
+**New source acquisition:** FRA-hosted updated Arabic Law 80/2002 PDF, Gazette-origin legal text and amendment annotations:
+- Updated Law 80/2002 text: https://fra.gov.eg/wp-content/uploads/2024/05/قانون.pdf
+- Official Gazette copy of Law 154/2022: https://dspace.id.com.eg/server/api/core/bitstreams/1fe32968-2f23-489d-9045-5a4032fdd9c3/content
+- FRA consolidated Executive Regulations (1448 extracted lines, current through 3331/2023): https://fra.gov.eg/wp-content/uploads/2024/06/لائحة-القانون-وفقا-لاخر-تعديل-الاصدار.pdf
+- FRA further hosted consolidated regulation copy: https://fra.gov.eg/wp-content/uploads/2025/04/اللائحة-التنفيذية-لقانون-مكافحة-غسل-الأموال-1-1.pdf
+- Official Gazette PDF, PM Decree 3331/2023: https://fra.gov.eg/wp-content/uploads/2023/09/3331.pdf
+- PM Decree 457/2020, Gazette issue 8 bis (23 February 2020): https://www.laweg.net/framePlain.aspx?ItemID=115318&NID=142337&Type=6&action=ViewActivePages
+
+**Statutory amendment chain now cross-confirmed:** Laws 78/2003, 181/2008, Decree-Law 36/2014, Law 17/2020 and Law 154/2022. The FRA 2022 consolidation itself contains article-level amendment annotations. Law 154/2022 adds, among other things, Art. 3 bis (executive director), Art. 9 bis 1 (targeted financial sanctions implementation), and Art. 17 bis 1 (parallel financial investigations).
+
+**Executive regulation amendment chain resolved:** PM Decrees 1463/2006, 2367/2008, 1569/2016, 2910/2019, 457/2020 and 3331/2023. The FRA portal's short “previous legislation” list omitted 457/2020, but the current FRA consolidated PDF expressly annotates Art. 1 as amended by 457/2020 and its footnote lists Gazette issue 13 bis (e), 31 March 2020; the Laweg full text identifies Decree 457/2020 and Gazette issue 8 bis, 23 February 2020. Treat the 457/2020 instrument's issuance/publication-date discrepancy as an audit item: Laweg and multiple transcriptions say 23 February / issue 8 bis, while the FRA 2024 consolidated PDF's amendment footnote says issue 13 bis (e), 31 March 2020. Do not silently harmonize this.
+
+**Exact Arabic excerpts — Law 80/2002 (FRA updated text):**
+
+Article 2 opening:
+
+> يعد مرتكبا لجريمة غسل الأموال كل من علم أن الأموال متحصلة من جريمة أصلية، وقام عمدا بأي مما يلي:
+> 1- تحويل متحصلات أو نقلها، وذلك بقصد إخفاء المال أو تمويه طبيعته أو مصدره أو مكانه أو صاحبه أو صاحب الحق فيه أو تغيير حقيقته أو الحيلولة دون اكتشاف ذلك أو عرقلة التوصل إلى مرتكب الجريمة الأصلية.
+
+Article 4 opening:
+
+> تختص الوحدة بتلقي الإخطارات الواردة من المؤسسات المالية وأصحاب المهن والأعمال غير المالية، عن العمليات التي يشتبه في أنها تشكل متحصلات أو تتضمن غسل الأموال أو الأصول أو تمويل الإرهاب أو محاولات القيام بهذه العمليات.
+
+Article 8 opening:
+
+> تلتزم المؤسسات المالية وأصحاب المهن والأعمال غير المالية بإخطار الوحدة فوراً عن أي من العمليات التي تشتبه في أنها تشكل متحصلات أو تتضمن غسل الأموال أو الأصول أو تمويل الإرهاب، أو محاولات القيام بهذه العمليات أيا كانت قيمتها...
+
+Article 9 provides a minimum five-year retention period for relevant transaction records and customer/beneficial-owner data, measured from termination of the relationship or account closure, subject to longer retention requests.
+
+Article 17 bis provides for precautionary freezing/seizure measures on request by the AML Unit's board chair, with reference to CPL Arts. 208 bis (a) through (e). Article 17 bis 1 requires parallel financial investigations by law-enforcement and investigative authorities in money-laundering, predicate-offence and terrorist-financing cases.
+
+**Exact Arabic excerpt — Executive Regulations, Art. 2 bis added by Decree 3331/2023:**
+
+> تعد جريمة غسل الأموال جريمة مستقلة عن الجريمة الأصلية، بحيث لا يشترط أن يتم إدانة الشخص بارتكاب الجريمة الأصلية مسبقاً من أجل اعتبار الأموال أو الأصول متحصلات إجرامية.
+
+Decree 3331/2023 was published in Official Gazette No. 35 follow-up (a), 31 August 2023, and Article 3 makes it effective the following day (1 September 2023). Article 1 replaces a long list of existing regulation provisions; Article 2 adds new provisions including Arts. 2 bis, 2 bis (a), 3 bis and subparagraphs, 28 bis and subparagraphs, 29 bis, 31 bis, 43 bis (d), 50 bis and subparagraphs, and 53 bis and subparagraphs. The new Art. 28 bis requires parallel financial investigations; Art. 28 bis (a) allows money-laundering/terrorist-financing criminal proceedings to proceed without waiting for disposition of the predicate offence; Art. 29 bis requires a documented, risk-based AML/CTF/PF assessment updated at least annually.
+
+**Remaining AML gaps:** obtain and visually compare the original Gazette issue for Decree 457/2020; collate every article in the updated 2023 regulation against Decrees 1463/2006, 2367/2008, 1569/2016, 2910/2019, 457/2020 and 3331/2023; compare the 2022 Law 80 consolidation article by article with all statutory amendment Gazettes. The FRA PDF is a consolidated text, not itself proof of Gazette-by-Gazette collation.
+
+### Q2. Child Law — Law 12/1996, Law 126/2008 and Executive Regulations 2075/2010
+
+**Full Arabic text sources located:**
+- Law 12/1996 full Arabic text, 694 extracted lines: https://www.mksegypt.org/public/index.php/ar/laws/23925
+- Secondary full-text reproduction: https://manshurat.org/node/12718
+- PM Decree 2075/2010 full Arabic text, 1,636 extracted lines: https://lawhub.info/eg/?p=12124
+- Gazette issue 29 follow-up (a), 22 July 2010, decree issuance and repeal clause: https://www.laweg.net/framePlain.aspx?NID=64854&action=viewactivepages&itemid=50826&type=6
+- Law 126/2008 amendment text: https://www.laweg.net/framePlain.aspx?ItemID=8964&NID=7658&Type=6&action=ViewActivePages
+
+PM Decree 2075/2010 expressly repeals the earlier PM Decree 3452/1997. It was published 22 July 2010 and took effect the following day, 23 July 2010. The full secondary text states it contains 194 articles; the Gazette-hosted Laweg page confirms issuance, repeal and commencement but exposes only the introductory provisions.
+
+**Exact Arabic excerpts — Executive Regulations 2075/2010:**
+
+Article 1 defines the child by reference to the age limit of eighteen years and expressly identifies Law 12/1996 as amended by Law 126/2008:
+
+> الطفل: كل من لم يتجاوز سنه الثامنة عشرة سنة ميلادية كاملة, وفق وسائل الإثبات الواردة في المادة (2) من القانون.
+
+Article 3:
+
+> يثبت سن الطفل بموجب شهادة الميلاد أو بطاقة الرقم القومي أو أي مستند رسمي آخر. فإذا لم يوجد أي مستند من المستندات المذكورة أو أي مستند رسمي آخر قدرت السن بمعرفة إحدى الجهات التي يصدر بتحديدها قرار من وزير العدل بالاتفاق مع وزير الصحة.
+
+Article 4 sets out the rights and best-interests principles, including protection against physical, moral and sexual abuse and the child's right to be heard in judicial and administrative matters.
+
+**Criminal-justice provisions located in the Law 12/1996 text:** Art. 94 states criminal responsibility does not attach to a child under seven; Art. 95 applies the special criminal-treatment chapter to persons under eighteen at the time of the offence; Arts. 111–112 prescribe special penalty limits for children aged fifteen to under eighteen, including exclusion of death and life/temporary hard labour sentences in the terms of the source text. These provisions require current-text comparison against Law 126/2008 and the full Gazette before operational use.
+
+**Remaining child-law gaps:** visually inspect the original Gazette PDF for Decree 2075/2010; extract and segment all 194 articles into the project text corpus; search for post-2020 amending decisions and child-protection regulations; preserve Decree 3452/1997 as repealed historical material only.
+
+### Q3. Prisons / correction and rehabilitation legislation
+
+**Law 396/1956 full Arabic text source:** https://www.notariesofegypt.org/article.php?id=469  
+The page identifies Official Proceedings No. 96 bis (b), 29 November 1956, and reproduces the statute text. Opening provisions include the types of facilities, lawful written admission orders and intake recording.
+
+**Law 19/2020 — joint prisons/narcotics amendment:**
+- Full Arabic text: https://www.eglf.org/قانون-19-لسنة-2020/
+- Gazette: Official Gazette No. 11 bis (l), 18 March 2020; effective 19 March 2020.
+- Adds Art. 52 bis to Law 396/1956, excluding specified categories of convictions from conditional release; separately repeals the second paragraph of Art. 46 bis (a) of Law 182/1960. Preserve this instrument as linked to both the prisons and narcotics statutes, not as a prison-only amendment.
+
+**Law 14/2022 — amendment of Law 396/1956:**
+- Full Arabic transcription: https://dfatermasr.net/الاكْتفاء-بتغيير-اسم-السجون-ليس-الحل-قا-2/
+- Gazette No. 11 bis (b), 20 March 2022; effective 21 March 2022 according to the Gazette issue/date and the Eastlaws metadata.
+- Replaces Arts. 1, 2, 31 and 81; substitutes statutory terminology; repeals Arts. 3, 4, 34 and paragraph 3 of Art. 90, and deletes the specified final phrase of Art. 48.
+- Article 1 establishes three types of correction/rehabilitation centres, including public, geographic and special centres, with judicial supervision.
+- Article 31 requires facilitating study and examinations for inmates; Article 81 requires personal notification and allows a copy of the notice to be sent to a person nominated by the inmate.
+- Date discrepancy: one Manshurat catalogue entry reports 13 March issuance / 14 March publication / 15 March commencement, while the Gazette issue No. 11 bis (b) and the full transcription identify 20 March 2022 / next-day commencement. Preserve the catalogue conflict and prefer the Gazette issue evidence pending inspection of the original scan.
+
+**Interior Minister Decree 79/1961 — Internal Prison Regulations:**
+- Full 101-article Arabic consolidated text, with source claiming update through 21 June 2022: https://alhasswalawfirm.com/law-library/decree-79-1961
+- Original publication: Official Proceedings No. 103, 28 December 1961.
+- The consolidated text's amendment notes identify, among others, Decrees 1675/2011, 1342/2013, 3320/2014, 345/2017 and later amendments through 21 June 2022. A 2022 report identifies Interior Minister Decree 1265/2022, published in Official Proceedings No. 139 follow-up (c), 21 June 2022, as replacing several provisions including Arts. 11, 15 bis, 59, 7 (second paragraph), 75, 82 bis and 85-related text. Exact instrument text and article list require Gazette-image collation.
+- Manshurat record for the original decree: https://manshurat.org/node/12358
+
+**Exact Arabic excerpts — Law 14/2022:**
+
+Article 1 opening:
+
+> تنفذ العقوبات المقيدة للحرية في مراكز الإصلاح والتأهيل طبقاً لأحكام القانون، وتخضع للإشراف القضائي، وتهدف إلى رعاية وتأهيل المحكوم عليهم اجتماعياً وثقافياً، وهي ثلاثة أنواع:
+
+Article 31 opening:
+
+> على إدارة مراكز الإصلاح والتأهيل العمومية أن تشجع النزلاء على الاطلاع والتعلم وأن تيسر الاستذكار لمن لديهم الرغبة في استكمال الدراسة.
+
+**Remaining prison-law gaps:** obtain original Gazette scans for Laws 19/2020 and 14/2022; collate the full current Law 396 text article by article; acquire original Gazette copies of all 79/1961 amending ministerial decisions, particularly 1265/2022; verify whether any post-June-2022 amendment exists through 19 November 2026.
+
+### Q4. Narcotics Law — Law 182/1960 and current schedules
+
+**Official EDA source paths:**
+- Law 182/1960 original statute scan, 14-page PDF (browser text extraction returned no readable lines): https://dev.edaegypt.gov.eg/media/ekgifxb3/1960-182.pdf
+- EDA amendment index: https://dev.edaegypt.gov.eg/ar/المرجع-التنظيمي-لهيئة-الدواء-المصرية/القوانين-واللوائح-التنفيذية/تعديلات-قانون-رقم-182-لسنة-1960/
+- Decision 44/2026, Official Proceedings No. 39 follow-up (c), 17 February 2026, 34-page EDA-hosted PDF: https://dev.edaegypt.gov.eg/media/dkjooww3/قرار-وزارة-الصحة-والسكان-رقم-44-لسنة-2026-ar-2026_.pdf
+- Decision 242/2026, Official Proceedings No. 179, 17 August 2026, 4-page EDA-hosted PDF: https://dev.edaegypt.gov.eg/media/lydpgqi5/لمكافحة-المخدرات_2026_242-وزير-الصحة.pdf
+- Decision 44/2026 secondary full-text/search result: https://www.eastlaws.com/legislation-full-text/ar/egypt/health-population-minister-decision/17-02-2026/no-44?id=5386660&type=1
+
+The EDA index lists amendment Laws 206/1960, 40/1966, 16/1973, 61/1977, 45/1984, 122/1989, 134/2019 and 19/2020. Keep these as separate amendment relations and do not treat the 2026 schedule decisions as amendments to the statute itself.
+
+**Decision 44/2026:** replaces all schedules annexed to Law 182/1960. It cites Supreme Constitutional Court case 33/47 (constitutional) and hearing date 16 February 2026; Article 2 makes it effective on publication, 17 February 2026. This follows the SCC ruling against the EDA head's Decision 600/2023 and related EDA-head schedule amendments. Do not conflate the Minister of Health's Decision 44/2026 with the invalidated EDA-head decision.
+
+**Decision 242/2026:** issued 20 July 2026; published in Official Proceedings No. 179 on 17 August 2026; Article 2 provides commencement the day after publication (18 August 2026). Article 1 replaces item 12 in Table 1, section I(B), of Decision 44/2026 and adds/changes specified entries in Table 3. The EDA-hosted PDF is visually readable; OCR is incomplete. Screenshots of pages 10–12 show the replacement table item and added Table 3 entries. Do not rely on the current OCR alone for the chemical names or schedule rows; transcribe the original page images and have a specialist verify nomenclature.
+
+**Law 19/2020 cross-link:** Article 2 repeals the second paragraph of Art. 46 bis (a) of Law 182/1960. This must be included in the current statutory version map.
+
+**Remaining narcotics gaps:** transcribe the 14-page Law 182 Gazette scan; obtain and compare Gazette texts for all eight listed statutory amendments; visually transcribe all 34 pages of Decision 44 and the amended pages of Decision 242; check for later schedule decisions after 17 August 2026; preserve each superseded schedule as a dated historical version.
+
+### Q5. Weapons Law — acquisition status
+
+The complete 53-article Arabic text remains accessible in secondary reproductions:
+- https://ar.wikisource.org/wiki/قانون_الأسلحة_والذخائر_(eg)
+- https://lawhub.info/eg/?p=11748
+- Original-law metadata/PDF record: https://manshurat.org/node/7414
+
+This pass did not establish a new primary Gazette text or complete the 163/2022 amendment collation. Keep the weapons task open; do not downgrade its source status or infer that the 2015 implementing lead is the final instrument.
+
+---
+
+## R. Progress update after acquisition pass — 19 November 2026
+
+- **Estimated assigned criminal-law domain completion: 61%** (qualitative research-coverage estimate; not an article-count, corpus-ingestion or lawyer-verification metric). Baseline was 58%.
+- **Inventory:** 166 existing document records retained; no duplicate base-law records created. Two new distinct instrument records added for PM Decree 457/2020 (AML executive-regulation amendment) and Interior Minister Decree 1265/2022 (prison-regulation amendment).
+- **Newly improved source coverage:** AML Law 80/2002 and the full 951/2003 regulation updated through 3331/2023; Child Law 12/1996 and full 2075/2010 executive regulation; Law 396/1956, Law 14/2022 and 101-article Regulation 79/1961; official EDA PDFs for Law 182/1960 and the 2026 schedules Decisions 44/2026 and 242/2026.
+- **Official-hosted or Gazette PDF text paths newly verified:** AML Law/Regulations and Decree 3331/2023; narcotics Law 182/1960, Decision 44/2026 and Decision 242/2026. Full OCR/transcription and Gazette visual collation remain incomplete.
+- **Local original files archived and SHA-256 verified:** 0.
+- **Egyptian lawyer-verified records:** 0.
+- **Outstanding source/use permission:** unknown for local storage, bulk retrieval, commercial indexing and public display; no permission inferred from public readability.
+- **Next acquisition focus:** complete schedule OCR and Law 182 amendments; exact prison regulation amendment PDFs; AML Decree 457 Gazette-date conflict; then return to the remaining criminal procedure and evidence instruments.
