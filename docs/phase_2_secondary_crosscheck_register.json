@@ -595,6 +595,41 @@
       "legal_status": "two_distinct_operative_decisions_published_7_apr_and_16_apr_2026",
       "finding": "Amiri Press official text confirms Decision415/2026 creates the Aswan New City geographic correction centre and Decision514/2026 creates the Blaṭ centre in New Valley. Several secondary reports mislabel the Blaṭ decision as 415/2026. The Gazette issue metadata also supports 415 in issue77 (7 Apr 2026) and 514 in issue84 (16 Apr 2026).",
       "next_action": "Keep two distinct instrument records; correct secondary misattributions and retain both Amiri Press official text links and Gazette issue evidence."
+    },
+    {
+      "evidence_id": "XREF-FRA-FINANCIAL-CDD-SEP2026-OLD-PDF-LINK",
+      "document_id": "EG-FRA-FINANCIAL-CDD-2026-09",
+      "practice_areas": [
+        "criminal",
+        "aml_cft"
+      ],
+      "url": "https://fra.gov.eg/regulations/اجراءات-العناية-الواجبة-لعملاء-المؤسسات-المالية-الخاضعة-لرقابة-الهيئة-العامة-للرقابة-المالية/",
+      "publisher": "FRA official CDD page and Circulars5/8 of 2026",
+      "source_class": "updated-version link mismatch / missing current manual",
+      "observed_title_ar": "إجراءات العناية الواجبة بعملاء المؤسسات المالية الخاضعة لرقابة الهيئة العامة للرقابة المالية — إصدار سبتمبر 2026",
+      "source_state": "September2026_new_edition_confirmed_by_circulars_but_current_pdf_link_resolves_to_May2025",
+      "collection_permission": "unknown",
+      "legal_status": "new_edition_announced_and_mandatory_full_text_not_yet_retrieved",
+      "finding": "Circular5/2026 (7 Sep) and Circular8/2026 (8 Nov) explicitly state that the AML Unit approved a September2026 CDD edition replacing the February2020 edition. FRA page's 'view updated version' link still points to a May2025 PDF endpoint, and the financial-institution manual itself has not been retrieved. Do not treat the May2025 PDF as the September2026 version.",
+      "next_action": "Request the September2026 financial-institution CDD manual from FRA/FIU; compare it with the May2025/February2020 versions; preserve Circular8's 31 Jan 2027 submission deadline and the new forms requirements."
+    },
+    {
+      "evidence_id": "XREF-FRA-186-2024-2026-AMENDMENT-CHAIN",
+      "document_id": "EG-FRA-DECISION-186-2024",
+      "practice_areas": [
+        "criminal",
+        "aml_cft",
+        "financial_regulation"
+      ],
+      "url": "https://fra.gov.eg/wp-content/uploads/2025/02/186-2024-......وفقا-لاخر-تعديل-فى-28-1-2025.pdf",
+      "publisher": "FRA official consolidated decision text, Eastlaws and regulatory news",
+      "source_class": "multi-amendment current-text cross-check",
+      "observed_title_ar": "قرار مجلس إدارة الهيئة رقم 186 لسنة 2024 بشأن الالتزام بالاستعلام عن صحة بيانات العملاء",
+      "source_state": "consolidated_text_accessible_with_amendments_through_133_2026",
+      "collection_permission": "unknown",
+      "legal_status": "current_text_amended_through_decision133_2026",
+      "finding": "Decision186/2024 issued 28 Aug 2024 and published 7 Oct 2024. The FRA official consolidated text records title change by Decision3/2025, replacement of Art.1 by Decision30/2025, and later amendments by Decisions41/2026 and133/2026. Decision133/2026 was published in Waqa'i No.163 follow-up, 29 Jul 2026 and effective 30 Jul 2026.",
+      "next_action": "Acquire original Gazette scans for Decisions3/2025,30/2025,41/2026,133/2026; produce a versioned Art.1 redline and identify all covered non-bank financial institutions and microinsurance exceptions."
     }
   ],
   "guardrails": [
