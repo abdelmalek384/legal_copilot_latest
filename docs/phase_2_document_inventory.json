@@ -403,7 +403,7 @@
       "instrument_number": 58,
       "instrument_year": 1937,
       "source_id": "EG-AMIRI-PRESS",
-      "source_status": "discovery_only",
+      "source_status": "full_540_article_179_page_arabic_consolidation_accessible_secondary_cassation_portal_reproduction",
       "collection_permission": "unknown",
       "legal_status": "unknown",
       "review_status": "discovery_only",
@@ -418,7 +418,7 @@
         "EG-PENAL-AMEND-150-2021",
         "EG-PENAL-AMEND-185-2023"
       ],
-      "notes": "Offence-date and temporal-law handling requires specialist legal review. New tranche located a complete 540-article secondary Arabic reproduction and the Gazette PDF for Law 185/2023 (4 Dec 2023). The prior Manshurat 'last amendment 15 Aug 2021' metadata is stale for Art. 306 bis amendments. Complete post-2023 amendment search remains required. Additional later amendments confirmed: Law 189/2020 (Art. 309 bis (b), bullying); Law 10/2021 (Arts 242 bis and 242 bis (a), FGM); Law 71/2021 (Art. 186 bis, unauthorized recording of criminal trial sessions); Law 141/2021 (Arts 306 bis (a), 306 bis (b), sexual harassment); Law 150/2021 (Art. 80(a), state secrets); Law 185/2023 (Arts 306 bis (a), 306 bis (b), 309 bis (b)). No post-185/2023 amendment identified through 19 Nov 2026; further Gazette sweep required.",
+      "notes": "Full 179-page Arabic PDF, 540 articles, host states copied verbatim from Court of Cassation Legislation Portal and updated through 4 Dec 2023. Original Gazette No.71, 5 Aug 1937 reproduced with article-level amendment notes. Current chain includes Laws 164/2019, 6/2020, 189/2020, 10/2021, 71/2021, 141/2021, 150/2021 and 185/2023. No later amendment identified in this pass; exhaustive Gazette check through 19 Nov 2026 pending.",
       "source_urls": [
         {
           "url": "https://www.alamiria.com/Sec/TashTxt?id=YbxnlD3e4Qc%3D",
@@ -434,6 +434,11 @@
           "url": "https://mediadr.sis.gov.eg/bitstream/handle/123456789/49252/OG48_20231204_0120.pdf?isAllowed=y&sequence=2",
           "source_role": "Gazette PDF for Law 185/2023 amending Arts 306 bis (a), 306 bis (b) second paragraph and 309 bis (b) third paragraph",
           "status": "official_gazette_pdf_text_accessible"
+        },
+        {
+          "url": "https://alhasswalawfirm.com/uploads/files/581937-1788831615343-760524606.pdf",
+          "source_role": "Full 179-page PDF reproduction of the consolidated Penal Code",
+          "status": "full_text_accessible_secondary"
         }
       ]
     },
@@ -3798,6 +3803,11 @@
           "url": "https://manshurat.org/sites/default/files/alamiria_2023_185.pdf",
           "source_role": "Gazette PDF mirror",
           "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://mksegypt.org/public/ar/laws/17352",
+          "source_role": "Full Arabic text of Law185/2023",
+          "status": "full_text_accessible_secondary"
         }
       ]
     },
@@ -5583,6 +5593,11 @@
           "status": [
             "Penal Code 58/1937"
           ]
+        },
+        {
+          "url": "https://alhasswalawfirm.com/law-library/law-58-1937",
+          "source_role": "Current consolidated Penal Code text showing Art.309 bis (b) insertion by Law189/2020",
+          "status": "full_text_accessible_secondary"
         }
       ]
     },
@@ -5749,6 +5764,11 @@
           "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/law/28-04-2021/no-10?id=2016749&sub=10227115&type=1",
           "source_role": "Full amendment text",
           "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://www.lawyeregypt.net/قانون-رقم-10-لسنة-2021-بشأن-عقوبة-ختان-الاناث/",
+          "source_role": "Full Arabic text of Law10/2021",
+          "status": "full_text_accessible_secondary"
         }
       ]
     },
@@ -5779,6 +5799,11 @@
         {
           "url": "https://kanonmisr.com/ar/wp-content/uploads/2021/06/القانون-71-لسنة-2021-بتعديل-بعض-أحكام-قانون-العقوبات-1.pdf",
           "source_role": "Gazette 23 bis, 13 Jun 2021, PDF text",
+          "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://lawyeregypt.net/قانون-تسجيل-أو-تصوير-جلسة-محاكمة/",
+          "source_role": "Full Arabic text of Law71/2021",
           "status": "full_text_accessible_secondary"
         }
       ]
@@ -6551,6 +6576,87 @@
           "url": "https://lawhub.info/eg/?p=11570",
           "source_role": "Full Arabic text or amendment-footnote source",
           "status": "metadata_located_text_partial"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-PENAL-AMEND-5-2018",
+      "official_title_ar": "قانون رقم 5 لسنة 2018 بتعديل بعض أحكام قانون العقوبات",
+      "practice_areas": [
+        "criminal",
+        "penal_code"
+      ],
+      "document_type": "statutory_amendment",
+      "instrument_number": 5,
+      "instrument_year": 2018,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": "full_text_accessible_secondary",
+      "collection_permission": "unknown",
+      "legal_status": "historical_amendment_embedded_in_current_penal_code",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-PENAL-CODE-58-1937"
+      ],
+      "notes": "Official Gazette No.3 bis (c), 24 Jan 2018; effective 25 Jan 2018. Replaces Arts.283,289,290; adds Art.106 bis and second paragraph of Art.111; repeals Art.288.",
+      "source_urls": [
+        {
+          "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/law/24-01-2018/no-5?id=1896685&sub=9360652&type=1",
+          "source_role": "Full Arabic text and Gazette metadata",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-PENAL-AMEND-164-2019",
+      "official_title_ar": "قانون رقم 164 لسنة 2019 بتعديل بعض أحكام قانون العقوبات",
+      "practice_areas": [
+        "criminal",
+        "penal_code"
+      ],
+      "document_type": "statutory_amendment",
+      "instrument_number": 164,
+      "instrument_year": 2019,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": "full_text_accessible_secondary",
+      "collection_permission": "unknown",
+      "legal_status": "historical_amendment_embedded_in_current_penal_code",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-PENAL-CODE-58-1937"
+      ],
+      "notes": "Official Gazette No.50 follow-up, 12 Dec 2019; effective 13 Dec 2019. Replaces Arts.115 bis,369,370,371,372,372 bis.",
+      "source_urls": [
+        {
+          "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/law/12-12-2019/no-164?id=1967588&sub=9867550&type=1",
+          "source_role": "Full Arabic text and Gazette metadata",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-PENAL-AMEND-6-2020",
+      "official_title_ar": "قانون رقم 6 لسنة 2020 بتعديل بعض أحكام قانون العقوبات",
+      "practice_areas": [
+        "criminal",
+        "penal_code"
+      ],
+      "document_type": "statutory_amendment",
+      "instrument_number": 6,
+      "instrument_year": 2020,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": "full_text_accessible_secondary",
+      "collection_permission": "unknown",
+      "legal_status": "historical_amendment_embedded_in_current_penal_code",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-PENAL-CODE-58-1937"
+      ],
+      "notes": "Official Gazette No.5 bis, 2 Feb 2020; effective 3 Feb 2020. Replaces Art.293 on non-payment of court-ordered maintenance, nursing, custody and housing expenses.",
+      "source_urls": [
+        {
+          "url": "https://www.eglf.org/قانون-6-لسنة-2020-تعديل-قانون-العقوبات/",
+          "source_role": "Full Arabic text and Gazette metadata",
+          "status": "full_text_accessible_secondary"
         }
       ]
     }
@@ -7352,6 +7458,27 @@
         "observed_title": "Older amendment instruments to CPL Law 150/1950",
         "finding": "Acquired full Arabic texts for Laws426/1954, 121/1956, 113/1957, 63/1975, 174/1998, 340/1952 and 107/1962; acquired operative text for Law627/1955; identified Law252/1952, Law252/1953 and Decree-Law353/1952 as separate historical amendment instruments. Full text footnotes from the consolidated code confirm the amendment relations. Law43/1958 remains unresolved.",
         "status": "multiple_historical_full_texts_accessible_original_Gazette_scans_not_archived"
+      },
+      {
+        "evidence_id": "SRC-CRIM-PENAL-CODE-58-CURRENT-2023-11-19",
+        "document_ids": [
+          "EG-PENAL-CODE-58-1937",
+          "EG-PENAL-AMEND-5-2018",
+          "EG-PENAL-AMEND-164-2019",
+          "EG-PENAL-AMEND-6-2020",
+          "EG-PENAL-AMEND-189-2020",
+          "EG-PENAL-AMEND-10-2021",
+          "EG-PENAL-AMEND-71-2021",
+          "EG-PENAL-AMEND-141-2021",
+          "EG-PENAL-AMEND-150-2021",
+          "EG-PENAL-AMEND-185-2023"
+        ],
+        "source_type": "full 540-article consolidated Arabic PDF reproduced from Court of Cassation Legislation Portal plus full amendment texts",
+        "url": "https://alhasswalawfirm.com/uploads/files/581937-1788831615343-760524606.pdf",
+        "publisher": "Alhasswa Law Firm, source attribution to Court of Cassation Legislation Portal; Eastlaws; MKSEgypt; MELES; Lawyer Egypt",
+        "observed_title": "Penal Code Law 58/1937 complete 540-article Arabic text updated through 4 Dec 2023",
+        "finding": "Full 179-page Arabic text acquired, 540 articles, copied according to host from Court of Cassation Legislation Portal. Amendment chain includes Laws5/2018,164/2019,6/2020,189/2020,10/2021,71/2021,141/2021,150/2021 and185/2023. Three previously missing amendment records added; full texts and original Gazette metadata linked. No post-Dec2023 amendment identified in this pass.",
+        "status": "full_consolidated_text_accessible_secondary_original_Gazette_archival_pending"
       }
     ],
     "temporal_review_alerts": [
@@ -7377,18 +7504,18 @@
     "agent": "Research Agent 2",
     "domain": "Egyptian criminal law and procedure",
     "as_of": "2026-11-19",
-    "estimated_domain_completion_percent": 71,
+    "estimated_domain_completion_percent": 73,
     "previous_session_estimate_percent": 58,
     "whole_project_contribution_percent": null,
     "whole_project_contribution_reason": "Cannot calculate without master-index denominator and domain weights.",
     "lawyer_verified_percent": 0,
     "official_full_text_files_archived_and_hash_verified_in_this_session": 0,
     "complete_arabic_texts_accessible_at_source_estimate": ">20 laws/codes and implementing/treaty instruments",
-    "new_inventory_records_added_this_session": 106,
-    "inventory_total_documents": 191,
+    "new_inventory_records_added_this_session": 109,
+    "inventory_total_documents": 194,
     "acquisition_queue_items": 24,
-    "crosscheck_register_count": 31,
-    "notes": "Qualitative research-coverage estimate, not article-count or lawyer-QA metric. This pass improved source and text coverage for AML, child justice, prisons and narcotics schedules. Two new amendment-instrument records were added without duplicating base laws. Publicly readable source text is not represented as locally archived/hash-verified; permission for storage/indexing/commercial use remains unknown. Cross-check register expanded to 22 entries for AML Decree 457/2020 date conflict, Prisons Law 14/2022 publication metadata conflict, and Decision 242/2026 schedule OCR verification. Second acquisition pass identified Child Law amendments through 2025 (including Art.49 repeal), four Child Law Executive Regulation amendments through 2020, and weapons Law 5/2019, Law 163/2022, Decision 1300/2019. 13 distinct records added, bringing total to 181. Research estimate increased to 63%; still 0 local original files archived/hash verified and 0 lawyer-verified records. Cross-check register now includes the Child Law Art.49 repeal in Social Security Law 12/2025, the 2075/2010 executive-regulation amendment chain, and SCC judgment 1/47 (2026) on weapons provisions. Progress metadata reconciled to the 58% baseline recorded before the current acquisition work; 96 net-new inventory records are now counted cumulatively (81 prior tranche + 15 added in the two current passes). Third acquisition pass upgraded cybercrime Law 175/2018 and Decree 1699/2020, Personal Data Law 151/2020 and Decree 816/2025, Human Trafficking Law 64/2010 and Decree 3028/2010, and Illegal Migration Law 82/2016 and Decree 983/2018. No duplicate base-law records added. Key source conflicts logged. Cross-check register includes Cybercrime Executive Regulation 1699/2020 vs ESCC 635/2020 heading conflict and Human Trafficking Executive Regulation 3028/2010 vs one secondary 2038/2010 miscitation. Fourth acquisition pass acquired full official 546-article Law 174/2025 PDF and Law 160/2026 official Amiri Press text/Gazette metadata; extracted all Book Five Arts.508–521. Current commencement fixed at 1 Oct 2027; CPL150/1950 and Law140/2014 remain operative until then. Official/secondary Art.2 transition wording discrepancy recorded. Fifth acquisition pass acquired the full 178-page consolidated Arabic Law150/1950 text through Law1/2024, including Art.113 bis added by Law177/2020 and the felony appeal amendments. Full text is secondary-hosted but attributes source to Court of Cassation Legislation Portal; original portal endpoint returned 502. Footnotes reveal additional older amendment instruments requiring individual Gazette acquisition. Sixth acquisition pass added 10 distinct CPL historical amendment records and upgraded Law107/1962 to full Arabic text. Acquired multiple full amendment texts and expanded the historical chronology; original Gazette scans remain unarchived.",
+    "crosscheck_register_count": 32,
+    "notes": "Qualitative research-coverage estimate, not article-count or lawyer-QA metric. This pass improved source and text coverage for AML, child justice, prisons and narcotics schedules. Two new amendment-instrument records were added without duplicating base laws. Publicly readable source text is not represented as locally archived/hash-verified; permission for storage/indexing/commercial use remains unknown. Cross-check register expanded to 22 entries for AML Decree 457/2020 date conflict, Prisons Law 14/2022 publication metadata conflict, and Decision 242/2026 schedule OCR verification. Second acquisition pass identified Child Law amendments through 2025 (including Art.49 repeal), four Child Law Executive Regulation amendments through 2020, and weapons Law 5/2019, Law 163/2022, Decision 1300/2019. 13 distinct records added, bringing total to 181. Research estimate increased to 63%; still 0 local original files archived/hash verified and 0 lawyer-verified records. Cross-check register now includes the Child Law Art.49 repeal in Social Security Law 12/2025, the 2075/2010 executive-regulation amendment chain, and SCC judgment 1/47 (2026) on weapons provisions. Progress metadata reconciled to the 58% baseline recorded before the current acquisition work; 96 net-new inventory records are now counted cumulatively (81 prior tranche + 15 added in the two current passes). Third acquisition pass upgraded cybercrime Law 175/2018 and Decree 1699/2020, Personal Data Law 151/2020 and Decree 816/2025, Human Trafficking Law 64/2010 and Decree 3028/2010, and Illegal Migration Law 82/2016 and Decree 983/2018. No duplicate base-law records added. Key source conflicts logged. Cross-check register includes Cybercrime Executive Regulation 1699/2020 vs ESCC 635/2020 heading conflict and Human Trafficking Executive Regulation 3028/2010 vs one secondary 2038/2010 miscitation. Fourth acquisition pass acquired full official 546-article Law 174/2025 PDF and Law 160/2026 official Amiri Press text/Gazette metadata; extracted all Book Five Arts.508–521. Current commencement fixed at 1 Oct 2027; CPL150/1950 and Law140/2014 remain operative until then. Official/secondary Art.2 transition wording discrepancy recorded. Fifth acquisition pass acquired the full 178-page consolidated Arabic Law150/1950 text through Law1/2024, including Art.113 bis added by Law177/2020 and the felony appeal amendments. Full text is secondary-hosted but attributes source to Court of Cassation Legislation Portal; original portal endpoint returned 502. Footnotes reveal additional older amendment instruments requiring individual Gazette acquisition. Sixth acquisition pass added 10 distinct CPL historical amendment records and upgraded Law107/1962 to full Arabic text. Acquired multiple full amendment texts and expanded the historical chronology; original Gazette scans remain unarchived. Seventh acquisition pass upgraded Penal Code Law58/1937 to a full 540-article, 179-page Arabic consolidation updated through 4 Dec 2023 and added separate amendment records for Laws5/2018,164/2019 and6/2020. Later amendment records cross-linked to the full code and Gazette metadata.",
     "last_acquisition_pass_increment_percent": 2,
     "last_acquisition_pass_date": "2026-11-19"
   }
