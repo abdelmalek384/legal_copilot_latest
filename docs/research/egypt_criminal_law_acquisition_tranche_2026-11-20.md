@@ -799,3 +799,198 @@ These are working estimates for this assigned domain, not audited completion sco
 - **Overall assigned criminal-law domain completion: ~44%** (up from ~39%).
 
 The main reason the overall figure remains below the text-acquisition score is the unacquired body of implementing decisions, schedules, and the need to version the full new Criminal Procedure Code. The 44% figure is a work-tracking estimate, not a claim that 44% of Egyptian criminal law as a whole has been legally validated.
+
+
+---
+
+# 15. New acquisition pass — Cybercrime and AML primary texts / executive instruments (20 November 2026)
+
+## 15.1 Cybercrime Law 175/2018 — complete Official Gazette Arabic text located
+
+**Acquisition status:** Full 45-article Arabic law is available as an Official Gazette PDF hosted by the Egyptian Supreme Constitutional Court. It is not necessary to rely on the previously blocked Manshurat source for this instrument.
+
+- Official Gazette issue 32 bis (ج), 14 August 2018, PDF: https://escc.gov.eg/assets/docs/law-175-2018.pdf
+- Full Arabic HTML transcription, 45 articles, with 2026 update claim: https://alhasswalawfirm.com/law-library/law-175-2018
+- Alternative transcription: https://www.laweg.net/framePlain.aspx?NID=138983&action=viewactivepages&itemid=112278&type=6
+- Publication/effective date: 14 August 2018 / 15 August 2018.
+
+**Actual text acquired and checked from Official Gazette PDF:** Articles 1–7 and 21–45 have been extracted across the Gazette PDF; the entire 416-line text-layer document is accessible. Selected operative provisions:
+- **Article 2:** service providers must retain system/service records for 180 consecutive days, protect confidentiality, secure data against breach or destruction, and provide specified provider identity/contact/licensing information; national-security agencies may request technical capabilities within statutory limits.
+- **Article 3:** extraterritorial application to non-Egyptian offenders in listed circumstances, including Egyptian victims, planning/funding in Egypt, organized cross-border crime, harm to Egyptian nationals/residents or interests, or offender found in Egypt and not extradited.
+- **Article 6:** reasoned investigative orders may authorize seizure/collection/preservation of data and systems, search/inspection/access to computer programs/databases/devices, and compelled production by service providers; order duration is up to 30 days, renewable once.
+- **Article 7:** judicially supervised website blocking, with urgent temporary blocking route and subsequent review deadlines.
+- **Articles 9–10:** travel-ban / access-to-information measures; see full Gazette text for exact conditions.
+- **Article 25:** privacy and family-values offence; Article 26 addresses intentional processing of personal data with indecent content or reputational harm.
+- **Articles 29–33:** website/account administrators and service-provider criminal liability and penalties.
+- **Article 42:** reconciliation is available for a specified closed list of misdemeanours and requires agency approval for specified offences; the Executive Regulation supplies documentary/administrative requirements.
+- **Articles 43–45:** transitional compliance, executive regulation and commencement.
+
+This summary is a research navigation aid only; for charging decisions and penalty ranges use the exact article text in the Official Gazette PDF and its current amendment history.
+
+## 15.2 Executive Regulation Decision 1699/2020 — complete Official Gazette text acquired
+
+**Correct instrument identification:** Prime Minister Decision **1699/2020**, not 635/2020. Official Gazette issue 35 تابع (ج), 27 August 2020; effective 28 August 2020.
+
+The complete Arabic regulation is extracted from the National Telecommunications Regulatory Authority (NTRA) hosted Official Gazette PDF. It comprises issuance Articles 1–2 and the attached regulation, Articles 1–13.
+
+- NTRA / Official Gazette PDF: https://www.tra.gov.eg/wp-content/uploads/2020/11/اللائحة-التنفيذية-للقانون-رقم-175-لسنة-2018-بشأن-مكافحة-جرائم-تقنية-المعلومات-1.pdf
+- Official Gazette text extraction mirror: https://fra.gov.eg/wp-content/uploads/2025/01/يُعمل-بأحكام-اللائحة-التنفيذية-المرافقة-فى-شأن-قانون-مكافحة-جرائم-تقنية-المعلومات-المشـار-إليـه.pdf
+- Secondary transcription: https://masaar.net/ar/egypt_laws/اللائحة-التنفيذية-لقانون-مكافحة-جرائم-تقنية-المعلومات/
+- Additional database entry: https://www.eastlaws.com/legislation-full-text/ar/egypt/prime-minister-decision/27-08-2020/no-1699?id=2000041&type=1
+
+### Substantive Arabic provisions extracted
+
+**مادة (٢) — مقدم خدمات تقنيات المعلومات:**
+يلتزم مقدم خدمات تقنيات المعلومات باتخاذ الإجراءات التقنية والتنظيمية التالية لتنفيذ البندين (٢ و٣) من الفقرة أولاً من المادة رقم (٢) من القانون:
+1- تشفير البيانات والمعلومات بما يحافظ على سريتها، وعدم اختراقها باستخدام نظام تشفير قياسي متماثل أو غير متماثل لا يقل في تأمينه عن (AES-128) Advanced Encryption Standard بمفتاح شفرة لا يقل عن (١٢٨ بت)، مع مسؤوليته بالحفاظ على سرية وأمان مفتاح التشفير.
+2- تنصيب واستخدام نظم وبرامج ومعدات مكافحة البرمجيات والهجمات الخبيثة والتأكد من صلاحيتها وتحديثها.
+3- استخدام بروتوكولات آمنة، مثل بروتوكول نقل النص التشعبي المؤمّن HTTPS.
+4- وضع صلاحيات بالشبكات والملفات وقواعد البيانات وتحديد المسؤولين، لضمان حماية الوصول المنطقي Logical Access إلى الأصول المعلوماتية والتقنية لمنع الوصول غير المصرح به.
+5- إعداد قائمة بالأجهزة والمعدات وأرقامها المميزة والمسلسلة وطرازاتها وكذا بيان بالنظم والبرامج والتطبيقات وقواعد البيانات المستخدمة ومواصفاتها.
+6- تطبيق أفضل الممارسات والضوابط عند اختيار مواصفات كلمات السر أو المرور وفقاً للملحق رقم (١) المرفق باللائحة التنفيذية.
+7- توثيق إجراءات التنصيب والتشغيل الخاصة بالأنظمة.
+8- ضمان تنفيذ وصيانة الأنظمة وإلزام الأطراف المتعاقد معها بإبرام اتفاقيات تحدد مستوى تقديم الخدمة مع الجهة وحدود مسؤولية كل جهة.
+9- إجراء التحديثات الخاصة بالنظم والبرامج والتطبيقات بشكل دوري وإقامة الاختبارات اللازمة قبل إجراء التحديثات.
+10- إجراء اختبار سنوي للكشف عن الاختراقات أو المخاطر الأمنية.
+11- استخدام معدات وأجهزة ونظم وبرمجيات الجدران النارية (NGFW-UTM-Firewalls) لحماية الشبكات والنظم.
+
+**مادة (٣) — البنية التحتية المعلوماتية الحرجة:** imposes a stricter control set, including AES-256, certificate-based authentication, physical access controls, multi-factor authentication, documented operations, malware protection, industrial-control-system vulnerability scans, annual penetration/security testing, monthly encrypted off-site backups, incident notification to the national computer emergency readiness centre, and business continuity/recovery plans.
+
+**مادة (٩) — حجية الدليل الرقمي:**
+تحوز الأدلة الرقمية ذات القيمة والحجية للأدلة الجنائية المادية في الإثبات الجنائي إذا توافرت فيها الشروط والضوابط الآتية:
+1- أن تتم عملية جمع أو الحصول أو استخراج أو استنباط الأدلة الرقمية محل الواقعة باستخدام التقنيات التي تضمن عدم تغيير أو تحديث أو محو أو تحريف للكتابة أو البيانات والمعلومات، أو أي تغيير أو تحديث أو إتلاف للأجهزة أو المعدات أو البيانات والمعلومات، أو أنظمة المعلومات أو البرامج أو الدعامات الإلكترونية وغيرها. ومنها على الأخص تقنية Digital Images Hash و Write Blocker، وغيرها من التقنيات المماثلة.
+2- أن تكون الأدلة الرقمية ذات صلة بالواقعة وفي إطار الموضوع المطلوب إثباته أو نفيه، وفقاً لنطاق قرار جهة التحقيق أو المحكمة المختصة.
+3- أن يتم جمع الدليل الرقمي واستخراجه وحفظه وتحريزه بمعرفة مأموري الضبط القضائي المخول لهم التعامل في هذه النوعية من الأدلة، أو الخبراء أو المتخصصين المنتدبين من جهات التحقيق أو المحكمة، مع بيان نوع ومواصفات الأدوات والبرامج والأجهزة المستخدمة وتوثيق قيمة Hash للنسخة المطابقة مع الحفاظ على الأصل.
+4- في حالة تعذر فحص نسخة الدليل الرقمي وعدم إمكانية التحفظ على الأجهزة محل الفحص لأي سبب يتم فحص الأصل ويثبت ذلك كله في محضر الضبط أو تقرير الفحص والتحليل.
+5- أن يتم توثيق الأدلة الرقمية بمحضر إجراءات من قبل المختص قبل عمليات الفحص والتحليل له وكذا توثيق مكان ضبطه ومكان حفظه ومكان التعامل معه ومواصفاته.
+
+**مادة (١٠):** requires the digital evidence description/documentation record to identify date/time of copying or imaging, operator, operating system/version, software/version or commands, content data, and equipment/tools used.
+
+**مادة (١١):** applies security measures to site/account/email/system administrators and requires legal representatives and effective management to provide the capacity for compliance; encryption keys must be made available to the competent court/investigative authorities upon formal request in an investigation.
+
+**مادة (١٢):** lists the documents required for agency approval of victim-offender reconciliation under Article 42 of the Law for specified offences (Arts 14, 17, 18, 23).
+
+**مادة (١٣):** sets the reconciliation route and payment/document requirements for offences under Articles 29 and 35, including payment before prosecution of twice the maximum fine, or after filing but before final judgment of two-thirds of the maximum fine or the minimum fine, whichever is greater.
+
+### Source discrepancy requiring record, not silent normalization
+An ESCC-hosted PDF at https://escc.gov.eg/assets/docs/law-175-2018-regulations.pdf displays a heading “Decision 635/2020” while purporting to issue the same Executive Regulation. This conflicts with the Official Gazette issue 35 (تابع ج), 27 August 2020, and the NTRA-hosted Gazette PDF, both of which expressly identify Decision **1699/2020**. The Gazette issue and NTRA PDF are preferred for the decision number. The ESCC PDF may be mislabeled or contain a metadata/heading error; it is retained as a discrepancy lead, not accepted as proof of a second operative regulation.
+
+## 15.3 AML Law 80/2002 — consolidated Arabic text and amendment instruments acquired
+
+**Current consolidated text source:** FRA publishes a full Arabic text of Law 80/2002 consolidated through Law 154/2022:
+https://fra.gov.eg/wp-content/uploads/2024/05/قانون-مكافحة-غسل-الأموال-1.pdf
+
+This is a regulator-hosted consolidation, not the Gazette itself. It contains all 17 main articles and amendment notes. Some OCR/transcription errors exist in the extracted text (including obvious typographic/lexical errors in Article 1), so use the Gazette amendment instruments for authoritative wording where disputed.
+
+The FRA’s legislative index identifies the full amendment chain:
+- Law 78/2003;
+- Law 181/2008;
+- Law 36/2014;
+- Law 17/2020;
+- Law 154/2022.
+
+The consolidated version expressly records that Law 17/2020 replaced the definition of funds/assets and added the relevant definition at Article 1, and that Law 154/2022 added definitions (k) and (l) concerning law-enforcement authorities and parallel financial investigations.
+
+### Law 154/2022 — Arabic operative amendment text acquired
+
+**Publication:** Official Gazette issue 30 تابع (أ), 28 July 2022; effective 29 July 2022.
+
+**المادة الأولى**
+يُستبدل بنص المادة (٣) من قانون مكافحة غسل الأموال الصادر بالقانون رقم ٨٠ لسنة ٢٠٠٢، النص الآتي:
+
+**مادة (٣):**
+تُنشأ بالبنك المركزي المصري وحدة مستقلة ذات طابع خاص لمكافحة غسل الأموال وتمويل الإرهاب تمثل فيها الجهات المعنية، وتتولى الاختصاصات المنصوص عليها في هذا القانون.
+ويكون للوحدة مجلس أمناء، يرأسه أحد الخبرات القضائية الذي لا تقل مدة خبرته عن خمسة عشر عامًا في محكمة النقض أو إحدى محاكم الاستئناف، وعضوية كل من:
+١- ممثل عن النيابة العامة، يختاره النائب العام.
+٢- نائب محافظ البنك المركزي، يختاره المحافظ.
+٣- نائب رئيس الهيئة العامة للرقابة المالية، يختاره رئيس الهيئة.
+٤- رئيس هيئة مستشاري مجلس الوزراء.
+٥- ممثل لاتحاد بنوك مصر، يرشحه الاتحاد.
+٦- خبير في الشئون الاقتصادية يختاره رئيس مجلس الوزراء.
+٧- المدير التنفيذي لوحدة مكافحة غسل الأموال.
+ويلحق بالوحدة عدد كاف من الخبراء من أعضاء السلطة القضائية والمتخصصين في المجالات المتعلقة بتطبيق أحكام هذا القانون، وتزود بمن يلزم من العاملين المؤهلين والمدربين.
+ويصدر بتشكيل مجلس الأمناء وتعيين رئيسه قرار من رئيس الجمهورية، ويحدد القرار نظام عمل مجلس الأمناء واختصاصاته ونظام إدارة الوحدة، وذلك دون التقيد بالنظم والقواعد المعمول بها في الحكومة والقطاع العام وقطاع الأعمال العام.
+
+**المادة الثانية**
+تستبدل عبارة «القانون الذي ينظم البنك المركزي والجهاز المصرفي» بعبارة «المادة (١١٦) من قانون البنك المركزي والجهاز المصرفي والنقد الصادر بالقانون رقم ٨٨ لسنة ٢٠٠٣»، الواردة بالمادة (١٢) من قانون مكافحة غسل الأموال المشار إليه، كما تستبدل عبارة «والمتحصلات الناتجة» بكلمة «الناتجة» الواردة بالمادة (١٤) مكرراً من ذات القانون.
+
+**المادة الثالثة**
+يضاف إلى قانون مكافحة غسل الأموال المشار إليه تعريفان برقمي (ك، ل) إلى المادة (١) من هذا القانون، ومواد بأرقام (٣ مكرراً، ٩ مكرراً (١)، ١٥ مكرراً، ١٧ مكرراً (١)) نصوصها الآتية:
+
+**مادة (١/ بند ك) — جهات إنفاذ القانون:**
+الجهات التي يدخل ضمن اختصاصها قانوناً القيام بأعمال المكافحة والتحري وجمع الاستدلالات في جميع الجرائم بما فيها جرائم غسل الأموال وجرائم تمويل الإرهاب والجرائم الأصلية.
+
+**مادة (١/ بند ل) — التحقيقات المالية الموازية:**
+إجراء التحريات حول الجوانب المالية المتعلقة بنشاط إجرامي بغرض تحديد نطاق الشبكات الإجرامية أو نطاق الجريمة وتحديد وتعقب متحصلات الجريمة والأموال الإرهابية أو أية أصول أخرى تخضع للمصادرة، وتطوير أدلة يمكن استخدامها في الإجراءات الجنائية.
+
+**مادة (٩ مكرراً (١)):**
+تلتزم المؤسسات المالية، وأصحاب المهن والأعمال غير المالية، وكل شخص طبيعي أو اعتباري يمكن أن يكون بحوزته أموال أو أصول أخرى ذات صلة بالأشخاص أو الكيانات المدرجة بموجب قرارات مجلس الأمن ذات الصلة بتمويل الإرهاب وتمويل انتشار أسلحة الدمار الشامل بتنفيذ الآليات التي تصدرها الوحدة تطبيقاً لتلك القرارات إعمالاً لأحكام المادة (٢١) من هذا القانون، بما يشمل التجميد، والامتناع عن تقديم الخدمات المالية لهؤلاء الأشخاص والكيانات.
+وتنشر الآليات التي تصدرها الوحدة تطبيقاً للفقرة الأولى من هذه المادة بالوقائع المصرية.
+
+**مادة (١٥ مكرراً):**
+يعاقب بالحبس مدة لا تجاوز سنة أو بغرامة لا تقل عن مبلغ مائة ألف جنيه ولا تجاوز مبلغ ثلاثمائة ألف جنيه كل من خالف أحكام المادة (٩ مكرراً (١)) من هذا القانون.
+
+**مادة (١٧ مكرراً (١)):**
+يجب على جهات إنفاذ القانون وسلطات التحقيق في قضايا غسل الأموال والجرائم الأصلية المرتبطة بها وجرائم تمويل الإرهاب إجراء التحقيقات المالية الموازية بنفسها أو بالاستعانة بمن تراه من الجهات الأخرى المختصة لتحديد مصدر هذه الأموال أو الأصول إن وجدت.
+
+**المادة الرابعة**
+تلغى المادة الثانية من قرار رئيس الجمهورية رقم ١٦٤ لسنة ٢٠٠٢ بشأن وحدة مكافحة غسل الأموال.
+
+**المادة الخامسة**
+ينشر هذا القانون في الجريدة الرسمية، ويعمل به اعتباراً من اليوم التالي لتاريخ نشره.
+
+- Official Gazette PDF, Law 154/2022: https://fra.gov.eg/wp-content/uploads/2022/08/تعديل-القانون-رقم-154،155-لسنة-2022.pdf
+- Official Gazette issue metadata and text: https://www.eastlaws.com/legislation-full-text/ar/egypt/law/28-07-2022/no-154?id=... (database route; verify full URL before reuse)
+- Regulator-hosted consolidated law: https://fra.gov.eg/wp-content/uploads/2024/05/قانون-مكافحة-غسل-الأموال-1.pdf
+
+## 15.4 Executive Regulation 951/2003 — consolidated version and Law 3331/2023 amendment acquired
+
+The FRA identifies Decision 951/2003 as the Executive Regulation of Law 80/2002 and lists subsequent amending decisions:
+- PM Decision 1463/2006;
+- PM Decision 2367/2008;
+- PM Decision 1569/2016;
+- PM Decision 2910/2019;
+- PM Decision 3331/2023.
+
+FRA labels the consolidated Executive Regulation as updated in 2023. The original Gazette PDF (issue 23 bis (أ), 9 June 2003) is available:
+https://fra.gov.eg/wp-content/uploads/2025/02/alamiria_2003_951.pdf
+
+The FRA consolidated regulation download endpoint currently returns an access-denied response through the web reader. This is not treated as proof the file is unavailable; alternate Gazette and DSpace routes remain open.
+
+### PM Decision 3331/2023 — full Arabic amendment PDF acquired
+
+**Publication:** Official Gazette issue 35 تابع (أ), 31 August 2023; effective 1 September 2023. Full 722-line Arabic text/PDF acquired from FRA's public PDF route.
+
+- Full Gazette PDF: https://fra.gov.eg/wp-content/uploads/2023/09/3331.pdf
+- Official Gazette DSpace record: https://dspace.id.com.eg/items/dc3f291b-720b-493c-95ab-9174e4418cdc/full
+- Secondary full-text record: https://www.eastlaws.com/legislation-full-text/ar/egypt/prime-minister-decision/31-08-2023/no-3331?id=2096781&type=1
+
+The instrument substitutes the texts of Executive Regulation Articles 1, 3, 4, 12 bis, 15, 21 bis, 22 bis (a)–(d), 27, 29, 31, 32, 34, 36, 43 bis (a), 43 bis (b), 47, 48, 49, 50, 52 and 53; and adds Articles 2 bis (a)–(c), 3 bis (d)–(j), 28 bis (a)–(b), 29 bis (d), 31 bis (d), 43 bis (d), 50 bis (a)–(b), and 53 bis (a)–(b).
+
+**Selected actual text from the new AML framework:**
+
+**مادة (٢) مكرراً ب:**
+تعد جريمة غسل الأموال جريمة مستقلة عن الجريمة الأصلية، بحيث لا يشترط أن يتم إدانة الشخص بارتكاب الجريمة الأصلية مسبقاً من أجل اعتبار الأموال أو الأصول متحصلات إجرامية.
+
+**مادة (٢٣):**
+تتخذ كل سلطة من السلطات الرقابية ما يلزم من وسائل الرقابة المكتبية والميدانية، وذلك بالاعتماد على المنهج القائم على المخاطر، للتحقق من التزام المؤسسات المالية وأصحاب المهن والأعمال غير المالية الخاضعة لرقابتها بأحكام القانون وهذه اللائحة، والضوابط الرقابية الصادرة عنها، وإجراءات العناية الواجبة بالعملاء وغيرها من القواعد والإجراءات والآليات ذات الصلة بمكافحة غسل الأموال وتمويل الإرهاب التي تصدرها الوحدة، واتخاذ الإجراءات المقررة في شأن أية مخالفة لتلك الأحكام وفقاً للقوانين والأنظمة ذات الصلة.
+
+The 2023 amendment expands the framework for virtual assets, beneficial ownership, legal arrangements, politically exposed persons, new technology risk, targeted financial sanctions and risk-based supervision. For article-level use, retrieve the exact provision from the PDF rather than relying on this short summary.
+
+## 15.5 Amendment-chain and verification cautions
+- Law 80/2002 amendment chain must include Laws 78/2003, 181/2008, 36/2014, 17/2020 and 154/2022; do not rely only on the 2022 consolidation without comparing the Gazette texts.
+- PM Decision 951/2003 amendment chain must include Decisions 1463/2006, 2367/2008, 1569/2016, 2910/2019 and 3331/2023. The 3331/2023 full text is acquired; the earlier instruments remain to be individually extracted and cross-checked.
+- The FRA's consolidated-law PDF is useful but contains apparent OCR defects in some lines. The Gazette text controls.
+- Cybercrime Law 175/2018 and Decision 1699/2020 have Gazette-text sources acquired, but later amendments and ministerial implementing decisions (including expert registers, NTRA technical decisions, and any later amendments to the executive regulation) still require a currentness sweep.
+
+## 15.6 Revised progress — after cybercrime and AML acquisition
+
+Working estimates, not audited legal-completeness scores:
+- Discovery coverage: **95%**.
+- Actual Arabic text acquisition: **68%**.
+- Amendment and implementing-instrument mapping: **64%**.
+- Article-level extraction and QA: **51%**.
+- Lawyer verification: **0%**.
+- **Overall assigned criminal-law domain completion: approximately 49%**.
+
+The score increased because two major primary-text clusters are now accessible: cybercrime law + its executive regulation, and the AML law + the 2023 executive-regulation amendment. Full extraction of every article and every earlier AML amendment remains incomplete.
