@@ -84,33 +84,44 @@
     {
       "queue_item_id": "ACQ-003",
       "document_ids": [
-        "EG-PENAL-CODE-58-1937"
+        "EG-PENAL-CODE-58-1937",
+        "EG-PENAL-AMEND-189-2020",
+        "EG-PENAL-AMEND-10-2021",
+        "EG-PENAL-AMEND-71-2021",
+        "EG-PENAL-AMEND-141-2021",
+        "EG-PENAL-AMEND-150-2021",
+        "EG-PENAL-AMEND-185-2023"
       ],
       "practice_areas": [
         "criminal"
       ],
       "priority": "P0",
-      "action": "Obtain authorized original Gazette text and hash; full 540-article secondary Arabic text and Law 185/2023 Gazette PDF are now located. Collect all amendments after 2023 and build an article-level change map; do not duplicate the existing EG-PENAL-CODE-58-1937 record.",
+      "action": "Obtain authorized original Gazette text and hash of Penal Code Law 58/1937; complete all 540 articles and full amendment map. Confirm and integrate Laws 189/2020, 10/2021, 71/2021, 141/2021, 150/2021 and 185/2023. Search Official Gazette for any post-4 Dec 2023 amendment through 19 Nov 2026.",
       "candidate_source": "https://www.alamiria.com/Sec/Home",
       "source_type": "official publisher portal; exact source document not yet pinned",
       "permission_state": "unknown",
-      "acquisition_state": "full_secondary_text_accessible_official_amendment_pdf_accessible",
+      "acquisition_state": "full_540_article_secondary_text_accessible_selected_amendment_Gazette_pdfs_accessible",
       "legal_review_state": "not_started",
-      "blocker": "Official consolidated code not yet lawfully archived/hashed; source terms and permission for local storage, indexing, commercial use and display remain unknown.",
+      "blocker": "Official consolidated code has not been lawfully archived/hashed; Arts 191–540 article-level amendments and post-2023 Gazette sweep still incomplete. Source terms for local storage/indexing/commercial use remain unknown.",
       "required_evidence": [
-        "official Gazette source and page range",
-        "original-file SHA-256",
-        "all identified amendments",
-        "article-level change map",
-        "Egyptian criminal-lawyer review",
-        "full 540-article article segmentation",
-        "Law 185/2023 and later amendments",
-        "Egyptian criminal-lawyer review of offence-date temporal law"
+        "full 540-article Arabic text segmented and cross-checked against Gazette",
+        "Law 189/2020 Art. 309 bis (b) bullying",
+        "Law 10/2021 Arts 242 bis and 242 bis (a) FGM",
+        "Law 71/2021 Art. 186 bis trial-session recording",
+        "Law 141/2021 Arts 306 bis (a) and 306 bis (b) sexual harassment",
+        "Law 150/2021 Art. 80(a) state secrets",
+        "Law 185/2023 Arts 306 bis (a), 306 bis (b), 309 bis (b)",
+        "full Gazette sweep 2024–2026 and all amendments to Arts 191–540",
+        "Egyptian criminal-lawyer review of consolidated current text"
       ],
       "candidate_sources": [
         "https://www.cc.gov.eg/legislation_single?id=404680",
         "https://alhasswalawfirm.com/law-library/law-58-1937",
-        "https://mediadr.sis.gov.eg/bitstream/handle/123456789/49252/OG48_20231204_0120.pdf?isAllowed=y&sequence=2"
+        "https://dspace.id.com.eg/items/cdd29154-1f0e-4f12-86f6-0184791301c7",
+        "https://dspace.id.com.eg/items/a6361f52-7211-435a-af37-a1da5f1b7408",
+        "https://www.elmodawanaeg.com/wp-content/uploads/2021/08/10.pdf",
+        "https://www.eglf.org/عقوبة-التنمر-في-القانون-المصري-189-لسنة-2020/",
+        "https://mksegypt.org/public/ar/laws/17352"
       ]
     },
     {
