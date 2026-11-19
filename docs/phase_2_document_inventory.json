@@ -280,6 +280,13 @@
       "source_class": "secondary consolidated legislation and metadata",
       "permission": "unknown",
       "next_action": "Use for article-level discovery and amendment metadata only; verify with Gazette and official portals."
+    },
+    "EG-LAWEG": {
+      "authority": "Egyptian Legal Portal (Laweg)",
+      "source_url": "https://www.laweg.net/",
+      "source_class": "secondary_or_official_gazette_text_transcription",
+      "permission": "unknown",
+      "next_action": "Use as text fallback; compare exact Gazette page and publication date."
     }
   },
   "documents": [
@@ -444,7 +451,7 @@
         "replacement code instrument(s)",
         "commencement postponement/transition instrument(s)"
       ],
-      "notes": "Critical temporal-status review required. Do not infer operative status from the existence of replacement legislation. Full Arabic secondary text located. Keep current/historical status time-scoped and pending lawyer review; Law 1/2024 amendment checkpoint already exists and should not be duplicated. Current-code evidence provisions Arts 86–89 on expert oath, written report, defence expert and expert challenge captured from full secondary text. Keep as current candidate until Law 174/2025 commencement.",
+      "notes": "Critical temporal-status review required. Do not infer operative status from the existence of replacement legislation. Full Arabic secondary text located. Keep current/historical status time-scoped and pending lawyer review; Law 1/2024 amendment checkpoint already exists and should not be duplicated. Current-code evidence provisions Arts 86–89 on expert oath, written report, defence expert and expert challenge captured from full secondary text. Keep as current candidate until Law 174/2025 commencement. Corrected amendment chain: Law 177/2020 (not Law 189/2020) adds Art. 113 bis. Law 189/2020 amends Penal Code Art. 309 bis (b) on bullying. Additional amendments located: 95/2003, 145/2006, 74/2007, 71/2009, 83/2013, 49/2014, 138/2014, 16/2015, omnibus Law 11/2017 and Law 1/2024. Older relation candidates 271/1955, 107/1962, 37/1972, 170/1981 and 23/1992 are separately recorded as metadata-only pending original text.",
       "source_urls": [
         {
           "url": "https://www.alamiria.com/Sec/TashTxt?id=YbxnlD3e4Qc%3D",
@@ -460,6 +467,11 @@
           "url": "https://kanonmisr.com/ar/نص-قانون-الإجراءات-الجنائية-طبقا-لآخر/",
           "source_role": "full Arabic text copy with amendment notes through 2020",
           "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://manshurat.org/node/14419/relations",
+          "source_role": "Amendment relation index listing historical amendments",
+          "status": "amendment_metadata_accessible"
         }
       ]
     },
@@ -3730,7 +3742,7 @@
     },
     {
       "document_id": "EG-TERROR-LISTS-AMEND-11-2017",
-      "official_title_ar": "قانون رقم 11 لسنة 2017 بتعديل بعض أحكام قانون 8 لسنة 2015 بشأن قوائم الكيانات الإرهابية",
+      "official_title_ar": "قانون رقم 11 لسنة 2017 بشأن تعديل بعض أحكام قوانين الإجراءات الجنائية والطعن أمام محكمة النقض وقوائم الكيانات الإرهابية ومكافحة الإرهاب",
       "practice_areas": [
         "criminal"
       ],
@@ -3745,11 +3757,21 @@
       "required_related_records": [
         "Law 8/2015"
       ],
-      "notes": "Amends Art. 1 definition(s); original Gazette text still to be obtained.",
+      "notes": "Amends Art. 1 definition(s); original Gazette text still to be obtained. Omnibus law also amends Criminal Procedure Law 150/1950 Arts 12, 277, 289, 384 and 395; it also amends Law 57/1959, Law 8/2015 and Law 94/2015. Full Gazette PDF: https://fra.gov.eg/wp-content/uploads/2017/04/alamiria_2017_11.pdf. Do not create a duplicate Law 11/2017 instrument record for the CPL amendment.",
       "source_urls": [
         {
           "url": "https://manshurat.org/node/63720",
           "source_role": "Consolidated Law 8/2015 text identifies Art. 1 amendment by Law 11/2017",
+          "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://fra.gov.eg/wp-content/uploads/2017/04/alamiria_2017_11.pdf",
+          "source_role": "Official Gazette 17 follow-up, 27 Apr 2017, full PDF",
+          "status": "official_gazette_pdf_text_accessible"
+        },
+        {
+          "url": "https://lawyeregypt.net/قانون-رقم-11-لسنة-2017-بشأن-تعديل-بعض-أحكام-ق-2/",
+          "source_role": "Full Arabic text of omnibus Law 11/2017",
           "status": "full_text_accessible_secondary"
         }
       ]
@@ -4969,6 +4991,544 @@
           "status": "full_text_accessible_secondary"
         }
       ]
+    },
+    {
+      "document_id": "EG-CPL-AMEND-177-2020",
+      "official_title_ar": "قانون رقم 177 لسنة 2020 بإضافة مادة جديدة برقم 113 مكرراً إلى قانون الإجراءات الجنائية",
+      "practice_areas": [
+        "criminal"
+      ],
+      "document_type": "amending_law",
+      "instrument_number": 177,
+      "instrument_year": 2020,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": [
+        "Law 150/1950",
+        "Penal Code 58/1937",
+        "Child Law 12/1996"
+      ],
+      "collection_permission": "unknown",
+      "legal_status": "historical_amendment_current_effect_in_consolidation",
+      "review_status": "discovery_only",
+      "required_related_records": [],
+      "notes": "Gazette 36 bis, 5 Sep 2020; effective 6 Sep 2020. Adds Art. 113 bis prohibiting police/investigative authorities from disclosing victim data in enumerated sexual and child offences except to interested parties.",
+      "source_urls": [
+        {
+          "url": "https://www.aldhshan.com/2026/02/177-2020-150-1950.html",
+          "source_role": "Full Arabic text reproduction",
+          "status": [
+            "Law 150/1950",
+            "Penal Code 58/1937",
+            "Child Law 12/1996"
+          ]
+        },
+        {
+          "url": "https://manshurat.org/node/67605",
+          "source_role": "Gazette 36 bis, 5 Sep 2020, PDF record",
+          "status": [
+            "Law 150/1950",
+            "Penal Code 58/1937",
+            "Child Law 12/1996"
+          ]
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CPL-AMEND-1-2024",
+      "official_title_ar": "قانون رقم 1 لسنة 2024 بتعديل بعض أحكام قانون الإجراءات الجنائية",
+      "practice_areas": [
+        "criminal"
+      ],
+      "document_type": "amending_law",
+      "instrument_number": 1,
+      "instrument_year": 2024,
+      "source_id": "EG-SIS-GAZETTE",
+      "source_status": [
+        "Law 150/1950",
+        "Law 174/2025 issuance Art. 3"
+      ],
+      "collection_permission": "unknown",
+      "legal_status": "historical_amendment_current_effect_in_consolidation",
+      "review_status": "discovery_only",
+      "required_related_records": [],
+      "notes": "Effective 17 Jan 2024. Replaces terminology and Chapters I–II of Book II Title III to create felony appeals; adds Art. 367 and Arts 419 bis et seq.",
+      "source_urls": [
+        {
+          "url": "https://mediadr.sis.gov.eg/bitstream/handle/123456789/51750/OG2_20240116_1055.pdf?isAllowed=y&sequence=2",
+          "source_role": "Official Gazette 2 bis, 16 Jan 2024, full PDF",
+          "status": [
+            "Law 150/1950",
+            "Law 174/2025 issuance Art. 3"
+          ]
+        },
+        {
+          "url": "https://manshurat.org/sites/default/files/qnwn_rqm_1_lsn_2024.pdf",
+          "source_role": "Full Gazette PDF mirror",
+          "status": [
+            "Law 150/1950",
+            "Law 174/2025 issuance Art. 3"
+          ]
+        },
+        {
+          "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/law/16-01-2024/no-1?id=2106397&type=1",
+          "source_role": "Full article metadata and text",
+          "status": [
+            "Law 150/1950",
+            "Law 174/2025 issuance Art. 3"
+          ]
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CPL-AMEND-83-2013",
+      "official_title_ar": "قرار رئيس الجمهورية بالقانون رقم 83 لسنة 2013 بتعديل بعض أحكام قانون الإجراءات الجنائية بشأن مدة الحبس الاحتياطي",
+      "practice_areas": [
+        "criminal"
+      ],
+      "document_type": "amending_law",
+      "instrument_number": 83,
+      "instrument_year": 2013,
+      "source_id": "EG-MANSURAT",
+      "source_status": [
+        "Law 150/1950"
+      ],
+      "collection_permission": "unknown",
+      "legal_status": "historical_amendment_current_effect_in_consolidation",
+      "review_status": "discovery_only",
+      "required_related_records": [],
+      "notes": "Issued/published 23 Sep 2013; effective 24 Sep 2013. Amends Art. 143 pre-trial detention duration in cases carrying death or life imprisonment.",
+      "source_urls": [
+        {
+          "url": "https://manshurat.org/node/6546",
+          "source_role": "Official Gazette PDF record",
+          "status": [
+            "Law 150/1950"
+          ]
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CPL-AMEND-49-2014",
+      "official_title_ar": "قرار رئيس الجمهورية بالقانون رقم 49 لسنة 2014 بتعديل بعض أحكام قوانين العقوبات والإجراءات الجنائية وتنظيم السجون",
+      "practice_areas": [
+        "criminal"
+      ],
+      "document_type": "amending_law",
+      "instrument_number": 49,
+      "instrument_year": 2014,
+      "source_id": "EG-LAWEG",
+      "source_status": [
+        "Law 150/1950",
+        "Law 58/1937",
+        "Law 396/1956"
+      ],
+      "collection_permission": "unknown",
+      "legal_status": "historical_amendment_current_effect_in_consolidation",
+      "review_status": "discovery_only",
+      "required_related_records": [],
+      "notes": "Gazette 23 follow-up, 5 Jun 2014; effective 6 Jun 2014. Replaces CPL Art. 479 alongside Penal Code Art. 18(2) and Prisons Law Art. 52(1).",
+      "source_urls": [
+        {
+          "url": "https://www.laweg.net/framePlain.aspx?ItemID=91349&NID=111486&Type=6&action=ViewActivePages",
+          "source_role": "Full Gazette text reproduction",
+          "status": [
+            "Law 150/1950",
+            "Law 58/1937",
+            "Law 396/1956"
+          ]
+        },
+        {
+          "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/law/05-06-2014/no-49?id=1759016&type=1",
+          "source_role": "Full article metadata/text",
+          "status": [
+            "Law 150/1950",
+            "Law 58/1937",
+            "Law 396/1956"
+          ]
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CPL-AMEND-138-2014",
+      "official_title_ar": "قرار رئيس الجمهورية بالقانون رقم 138 لسنة 2014 بتعديل بعض أحكام قانون الإجراءات الجنائية",
+      "practice_areas": [
+        "criminal"
+      ],
+      "document_type": "amending_law",
+      "instrument_number": 138,
+      "instrument_year": 2014,
+      "source_id": "EG-EASTLAWS",
+      "source_status": [
+        "Law 150/1950"
+      ],
+      "collection_permission": "unknown",
+      "legal_status": "historical_amendment_current_effect_in_consolidation",
+      "review_status": "discovery_only",
+      "required_related_records": [],
+      "notes": "Issued 11 Nov 2014; Gazette 45 bis (c), 12 Nov 2014; effective 13 Nov 2014. Replaces Arts 64, 65 and 74; adds Art. 66 on judicial investigation delegation.",
+      "source_urls": [
+        {
+          "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/law/12-11-2014/no-138?id=1771683&sub=8630302&type=1",
+          "source_role": "Full Arabic text and Gazette metadata",
+          "status": [
+            "Law 150/1950"
+          ]
+        },
+        {
+          "url": "https://manshurat.org/node/14421",
+          "source_role": "Official Gazette PDF record",
+          "status": [
+            "Law 150/1950"
+          ]
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CPL-AMEND-16-2015",
+      "official_title_ar": "قرار رئيس الجمهورية بالقانون رقم 16 لسنة 2015 بتعديل بعض أحكام قانون الإجراءات الجنائية",
+      "practice_areas": [
+        "criminal"
+      ],
+      "document_type": "amending_law",
+      "instrument_number": 16,
+      "instrument_year": 2015,
+      "source_id": "EG-EASTLAWS",
+      "source_status": [
+        "Law 150/1950"
+      ],
+      "collection_permission": "unknown",
+      "legal_status": "historical_amendment_current_effect_in_consolidation",
+      "review_status": "discovery_only",
+      "required_related_records": [],
+      "notes": "Gazette 11 follow-up, 12 Mar 2015; effective 13 Mar 2015. Amends Art. 15 and adds Arts 18 bis (b) and 208 bis (e).",
+      "source_urls": [
+        {
+          "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/law/12-03-2015/no-16?id=1780988&sub=8694489&type=1",
+          "source_role": "Full Arabic text and Gazette metadata",
+          "status": [
+            "Law 150/1950"
+          ]
+        },
+        {
+          "url": "https://manshurat.org/node/14420",
+          "source_role": "Official Gazette PDF record",
+          "status": [
+            "Law 150/1950"
+          ]
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CPL-AMEND-145-2006",
+      "official_title_ar": "قانون رقم 145 لسنة 2006 بتعديل بعض أحكام قانون الإجراءات الجنائية بشأن الحبس الاحتياطي",
+      "practice_areas": [
+        "criminal"
+      ],
+      "document_type": "amending_law",
+      "instrument_number": 145,
+      "instrument_year": 2006,
+      "source_id": "EG-MANSURAT",
+      "source_status": [
+        "Law 150/1950",
+        "Law 37/1972",
+        "Law 153/2007"
+      ],
+      "collection_permission": "unknown",
+      "legal_status": "historical_amendment_current_effect_in_consolidation",
+      "review_status": "discovery_only",
+      "required_related_records": [],
+      "notes": "Issued 15 Jul 2006; published 27 Jul 2006; effective 28 Jul 2006. Amends pre-trial detention rules, including Art. 201 and alternative measures.",
+      "source_urls": [
+        {
+          "url": "https://manshurat.org/node/14577",
+          "source_role": "Official Gazette PDF record; Gazette 27 Jul 2006",
+          "status": [
+            "Law 150/1950",
+            "Law 37/1972",
+            "Law 153/2007"
+          ]
+        },
+        {
+          "url": "https://moi.gov.eg/pdf/resource998.pdf",
+          "source_role": "Ministry of Interior study describing amended Art. 201 alternatives",
+          "status": [
+            "Law 150/1950",
+            "Law 37/1972",
+            "Law 153/2007"
+          ]
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CPL-AMEND-71-2009",
+      "official_title_ar": "قانون رقم 71 لسنة 2009 بإصدار قانون رعاية المريض النفسي وتعديل بعض أحكام قانوني العقوبات والإجراءات الجنائية",
+      "practice_areas": [
+        "criminal"
+      ],
+      "document_type": "amending_law_and_special_law",
+      "instrument_number": 71,
+      "instrument_year": 2009,
+      "source_id": "EG-LAWEG",
+      "source_status": [
+        "Law 150/1950",
+        "Law 58/1937"
+      ],
+      "collection_permission": "unknown",
+      "legal_status": "historical_amendment_current_effect_in_consolidation",
+      "review_status": "discovery_only",
+      "required_related_records": [],
+      "notes": "Gazette 20 follow-up, 14 May 2009; effective 15 May 2009. Changes mental-disorder terminology and procedures in CPL and Penal Code; full affected-article map pending.",
+      "source_urls": [
+        {
+          "url": "https://www.laweg.net/framePlain.aspx?ItemID=4921&NID=4921&Type=6&action=ViewActivePages",
+          "source_role": "Full Arabic law and consequential amendments",
+          "status": [
+            "Law 150/1950",
+            "Law 58/1937"
+          ]
+        },
+        {
+          "url": "https://manshurat.org/node/14473",
+          "source_role": "Official Gazette PDF record",
+          "status": [
+            "Law 150/1950",
+            "Law 58/1937"
+          ]
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CPL-AMEND-74-2007",
+      "official_title_ar": "قانون رقم 74 لسنة 2007 بتعديل بعض أحكام قانون الإجراءات الجنائية وقانون حالات وإجراءات الطعن أمام محكمة النقض",
+      "practice_areas": [
+        "criminal"
+      ],
+      "document_type": "amending_law",
+      "instrument_number": 74,
+      "instrument_year": 2007,
+      "source_id": "EG-LAWEG",
+      "source_status": [
+        "Law 150/1950",
+        "Law 57/1959"
+      ],
+      "collection_permission": "unknown",
+      "legal_status": "historical_amendment_current_effect_in_consolidation",
+      "review_status": "discovery_only",
+      "required_related_records": [],
+      "notes": "Amends Arts 18 bis, 297, 323, 324, 325 bis, 327 and 398; includes reconciliation and appeal procedure changes.",
+      "source_urls": [
+        {
+          "url": "https://www.laweg.net/framePlain.aspx?ItemID=18326&NID=18336&Type=6&action=ViewActivePages",
+          "source_role": "Full Arabic Gazette text; Gazette 22 follow-up, 31 May 2007",
+          "status": [
+            "Law 150/1950",
+            "Law 57/1959"
+          ]
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CPL-AMEND-95-2003",
+      "official_title_ar": "قانون رقم 95 لسنة 2003 بإلغاء محاكم أمن الدولة وتعديل بعض أحكام قانوني العقوبات والإجراءات الجنائية",
+      "practice_areas": [
+        "criminal"
+      ],
+      "document_type": "amending_law",
+      "instrument_number": 95,
+      "instrument_year": 2003,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": [
+        "Law 150/1950",
+        "Law 105/1980"
+      ],
+      "collection_permission": "unknown",
+      "legal_status": "historical_amendment_current_effect_in_consolidation",
+      "review_status": "discovery_only",
+      "required_related_records": [],
+      "notes": "Gazette 25 follow-up, 19 Jun 2003. Repeals Law 105/1980 State Security Courts and amends CPL, including addition of Art. 206 bis and financial precautionary measures in Art. 208 bis. Original amendment Gazette PDF acquisition pending.",
+      "source_urls": [
+        {
+          "url": "https://manshurat.org/node/14419/relations",
+          "source_role": "Amendment relation record",
+          "status": [
+            "Law 150/1950",
+            "Law 105/1980"
+          ]
+        },
+        {
+          "url": "https://lawhub.info/eg/?p=11570",
+          "source_role": "Consolidated CPL text with Art. 206 bis and 208 bis amendments",
+          "status": [
+            "Law 150/1950",
+            "Law 105/1980"
+          ]
+        }
+      ]
+    },
+    {
+      "document_id": "EG-PENAL-AMEND-189-2020",
+      "official_title_ar": "قانون رقم 189 لسنة 2020 بتعديل بعض أحكام قانون العقوبات بشأن تجريم التنمر",
+      "practice_areas": [
+        "criminal"
+      ],
+      "document_type": "amending_law",
+      "instrument_number": 189,
+      "instrument_year": 2020,
+      "source_id": "EG-MANSURAT",
+      "source_status": [
+        "Penal Code 58/1937"
+      ],
+      "collection_permission": "unknown",
+      "legal_status": "historical_amendment_current_effect_in_consolidation",
+      "review_status": "discovery_only",
+      "required_related_records": [],
+      "notes": "This is a Penal Code amendment, not a Criminal Procedure amendment. Adds Penal Code Article 309 bis (b) on bullying; effective 6 Sep 2020. The Manshurat CPL consolidation's 'last amendment Law 189/2020' label is misattributed.",
+      "source_urls": [
+        {
+          "url": "https://manshurat.org/node/67632",
+          "source_role": "Official Gazette 36 bis, 5 Sep 2020, PDF record",
+          "status": [
+            "Penal Code 58/1937"
+          ]
+        },
+        {
+          "url": "https://www.eglf.org/عقوبة-التنمر-في-القانون-المصري-189-لسنة-2020/",
+          "source_role": "Full Arabic text reproduction",
+          "status": [
+            "Penal Code 58/1937"
+          ]
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CPL-AMEND-271-1955",
+      "official_title_ar": "قانون رقم 271 لسنة 1955 بتعديل المادة 550 من قانون الإجراءات الجنائية",
+      "practice_areas": [
+        "criminal"
+      ],
+      "document_type": "amending_law",
+      "instrument_number": 271,
+      "instrument_year": 1955,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": "metadata_only",
+      "collection_permission": "unknown",
+      "legal_status": "historical_amendment_current_effect_in_consolidation",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "Law 150/1950"
+      ],
+      "notes": "Amends CPL Art. 550; relation page identifies it; full text not yet obtained.",
+      "source_urls": [
+        {
+          "url": "https://manshurat.org/node/14419/relations",
+          "source_role": "Law 150/1950 amendment relations / consolidated annotations",
+          "status": "metadata_only"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CPL-AMEND-107-1962",
+      "official_title_ar": "قانون رقم 107 لسنة 1962 بتعديل بعض أحكام قانون الإجراءات الجنائية",
+      "practice_areas": [
+        "criminal"
+      ],
+      "document_type": "amending_law",
+      "instrument_number": 107,
+      "instrument_year": 1962,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": "metadata_only",
+      "collection_permission": "unknown",
+      "legal_status": "historical_amendment_current_effect_in_consolidation",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "Law 150/1950"
+      ],
+      "notes": "Amends CPL Art. 151 and related provisions; metadata only.",
+      "source_urls": [
+        {
+          "url": "https://manshurat.org/node/14419/relations",
+          "source_role": "Law 150/1950 amendment relations / consolidated annotations",
+          "status": "metadata_only"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CPL-AMEND-37-1972",
+      "official_title_ar": "قانون رقم 37 لسنة 1972 بتعديل المادة 143 من قانون الإجراءات الجنائية",
+      "practice_areas": [
+        "criminal"
+      ],
+      "document_type": "amending_law",
+      "instrument_number": 37,
+      "instrument_year": 1972,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": "metadata_only",
+      "collection_permission": "unknown",
+      "legal_status": "historical_amendment_current_effect_in_consolidation",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "Law 150/1950"
+      ],
+      "notes": "Amends Art. 143 pre-trial detention duration; text annotations accessible, original instrument not yet obtained.",
+      "source_urls": [
+        {
+          "url": "https://manshurat.org/node/14419/relations",
+          "source_role": "Law 150/1950 amendment relations / consolidated annotations",
+          "status": "metadata_only"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CPL-AMEND-23-1992",
+      "official_title_ar": "قانون رقم 23 لسنة 1992 بتعديل بعض أحكام قانون الإجراءات الجنائية",
+      "practice_areas": [
+        "criminal"
+      ],
+      "document_type": "amending_law",
+      "instrument_number": 23,
+      "instrument_year": 1992,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": "metadata_only",
+      "collection_permission": "unknown",
+      "legal_status": "historical_amendment_current_effect_in_consolidation",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "Law 150/1950"
+      ],
+      "notes": "Amendment relation identified; full affected articles and original text not yet obtained.",
+      "source_urls": [
+        {
+          "url": "https://manshurat.org/node/14419/relations",
+          "source_role": "Law 150/1950 amendment relations / consolidated annotations",
+          "status": "metadata_only"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CPL-AMEND-170-1981",
+      "official_title_ar": "قانون رقم 170 لسنة 1981 بتعديل بعض أحكام قانون الإجراءات الجنائية",
+      "practice_areas": [
+        "criminal"
+      ],
+      "document_type": "amending_law",
+      "instrument_number": 170,
+      "instrument_year": 1981,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": "metadata_only",
+      "collection_permission": "unknown",
+      "legal_status": "historical_amendment_current_effect_in_consolidation",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "Law 150/1950"
+      ],
+      "notes": "Amends Art. 151 and removes obsolete referral terminology; metadata from consolidated text only.",
+      "source_urls": [
+        {
+          "url": "https://manshurat.org/node/14419/relations",
+          "source_role": "Law 150/1950 amendment relations / consolidated annotations",
+          "status": "metadata_only"
+        }
+      ]
     }
   ],
   "next_actions": [
@@ -5179,6 +5739,13 @@
     {
       "id": "ACT-CRIM-2026-18",
       "action": "Visually collate Law 174/2025 Article numbering around Arts 24–37 and the OCR duplicate Article 27; complete Arts 508–510 and 512–513.",
+      "owner": "Research Agent 2",
+      "status": "not_started",
+      "blocking": false
+    },
+    {
+      "id": "ACT-CRIM-2026-19",
+      "action": "Obtain original Gazette texts and full article deltas for CPL amendments 95/2003, 145/2006, 74/2007, 71/2009, 83/2013, 49/2014, 138/2014, 16/2015, 11/2017, 177/2020 and 1/2024; complete old amendment candidates 271/1955,107/1962,37/1972,170/1981,23/1992.",
       "owner": "Research Agent 2",
       "status": "not_started",
       "blocking": false
@@ -5597,6 +6164,29 @@
         "observed_title": "Expert evidence, judicial authority and forensic examination instruments",
         "finding": "Law 96/1952 full article text and Law 91/2016 amendment located; Law 46/1972 full text and amendments 142/2006 and 77/2019 identified; Decisions 3066/2021 and 367/2021 for Economic Court experts and 439/440/2026 forensic expert office relocations found.",
         "status": "full_text_accessible_selected_articles_persisted"
+      },
+      {
+        "evidence_id": "SRC-CPL-150-AMENDMENT-CHAIN-177-2020-1-2024",
+        "document_ids": [
+          "EG-CRIMINAL-PROCEDURE-150-1950",
+          "EG-CPL-AMEND-177-2020",
+          "EG-CPL-AMEND-1-2024",
+          "EG-CPL-AMEND-95-2003",
+          "EG-CPL-AMEND-145-2006",
+          "EG-CPL-AMEND-74-2007",
+          "EG-CPL-AMEND-71-2009",
+          "EG-CPL-AMEND-83-2013",
+          "EG-CPL-AMEND-49-2014",
+          "EG-CPL-AMEND-138-2014",
+          "EG-CPL-AMEND-16-2015",
+          "EG-TERROR-LISTS-AMEND-11-2017"
+        ],
+        "source_type": "amendment relation index, official Gazette PDFs and full Arabic amendment reproductions",
+        "url": "https://manshurat.org/node/14419/relations",
+        "publisher": "Manshurat / FRA / Eastlaws / Laweg / SIS Gazette repository",
+        "observed_title": "Criminal Procedure Law 150/1950 amendment chronology",
+        "finding": "Law 177/2020 is the actual CPL amendment adding Art. 113 bis; Law 189/2020 is a Penal Code bullying amendment and is misattributed by the Manshurat CPL metadata. Law 1/2024 is the latest identified CPL amendment and creates felony appeals. Multiple older amending laws and original texts are now separately indexed.",
+        "status": "full_text_accessible_selected_instruments_and_metadata_only_older_items"
       }
     ],
     "temporal_review_alerts": [
