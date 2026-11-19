@@ -3656,7 +3656,7 @@
         "Law 14/2022",
         "Interior Minister Decree 79/1961"
       ],
-      "notes": "Full Arabic statute text accessible at Notaries of Egypt; Official Proceedings No.96 bis (b), 29 Nov 1956. Law 19/2020 adds Art.52 bis and repeals a paragraph of Narcotics Law Art.46 bis (a); Law 14/2022 replaces Arts.1,2,31,81 and deletes/repeals listed provisions. Current text requires full Gazette collation.",
+      "notes": "Full Arabic statute text accessible at Notaries of Egypt; Official Proceedings No.96 bis (b), 29 Nov 1956. Law 19/2020 adds Art.52 bis and repeals a paragraph of Narcotics Law Art.46 bis (a); Law 14/2022 replaces Arts.1,2,31,81 and deletes/repeals listed provisions. Current text requires full Gazette collation. Amendment chain cross-confirmed through Laws49/2014,106/2015,6/2018,19/2020 and14/2022, plus older Laws57/1968,5/1972,23/1973,87/1973,119/1974,91/1976 and152/2001. Geographic-centre implementation also relies on Interior Minister Decisions113/1962 and1654/1971, and later centre-specific decisions 1776/2023,332/2024,426/2024,535/2024,60/2026,415/2026,514/2026,557/2026.",
       "source_urls": [
         {
           "url": "https://www.notariesofegypt.org/article.php?id=469",
@@ -3667,6 +3667,11 @@
           "url": "https://temp.manshurat.org/file/87963/download?token=oPuxA7uk",
           "source_role": "Law 14/2022 Gazette text PDF copy",
           "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://lawhub.info/eg/?p=12219",
+          "source_role": "Full consolidated Law396/1956 text with article-level amendment annotations",
+          "status": "full_text_accessible_not_archived"
         }
       ]
     },
@@ -3719,7 +3724,7 @@
         "Law 396/1956",
         "Law 14/2022"
       ],
-      "notes": "Full 101-article Arabic consolidated text accessible; source claims last update 21 Jun 2022. Gazette original No.103, 28 Dec 1961. Consolidation notes amendments including 1675/2011, 1342/2013, 3320/2014, 345/2017 and later instruments; Decision 1265/2022 reportedly amended several articles on 21 Jun 2022. Exact Gazette amendment scans and post-June-2022 status remain to verify.",
+      "notes": "Full 101-article Arabic consolidated text accessible; source claims last update 21 Jun 2022. Gazette original No.103, 28 Dec 1961. Consolidation notes amendments including 1675/2011, 1342/2013, 3320/2014, 345/2017 and later instruments; Decision 1265/2022 reportedly amended several articles on 21 Jun 2022. Exact Gazette amendment scans and post-June-2022 status remain to verify. Distinguish this general prison regulation from the separate geographic-centre internal regulation issued by Interior Minister Decision1654/1971, which remains to be acquired.",
       "source_urls": [
         {
           "url": "https://manshurat.org/node/12358",
@@ -5939,6 +5944,16 @@
           "url": "https://www.vetogate.com/4624609",
           "source_role": "Secondary report identifying the decree and affected provisions",
           "status": "metadata_only"
+        },
+        {
+          "url": "https://egyptianlaws.com/?p=149187",
+          "source_role": "EgyptianLaws record for Interior Minister Decision1265/2022; iframe/source text requires retrieval",
+          "status": "metadata_or_iframe_access"
+        },
+        {
+          "url": "https://alhasswalawfirm.com/law-library/decree-79-1961",
+          "source_role": "Consolidated Decree79/1961 full text and amendment notes through June 2022",
+          "status": "full_text_accessible_not_archived"
         }
       ]
     },
@@ -6657,6 +6672,377 @@
           "url": "https://www.eglf.org/قانون-6-لسنة-2020-تعديل-قانون-العقوبات/",
           "source_role": "Full Arabic text and Gazette metadata",
           "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-PRISONS-AMEND-49-2014",
+      "official_title_ar": "قانون رقم 49 لسنة 2014 بتعديل بعض أحكام قوانين العقوبات والإجراءات الجنائية والقانون رقم 396 لسنة 1956",
+      "practice_areas": [
+        "criminal",
+        "prisons"
+      ],
+      "document_type": "statutory_amendment",
+      "instrument_number": 49,
+      "instrument_year": 2014,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": "full_text_accessible_secondary",
+      "collection_permission": "unknown",
+      "legal_status": "historical_amendment_current_effect_embedded_in_Law396",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-PRISONS-396-1956"
+      ],
+      "notes": "Official Gazette No.23 follow-up, 5 Jun 2014; effective 6 Jun 2014. Replaces Penal Code Art.18(2), CPL Art.479 and Prisons Law Art.52(1). Cross-link to three statutes.",
+      "source_urls": [
+        {
+          "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/law/05-06-2014/no-49?id=1759016&type=1",
+          "source_role": "Full Arabic text and Gazette metadata",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-PRISONS-AMEND-106-2015",
+      "official_title_ar": "قرار رئيس الجمهورية بالقانون رقم 106 لسنة 2015 بتعديل بعض أحكام القانون رقم 396 لسنة 1956 بشأن تنظيم السجون",
+      "practice_areas": [
+        "criminal",
+        "prisons"
+      ],
+      "document_type": "statutory_amendment",
+      "instrument_number": 106,
+      "instrument_year": 2015,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": "full_text_accessible_Laweg_Manshurat",
+      "collection_permission": "unknown",
+      "legal_status": "historical_amendment_current_effect_embedded_in_Law396",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-PRISONS-396-1956"
+      ],
+      "notes": "Official Gazette No.42 bis (b), 20 Oct 2015; effective 21 Oct 2015. Replaces multiple articles and adds Arts.8 bis,33 bis,34 bis,38 bis and related provisions.",
+      "source_urls": [
+        {
+          "url": "https://www.laweg.net/Default.aspx?FIID=229&action=LegsCates",
+          "source_role": "Full Arabic text and Gazette metadata",
+          "status": "full_text_accessible_Laweg_Manshurat"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-PRISONS-AMEND-6-2018",
+      "official_title_ar": "قانون رقم 6 لسنة 2018 بتعديل بعض أحكام القانون رقم 396 لسنة 1956 في شأن تنظيم السجون",
+      "practice_areas": [
+        "criminal",
+        "prisons"
+      ],
+      "document_type": "statutory_amendment",
+      "instrument_number": 6,
+      "instrument_year": 2018,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": "full_text_accessible_Laweg",
+      "collection_permission": "unknown",
+      "legal_status": "historical_amendment_current_effect_embedded_in_Law396",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-PRISONS-396-1956"
+      ],
+      "notes": "Official Gazette No.3 bis (c), 24 Jan 2018; effective 25 Jan 2018. Replaces Art.52 on conditional release: half sentence served, minimum six months, life sentence minimum 20 years.",
+      "source_urls": [
+        {
+          "url": "https://www.laweg.net/framePlain.aspx?ItemID=110938&NID=137423&Type=6&action=ViewActivePages",
+          "source_role": "Full Arabic text and Gazette metadata",
+          "status": "full_text_accessible_Laweg"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-PRISONS-GEO-EXEC-113-1962",
+      "official_title_ar": "قرار وزير الداخلية رقم 113 لسنة 1962 بشأن مراكز الإصلاح الجغرافية بالمحافظات",
+      "practice_areas": [
+        "criminal",
+        "prisons"
+      ],
+      "document_type": "implementing_ministerial_decision",
+      "instrument_number": 113,
+      "instrument_year": 1962,
+      "source_id": "EG-AMIRIA",
+      "source_status": "metadata_only_text_not_located",
+      "collection_permission": "unknown",
+      "legal_status": "implementation_under_Law396_1956_Art2_3",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-PRISONS-396-1956",
+        "EG-PRISONS-GEO-EXEC-113-1962",
+        "EG-PRISONS-GEO-EXEC-1654-1971"
+      ],
+      "notes": "Foundational ministerial decision cited in all geographic correction-centre creation decisions. Full original text and Gazette issue metadata not yet located.",
+      "source_urls": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=SlyJ4ubxPxU%3D",
+          "source_role": "Amiri Press full Arabic text or metadata source",
+          "status": "metadata_only_text_not_located"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-PRISONS-GEO-EXEC-1654-1971",
+      "official_title_ar": "قرار وزير الداخلية رقم 1654 لسنة 1971 بإصدار اللائحة الداخلية لمراكز الإصلاح الجغرافية",
+      "practice_areas": [
+        "criminal",
+        "prisons"
+      ],
+      "document_type": "implementing_ministerial_decision",
+      "instrument_number": 1654,
+      "instrument_year": 1971,
+      "source_id": "EG-AMIRIA",
+      "source_status": "metadata_only_text_not_located",
+      "collection_permission": "unknown",
+      "legal_status": "implementation_under_Law396_1956_Art2_3",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-PRISONS-396-1956",
+        "EG-PRISONS-GEO-EXEC-113-1962",
+        "EG-PRISONS-GEO-EXEC-1654-1971"
+      ],
+      "notes": "Foundational internal regulation for geographic correction centres, cited in all recent centre-creation decisions. Full original text and Gazette issue metadata not yet located.",
+      "source_urls": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=SlyJ4ubxPxU%3D",
+          "source_role": "Amiri Press full Arabic text or metadata source",
+          "status": "metadata_only_text_not_located"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-PRISONS-GEO-EXEC-1776-2023",
+      "official_title_ar": "قرار وزير الداخلية رقم 1776 لسنة 2023 بشأن إنشاء مركز إصلاح جغرافي بمدينة برج العرب بمديرية أمن الإسكندرية",
+      "practice_areas": [
+        "criminal",
+        "prisons"
+      ],
+      "document_type": "implementing_ministerial_decision",
+      "instrument_number": 1776,
+      "instrument_year": 2023,
+      "source_id": "EG-AMIRIA",
+      "source_status": "official_Amiria_full_text_accessible",
+      "collection_permission": "unknown",
+      "legal_status": "implementation_under_Law396_1956_Art2_3",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-PRISONS-396-1956",
+        "EG-PRISONS-GEO-EXEC-113-1962",
+        "EG-PRISONS-GEO-EXEC-1654-1971"
+      ],
+      "notes": "Issued 14 Sep 2023. Creates Borg El Arab geographic correction centre in Alexandria Security Directorate; assigns Art.2(3) Law396 sentence class; publication and next-day commencement clause.",
+      "source_urls": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=a3jU3dzrv3w%3D",
+          "source_role": "Amiri Press full Arabic text or metadata source",
+          "status": "official_Amiria_full_text_accessible"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-PRISONS-GEO-EXEC-332-2024",
+      "official_title_ar": "قرار وزير الداخلية رقم 332 لسنة 2024 بشأن إنشاء مركزين إصلاح جغرافيين بمديرية أمن أسيوط",
+      "practice_areas": [
+        "criminal",
+        "prisons"
+      ],
+      "document_type": "implementing_ministerial_decision",
+      "instrument_number": 332,
+      "instrument_year": 2024,
+      "source_id": "EG-AMIRIA",
+      "source_status": "official_Amiria_full_text_accessible",
+      "collection_permission": "unknown",
+      "legal_status": "implementation_under_Law396_1956_Art2_3",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-PRISONS-396-1956",
+        "EG-PRISONS-GEO-EXEC-113-1962",
+        "EG-PRISONS-GEO-EXEC-1654-1971"
+      ],
+      "notes": "Waqa'i No.63, 16 Mar 2024; issued 24 Feb 2024; effective 17 Mar 2024. Creates centres at First and Second Assiut Police Departments.",
+      "source_urls": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=n6BJaslNLX4%3D",
+          "source_role": "Amiri Press full Arabic text or metadata source",
+          "status": "official_Amiria_full_text_accessible"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-PRISONS-GEO-EXEC-426-2024",
+      "official_title_ar": "قرار وزير الداخلية رقم 426 لسنة 2024 بشأن إنشاء مركزين إصلاح جغرافيين بمديريتي أمن سوهاج والأقصر",
+      "practice_areas": [
+        "criminal",
+        "prisons"
+      ],
+      "document_type": "implementing_ministerial_decision",
+      "instrument_number": 426,
+      "instrument_year": 2024,
+      "source_id": "EG-AMIRIA",
+      "source_status": "official_Amiria_full_text_accessible",
+      "collection_permission": "unknown",
+      "legal_status": "implementation_under_Law396_1956_Art2_3",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-PRISONS-396-1956",
+        "EG-PRISONS-GEO-EXEC-113-1962",
+        "EG-PRISONS-GEO-EXEC-1654-1971"
+      ],
+      "notes": "Creates centre at Al-Kawthar Police Department, Sohag, and Taiba Police Centre, Luxor. Gazette issue/date to verify.",
+      "source_urls": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=HKg3oKsiOzw%3D",
+          "source_role": "Amiri Press full Arabic text or metadata source",
+          "status": "official_Amiria_full_text_accessible"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-PRISONS-GEO-EXEC-535-2024",
+      "official_title_ar": "قرار وزير الداخلية رقم 535 لسنة 2024 بشأن إنشاء مركزين إصلاح جغرافيين بمديرية أمن الفيوم",
+      "practice_areas": [
+        "criminal",
+        "prisons"
+      ],
+      "document_type": "implementing_ministerial_decision",
+      "instrument_number": 535,
+      "instrument_year": 2024,
+      "source_id": "EG-AMIRIA",
+      "source_status": "full_text_accessible_secondary",
+      "collection_permission": "unknown",
+      "legal_status": "implementation_under_Law396_1956_Art2_3",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-PRISONS-396-1956",
+        "EG-PRISONS-GEO-EXEC-113-1962",
+        "EG-PRISONS-GEO-EXEC-1654-1971"
+      ],
+      "notes": "Waqa'i No.91, 23 Apr 2024; effective 24 Apr 2024. Creates centres at Second Fayoum Police Department and New Fayoum Police Department.",
+      "source_urls": [
+        {
+          "url": "https://www.youm7.com/story/2024/4/23/الجريدة-الرسمية-تنشر-قرار-إنشاء-مركزى-إصلاح-جغرافيين-بمديرية-أمن/6553410",
+          "source_role": "Amiri Press full Arabic text or metadata source",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-PRISONS-GEO-EXEC-60-2026",
+      "official_title_ar": "قرار وزير الداخلية رقم 60 لسنة 2026 بشأن إنشاء مركز الإصلاح الجغرافي بمركز شرطة الرياض بمديرية أمن كفر الشيخ",
+      "practice_areas": [
+        "criminal",
+        "prisons"
+      ],
+      "document_type": "implementing_ministerial_decision",
+      "instrument_number": 60,
+      "instrument_year": 2026,
+      "source_id": "EG-AMIRIA",
+      "source_status": "official_Amiria_full_text_accessible",
+      "collection_permission": "unknown",
+      "legal_status": "implementation_under_Law396_1956_Art2_3",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-PRISONS-396-1956",
+        "EG-PRISONS-GEO-EXEC-113-1962",
+        "EG-PRISONS-GEO-EXEC-1654-1971"
+      ],
+      "notes": "Creates geographic correction centre at Riyadh Police Centre, Kafr El-Sheikh. Gazette issue/date to verify.",
+      "source_urls": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=UKsIuB2RRRE%3D",
+          "source_role": "Amiri Press full Arabic text or metadata source",
+          "status": "official_Amiria_full_text_accessible"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-PRISONS-GEO-EXEC-415-2026",
+      "official_title_ar": "قرار وزير الداخلية رقم 415 لسنة 2026 بشأن إنشاء مركز الإصلاح الجغرافي بمدينة أسوان الجديدة",
+      "practice_areas": [
+        "criminal",
+        "prisons"
+      ],
+      "document_type": "implementing_ministerial_decision",
+      "instrument_number": 415,
+      "instrument_year": 2026,
+      "source_id": "EG-AMIRIA",
+      "source_status": "official_Amiria_full_text_accessible",
+      "collection_permission": "unknown",
+      "legal_status": "implementation_under_Law396_1956_Art2_3",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-PRISONS-396-1956",
+        "EG-PRISONS-GEO-EXEC-113-1962",
+        "EG-PRISONS-GEO-EXEC-1654-1971"
+      ],
+      "notes": "Waqa'i No.77, 7 Apr 2026; issued 7 Mar 2026; effective 8 Apr 2026. Aswan New City centre. Do not confuse with separate Decision514/2026 for Blaṭ.",
+      "source_urls": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=mhcBogFUsPE%3D",
+          "source_role": "Amiri Press full Arabic text or metadata source",
+          "status": "official_Amiria_full_text_accessible"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-PRISONS-GEO-EXEC-514-2026",
+      "official_title_ar": "قرار وزير الداخلية رقم 514 لسنة 2026 بشأن إنشاء مركز الإصلاح الجغرافي بمركز شرطة بلاط بمديرية أمن الوادي الجديد",
+      "practice_areas": [
+        "criminal",
+        "prisons"
+      ],
+      "document_type": "implementing_ministerial_decision",
+      "instrument_number": 514,
+      "instrument_year": 2026,
+      "source_id": "EG-AMIRIA",
+      "source_status": "official_Amiria_full_text_accessible",
+      "collection_permission": "unknown",
+      "legal_status": "implementation_under_Law396_1956_Art2_3",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-PRISONS-396-1956",
+        "EG-PRISONS-GEO-EXEC-113-1962",
+        "EG-PRISONS-GEO-EXEC-1654-1971"
+      ],
+      "notes": "Waqa'i No.84, 16 Apr 2026; issued 18 Mar 2026; effective 17 Apr 2026. Blaṭ, Dakhla and Farafra geographic area. Some news reports misprint the number as 415; Amiri Press official text confirms 514.",
+      "source_urls": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=SlyJ4ubxPxU%3D",
+          "source_role": "Amiri Press full Arabic text or metadata source",
+          "status": "official_Amiria_full_text_accessible"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-PRISONS-GEO-EXEC-557-2026",
+      "official_title_ar": "قرار وزير الداخلية رقم 557 لسنة 2026 بشأن إنشاء مركز الإصلاح الجغرافي بالمجمع الشرطي بمرسى علم بمديرية أمن البحر الأحمر",
+      "practice_areas": [
+        "criminal",
+        "prisons"
+      ],
+      "document_type": "implementing_ministerial_decision",
+      "instrument_number": 557,
+      "instrument_year": 2026,
+      "source_id": "EG-AMIRIA",
+      "source_status": "official_Amiria_full_text_accessible",
+      "collection_permission": "unknown",
+      "legal_status": "implementation_under_Law396_1956_Art2_3",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-PRISONS-396-1956",
+        "EG-PRISONS-GEO-EXEC-113-1962",
+        "EG-PRISONS-GEO-EXEC-1654-1971"
+      ],
+      "notes": "Creates Marsa Alam geographic correction centre serving Marsa Alam, Shalateen and Halaib. Gazette issue/date to verify.",
+      "source_urls": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=5O5NdNr9%2FN0%3D",
+          "source_role": "Amiri Press full Arabic text or metadata source",
+          "status": "official_Amiria_full_text_accessible"
         }
       ]
     }
@@ -7479,6 +7865,33 @@
         "observed_title": "Penal Code Law 58/1937 complete 540-article Arabic text updated through 4 Dec 2023",
         "finding": "Full 179-page Arabic text acquired, 540 articles, copied according to host from Court of Cassation Legislation Portal. Amendment chain includes Laws5/2018,164/2019,6/2020,189/2020,10/2021,71/2021,141/2021,150/2021 and185/2023. Three previously missing amendment records added; full texts and original Gazette metadata linked. No post-Dec2023 amendment identified in this pass.",
         "status": "full_consolidated_text_accessible_secondary_original_Gazette_archival_pending"
+      },
+      {
+        "evidence_id": "SRC-CRIM-PRISONS-RECENT-IMPLEMENTING-DECISIONS-2026-11-19",
+        "document_ids": [
+          "EG-PRISONS-AMEND-49-2014",
+          "EG-PRISONS-AMEND-106-2015",
+          "EG-PRISONS-AMEND-6-2018",
+          "EG-PRISONS-GEO-EXEC-113-1962",
+          "EG-PRISONS-GEO-EXEC-1654-1971",
+          "EG-PRISONS-GEO-EXEC-1776-2023",
+          "EG-PRISONS-GEO-EXEC-332-2024",
+          "EG-PRISONS-GEO-EXEC-426-2024",
+          "EG-PRISONS-GEO-EXEC-535-2024",
+          "EG-PRISONS-GEO-EXEC-60-2026",
+          "EG-PRISONS-GEO-EXEC-415-2026",
+          "EG-PRISONS-GEO-EXEC-514-2026",
+          "EG-PRISONS-GEO-EXEC-557-2026",
+          "EG-PRISONS-396-1956",
+          "EG-PRISONS-EXEC-79-1961",
+          "EG-PRISONS-EXEC-AMEND-1265-2022"
+        ],
+        "source_type": "full Arabic amendment texts, Amiri Press ministerial decisions and Gazette metadata",
+        "url": "https://www.alamiria.com/Sec/TashTxt?id=SlyJ4ubxPxU%3D",
+        "publisher": "General Authority for Amiri Press / Laweg / Eastlaws / Manshurat / Egyptian news transcriptions",
+        "observed_title": "Prisons and geographic correction-centre implementing decisions, 2014–2026",
+        "finding": "Acquired full Arabic texts for Laws49/2014,106/2015 and6/2018; official Amiri Press text for geographic-centre decisions 1776/2023,332/2024,426/2024,60/2026,415/2026,514/2026 and557/2026; full secondary text for Decision535/2024. Identified foundational geographic-centre decisions113/1962 and1654/1971 and added separate records pending original text. Resolved the 415/2026 vs514/2026 secondary misnumbering for Aswan/Blaṭ.",
+        "status": "multiple_full_texts_accessible_foundational_regulations_pending_original_Gazette_archive"
       }
     ],
     "temporal_review_alerts": [
@@ -7504,18 +7917,18 @@
     "agent": "Research Agent 2",
     "domain": "Egyptian criminal law and procedure",
     "as_of": "2026-11-19",
-    "estimated_domain_completion_percent": 73,
+    "estimated_domain_completion_percent": 75,
     "previous_session_estimate_percent": 58,
     "whole_project_contribution_percent": null,
     "whole_project_contribution_reason": "Cannot calculate without master-index denominator and domain weights.",
     "lawyer_verified_percent": 0,
     "official_full_text_files_archived_and_hash_verified_in_this_session": 0,
     "complete_arabic_texts_accessible_at_source_estimate": ">20 laws/codes and implementing/treaty instruments",
-    "new_inventory_records_added_this_session": 109,
-    "inventory_total_documents": 194,
+    "new_inventory_records_added_this_session": 122,
+    "inventory_total_documents": 207,
     "acquisition_queue_items": 24,
-    "crosscheck_register_count": 32,
-    "notes": "Qualitative research-coverage estimate, not article-count or lawyer-QA metric. This pass improved source and text coverage for AML, child justice, prisons and narcotics schedules. Two new amendment-instrument records were added without duplicating base laws. Publicly readable source text is not represented as locally archived/hash-verified; permission for storage/indexing/commercial use remains unknown. Cross-check register expanded to 22 entries for AML Decree 457/2020 date conflict, Prisons Law 14/2022 publication metadata conflict, and Decision 242/2026 schedule OCR verification. Second acquisition pass identified Child Law amendments through 2025 (including Art.49 repeal), four Child Law Executive Regulation amendments through 2020, and weapons Law 5/2019, Law 163/2022, Decision 1300/2019. 13 distinct records added, bringing total to 181. Research estimate increased to 63%; still 0 local original files archived/hash verified and 0 lawyer-verified records. Cross-check register now includes the Child Law Art.49 repeal in Social Security Law 12/2025, the 2075/2010 executive-regulation amendment chain, and SCC judgment 1/47 (2026) on weapons provisions. Progress metadata reconciled to the 58% baseline recorded before the current acquisition work; 96 net-new inventory records are now counted cumulatively (81 prior tranche + 15 added in the two current passes). Third acquisition pass upgraded cybercrime Law 175/2018 and Decree 1699/2020, Personal Data Law 151/2020 and Decree 816/2025, Human Trafficking Law 64/2010 and Decree 3028/2010, and Illegal Migration Law 82/2016 and Decree 983/2018. No duplicate base-law records added. Key source conflicts logged. Cross-check register includes Cybercrime Executive Regulation 1699/2020 vs ESCC 635/2020 heading conflict and Human Trafficking Executive Regulation 3028/2010 vs one secondary 2038/2010 miscitation. Fourth acquisition pass acquired full official 546-article Law 174/2025 PDF and Law 160/2026 official Amiri Press text/Gazette metadata; extracted all Book Five Arts.508–521. Current commencement fixed at 1 Oct 2027; CPL150/1950 and Law140/2014 remain operative until then. Official/secondary Art.2 transition wording discrepancy recorded. Fifth acquisition pass acquired the full 178-page consolidated Arabic Law150/1950 text through Law1/2024, including Art.113 bis added by Law177/2020 and the felony appeal amendments. Full text is secondary-hosted but attributes source to Court of Cassation Legislation Portal; original portal endpoint returned 502. Footnotes reveal additional older amendment instruments requiring individual Gazette acquisition. Sixth acquisition pass added 10 distinct CPL historical amendment records and upgraded Law107/1962 to full Arabic text. Acquired multiple full amendment texts and expanded the historical chronology; original Gazette scans remain unarchived. Seventh acquisition pass upgraded Penal Code Law58/1937 to a full 540-article, 179-page Arabic consolidation updated through 4 Dec 2023 and added separate amendment records for Laws5/2018,164/2019 and6/2020. Later amendment records cross-linked to the full code and Gazette metadata.",
+    "crosscheck_register_count": 33,
+    "notes": "Qualitative research-coverage estimate, not article-count or lawyer-QA metric. This pass improved source and text coverage for AML, child justice, prisons and narcotics schedules. Two new amendment-instrument records were added without duplicating base laws. Publicly readable source text is not represented as locally archived/hash-verified; permission for storage/indexing/commercial use remains unknown. Cross-check register expanded to 22 entries for AML Decree 457/2020 date conflict, Prisons Law 14/2022 publication metadata conflict, and Decision 242/2026 schedule OCR verification. Second acquisition pass identified Child Law amendments through 2025 (including Art.49 repeal), four Child Law Executive Regulation amendments through 2020, and weapons Law 5/2019, Law 163/2022, Decision 1300/2019. 13 distinct records added, bringing total to 181. Research estimate increased to 63%; still 0 local original files archived/hash verified and 0 lawyer-verified records. Cross-check register now includes the Child Law Art.49 repeal in Social Security Law 12/2025, the 2075/2010 executive-regulation amendment chain, and SCC judgment 1/47 (2026) on weapons provisions. Progress metadata reconciled to the 58% baseline recorded before the current acquisition work; 96 net-new inventory records are now counted cumulatively (81 prior tranche + 15 added in the two current passes). Third acquisition pass upgraded cybercrime Law 175/2018 and Decree 1699/2020, Personal Data Law 151/2020 and Decree 816/2025, Human Trafficking Law 64/2010 and Decree 3028/2010, and Illegal Migration Law 82/2016 and Decree 983/2018. No duplicate base-law records added. Key source conflicts logged. Cross-check register includes Cybercrime Executive Regulation 1699/2020 vs ESCC 635/2020 heading conflict and Human Trafficking Executive Regulation 3028/2010 vs one secondary 2038/2010 miscitation. Fourth acquisition pass acquired full official 546-article Law 174/2025 PDF and Law 160/2026 official Amiri Press text/Gazette metadata; extracted all Book Five Arts.508–521. Current commencement fixed at 1 Oct 2027; CPL150/1950 and Law140/2014 remain operative until then. Official/secondary Art.2 transition wording discrepancy recorded. Fifth acquisition pass acquired the full 178-page consolidated Arabic Law150/1950 text through Law1/2024, including Art.113 bis added by Law177/2020 and the felony appeal amendments. Full text is secondary-hosted but attributes source to Court of Cassation Legislation Portal; original portal endpoint returned 502. Footnotes reveal additional older amendment instruments requiring individual Gazette acquisition. Sixth acquisition pass added 10 distinct CPL historical amendment records and upgraded Law107/1962 to full Arabic text. Acquired multiple full amendment texts and expanded the historical chronology; original Gazette scans remain unarchived. Seventh acquisition pass upgraded Penal Code Law58/1937 to a full 540-article, 179-page Arabic consolidation updated through 4 Dec 2023 and added separate amendment records for Laws5/2018,164/2019 and6/2020. Later amendment records cross-linked to the full code and Gazette metadata. Eighth acquisition pass added 13 distinct prison amendment and geographic-centre decision records; full text sources acquired for Laws49/2014,106/2015,6/2018 and seven recent centre-creation decisions. Foundational Decisions113/1962 and1654/1971 remain metadata-only; Decision1265/2022 full text still pending.",
     "last_acquisition_pass_increment_percent": 2,
     "last_acquisition_pass_date": "2026-11-19"
   }
