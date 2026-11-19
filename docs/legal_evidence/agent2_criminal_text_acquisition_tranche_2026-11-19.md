@@ -2155,3 +2155,78 @@ Decree 983/2018 Arts. 8–11 designate the Ministry of Justice International and
 - **Original Gazette/regulator PDFs locally archived and SHA-256 verified:** 0.
 - **Egyptian lawyer-verified records:** 0.
 - **Next acquisition focus:** resolve the original Gazette source for 1699/2020; obtain original PDPC/Gazette copy of Decree 816/2025; continue with remaining implementing decisions and post-2025 criminal amendments.
+
+
+---
+
+## U. Acquisition pass — complete official Law 174/2025 text and Law 160/2026 commencement amendment
+**Research date:** 19 November 2026.
+
+### U1. Law 174/2025 — complete official Arabic text acquired
+
+**Primary source:** Ministry of Justice-hosted Official Gazette PDF, Official Gazette No.45 bis (d), 12 November 2025, 2,386 extracted lines, ending at Art.546:  
+https://moj.gov.eg/backend/api/documents/download/20F3150C-29F1-487E-A0F0-FCCE10CB207B
+
+The full 546-article Arabic text is readable in the browser. It has not been downloaded into the project repository or SHA-256 archived.
+
+**Issuance provisions — current effect:**
+- Art. 2 preserves the pre-existing procedure for appeals against absentia judgments issued in felony matters before the new Code commences.
+- Art. 3 limits the new felony appeal rules to cases not decided by felony courts as of the effective date of Law 1/2024.
+- Art. 4 repeals CPL Law 150/1950 and Law 140/2014 on surrender of accused persons and transfer of sentenced persons, and repeals inconsistent provisions.
+- Art. 5 authorizes Minister of Justice implementation decisions and continues existing decisions insofar as they do not conflict with the new Code.
+- Art. 6 originally set commencement for 1 October following publication; Law 160/2026 replaced that with a fixed date of 1 October 2027.
+
+**Critical current-status correction:** Law 174/2025 is enacted but not yet in force. Law 160/2026 took effect on 1 October 2026 and fixes the new Code's commencement at **1 October 2027**. Accordingly, CPL Law 150/1950 and Law 140/2014 remain operative through 30 September 2027, absent a later amendment. Their repeal under Art. 4 of Law 174/2025 is not yet operative.
+
+**Official/secondary discrepancy:** official Ministry of Justice PDF Art. 2 says “مواد الجنايات”. The Manshurat reproduction says “مواد الجنح”. The official PDF is the primary text; preserve the discrepancy and inspect the Gazette page image before finalizing the character-level transcript.
+
+### U2. Law 160/2026 — full amending text and official publication metadata
+
+- Law 160/2026 was issued and published 30 September 2026 in Official Gazette No.39 bis (b); it became effective 1 October 2026.
+- Amiri Press official text: https://www.alamiria.com/Sec/TashTxt?id=Aalg37zxdcU%3D
+- Official Gazette issue metadata (PDF file restricted and requires a formal copy request): https://dspace.id.com.eg/items/1b1e2a48-59d9-4307-b215-1ac3a07b4ee3
+
+**Exact Arabic text — Law 160/2026, Article 1:**
+
+> تستبدل عبارة "الأول من أكتوبر لعام 2027" بعبارة "الأول من أكتوبر التالى لتاريخ نشره" الواردة بالمادة السادسة من القانون رقم 174 لسنة 2025 بإصدار قانون الإجراءات الجنائية.
+
+**Exact Arabic text — Law 160/2026, Article 2:**
+
+> ينشر هذا القانون فى الجريدة الرسمية ، ويعمل به اعتبارًا من اليوم التالى لتاريخ نشره.
+
+### U3. Book Five, Arts. 508–521 — full text now extracted from the official PDF
+
+The complete 14-article text of Book Five (international judicial cooperation, extradition, mutual legal assistance, controlled delivery and asset recovery) has been extracted from the official PDF and article-mapped in the dossier. Key exact Arabic provisions:
+
+**Article 508**
+
+> مع عدم الإخلال بأحكام الاتفاقيات متعددة الأطراف أو الثنائية النافذة التي تكون جمهورية مصر العربية طرفًا فيها، ومع مراعاة مبدأ المعاملة بالمثل، يعمل بأحكام هذا الكتاب في شأن التعاون القضائي الدولي في المسائل الجنائية، وتسري القواعد العامة في كل ما لم يرد بشأنه نص خاص في هذا الكتاب وبما لا يتعارض مع أحكامه.
+
+**Article 511**
+
+> ترسل طلبات التعاون القضائي الدولي في المسائل الجنائية الواردة من الجهات القضائية الأجنبية عبر الطريق الدبلوماسي إلى وزارة العدل متضمنة ملخص الواقعة، ونوع وموضوع الطلب المترجم إلى اللغة العربية.
+
+**Article 513** provides for advance arrest of a person sought for extradition, presentation to the Public Prosecution within 24 hours, detention in successive periods not exceeding 15 days each and 60 days in total pending receipt and determination of the extradition request, and travel-ban/arrival-watchlist measures.
+
+**Article 514** sets 13 mandatory non-surrender grounds, including Egyptian nationality, absence of double criminality, Egyptian jurisdiction, political or military offences, discriminatory/political motive, prior final judgment, limitation, amnesty, lack of fair-trial/human-rights guarantees, immunity, sovereignty/security/public-order conflict and political-refugee status.
+
+**Article 515** requires a reasoned surrender decision and permits challenge within seven days; the challenge is decided within seven days and the surrender decision is not executed until challenge determination or expiry of the challenge period.
+
+**Article 517** permits controlled delivery of specified objects under Egyptian authority supervision, subject to sovereignty, security, public-order and national-security safeguards. Its OCR wording requires page-image collation.
+
+**Articles 518–520** set conditions for foreign judicial assistance, grounds for refusal and the Public Prosecutor's decision process.
+
+**Article 521**
+
+> استثناءً من أحكام هذا الكتاب، يجوز لرئيس الجمهورية بناءً على عرض النائب العام وبعد موافقة مجلس الوزراء، الموافقة على تسليم المتهمين ونقل المحكوم عليهم إلى دولهم، وذلك لمحاكمتهم أو تنفيذ العقوبة المقضي بها عليهم بحسب الأحوال، متى اقتضت مصلحة الدولة العليا ذلك.
+
+**Transcription/verification notes:** Article 517's wording around controlled-delivery objects is OCR-uncertain and must be checked against the Gazette page image. Apparent article-number duplications in the later remote-hearing chapter also need page-image review. This is an acquisition transcript, not a lawyer-approved consolidated edition.
+
+### U4. Progress update after fourth acquisition pass — 19 November 2026
+
+- **Estimated assigned criminal-law domain completion: 67%** (qualitative research-coverage estimate; not article-count, local corpus-ingestion or lawyer-verification metric). Prior pass: 65%.
+- **Newly upgraded:** full official 546-article Law 174/2025 PDF; full Law 160/2026 Amiri Press text and Gazette issue metadata; complete Book Five Arts. 508–521 extracted into the dossier.
+- **Current procedural-law status:** Law 174/2025 commences 1 October 2027 after Law 160/2026. Law 150/1950 and Law 140/2014 remain operative until then, absent further amendment.
+- **Transition correction:** official Law 174 Art.2 says felony absentia judgments (“مواد الجنايات”); a secondary reproduction says misdemeanours (“مواد الجنح”). The official PDF wording is preferred; the discrepancy remains logged.
+- **Original Gazette PDFs locally archived and SHA-256 verified:** 0.
+- **Egyptian lawyer-verified records:** 0.
