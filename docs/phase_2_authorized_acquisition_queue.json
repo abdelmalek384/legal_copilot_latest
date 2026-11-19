@@ -561,7 +561,7 @@
         "criminal"
       ],
       "priority": "P1",
-      "action": "Acquire original Gazette scans for Laws 5/2019 and 163/2022; visually collate Art.1 bis, 25 bis, 26 bis, 26 bis (a)/(b), and Arts.4,8,10,12,26,30; obtain full original Ministerial Decision 1/1954 and all later implementing decisions; verify the 2015 schedule decision and all changes through 19 Nov 2026.",
+      "action": "Normalize all 53 articles and all five schedules; acquire original Gazette scans for Laws5/2019 and163/2022 and older amendment chain 546/1954,29/1968,26/1978,101/1980,165/1981,162/2003,65/2010,90/2012,129/2014; verify Decision1300/2019 and any subsequent Interior Ministry rules for Schedule5 sound/air/gas weapons.",
       "candidate_sources": [
         "https://manshurat.org/node/7414",
         "https://register.cc.gov.eg/publications/30/download",
@@ -570,9 +570,9 @@
       ],
       "source_type": "official Gazette/regulator text and secondary full-text candidates; exact source terms must be reviewed per item",
       "permission_state": "unknown_or_pending",
-      "acquisition_state": "full_consolidated_law_and_official_2022_amendment_pdf_plus_full_2019_amendment_and_2019_decision_text_accessible",
+      "acquisition_state": "full_53_article_Law394_consolidation_through_163_2022_and_full_2019_2022_amendment_texts_accessible",
       "legal_review_state": "not_started",
-      "blocker": "Law 163/2022 original Gazette PDF and full 2019 decision transcription accessible; Law 5/2019 Gazette scan not archived. 1954 Ministerial Decision page is image-only; number 1/1954 is only confirmed through Decision 1300/2019 preamble. Complete schedule instrument and post-2022 amendment status still require primary verification.",
+      "blocker": "Current consolidated text is secondary-hosted but attributed to Court of Cassation portal; original Gazette scans for older amendments and the 2022 amendment not locally archived/hashed. Need review subsequent Interior Ministry implementing decisions and Schedule5.",
       "required_evidence": [
         "Law 163/2022 original Gazette PDF and SHA-256",
         "full 53-article statute and all amendments",
@@ -699,7 +699,7 @@
         "international_cooperation"
       ],
       "priority": "P1",
-      "action": "Normalize all 53 articles and all five schedules; acquire original Gazette scans for Laws5/2019 and163/2022 and older amendment chain 546/1954,29/1968,26/1978,101/1980,165/1981,162/2003,65/2010,90/2012,129/2014; verify Decision1300/2019 and any subsequent Interior Ministry rules for Schedule5 sound/air/gas weapons.",
+      "action": "Acquire and normalize full Arabic texts for Law140/2014, Arab Extradition Convention83/1954, Riyadh Convention1983 and all bilateral treaties; extract reservations, dual-criminality, nationality, political-offence and surrender provisions; cross-reference future Law174/2025 Arts.508–521; preserve current Law140/2014 effect through 30 Sep 2027.",
       "candidate_sources": [
         "https://manshurat.org/node/3842",
         "https://www.qanouni.org/ar/convention/1581",
@@ -716,9 +716,9 @@
       ],
       "source_type": "official Gazette/regulator text and secondary full-text candidates; exact source terms must be reviewed per item",
       "permission_state": "unknown_or_pending",
-      "acquisition_state": "full_53_article_Law394_consolidation_through_163_2022_and_full_2019_2022_amendment_texts_accessible",
+      "acquisition_state": "current_Law140_2014_and_multilateral_bilateral_treaties_indexed_future_Law174_2025_BookFive_508_521_extracted",
       "legal_review_state": "not_started",
-      "blocker": "Current consolidated text is secondary-hosted but attributed to Court of Cassation portal; original Gazette scans for older amendments and the 2022 amendment not locally archived/hashed. Need review subsequent Interior Ministry implementing decisions and Schedule5.",
+      "blocker": "Law140/2014 remains operative until 1 Oct 2027; multiple bilateral/multilateral instruments are indexed, but original Gazette treaty-approval texts and article-level treaty crosswalks remain incomplete. Law174/2025 Book Five is future law and its commencement is postponed to 1 Oct 2027.",
       "required_evidence": [
         "Egyptian accession deposit and entry into force for Riyadh 1983; assess Art.72 replacement of Law 83/1954",
         "all 72 articles and 1997 amended Art.69 of Riyadh Convention",
@@ -738,13 +738,18 @@
         "EG-TERROR-LISTS-8-2015",
         "EG-TERROR-LISTS-AMEND-11-2017",
         "EG-TERROR-LISTS-AMEND-2-2020",
-        "EG-TERROR-LISTS-AMEND-14-2020"
+        "EG-TERROR-LISTS-AMEND-14-2020",
+        "EG-ANTITERROR-94-2015",
+        "EG-ANTITERROR-AMEND-11-2017",
+        "EG-ANTITERROR-AMEND-15-2020",
+        "EG-ANTITERROR-AMEND-149-2021",
+        "EG-TERROR-ASSET-MGMT-22-2018"
       ],
       "practice_areas": [
         "criminal"
       ],
       "priority": "P0",
-      "action": "Obtain complete Arabic Gazette texts for Anti-Terrorism Law 94/2015 and Law 8/2015 as amended; extract Arts 40–48 special investigative powers, listing procedure, review/appeal and all amendment deltas.",
+      "action": "Normalize full current texts of Laws94/2015,8/2015 and22/2018; acquire original Gazette scans for all amendment instruments; obtain formal FRA copy of updated Law8/2015; cross-reference terrorist-list effects and targeted financial sanctions with AML Law80/2002 and FIU Decision1/2024.",
       "candidate_sources": [
         "https://manshurat.org/node/14679",
         "https://fra.gov.eg/wp-content/uploads/2021/11/قانون-8-لسنة-2015-فى-شأن-تنظيم-قوائم-الكيانات-الإرهابية.pdf",
@@ -754,15 +759,16 @@
       ],
       "source_type": "official Gazette/regulator PDFs and secondary full-text sources; review source-specific terms before archival",
       "permission_state": "unknown_or_pending",
-      "acquisition_state": "full_text_accessible_not_archived_or_selected_excerpts_only",
+      "acquisition_state": "current_Law94_2015_and_Law8_2015_consolidations_and_full_Law22_2018_text_accessible_amendment_chain_identified",
       "legal_review_state": "not_started",
-      "blocker": "Full text is accessible, but original Gazette copies of amendment instruments and complete consolidated versions are not all archived; verify exact authorization and safeguards with Egyptian counsel.",
+      "blocker": "Original Gazette scans for Laws11/2017,15/2020,149/2021,2/2020 and14/2020 remain pending; Law8/2015 FRA updated PDF endpoint is Request Rejected. Law94 and Law22 official FRA PDFs are accessible but not archived.",
       "required_evidence": [
         "original Gazette copies and SHA-256",
         "complete consolidated Art. 1 definitions and Arts 40–48",
         "all amendments 11/2017, 2/2020, 14/2020, 15/2020",
         "counsel review of special powers and constitutional limits"
-      ]
+      ],
+      "last_researched_on": "2026-11-19"
     },
     {
       "queue_item_id": "ACQ-021",
