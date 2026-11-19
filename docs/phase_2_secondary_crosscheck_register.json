@@ -458,6 +458,41 @@
       "legal_status": "amendment_chain_identified_through_1143_2020_original_gazettes_pending",
       "finding": "The full Decree 2075/2010 text identifies amendments by Decrees 208/2014, 178/2016, 1783/2018 and 1143/2020. The 2016, 2018 and 2020 amendments have secondary full Arabic transcriptions; Decree 208/2014 is confirmed in the consolidated text as amending Arts.85 and 87 but its original full text and Gazette metadata remain unavailable in the acquired source set.",
       "next_action": "Obtain original Gazette issues for all four amendments, complete exact article replacement map, and verify whether any post-2020 regulation was issued to implement Law 186/2023 Art.72 bis."
+    },
+    {
+      "evidence_id": "XREF-CYBERCRIME-1699-VS-635-2020",
+      "document_id": "EG-CYBERCRIME-EXEC-1699-2020",
+      "practice_areas": [
+        "criminal",
+        "cybercrime",
+        "digital_evidence"
+      ],
+      "url": "https://escc.gov.eg/assets/docs/law-175-2018-regulations.pdf",
+      "publisher": "ESCC-hosted PDF versus FRA regulator text, Gazette catalogues and secondary full Arabic reproductions",
+      "source_class": "conflicting decree number in regulator-hosted copy",
+      "observed_title_ar": "اللائحة التنفيذية للقانون رقم 175 لسنة 2018 بشأن مكافحة جرائم تقنية المعلومات",
+      "source_state": "full_text_accessible_regulator_and_secondary_conflicting_header_in_ESCC_copy",
+      "collection_permission": "unknown",
+      "legal_status": "working_identity_1699_2020_original_gazette_visual_verification_pending",
+      "finding": "ESCC-hosted PDF path law-175-2018-regulations.pdf displays PM Decree 635/2020 at its heading. FRA-hosted full text and FRA catalogue, Eastlaws, Manshurat, LawHub and other complete transcriptions identify PM Decree 1699/2020, Gazette No.35 follow-up (c), 27 Aug 2020, effective 28 Aug 2020. Treat ESCC heading as likely source-copy defect; no evidence yet that a separate Decree 635/2020 issued the same regulation.",
+      "next_action": "Acquire original Official Gazette No.35 follow-up (c), 27 Aug 2020, and compare signed decree heading and regulation body with FRA and ESCC PDFs; retain 635/2020 discrepancy in audit trail."
+    },
+    {
+      "evidence_id": "XREF-TRAFFICKING-EXEC-3028-VS-2038-2010",
+      "document_id": "EG-HUMAN-TRAFFICKING-EXEC-3028-2010",
+      "practice_areas": [
+        "criminal",
+        "human_trafficking"
+      ],
+      "url": "https://alhasswalawfirm.com/law-library/decree-3028-2010",
+      "publisher": "Alhasswa full Arabic text and Gazette metadata; SIS report with conflicting secondary citation",
+      "source_class": "instrument-number discrepancy",
+      "observed_title_ar": "قرار رئيس مجلس الوزراء رقم 3028 لسنة 2010 بإصدار اللائحة التنفيذية للقانون رقم 64 لسنة 2010 بشأن مكافحة الاتجار بالبشر",
+      "source_state": "full_28_article_text_accessible_Gazette_number_confirmed_secondary_report_conflict",
+      "collection_permission": "unknown",
+      "legal_status": "working_identity_3028_2010_original_gazette_scan_pending",
+      "finding": "Gazette No.47 bis, 30 Nov 2010, and full 28-article Arabic transcriptions identify PM Decree 3028/2010. One SIS human-rights report misprints the number as 2038/2010. Other legal texts and Gazette-derived transcription confirm 3028/2010.",
+      "next_action": "Acquire and visually inspect Official Gazette No.47 bis, 30 Nov 2010; preserve the SIS citation as a secondary-source error and do not create a 2038/2010 record."
     }
   ],
   "guardrails": [
