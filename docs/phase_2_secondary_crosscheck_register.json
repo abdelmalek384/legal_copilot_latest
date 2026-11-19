@@ -578,6 +578,23 @@
       "legal_status": "working_current_consolidation_through_law185_2023_post_2023_Gazette_check_pending",
       "finding": "The 540-article consolidated text states it is updated through Law185/2023, 4 Dec 2023, and reproduces the current text of Arts.306 bis (a), 306 bis (b) and 309 bis (b). Older sources such as Manshurat and Cyrilla identify the most recent amendment as Law141/2021 or earlier and therefore do not include Law185/2023. Use the 4 Dec 2023 text as the working current consolidation; complete Gazette review for 2024–2026 before declaring no later amendments.",
       "next_action": "Acquire original Gazette No.48 bis (b), 4 Dec 2023, and all amendment Gazette scans; review every Official Gazette issue from 5 Dec 2023 through 19 Nov 2026 for any further Law58 amendment."
+    },
+    {
+      "evidence_id": "XREF-PRISONS-GEO-415-VS-514-2026",
+      "document_id": "EG-PRISONS-GEO-EXEC-514-2026",
+      "practice_areas": [
+        "criminal",
+        "prisons"
+      ],
+      "url": "https://www.alamiria.com/Sec/TashTxt?id=SlyJ4ubxPxU%3D",
+      "publisher": "Amiri Press official full texts for Decisions415/2026 and514/2026 versus news reports",
+      "source_class": "secondary instrument-number misattribution",
+      "observed_title_ar": "قرار وزير الداخلية رقم 514 لسنة 2026 بشأن إنشاء مركز الإصلاح الجغرافي بمركز شرطة بلاط",
+      "source_state": "official_Amiria_distinguishes_415_Aswan_from_514_Blat_secondary_news_mislabels",
+      "collection_permission": "unknown",
+      "legal_status": "two_distinct_operative_decisions_published_7_apr_and_16_apr_2026",
+      "finding": "Amiri Press official text confirms Decision415/2026 creates the Aswan New City geographic correction centre and Decision514/2026 creates the Blaṭ centre in New Valley. Several secondary reports mislabel the Blaṭ decision as 415/2026. The Gazette issue metadata also supports 415 in issue77 (7 Apr 2026) and 514 in issue84 (16 Apr 2026).",
+      "next_action": "Keep two distinct instrument records; correct secondary misattributions and retain both Amiri Press official text links and Gazette issue evidence."
     }
   ],
   "guardrails": [
