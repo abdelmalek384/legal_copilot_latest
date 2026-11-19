@@ -410,9 +410,15 @@
       "required_related_records": [
         "original Gazette text",
         "amending instruments",
-        "special criminal statutes"
+        "special criminal statutes",
+        "EG-PENAL-AMEND-189-2020",
+        "EG-PENAL-AMEND-10-2021",
+        "EG-PENAL-AMEND-71-2021",
+        "EG-PENAL-AMEND-141-2021",
+        "EG-PENAL-AMEND-150-2021",
+        "EG-PENAL-AMEND-185-2023"
       ],
-      "notes": "Offence-date and temporal-law handling requires specialist legal review. New tranche located a complete 540-article secondary Arabic reproduction and the Gazette PDF for Law 185/2023 (4 Dec 2023). The prior Manshurat 'last amendment 15 Aug 2021' metadata is stale for Art. 306 bis amendments. Complete post-2023 amendment search remains required.",
+      "notes": "Offence-date and temporal-law handling requires specialist legal review. New tranche located a complete 540-article secondary Arabic reproduction and the Gazette PDF for Law 185/2023 (4 Dec 2023). The prior Manshurat 'last amendment 15 Aug 2021' metadata is stale for Art. 306 bis amendments. Complete post-2023 amendment search remains required. Additional later amendments confirmed: Law 189/2020 (Art. 309 bis (b), bullying); Law 10/2021 (Arts 242 bis and 242 bis (a), FGM); Law 71/2021 (Art. 186 bis, unauthorized recording of criminal trial sessions); Law 141/2021 (Arts 306 bis (a), 306 bis (b), sexual harassment); Law 150/2021 (Art. 80(a), state secrets); Law 185/2023 (Arts 306 bis (a), 306 bis (b), 309 bis (b)). No post-185/2023 amendment identified through 19 Nov 2026; further Gazette sweep required.",
       "source_urls": [
         {
           "url": "https://www.alamiria.com/Sec/TashTxt?id=YbxnlD3e4Qc%3D",
@@ -5529,6 +5535,140 @@
           "status": "metadata_only"
         }
       ]
+    },
+    {
+      "document_id": "EG-PENAL-AMEND-10-2021",
+      "official_title_ar": "قانون رقم 10 لسنة 2021 بتعديل بعض أحكام قانون العقوبات بشأن ختان الإناث",
+      "practice_areas": [
+        "criminal"
+      ],
+      "document_type": "penal_code_amending_law",
+      "instrument_number": 10,
+      "instrument_year": 2021,
+      "source_id": "EG-EASTLAWS",
+      "source_status": "full_text_accessible_not_archived",
+      "collection_permission": "unknown",
+      "legal_status": "current_amendment_in_penal_code_consolidation",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-PENAL-CODE-58-1937"
+      ],
+      "notes": "Replaces Penal Code Arts 242 bis and 242 bis (a); increases penalties for FGM and aggravating circumstances involving medical/nursing professionals.",
+      "source_urls": [
+        {
+          "url": "https://www.elmodawanaeg.com/wp-content/uploads/2021/08/10.pdf",
+          "source_role": "Gazette 16 bis (w), 28 Apr 2021, full PDF text",
+          "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/law/28-04-2021/no-10?id=2016749&sub=10227115&type=1",
+          "source_role": "Full amendment text",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-PENAL-AMEND-71-2021",
+      "official_title_ar": "قانون رقم 71 لسنة 2021 بإضافة المادة 186 مكرراً إلى قانون العقوبات بشأن تسجيل وتصوير جلسات المحاكمة الجنائية",
+      "practice_areas": [
+        "criminal"
+      ],
+      "document_type": "penal_code_amending_law",
+      "instrument_number": 71,
+      "instrument_year": 2021,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": "full_text_accessible_not_archived",
+      "collection_permission": "unknown",
+      "legal_status": "current_amendment_in_penal_code_consolidation",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-PENAL-CODE-58-1937"
+      ],
+      "notes": "Adds Penal Code Art. 186 bis: prohibits recording, filming, broadcasting, publishing or displaying proceedings of a criminal trial without authorization of the presiding judge after consulting the Public Prosecution.",
+      "source_urls": [
+        {
+          "url": "https://lawyeregypt.net/قانون-تسجيل-أو-تصوير-جلسة-محاكمة-71-لسنة-2021/",
+          "source_role": "Full Arabic text",
+          "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://kanonmisr.com/ar/wp-content/uploads/2021/06/القانون-71-لسنة-2021-بتعديل-بعض-أحكام-قانون-العقوبات-1.pdf",
+          "source_role": "Gazette 23 bis, 13 Jun 2021, PDF text",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-PENAL-AMEND-141-2021",
+      "official_title_ar": "قانون رقم 141 لسنة 2021 بتعديل بعض أحكام قانون العقوبات بشأن التحرش الجنسي",
+      "practice_areas": [
+        "criminal"
+      ],
+      "document_type": "penal_code_amending_law",
+      "instrument_number": 141,
+      "instrument_year": 2021,
+      "source_id": "EG-IDSC-DSPACE-GAZETTE",
+      "source_status": "full_text_accessible_not_archived",
+      "collection_permission": "unknown",
+      "legal_status": "current_amendment_in_penal_code_consolidation",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-PENAL-CODE-58-1937"
+      ],
+      "notes": "Replaces Penal Code Arts 306 bis (a) and 306 bis (b), expressly covering electronic communications and technical means in sexual harassment.",
+      "source_urls": [
+        {
+          "url": "https://dspace.id.com.eg/items/cdd29154-1f0e-4f12-86f6-0184791301c7",
+          "source_role": "Official Gazette 32 bis (a), 15 Aug 2021, Arabic PDF",
+          "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://lawyeregypt.net/قانون-رقم-141-لسنة-2021-بتعديل-قانون-العقوبات/",
+          "source_role": "Full Arabic text",
+          "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://serviceapi.egyptianlaws.com/Images/Index?T=1&folder=3&path=2021-8-15-2021-141.pdf",
+          "source_role": "Gazette text copy",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-PENAL-AMEND-150-2021",
+      "official_title_ar": "قانون رقم 150 لسنة 2021 بتعديل المادة 80 (أ) من قانون العقوبات بشأن أسرار الدولة والدفاع",
+      "practice_areas": [
+        "criminal"
+      ],
+      "document_type": "penal_code_amending_law",
+      "instrument_number": 150,
+      "instrument_year": 2021,
+      "source_id": "EG-IDSC-DSPACE-GAZETTE",
+      "source_status": "full_text_accessible_not_archived",
+      "collection_permission": "unknown",
+      "legal_status": "current_amendment_in_penal_code_consolidation",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-PENAL-CODE-58-1937"
+      ],
+      "notes": "Replaces Penal Code Art. 80(a), concerning disclosure/transmission of state secrets and national-defence information; full replacement text must be transcribed and cross-linked with Cybercrime Law 175/2018.",
+      "source_urls": [
+        {
+          "url": "https://dspace.id.com.eg/items/a6361f52-7211-435a-af37-a1da5f1b7408",
+          "source_role": "Official Gazette 46 bis, 20 Nov 2021, Arabic PDF",
+          "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/law/20-11-2021/no-150?id=2038708&sub=10327246&type=1",
+          "source_role": "Full amendment text metadata",
+          "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://manshurat.org/node/74640",
+          "source_role": "Gazette PDF record",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
     }
   ],
   "next_actions": [
@@ -6187,6 +6327,24 @@
         "observed_title": "Criminal Procedure Law 150/1950 amendment chronology",
         "finding": "Law 177/2020 is the actual CPL amendment adding Art. 113 bis; Law 189/2020 is a Penal Code bullying amendment and is misattributed by the Manshurat CPL metadata. Law 1/2024 is the latest identified CPL amendment and creates felony appeals. Multiple older amending laws and original texts are now separately indexed.",
         "status": "full_text_accessible_selected_instruments_and_metadata_only_older_items"
+      },
+      {
+        "evidence_id": "SRC-PENAL-2020-2023-AMENDMENTS",
+        "document_ids": [
+          "EG-PENAL-CODE-58-1937",
+          "EG-PENAL-AMEND-189-2020",
+          "EG-PENAL-AMEND-10-2021",
+          "EG-PENAL-AMEND-71-2021",
+          "EG-PENAL-AMEND-141-2021",
+          "EG-PENAL-AMEND-150-2021",
+          "EG-PENAL-AMEND-185-2023"
+        ],
+        "source_type": "official Gazette PDFs, DSpace items and full Arabic text reproductions",
+        "url": "https://dspace.id.com.eg/items/cdd29154-1f0e-4f12-86f6-0184791301c7",
+        "publisher": "Official Gazette / DSpace / Manshurat / Eastlaws / secondary legal text sources",
+        "observed_title": "Penal Code Law 58/1937 — 2020–2023 amendment chain",
+        "finding": "Confirmed 189/2020 (bullying Art.309 bis b), 10/2021 (FGM Arts242 bis), 71/2021 (trial-session recording Art186 bis), 141/2021 (sexual harassment Arts306 bis a/b), 150/2021 (state secrets Art80 a) and 185/2023 (sexual harassment and related amendments). No post-185/2023 instrument found in this search.",
+        "status": "full_text_accessible_selected_articles_persisted"
       }
     ],
     "temporal_review_alerts": [
@@ -6212,16 +6370,16 @@
     "agent": "Research Agent 2",
     "domain": "Egyptian criminal law and procedure",
     "as_of": "2026-11-19",
-    "estimated_domain_completion_percent": 57,
+    "estimated_domain_completion_percent": 58,
     "previous_session_estimate_percent": 36,
     "whole_project_contribution_percent": null,
     "whole_project_contribution_reason": "Cannot calculate without master-index denominator and domain weights.",
     "lawyer_verified_percent": 0,
     "official_full_text_files_archived_and_hash_verified_in_this_session": 0,
     "complete_arabic_texts_accessible_at_source_estimate": ">20 laws/codes and implementing/treaty instruments",
-    "new_inventory_records_added_this_session": 77,
-    "inventory_total_documents": 162,
-    "acquisition_queue_items": 24,
+    "new_inventory_records_added_this_session": 81,
+    "inventory_total_documents": 166,
+    "acquisition_queue_items": 25,
     "crosscheck_register_count": 18,
     "notes": "Approximate research progress, not an article-count or quality-assurance metric. Browser-readable PDFs and secondary full texts are not represented as locally archived/hash-verified files."
   }
