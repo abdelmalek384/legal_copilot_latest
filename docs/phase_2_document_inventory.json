@@ -3394,7 +3394,7 @@
         "Law 163/2022",
         "Interior Minister Decree 770/1954"
       ],
-      "notes": "Full 53-article Arabic text accessible secondarily. Add Law 163/2022 to amendment chronology; prior 475/1953 is not an amendment to the 1954 law.",
+      "notes": "Current 53-article Arabic consolidation accessible at LawHub and Mizan; Mizan identifies current text as through Nov 2022. Law 5/2019 adds Art.1 bis and replaces Arts.25 bis and 28(1). Law 163/2022 Official Gazette No.44 follow-up (a), 3 Nov 2022, adds Arts.26 bis, 26 bis (a), 26 bis (b) and related provisions. Do not rely on the Wikisource consolidation labelled only through PM Decree 1610/2015 as the current version.",
       "source_urls": [
         {
           "url": "https://lawhub.info/eg/?p=11748",
@@ -3410,6 +3410,11 @@
           "url": "https://manshurat.org/node/7414",
           "source_role": "Document metadata / PDF listing",
           "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://mizanai.vercel.app/laws",
+          "source_role": "Current 53-article Arabic Law 394/1954 text identified as amended through November 2022",
+          "status": "full_text_accessible_not_archived"
         }
       ]
     },
@@ -3430,7 +3435,7 @@
       "required_related_records": [
         "Law 394/1954"
       ],
-      "notes": "Gazette 44 follow-up (a), 3 Nov 2022. Amends Arts 4, 8, 10, 12, 26 and 30; adds Arts 26 bis, 26 bis (a), 26 bis (b).",
+      "notes": "Official Gazette No.44 follow-up (a), 3 Nov 2022 PDF inspected. Effective 4 Nov 2022. Replaces specified parts of Arts.4,8,10,12,26,30; adds Art.4(6), Art.26 bis, 26 bis (a), 26 bis (b). Art.26 bis (b) criminalizes online sites/accounts and public dissemination of weapon imagery/videos for incitement by showing force, threats or intimidation; Art.30(1) allows blocking the site used. Selected exact Arabic text captured in dossier.",
       "source_urls": [
         {
           "url": "https://ahmedazimelgamel.blogspot.com/2022/11/163-2022-394-1954.html",
@@ -3446,6 +3451,11 @@
           "url": "https://mediadr.sis.gov.eg/xmlui/handle/123456789/12845",
           "source_role": "Official SIS Gazette issue metadata",
           "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://gate.ahram.org.eg/media/News/2022/11/6/2022-638033396014725011-472.pdf",
+          "source_role": "Official Gazette No.44 follow-up (a), 3 Nov 2022 PDF",
+          "status": "full_text_accessible_not_archived"
         }
       ]
     },
@@ -3467,7 +3477,7 @@
         "Law 126/2008",
         "PM Decree 2075/2010"
       ],
-      "notes": "Full Arabic text accessible at MKSEgypt (694 extracted lines) and Manshurat. Law 126/2008 amendment relation already indexed. Current consolidation still needs Gazette-by-Gazette article collation and post-2020 amendment search.",
+      "notes": "Current Arabic text must be read through Law 12/2025, not stopped at Law 186/2023. Identified amendments: 126/2008, 6/2015, 7/2015, 161/2021, 182/2023 (repeals Art.97(5),(6) and Chapter IX), 186/2023 (replaces Arts.23,24,113,114 and adds 72 bis), and Law 12/2025 Social Security (repeals Art.49). Full secondary current text and official/secondary amendment texts are listed in the 19 Nov 2026 dossier.",
       "source_urls": [
         {
           "url": "https://lawyeregypt.net/قانون-الطفل-المصرى-رقم-12-لسنة-1996",
@@ -3482,6 +3492,16 @@
         {
           "url": "https://www.mksegypt.org/public/index.php/ar/laws/23925",
           "source_role": "Full Arabic law text reproduction, 694 extracted lines",
+          "status": "full_text_accessible_not_archived"
+        },
+        {
+          "url": "https://lawyeregypt.net/قانون-الطفل-المصرى-رقم-12-لسنة-1996/",
+          "source_role": "Full current Arabic Child Law reproduction, states amended through 10 Dec 2023; must supplement with Art.49 repeal in Law 12/2025",
+          "status": "full_text_accessible_not_archived"
+        },
+        {
+          "url": "https://www.yahyadhshan.com/2026/07/12-1996.html",
+          "source_role": "Current Child Law reproduction states latest amendment 3 Apr 2025; secondary",
           "status": "full_text_accessible_not_archived"
         }
       ]
@@ -3533,7 +3553,7 @@
         "Law 126/2008",
         "PM Decree 3452/1997 historical"
       ],
-      "notes": "Full 194-article Arabic text accessible at LawHub (1,636 extracted lines). Gazette No.29 follow-up (a), 22 Jul 2010; effective 23 Jul 2010; expressly repeals PM Decree 3452/1997. Laweg Gazette-hosted page confirms issuance/repeal/commencement; full text source is secondary. Extracted Arts.1,3,4 into dossier.",
+      "notes": "Full 194-article Arabic text accessible at LawHub, consolidated through PM Decree 1143/2020. Amendment chain now includes PM Decrees 208/2014, 178/2016, 1783/2018 and 1143/2020. The 2016, 2018 and 2020 instruments have full secondary transcriptions; 208/2014 is confirmed in the consolidated text but exact Gazette metadata/original text remains to inspect. Check for post-2020 implementing rules for Law 186/2023 Art.72 bis.",
       "source_urls": [
         {
           "url": "https://alhasswalawfirm.com/law-library/decree-2075-2010",
@@ -3548,6 +3568,31 @@
         {
           "url": "https://www.laweg.net/framePlain.aspx?NID=64854&action=viewactivepages&itemid=50826&type=6",
           "source_role": "Gazette No.29 follow-up (a) issue metadata and repeal/commencement text",
+          "status": "full_text_accessible_not_archived"
+        },
+        {
+          "url": "https://ahmedazimelgamel.blogspot.com/2025/12/178-2016-2075-2010.html",
+          "source_role": "Full secondary Arabic transcription of PM Decree 178/2016",
+          "status": "full_text_accessible_not_archived"
+        },
+        {
+          "url": "https://ahmedazimelgamel.blogspot.com/2018/09/1783-2018-2075-2010.html",
+          "source_role": "Full secondary Arabic transcription of PM Decree 1783/2018",
+          "status": "full_text_accessible_not_archived"
+        },
+        {
+          "url": "https://ahmedazimelgamel.blogspot.com/2025/12/1143-2020-2075-2010.html",
+          "source_role": "Full secondary Arabic transcription of PM Decree 1143/2020",
+          "status": "full_text_accessible_not_archived"
+        },
+        {
+          "url": "https://egyptianlaws.com/?p=146344",
+          "source_role": "PM Decree 1783/2018 metadata/full text lead",
+          "status": "full_text_accessible_not_archived"
+        },
+        {
+          "url": "https://egyptianlaws.com/?p=145145",
+          "source_role": "PM Decree 178/2016 metadata/full text lead",
           "status": "full_text_accessible_not_archived"
         }
       ]
@@ -5791,6 +5836,373 @@
           "status": "metadata_only"
         }
       ]
+    },
+    {
+      "document_id": "EG-CHILD-AMEND-6-2015",
+      "official_title_ar": "قانون رقم 6 لسنة 2015 بتعديل بعض أحكام قانون الطفل الصادر بالقانون رقم 12 لسنة 1996",
+      "practice_areas": [
+        "criminal",
+        "child_law"
+      ],
+      "document_type": "statutory_amendment",
+      "instrument_number": 6,
+      "instrument_year": 2015,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": "full_text_accessible_secondary",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-CHILD-12-1996",
+        "EG-CHILD-EXEC-2075-2010"
+      ],
+      "notes": "Official Gazette No.3 bis (z), 21 Jan 2015; effective 22 Jan 2015. Replaces 'سنتين' in Art.46(1) with 'ثلاثة أشهر'.",
+      "source_urls": [
+        {
+          "url": "https://ahmedazimelgamel.blogspot.com/2015/06/6-2015-12-1996.html",
+          "source_role": "Arabic full-text or consolidated-text source",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CHILD-AMEND-7-2015",
+      "official_title_ar": "قرار بقانون رقم 7 لسنة 2015 بتعديل بعض أحكام قانون الطفل",
+      "practice_areas": [
+        "criminal",
+        "child_law"
+      ],
+      "document_type": "statutory_amendment",
+      "instrument_number": 7,
+      "instrument_year": 2015,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": "full_text_accessible_secondary",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-CHILD-12-1996",
+        "EG-CHILD-EXEC-2075-2010"
+      ],
+      "notes": "Official Gazette No.6 follow-up (a), 5 Feb 2015; effective 6 Feb 2015. Changes the 21-year references in Arts.110 and 141 to 18 years.",
+      "source_urls": [
+        {
+          "url": "https://ahmedazimelgamel.blogspot.com/2015/06/7-2015-12-1996.html",
+          "source_role": "Arabic full-text or consolidated-text source",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CHILD-AMEND-161-2021",
+      "official_title_ar": "قانون رقم 161 لسنة 2021 بتعديل بعض أحكام قانون المرور وقانون الطفل",
+      "practice_areas": [
+        "criminal",
+        "child_law"
+      ],
+      "document_type": "statutory_amendment",
+      "instrument_number": 161,
+      "instrument_year": 2021,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": "full_text_accessible_secondary",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-CHILD-12-1996",
+        "EG-CHILD-EXEC-2075-2010"
+      ],
+      "notes": "Official Gazette No.51 bis (b), 27 Dec 2021; effective 28 Dec 2021. Replaces Child Law Art.50(1) on child motor-vehicle driving licences.",
+      "source_urls": [
+        {
+          "url": "https://ahmedazimelgamel.blogspot.com/2025/12/161-2021-66-1973-12-1996.html",
+          "source_role": "Arabic full-text or consolidated-text source",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CHILD-AMEND-182-2023",
+      "official_title_ar": "قانون رقم 182 لسنة 2023 بإصدار قانون إعادة تنظيم المجلس القومي للطفولة والأمومة وبتعديل بعض أحكام قانون الطفل",
+      "practice_areas": [
+        "criminal",
+        "child_law"
+      ],
+      "document_type": "statutory_amendment_and_institutional_reorganization",
+      "instrument_number": 182,
+      "instrument_year": 2023,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": "full_gazette_derived_pdf_accessible_not_archived",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-CHILD-12-1996",
+        "EG-CHILD-EXEC-2075-2010"
+      ],
+      "notes": "Official Gazette No.46 follow-up, 16 Nov 2023; effective 17 Nov 2023. Art.4 repeals Child Law Art.97 paragraphs 5 and 6 and entire Chapter IX; 16-page Gazette-derived PDF acquired.",
+      "source_urls": [
+        {
+          "url": "https://alhasswalawfirm.com/uploads/files/law-182-2023-1789187066518-373514976.pdf",
+          "source_role": "Arabic full-text or consolidated-text source",
+          "status": "full_gazette_derived_pdf_accessible_not_archived"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CHILD-AMEND-186-2023",
+      "official_title_ar": "قانون رقم 186 لسنة 2023 بتعديل بعض أحكام قانون الطفل الصادر بالقانون رقم 12 لسنة 1996",
+      "practice_areas": [
+        "criminal",
+        "child_law"
+      ],
+      "document_type": "statutory_amendment",
+      "instrument_number": 186,
+      "instrument_year": 2023,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": "official_text_and_institutional_pdf_accessible_not_archived",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-CHILD-12-1996",
+        "EG-CHILD-EXEC-2075-2010"
+      ],
+      "notes": "Official Gazette No.49 bis, 10 Dec 2023; effective 11 Dec 2023. Replaces Arts.23,24,113,114 and adds Art.72 bis.",
+      "source_urls": [
+        {
+          "url": "https://alamiria.com/Sec/TashTxt?id=MVvKfrT%2F9dg%3D",
+          "source_role": "Arabic full-text or consolidated-text source",
+          "status": "official_text_and_institutional_pdf_accessible_not_archived"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CHILD-EXEC-AMEND-178-2016",
+      "official_title_ar": "قرار رئيس مجلس الوزراء رقم 178 لسنة 2016 بتعديل بعض أحكام اللائحة التنفيذية لقانون الطفل",
+      "practice_areas": [
+        "criminal",
+        "child_law"
+      ],
+      "document_type": "amending_executive_regulation",
+      "instrument_number": 178,
+      "instrument_year": 2016,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": "full_text_accessible_secondary",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-CHILD-12-1996",
+        "EG-CHILD-EXEC-2075-2010"
+      ],
+      "notes": "Egyptian Proceedings No.19 follow-up (a), 24 Jan 2016. Alters Arts.85,87,89,90,99,102; adds 91 bis and 94 bis; repeals listed provisions.",
+      "source_urls": [
+        {
+          "url": "https://ahmedazimelgamel.blogspot.com/2025/12/178-2016-2075-2010.html",
+          "source_role": "Arabic full-text or consolidated-text source",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CHILD-EXEC-AMEND-1783-2018",
+      "official_title_ar": "قرار رئيس مجلس الوزراء رقم 1783 لسنة 2018 بتعديل بعض أحكام اللائحة التنفيذية لقانون الطفل",
+      "practice_areas": [
+        "criminal",
+        "child_law"
+      ],
+      "document_type": "amending_executive_regulation",
+      "instrument_number": 1783,
+      "instrument_year": 2018,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": "full_text_accessible_secondary",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-CHILD-12-1996",
+        "EG-CHILD-EXEC-2075-2010"
+      ],
+      "notes": "Official Gazette No.37 bis (a), 18 Sep 2018. Amends foster-care rules including Arts.89,90,93,99,101; adds Arts.89 bis,90 bis,96 bis,98 bis.",
+      "source_urls": [
+        {
+          "url": "https://ahmedazimelgamel.blogspot.com/2018/09/1783-2018-2075-2010.html",
+          "source_role": "Arabic full-text or consolidated-text source",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CHILD-EXEC-AMEND-1143-2020",
+      "official_title_ar": "قرار رئيس مجلس الوزراء رقم 1143 لسنة 2020 بتعديل بعض أحكام اللائحة التنفيذية لقانون الطفل",
+      "practice_areas": [
+        "criminal",
+        "child_law"
+      ],
+      "document_type": "amending_executive_regulation",
+      "instrument_number": 1143,
+      "instrument_year": 2020,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": "full_text_accessible_secondary",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-CHILD-12-1996",
+        "EG-CHILD-EXEC-2075-2010"
+      ],
+      "notes": "Official Gazette No.23 bis, 9 Jun 2020; effective 10 Jun 2020. Amends terminology and Arts.85,89,89 bis,90,92,99; adds Arts.90 bis (a),99 bis,112 bis.",
+      "source_urls": [
+        {
+          "url": "https://ahmedazimelgamel.blogspot.com/2025/12/1143-2020-2075-2010.html",
+          "source_role": "Arabic full-text or consolidated-text source",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CHILD-EXEC-AMEND-208-2014",
+      "official_title_ar": "قرار رئيس مجلس الوزراء رقم 208 لسنة 2014 بتعديل بعض أحكام اللائحة التنفيذية لقانون الطفل",
+      "practice_areas": [
+        "criminal",
+        "child_law"
+      ],
+      "document_type": "amending_executive_regulation",
+      "instrument_number": 208,
+      "instrument_year": 2014,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": "consolidated_text_partial_original_gazette_pending",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-CHILD-12-1996",
+        "EG-CHILD-EXEC-2075-2010"
+      ],
+      "notes": "Current consolidated Decree 2075/2010 identifies Decree 208/2014 as amending Arts.85 and 87. Exact Gazette issue/date and full original instrument text not yet acquired.",
+      "source_urls": [
+        {
+          "url": "https://lawhub.info/eg/?p=12124",
+          "source_role": "Arabic full-text or consolidated-text source",
+          "status": "consolidated_text_partial_original_gazette_pending"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-SOCIAL-SECURITY-12-2025",
+      "official_title_ar": "قانون رقم 12 لسنة 2025 بإصدار قانون الضمان الاجتماعي",
+      "practice_areas": [
+        "social_protection",
+        "child_law_cross_reference"
+      ],
+      "document_type": "law_with_child_law_repeal",
+      "instrument_number": 12,
+      "instrument_year": 2025,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": "full_text_accessible_secondary",
+      "collection_permission": "unknown",
+      "legal_status": "published_3_apr_2025_commencement_calculated_4_jul_2025_pending_original_visual_check",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-CHILD-12-1996"
+      ],
+      "notes": "Official Gazette No.14 follow-up, 3 Apr 2025. Art.4 expressly repeals Child Law Art.49. Art.6 makes the law effective on the day following three months from publication; calculated date 4 Jul 2025. Full 49-article Arabic text accessible at Alhasswa; original Gazette scan should be inspected.",
+      "source_urls": [
+        {
+          "url": "https://alhasswalawfirm.com/law-library/law-12-2025",
+          "source_role": "Full Arabic text and Gazette metadata",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-WEAPONS-AMEND-5-2019",
+      "official_title_ar": "قانون رقم 5 لسنة 2019 بتعديل بعض أحكام القانون رقم 394 لسنة 1954 في شأن الأسلحة والذخائر",
+      "practice_areas": [
+        "criminal",
+        "weapons"
+      ],
+      "document_type": "statutory_amendment",
+      "instrument_number": 5,
+      "instrument_year": 2019,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": "full_text_accessible_secondary",
+      "collection_permission": "unknown",
+      "legal_status": "published_7_feb_2019_effective_8_feb_2019_pending_original_gazette_scan",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-WEAPONS-394-1954"
+      ],
+      "notes": "Official Gazette No.6 follow-up, 7 Feb 2019; effective 8 Feb 2019. Adds Art.1 bis for licensing sound/air/gas-pressure pistols and rifles and replaces Art.25 bis and Art.28(1). Original Gazette scan not yet archived.",
+      "source_urls": [
+        {
+          "url": "https://www.eglf.org/كتاب-دوري-2-لسنة-2019-بشأن-قانون-الاسلحة/",
+          "source_role": "Full Arabic text reproduction",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-WEAPONS-EXEC-1300-2019",
+      "official_title_ar": "قرار وزير الداخلية رقم 1300 لسنة 2019 بإجراءات ترخيص مسدسات وبنادق الصوت وضغط الهواء وضغط الغاز وذخائرها",
+      "practice_areas": [
+        "criminal",
+        "weapons"
+      ],
+      "document_type": "implementing_ministerial_decision",
+      "instrument_number": 1300,
+      "instrument_year": 2019,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": "full_text_accessible_secondary",
+      "collection_permission": "unknown",
+      "legal_status": "published_14_jul_2019_effective_next_day_pending_gazette_visual_check",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-WEAPONS-394-1954",
+        "EG-WEAPONS-AMEND-5-2019"
+      ],
+      "notes": "Egyptian Proceedings No.158 follow-up (b), 14 Jul 2019. Full Arabic transcription acquired. Preamble cites Interior Minister Decision 1/1954 on weapons and ammunition. SCC case 1/47 (constitutional), published 10 Sep 2026, rejected jurisdiction/inadmissibility challenges without ruling the challenged rules unconstitutional.",
+      "source_urls": [
+        {
+          "url": "https://www.mohamah.net/law/نصوص-ومواد-القرار-رقم-1300-لسنة-2019-باجراءات/",
+          "source_role": "Full Arabic decision transcription",
+          "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/constitutional-court/10-09-2026/no-1?id=5669806&type=1",
+          "source_role": "SCC judgment 1/47 published 10 Sep 2026",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-WEAPONS-EXEC-1-1954",
+      "official_title_ar": "قرار وزير الداخلية رقم 1 لسنة 1954 بشأن الأسلحة وذخائرها",
+      "practice_areas": [
+        "criminal",
+        "weapons"
+      ],
+      "document_type": "implementing_ministerial_decision",
+      "instrument_number": 1,
+      "instrument_year": 1954,
+      "source_id": "EG-LAWEG",
+      "source_status": "metadata_only_image_only_number_secondary_cross_reference",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-WEAPONS-394-1954",
+        "EG-WEAPONS-EXEC-1300-2019"
+      ],
+      "notes": "Laweg hosts an image-only page titled 'قرار بشأن الأسلحة وذخائرها'. Number 1/1954 is cited in the preamble of Interior Minister Decision 1300/2019; the number has not been visually confirmed from the original 1954 instrument. Do not substitute an unverified 770/1954 number.",
+      "source_urls": [
+        {
+          "url": "https://www.laweg.net/Default.aspx?ItemID=75&Type=14&action=ViewActivePages&قرار-بشأن-الأسلحة-وذخائرها=",
+          "source_role": "Laweg image-only source record",
+          "status": "metadata_image_only"
+        }
+      ]
     }
   ],
   "next_actions": [
@@ -6491,6 +6903,34 @@
         "observed_title": "AML, Child Law, Prison Regulations and Narcotics Schedule acquisition tranche",
         "finding": "Full updated AML law and executive regulation, Decree 3331/2023 Gazette PDF, Child Law and full 2075/2010 regulation, prison statute and consolidated 79/1961 regulation, and official EDA scans for Law 182/1960 plus Decisions 44/2026 and 242/2026 inspected. Two missing amendment instruments added as distinct inventory records: AML Decree 457/2020 and prison regulation Decree 1265/2022. Exact source links and selected Arabic text persisted in the Agent 2 dossier. No local original files archived or hash-verified.",
         "status": "full_text_accessible_selected_text_persisted_official_pdfs_not_archived"
+      },
+      {
+        "evidence_id": "SRC-CRIM-CHILD-WEAPONS-2026-11-19",
+        "document_ids": [
+          "EG-CHILD-12-1996",
+          "EG-CHILD-AMEND-6-2015",
+          "EG-CHILD-AMEND-7-2015",
+          "EG-CHILD-AMEND-161-2021",
+          "EG-CHILD-AMEND-182-2023",
+          "EG-CHILD-AMEND-186-2023",
+          "EG-SOCIAL-SECURITY-12-2025",
+          "EG-CHILD-EXEC-2075-2010",
+          "EG-CHILD-EXEC-AMEND-178-2016",
+          "EG-CHILD-EXEC-AMEND-1783-2018",
+          "EG-CHILD-EXEC-AMEND-1143-2020",
+          "EG-CHILD-EXEC-AMEND-208-2014",
+          "EG-WEAPONS-394-1954",
+          "EG-WEAPONS-AMEND-5-2019",
+          "EG-WEAPONS-AMEND-163-2022",
+          "EG-WEAPONS-EXEC-1300-2019",
+          "EG-WEAPONS-EXEC-1-1954"
+        ],
+        "source_type": "official Gazette-derived PDF, official Amiri Press text, institutional PDF repository, and secondary full Arabic transcriptions",
+        "url": "https://alamiria.com/Sec/TashTxt?id=MVvKfrT%2F9dg%3D",
+        "publisher": "Al-Amiria Press / MELES / official Gazette scan hosted by Al-Ahram Gate / secondary legal text repositories",
+        "observed_title": "Child Law 12/1996 amendments through 2025; Child Executive Regulations through 2020; Weapons Law 394/1954 and 2019/2022 instruments",
+        "finding": "Identified Child Law amendments 182/2023, 186/2023 and Law 12/2025 (Social Security) repealing Art.49; recovered earlier 2015 and 2021 amendments; identified executive regulation amendment chain 208/2014, 178/2016, 1783/2018 and 1143/2020. Acquired 16-page Gazette-derived PDF for Law 182/2023, Amiri Press text and institutional Arabic PDF for Law 186/2023, and official Gazette PDF for Law 163/2022. Full Arabic reproductions acquired for Law 5/2019 and Interior Minister Decision 1300/2019. Exact excerpts and outstanding source gaps recorded in dossier.",
+        "status": "multiple_full_texts_accessible_selected_text_persisted_original_files_not_archived"
       }
     ],
     "temporal_review_alerts": [
@@ -6516,7 +6956,7 @@
     "agent": "Research Agent 2",
     "domain": "Egyptian criminal law and procedure",
     "as_of": "2026-11-19",
-    "estimated_domain_completion_percent": 61,
+    "estimated_domain_completion_percent": 63,
     "previous_session_estimate_percent": 36,
     "whole_project_contribution_percent": null,
     "whole_project_contribution_reason": "Cannot calculate without master-index denominator and domain weights.",
@@ -6524,11 +6964,11 @@
     "official_full_text_files_archived_and_hash_verified_in_this_session": 0,
     "complete_arabic_texts_accessible_at_source_estimate": ">20 laws/codes and implementing/treaty instruments",
     "new_inventory_records_added_this_session": 81,
-    "inventory_total_documents": 168,
+    "inventory_total_documents": 181,
     "acquisition_queue_items": 24,
-    "crosscheck_register_count": 22,
-    "notes": "Qualitative research-coverage estimate, not article-count or lawyer-QA metric. This pass improved source and text coverage for AML, child justice, prisons and narcotics schedules. Two new amendment-instrument records were added without duplicating base laws. Publicly readable source text is not represented as locally archived/hash-verified; permission for storage/indexing/commercial use remains unknown. Cross-check register expanded to 22 entries for AML Decree 457/2020 date conflict, Prisons Law 14/2022 publication metadata conflict, and Decision 242/2026 schedule OCR verification.",
-    "last_acquisition_pass_increment_percent": 3,
+    "crosscheck_register_count": 25,
+    "notes": "Qualitative research-coverage estimate, not article-count or lawyer-QA metric. This pass improved source and text coverage for AML, child justice, prisons and narcotics schedules. Two new amendment-instrument records were added without duplicating base laws. Publicly readable source text is not represented as locally archived/hash-verified; permission for storage/indexing/commercial use remains unknown. Cross-check register expanded to 22 entries for AML Decree 457/2020 date conflict, Prisons Law 14/2022 publication metadata conflict, and Decision 242/2026 schedule OCR verification. Second acquisition pass identified Child Law amendments through 2025 (including Art.49 repeal), four Child Law Executive Regulation amendments through 2020, and weapons Law 5/2019, Law 163/2022, Decision 1300/2019. 13 distinct records added, bringing total to 181. Research estimate increased to 63%; still 0 local original files archived/hash verified and 0 lawyer-verified records. Cross-check register now includes the Child Law Art.49 repeal in Social Security Law 12/2025, the 2075/2010 executive-regulation amendment chain, and SCC judgment 1/47 (2026) on weapons provisions.",
+    "last_acquisition_pass_increment_percent": 2,
     "last_acquisition_pass_date": "2026-11-19"
   }
 }
