@@ -366,6 +366,7 @@ The official PDF's final pages expose provisions on international criminal coope
 | Law 80/2002 | Official regulator/CBE consolidated PDF links located; automated fetch rejected | T1 links | FRA consolidation updated 2022 |
 | Decision 951/2003 | Official Finance Ministry PDF and FRA updated-2023 page located; text not extracted | T1 listing/PDF | FRA lists amendments through Decision 3331/2023 |
 | Decision 44/2026 | Two operative articles and schedule text surfaced; Gazette scan link located | T3 text / Gazette scan | Effective 2026-02-17 |
+| Decision 242/2026 | Official EDA-hosted four-page Gazette PDF opened; operative amendment and annex pages visually inspected | T1 EDA/Gazette-hosted PDF | Issue 179, 2026-08-17; effective 2026-08-18; modifies Decision 44 schedules |
 | Law 394/1954 | Full secondary transcription located | T3 | Current consolidation unverified |
 | Law 14/2022 | Official Amiri Press page and Arabic excerpt located | T1 page | Amends Law 396/1956 |
 | Decision 79/1961 | PDF record located; not downloaded | T3 | Ministerial prison regulation |
