@@ -561,6 +561,23 @@
       "legal_status": "working_identity_107_1962_original_Gazette_check_pending",
       "finding": "Full amendment text and Official Gazette No.136, 17 Jun 1962 identify Law107/1962. One older consolidated-code transcription misprints the amendment year as 1963. The current full 2024 consolidation identifies Law107/1962.",
       "next_action": "Acquire Official Gazette No.136, 17 Jun 1962 and correct the secondary 1963 typo in project source metadata."
+    },
+    {
+      "evidence_id": "XREF-PENAL-CODE-2023-CONSOLIDATION-VS-2021-ONLY-SOURCES",
+      "document_id": "EG-PENAL-CODE-58-1937",
+      "practice_areas": [
+        "criminal",
+        "penal_code"
+      ],
+      "url": "https://alhasswalawfirm.com/law-library/law-58-1937",
+      "publisher": "Alhasswa full consolidated text attributed to Court of Cassation portal versus older Manshurat/Cyrilla and secondary consolidated texts",
+      "source_class": "current-version date discrepancy",
+      "observed_title_ar": "قانون رقم 58 لسنة 1937 بإصدار قانون العقوبات",
+      "source_state": "full_540_article_text_updated_4_dec_2023_older_consolidations_stale",
+      "collection_permission": "unknown",
+      "legal_status": "working_current_consolidation_through_law185_2023_post_2023_Gazette_check_pending",
+      "finding": "The 540-article consolidated text states it is updated through Law185/2023, 4 Dec 2023, and reproduces the current text of Arts.306 bis (a), 306 bis (b) and 309 bis (b). Older sources such as Manshurat and Cyrilla identify the most recent amendment as Law141/2021 or earlier and therefore do not include Law185/2023. Use the 4 Dec 2023 text as the working current consolidation; complete Gazette review for 2024–2026 before declaring no later amendments.",
+      "next_action": "Acquire original Gazette No.48 bis (b), 4 Dec 2023, and all amendment Gazette scans; review every Official Gazette issue from 5 Dec 2023 through 19 Nov 2026 for any further Law58 amendment."
     }
   ],
   "guardrails": [
