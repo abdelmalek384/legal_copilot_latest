@@ -757,6 +757,49 @@
         "Decision 467/2024 full text and replacement table",
         "comparison with Law 175/2018 Art. 11"
       ]
+    },
+    {
+      "queue_item_id": "ACQ-024",
+      "document_ids": [
+        "EG-EXPERTS-96-1952",
+        "EG-EXPERTS-AMEND-91-2016",
+        "EG-JUDICIAL-AUTHORITY-46-1972",
+        "EG-JUDICIAL-AUTHORITY-AMEND-77-2019",
+        "EG-JUDICIAL-AUTHORITY-AMEND-142-2006",
+        "EG-EXPERTS-ECONOMIC-3066-2021",
+        "EG-EXPERTS-ECONOMIC-FEES-367-2021",
+        "EG-FORENSIC-DOCUMENT-EXAM-DECISION-439-2026",
+        "EG-FORENSIC-EXPERT-OFFICE-DECISION-440-2026"
+      ],
+      "practice_areas": [
+        "criminal",
+        "evidence",
+        "judicial_procedure"
+      ],
+      "priority": "P1",
+      "action": "Obtain full authorized texts and amendment maps for expert statute 96/1952, judicial authority Law 46/1972 and current expert/forensic ministerial decisions. Extract the current judicial-police list, expert appointment and challenge procedures, forensic medicine/forgery administration, and Economic Courts digital expert-report rules.",
+      "candidate_sources": [
+        "https://www.eastlaws.com/legislation-full-text/ar/egypt/law/26-06-1952/no-96?id=800&type=1",
+        "https://manshurat.org/node/38162",
+        "https://manshurat.org/node/63718",
+        "https://media.elbalad.news/2024/10/large/877/0/789.pdf",
+        "https://www.alamiria.com/Sec/TashTxt?id=F9RwWnqSQgc%3D",
+        "https://mediadr.sis.gov.eg/xmlui/bitstream/handle/123456789/121095/WQ38_20260216_3241.pdf?sequence=2"
+      ],
+      "source_type": "official Gazette decisions and secondary full Arabic law texts; exact source terms must be reviewed",
+      "permission_state": "unknown_or_pending",
+      "acquisition_state": "full_text_accessible_selected_articles_persisted",
+      "legal_review_state": "not_started",
+      "blocker": "Full current consolidated expert statute and complete amendment history are not archived/hashed. Decisions 439/440 are administrative relocations, not substantive evidence rules. Expert rules differ by court type and must not be generalized.",
+      "required_evidence": [
+        "full Decree-Law 96/1952 and Law 91/2016",
+        "Law 46/1972 full amendment chronology, including 142/2006 and 77/2019",
+        "current list of judicial police officers under Law 150/1950 and future Law 174/2025 Art. 26",
+        "Law 150/1950 Arts 86–89 and future Law 174/2025 Arts 99–103 collation",
+        "Decision 3066/2021 and 367/2021 full text and later amendments",
+        "all relevant forensic medicine, forgery and expert office ministerial decisions",
+        "Egyptian criminal evidence lawyer review"
+      ]
     }
   ],
   "next_decisions": [
