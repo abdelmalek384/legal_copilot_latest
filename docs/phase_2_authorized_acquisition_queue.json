@@ -149,7 +149,7 @@
         "criminal"
       ],
       "priority": "P0",
-      "action": "Acquire/normalize the full Arabic current Law 150/1950 text and amendment chain, including Laws 95/2003, 145/2006, 74/2007, 71/2009, 83/2013, 49/2014, 138/2014, 16/2015, 11/2017, 177/2020 and 1/2024. Preserve older amendment candidates 271/1955, 107/1962, 37/1972, 170/1981 and 23/1992 until original Gazette text is found. Keep Law 150 operative until 1 Oct 2027 absent further amendment.",
+      "action": "Complete current Law150/1950 amendment map and article-level consolidation through 30 Sep 2027; retain Law140/2014 as operative until that date. Normalize all 546 articles of Law174/2025 from official MOJ PDF, cross-reference Law160/2026 fixed commencement 1 Oct 2027, complete Book Five 508–521 article map, inspect Article 2 and OCR/numbering anomalies against Gazette page images, and obtain formal copy of Gazette No.39 bis (b) if required.",
       "candidate_sources": [
         "https://manshurat.org/node/14419/relations",
         "https://manshurat.org/node/14577",
@@ -162,9 +162,9 @@
       ],
       "source_type": "official text and Gazette metadata candidates",
       "permission_state": "unknown_or_pending",
-      "acquisition_state": "amendment_chain_partially_mapped_full_text_sources_for_major_amendments",
+      "acquisition_state": "full_official_546_article_law_174_2025_pdf_and_law_160_2026_amendment_text_accessible_book_five_508_521_extracted",
       "legal_review_state": "urgent_review_required",
-      "blocker": "Manshurat consolidated page incorrectly labels Law 189/2020 as the last CPL amendment; actual CPL amendment is Law 177/2020 (Art. 113 bis), while Law 189/2020 amends Penal Code Art. 309 bis (b). Original Gazette PDFs for older amendments and date discrepancy in original Law 150 publication remain to be checked.",
+      "blocker": "Full official Law174 PDF and Law160 Amiri Press text are readable, but not locally archived/hashed. Law160 Gazette PDF in DSpace is restricted to request-copy. Current Law150 article-by-article consolidation and original Gazette image collation remain incomplete. Official Law174 Art.2 says felony absentia judgments; Manshurat says misdemeanours.",
       "required_evidence": [
         "Law 177/2020 full text and Art. 113 bis; separate Law 189/2020 Penal Code record",
         "Law 1/2024 Gazette text and all amended/new felony-appeal articles",
@@ -172,7 +172,8 @@
         "older candidate amendment texts 271/1955,107/1962,37/1972,170/1981,23/1992",
         "original Waqa'i' No. 90 issue date: 15 Oct 1950 versus 15 Oct 1951",
         "Egyptian lawyer review of current/transition status and all amendment effects"
-      ]
+      ],
+      "last_researched_on": "2026-11-19"
     },
     {
       "queue_item_id": "ACQ-005",
