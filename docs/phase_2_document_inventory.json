@@ -3279,7 +3279,7 @@
       "instrument_number": 182,
       "instrument_year": 1960,
       "source_id": "EG-EDA",
-      "source_status": "full_text_accessible_not_archived",
+      "source_status": "full_56_article_consolidated_arabic_text_accessible_secondary_plus_official_EDA_base_pdf",
       "collection_permission": "unknown",
       "legal_status": "unknown",
       "review_status": "discovery_only",
@@ -3288,7 +3288,7 @@
         "Law 19/2020",
         "Health Decisions 44/2026 and 242/2026"
       ],
-      "notes": "EDA official 14-page original statute PDF located; PDF has no readable OCR lines in browser. EDA amendment index lists Laws 206/1960, 40/1966, 16/1973, 61/1977, 45/1984, 122/1989, 134/2019 and 19/2020. Full Law 182 OCR/transcription and Gazette collation remain pending.",
+      "notes": "Full 56-article consolidated Arabic text accessible at LawyerEgypt/LawHub, with article-level amendment footnotes. EDA official amendment index identifies amendments Laws206/1960,40/1966,16/1973,61/1977,45/1984,122/1989,134/2019 and19/2020. LawyerEgypt labels text updated 22 Apr2024, but EDA index lists Law19/2020 as latest statute amendment; treat 22 Apr2024 as source revision date pending identification of any 2024 instrument. Schedules replaced by Minister Decision44/2026 and amended by242/2026.",
       "source_urls": [
         {
           "url": "https://lawhub.info/eg/?p=11739",
@@ -3309,6 +3309,11 @@
           "url": "https://dev.edaegypt.gov.eg/ar/المرجع-التنظيمي-لهيئة-الدواء-المصرية/القوانين-واللوائح-التنفيذية/تعديلات-قانون-رقم-182-لسنة-1960/",
           "source_role": "Official EDA amendment index for Law 182/1960",
           "status": "full_text_accessible_not_archived"
+        },
+        {
+          "url": "https://lawyeregypt.net/قانون-مكافحة-المخدرات-رقم-182-لسنة-1960-المعدل/",
+          "source_role": "Full consolidated Arabic text and PDF/Word downloads",
+          "status": "full_text_accessible_secondary"
         }
       ]
     },
@@ -7830,6 +7835,168 @@
           "status": "full_text_in_official_consolidation_and_Gazette_publication_article"
         }
       ]
+    },
+    {
+      "document_id": "EG-DRUGS-AMEND-206-1960",
+      "official_title_ar": "قانون رقم 206 لسنة 1960 بشأن تعديل القانون رقم 182 لسنة 1960 في شأن مكافحة المخدرات",
+      "practice_areas": [
+        "criminal",
+        "drugs"
+      ],
+      "document_type": "statutory_amendment",
+      "instrument_number": 206,
+      "instrument_year": 1960,
+      "source_id": "EG-EDA-DRUGS-LEGAL_INDEX",
+      "source_status": "full_text_accessible_Eastlaws_and_EDA_index",
+      "collection_permission": "unknown",
+      "legal_status": "historical_amendment_current_effect_embedded_in_Law182_text_and_2026_schedules",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-DRUGS-182-1960"
+      ],
+      "notes": "Adds substances to Table1; Official Gazette No.155 follow-up, 12 Jul 1960; effective 13 Jul 1960.",
+      "source_urls": [
+        {
+          "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/law/12-07-1960/no-206?id=42212&type=1",
+          "source_role": "Full Arabic text, consolidated text or official EDA amendment index",
+          "status": "full_text_accessible_Eastlaws_and_EDA_index"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-DRUGS-AMEND-40-1966",
+      "official_title_ar": "قانون رقم 40 لسنة 1966 بتعديل بعض أحكام القانون رقم 182 لسنة 1960",
+      "practice_areas": [
+        "criminal",
+        "drugs"
+      ],
+      "document_type": "statutory_amendment",
+      "instrument_number": 40,
+      "instrument_year": 1966,
+      "source_id": "EG-EDA-DRUGS-LEGAL_INDEX",
+      "source_status": "full_text_accessible_in_consolidated_text",
+      "collection_permission": "unknown",
+      "legal_status": "historical_amendment_current_effect_embedded_in_Law182_text_and_2026_schedules",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-DRUGS-182-1960"
+      ],
+      "notes": "Replaces Arts.33,34,35,36,40 and adds Art.48 bis; Gazette No.187, 18 Aug 1966.",
+      "source_urls": [
+        {
+          "url": "https://lawyeregypt.net/قانون-مكافحة-المخدرات-رقم-182-لسنة-1960-المعدل/",
+          "source_role": "Full Arabic text, consolidated text or official EDA amendment index",
+          "status": "full_text_accessible_in_consolidated_text"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-DRUGS-AMEND-16-1973",
+      "official_title_ar": "قانون رقم 16 لسنة 1973 بتعديل الفقرات 3 و4 و6 من المادة 37 من القانون رقم 182 لسنة 1960",
+      "practice_areas": [
+        "criminal",
+        "drugs"
+      ],
+      "document_type": "statutory_amendment",
+      "instrument_number": 16,
+      "instrument_year": 1973,
+      "source_id": "EG-EDA-DRUGS-LEGAL_INDEX",
+      "source_status": "full_text_accessible_Eastlaws",
+      "collection_permission": "unknown",
+      "legal_status": "historical_amendment_current_effect_embedded_in_Law182_text_and_2026_schedules",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-DRUGS-182-1960"
+      ],
+      "notes": "Gazette No.14, 5 Apr 1973; replaces paragraphs 3,4 and6 of Art.37.",
+      "source_urls": [
+        {
+          "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/law/05-04-1973/no-16?id=2854&type=1",
+          "source_role": "Full Arabic text, consolidated text or official EDA amendment index",
+          "status": "full_text_accessible_Eastlaws"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-DRUGS-AMEND-61-1977",
+      "official_title_ar": "قانون رقم 61 لسنة 1977 بتعديل بعض أحكام القانون رقم 182 لسنة 1960",
+      "practice_areas": [
+        "criminal",
+        "drugs"
+      ],
+      "document_type": "statutory_amendment",
+      "instrument_number": 61,
+      "instrument_year": 1977,
+      "source_id": "EG-EDA-DRUGS-LEGAL_INDEX",
+      "source_status": "full_text_in_consolidated_text_EDA_index",
+      "collection_permission": "unknown",
+      "legal_status": "historical_amendment_current_effect_embedded_in_Law182_text_and_2026_schedules",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-DRUGS-182-1960"
+      ],
+      "notes": "Gazette No.47, 24 Nov 1977; adds paragraphs to Art.42 concerning confiscated tools and vehicles.",
+      "source_urls": [
+        {
+          "url": "https://edaegypt.gov.eg/ar/المرجع-التنظيمي-لهيئة-الدواء-المصرية/القوانين-واللوائح-التنفيذية/تعديلات-قانون-رقم-182-لسنة-1960/",
+          "source_role": "Full Arabic text, consolidated text or official EDA amendment index",
+          "status": "full_text_in_consolidated_text_EDA_index"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-DRUGS-AMEND-45-1984",
+      "official_title_ar": "قانون رقم 45 لسنة 1984 بتعديل بعض أحكام القانون رقم 182 لسنة 1960",
+      "practice_areas": [
+        "criminal",
+        "drugs"
+      ],
+      "document_type": "statutory_amendment",
+      "instrument_number": 45,
+      "instrument_year": 1984,
+      "source_id": "EG-EDA-DRUGS-LEGAL_INDEX",
+      "source_status": "full_text_in_consolidated_text_EDA_index",
+      "collection_permission": "unknown",
+      "legal_status": "historical_amendment_current_effect_embedded_in_Law182_text_and_2026_schedules",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-DRUGS-182-1960"
+      ],
+      "notes": "Gazette No.13 bis (w), 31 Mar 1984; replaces Art.27(1), Art.38 and Art.44.",
+      "source_urls": [
+        {
+          "url": "https://lawyeregypt.net/قانون-مكافحة-المخدرات-رقم-182-لسنة-1960-المعدل/",
+          "source_role": "Full Arabic text, consolidated text or official EDA amendment index",
+          "status": "full_text_in_consolidated_text_EDA_index"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-DRUGS-AMEND-122-1989",
+      "official_title_ar": "قانون رقم 122 لسنة 1989 بتعديل بعض أحكام القرار بقانون رقم 182 لسنة 1960",
+      "practice_areas": [
+        "criminal",
+        "drugs"
+      ],
+      "document_type": "statutory_amendment",
+      "instrument_number": 122,
+      "instrument_year": 1989,
+      "source_id": "EG-EDA-DRUGS-LEGAL_INDEX",
+      "source_status": "full_text_accessible_secondary",
+      "collection_permission": "unknown",
+      "legal_status": "historical_amendment_current_effect_embedded_in_Law182_text_and_2026_schedules",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-DRUGS-182-1960"
+      ],
+      "notes": "Gazette No.26 bis, 4 Jul 1989; effective 5 Jul 1989. Replaces Arts.33–41,42(1),43–45,50; adds Arts.34 bis,37 bis(a)-(d),46 bis,46 bis(a),48 bis(a),52 bis and replaces Table1.",
+      "source_urls": [
+        {
+          "url": "https://www.aldhshan.com/2026/02/122-1989-182-1960.html",
+          "source_role": "Full Arabic text, consolidated text or official EDA amendment index",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
     }
   ],
   "next_actions": [
@@ -8757,6 +8924,26 @@
         "observed_title": "PM Decree951/2003 AML Executive Regulations consolidated through PM Decree3331/2023",
         "finding": "Acquired the full official 1,109-line FRA-hosted Arabic consolidation, which identifies amendments 1463/2006,2367/2008,1569/2016,2910/2019,457/2020 and3331/2023. Extracted virtual-asset providers, money-laundering independence, parallel financial investigation Art.28bis(b), beneficial-owner register Art.21bis, statistics Art.12bis and immediate targeted-sanctions freezing Art.50bis(a). Two Gazette metadata discrepancies remain: 457/2020 publication date/issue and older PDF citations 1432/2006/2362/2008 versus current 1463/2006/2367/2008.",
         "status": "full_official_consolidated_text_accessible_original_amendment_Gazette_scans_pending"
+      },
+      {
+        "evidence_id": "SRC-CRIM-DRUGS-LAW182-AMENDMENT-CHAIN-2026-11-19",
+        "document_ids": [
+          "EG-DRUGS-182-1960",
+          "EG-DRUGS-AMEND-206-1960",
+          "EG-DRUGS-AMEND-40-1966",
+          "EG-DRUGS-AMEND-16-1973",
+          "EG-DRUGS-AMEND-61-1977",
+          "EG-DRUGS-AMEND-45-1984",
+          "EG-DRUGS-AMEND-122-1989",
+          "EG-DRUGS-AMEND-134-2019",
+          "EG-CRIMINAL-AMEND-19-2020"
+        ],
+        "source_type": "full consolidated Arabic statute, EDA official amendment index and full amendment texts",
+        "url": "https://edaegypt.gov.eg/ar/المرجع-التنظيمي-لهيئة-الدواء-المصرية/القوانين-واللوائح-التنفيذية/تعديلات-قانون-رقم-182-لسنة-1960/",
+        "publisher": "Egyptian Drug Authority / LawyerEgypt / LawHub / Eastlaws / Laweg",
+        "observed_title": "Drug Law182/1960 complete current text and historical amendment chronology",
+        "finding": "Acquired full 56-article consolidated Arabic text with amendment footnotes and EDA official amendment index. Added separate amendment records for Laws206/1960,40/1966,16/1973,61/1977,45/1984 and122/1989; linked cross-statute Law19/2020 full text. EDA index confirms the listed statutory amendment chain through Law19/2020; 2026 schedule Decisions44 and242 are separate ministerial instruments.",
+        "status": "full_consolidation_and_multiple_amendment_texts_accessible_official_EDA_index_available"
       }
     ],
     "temporal_review_alerts": [
@@ -8782,18 +8969,18 @@
     "agent": "Research Agent 2",
     "domain": "Egyptian criminal law and procedure",
     "as_of": "2026-11-19",
-    "estimated_domain_completion_percent": 82,
+    "estimated_domain_completion_percent": 83,
     "previous_session_estimate_percent": 58,
     "whole_project_contribution_percent": null,
     "whole_project_contribution_reason": "Cannot calculate without master-index denominator and domain weights.",
     "lawyer_verified_percent": 0,
     "official_full_text_files_archived_and_hash_verified_in_this_session": 0,
     "complete_arabic_texts_accessible_at_source_estimate": ">20 laws/codes and implementing/treaty instruments",
-    "new_inventory_records_added_this_session": 152,
-    "inventory_total_documents": 233,
+    "new_inventory_records_added_this_session": 158,
+    "inventory_total_documents": 239,
     "acquisition_queue_items": 24,
-    "crosscheck_register_count": 37,
-    "notes": "Qualitative research-coverage estimate, not article-count or lawyer-QA metric. This pass improved source and text coverage for AML, child justice, prisons and narcotics schedules. Two new amendment-instrument records were added without duplicating base laws. Publicly readable source text is not represented as locally archived/hash-verified; permission for storage/indexing/commercial use remains unknown. Cross-check register expanded to 22 entries for AML Decree 457/2020 date conflict, Prisons Law 14/2022 publication metadata conflict, and Decision 242/2026 schedule OCR verification. Second acquisition pass identified Child Law amendments through 2025 (including Art.49 repeal), four Child Law Executive Regulation amendments through 2020, and weapons Law 5/2019, Law 163/2022, Decision 1300/2019. 13 distinct records added, bringing total to 181. Research estimate increased to 63%; still 0 local original files archived/hash verified and 0 lawyer-verified records. Cross-check register now includes the Child Law Art.49 repeal in Social Security Law 12/2025, the 2075/2010 executive-regulation amendment chain, and SCC judgment 1/47 (2026) on weapons provisions. Progress metadata reconciled to the 58% baseline recorded before the current acquisition work; 96 net-new inventory records are now counted cumulatively (81 prior tranche + 15 added in the two current passes). Third acquisition pass upgraded cybercrime Law 175/2018 and Decree 1699/2020, Personal Data Law 151/2020 and Decree 816/2025, Human Trafficking Law 64/2010 and Decree 3028/2010, and Illegal Migration Law 82/2016 and Decree 983/2018. No duplicate base-law records added. Key source conflicts logged. Cross-check register includes Cybercrime Executive Regulation 1699/2020 vs ESCC 635/2020 heading conflict and Human Trafficking Executive Regulation 3028/2010 vs one secondary 2038/2010 miscitation. Fourth acquisition pass acquired full official 546-article Law 174/2025 PDF and Law 160/2026 official Amiri Press text/Gazette metadata; extracted all Book Five Arts.508–521. Current commencement fixed at 1 Oct 2027; CPL150/1950 and Law140/2014 remain operative until then. Official/secondary Art.2 transition wording discrepancy recorded. Fifth acquisition pass acquired the full 178-page consolidated Arabic Law150/1950 text through Law1/2024, including Art.113 bis added by Law177/2020 and the felony appeal amendments. Full text is secondary-hosted but attributes source to Court of Cassation Legislation Portal; original portal endpoint returned 502. Footnotes reveal additional older amendment instruments requiring individual Gazette acquisition. Sixth acquisition pass added 10 distinct CPL historical amendment records and upgraded Law107/1962 to full Arabic text. Acquired multiple full amendment texts and expanded the historical chronology; original Gazette scans remain unarchived. Seventh acquisition pass upgraded Penal Code Law58/1937 to a full 540-article, 179-page Arabic consolidation updated through 4 Dec 2023 and added separate amendment records for Laws5/2018,164/2019 and6/2020. Later amendment records cross-linked to the full code and Gazette metadata. Eighth acquisition pass added 13 distinct prison amendment and geographic-centre decision records; full text sources acquired for Laws49/2014,106/2015,6/2018 and seven recent centre-creation decisions. Foundational Decisions113/1962 and1654/1971 remain metadata-only; Decision1265/2022 full text still pending. Ninth acquisition pass added Law15/2018 and geographic-centre decisions1265/2025,176/2026 and1739/2026; latest located instrument was published 14 Nov 2026 and effective 15 Nov 2026. Narcotics schedule pass visually transcribed Decision242/2026 replacement Table1 item12 and Table3 entries57–61 from the official EDA PDF. Full 34-page Decision44/2026 schedule transcription remains open. Tenth acquisition pass added 13 AML/CFT regulatory records, including full FIU Decision1/2024, full September2026 DNFBP CDD procedures, and FRA 2026 circulars/decision chain. Financial-institution CDD September2026 full text and several regulator PDFs remain inaccessible or unretrieved. Eleventh acquisition pass added eight terrorism/asset-freezing records: Law94/2015, its amendments11/2017,15/2020,149/2021; Law8/2015 and amendments2/2020,14/2020; and Law22/2018 asset-management law. Full current Arabic texts and amendment relations linked. Official-source upgrade: FRA-hosted original Law94/2015 PDF and Law22/2018 PDF acquired; FRA updated Law8/2015 link identified but document endpoint denied. Original files still not locally archived/hashed. Twelfth acquisition pass upgraded AML Executive Regulations Decree951/2003 to the official FRA-hosted 1,109-line consolidated Arabic text through Decree3331/2023 and added five separate amendment records (1463/2006,2367/2008,1569/2016,2910/2019,457/2020). Article12bis statistics, Art.21bis beneficial-owner register, Art.28bis(b) parallel financial investigations and Art.50bis(a) immediate freezing extracted. Gazette date/number conflicts retained.",
+    "crosscheck_register_count": 38,
+    "notes": "Qualitative research-coverage estimate, not article-count or lawyer-QA metric. This pass improved source and text coverage for AML, child justice, prisons and narcotics schedules. Two new amendment-instrument records were added without duplicating base laws. Publicly readable source text is not represented as locally archived/hash-verified; permission for storage/indexing/commercial use remains unknown. Cross-check register expanded to 22 entries for AML Decree 457/2020 date conflict, Prisons Law 14/2022 publication metadata conflict, and Decision 242/2026 schedule OCR verification. Second acquisition pass identified Child Law amendments through 2025 (including Art.49 repeal), four Child Law Executive Regulation amendments through 2020, and weapons Law 5/2019, Law 163/2022, Decision 1300/2019. 13 distinct records added, bringing total to 181. Research estimate increased to 63%; still 0 local original files archived/hash verified and 0 lawyer-verified records. Cross-check register now includes the Child Law Art.49 repeal in Social Security Law 12/2025, the 2075/2010 executive-regulation amendment chain, and SCC judgment 1/47 (2026) on weapons provisions. Progress metadata reconciled to the 58% baseline recorded before the current acquisition work; 96 net-new inventory records are now counted cumulatively (81 prior tranche + 15 added in the two current passes). Third acquisition pass upgraded cybercrime Law 175/2018 and Decree 1699/2020, Personal Data Law 151/2020 and Decree 816/2025, Human Trafficking Law 64/2010 and Decree 3028/2010, and Illegal Migration Law 82/2016 and Decree 983/2018. No duplicate base-law records added. Key source conflicts logged. Cross-check register includes Cybercrime Executive Regulation 1699/2020 vs ESCC 635/2020 heading conflict and Human Trafficking Executive Regulation 3028/2010 vs one secondary 2038/2010 miscitation. Fourth acquisition pass acquired full official 546-article Law 174/2025 PDF and Law 160/2026 official Amiri Press text/Gazette metadata; extracted all Book Five Arts.508–521. Current commencement fixed at 1 Oct 2027; CPL150/1950 and Law140/2014 remain operative until then. Official/secondary Art.2 transition wording discrepancy recorded. Fifth acquisition pass acquired the full 178-page consolidated Arabic Law150/1950 text through Law1/2024, including Art.113 bis added by Law177/2020 and the felony appeal amendments. Full text is secondary-hosted but attributes source to Court of Cassation Legislation Portal; original portal endpoint returned 502. Footnotes reveal additional older amendment instruments requiring individual Gazette acquisition. Sixth acquisition pass added 10 distinct CPL historical amendment records and upgraded Law107/1962 to full Arabic text. Acquired multiple full amendment texts and expanded the historical chronology; original Gazette scans remain unarchived. Seventh acquisition pass upgraded Penal Code Law58/1937 to a full 540-article, 179-page Arabic consolidation updated through 4 Dec 2023 and added separate amendment records for Laws5/2018,164/2019 and6/2020. Later amendment records cross-linked to the full code and Gazette metadata. Eighth acquisition pass added 13 distinct prison amendment and geographic-centre decision records; full text sources acquired for Laws49/2014,106/2015,6/2018 and seven recent centre-creation decisions. Foundational Decisions113/1962 and1654/1971 remain metadata-only; Decision1265/2022 full text still pending. Ninth acquisition pass added Law15/2018 and geographic-centre decisions1265/2025,176/2026 and1739/2026; latest located instrument was published 14 Nov 2026 and effective 15 Nov 2026. Narcotics schedule pass visually transcribed Decision242/2026 replacement Table1 item12 and Table3 entries57–61 from the official EDA PDF. Full 34-page Decision44/2026 schedule transcription remains open. Tenth acquisition pass added 13 AML/CFT regulatory records, including full FIU Decision1/2024, full September2026 DNFBP CDD procedures, and FRA 2026 circulars/decision chain. Financial-institution CDD September2026 full text and several regulator PDFs remain inaccessible or unretrieved. Eleventh acquisition pass added eight terrorism/asset-freezing records: Law94/2015, its amendments11/2017,15/2020,149/2021; Law8/2015 and amendments2/2020,14/2020; and Law22/2018 asset-management law. Full current Arabic texts and amendment relations linked. Official-source upgrade: FRA-hosted original Law94/2015 PDF and Law22/2018 PDF acquired; FRA updated Law8/2015 link identified but document endpoint denied. Original files still not locally archived/hashed. Twelfth acquisition pass upgraded AML Executive Regulations Decree951/2003 to the official FRA-hosted 1,109-line consolidated Arabic text through Decree3331/2023 and added five separate amendment records (1463/2006,2367/2008,1569/2016,2910/2019,457/2020). Article12bis statistics, Art.21bis beneficial-owner register, Art.28bis(b) parallel financial investigations and Art.50bis(a) immediate freezing extracted. Gazette date/number conflicts retained. Thirteenth acquisition pass upgraded Drug Law182/1960 to a full 56-article consolidated Arabic text and added six historical amendment records (206/1960,40/1966,16/1973,61/1977,45/1984,122/1989). Linked Law19/2020 full text. EDA index lists Law19/2020 as latest statute amendment; LawyerEgypt's 22 Apr2024 'latest amendment' label is flagged as likely source revision date pending identification of a 2024 instrument.",
     "last_acquisition_pass_increment_percent": 1,
     "last_acquisition_pass_date": "2026-11-19"
   }
