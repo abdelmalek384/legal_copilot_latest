@@ -898,3 +898,312 @@ This tranche adds 20 new inventory records covering terrorism, terrorist listing
 8. Collect Palermo Protocols, Arab Convention on Combating Organized Crime, extradition and mutual legal assistance treaties, and Egyptian ratification instruments.
 9. Extract current Telecom Law 10/2003 Arts 64–69 and 77–87; map each provider duty to the specific criminal-investigation authorization.
 10. Continue with missing texts and schedules already in the acquisition queue; do not repeat discovery absent a new amendment or better text source.
+
+---
+
+## J. Extradition, mutual legal assistance and treaty corpus — new acquisition
+
+This section closes part of the gap previously recorded for international criminal cooperation. It adds the regional convention, Egyptian accession instrument, UNTOC and Palermo Protocols, and several bilateral judicial-cooperation treaties. Treaty applicability must be checked by party status, reservations, entry-into-force date, and the treaty's relation to bilateral agreements.
+
+### J1. Riyadh Arab Agreement for Judicial Cooperation (1983) — Egypt accession
+
+**Full Arabic convention text, 72 articles:**  
+https://www.qanouni.org/ar/convention/1581  
+Additional official/ministerial-hosted Arabic PDF: https://adala.justice.gov.ma/api/uploads/2024/04/19/اتفاقية%20الرياض%20العربية-1713540273243.pdf  
+Full text with article headings: https://www.sahwanlaw.com/ar/laws/RAC1983.html
+
+**Egyptian accession instrument: Presidential Decision 278/2014**
+
+- Gazette: No. 49, 4 December 2014.
+- Issued: 19 August 2014.
+- Original Gazette PDF (38 pages): https://manshurat.org/file/6694/download?token=OWECKZVo
+- Source record: https://manshurat.org/node/3842
+
+**Official Gazette image — opening and operative article:**
+
+> قرار رئيس جمهورية مصر العربية  
+> رقم ٢٧٨ لسنة ٢٠١٤  
+> بشأن الموافقة على انضمام جمهورية مصر العربية إلى اتفاقية الرياض العربية للتعاون القضائي  
+> الموقعة بتاريخ ٦/٤/١٩٨٣، وعلى تعديل المادة (٦٩) من هذه الاتفاقية بتاريخ ٢٦/١١/١٩٩٧  
+> 
+> (مادة وحيدة)  
+> 
+> ووفق على انضمام جمهورية مصر العربية إلى اتفاقية الرياض العربية للتعاون القضائي، الموقعة بتاريخ ٦/٤/١٩٨٣، وعلى تعديل المادة (٦٩) من هذه الاتفاقية بتاريخ ٢٦/١١/١٩٩٧، وذلك مع التحفظ بشرط التصديق.
+
+The original Gazette PDF's first page is visually readable. The decision was issued 19 August 2014 and published 4 December 2014. Manshurat metadata shows an “effective date” of 10 August 2014, which predates the issuance date and is internally inconsistent. A separate international-status listing reports an Egypt date of 8 September 2014. Do not adopt either date as the treaty's definitive entry-into-force date without the Arab League deposit record. The legal accession instrument itself is now located.
+
+**Convention Article 68 — accession:**
+
+> يجوز لأي دولة من دول الجامعة العربية غير الموقعة على الاتفاقية أن تنضم إليها بطلب ترسله إلى أمين عام الجامعة.  
+> تعتبر الدولة طالبة الانضمام مرتبطة بهذه الاتفاقية بمجرد إيداع وثيقة تصديقها عليها أو قبولها أو إقرارها ومضى 30 يوماً من تاريخ الإيداع.
+
+**Article 69 — relation to bilateral agreements (as amended 26 November 1997):**
+
+> لا تخل هذه الاتفاقية بالاتفاقيات الخاصة بين بعض الدول الأعضاء، وفي حالة تعارض أحكام هذه الاتفاقية مع أحكام أي اتفاقية خاصة فتطبق الاتفاقية الأكثر تحقيقاً لتسليم المتهمين والمحكومين وتحقيق التعاون الأمني والقضائي في المجالات الأخرى.
+
+**Article 72 — supersession of 1952 Arab League agreements:**
+
+> تحل هذه الاتفاقية بالنسبة للدول التي صادقت عليها محل الاتفاقيات الثلاث المعقودة عام 1952 في نطاق جامعة الدول العربية والمعمول بها حاليا بشأن كل من الإعلانات والإنابات القضائية وتنفيذ الأحكام وتسليم المجرمين.
+
+**Important consequence:** Egypt's 2014 accession approval means Law 83/1954 and the 1953 Arab League extradition convention must not be treated as the sole current regional instrument. Article 72 provides for replacement of the 1952 instruments for states bound by Riyadh. Confirm the accession deposit and entry-into-force date before marking Law 83/1954 as formally superseded in the operative-status field. Bilateral agreements remain separately relevant under the amended Article 69.
+
+### J2. Historical Arab League Extradition Convention — Law 83/1954
+
+**Law 83/1954** approved the Arab League Extradition Convention signed 9 June 1953.
+- Issued/published: 20 February 1954.
+- Gazette: No. 14 bis (d), 20 February 1954.
+- Full Gazette text and attached agreement: https://manshurat.org/file/44665/download?token=Uk23PdHT
+- Record: https://manshurat.org/node/34483
+
+**Sole article of Law 83/1954:**
+
+> يوافق على اتفاقية تسليم المجرمين المعقودة بين دول الجامعة العربية والموقعة في ٩ يونيو سنة ١٩٥٣ والموفق عليها من مجلس الجامعة.
+
+**Egyptian reservations reproduced in the Gazette copy:**
+
+> (أولاً) عدم قبول مصر لتسليم المجرم الذي يكون التسليم فيها واجباً والمنصوص عليها في المادة الرابعة وهي جرائم الاعتداء على الثلاث رؤساء الدول أو زوجاتهم أو أصولهم أو فروعهم وجرائم الاعتداء على أولي العهد وجرائم القتل العمد والجرائم الإرهابية.  
+> 
+> (ثانياً) استبدال كلمة الجواز الواردة بالمادة عشرة: «الجنس» وعدم النص على التبعية.
+
+Status: historical treaty approval; assess supersession under Riyadh Convention Art. 72 after Egypt's accession under Decision 278/2014. Preserve the 1954 text and reservations for historical and transitional cases.
+
+### J3. UN Convention against Transnational Organized Crime (UNTOC) — Presidential Decision 294/2003
+
+**Official Gazette PDF:**  
+https://media.mof.gov.eg/mof-prd/2003_294_b4ded04751.pdf  
+Gazette No. 37, 9 September 2004. The Ministry of Finance identifies the convention as active and hosts the Gazette text.  
+Arabic treaty text: https://ar.wikisource.org/wiki/اتفاقية_الأمم_المتحدة_لمكافحة_الجريمة_المنظمة_عبر_الوطنية  
+Additional Arabic PDF: https://haqqi.info/sites/default/files/2014-04/HRIDIL0042_UNGARES5525_Ar_2000.pdf
+
+**UNTOC Article 16 — extradition (opening):**
+
+> تنطبق هذه المادة على الجرائم المشمولة بهذه الاتفاقية، أو في الحالات التي تنطوي على ضلوع جماعة إجرامية منظمة في ارتكاب جرم مشار إليه في الفقرة 1 (أ) أو (ب) من المادة 3 وعلى وجود الشخص الذي هو موضوع طلب التسليم في إقليم الدولة الطرف متلقية الطلب، شريطة أن يكون الجرم الذي يُلتمس بشأنه التسليم معاقبا عليه بمقتضى القانون الداخلي لكل من الدولة الطرف الطالبة والدولة الطرف متلقية الطلب.
+
+**Article 18 — mutual legal assistance (opening):**
+
+> تقدم الدول الأطراف، بعضها لبعض، أكبر قدر ممكن من المساعدة القانونية المتبادلة في التحقيقات والملاحقات والإجراءات القضائية فيما يتصل بالجرائم المشمولة بهذه الاتفاقية، حسبما تنص عليه المادة 3...
+
+Purposes include obtaining evidence or statements; service of judicial documents; searches, seizures and freezing; examination of objects and sites; expert evidence; original documents and records including government, bank, financial, company and business records; tracing proceeds and instrumentalities; and voluntary appearance of persons.
+
+**Article 18(3)(c) — search, seizure and freezing:**
+
+> تنفيذ عمليات التفتيش والضبط، والتجميد.
+
+**Article 18(3)(f) — bank/financial records:**
+
+> تقديم أصول المستندات والسجلات ذات الصلة، بما فيها السجلات الحكومية أو المصرفية أو المالية أو سجلات الشركات أو الأعمال، أو نسخ مصدقة عنها.
+
+### J4. Palermo Trafficking Protocol — Presidential Decision 295/2003
+
+**Official Ministry of Finance record:**  
+https://mof.gov.eg/ar/legislation/legislation-5fea7d377bfc600007cc655a  
+**Official PDF (16 pages):**  
+https://media.mof.gov.eg/mof-prd/2003_295_6161158f4b.pdf?response-content-disposition=attachment%3B+filename%3D%222003-295.pdf%22  
+Gazette No. 37, 9 September 2004. Ministry of Finance marks the agreement active and describes it as the Protocol to Prevent, Suppress and Punish Trafficking in Persons, Especially Women and Children, supplementing UNTOC.
+
+**Protocol Article 3(a) — trafficking in persons:**
+
+> يقصد بتعبير "الاتجار بالأشخاص" تجنيد أشخاص أو نقلهم أو تنقيلهم أو إيواؤهم أو استقبالهم بواسطة التهديد بالقوة أو استعمالها أو غير ذلك من أشكال القسر أو الاختطاف أو الاحتيال أو الخداع أو إساءة استعمال السلطة أو إساءة استغلال حالة استضعاف، أو بإعطاء أو تلقي مبالغ مالية أو مزايا لنيل موافقة شخص له سيطرة على شخص آخر لغرض الاستغلال.
+
+**Protocol Article 5 — criminalization:**
+
+> تعتمد كل دولة طرف ما قد يلزم من تدابير تشريعية وتدابير أخرى لتجريم السلوك المبين في المادة 3 من هذا البروتوكول، عندما يرتكب عمدا.
+
+**Protocol Article 6 — assistance and protection to victims:** requires privacy protection, information about proceedings, physical/psychological recovery, housing, counselling, medical and material assistance, and employment/education/training opportunities as appropriate.
+
+**Protocol Article 10 — information exchange and training:** requires law-enforcement, immigration and other relevant authorities to cooperate by exchanging information and training, including methods used by organized criminal groups, routes, false documents and victim identification.
+
+**Protocol Article 11 — border measures:** requires stronger border controls and consideration of carrier obligations to verify travel documents.
+
+Full Arabic text: https://treaties.un.org/doc/treaties/2000/11/20001115%2011-38%20am/ch_xviii_12_ap.pdf
+
+### J5. Migrant Smuggling Protocol — Presidential Decision 297/2004
+
+**Official Ministry of Finance record:**  
+https://mof.gov.eg/ar/legislation/legislation-5fea7bbd7bfc600007cc64be  
+**Official Gazette PDF (21 pages):**  
+https://media.mof.gov.eg/mof-prd/2004_297_fcd4bfe94d.pdf?response-content-disposition=attachment%3B+filename%3D%222004-297.pdf%22  
+Gazette No. 21, 26 May 2005. Ministry of Finance marks the agreement active. The instrument approves Egypt's accession to the Protocol against the Smuggling of Migrants by Land, Sea and Air, supplementing UNTOC.
+
+**Protocol Article 2 — purpose:**
+
+> أغراض هذا البروتوكول هي منع ومكافحة تهريب المهاجرين، وكذلك تعزيز التعاون بين الدول الأطراف تحقيقا لتلك الغاية، مع حماية حقوق المهاجرين المهرَّبين.
+
+**Article 5 — migrant non-liability:**
+
+> لا يصبح المهاجرون عرضة للملاحقة الجنائية بمقتضى هذا البروتوكول، نظرا لكونهم هدفا للسلوك المبيّن في المادة 6 من هذا البروتوكول.
+
+**Article 6 — criminalization (opening):**
+
+> تعتمد كل دولة طرف ما قد يلزم من تدابير تشريعية وتدابير أخرى لتجريم الأفعال التالية في حال ارتكابها عمدا ومن أجل الحصول، بصورة مباشرة أو غير مباشرة، على منفعة مالية أو منفعة مادية أخرى:  
+> (أ) تهريب المهاجرين؛  
+> (ب) القيام، بغرض تسهيل تهريب المهاجرين، بإعداد وثيقة سفر أو هوية مزورة أو تدبير الحصول عليها أو توفيرها أو حيازتها.
+
+**Article 8 — maritime enforcement:** establishes cooperation and authorization rules for action against vessels suspected of migrant smuggling; flag-state consent and limits must be preserved.
+
+**Article 11 — border measures:** requires border controls and considers carrier obligations to verify travel documents.
+
+**Article 16 — protection and assistance:** protects the life, safety and rights of smuggled migrants and requires appropriate protection from violence and assistance where life or safety is at risk.
+
+Full Arabic text: https://ar.wikisource.org/wiki/بروتوكول_مكافحة_تهريب_المهاجرين_عن_طريق_البر_والبحر_والجو،_المكمل_لاتفاقية_الأمم_المتحدة_لمكافحة_الجريمة_المنظمة_عبر_الوطنية
+
+### J6. Bilateral judicial cooperation and extradition agreements
+
+Bilateral treaties remain relevant under Riyadh Convention Art. 69 (as amended 1997): where a bilateral agreement conflicts with the regional agreement, the provision more conducive to extradition and cooperation applies. The agreements below have full Arabic text or official-government source records.
+
+#### Egypt–Turkey — Presidential Decision 222/1989
+
+- Agreement signed Ankara, 4 April 1988.
+- Decision 222/1989 issued 4 June 1989.
+- Gazette publication 26 December 1991.
+- Entry into force metadata discrepancy: 12 January 1992 in one record; 2 January 1992 in another.
+- Full Arabic text: https://mksegypt.org/public/ar/decisions/30632
+- Manshurat record/PDF: https://manshurat.org/node/20932
+
+The agreement contains two sections: judicial cooperation in criminal matters and extradition. Article 1 includes preliminary investigation, hearing accused/witnesses/experts, searches, seizure of objects, service of documents and notices; it excludes execution of arrest warrants and convictions from the first section. Articles 14–17 regulate channels, translations, authentication and refusal/notification. Articles 21 onward regulate extradition.
+
+**Agreement Art. 1 (opening):**
+
+> تتعهد الدولتان المتعاقدتان، بمقتضى أحكام هذا القسم، بأن تتبادلا التعاون القضائي على أوسع نطاق ممكن بالنسبة لأى إجراء يتعلق بجرائم تختص بها السلطات القضائية فى الدولة الطالبة وقت طلب المساعدة.
+
+**Agreement Art. 14:**
+
+> يتم التخاطب بين السلطات القضائية في الدولتين المتعاقدتين من خلال وزارتي العدل في هاتين الدولتين. وإذا اقتضى الحال يجوز التخاطب بالطريق الدبلوماسي.
+
+#### Egypt–Morocco — Presidential Decision 229/1989
+
+- Agreement signed Rabat, 22 March 1989.
+- Decision issued 4 June 1989.
+- Gazette publication metadata conflict: 20 November 1997 (Manshurat) versus 7 November 1997 (another Manshurat record); Moroccan publication record is 12 August 1997.
+- Entry into force metadata: 11 September 1997.
+- Full Arabic text: https://www.mksegypt.org/ar/decisions/27512
+- Manshurat record/PDF: https://manshurat.org/node/20931
+
+The agreement covers criminal judicial cooperation and extradition. Its opening Article 1 provides for the widest possible judicial cooperation in procedures concerning offences within the jurisdiction of either state's judicial authorities. Article 2 allows refusal where the request concerns political/tax/customs/currency offences or would prejudice sovereignty, security, public order or essential interests.
+
+**Agreement Art. 1 (opening):**
+
+> تتعهد الدولتان بمقتضى هذه الاتفاقية بأن تتبادلا التعاون القضائى على أوسع نطاق ممكن لأى إجراء يتعلق بجرائم تختص بها السلطات القضائية فى أى منهما.
+
+#### Egypt–Hungary — Presidential Decision 129/1988
+
+- Decision 129/1988 dated 26 March 1988.
+- Gazette publication 17 November 1988.
+- Entry-into-force metadata: 3 October 1988 (predates publication; verify treaty notification).
+- Manshurat full agreement PDF record: https://manshurat.org/node/20933
+
+#### Egypt–Romania — Presidential Decision 76/2003
+
+- Decision 76/2003 dated 22 March 2003.
+- Gazette publication 28 August 2003.
+- Entry-into-force metadata: 10 July 2003 (predates publication; verify treaty notification).
+- Manshurat full agreement PDF record: https://manshurat.org/node/37361
+
+Agreement covers criminal judicial cooperation, transfer of sentenced persons and extradition.
+
+#### Egypt–Switzerland — Presidential Decision 177/2001
+
+- Ministry of Finance official treaty record marks the agreement active.
+- Official MoF text page: https://mof.gov.eg/ar/legislation/legislation-5fea7dcc7bfc600007cc664d
+- Official PDF (19 pages): https://media.mof.gov.eg/mof-prd/2001_177_c317b57cfe.pdf?response-content-disposition=attachment%3B+filename%3D%222001-177.pdf%22
+- Agreement concerns judicial cooperation in criminal matters between Egypt and the Swiss Confederation.
+
+#### Egypt–Pakistan — Presidential Decision 233/1994
+
+- Gazette No. 31 follow-up, 4 August 1994.
+- Full Gazette text and agreement: https://manshurat.org/file/50795/download?token=7arjmwr3
+- Approval of the extradition agreement signed in Islamabad on 14 July 1994, subject to ratification.
+- Full agreement has 15 articles; Article 14 governs entry into force following exchange of instruments of ratification.
+
+### J7. Law 174/2025 — new Code, Book Five: international judicial cooperation and extradition
+
+The official Ministry of Justice Gazette PDF and full secondary code text contain the new Book Five. The following provisions are extracted from the full Arabic text; they will replace the old procedure-law framework only when Law 174/2025 commences (currently 1 October 2027 under Law 160/2026).
+
+**Article 511 — incoming foreign cooperation requests:**
+
+> ترسل طلبات التعاون القضائي الدولي في المسائل الجنائية الواردة من الجهات القضائية الأجنبية عبر الطريق الدبلوماسي إلى وزارة العدل متضمنة ملخص الواقعة، ونوع وموضوع الطلب المترجم إلى اللغة العربية.  
+> ويجب أن يرفق بالطلب المستندات المؤيدة له.  
+> وتتولى وزارة العدل التحقق من مدى توفر الشروط المبينة بالفقرة الأولى من هذه المادة، ولها أن تتخذ أيًا من الإجراءين الآتيين:  
+> (أولًا) حفظ الطلب إذا تبين لها عدم توفر الشروط المشار إليها مع إخطار الجهة الطالبة بأسباب الحفظ عبر الطريق الدبلوماسي.  
+> (ثانيًا) إحالة الطلبات المستوفاة للشروط المشار إليها إلى النيابة العامة لإعمال شئونها طبقًا لأحكام هذا الكتاب.  
+> ويُعرض كل من يُقبض عليه تنفيذًا لحكم الفقرة الأولى من هذه المادة على النيابة العامة خلال أربع وعشرين ساعة من وقت القبض عليه، والتي تباشر معه إجراءات التحقيق في التهمة المنسوبة إليه والمبينة بالطلب وذلك بحضور محاميه...
+
+The article further permits a senior prosecutor to order consecutive periods of provisional detention of up to 15 days each, with a total ceiling of 60 days pending the formal extradition request and decision; the Public Prosecutor may place the person on travel-ban or arrival-watch lists.
+
+**Article 514 — mandatory refusal of extradition:**
+
+> لا يجوز تسليم الأشخاص في أي من الحالات الآتية:  
+> 1- إذا كان المطلوب تسليمه مصري الجنسية، ويجوز للجهة القضائية الأجنبية تقديم طلب محاكمته مصحوبًا بالتحقيقات التي أجرتها الدولة الطالبة والمستندات، ويتعين إخطار الجهة القضائية الأجنبية بما آلت إليه الدعوى الجنائية، وموافاتها بنسخة من التصرف النهائي في فترة زمنية مناسبة.  
+> 2- إذا كانت الجريمة موضوع طلب التسليم غير معاقب عليها وفقًا لأحكام القانون المصري.  
+> 3- إذا انعقد الاختصاص للجهات القضائية المصرية بالجريمة المطلوب التسليم من أجلها.  
+> 4- إذا كانت الجريمة موضوع الطلب جريمة سياسية أو جريمة مرتبطة بها.  
+> 5- إذا كانت الجريمة المطلوب التسليم من أجلها تنحصر في الإخلال بواجبات عسكرية.
+
+**Article 515 — reasoned decision and challenge:**
+
+> يصدر النائب العام أو من يفوضه قرارًا مسببًا في طلب التسليم، ويجوز لكل من صدر قرار بتسليمه، أن يطعن فيه أمام محكمة جنح مستأنف أو المحكمة العسكرية للجنح المستأنفة بالقاهرة بحسب الأحوال، وذلك بتقرير بالطعن بقلم كتاب المحكمة خلال مدة لا تزيد على سبعة أيام من تاريخ إعلانه بالقرار، وتحدد في التقرير جلسة لنظر الطعن والفصل فيه خلال مدة لا تزيد على سبعة أيام، ويعتبر التقرير بالطعن إعلانًا بالجلسة المحددة ولو كان التقرير من وكيل، ويفصل في الطعن بقرار مسبب لا يقبل الطعن فيه، ولا ينفذ القرار الصادر بالتسليم إلا عقب الفصل في الطعن أو فوات مواعيده.
+
+**Article 516 — Egyptian request for surrender:**
+
+> يجوز للنيابة العامة أن تطلب من الجهة القضائية الأجنبية تسليم المتهم أو المحكوم عليه، وفي حالة رفض التسليم لها أن تطلب محاكمته وفقًا لقانون الدولة المطلوب منها، ويجوز للنيابة العامة أن تصدر أمرًا مسببًا بالقبض على المطلوب تسليمه، وتعتبر مدة حبسه التي تمت بالخارج مدة حبس احتياطي في شأن تطبيق قواعد تنفيذ العقوبة.
+
+**Article 517 — controlled delivery:**
+
+> يجوز للنائب العام، أو من يفوضه، بناءً على طلب الجهة الطالبة ووفقًا للشروط التي يتم الاتفاق عليها، أن يأذن بدخول أشياء تعد حيازتها جريمة أو متحصلة من جريمة أو أداة في ارتكابها إلى داخل البلاد أو عبورها إلى خارجها، دون ضبطها، أو استبدالها كليًا أو جزئيًا، وذلك تحت رقابة السلطات المصرية المختصة، متى كان من شأن ذلك التعرف على وجهة تلك الأشياء أو ضبط الجناة، وما بحوزتهم.  
+> ولا يجوز إصدار الإذن المشار إليه في الفقرة الأولى من هذه المادة، إذا كان من شأن تنفيذه الإضرار بالأمن أو سيادة الدولة أو النظام العام أو الآداب العامة أو يتعارض مع مقتضيات الأمن القومي.
+
+**Article 518 — conditions for foreign judicial assistance:**
+
+> يشترط لإجابة طلب المساعدة القضائية المقدم من الجهة القضائية الأجنبية توافر الشروط الآتية:  
+> 1- أن يتعلق طلب المساعدة القضائية بجريمة معاقب عليها في الدولة الطالبة، وتدخل في اختصاص جهاتها القضائية ولو كانت جريمة مدرجة تحت وصف آخر.  
+> 2- أن تكون المساعدة القضائية مرتبطة بمباشرة إجراءات قضائية في دعوى جنائية منظورة أمام الجهة القضائية الأجنبية.  
+> 3- ألا يكون من شأن تنفيذ طلب المساعدة القضائية الإضرار بالأمن أو سيادة الدولة أو النظام العام أو الآداب العامة أو التعارض مع مقتضيات الأمن القومي.
+
+**Article 519 — refusal grounds for judicial assistance:**
+
+> يجوز للنيابة العامة رفض طلب المساعدة القضائية في الحالات الآتية:  
+> 1- إذا كانت الجريمة موضوع طلب المساعدة القضائية غير معاقب عليها وفقًا لأحكام القانون المصري.  
+> 2- إذا كانت الجريمة موضوع طلب المساعدة القضائية جريمة سياسية أو جريمة مرتبطة بها.  
+> 3- إذا كانت الجريمة موضوع طلب المساعدة القضائية تنحصر في الإخلال بواجبات عسكرية.  
+> 4- إذا قُصد بطلب المساعدة القضائية معاقبة شخص لأسباب تتعلق بانتمائه العرقي أو الديني أو لجنسيته أو لآرائه السياسية، أو أن يكون من شأن توافر أي من هذه الأسباب الإضرار بمركزه القانوني.  
+> 5- إذا انعقد الاختصاص للجهات القضائية المصرية بالجريمة المطلوب المساعدة القضائية من أجلها.  
+> 6- إذا تعارض تنفيذ طلب المساعدة القضائية مع مبدأ عدم جواز محاكمة الشخص عن ذات الجريمة أكثر من مرة.  
+> 7- إذا انقضت الدعوى الجنائية، أو سقطت العقوبة المقضي بها بمضي المدة، وفقًا للقانون المصري أو قانون الدولة الطالبة النافذ عند تلقي طلب المساعدة القضائية.  
+> 8- إذا كان تنفيذ طلب المساعدة القضائية يخرج عن اختصاص الجهات القضائية المصرية.
+
+**Article 520 — decision:**
+
+> يصدر النائب العام أو من يفوضه قرارًا في طلب المساعدة القضائية المقدم من الجهات القضائية الأجنبية، وفي حالة الموافقة يُنفذ على وجه السرعة.
+
+**Article 521 — exceptional presidential surrender/transfer:**
+
+> استثناء من أحكام هذا الكتاب، يجوز لرئيس الجمهورية بناء على عرض النائب العام وبعد موافقة مجلس الوزراء، الموافقة على تسليم المتهمين ونقل المحكوم عليهم إلى دولهم، وذلك لمحاكمتهم أو تنفيذ العقوبة المقضي بها عليهم بحسب الأحوال، متى اقتضت مصلحة الدولة العليا ذلك.
+
+**Unextracted:** Articles 508–510 and 512–513 must be transcribed from the official Gazette PDF in the next pass; do not infer their wording from the surrounding provisions.
+
+### J8. International-cooperation acquisition status and gaps
+
+- Egypt's accession to Riyadh 1983 is supported by Presidential Decision 278/2014 and the original Gazette image; deposit/entry-into-force date needs the Arab League deposit record.
+- Law 83/1954 and the 1953 Arab League Extradition Convention are preserved as historical; Article 72 of Riyadh replaces the 1952 agreements for states bound by Riyadh.
+- UNTOC, Trafficking Protocol and Smuggling Protocol are listed as active on the Ministry of Finance international agreements database and have official Gazette PDFs.
+- The bilateral agreements with Turkey, Morocco, Hungary, Romania, Switzerland and Pakistan have been located; dates and entry-into-force metadata contain conflicts and must be checked against exchange-of-ratification records.
+- The amended Riyadh Article 69 gives priority to the agreement more conducive to extradition and judicial/security cooperation where bilateral and regional rules conflict.
+- Law 174/2025 Book Five provides a future domestic procedural framework; it is not operative until the postponed commencement date.
+- The next collection pass must include the full treaties, their ratification instruments, reservations, party status, effective dates and any termination notices. Do not treat a Ministry of Finance “active” label as a substitute for treaty-status verification.
+
+## K. Progress update — international cooperation acquisition
+
+**Estimated criminal-law domain completion: 52%** (up from 49%; approximate research-progress estimate, not a measured article-count metric).
+
+This pass added:
+- Egypt's Riyadh Convention accession instrument and the 72-article Arabic convention;
+- historical Law 83/1954 and its reservations;
+- UNTOC and both Palermo Protocols, with official Ministry of Finance Gazette PDFs;
+- six bilateral judicial-cooperation/extradition instruments;
+- Law 174/2025 Book Five Arts 511 and 514–521, with exact Arabic wording.
+
+**Complete Arabic text accessible at source:** expanded to include the regional convention, UNTOC, the two Palermo Protocols, and bilateral agreements.  
+**Full local official PDF archive and hash verification:** still 0 in this session.  
+**Lawyer verification:** 0%.  
+**Whole-project coverage:** not computable without the master-index denominator.
+
