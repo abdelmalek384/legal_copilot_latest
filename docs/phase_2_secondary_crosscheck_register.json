@@ -493,6 +493,23 @@
       "legal_status": "working_identity_3028_2010_original_gazette_scan_pending",
       "finding": "Gazette No.47 bis, 30 Nov 2010, and full 28-article Arabic transcriptions identify PM Decree 3028/2010. One SIS human-rights report misprints the number as 2038/2010. Other legal texts and Gazette-derived transcription confirm 3028/2010.",
       "next_action": "Acquire and visually inspect Official Gazette No.47 bis, 30 Nov 2010; preserve the SIS citation as a secondary-source error and do not create a 2038/2010 record."
+    },
+    {
+      "evidence_id": "XREF-CPL174-ART2-FELONY-VS-MISDEMEANOUR",
+      "document_id": "EG-CRIMINAL-PROCEDURE-174-2025",
+      "practice_areas": [
+        "criminal",
+        "criminal_procedure"
+      ],
+      "url": "https://moj.gov.eg/backend/api/documents/download/20F3150C-29F1-487E-A0F0-FCCE10CB207B",
+      "publisher": "Ministry of Justice official Gazette PDF versus Manshurat full-text reproduction",
+      "source_class": "transitional provision text discrepancy",
+      "observed_title_ar": "قانون رقم 174 لسنة 2025 بإصدار قانون الإجراءات الجنائية — المادة الثانية من مواد الإصدار",
+      "source_state": "official_full_text_and_secondary_full_text_conflict",
+      "collection_permission": "unknown",
+      "legal_status": "official_PDF_reads_felony_matters_secondary_reads_misdemeanours_visual_Gazette_check_pending",
+      "finding": "The official Ministry of Justice PDF for Official Gazette No.45 bis (d), 12 Nov 2025 reads 'الأحكام الغيابية الصادرة في مواد الجنايات' in issuance Art.2. The Manshurat full-text reproduction reads 'مواد الجنح'. Prefer the official PDF wording and retain the discrepancy pending page-image inspection.",
+      "next_action": "Inspect the original Gazette page image for issuance Art.2, capture the exact word and preserve the source discrepancy; update any secondary consolidation only after visual confirmation."
     }
   ],
   "guardrails": [
