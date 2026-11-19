@@ -742,7 +742,7 @@ https://alhasswalawfirm.com/law-library/law-1-2024
 
 ## 14.3 Law 174/2025 and Law 160/2026 — corrected current Criminal Procedure Law status
 
-**Critical correction as of 20 November 2026:** Law 174/2025 is in force from **1 October 2026**, not 1 October 2027. Law 160/2026, published in Official Gazette issue 39 bis (b) on 30 September 2026, changed the commencement wording in Article 6 of Law 174/2025. The new Criminal Procedure Code therefore commenced before the present research date.
+**Corrected status as of 20 November 2026:** Law 174/2025 is **not yet in force**. Law 160/2026, published in Official Gazette issue 39 bis (b) on 30 September 2026, postponed commencement to **1 October 2027**. The Arabic substitution formula is decisive: “تستبدل عبارة «الأول من أكتوبر لعام 2027» بعبارة «الأول من أكتوبر التالي لتاريخ نشره»” means the 2027 date is substituted for the prior “first October following publication” date. The new Code therefore does not commence until 1 October 2027.
 
 ### Law 160/2026 — complete Arabic text
 
@@ -771,9 +771,9 @@ https://alhasswalawfirm.com/law-library/law-1-2024
 - Secondary legislation record: https://www.eastlaws.com/legislation-full-text/ar/egypt/law/30-09-2026/no-160?id=5672063&sub=16684427&type=1
 
 ### Consequences for the project corpus
-1. Law 150/1950 is no longer the current general Criminal Procedure Code as of 1 Oct 2026. Retain it as a historical source and for transitional matters only.
-2. Law 140/2014 on extradition and transfer of sentenced persons is repealed by Article 4 of Law 174/2025 at commencement. Its prior treaty/transfer arrangements and any surviving implementing measures require separate transition and treaty review; do not assume all international cooperation mechanisms disappeared.
-3. The current-code source text must be versioned against the Official Gazette issue 45 bis (d), 12 Nov 2025, plus Law 160/2026. Do not use the original Law 174 text with its unamended 2027 commencement clause.
+1. Law 150/1950 remains the operative general Criminal Procedure Code on 20 Nov 2026. Retain it as the current code until 30 Sep 2027, subject to any later amendment or commencement instrument.
+2. Law 140/2014 on extradition and transfer of sentenced persons is scheduled to be repealed by Article 4 of Law 174/2025 when the new Code commences on 1 Oct 2027. Its prior treaty/transfer arrangements and any surviving implementing measures require separate transition and treaty review; do not assume all international cooperation mechanisms disappear automatically.
+3. The new-code source text must be versioned against the Official Gazette issue 45 bis (d), 12 Nov 2025, plus Law 160/2026. The new Code is enacted but deferred; do not treat it as current procedure before 1 Oct 2027.
 4. The existing tranche's treatment of Law 177/2020 (new Article 113 bis in the old Code) must be flagged for a compatibility/repeal analysis. Its old-Code article numbering cannot simply be imported into the new Code.
 5. All citations, procedural templates, offence workflows, detention timelines, appeal guidance, warrants, and investigation flows in the product must be checked against Law 174/2025 before deployment.
 
@@ -1162,3 +1162,37 @@ Working estimates after acquiring the Child Executive Regulation consolidation a
 - **Overall assigned criminal-law domain completion: approximately 53%**.
 
 The next high-value gaps are full Gazette-level extraction of PM Decisions 1463/2006, 2367/2008, 1569/2016 and 2911/2019; full text of Law 78/2003 and Law 36/2014; full consolidated text and article-level QA of Law 174/2025; weapons/drugs/prisons instruments; and a post-2023 Penal Code amendment sweep.
+
+
+---
+
+# 17. Superseding correction — Law 160/2026 defers the new Criminal Procedure Code to 1 October 2027
+
+This section expressly supersedes the incorrect commencement statement in section 14.3 and any earlier sentence in this tranche stating that Law 174/2025 commenced on 1 October 2026.
+
+## Correct legal reading
+
+Law 174/2025 originally provided in Article 6 that it would enter into force on the first of October following its publication. Since it was published on 12 November 2025, that date would have been 1 October 2026.
+
+Law 160/2026, published on 30 September 2026 and effective the following day, states:
+
+**( المادة الأولى )**
+تستبدل عبارة "الأول من أكتوبر لعام 2027" بعبارة "الأول من أكتوبر التالى لتاريخ نشره" الواردة بالمادة السادسة من القانون رقم ١٧٤ لسنة ٢٠٢٥ بإصدار قانون الإجراءات الجنائية.
+
+In Egyptian legislative drafting, “تستبدل عبارة (X) بعبارة (Y)” means phrase X is substituted for phrase Y. Therefore, the old “first October following publication” wording is replaced with “1 October 2027.” It does **not** move commencement to 1 October 2026.
+
+**Current status on 20 November 2026**
+- Law 174/2025: enacted, but not yet in force.
+- Law 160/2026: in force from 1 October 2026; it changes the future commencement date of Law 174/2025.
+- Law 150/1950: remains the operative Criminal Procedure Code through 30 September 2027, unless a later law changes that position.
+- Law 140/2014: repeal under Article 4 of Law 174/2025 is deferred until the new Code commences on 1 October 2027.
+- All provisions of the new Code may be indexed and prepared for future activation, but the Legal Copilot must not apply them as current procedural law before commencement.
+
+## Official corroboration
+- Amiri Press full Arabic transcription of Law 160/2026: https://www.alamiria.com/Sec/TashTxt?id=Aalg37zxdcU%3D
+- Official Gazette issue 39 bis (b), 30 September 2026: https://dspace.id.com.eg/items/1b1e2a48-59d9-4307-b215-1ac3a07b4ee3
+- Egyptian House of Representatives report explaining postponement until 1 October 2027: https://www.parliament.gov.eg/News_Show.aspx?frm=5874
+- Ministry of Parliamentary Affairs report, 30 September 2026: https://www.mpa.gov.eg/news/Fed3sWVq0uhsQDGOet1VsOLNflmrT6MAYhDYDUeDqEY
+- Independent news report on the Gazette publication and 2027 commencement: https://www.elwatannews.com/news/details/8368891
+
+This correction is based on the enacted Arabic operative clause and the legislature's contemporaneous explanation, not the erroneous English-language/metadata interpretation of the substitution formula.
