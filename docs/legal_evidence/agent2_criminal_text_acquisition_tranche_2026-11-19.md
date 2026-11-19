@@ -2279,3 +2279,82 @@ Law 150/1950 remains the operative Criminal Procedure Code through 30 September 
 - **Current CPL coverage:** both current Law 150/1950 and future Law 174/2025 now have complete readable Arabic text sources. The current code's older amendment chain is materially expanded, but original Gazette acquisition for older amendments remains open.
 - **Original Gazette PDFs locally archived and SHA-256 verified:** 0.
 - **Egyptian lawyer-verified records:** 0.
+
+
+---
+
+## W. Acquisition pass — older Criminal Procedure Law amendments recovered from full-text footnotes
+**Research date:** 19 November 2026.
+
+This pass converts several older amendment citations from the Law 150/1950 consolidated text into distinct instrument records and acquires full Arabic text for the amendments where accessible.
+
+### W1. Full Arabic amendment texts acquired
+
+**Law 426/1954** — Official Proceedings No.63 bis, 5 August 1954. Laweg full Arabic text:
+https://www.laweg.net/framePlain.aspx?ItemID=20871&NID=22302&Type=6&action=ViewActivePages
+
+It replaces the second paragraph of Art.9, first paragraph of Art.10 and Art.39 CPL. It clarifies when investigations may proceed without a complaint/request where public officials are victims of specified offences committed because of their office, and the related right to withdraw the complaint/request.
+
+**Law 627/1955** — Official Proceedings 1955. Laweg year index and current consolidated reproductions:
+https://www.laweg.net/Default.aspx?Year=1955&action=LegsYears
+https://lawyeregypt.net/قانون-الإجراءات-الجنائية-طبقا-لاحدث-التعديلات-بالقانون-95-لسنة-2003/
+
+It replaces Art.381 CPL with the rule applying misdemeanour/misdemeanour-procedure rules before felony courts unless otherwise provided. Later amendments to Art.381 include Law 107/1962 (the death-sentence unanimity/opinion provision).
+
+**Law 121/1956** — Egyptian Proceedings No.24 bis, 25 March 1956. Full Arabic text:
+https://www.aldhshan.com/2026/02/121-1956.html
+
+It replaces Arts.63, 64, 162, 210, 214 and 232 CPL.
+
+**Law 113/1957** — published 19 March 1957. Full Arabic text:
+https://www.aldhshan.com/2026/02/113-1957.html
+
+It amends Art.123 CPL concerning the investigator's first questioning of the accused, including identity, notification of the charge and recording the accused's statements.
+
+**Law 63/1975** — Official Gazette No.31, 31 July 1975. Full Arabic text:
+https://www.aldhshan.com/2026/02/63-1975.html
+
+It amends both the Penal Code and CPL and adds Art.160 bis CPL, authorizing the Public Prosecutor or an Advocate General, in the specified Art.118 bis (a) Penal Code cases, to refer the case to misdemeanour courts under the special procedure.
+
+**Law 174/1998** — Official Gazette No.51 bis, 20 December 1998. Full Arabic text:
+https://mksegypt.org/ar/laws/24110
+
+It replaces multiple CPL provisions, including Arts.63, 208 bis (a)–(c), 233, 260, 267, 309, 323, 324, 325 bis, 401, 402 and 412; adds Arts.18 bis, 18 bis (a), 24 bis and 251 bis; and changes monetary values used for detention/work deductions. This is a significant asset-freezing, settlement and criminal-procedure amendment.
+
+**Law 340/1952** — Egyptian Proceedings No.16 bis, 18 December 1952. Full Arabic text:
+https://www.aldhshan.com/2026/02/340-1952-17-150-1950-150-1950.html
+
+It amends Art.17 on interruption of limitation periods and removes the transitional paragraph added by Law 178/1951 to the issuance provisions of Law 150/1950.
+
+**Law 107/1962** — Official Gazette No.136, 17 June 1962. Full Arabic text:
+https://www.aldhshan.com/2025/12/107-1962.html
+
+It replaces “مستشار الإحالة” with “غرفة الاتهام” in listed provisions and modifies other procedure provisions. The full current Law 150 consolidation and secondary sources identify Law 107/1962, although one older code transcription misprints 107/1963; retain that as a date/number cross-check.
+
+### W2. Additional historical instruments and source discrepancies
+
+- Decree-Law 353/1952: the consolidated text identifies it as repealing CPL Arts.66 and 68 and amending Art.53. A separate full instrument text was not located in this pass.
+- Law 252/1952: LawHub identifies this as repealing CPL Arts.19 and 20, Official Proceedings No.42 bis, 20 December 1952.
+- Law 252/1953: a separate Aldhshan text page identifies a Law 252/1953 published 21 May 1953. Do not conflate it with Law 252/1952; the two are separate year-number combinations pending original Gazette comparison.
+- Law 43/1958 remains a footnote-identified amendment with no full text located in this pass.
+
+**Exact Arabic excerpt — Law 426/1954, Article 1 (Art.9 second paragraph):**
+
+> وفى جميع الأحوال التى يشترط القانون فيها لرفع الدعوى الجنائية تقديم شكوى أو الحصول على اذن أو طلب من المجنى عليه أو غيره لا يجوز اتخاذ اجراءات التحقيق فيها إلا بعد تقديم هذه الشكوى أو الحصول على هذا الإذن أو الطلب على أنه فى الجريمة المنصوص عليها فى المادة 185 من قانون العقوبات وفى الجرائم المنصوص عليها فى المواد 303 و306 و307 و308 من القانون المذكور إذا كان المجنى عليه فيها موظفا عاما أو شخصا ذا صفة نيابية عامة أو مكلفا بخدمة عامة وكان ارتكاب الجريمة بسبب أداء الوظيفة أو النيابة أو الخدمة العامة يجوز اتخاذ اجراءات التحقيق فيها دون حاجة إلى تقديم شكوى أو طلب أو إذن.
+
+**Exact Arabic excerpt — Law 113/1957, Art.1:**
+
+> تعدل المادة 123 من قانون الإجراءات الجنائية على الوجه الآتي: "عند حضور المتهم لأول مرة في التحقيق يجب على المحقق أن يثبت شخصيته ثم يحيطه علماً بالتهمة المنسوبة إليه ويثبت أقواله في المحضر.
+
+**Exact Arabic excerpt — Law 63/1975, Art.160 bis:**
+
+> يجوز للنائب العام أو المحامى العام فى الأحوال المبينة فى الفقرة الأولى من المادة 118 مكررا (أ) من قانون العقوبات أن يحيل الدعوى إلى محاكم الجنح لتقضى فيها وفقا لأحكام المادة المذكورة.
+
+### W3. Progress update after sixth acquisition pass — 19 November 2026
+
+- **Estimated assigned criminal-law domain completion: 71%** (qualitative research-coverage estimate; not article-count, local corpus-ingestion or lawyer-verification metric). Prior pass: 69%.
+- **New distinct historical amendment records added:** 10, including 426/1954, 627/1955, 121/1956, 113/1957, 63/1975, 174/1998, 340/1952, 252/1952, 252/1953 and 353/1952. Law 107/1962 was upgraded from metadata-only to full Arabic text accessible.
+- **Full texts acquired:** six amendment instruments in this pass (426/1954, 121/1956, 113/1957, 63/1975, 174/1998, 340/1952), plus accessible full text/operative excerpt for 627/1955 and 107/1962.
+- **Outstanding:** Law 43/1958, original Gazette scans for 1950s instruments, and article-by-article reconciliation of every footnote.
+- **Original Gazette PDFs locally archived and SHA-256 verified:** 0.
+- **Egyptian lawyer-verified records:** 0.
