@@ -20,8 +20,18 @@
   "queue": [
     {
       "queue_item_id": "ACQ-001",
-      "document_ids": ["EG-CONSTITUTION-2014"],
-      "practice_areas": ["constitutional", "civil", "criminal", "family", "administrative", "tax", "property"],
+      "document_ids": [
+        "EG-CONSTITUTION-2014"
+      ],
+      "practice_areas": [
+        "constitutional",
+        "civil",
+        "criminal",
+        "family",
+        "administrative",
+        "tax",
+        "property"
+      ],
       "priority": "P0",
       "action": "Locate the complete original Official Gazette issue and amendment instruments; verify the currently applicable constitutional text and amendment chain.",
       "candidate_source": "https://www.presidency.eg/ar/مصر/الدستور/",
@@ -30,12 +40,26 @@
       "acquisition_state": "not_acquired",
       "legal_review_state": "not_started",
       "blocker": "Exact source terms and authorized storage/indexing/commercial display method not established.",
-      "required_evidence": ["official Gazette issue and page range", "original-file SHA-256", "amendment instrument links", "provision-level version map", "Egyptian constitutional-lawyer review"]
+      "required_evidence": [
+        "official Gazette issue and page range",
+        "original-file SHA-256",
+        "amendment instrument links",
+        "provision-level version map",
+        "Egyptian constitutional-lawyer review"
+      ]
     },
     {
       "queue_item_id": "ACQ-002",
-      "document_ids": ["EG-LABOUR-LAW-14-2025", "EG-LABOUR-DECISION-259-2025", "EG-LABOUR-DECISION-260-2025", "EG-LABOUR-DECISION-264-2025", "EG-LABOUR-DECISION-271-2025"],
-      "practice_areas": ["labour"],
+      "document_ids": [
+        "EG-LABOUR-LAW-14-2025",
+        "EG-LABOUR-DECISION-259-2025",
+        "EG-LABOUR-DECISION-260-2025",
+        "EG-LABOUR-DECISION-264-2025",
+        "EG-LABOUR-DECISION-271-2025"
+      ],
+      "practice_areas": [
+        "labour"
+      ],
       "priority": "P0",
       "action": "Acquire Law 14/2025 and separately identified implementing decisions from authorized Gazette/Proceedings copies; capture exact titles, dates, page ranges and legal basis.",
       "candidate_sources": [
@@ -48,44 +72,96 @@
       "acquisition_state": "not_acquired",
       "legal_review_state": "not_started",
       "blocker": "Source/repository terms and permission for intended acquisition and product use not established.",
-      "required_evidence": ["original Gazette/Proceedings issue and page range", "original-file SHA-256", "commencement and transition review", "decision-to-enabling-provision links", "subsequent amendment search", "Egyptian labour-lawyer review"]
+      "required_evidence": [
+        "original Gazette/Proceedings issue and page range",
+        "original-file SHA-256",
+        "commencement and transition review",
+        "decision-to-enabling-provision links",
+        "subsequent amendment search",
+        "Egyptian labour-lawyer review"
+      ]
     },
     {
       "queue_item_id": "ACQ-003",
-      "document_ids": ["EG-PENAL-CODE-58-1937"],
-      "practice_areas": ["criminal"],
+      "document_ids": [
+        "EG-PENAL-CODE-58-1937"
+      ],
+      "practice_areas": [
+        "criminal"
+      ],
       "priority": "P0",
-      "action": "Locate official promulgated text and all later amending instruments; build an article-level amendment chain with offence-date and more-favourable-law flags.",
+      "action": "Obtain authorized original Gazette text and hash; full 540-article secondary Arabic text and Law 185/2023 Gazette PDF are now located. Collect all amendments after 2023 and build an article-level change map; do not duplicate the existing EG-PENAL-CODE-58-1937 record.",
       "candidate_source": "https://www.alamiria.com/Sec/Home",
       "source_type": "official publisher portal; exact source document not yet pinned",
       "permission_state": "unknown",
-      "acquisition_state": "not_acquired",
+      "acquisition_state": "full_secondary_text_accessible_official_amendment_pdf_accessible",
       "legal_review_state": "not_started",
-      "blocker": "Exact direct source and terms not established.",
-      "required_evidence": ["official Gazette source and page range", "original-file SHA-256", "all identified amendments", "article-level change map", "Egyptian criminal-lawyer review"]
+      "blocker": "Official consolidated code not yet lawfully archived/hashed; source terms and permission for local storage, indexing, commercial use and display remain unknown.",
+      "required_evidence": [
+        "official Gazette source and page range",
+        "original-file SHA-256",
+        "all identified amendments",
+        "article-level change map",
+        "Egyptian criminal-lawyer review",
+        "full 540-article article segmentation",
+        "Law 185/2023 and later amendments",
+        "Egyptian criminal-lawyer review of offence-date temporal law"
+      ],
+      "candidate_sources": [
+        "https://www.cc.gov.eg/legislation_single?id=404680",
+        "https://alhasswalawfirm.com/law-library/law-58-1937",
+        "https://mediadr.sis.gov.eg/bitstream/handle/123456789/49252/OG48_20231204_0120.pdf?isAllowed=y&sequence=2"
+      ]
     },
     {
       "queue_item_id": "ACQ-004",
-      "document_ids": ["EG-CRIMINAL-PROCEDURE-150-1950", "EG-CRIMINAL-PROCEDURE-174-2025", "EG-CRIMINAL-PROCEDURE-160-2026"],
-      "practice_areas": ["criminal"],
+      "document_ids": [
+        "EG-CRIMINAL-PROCEDURE-150-1950",
+        "EG-CRIMINAL-PROCEDURE-174-2025",
+        "EG-CRIMINAL-PROCEDURE-160-2026"
+      ],
+      "practice_areas": [
+        "criminal"
+      ],
       "priority": "P0",
-      "action": "Acquire authorized official copies of the 1950 Code and Laws 174/2025 and 160/2026; map commencement, transitional effect and replacement relationships before assigning operative status.",
+      "action": "Acquire authorized copies of Law 150/1950 and Gazette issues for Laws 174/2025 and 160/2026; full Arabic Law 174 text is now accessible from Ministry of Justice Gazette PDF and secondary HTML, and Law 150 secondary full text is located. Map repeal/commencement/transitional effect before assigning operative status.",
       "candidate_sources": [
-        "https://www.alamiria.com/Sec/TashTxt?id=Aalg37zxdcU%3D",
+        "https://moj.gov.eg/backend/api/documents/download/20F3150C-29F1-487E-A0F0-FCCE10CB207B",
+        "https://temp.manshurat.org/content/qnwn-ljrt-ljnyy-rqm-174-lsn-2025-0",
         "https://dspace.id.com.eg/handle/123456789/4666",
-        "https://dspace.id.com.eg/handle/123456789/8851"
+        "https://dspace.id.com.eg/handle/123456789/8851",
+        "https://alhasswalawfirm.com/law-library/law-150-1950"
       ],
       "source_type": "official text and Gazette metadata candidates",
       "permission_state": "unknown_or_pending",
-      "acquisition_state": "not_acquired",
+      "acquisition_state": "law174_official_pdf_text_accessible_law150_secondary_text_accessible",
       "legal_review_state": "urgent_review_required",
-      "blocker": "Source/repository terms, original issue review, and counsel determination of transition not complete.",
-      "required_evidence": ["complete Gazette issues and page ranges", "original-file SHA-256", "commencement clauses", "provision-level relationship map", "Egyptian criminal-procedure lawyer sign-off"]
+      "blocker": "Original source terms and authorized storage/indexing/commercial display method remain unknown; Law 150 complete amendment consolidation and counsel review pending.",
+      "required_evidence": [
+        "complete Gazette issues and page ranges",
+        "original-file SHA-256",
+        "commencement clauses",
+        "provision-level relationship map",
+        "Egyptian criminal-procedure lawyer sign-off",
+        "full 552-article extraction and Gazette collation",
+        "Law 174 Art. 2 source discrepancy log: official PDF says الجنايات, secondary HTML says الجنح",
+        "Law 174 Arts 514–520 extradition text",
+        "Law 150 complete amendment chain including Law 1/2024"
+      ]
     },
     {
       "queue_item_id": "ACQ-005",
-      "document_ids": ["EG-CIVIL-CODE-131-1948", "EG-CIVIL-PROCEDURE-13-1968", "EG-EVIDENCE-25-1968"],
-      "practice_areas": ["civil", "commercial", "property", "family"],
+      "document_ids": [
+        "EG-CIVIL-CODE-131-1948",
+        "EG-CIVIL-PROCEDURE-13-1968",
+        "EG-EVIDENCE-25-1968"
+      ],
+      "practice_areas": [
+        "civil",
+        "commercial",
+        "property",
+        "family"
+      ],
       "priority": "P0",
       "action": "Pin original Gazette publications for the Civil Code, Civil and Commercial Procedure Code, and Evidence Law; identify amendments and related procedural instruments.",
       "candidate_source": "https://www.alamiria.com/Sec/Home",
@@ -94,12 +170,28 @@
       "acquisition_state": "not_acquired",
       "legal_review_state": "not_started",
       "blocker": "Exact documents and terms not established.",
-      "required_evidence": ["official Gazette issue/page range for each law", "original-file SHA-256", "amendment chain", "provision-level current text map", "Egyptian civil-procedure lawyer review"]
+      "required_evidence": [
+        "official Gazette issue/page range for each law",
+        "original-file SHA-256",
+        "amendment chain",
+        "provision-level current text map",
+        "Egyptian civil-procedure lawyer review"
+      ]
     },
     {
       "queue_item_id": "ACQ-006",
-      "document_ids": ["EG-COMMERCIAL-CODE-17-1999", "EG-COMPANIES-LAW-159-1981", "EG-BANKRUPTCY-11-2018", "EG-INVESTMENT-LAW-72-2017"],
-      "practice_areas": ["commercial", "civil", "administrative", "tax"],
+      "document_ids": [
+        "EG-COMMERCIAL-CODE-17-1999",
+        "EG-COMPANIES-LAW-159-1981",
+        "EG-BANKRUPTCY-11-2018",
+        "EG-INVESTMENT-LAW-72-2017"
+      ],
+      "practice_areas": [
+        "commercial",
+        "civil",
+        "administrative",
+        "tax"
+      ],
       "priority": "P1",
       "action": "Acquire primary publications and executive regulations; map changes, repeals, and related implementing instruments separately.",
       "candidate_source": "https://www.alamiria.com/Sec/Home",
@@ -108,12 +200,26 @@
       "acquisition_state": "not_acquired",
       "legal_review_state": "not_started",
       "blocker": "Exact primary documents and terms not established.",
-      "required_evidence": ["Gazette issue/page range per instrument", "original-file SHA-256", "executive regulation links", "amendment chain", "Egyptian commercial-lawyer review"]
+      "required_evidence": [
+        "Gazette issue/page range per instrument",
+        "original-file SHA-256",
+        "executive regulation links",
+        "amendment chain",
+        "Egyptian commercial-lawyer review"
+      ]
     },
     {
       "queue_item_id": "ACQ-007",
-      "document_ids": ["EG-INCOME-TAX-91-2005", "EG-INCOME-TAX-AMENDMENT-7-2024", "EG-VAT-67-2016", "EG-VAT-AMENDMENT-177-2023", "EG-UNIFIED-TAX-PROCEDURES-206-2020"],
-      "practice_areas": ["tax"],
+      "document_ids": [
+        "EG-INCOME-TAX-91-2005",
+        "EG-INCOME-TAX-AMENDMENT-7-2024",
+        "EG-VAT-67-2016",
+        "EG-VAT-AMENDMENT-177-2023",
+        "EG-UNIFIED-TAX-PROCEDURES-206-2020"
+      ],
+      "practice_areas": [
+        "tax"
+      ],
       "priority": "P1",
       "action": "Acquire primary laws and amendment instruments; map tax-year-specific changes and commencement separately. Do not calculate tax from an unverified merged text.",
       "candidate_sources": [
@@ -126,12 +232,25 @@
       "acquisition_state": "not_acquired",
       "legal_review_state": "not_started",
       "blocker": "Exact original publications, full amendment history, and source terms not established.",
-      "required_evidence": ["official Gazette issue/page range", "original-file SHA-256", "provision-level before/after map", "tax-year applicability", "subsequent annual amendments", "Egyptian tax-lawyer review"]
+      "required_evidence": [
+        "official Gazette issue/page range",
+        "original-file SHA-256",
+        "provision-level before/after map",
+        "tax-year applicability",
+        "subsequent annual amendments",
+        "Egyptian tax-lawyer review"
+      ]
     },
     {
       "queue_item_id": "ACQ-008",
-      "document_ids": ["EG-PERSONAL-STATUS-PROCEDURE-1-2000", "EG-FAMILY-COURTS-LAW-10-2004", "EG-PERSONAL-STATUS-COLLECTION"],
-      "practice_areas": ["family"],
+      "document_ids": [
+        "EG-PERSONAL-STATUS-PROCEDURE-1-2000",
+        "EG-FAMILY-COURTS-LAW-10-2004",
+        "EG-PERSONAL-STATUS-COLLECTION"
+      ],
+      "practice_areas": [
+        "family"
+      ],
       "priority": "P1",
       "action": "Acquire primary texts and separate the applicable personal-status rules by legal topic and applicable regime; do not represent a broad family-law collection record as a single statute.",
       "candidate_source": "https://www.alamiria.com/Sec/Home",
@@ -140,12 +259,23 @@
       "acquisition_state": "not_acquired",
       "legal_review_state": "not_started",
       "blocker": "Primary texts and full amendment history not established.",
-      "required_evidence": ["original Gazette texts", "amendments and implementing instruments", "topic/regime applicability map", "Egyptian family-lawyer review"]
+      "required_evidence": [
+        "original Gazette texts",
+        "amendments and implementing instruments",
+        "topic/regime applicability map",
+        "Egyptian family-lawyer review"
+      ]
     },
     {
       "queue_item_id": "ACQ-009",
-      "document_ids": ["EG-STATE-COUNCIL-ADMINISTRATIVE-LAW-COLLECTION", "EG-ADMINISTRATIVE-PROCUREMENT-LAW-COLLECTION"],
-      "practice_areas": ["administrative", "commercial"],
+      "document_ids": [
+        "EG-STATE-COUNCIL-ADMINISTRATIVE-LAW-COLLECTION",
+        "EG-ADMINISTRATIVE-PROCUREMENT-LAW-COLLECTION"
+      ],
+      "practice_areas": [
+        "administrative",
+        "commercial"
+      ],
       "priority": "P1",
       "action": "Acquire State Council Law and public procurement instruments with executive rules; track commencement, appeals and deadlines separately.",
       "candidate_source": "https://www.alamiria.com/Sec/Home",
@@ -154,12 +284,22 @@
       "acquisition_state": "not_acquired",
       "legal_review_state": "not_started",
       "blocker": "Exact base statutes, source terms and amendment chain not established.",
-      "required_evidence": ["original Gazette texts", "executive instruments", "amendment/repeal relationships", "deadline rules reviewed by Egyptian administrative lawyer"]
+      "required_evidence": [
+        "original Gazette texts",
+        "executive instruments",
+        "amendment/repeal relationships",
+        "deadline rules reviewed by Egyptian administrative lawyer"
+      ]
     },
     {
       "queue_item_id": "ACQ-010",
-      "document_ids": ["EG-PROPERTY-LAND-REGISTRATION-COLLECTION"],
-      "practice_areas": ["property", "civil"],
+      "document_ids": [
+        "EG-PROPERTY-LAND-REGISTRATION-COLLECTION"
+      ],
+      "practice_areas": [
+        "property",
+        "civil"
+      ],
       "priority": "P2",
       "action": "Acquire Law 114/1946, Law 68/1947 and subsequent amendment/implementing instruments; keep registration, notarization and substantive property ownership rules distinct.",
       "candidate_source": "https://www.alamiria.com/Sec/Home",
@@ -168,12 +308,23 @@
       "acquisition_state": "not_acquired",
       "legal_review_state": "not_started",
       "blocker": "Original Gazette texts and complete amendment chains not established.",
-      "required_evidence": ["original Gazette texts", "amendment history", "registration vs notarization distinction", "Egyptian property-lawyer review"]
+      "required_evidence": [
+        "original Gazette texts",
+        "amendment history",
+        "registration vs notarization distinction",
+        "Egyptian property-lawyer review"
+      ]
     },
     {
       "queue_item_id": "ACQ-011",
-      "document_ids": ["EG-IP-LAW-82-2002"],
-      "practice_areas": ["intellectual_property", "commercial", "technology"],
+      "document_ids": [
+        "EG-IP-LAW-82-2002"
+      ],
+      "practice_areas": [
+        "intellectual_property",
+        "commercial",
+        "technology"
+      ],
       "priority": "P2",
       "action": "Acquire primary text, executive regulations and subsequent amendments; use WIPO Lex only as a discovery/cross-check source unless reuse permission is established.",
       "candidate_sources": [
@@ -185,21 +336,268 @@
       "acquisition_state": "not_acquired",
       "legal_review_state": "not_started",
       "blocker": "Original publication, amendment chain and intended-use terms not established.",
-      "required_evidence": ["official Gazette text", "amendments and executive regulations", "treaty status where relevant", "Egyptian IP-lawyer review"]
+      "required_evidence": [
+        "official Gazette text",
+        "amendments and executive regulations",
+        "treaty status where relevant",
+        "Egyptian IP-lawyer review"
+      ]
     },
     {
       "queue_item_id": "ACQ-012",
-      "document_ids": ["EG-JUDGMENTS-CASSATION", "EG-JUDGMENTS-SCC"],
-      "practice_areas": ["civil", "criminal", "labour", "commercial", "family", "administrative", "tax", "property", "intellectual_property"],
+      "document_ids": [
+        "EG-JUDGMENTS-CASSATION",
+        "EG-JUDGMENTS-SCC"
+      ],
+      "practice_areas": [
+        "civil",
+        "criminal",
+        "labour",
+        "commercial",
+        "family",
+        "administrative",
+        "tax",
+        "property",
+        "intellectual_property"
+      ],
       "priority": "blocked",
       "action": "Request licensed API, official export or written exception before automated acquisition or commercial indexing of judgments. In the meantime, retain citation metadata and manually entered judgments only where their provenance and rights are documented.",
-      "candidate_sources": ["https://cc.gov.eg/terms", "https://www.sccourt.gov.eg/"],
+      "candidate_sources": [
+        "https://cc.gov.eg/terms",
+        "https://www.sccourt.gov.eg/"
+      ],
       "source_type": "official court portals",
       "permission_state": "restricted_or_unknown",
       "acquisition_state": "blocked_pending_written_authorization",
       "legal_review_state": "not_started",
       "blocker": "Court of Cassation published terms restrict automated/bulk extraction and require prior written approval for commercial use; other court-source terms also need review.",
-      "required_evidence": ["written permission or license", "approved acquisition method and rate limits", "judgment citation and court/date/chamber metadata", "anonymization/privacy review", "lawyer relevance and precedential-weight review"]
+      "required_evidence": [
+        "written permission or license",
+        "approved acquisition method and rate limits",
+        "judgment citation and court/date/chamber metadata",
+        "anonymization/privacy review",
+        "lawyer relevance and precedential-weight review"
+      ]
+    },
+    {
+      "queue_item_id": "ACQ-013",
+      "document_ids": [
+        "EG-CYBERCRIME-175-2018",
+        "EG-CYBERCRIME-EXEC-1699-2020"
+      ],
+      "practice_areas": [
+        "criminal",
+        "technology"
+      ],
+      "priority": "P0",
+      "action": "Archive/obtain authorized full Arabic text of Law 175/2018 and PM Decree 1699/2020; extract all 41 law articles and all regulation articles/appendices, especially Arts 9–10 digital-evidence rules. Verify subsequent amendments.",
+      "candidate_sources": [
+        "https://escc.gov.eg/assets/docs/law-175-2018.pdf",
+        "https://masaar.net/ar/egypt_laws/اللائحة-التنفيذية-لقانون-مكافحة-جرائم-تقنية-المعلومات/",
+        "https://www.eastlaws.com/legislation-full-text/ar/egypt/prime-minister-decision/27-08-2020/no-1699?id=2000041&type=1"
+      ],
+      "source_type": "official Gazette/regulator text and secondary full-text candidates; exact source terms must be reviewed per item",
+      "permission_state": "unknown_or_pending",
+      "acquisition_state": "full_text_accessible_not_archived_or_selected_excerpts_only",
+      "legal_review_state": "not_started",
+      "blocker": "Official PDF text and full secondary regulation are readable, but original-file preservation, source-specific terms and intended-use permission are not established. Do not treat the unverified 635/2020 PDF as the regulation.",
+      "required_evidence": [
+        "original Gazette issue and PDF SHA-256",
+        "all 41 articles and all regulation appendices",
+        "Article 11 and Regulation Article 9 digital evidence comparison",
+        "later amendments and ministerial decisions",
+        "Egyptian cybercrime-lawyer review"
+      ]
+    },
+    {
+      "queue_item_id": "ACQ-014",
+      "document_ids": [
+        "EG-AML-80-2002",
+        "EG-AML-AMEND-154-2022",
+        "EG-AML-EXEC-951-2003",
+        "EG-AML-EXEC-AMEND-3331-2023"
+      ],
+      "practice_areas": [
+        "criminal",
+        "financial_regulation",
+        "commercial"
+      ],
+      "priority": "P0",
+      "action": "Obtain authorized FRA consolidated Arabic AML Law and Executive Regulations; extract full Law 80/2002 as amended through 154/2022 and PM Decree 951/2003 as updated through PM Decree 3331/2023; reconcile Decree 457/2020.",
+      "candidate_sources": [
+        "https://fra.gov.eg/wp-content/uploads/2024/05/قانون-مكافحة-غسل-الأموال-1.pdf",
+        "https://fra.gov.eg/regulations/اللائحة-التنفيذية-لقانون-مكافحة-غسل-ا/",
+        "https://fra.gov.eg/wp-content/uploads/2023/09/3331.pdf",
+        "https://dspace.id.com.eg/server/api/core/bitstreams/1fe32968-2f23-489d-9045-5a4032fdd9c3/content"
+      ],
+      "source_type": "official Gazette/regulator text and secondary full-text candidates; exact source terms must be reviewed per item",
+      "permission_state": "unknown_or_pending",
+      "acquisition_state": "full_text_accessible_not_archived_or_selected_excerpts_only",
+      "legal_review_state": "not_started",
+      "blocker": "FRA PDFs are readable but exact terms for local archiving, commercial indexing and excerpt display have not been reviewed. Decree 457/2020 is an unresolved amendment-chain conflict.",
+      "required_evidence": [
+        "FRA consolidated text SHA-256 and page range",
+        "all five statutory amendments and full Art-by-Art map",
+        "Decrees 1463/2006, 2367/2008, 1569/2016, 2910/2019, 3331/2023 and 457/2020 reconciliation",
+        "Egyptian AML lawyer review"
+      ]
+    },
+    {
+      "queue_item_id": "ACQ-015",
+      "document_ids": [
+        "EG-DRUGS-182-1960",
+        "EG-DRUGS-AMEND-134-2019",
+        "EG-CRIMINAL-AMEND-19-2020",
+        "EG-DRUGS-DECISION-44-2026",
+        "EG-DRUGS-DECISION-242-2026"
+      ],
+      "practice_areas": [
+        "criminal",
+        "health_regulation"
+      ],
+      "priority": "P0",
+      "action": "Acquire the complete current Arabic Narcotics Law and all amendment instruments; OCR and version every schedule under Decision 44/2026 as amended by Decision 242/2026. Preserve old schedules as historical snapshots.",
+      "candidate_sources": [
+        "https://edaegypt.gov.eg/ar/المرجع-التنظيمي-لهيئة-الدواء-المصرية/القوانين-واللوائح-التنفيذية/تعديلات-قانون-رقم-182-لسنة-1960/",
+        "https://dev.edaegypt.gov.eg/media/dkjooww3/قرار-وزارة-الصحة-والسكان-رقم-44-لسنة-2026-ar-2026_.pdf",
+        "https://dev.edaegypt.gov.eg/media/lydpgqi5/لمكافحة-المخدرات_2026_242-وزير-الصحة.pdf",
+        "https://lawhub.info/eg/?p=11739"
+      ],
+      "source_type": "official Gazette/regulator text and secondary full-text candidates; exact source terms must be reviewed per item",
+      "permission_state": "unknown_or_pending",
+      "acquisition_state": "full_text_accessible_not_archived_or_selected_excerpts_only",
+      "legal_review_state": "not_started",
+      "blocker": "Official EDA-hosted PDFs are readable, but full schedule OCR, original-file hashes and terms for storage/reuse remain incomplete.",
+      "required_evidence": [
+        "full Law 182 Arabic text and amendment chain",
+        "full 34-page Decision 44 schedules",
+        "full Decision 242 amended schedule items",
+        "SCC judgment case 33/47 and subsequent schedule decisions",
+        "Egyptian criminal/drug-control lawyer review"
+      ]
+    },
+    {
+      "queue_item_id": "ACQ-016",
+      "document_ids": [
+        "EG-WEAPONS-394-1954",
+        "EG-WEAPONS-AMEND-163-2022"
+      ],
+      "practice_areas": [
+        "criminal"
+      ],
+      "priority": "P1",
+      "action": "Obtain authorized Gazette text for Law 394/1954, Law 163/2022, Law 5/2019 and all other amendments; collect the full Interior Minister implementing decrees and current weapon schedules.",
+      "candidate_sources": [
+        "https://manshurat.org/node/7414",
+        "https://register.cc.gov.eg/publications/30/download",
+        "https://ahmedazimelgamel.blogspot.com/2022/11/163-2022-394-1954.html",
+        "https://manshurat.org/node/7415"
+      ],
+      "source_type": "official Gazette/regulator text and secondary full-text candidates; exact source terms must be reviewed per item",
+      "permission_state": "unknown_or_pending",
+      "acquisition_state": "full_text_accessible_not_archived_or_selected_excerpts_only",
+      "legal_review_state": "not_started",
+      "blocker": "Court portal terms and restricted database policy must be respected; secondary text is accessible but original official text and reuse permissions are not secured.",
+      "required_evidence": [
+        "Law 163/2022 original Gazette PDF and SHA-256",
+        "full 53-article statute and all amendments",
+        "Decree 770/1954 and subsequent amendments",
+        "Egyptian weapons-lawyer review"
+      ]
+    },
+    {
+      "queue_item_id": "ACQ-017",
+      "document_ids": [
+        "EG-CHILD-12-1996",
+        "EG-CHILD-AMEND-126-2008",
+        "EG-CHILD-EXEC-2075-2010"
+      ],
+      "practice_areas": [
+        "criminal",
+        "family",
+        "child_protection"
+      ],
+      "priority": "P1",
+      "action": "Obtain authorized complete Child Law 12/1996 text, Law 126/2008, current Executive Regulations 2075/2010 and all amendments; keep Decree 3452/1997 as historical only.",
+      "candidate_sources": [
+        "https://lawyeregypt.net/قانون-الطفل-المصرى-رقم-12-لسنة-1996",
+        "https://www.laweg.net/framePlain.aspx?ItemID=8964&NID=7658&Type=6&action=ViewActivePages",
+        "https://alhasswalawfirm.com/law-library/decree-2075-2010"
+      ],
+      "source_type": "official Gazette/regulator text and secondary full-text candidates; exact source terms must be reviewed per item",
+      "permission_state": "unknown_or_pending",
+      "acquisition_state": "full_text_accessible_not_archived_or_selected_excerpts_only",
+      "legal_review_state": "not_started",
+      "blocker": "Full secondary text is accessible, but official Gazette copy of Decree 2075/2010 and post-2020 amendment chain are not established.",
+      "required_evidence": [
+        "complete 194-article regulation extraction",
+        "Gazette publication and repeal clause for 3452/1997",
+        "post-2020 amendment search",
+        "Egyptian juvenile-justice lawyer review"
+      ]
+    },
+    {
+      "queue_item_id": "ACQ-018",
+      "document_ids": [
+        "EG-PRISONS-396-1956",
+        "EG-CRIMINAL-AMEND-19-2020",
+        "EG-PRISONS-AMEND-14-2022",
+        "EG-PRISONS-EXEC-79-1961"
+      ],
+      "practice_areas": [
+        "criminal",
+        "prisons",
+        "human_rights"
+      ],
+      "priority": "P1",
+      "action": "Obtain current consolidated Law 396/1956, Laws 19/2020 and 14/2022, and complete Interior Minister Decree 79/1961 with amendments. Preserve historical text and terminology changes.",
+      "candidate_sources": [
+        "https://www.notariesofegypt.org/article.php?id=469",
+        "https://temp.manshurat.org/file/87963/download?token=oPuxA7uk",
+        "https://www.laweg.net/framePlain.aspx?ItemID=115433&NID=142457&Type=6&action=ViewActivePages",
+        "https://manshurat.org/node/12358"
+      ],
+      "source_type": "official Gazette/regulator text and secondary full-text candidates; exact source terms must be reviewed per item",
+      "permission_state": "unknown_or_pending",
+      "acquisition_state": "full_text_accessible_not_archived_or_selected_excerpts_only",
+      "legal_review_state": "not_started",
+      "blocker": "Secondary text and a Gazette-text copy are readable; original consolidated statute, Decree 79/1961 updates and reuse terms remain unverified.",
+      "required_evidence": [
+        "full 396/1956 text and article change map",
+        "Law 19/2020 Article 52 bis and Narcotics Art 46 bis (a) change",
+        "Law 14/2022 title/terminology substitutions",
+        "all amendments to Decree 79/1961",
+        "Egyptian prison-lawyer review"
+      ]
+    },
+    {
+      "queue_item_id": "ACQ-019",
+      "document_ids": [
+        "EG-EXTRADITION-140-2014",
+        "EG-CRIMINAL-PROCEDURE-174-2025"
+      ],
+      "practice_areas": [
+        "criminal",
+        "international_cooperation"
+      ],
+      "priority": "P1",
+      "action": "Obtain complete Arabic text of Law 140/2014, future CPL 174/2025 Arts 514–521, Arab League extradition convention approval Law 83/1954 and all bilateral/multilateral extradition, MLA and transfer-of-sentenced-persons treaties.",
+      "candidate_sources": [
+        "https://www.aldhshan.com/2026/02/140-2014.html",
+        "https://manshurat.org/node/6565",
+        "https://temp.manshurat.org/content/qnwn-ljrt-ljnyy-rqm-174-lsn-2025-0"
+      ],
+      "source_type": "official Gazette/regulator text and secondary full-text candidates; exact source terms must be reviewed per item",
+      "permission_state": "unknown_or_pending",
+      "acquisition_state": "full_text_accessible_not_archived_or_selected_excerpts_only",
+      "legal_review_state": "not_started",
+      "blocker": "Law 140/2014 full short text is accessible secondarily; treaty collection and new Code Arts 514–520 extraction remain incomplete. Law 140 repeal timing requires counsel review.",
+      "required_evidence": [
+        "all treaty texts and ratification instruments",
+        "new Code Arts 514–520 exact Arabic",
+        "repeal/commencement transition review",
+        "Egyptian international criminal cooperation lawyer review"
+      ]
     }
   ],
   "next_decisions": [
@@ -207,5 +605,6 @@
     "Choose a first acquisition batch only after permission is documented; do not run the downloader against this queue as-is.",
     "Where automated acquisition is blocked, use authorized manual document supply and record the permission evidence.",
     "Do not represent the inventory as coverage-complete; update the coverage matrix only when source documents and amendment chains are verified."
-  ]
+  ],
+  "queue_updated_on": "2026-11-19"
 }
