@@ -6526,8 +6526,8 @@
     "new_inventory_records_added_this_session": 81,
     "inventory_total_documents": 168,
     "acquisition_queue_items": 24,
-    "crosscheck_register_count": 19,
-    "notes": "Qualitative research-coverage estimate, not article-count or lawyer-QA metric. This pass improved source and text coverage for AML, child justice, prisons and narcotics schedules. Two new amendment-instrument records were added without duplicating base laws. Publicly readable source text is not represented as locally archived/hash-verified; permission for storage/indexing/commercial use remains unknown.",
+    "crosscheck_register_count": 22,
+    "notes": "Qualitative research-coverage estimate, not article-count or lawyer-QA metric. This pass improved source and text coverage for AML, child justice, prisons and narcotics schedules. Two new amendment-instrument records were added without duplicating base laws. Publicly readable source text is not represented as locally archived/hash-verified; permission for storage/indexing/commercial use remains unknown. Cross-check register expanded to 22 entries for AML Decree 457/2020 date conflict, Prisons Law 14/2022 publication metadata conflict, and Decision 242/2026 schedule OCR verification.",
     "last_acquisition_pass_increment_percent": 3,
     "last_acquisition_pass_date": "2026-11-19"
   }
