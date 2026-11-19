@@ -630,6 +630,40 @@
       "legal_status": "current_text_amended_through_decision133_2026",
       "finding": "Decision186/2024 issued 28 Aug 2024 and published 7 Oct 2024. The FRA official consolidated text records title change by Decision3/2025, replacement of Art.1 by Decision30/2025, and later amendments by Decisions41/2026 and133/2026. Decision133/2026 was published in Waqa'i No.163 follow-up, 29 Jul 2026 and effective 30 Jul 2026.",
       "next_action": "Acquire original Gazette scans for Decisions3/2025,30/2025,41/2026,133/2026; produce a versioned Art.1 redline and identify all covered non-bank financial institutions and microinsurance exceptions."
+    },
+    {
+      "evidence_id": "XREF-AML-457-2020-GAZETTE-ISSUE",
+      "document_id": "EG-AML-EXEC-AMEND-457-2020",
+      "practice_areas": [
+        "criminal",
+        "aml_cft"
+      ],
+      "url": "https://fra.gov.eg/wp-content/uploads/2025/04/اللائحة-التنفيذية-لقانون-مكافحة-غسل-الأموال-1-1.pdf",
+      "publisher": "Official FRA 2023 consolidated regulation versus Laweg and other full-text reproductions",
+      "source_class": "publication issue/date discrepancy",
+      "observed_title_ar": "قرار رئيس مجلس الوزراء رقم 457 لسنة 2020 بتعديل بعض أحكام اللائحة التنفيذية لقانون مكافحة غسل الأموال",
+      "source_state": "full_text_accessible_official_consolidation_metadata_conflict",
+      "collection_permission": "unknown",
+      "legal_status": "current_amendment_embedded_in_official_consolidation_original_Gazette_issue_unresolved",
+      "finding": "The current FRA-hosted 2023 consolidated text says Decree457/2020 was published in Official Gazette No.13 bis(e), 31 Mar 2020. Laweg and several reproductions identify the same decree as Official Gazette No.8 follow-up, 23 Feb 2020. The operative text is available in the current consolidation, but publication metadata conflicts.",
+      "next_action": "Acquire both Gazette issue scans Nos.8 follow-up and13 bis(e), Feb/Mar2020, inspect the decree heading and publication page, and correct the metadata only after original image verification."
+    },
+    {
+      "evidence_id": "XREF-AML-EXEC-2006-2008-NUMBERING",
+      "document_id": "EG-AML-EXEC-AMEND-1463-2006",
+      "practice_areas": [
+        "criminal",
+        "aml_cft"
+      ],
+      "url": "https://fra.gov.eg/wp-content/uploads/2025/04/اللائحة-التنفيذية-لقانون-مكافحة-غسل-الأموال-1-1.pdf",
+      "publisher": "Current FRA 2023 consolidated PDF versus older FRA 2020 copy",
+      "source_class": "amendment-number discrepancy in older consolidation",
+      "observed_title_ar": "تعديلات اللائحة التنفيذية لقانون مكافحة غسل الأموال — 1463/2006 و2367/2008",
+      "source_state": "current_official_consolidation_vs_older_official_hosted_copy_conflict",
+      "collection_permission": "unknown",
+      "legal_status": "working_current_identifiers_1463_2006_and_2367_2008_pending_Gazette",
+      "finding": "The current official FRA 2023 consolidated PDF identifies Decrees1463/2006 (Gazette No.34,24 Aug2006) and2367/2008 (Gazette No.37 follow-up(b),11 Sep2008). An older FRA-hosted 2020 PDF cites 1432/2006 and2362/2008. Treat the current 2023 PDF/FRA index as the working identifiers, but retain the old-copy conflict pending Gazette scans.",
+      "next_action": "Acquire Gazette No.34 (24 Aug2006) and No.37 follow-up(b) (11 Sep2008), compare original decision numbers and text with both FRA PDFs, and determine whether older citations are typographical errors or distinct instruments."
     }
   ],
   "guardrails": [
