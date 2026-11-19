@@ -664,3 +664,138 @@ This is a working list of identified recent amendments, not a certified exhausti
 - **Overall assigned criminal-law domain completion: approximately 39%.**
 - Rough equal-weight national contribution (30 domains): approximately 1.30 percentage points (39% / 30). Not an audited national completion figure.
 
+
+
+---
+
+# 14. New acquisition pass — Child Law amendments and Criminal Procedure transition (20 November 2026)
+
+This section adds instruments not previously transcribed in this tranche. It does not repeat the earlier base-law summaries.
+
+## 14.1 Law 186/2023 — Child Law 12/1996: full operative Arabic amendment text
+
+**Primary publication evidence:** Official Gazette, issue 49 (bis), 10 December 2023; effective 11 December 2023. A complete Arabic text transcription of the Gazette pages was acquired from the Gazette PDF mirror at Manshurat. MELES also catalogues an Arabic PDF file, but its downloadable file is access-restricted; the Gazette mirror is therefore used as a temporary text-access route. Status: **T2 Gazette transcription / T2 institutional catalogue corroboration**, not yet image-by-image cross-checked against the MELES file.
+
+### المادة الأولى
+
+يستبدل بنصوص المواد (٢٣، ٢٤، ١١٣، ١١٤) من قانون الطفل الصادر بالقانون رقم ١٢ لسنة ١٩٩٦ النصوص الآتية:
+
+**مادة (٢٣):**
+يعاقب على مخالفة أحكام المواد (١٤، ١٥، ١٨، ١٩، ٢٠) من هذا القانون بغرامة لا تقل عن خمسمائة جنيه ولا تزيد على ألفى جنيه.
+
+**مادة (٢٤):**
+مع عدم الإخلال بأى عقوبة أشد ينص عليها قانون آخر، يعاقب بالحبس مدة لا تقل عن ستة أشهر ولا تزيد على سنة، وبغرامة لا تقل عن ألفى جنيه ولا تزيد على خمسة آلاف جنيه، أو بإحدى هاتين العقوبتين كل من أدى عمداً بياناً غير صحيح من البيانات التى يوجب القانون ذكرها عند التبليغ عن المولود.
+ويعاقب بذات العقوبة كل من يبلّغ عن واقعة ميلاد سبق الإبلاغ عنها من أحد المكلفين بالتبليغ وقيدت مع علمه بذلك.
+
+**مادة (١١٣):**
+يعاقب بالحبس مدة لا تقل عن ثلاثة أشهر أو بغرامة لا تقل عن ألف جنيه ولا تزيد على خمسة آلاف جنيه، كل من أهمل بعد إنذاره طبقاً للفقرة الأولى من المادة (٩٨) من هذا القانون مراقبة الطفل، وترتب على ذلك تعرضه للخطر فى إحدى الحالات المشار إليها فى الفقرة الأولى من المادة (٩٨) من هذا القانون.
+ويجوز للمحكمة بدلاً من الحكم بإحدى العقوبتين المشار إليهما بالفقرة الأولى من هذه المادة أن تقضي بإخضاع المخالف لبرامج التأهيل والتدريب التي يصدر بتحديدها قرار من الوزير المختص بالشئون الاجتماعية بالتنسيق مع المجلس القومي للمرأة والمجلس القومي للطفولة والأمومة لمدة لا تزيد على ستة أشهر، وتتبع المحكمة أمر المخالف عن طريق تقرير يقدم لها من الجهة القائمة على تنفيذ برامج التأهيل والتدريب كل شهر لتقرر المحكمة إنهاء البرامج أو إبدالها أو توقيع العقوبة.
+
+**مادة (١١٤):**
+يعاقب بالحبس مدة لا تقل عن ثلاثة أشهر ولا تجاوز ستة أشهر أو بغرامة لا تقل عن ألف جنيه ولا تزيد على خمسة آلاف جنيه، كل من سلم إليه طفل وأهمل في أداء أحد واجباته إذا ترتب على ذلك ارتكاب الطفل جريمة أو تعرضه للخطر في إحدى الحالات المبينة في هذا القانون.
+وتكون العقوبة الحبس مدة لا تقل عن ستة أشهر ولا تجاوز سنة وغرامة لا تقل عن ألفي جنيه ولا تزيد على خمسة آلاف جنيه أو بإحدى هاتين العقوبتين، إذا كان ذلك الفعل ناشئاً عن إهمال جسيم بواجباته.
+ويسري حكم الفقرة الثانية من المادة (١١٣) من هذا القانون على المخالف لأحكام الفقرتين الأولى والثانية من هذه المادة.
+
+### المادة الثانية
+
+تضاف إلى قانون الطفل المشار إليه مادة جديدة برقم ٧٢ مكرراً نصها الآتي:
+
+**مادة (٧٢ مكرراً):**
+للعاملة في الدولة والقطاع العام وقطاع الأعمال العام والقطاع الخاص، بحسب الأحوال، حالة كفالتها أو حضانتها طفلًا عمره أقل من ستة أشهر ذات الحقوق الواردة بالمادتين (٧١، ٧٢) من هذا القانون، وتحدد اللائحة التنفيذية القواعد المنظمة لذلك.
+
+### المادة الثالثة
+
+يُنشر هذا القانون في الجريدة الرسمية، ويعمل به اعتبارًا من اليوم التالي لتاريخ نشره.
+
+يبصم هذا القانون بخاتم الدولة، وينفذ كقانون من قوانينها.
+
+صدر برئاسة الجمهورية في ٢٦ جمادى الأولى سنة ١٤٤٥ هـ
+(الموافق ١٠ ديسمبر سنة ٢٠٢٣ م).
+
+عبد الفتاح السيسي
+
+**Operational effect / consolidation notes**
+- Article 24 now expressly criminalizes intentional false information in birth notification and duplicate birth notification with knowledge of prior registration; the penalty is 6 months–1 year imprisonment and EGP 2,000–5,000 fine, or either penalty.
+- Article 72 bis grants a female worker fostering or having custody of a child under six months the rights in Articles 71 and 72; the executive regulation is expressly tasked with detailed rules. This creates a follow-up gap: locate the implementing text for foster/custody maternity rights and check whether Decision 1143/2020 or a later amendment addresses it.
+- Articles 113 and 114 create alternatives involving rehabilitation/training programmes and graded penalties; do not reduce these provisions to a simple fine/penalty summary.
+
+**Sources**
+- Gazette PDF text mirror, issue 49 (bis), 10 Dec 2023: https://manshurat.org/sites/default/files/alamiria_2023_186.pdf
+- MELES item with Arabic PDF catalogue entry (download currently restricted): https://dspace.id.com.eg/items/83e5a2b8-181a-4eb7-8ae1-d405cb9b5ca5
+- Amiri Press transcription page: https://www.alamiria.com/Sec/TashTxt?id=MVvKfrT%2F9dg%3D
+- Secondary full-text database: https://www.eastlaws.com/legislation-full-text/ar/egypt/law/10-12-2023/no-186?id=2102523&type=1
+
+## 14.2 Law 1/2024 — full Gazette text acquired; procedural amendments are now historical within the new-code transition
+
+**Publication:** Official Gazette, issue 2 (bis), 16 January 2024; effective 17 January 2024. The complete 10-page Gazette PDF was opened and extracted. The text contains five issuance articles; Article 1 revises terminology and Article 151(2); Article 2 substitutes the two chapters on felony court composition/procedure, including Articles 366–383; Article 3 adds the felony-appeal chapter, Articles 419 bis through 419 bis 9; Articles 4–5 provide transition and commencement.
+
+The full Arabic text is available in the official-government-hosted Gazette PDF:
+https://hrightsstudies.sis.gov.eg/media/9281/القانون-رقم-1-لسنة-2024-بتعديل-قانون-الا-جراءات-الجنائ-ية.pdf
+
+Corroborating official Gazette issue record:
+https://mediadr.sis.gov.eg/handle/123456789/51750
+
+Additional full-text transcription (33 articles / provisions as indexed):
+https://alhasswalawfirm.com/law-library/law-1-2024
+
+**Important transitional point:** Law 174/2025 Article 3 issuance preserves the Law 1/2024 felony-appeal regime for cases not decided by felony courts as of the commencement date of Law 1/2024. Law 174/2025 Article 3 must therefore be read together with Law 1/2024 Articles 4–5 and the new Code's commencement/repeal provisions. Do not treat Law 1/2024 as wholly irrelevant merely because the 1950 Code has been repealed.
+
+## 14.3 Law 174/2025 and Law 160/2026 — corrected current Criminal Procedure Law status
+
+**Critical correction as of 20 November 2026:** Law 174/2025 is in force from **1 October 2026**, not 1 October 2027. Law 160/2026, published in Official Gazette issue 39 bis (b) on 30 September 2026, changed the commencement wording in Article 6 of Law 174/2025. The new Criminal Procedure Code therefore commenced before the present research date.
+
+### Law 160/2026 — complete Arabic text
+
+قانون رقم ١٦٠ لسنة ٢٠٢٦
+بتعديل بعض أحكام القانون رقم ١٧٤ لسنة ٢٠٢٥ بإصدار قانون الإجراءات الجنائية
+
+باسم الشعب
+رئيس الجمهورية
+قرر مجلس النواب القانون الآتى نصه ، وقد أصدرناه :
+
+**( المادة الأولى )**
+تستبدل عبارة "الأول من أكتوبر لعام 2027" بعبارة "الأول من أكتوبر التالى لتاريخ نشره" الواردة بالمادة السادسة من القانون رقم ١٧٤ لسنة ٢٠٢٥ بإصدار قانون الإجراءات الجنائية .
+
+**( المادة الثانية )**
+ينشر هذا القانون فى الجريدة الرسمية ، ويعمل به اعتبارًا من اليوم التالى لتاريخ نشره .
+
+يبصم هذا القانون بخاتم الدولة ، وينفذ كقانون من قوانينها .
+
+صدر برئاسة الجمهورية فى ١٨ ربيع الآخر سنة ١٤٤٨هـ ( الموافق ٣٠ سبتمبر سنة ٢٠٢٦م ).
+عبد الفتاح السيسى
+
+**Official publication and text**
+- Amiri Press full transcription: https://www.alamiria.com/Sec/TashTxt?id=Aalg37zxdcU%3D
+- Official Gazette issue 39 bis (b), 30 Sep 2026, MELES catalogue and PDF: https://dspace.id.com.eg/items/1b1e2a48-59d9-4307-b215-1ac3a07b4ee3
+- Parliamentary approval report, 30 Sep 2026: https://www.parliament.gov.eg/News_Show.aspx?frm=5874
+- Secondary legislation record: https://www.eastlaws.com/legislation-full-text/ar/egypt/law/30-09-2026/no-160?id=5672063&sub=16684427&type=1
+
+### Consequences for the project corpus
+1. Law 150/1950 is no longer the current general Criminal Procedure Code as of 1 Oct 2026. Retain it as a historical source and for transitional matters only.
+2. Law 140/2014 on extradition and transfer of sentenced persons is repealed by Article 4 of Law 174/2025 at commencement. Its prior treaty/transfer arrangements and any surviving implementing measures require separate transition and treaty review; do not assume all international cooperation mechanisms disappeared.
+3. The current-code source text must be versioned against the Official Gazette issue 45 bis (d), 12 Nov 2025, plus Law 160/2026. Do not use the original Law 174 text with its unamended 2027 commencement clause.
+4. The existing tranche's treatment of Law 177/2020 (new Article 113 bis in the old Code) must be flagged for a compatibility/repeal analysis. Its old-Code article numbering cannot simply be imported into the new Code.
+5. All citations, procedural templates, offence workflows, detention timelines, appeal guidance, warrants, and investigation flows in the product must be checked against Law 174/2025 before deployment.
+
+**Law 174/2025 Gazette / full Arabic text**
+- Ministry of Justice official Gazette download: https://moj.gov.eg/backend/api/documents/download/20F3150C-29F1-487E-A0F0-FCCE10CB207B
+- Official Gazette issue 45 bis (d), 12 Nov 2025, Amiri Press-hosted source.
+- Full-text accessible secondary transcription: https://www.eastlaws.com/legislation-full-text/ar/egypt/law/12-11-2025/no-174?id=4825460&type=1
+- Alternative text access: https://eojm.org/justice_and_law/قانون-رقم-174-لسنة-2025-بإصدار-قانون-الإجراءات-الجنائية/
+
+## 14.4 New priority: Executive Regulation Decision 1143/2020 remains text-incomplete
+
+Search results confirm that Prime Minister Decision 1143/2020 amends Decision 2075/2010 (Executive Regulation of Child Law 12/1996), Gazette issue 23 bis, 9 June 2020. Secondary sources identify amendments to Articles 85, 89, 90, 92, 99 and 112 bis, including terminology on children found/alternative foster families and new Article 90 bis (a). The full operative Arabic instrument has not yet been reliably extracted in this pass. The blog transcription source was blocked by an anti-bot challenge; no attempt was made to bypass it. Next acquisition route: Gazette issue 23 bis (9 June 2020) through the Amiri Press / SIS / MELES catalogues, or an independent law-library transcription. Do not mark the regulation fully acquired until the actual Arabic text is captured.
+
+## 14.5 Progress recalibration — after this acquisition pass
+
+These are working estimates for this assigned domain, not audited completion scores:
+
+- Discovery coverage: **93%** (up from ~91%).
+- Actual Arabic text acquisition: **61%** (up from ~56%).
+- Amendment and implementing-instrument mapping: **52%** (up from ~46%).
+- Article-level extraction and QA: **44%** (up from ~39%).
+- Lawyer verification: **0%**.
+- **Overall assigned criminal-law domain completion: ~44%** (up from ~39%).
+
+The main reason the overall figure remains below the text-acquisition score is the unacquired body of implementing decisions, schedules, and the need to version the full new Criminal Procedure Code. The 44% figure is a work-tracking estimate, not a claim that 44% of Egyptian criminal law as a whole has been legally validated.
