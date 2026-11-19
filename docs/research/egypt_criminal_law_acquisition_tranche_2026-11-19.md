@@ -360,12 +360,12 @@ The official PDF's final pages expose provisions on international criminal coope
 This is a transparent estimate for the assigned criminal-law domain, not for all Egyptian law.
 
 - Discovery coverage: approximately 85% of assigned instrument families have at least one concrete source lead.
-- Actual Arabic text acquisition: approximately 32%, weighted by instrument importance and full-text availability. Official full text layers opened for Laws 175/2018 and 174/2025; full amendment text captured for Laws 160/2026 and 186/2023; selected Arabic text captured for Laws 150/1950, 58/1937, 14/2022 and Decision 44/2026.
+- Actual Arabic text acquisition: approximately 38%, weighted by instrument importance and full-text availability. The new additions are the FRA-hosted consolidated Law 80/2002 PDF and the official Gazette PDF of PM Decision 3331/2023; a 101-article secondary consolidation of Prison Decision 79/1961 was also located. Official full text layers opened for Laws 175/2018 and 174/2025; full amendment text captured for Laws 160/2026 and 186/2023; selected Arabic text captured for Laws 150/1950, 58/1937, 14/2022 and Decision 44/2026.
 - Amendment and implementing-instrument mapping: approximately 28%; major amendment chains known but not complete or collated.
-- Article-level extraction and QA: approximately 18%; selected provisions extracted, not a complete canonical corpus.
+- Article-level extraction and QA: approximately 23%; selected provisions extracted, plus the complete text layer of Law 80/2002, Decision 3331/2023 and a full 101-article secondary prison-regulation transcription, but not yet a fully collated canonical corpus.
 - Lawyer verification: 0%.
-- **Overall assigned-domain completion: approximately 25%.** This counts complete text, amendments, commencement/repeal rules and QA, not discovery alone.
-- National contribution: criminal law is one of 30 domains in the prior national baseline. A 25% criminal-domain completion contributes approximately 0.8 percentage points in a simple equal-weight model (25% / 30). The national estimate remains approximately 1.5–2% pending an updated weighted baseline.
+- **Overall assigned-domain completion: approximately 27%.** This counts complete text, amendments, commencement/repeal rules and QA, not discovery alone.
+- National contribution: criminal law is one of 30 domains in the prior national baseline. A 27% criminal-domain completion contributes approximately 0.9 percentage points in a simple equal-weight model (27% / 30). The national estimate remains approximately 1.5–2% pending an updated weighted baseline.
 
 ## 16. Next acquisition priorities — avoid duplicate research
 
