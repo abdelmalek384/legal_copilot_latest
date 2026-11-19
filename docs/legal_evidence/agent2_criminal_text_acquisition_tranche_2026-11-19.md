@@ -2745,3 +2745,66 @@ https://fra.gov.eg/تشريعات-مكافحة-غسل-الأموال-وتموي�
   https://fra.gov.eg/wp-content/uploads/2025/05/قانون-رقم-22-لسنة-2018-بتنظيم-إجراءات-التحفظ-والحصر-والإدارة-والتصرف-في-أموال-الجماعات-الإرهابية-والإرهابيين-.pdf
 
 These are primary regulator-hosted copies, but none has been downloaded into the repository or SHA-256 archived.
+
+
+---
+
+## AD. Official consolidated AML Executive Regulations — full text and amendment chain recovered
+**Research date:** 19 November 2026.
+
+### AD1. Full official FRA-hosted consolidated text acquired
+
+**Primary source:** 1,109-line official FRA-hosted PDF of PM Decree 951/2003, consolidated through PM Decree 3331/2023:
+https://fra.gov.eg/wp-content/uploads/2025/04/اللائحة-التنفيذية-لقانون-مكافحة-غسل-الأموال-1-1.pdf
+
+The PDF's title page and footnotes identify the following amendment chain:
+- PM Decree 1463/2006 — Official Gazette No.34, 24 August 2006.
+- PM Decree 2367/2008 — Official Gazette No.37 follow-up (b), 11 September 2008.
+- PM Decree 1569/2016 — Official Gazette No.23 bis (b), 12 June 2016; erratum in No.24 bis (b), 21 June 2016.
+- PM Decree 2910/2019 — Official Gazette No.47 bis (d), 27 November 2019.
+- PM Decree 457/2020 — publication date/issue conflict described below.
+- PM Decree 3331/2023 — Official Gazette No.35 follow-up (a), 31 August 2023.
+
+This is now the working current consolidated text for the AML Executive Regulations. The PDF contains the full Arabic text, article-level footnotes, beneficial-owner provisions, virtual-asset provisions, parallel financial investigations, risk-based CDD, suspicious-transaction reporting and immediate targeted-financial-sanctions implementation.
+
+### AD2. Key provisions and exact Arabic text
+
+**Virtual assets and providers — Art.1:** the consolidated definition includes digitally transferable/convertible value used for payment or investment and defines virtual-asset service providers to include exchange, transfer, custody/administration and related financial services.
+
+**Money-laundering independence — Art.2 bis:** money laundering is independent from the predicate offence; prior conviction for the predicate offence is not required to treat assets as criminal proceeds.
+
+**Parallel financial investigations — Art.28 bis (b):** law-enforcement and investigative authorities may request financial investigations concerning the accused and criminal activity, including requests to the FIU to inquire into identified accounts held in Egypt or abroad at financial institutions, DNFBPs and virtual-asset service providers.
+
+**Exact Arabic excerpt — Art.28 bis (b):**
+
+> لجهات إنفاذ القانون وسلطات التحقيق أثناء مباشرة التحقيقات المالية الموازية طلب تحريات حول الجوانب المالية المتعلقة بالمتهم ونشاطه الإجرامي، بما في ذلك الطلب من الوحدة الاستعلام عن الحسابات التي تم تحديدها خلال التحقيقات على أنها محتفظ بها داخل مصر أو خارجها لدى المؤسسات المالية وأصحاب المهن والأعمال غير المالية ومقدمي خدمات الأصول الافتراضية.
+
+**Beneficial-owner register — Art.21 bis:** every person entered in the commercial register must prepare and retain records containing accurate, updated beneficial-owner information, designate one or more responsible representatives and retain/provide information for five years after dissolution or removal from the register.
+
+**Exact Arabic excerpt — Art.21 bis:**
+
+> يلتزم كل من يقيد في السجل التجاري بإعداد سجلات تتضمن المعلومات والبيانات المتعلقة بالمستفيدين الحقيقيين والاحتفاظ بها على أن تكون تلك المعلومات والبيانات دقيقة ومحدثة قدر الإمكان، كما يلتزم بتحديد ممثل أو أكثر يكون مسؤولاً عن توفير كافة المعلومات الأساسية والمعلومات المتوفرة حول المستفيدين الحقيقيين سواء وقت سريان القيد أو لمدة خمس سنوات من الحل أو المحو من السجل التجاري.
+
+**Immediate freezing — Art.50 bis (a):** implementing persons must immediately, without prior notice, freeze funds/assets of persons and entities on UN Security Council lists, prevent funds/assets/economic resources and financial or other services being made available directly or indirectly, release funds promptly when a listing is removed, and report freezing/unfreezing actions to competent supervisors/FIU.
+
+**Statistics — Art.12 bis:** all relevant AML/CFT authorities must retain comprehensive effectiveness statistics, at minimum suspicious reports and their disposition, investigations/prosecutions/convictions, frozen/seized/confiscated assets, and mutual legal-assistance/international-cooperation requests sent or received.
+
+**Exact Arabic excerpt — Art.12 bis:**
+
+> تلتزم كافة الجهات المعنية بمكافحة غسل الأموال والجرائم الأصلية المرتبطة بها أو تمويل الإرهاب، كل فيما يخصه، بالاحتفاظ بإحصائيات شاملة بشأن الأمور المتعلقة بفعالية وكفاءة نظم مكافحة غسل الأموال وتمويل الإرهاب على أن تشمل بحد أدنى ما يلي:
+> - إخطارات الاشتباه التي ترد إلى الوحدة وما يؤول إليه التصرف فيها.
+> - التحقيقات وحالات الادعاء وأحكام الإدانة في قضايا غسل الأموال وتمويل الإرهاب.
+> - الأصول التي يتم تجميدها أو التحفظ عليها أو مصادرتها.
+> - إحصائيات طلبات المساعدة القانونية المتبادلة وغيرها من طلبات التعاون الدولي التي تم طلبها أو تلقيها.
+
+### AD3. Separate amendment records and source conflicts
+
+The inventory now separates the five amendment instruments (1463/2006, 2367/2008, 1569/2016, 2910/2019, 457/2020) from the base regulation and 3331/2023. Full standalone text is available for 1569/2016 and 457/2020; 2910/2019 is reproduced in the consolidated text and Ahram's Gazette publication article; 1463/2006 and 2367/2008 are identified in the official consolidated footnotes and Gazette metadata, with standalone original text still to acquire.
+
+**Two publication metadata conflicts remain:**
+1. The official 2023 consolidated PDF says Decree 457/2020 was published in Official Gazette No.13 bis (e), 31 March 2020. Laweg, EgyptianLaws and other reproductions identify Decree 457/2020 as Official Gazette No.8 follow-up, 23 February 2020. Do not silently select one date; inspect both Gazette issue scans.
+2. An older FRA-hosted 2020 copy of the regulation cites Decrees 1432/2006 and 2362/2008, while the current 2023 FRA consolidated text cites 1463/2006 and 2367/2008. The current official consolidated text and FRA index use 1463/2006 and 2367/2008; the older copy appears to contain source metadata/footnote errors, pending original Gazette verification.
+
+### AD4. Current status correction
+
+The official FRA-hosted consolidated 951/2003 PDF is now accessible and supersedes the earlier note that the current official PDF endpoint was unavailable. The current consolidated text is through 31 August 2023. The original amendment Gazette PDFs remain unarchived; the 2026 CDD guidance and supervisory circulars in Section AB are later operational instruments and do not amend the 951/2003 regulation itself.
