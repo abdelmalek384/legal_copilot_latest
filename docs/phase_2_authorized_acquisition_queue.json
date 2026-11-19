@@ -96,13 +96,13 @@
         "criminal"
       ],
       "priority": "P0",
-      "action": "Obtain authorized original Gazette text and hash of Penal Code Law 58/1937; complete all 540 articles and full amendment map. Confirm and integrate Laws 189/2020, 10/2021, 71/2021, 141/2021, 150/2021 and 185/2023. Search Official Gazette for any post-4 Dec 2023 amendment through 19 Nov 2026.",
+      "action": "Normalize all 540 articles from the full 179-page consolidation; acquire original Gazette scans for Laws5/2018,164/2019,6/2020,189/2020,10/2021,71/2021,141/2021,150/2021 and185/2023; inspect 150/2021 Arabic original through formal request; search all Gazette issues 2024–2026 for any further amendment.",
       "candidate_source": "https://www.alamiria.com/Sec/Home",
       "source_type": "official publisher portal; exact source document not yet pinned",
       "permission_state": "unknown",
-      "acquisition_state": "full_540_article_secondary_text_accessible_selected_amendment_Gazette_pdfs_accessible",
+      "acquisition_state": "full_540_article_179_page_arabic_consolidation_accessible_updated_through_185_2023_plus_3_earlier_amendments_added",
       "legal_review_state": "not_started",
-      "blocker": "Official consolidated code has not been lawfully archived/hashed; Arts 191–540 article-level amendments and post-2023 Gazette sweep still incomplete. Source terms for local storage/indexing/commercial use remain unknown.",
+      "blocker": "Full 540-article PDF is secondary-hosted but attributes text to Court of Cassation Legislation Portal; original Gazette scans for amendments not locally archived/hashed. Law150/2021 MELES Arabic PDF is request-copy restricted. No post-4 Dec 2023 amendment identified, but exhaustive Gazette search through 19 Nov 2026 remains pending.",
       "required_evidence": [
         "full 540-article Arabic text segmented and cross-checked against Gazette",
         "Law 189/2020 Art. 309 bis (b) bullying",
@@ -122,7 +122,8 @@
         "https://www.elmodawanaeg.com/wp-content/uploads/2021/08/10.pdf",
         "https://www.eglf.org/عقوبة-التنمر-في-القانون-المصري-189-لسنة-2020/",
         "https://mksegypt.org/public/ar/laws/17352"
-      ]
+      ],
+      "last_researched_on": "2026-11-19"
     },
     {
       "queue_item_id": "ACQ-004",
