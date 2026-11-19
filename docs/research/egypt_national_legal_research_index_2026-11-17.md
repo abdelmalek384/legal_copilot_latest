@@ -15,7 +15,7 @@ This is the cross-domain research entry point for the Legal Copilot national Egy
 - [Construction, industry, health and constitutional law harvest](../../data/research/egypt_sectoral_law_harvest_2026-11-17.csv)
 
 - [Criminal-law acquisition tranche — 19 November 2026](egypt_criminal_law_acquisition_tranche_2026-11-19.md) — Arabic excerpts, official Gazette text access, Penal Code and Criminal Procedure status, cybercrime, AML, drugs, weapons, child justice, prisons, extradition, amendment leads and progress estimates.
-- [Criminal-law acquisition tranche — 20 November 2026](egypt_criminal_law_acquisition_tranche_2026-11-20.md) — includes acquired Arabic operative text of Child Law 186/2023, full Official Gazette text of Law 1/2024, and Law 160/2026 commencement amendment; corrects current-code status: Law 174/2025 entered into force on 1 October 2026 and repealed Law 150/1950 and Law 140/2014 subject to transitional provisions. Criminal-law domain estimate revised to 44%; Decision 1143/2020 full Arabic text remains an acquisition gap.
+- [Criminal-law acquisition tranche — 20 November 2026](egypt_criminal_law_acquisition_tranche_2026-11-20.md) — acquired Child Law 186/2023, Law 1/2024 and Law 160/2026 texts; corrected Law 174/2025 commencement to 1 Oct 2026; added complete Gazette sources for Cybercrime Law 175/2018 and PM Decision 1699/2020, AML Law 80/2002 consolidated text, Law 154/2022 and PM Decision 3331/2023. Current criminal-law domain estimate: 49%; open gaps include earlier AML regulation amendments, Child Executive Regulation Decision 1143/2020, full new CPP extraction and 2026 amendment sweeps.
 
 ## Courts and judgments
 
