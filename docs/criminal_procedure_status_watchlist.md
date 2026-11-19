@@ -121,3 +121,17 @@ Articles 508–521 (international judicial cooperation, extradition, mutual lega
 The official Ministry of Justice PDF reads “مواد الجنايات” in issuance Article 2 for the preserved treatment of pre-commencement absentia judgments. Manshurat reads “مواد الجنح”. Prefer the official PDF text and retain the discrepancy until page-image verification.
 
 The current amendment chronology and full-source link are reflected in the inventory, queue and cross-check register. All current-status conclusions remain subject to Egyptian criminal-procedure lawyer verification.
+
+
+---
+
+## 19 November 2026 — full current Law 150/1950 consolidation acquired
+
+A 178-page Arabic PDF reproduction of the current Criminal Procedure Code has been acquired:
+https://alhasswalawfirm.com/uploads/files/1501950-1788831619834-5385881.pdf
+
+The host states that the text is reproduced verbatim from the Court of Cassation Legislation Portal and reflects amendments through 16 January 2024. The PDF runs through numbered Article 560, contains article-level amendment footnotes, includes Art.113 bis added by Law 177/2020, and incorporates Law 1/2024 felony-appeal provisions and terminology changes. The official Court of Cassation portal endpoint returned 502; the acquired PDF is therefore recorded as a secondary-hosted reproduction, not an original Gazette scan.
+
+The full code's footnotes expose additional older amendment instruments requiring Gazette acquisition: Laws 178/1951, 228/1951, 353/1952, 340/1952, 252/1952, 426/1954, 627/1955, 121/1956, 113/1957, 43/1958 and 63/1975, among others. The inventory/queue has been updated with this expanded list.
+
+The current Law 150/1950 remains operative through 30 September 2027 under Law 160/2026. Law 174/2025 does not repeal it before 1 October 2027.
