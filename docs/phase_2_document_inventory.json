@@ -3084,7 +3084,7 @@
         "PM Decree 3331/2023",
         "Law 154/2022"
       ],
-      "notes": "FRA full updated Arabic text accessible. Amendment chain listed by FRA: Laws 78/2003, 181/2008, Decree-Law 36/2014, Law 17/2020, Law 154/2022. Consolidation not yet compared article-by-article with all Gazettes.",
+      "notes": "FRA updated Arabic PDF is readable. Amendment chain confirmed in consolidated text: Laws 78/2003, 181/2008, Decree-Law 36/2014, Law 17/2020 and Law 154/2022. Selected exact Arts. 2,4,8,9,17 bis,17 bis 1 and 18 captured in the 19 Nov 2026 acquisition tranche. Still requires Gazette-by-Gazette article comparison and lawful local archive/permission review.",
       "source_urls": [
         {
           "url": "https://fra.gov.eg/wp-content/uploads/2024/05/قانون-مكافحة-غسل-الأموال-1.pdf",
@@ -3095,6 +3095,11 @@
           "url": "https://dspace.id.com.eg/server/api/core/bitstreams/1fe32968-2f23-489d-9045-5a4032fdd9c3/content",
           "source_role": "Law 154/2022 Gazette 30 follow-up (a), 28 Jul 2022",
           "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://fra.gov.eg/wp-content/uploads/2024/05/قانون.pdf",
+          "source_role": "FRA-hosted updated Arabic text, Law 80/2002 as amended through 2022",
+          "status": "full_text_accessible_not_archived"
         }
       ]
     },
@@ -3117,7 +3122,7 @@
         "PM Decree 3331/2023",
         "PM Decree 457/2020"
       ],
-      "notes": "FRA lists amendments by PM Decrees 1463/2006, 2367/2008, 1569/2016, 2910/2019 and 3331/2023. PM Decree 457/2020 appears in other sources and requires reconciliation.",
+      "notes": "Full FRA-hosted consolidated Arabic regulation (1448 extracted lines) located, updated through PM Decree 3331/2023. Amendment chain now confirmed as 1463/2006, 2367/2008, 1569/2016, 2910/2019, 457/2020 and 3331/2023. Note FRA portal summary omitted 457/2020; FRA consolidated footnote and Gazette/Laweg text support it. Separate date discrepancy: Laweg gives Gazette issue 8 bis, 23 Feb 2020; one FRA footnote gives issue 13 bis (e), 31 Mar 2020. Selected provisions captured in dossier.",
       "source_urls": [
         {
           "url": "https://fra.gov.eg/regulations/اللائحة-التنفيذية-لقانون-مكافحة-غسل-ا/",
@@ -3128,6 +3133,16 @@
           "url": "https://www.mof.gov.eg/ar/legislation/legislation-5fe86a147bfc600007cbfa10",
           "source_role": "Ministry of Finance government legal record",
           "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://fra.gov.eg/wp-content/uploads/2024/06/لائحة-القانون-وفقا-لاخر-تعديل-الاصدار.pdf",
+          "source_role": "FRA consolidated full Arabic Executive Regulations 951/2003 updated through 3331/2023",
+          "status": "full_text_accessible_not_archived"
+        },
+        {
+          "url": "https://fra.gov.eg/wp-content/uploads/2025/04/اللائحة-التنفيذية-لقانون-مكافحة-غسل-الأموال-1-1.pdf",
+          "source_role": "FRA-hosted full Arabic updated Executive Regulations",
+          "status": "full_text_accessible_not_archived"
         }
       ]
     },
@@ -3149,7 +3164,7 @@
         "PM Decree 951/2003",
         "Law 80/2002"
       ],
-      "notes": "Full 722-line Official Gazette text accessible. Replaces numerous provisions and adds new articles including 2 bis (b), which states money laundering is autonomous from the predicate offence.",
+      "notes": "Official Gazette No. 35 follow-up (a), 31 Aug 2023; Article 3 effective 1 Sep 2023. Full 722-line PDF text inspected. Replaces numerous regulation provisions and adds Art. 2 bis (autonomous ML offence), 2 bis (a) terror travel, 28 bis/28 bis (a)/(b) parallel investigations and other risk-based provisions. Selected exact text captured in dossier.",
       "source_urls": [
         {
           "url": "https://fra.gov.eg/wp-content/uploads/2023/09/3331.pdf",
@@ -3203,7 +3218,7 @@
         "Law 19/2020",
         "Health Decisions 44/2026 and 242/2026"
       ],
-      "notes": "EDA lists amendments 206/1960, 40/1966, 16/1973, 61/1977, 45/1984, 122/1989, 134/2019 and 19/2020. Schedule text must be treated as replaced by Decision 44/2026 and later amended by Decision 242/2026.",
+      "notes": "EDA official 14-page original statute PDF located; PDF has no readable OCR lines in browser. EDA amendment index lists Laws 206/1960, 40/1966, 16/1973, 61/1977, 45/1984, 122/1989, 134/2019 and 19/2020. Full Law 182 OCR/transcription and Gazette collation remain pending.",
       "source_urls": [
         {
           "url": "https://lawhub.info/eg/?p=11739",
@@ -3214,6 +3229,16 @@
           "url": "https://edaegypt.gov.eg/ar/المرجع-التنظيمي-لهيئة-الدواء-المصرية/القوانين-واللوائح-التنفيذية/تعديلات-قانون-رقم-182-لسنة-1960/",
           "source_role": "Official EDA amendment index",
           "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://dev.edaegypt.gov.eg/media/ekgifxb3/1960-182.pdf",
+          "source_role": "Official EDA-hosted 14-page scan of Law 182/1960",
+          "status": "full_text_accessible_not_archived"
+        },
+        {
+          "url": "https://dev.edaegypt.gov.eg/ar/المرجع-التنظيمي-لهيئة-الدواء-المصرية/القوانين-واللوائح-التنفيذية/تعديلات-قانون-رقم-182-لسنة-1960/",
+          "source_role": "Official EDA amendment index for Law 182/1960",
+          "status": "full_text_accessible_not_archived"
         }
       ]
     },
@@ -3299,7 +3324,7 @@
         "SCC judgment case 33/47 (16 Feb 2026)",
         "Decision 242/2026"
       ],
-      "notes": "Replaces all schedules annexed to Law 182/1960. Effective on publication 17 Feb 2026. Full 34-page PDF accessible; full schedule OCR still required.",
+      "notes": "Official EDA-hosted 34-page Gazette PDF. Replaces all schedules annexed to Law 182/1960; Gazette No.39 follow-up (c), 17 Feb 2026; effective on publication. Preamble cites SCC case 33/47 (constitutional), hearing 16 Feb 2026. Full schedule OCR and image collation pending.",
       "source_urls": [
         {
           "url": "https://dev.edaegypt.gov.eg/media/dkjooww3/قرار-وزارة-الصحة-والسكان-رقم-44-لسنة-2026-ar-2026_.pdf",
@@ -3331,7 +3356,7 @@
         "Law 182/1960",
         "Decision 44/2026"
       ],
-      "notes": "Amends item 12 in Table 1 section I(B) and modifies Table 3. Issued 20 Jul 2026, published 17 Aug 2026; Article 2 effective day after publication. Full schedule pages need OCR.",
+      "notes": "Official EDA-hosted 4-page Gazette PDF. Gazette No.179, 17 Aug 2026; issued 20 Jul 2026; effective 18 Aug 2026. Replaces item 12 of Table 1, section I(B), and adds/modifies entries in Table 3 of Decision 44/2026. OCR incomplete; original pages 10–12 visually inspected, full schedule transcription pending.",
       "source_urls": [
         {
           "url": "https://dev.edaegypt.gov.eg/media/lydpgqi5/لمكافحة-المخدرات_2026_242-وزير-الصحة.pdf",
@@ -3342,6 +3367,11 @@
           "url": "https://dspace.id.com.eg/items/138712af-f2d5-4fbf-873e-4ae961269c6e/full",
           "source_role": "Official Proceedings issue metadata",
           "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://www.elwatannews.com/news/details/8340822",
+          "source_role": "Secondary Gazette report confirming Decision 242/2026 publication and schedule scope",
+          "status": "full_text_accessible_not_archived"
         }
       ]
     },
@@ -3437,7 +3467,7 @@
         "Law 126/2008",
         "PM Decree 2075/2010"
       ],
-      "notes": "Full Arabic Child Law text accessible; Law 126/2008 rewrote substantial provisions and added child-protection provisions to Penal Code. Current consolidation requires Gazette collation.",
+      "notes": "Full Arabic text accessible at MKSEgypt (694 extracted lines) and Manshurat. Law 126/2008 amendment relation already indexed. Current consolidation still needs Gazette-by-Gazette article collation and post-2020 amendment search.",
       "source_urls": [
         {
           "url": "https://lawyeregypt.net/قانون-الطفل-المصرى-رقم-12-لسنة-1996",
@@ -3448,6 +3478,11 @@
           "url": "https://www.laweg.net/framePlain.aspx?ItemID=8964&NID=7658&Type=6&action=ViewActivePages",
           "source_role": "Law 126/2008 amendment text",
           "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://www.mksegypt.org/public/index.php/ar/laws/23925",
+          "source_role": "Full Arabic law text reproduction, 694 extracted lines",
+          "status": "full_text_accessible_not_archived"
         }
       ]
     },
@@ -3498,12 +3533,22 @@
         "Law 126/2008",
         "PM Decree 3452/1997 historical"
       ],
-      "notes": "Replaces PM Decree 3452/1997; full secondary text accessible. Verify original Gazette and all amendments after 2020.",
+      "notes": "Full 194-article Arabic text accessible at LawHub (1,636 extracted lines). Gazette No.29 follow-up (a), 22 Jul 2010; effective 23 Jul 2010; expressly repeals PM Decree 3452/1997. Laweg Gazette-hosted page confirms issuance/repeal/commencement; full text source is secondary. Extracted Arts.1,3,4 into dossier.",
       "source_urls": [
         {
           "url": "https://alhasswalawfirm.com/law-library/decree-2075-2010",
           "source_role": "Full 194-article Arabic text; secondary; source claims update through 9 Jun 2020",
           "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://lawhub.info/eg/?p=12124",
+          "source_role": "Full 194-article Arabic text, secondary reproduction",
+          "status": "full_text_accessible_not_archived"
+        },
+        {
+          "url": "https://www.laweg.net/framePlain.aspx?NID=64854&action=viewactivepages&itemid=50826&type=6",
+          "source_role": "Gazette No.29 follow-up (a) issue metadata and repeal/commencement text",
+          "status": "full_text_accessible_not_archived"
         }
       ]
     },
@@ -3526,7 +3571,7 @@
         "Law 14/2022",
         "Interior Minister Decree 79/1961"
       ],
-      "notes": "Full law text accessible secondarily. Amendment 19/2020 added Article 52 bis; Law 14/2022 replaced Arts 1, 2, 31, 81 and made specific title/terminology substitutions.",
+      "notes": "Full Arabic statute text accessible at Notaries of Egypt; Official Proceedings No.96 bis (b), 29 Nov 1956. Law 19/2020 adds Art.52 bis and repeals a paragraph of Narcotics Law Art.46 bis (a); Law 14/2022 replaces Arts.1,2,31,81 and deletes/repeals listed provisions. Current text requires full Gazette collation.",
       "source_urls": [
         {
           "url": "https://www.notariesofegypt.org/article.php?id=469",
@@ -3557,12 +3602,17 @@
       "required_related_records": [
         "Law 396/1956"
       ],
-      "notes": "Replaces Arts 1, 2, 31, 81 and changes statutory title to 'في شأن تنظيم السجون' while operative Art. 1 uses 'مراكز الإصلاح والتأهيل'.",
+      "notes": "Full Arabic text transcribed at Dafater Masr. Gazette No.11 bis (b), 20 Mar 2022; effective 21 Mar 2022 on issue/date evidence. Replaces Arts.1,2,31,81; substitutes terminology; repeals Arts.3,4,34, Art.90(3) and deletes final phrase in Art.48. A Manshurat catalogue entry gives conflicting 13/14/15 March metadata; preserve discrepancy and prefer Gazette issue pending original visual collation.",
       "source_urls": [
         {
           "url": "https://temp.manshurat.org/file/87963/download?token=oPuxA7uk",
           "source_role": "Gazette 11 bis (b), 20 Mar 2022, full PDF text copy",
           "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://dfatermasr.net/الاكْتفاء-بتغيير-اسم-السجون-ليس-الحل-قا-2/",
+          "source_role": "Full Arabic text transcription of Law 14/2022",
+          "status": "full_text_accessible_not_archived"
         }
       ]
     },
@@ -3576,7 +3626,7 @@
       "instrument_number": 79,
       "instrument_year": 1961,
       "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
-      "source_status": "metadata_located_text_not_read",
+      "source_status": "full_secondary_text_accessible",
       "collection_permission": "unknown",
       "legal_status": "unknown",
       "review_status": "discovery_only",
@@ -3584,12 +3634,22 @@
         "Law 396/1956",
         "Law 14/2022"
       ],
-      "notes": "Ministerial decree, not a statute. Later amendments and consistency with Law 14/2022 require checking.",
+      "notes": "Full 101-article Arabic consolidated text accessible; source claims last update 21 Jun 2022. Gazette original No.103, 28 Dec 1961. Consolidation notes amendments including 1675/2011, 1342/2013, 3320/2014, 345/2017 and later instruments; Decision 1265/2022 reportedly amended several articles on 21 Jun 2022. Exact Gazette amendment scans and post-June-2022 status remain to verify.",
       "source_urls": [
         {
           "url": "https://manshurat.org/node/12358",
           "source_role": "Full-text/document source record; PDF/text acquisition pending",
           "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://alhasswalawfirm.com/law-library/decree-79-1961",
+          "source_role": "Full 101-article consolidated text, secondary reproduction; source claims updated through 21 Jun 2022",
+          "status": "full_text_accessible_not_archived"
+        },
+        {
+          "url": "https://www.vetogate.com/4624609",
+          "source_role": "Secondary report identifying Interior Minister Decision 1265/2022 and amended provisions",
+          "status": "full_text_accessible_not_archived"
         }
       ]
     },
@@ -5669,6 +5729,68 @@
           "status": "full_text_accessible_secondary"
         }
       ]
+    },
+    {
+      "document_id": "EG-AML-EXEC-AMEND-457-2020",
+      "official_title_ar": "قرار رئيس مجلس الوزراء رقم 457 لسنة 2020 بتعديل بعض أحكام اللائحة التنفيذية لقانون مكافحة غسل الأموال",
+      "practice_areas": [
+        "criminal",
+        "financial_regulation"
+      ],
+      "document_type": "amending_executive_regulation",
+      "instrument_number": 457,
+      "instrument_year": 2020,
+      "source_id": "EG-FRA",
+      "source_status": "full_text_accessible_not_archived",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-AML-EXEC-951-2003",
+        "EG-AML-80-2002"
+      ],
+      "notes": "Full Arabic text accessible at Laweg and secondary reproductions; Gazette date discrepancy remains: Laweg identifies Official Gazette No.8 bis, 23 Feb 2020, while FRA consolidated footnote identifies issue 13 bis (e), 31 Mar 2020. FRA consolidated 2023 regulation confirms provisions attributed to this decision. Original Gazette visual inspection required.",
+      "source_urls": [
+        {
+          "url": "https://www.laweg.net/framePlain.aspx?ItemID=115318&NID=142337&Type=6&action=ViewActivePages",
+          "source_role": "Laweg full Arabic text and Gazette metadata",
+          "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://www.mohamah.net/law/نصوص-ومواد-تعديل-اللائحة-التنفيذية-لقانون-مكافحة-غسل-الأموال-المصري/",
+          "source_role": "Secondary full Arabic transcription",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-PRISONS-EXEC-AMEND-1265-2022",
+      "official_title_ar": "قرار وزير الداخلية رقم 1265 لسنة 2022 بتعديل بعض أحكام اللائحة الداخلية لمراكز الإصلاح والتأهيل",
+      "practice_areas": [
+        "criminal",
+        "prisons"
+      ],
+      "document_type": "amending_ministerial_regulation",
+      "instrument_number": 1265,
+      "instrument_year": 2022,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": "metadata_located_text_partial",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "EG-PRISONS-EXEC-79-1961",
+        "EG-PRISONS-396-1956",
+        "EG-PRISONS-AMEND-14-2022"
+      ],
+      "notes": "Secondary report identifies Official Proceedings No.139 follow-up (c), 21 Jun 2022, and says it replaces provisions including Arts.11,15 bis,59,7 (second paragraph),75,82 bis and Art.85-related text. Full decision text and exact page/image transcription not yet acquired; consolidated Decree 79/1961 reproduction claims update through 21 Jun 2022.",
+      "source_urls": [
+        {
+          "url": "https://www.vetogate.com/4624609",
+          "source_role": "Secondary report identifying the decree and affected provisions",
+          "status": "metadata_only"
+        }
+      ]
     }
   ],
   "next_actions": [
@@ -5775,28 +5897,28 @@
       "id": "ACT-CRIM-2026-03",
       "action": "Extract FRA consolidated AML Law 80/2002 and Decree 951/2003 updated in 2023; reconcile Decree 457/2020 with Decree 3331/2023.",
       "owner": "Research Agent 2",
-      "status": "not_started",
+      "status": "in_progress",
       "blocking": false
     },
     {
       "id": "ACT-CRIM-2026-04",
       "action": "OCR and version the complete schedules in Health Decisions 44/2026 and 242/2026; preserve the superseded 44/2026 schedule separately.",
       "owner": "Research Agent 2",
-      "status": "not_started",
+      "status": "in_progress",
       "blocking": false
     },
     {
       "id": "ACT-CRIM-2026-05",
       "action": "Extract the full 194-article Child Executive Regulations 2075/2010 and verify post-2020 amendments against Gazette copies.",
       "owner": "Research Agent 2",
-      "status": "not_started",
+      "status": "in_progress",
       "blocking": false
     },
     {
       "id": "ACT-CRIM-2026-06",
       "action": "Extract complete Weapons Law 394/1954 and Prisons Law 396/1956 consolidations; collect Decrees 770/1954 and 79/1961 and subsequent amendments.",
       "owner": "Research Agent 2",
-      "status": "not_started",
+      "status": "in_progress",
       "blocking": false
     },
     {
@@ -5893,7 +6015,7 @@
   ],
   "research_log": {
     "checked_on": "2026-11-19",
-    "purpose": "Public-web source discovery and temporal-risk identification. These findings do not grant collection permission, establish a complete amendment chain, or constitute lawyer approval.",
+    "purpose": "Acquisition-first public-source research. Prefer complete Arabic text, Gazette/regulator-hosted PDFs and exact amendment instruments; use secondary transcriptions only as labeled fallback. Public accessibility does not establish collection or reuse permission.",
     "evidence": [
       {
         "evidence_id": "SRC-AMIRIA-LABOUR-14-2025",
@@ -6345,6 +6467,30 @@
         "observed_title": "Penal Code Law 58/1937 — 2020–2023 amendment chain",
         "finding": "Confirmed 189/2020 (bullying Art.309 bis b), 10/2021 (FGM Arts242 bis), 71/2021 (trial-session recording Art186 bis), 141/2021 (sexual harassment Arts306 bis a/b), 150/2021 (state secrets Art80 a) and 185/2023 (sexual harassment and related amendments). No post-185/2023 instrument found in this search.",
         "status": "full_text_accessible_selected_articles_persisted"
+      },
+      {
+        "evidence_id": "SRC-CRIM-AML-CHILD-PRISON-DRUGS-2026-11-19",
+        "document_ids": [
+          "EG-AML-80-2002",
+          "EG-AML-EXEC-951-2003",
+          "EG-AML-EXEC-AMEND-3331-2023",
+          "EG-AML-EXEC-AMEND-457-2020",
+          "EG-CHILD-12-1996",
+          "EG-CHILD-EXEC-2075-2010",
+          "EG-PRISONS-396-1956",
+          "EG-PRISONS-AMEND-14-2022",
+          "EG-PRISONS-EXEC-79-1961",
+          "EG-PRISONS-EXEC-AMEND-1265-2022",
+          "EG-DRUGS-182-1960",
+          "EG-DRUGS-DECISION-44-2026",
+          "EG-DRUGS-DECISION-242-2026"
+        ],
+        "source_type": "official regulator-hosted consolidations, Gazette PDFs, and secondary full Arabic transcriptions",
+        "url": "https://fra.gov.eg/wp-content/uploads/2024/06/لائحة-القانون-وفقا-لاخر-تعديل-الاصدار.pdf",
+        "publisher": "FRA / EDA / Official Gazette repositories / secondary legal text repositories",
+        "observed_title": "AML, Child Law, Prison Regulations and Narcotics Schedule acquisition tranche",
+        "finding": "Full updated AML law and executive regulation, Decree 3331/2023 Gazette PDF, Child Law and full 2075/2010 regulation, prison statute and consolidated 79/1961 regulation, and official EDA scans for Law 182/1960 plus Decisions 44/2026 and 242/2026 inspected. Two missing amendment instruments added as distinct inventory records: AML Decree 457/2020 and prison regulation Decree 1265/2022. Exact source links and selected Arabic text persisted in the Agent 2 dossier. No local original files archived or hash-verified.",
+        "status": "full_text_accessible_selected_text_persisted_official_pdfs_not_archived"
       }
     ],
     "temporal_review_alerts": [
@@ -6370,7 +6516,7 @@
     "agent": "Research Agent 2",
     "domain": "Egyptian criminal law and procedure",
     "as_of": "2026-11-19",
-    "estimated_domain_completion_percent": 58,
+    "estimated_domain_completion_percent": 61,
     "previous_session_estimate_percent": 36,
     "whole_project_contribution_percent": null,
     "whole_project_contribution_reason": "Cannot calculate without master-index denominator and domain weights.",
@@ -6378,9 +6524,11 @@
     "official_full_text_files_archived_and_hash_verified_in_this_session": 0,
     "complete_arabic_texts_accessible_at_source_estimate": ">20 laws/codes and implementing/treaty instruments",
     "new_inventory_records_added_this_session": 81,
-    "inventory_total_documents": 166,
+    "inventory_total_documents": 168,
     "acquisition_queue_items": 24,
     "crosscheck_register_count": 19,
-    "notes": "Approximate research progress, not an article-count or quality-assurance metric. Browser-readable PDFs and secondary full texts are not represented as locally archived/hash-verified files."
+    "notes": "Qualitative research-coverage estimate, not article-count or lawyer-QA metric. This pass improved source and text coverage for AML, child justice, prisons and narcotics schedules. Two new amendment-instrument records were added without duplicating base laws. Publicly readable source text is not represented as locally archived/hash-verified; permission for storage/indexing/commercial use remains unknown.",
+    "last_acquisition_pass_increment_percent": 3,
+    "last_acquisition_pass_date": "2026-11-19"
   }
 }
