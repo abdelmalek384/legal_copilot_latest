@@ -1454,3 +1454,159 @@ This pass adds the expert statute, judicial authority statute, expert amendments
 **Lawyer verification:** 0%.  
 **Whole-project coverage:** not computable without the master-index denominator.
 
+
+---
+
+## N. Criminal Procedure Law 150/1950 — amendment chronology correction and new Arabic texts
+
+### N1. Critical correction: the 2020 amendment is Law 177/2020, not Law 189/2020
+
+A secondary copy of Law 150/1950 on Manshurat displays “last amendment: 5 September 2020 by Law 189/2020”. This is a misattribution.
+
+- **Law 177/2020** is the actual amendment to Criminal Procedure Law 150/1950.
+- It adds Article 113 bis protecting the identity/data of victims in specified sexual and child offences.
+- Gazette: No. 36 bis, 5 September 2020.
+- Effective: 6 September 2020.
+- Full Arabic text: https://www.aldhshan.com/2026/02/177-2020-150-1950.html
+- Manshurat PDF record: https://manshurat.org/node/67605
+
+**Article 1 — new Article 113 bis:**
+
+> لا يجوز لمأموري الضبط أو جهات التحقيق الكشف عن بيانات المجنى عليه فى أى من الجرائم المنصوص عليها فى الباب الرابع من الكتاب الثالث من قانون العقوبات الصادر بالقانون رقم ٥٨ لسنة ١٩٣٧، أو فى أى من المادتين (٣٠٦ مكرراً / أ ، ٣٠٦ مكرراً / ب) من ذات القانون، أو فى المادة (٩٦) من قانون الطفل الصادر بالقانون رقم ١٢ لسنة ١٩٩٦، إلا لذوى الشأن.
+
+**Law 189/2020 is not a Criminal Procedure amendment.** It amends the Penal Code by adding Article 309 bis (b) on bullying. Its full Arabic text is separately identified at https://manshurat.org/node/67632 and its source reproduction: https://www.eglf.org/عقوبة-التنمر-في-القانون-المصري-189-لسنة-2020/
+
+Do not copy the 189/2020 label from the Manshurat CPL page into the Criminal Procedure amendment chain.
+
+### N2. Current amendment chronology — known instruments
+
+This is an acquisition chronology, not yet an exhaustive article-by-article consolidation. The Manshurat relations page for Law 150/1950 identifies the following historical amendments; the later full-text sources confirm additional instruments.
+
+| Instrument | Main amendment / subject | Arabic source state |
+|---|---|---|
+| Law 271/1955 | Amends Art. 550 (execution) | Metadata / relation identified; full text pending |
+| Law 107/1962 | Amends Art. 151 and related provisions | Metadata / relation identified; full text pending |
+| Law 37/1972 | Amends Art. 143 (pre-trial detention) | Full provision notes in consolidated text |
+| Law 23/1992 | Amends CPL | Metadata / relation identified; full text pending |
+| Law 95/2003 | Repeals State Security Courts and amends CPL; adds Art. 206 bis and related financial-crime measures | Full text source required |
+| Law 145/2006 | Pre-trial detention, alternatives and Art. 206 bis | Official PDF record and full secondary text |
+| Law 74/2007 | Amends Arts 18 bis, 297, 323, 324, 325 bis, 327 and 398; reconciliation/appeal procedure | Full Gazette reproduction |
+| Law 71/2009 | Mental Health Care Law; consequential changes to CPL and Penal Code | Full Arabic text and Gazette source |
+| Law 83/2013 | Amends Art. 143 pre-trial detention in death/life-imprisonment cases | PDF record located |
+| Law 49/2014 | Amends Art. 479 CPL alongside Penal Code and Prisons Law | Full Gazette text |
+| Law 138/2014 | Replaces Arts 64, 65 and 74; adds Art. 66; judicial investigation delegation | Full Arabic text and PDF record |
+| Law 16/2015 | Amends Art. 15; adds Arts 18 bis (b) and 208 bis (e) | Full Arabic text and PDF record |
+| Law 11/2017 | Replaces Arts 12, 277, 289, 384 and 395 | Official Gazette PDF and full text |
+| Law 177/2020 | Adds Art. 113 bis victim-identity protection | Full Arabic text |
+| Law 1/2024 | Felony appeal / two-tier adjudication; new appellate chapters and Arts 367, 419 bis et seq. | Official Gazette PDF and full Arabic text |
+
+**Core relation page:** https://manshurat.org/node/14419/relations  
+It lists the historical amendments, including Laws 271/1955, 107/1962, 37/1972, 23/1992, 95/2003, 145/2006, 74/2007, 71/2009, 83/2013, 49/2014, 138/2014, 16/2015, 11/2017 and 177/2020. Law 1/2024 is the subsequent amendment.
+
+### N3. Full amendment texts newly located
+
+#### Law 95/2003
+
+- Full PDF/source relation: https://manshurat.org/node/14419/relations
+- Adds Article 206 bis, authorizing specified senior prosecutors to exercise investigating-judge powers in defined categories of felonies; also adds/changes financial precautionary measures in Arts 208 bis (a)–(e).
+- Gazette No. 25 follow-up, 19 June 2003.
+- Full original Gazette scan still to be obtained and visually collated.
+
+#### Law 145/2006 — pre-trial detention
+
+- Gazette metadata and PDF: https://manshurat.org/node/14577
+- Issued 15 July 2006; published 27 July 2006; effective 28 July 2006.
+- Amends Art. 201 and related pre-trial detention provisions; adds alternative measures to detention such as remaining at a specified residence, reporting to police at specified times, and prohibitions on visiting specified places.
+- Art. 143's detention-duration rules were also amended by Law 37/1972 and later Law 153/2007; preserve the full sequence.
+
+#### Law 74/2007
+
+- Gazette No. 22 follow-up, 31 May 2007.
+- Full Arabic text: https://www.laweg.net/framePlain.aspx?ItemID=18326&NID=18336&Type=6&action=ViewActivePages
+- Replaces Arts 18 bis, 297, 323, 324, 325 bis (first and second paragraphs), 327 (first paragraph) and 398 (first paragraph).
+
+**Article 1 opening:**
+
+> يستبدل بنصوص المواد 18 مكرراً، 297، 323، 324، 325 مكرراً (الفقرتان الأولى والثانية)، 327 (فقرة أولى)، 398 (فقرة أولى) من قانون الإجراءات الجنائية، النصوص الآتية:
+
+#### Law 71/2009 — Mental Health Care Law and consequential amendments
+
+- Gazette No. 20 follow-up, 14 May 2009; effective 15 May 2009.
+- Full Arabic text: https://www.laweg.net/framePlain.aspx?ItemID=91349&NID=111486&Type=6&action=ViewActivePages
+- Manshurat PDF record: https://manshurat.org/node/14473
+- Replaces terminology in CPL concerning mental illness / mental disorder and provides rules relevant to detention, examination and trial of persons with mental disorders.
+
+#### Law 83/2013 — detention duration for death/life cases
+
+- Issued and published 23 September 2013; effective 24 September 2013.
+- Manshurat PDF record: https://manshurat.org/node/6546
+- Amends Art. 143 concerning the maximum period of pre-trial detention in cases where the charged offence carries death or life imprisonment.
+
+#### Law 49/2014
+
+- Gazette No. 23 follow-up, 5 June 2014; effective 6 June 2014.
+- Full Arabic text: https://www.laweg.net/framePlain.aspx?ItemID=91349&NID=111486&Type=6&action=ViewActivePages (cross-reference; verify exact Law 49 record before using this URL)
+- Eastlaws metadata and text: https://www.eastlaws.com/legislation-full-text/ar/egypt/law/05-06-2014/no-49?id=1759016&type=1
+- Replaces CPL Art. 479 together with Penal Code Art. 18(2) and Prisons Law Art. 52(1).
+
+#### Law 138/2014
+
+- Issued 11 November 2014; Gazette 45 bis (c), 12 November 2014; effective 13 November 2014.
+- Full Arabic text: https://www.eastlaws.com/legislation-full-text/ar/egypt/law/12-11-2014/no-138?id=1771683&sub=8630302&type=1
+- Manshurat PDF record: https://manshurat.org/node/14421
+- Replaces Arts 64, 65 and 74; adds Art. 66 concerning delegation of judicial investigations.
+
+#### Law 16/2015
+
+- Gazette No. 11 follow-up, 12 March 2015; effective 13 March 2015.
+- Full Arabic text: https://www.eastlaws.com/legislation-full-text/ar/egypt/law/12-03-2015/no-16?id=1780988&sub=8694489&type=1
+- Manshurat PDF record: https://manshurat.org/node/14420
+
+**Article 1 — limitation period for public officials:**
+
+> تستبدل بالفقرة الثالثة من المادة (١٥) من قانون الإجراءات الجنائية الفقرة الآتية:  
+> ومع عدم الإخلال بأحكام الفقرتين السابقتين لا تبدأ المدة المسقطة للدعوى الجنائية في الجرائم المنصوص عليها في البابين الثالث والرابع من الكتاب الثاني من قانون العقوبات والتي تقع من موظف عام إلا من تاريخ انتهاء الخدمة أو زوال الصفة ما لم يبدأ التحقيق فيها قبل ذلك.
+
+**Article 2** adds Articles 18 bis (b) and 208 bis (e). The complete text must be parsed; do not assume the amendments are only limitation-related.
+
+#### Law 11/2017
+
+- Gazette No. 17 follow-up, 27 April 2017; effective 28 April 2017.
+- Official Gazette PDF hosted by FRA: https://fra.gov.eg/wp-content/uploads/2017/04/alamiria_2017_11.pdf
+- Full text: https://lawyeregypt.net/قانون-رقم-11-لسنة-2017-بشأن-تعديل-بعض-أحكام-ق-2/
+- Eastlaws: https://www.eastlaws.com/legislation-full-text/ar/egypt/law/27-04-2017/no-11?id=1871703&type=1
+
+**Article 1** replaces CPL Arts 12, 277, 289, 384 and 395. It also amends the Court of Cassation Appeals Law, Terrorist Lists Law 8/2015 and Anti-Terrorism Law 94/2015.
+
+#### Law 177/2020
+
+See N1. Adds Article 113 bis and protects victim identity in specified offences. Do not confuse it with Law 189/2020 (Penal Code bullying).
+
+#### Law 1/2024 — felony appeals
+
+- Gazette No. 2 bis, 16 January 2024; effective 17 January 2024.
+- Official SIS-hosted Gazette PDF: https://mediadr.sis.gov.eg/bitstream/handle/123456789/51750/OG2_20240116_1055.pdf?isAllowed=y&sequence=2
+- Manshurat PDF: https://manshurat.org/sites/default/files/qnwn_rqm_1_lsn_2024.pdf
+- Eastlaws full text: https://www.eastlaws.com/legislation-full-text/ar/egypt/law/16-01-2024/no-1?id=2106397&type=1
+
+It changes terminology throughout the CPL and replaces the first two chapters of Book II, Title III to create a felony-appeal system. It adds provisions including Article 367 and Articles 419 bis et seq. The original Gazette PDF should be article-split and compared with the consolidated current Law 150 text.
+
+### N4. Article 113 bis and the future code — transition
+
+- Law 177/2020 Article 113 bis is part of the current Law 150/1950 text until 1 October 2027, subject to any further legislation.
+- Law 174/2025 contains victim-protection and witness rules in its own code, but these are future provisions until commencement.
+- Do not treat Law 177/2020 as a general anonymity rule for all victims; its scope is the specific offences listed in the article.
+- Law 1/2024 felony appeals apply from 17 January 2024; Law 174/2025 issuance Article 3 contains a transitional rule tied to proceedings not decided from the Law 1/2024 date.
+
+### N5. Date discrepancy — original Law 150/1950
+
+The original publication metadata remains conflicting:
+- Manshurat record: publication 15 October 1950; commencement 14 November 1950.
+- Eastlaws record: publication 15 October 1951; commencement 14 November 1951.
+- Both identify issuance on 3 September 1950 and Waqa'i' No. 90.
+
+Do not lock 1950 or 1951 without inspecting the original Waqa'i' No. 90. The prior dossier's 1951 date is not confirmed; the Manshurat 1950 metadata is also not independently verified against the Gazette image.
+
+### N6. Status update
+
+The Criminal Procedure Law 150/1950 amendment chain is materially more complete than the v0.1 dossier. The high-priority missing original instruments are now Law 95/2003, Law 145/2006, Law 83/2013, Law 49/2014, Law 138/2014, Law 16/2015, Law 11/2017, Law 177/2020 and Law 1/2024. Several are already accessible as full Arabic texts or Gazette PDFs; the remaining older amendment candidates are metadata-only and must be separated from verified text.
