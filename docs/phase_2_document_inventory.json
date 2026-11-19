@@ -1059,7 +1059,7 @@
       "instrument_number": 151,
       "instrument_year": 2020,
       "source_id": "EG-AMIRI-PRESS",
-      "source_status": "full_text_accessible_not_archived",
+      "source_status": "official_full_text_pdf_accessible_not_archived",
       "collection_permission": "unknown",
       "legal_status": "unknown",
       "review_status": "discovery_only",
@@ -1076,7 +1076,7 @@
           "status": "full_text_accessible_not_archived"
         }
       ],
-      "notes": "Official full Arabic text accessible. Issuance Art. 3(4) excludes data relating to police reports, investigations and judicial proceedings. Art. 34 gives judicial-police status to designated Centre employees; Arts 36–49 contain offences and penalties. Executive Regulations: Ministerial Decision 816/2025, Gazette Waqa'i' 244 follow-up (a), 1 Nov 2025; effective 2 Nov 2025."
+      "notes": "Official ESCC-hosted Official Gazette No.28 bis (e), 15 Jul 2020 PDF, 723 extracted lines. Arts.36–49 criminalize unlawful processing/disclosure, sensitive-data violations, cross-border violations, direct marketing and other breaches; include entity-manager liability, publication of conviction, recidivism, attempt and settlement. Art.5 assigns Economic Courts jurisdiction over offences under the law. Exact text captured in the 19 Nov 2026 dossier."
     },
     {
       "document_id": "EG-CYBERCRIME-175-2018",
@@ -1090,7 +1090,7 @@
       "instrument_number": 175,
       "instrument_year": 2018,
       "source_id": "EG-AMIRI-PRESS",
-      "source_status": "discovery_only",
+      "source_status": "official_full_text_pdf_accessible_not_archived",
       "collection_permission": "unknown",
       "legal_status": "unknown",
       "review_status": "discovery_only",
@@ -1117,7 +1117,7 @@
           "status": "metadata_accessible"
         }
       ],
-      "notes": "undefined Full Arabic Law 175/2018 text is accessible as a 416-line PDF on the Supreme Constitutional Court domain. Article 11 expressly establishes digital-evidence probative equivalence subject to technical conditions in the Executive Regulations. Correct implementing instrument identified as PM Decree 1699/2020 (Gazette 35 follow-up (c), 27 Aug 2020; effective 28 Aug 2020); do not treat the unrelated/unexplained 635/2020 PDF lead as confirmed."
+      "notes": "Official ESCC-hosted Gazette PDF, Official Gazette No.32 bis (c), 14 Aug 2018, full 416-line text. Art.2 requires 180-day continuous retention of service-provider logs; Art.6 allows reasoned investigative orders for up to 30 days renewable once; Art.7 sets website-blocking process. No later statutory amendment identified in this pass; exhaustive Gazette review remains open."
     },
     {
       "document_id": "EG-COMPETITION-LAW-COLLECTION",
@@ -3042,7 +3042,7 @@
       "instrument_number": 1699,
       "instrument_year": 2020,
       "source_id": "EG-MASAAR",
-      "source_status": "full_text_accessible_not_archived",
+      "source_status": "full_text_accessible_at_FRA_and_secondary_ESCC_header_conflict",
       "collection_permission": "unknown",
       "legal_status": "unknown",
       "review_status": "discovery_only",
@@ -3051,7 +3051,7 @@
         "Article 11 digital evidence",
         "subsequent amendments"
       ],
-      "notes": "Gazette 35 follow-up (c), 27 Aug 2020; effective 28 Aug 2020. Article 9 sets digital-evidence acquisition, hash, chain-of-custody and preservation requirements. Official Gazette PDF acquisition pending.",
+      "notes": "FRA-hosted full Arabic text and 15-article transcription acquired. Gazette No.35 follow-up (c), 27 Aug 2020; effective 28 Aug 2020. Art.9 requires integrity-preserving digital evidence collection, authorized collection/preservation, hash documentation and preservation of original; Art.10 documents evidence metadata. ESCC-hosted file named law-175-2018-regulations.pdf displays 635/2020 in its heading, while FRA, FRA catalogue, Eastlaws, Manshurat, LawHub and other full texts consistently identify 1699/2020. Treat 635 as source-copy defect pending original Gazette image; do not create a separate 635 record.",
       "source_urls": [
         {
           "url": "https://masaar.net/ar/egypt_laws/اللائحة-التنفيذية-لقانون-مكافحة-جرائم-تقنية-المعلومات/",
@@ -3062,6 +3062,21 @@
           "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/prime-minister-decision/27-08-2020/no-1699?id=2000041&type=1",
           "source_role": "Gazette number/date/effective-date metadata",
           "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://fra.gov.eg/wp-content/uploads/2025/01/يُعمل-بأحكام-اللائحة-التنفيذية-المرافقة-فى-شأن-قانون-مكافحة-جرائم-تقنية-المعلومات-المشـار-إليـه.pdf",
+          "source_role": "FRA-hosted full 15-article Arabic text",
+          "status": "full_text_accessible_not_archived"
+        },
+        {
+          "url": "https://alhasswalawfirm.com/law-library/decree-1699-2020",
+          "source_role": "Full 15-article Arabic text reproduction",
+          "status": "full_text_accessible_not_archived"
+        },
+        {
+          "url": "https://escc.gov.eg/assets/docs/law-175-2018-regulations.pdf",
+          "source_role": "ESCC-hosted regulation PDF with conflicting heading 635/2020",
+          "status": "official_source_copy_conflict"
         }
       ]
     },
@@ -3949,7 +3964,7 @@
       "instrument_number": 64,
       "instrument_year": 2010,
       "source_id": "EG-NATLEX-ILO",
-      "source_status": "full_text_accessible_not_archived",
+      "source_status": "full_30_article_arabic_text_and_bilingual_full_text_accessible",
       "collection_permission": "unknown",
       "legal_status": "unknown",
       "review_status": "discovery_only",
@@ -3959,7 +3974,7 @@
         "Law 82/2016",
         "Palermo Protocol"
       ],
-      "notes": "Gazette 18 bis, 9 May 2010; effective 10 May 2010. Arts 1–2 define trafficking; Arts 5–6 offences; Arts 16, 21–22 jurisdiction and victim protection.",
+      "notes": "Full 30-article Arabic text accessible at Alhasswa (states updated through 2025) and bilingual Arabic/English ILO NATLEX PDF. Official Gazette No.18 bis, 9 May 2010; effective 10 May 2010. Law 82/2016 replaced the national coordinating committee but did not repeal substantive Law 64 offences. No amending statute identified in this pass; current status needs Gazette cross-check.",
       "source_urls": [
         {
           "url": "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/89881/eg%2064%20of%202010.pdf",
@@ -3970,6 +3985,11 @@
           "url": "https://lawyeregypt.net/قانون-مكافحة-الاتجار-بالبشر-رقم-64-لسنة-2010/",
           "source_role": "Full Arabic text reproduction updated to 2025",
           "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://alhasswalawfirm.com/law-library/law-64-2010",
+          "source_role": "Full 30-article Arabic text reproduction",
+          "status": "full_text_accessible_not_archived"
         }
       ]
     },
@@ -3983,7 +4003,7 @@
       "instrument_number": 3028,
       "instrument_year": 2010,
       "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
-      "source_status": "full_text_accessible_not_archived",
+      "source_status": "full_28_article_arabic_text_accessible_secondary",
       "collection_permission": "unknown",
       "legal_status": "unknown",
       "review_status": "discovery_only",
@@ -3992,7 +4012,7 @@
         "Decision 349/2024",
         "PM Decisions 192/2017, 1123/2017, 60/2020"
       ],
-      "notes": "Gazette 47 bis, 30 Nov 2010; effective 1 Dec 2010. Art. 3 child victim/no consent defense; Arts 4–7 international cooperation and asset tracing; Art. 8 victim non-liability. Later update claim not reconciled.",
+      "notes": "PM Decree 3028/2010, Official Gazette No.47 bis, 30 Nov 2010; effective next day (1 Dec 2010). Full 28-article Arabic text acquired. Provides victim protection/legal assistance/shelter, witness safeguards, international police/judicial cooperation, mutual legal assistance, extradition, asset tracing/freezing/confiscation and victim-support fund rules. One SIS report incorrectly cites 2038/2010; Gazette-derived full text and other full-text sources confirm 3028/2010.",
       "source_urls": [
         {
           "url": "https://alhasswalawfirm.com/law-library/decree-3028-2010",
@@ -4048,7 +4068,7 @@
       "instrument_number": 82,
       "instrument_year": 2016,
       "source_id": "EG-FRA",
-      "source_status": "full_text_accessible_not_archived",
+      "source_status": "official_full_text_pdf_accessible_not_archived",
       "collection_permission": "unknown",
       "legal_status": "unknown",
       "review_status": "discovery_only",
@@ -4057,7 +4077,7 @@
         "PM Decree 983/2018",
         "Law 64/2010"
       ],
-      "notes": "Effective 8 Nov 2016. Law 22/2022 replaces Arts 6, 7, 8 and 15. Art. 2 transfers committee functions from Law 64/2010; Law 64 itself is not repealed.",
+      "notes": "Full official FRA-hosted Gazette PDF, Official Gazette No.44 bis (a), 7 Nov 2016; effective 8 Nov 2016. Issuance Art.2 replaces the committee established under Law 64/2010 with the new National Coordinating Committee; this institutional transfer does not repeal Law 64 substantive offences.",
       "source_urls": [
         {
           "url": "https://fra.gov.eg/wp-content/uploads/2021/11/قانون-رقم-82-لسنة-2016-لمكافحة-الهجرة-غير-الشرعية-وتهريب-المهاجرين.pdf",
@@ -4117,7 +4137,7 @@
       "instrument_number": 983,
       "instrument_year": 2018,
       "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
-      "source_status": "full_text_accessible_not_archived",
+      "source_status": "full_24_article_arabic_text_accessible_plus_14_page_pdf",
       "collection_permission": "unknown",
       "legal_status": "unknown",
       "review_status": "discovery_only",
@@ -4126,7 +4146,7 @@
         "Law 22/2022",
         "Law 64/2010"
       ],
-      "notes": "Arts 10–11 cover international asset tracing/freezing and execution of foreign criminal judgments. Effective 16 May 2018 per source metadata.",
+      "notes": "PM Decree 983/2018, Official Gazette No.19 bis (z), 15 May 2018; effective 16 May 2018. Full 24-article Arabic text acquired from Alhasswa/LawHub and 14-page PDF from Manshurat. Arts.8–11 regulate information exchange, investigations, mutual legal assistance, letters rogatory, extradition, asset recovery/freezing/confiscation and enforcement of foreign orders; Art.5 addresses unaccompanied children and safe return.",
       "source_urls": [
         {
           "url": "https://lawhub.info/eg/?p=12572",
@@ -4137,6 +4157,16 @@
           "url": "https://www.laweg.net/framePlain.aspx?NID=138273&action=viewactivepages&itemid=111688&type=6",
           "source_role": "Gazette No. 19 bis (z), 15 May 2018, text",
           "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://alhasswalawfirm.com/law-library/decree-983-2018",
+          "source_role": "Full 24-article Arabic text reproduction",
+          "status": "full_text_accessible_not_archived"
+        },
+        {
+          "url": "https://manshurat.org/file/54431/download?token=y4SR-ZwS",
+          "source_role": "14-page PDF copy of Decree 983/2018",
+          "status": "full_text_accessible_not_archived"
         }
       ]
     },
@@ -4150,14 +4180,14 @@
       "instrument_number": 816,
       "instrument_year": 2025,
       "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
-      "source_status": "full_text_accessible_not_archived",
+      "source_status": "full_43_article_arabic_text_accessible_secondary_official_endpoint_inaccessible",
       "collection_permission": "unknown",
       "legal_status": "unknown",
       "review_status": "discovery_only",
       "required_related_records": [
         "Law 151/2020"
       ],
-      "notes": "Waqa'i' No. 244 follow-up (a), 1 Nov 2025; effective 2 Nov 2025. Regulates collection, processing, storage, security and licensing. Later amendment not identified.",
+      "notes": "Ministerial Decree 816/2025, Official Proceedings No.244 follow-up (a), 1 Nov 2025; effective 2 Nov 2025. Full 43-article Arabic text accessible through Alhasswa and 26-page LegalIn PDF reproduction of Gazette, last reviewed 29 Oct 2026. Official PDPC PDF endpoint exists but was inaccessible to browser. Art.5: report breach to Centre within 72 hours of awareness and notify data subject within 3 working days after Centre report. Art.13 digital evidence requirements; Art.15 under-15 child data requires express written guardian consent. Law 151 Art.6 one-year regularization from issuance of regulations calculates to 1 Nov 2026; original Gazette verification of deadline computation pending.",
       "source_urls": [
         {
           "url": "https://alhasswalawfirm.com/law-library/decree-816-2025",
@@ -4168,6 +4198,16 @@
           "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/tech-minister-decision/01-11-2025/no-816?id=5008447&type=1",
           "source_role": "Gazette metadata",
           "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://legalin.law/wp-content/uploads/2026/10/LegalIn-PDPL-Executive-Regulations-816-2025-rev.pdf",
+          "source_role": "26-page Arabic PDF reproduction of Official Proceedings No.244 follow-up (a)",
+          "status": "full_text_accessible_not_archived"
+        },
+        {
+          "url": "https://pdpc.gov.eg/assets/pdf-data/Executive%20Regulation.pdf",
+          "source_role": "Official PDPC PDF endpoint; browser access failed",
+          "status": "official_endpoint_access_failed"
         }
       ]
     },
@@ -6931,6 +6971,25 @@
         "observed_title": "Child Law 12/1996 amendments through 2025; Child Executive Regulations through 2020; Weapons Law 394/1954 and 2019/2022 instruments",
         "finding": "Identified Child Law amendments 182/2023, 186/2023 and Law 12/2025 (Social Security) repealing Art.49; recovered earlier 2015 and 2021 amendments; identified executive regulation amendment chain 208/2014, 178/2016, 1783/2018 and 1143/2020. Acquired 16-page Gazette-derived PDF for Law 182/2023, Amiri Press text and institutional Arabic PDF for Law 186/2023, and official Gazette PDF for Law 163/2022. Full Arabic reproductions acquired for Law 5/2019 and Interior Minister Decision 1300/2019. Exact excerpts and outstanding source gaps recorded in dossier.",
         "status": "multiple_full_texts_accessible_selected_text_persisted_original_files_not_archived"
+      },
+      {
+        "evidence_id": "SRC-CRIM-CYBER-PDPL-TRAFFICKING-MIGRATION-2026-11-19",
+        "document_ids": [
+          "EG-CYBERCRIME-175-2018",
+          "EG-CYBERCRIME-EXEC-1699-2020",
+          "EG-PERSONAL-DATA-151-2020",
+          "EG-PERSONAL-DATA-EXEC-816-2025",
+          "EG-HUMAN-TRAFFICKING-64-2010",
+          "EG-HUMAN-TRAFFICKING-EXEC-3028-2010",
+          "EG-ILLEGAL-MIGRATION-82-2016",
+          "EG-ILLEGAL-MIGRATION-EXEC-983-2018"
+        ],
+        "source_type": "official Gazette/regulator PDFs and full Arabic transcriptions",
+        "url": "https://escc.gov.eg/assets/docs/law-175-2018.pdf",
+        "publisher": "ESCC / FRA / Official Gazette reproductions / LegalIn / Alhasswa / ILO NATLEX",
+        "observed_title": "Cybercrime, Personal Data Protection, Human Trafficking and Migrant Smuggling text acquisition",
+        "finding": "Acquired full official Law 175/2018 PDF, FRA full PM Decree 1699/2020 text, official Law 151/2020 PDF, full 43-article Arabic Decree 816/2025 reproduction, full Law 64/2010 and Decree 3028/2010 texts, official Law 82/2016 PDF and full Decree 983/2018 text. Extracted cybercrime retention/search/hash rules, personal-data criminal offences and digital-evidence/breach-reporting rules, victim-protection/MLA rules and migrant-smuggling extradition/asset recovery provisions. Source conflicts: ESCC cybercrime-regulation PDF heading says 635/2020 while FRA and all full-text sources identify 1699/2020; one SIS report says 2038/2010 while Gazette-derived full text confirms Decree 3028/2010.",
+        "status": "full_text_accessible_selected_text_persisted_official_files_not_archived"
       }
     ],
     "temporal_review_alerts": [
@@ -6956,7 +7015,7 @@
     "agent": "Research Agent 2",
     "domain": "Egyptian criminal law and procedure",
     "as_of": "2026-11-19",
-    "estimated_domain_completion_percent": 63,
+    "estimated_domain_completion_percent": 65,
     "previous_session_estimate_percent": 58,
     "whole_project_contribution_percent": null,
     "whole_project_contribution_reason": "Cannot calculate without master-index denominator and domain weights.",
@@ -6966,8 +7025,8 @@
     "new_inventory_records_added_this_session": 96,
     "inventory_total_documents": 181,
     "acquisition_queue_items": 24,
-    "crosscheck_register_count": 25,
-    "notes": "Qualitative research-coverage estimate, not article-count or lawyer-QA metric. This pass improved source and text coverage for AML, child justice, prisons and narcotics schedules. Two new amendment-instrument records were added without duplicating base laws. Publicly readable source text is not represented as locally archived/hash-verified; permission for storage/indexing/commercial use remains unknown. Cross-check register expanded to 22 entries for AML Decree 457/2020 date conflict, Prisons Law 14/2022 publication metadata conflict, and Decision 242/2026 schedule OCR verification. Second acquisition pass identified Child Law amendments through 2025 (including Art.49 repeal), four Child Law Executive Regulation amendments through 2020, and weapons Law 5/2019, Law 163/2022, Decision 1300/2019. 13 distinct records added, bringing total to 181. Research estimate increased to 63%; still 0 local original files archived/hash verified and 0 lawyer-verified records. Cross-check register now includes the Child Law Art.49 repeal in Social Security Law 12/2025, the 2075/2010 executive-regulation amendment chain, and SCC judgment 1/47 (2026) on weapons provisions. Progress metadata reconciled to the 58% baseline recorded before the current acquisition work; 96 net-new inventory records are now counted cumulatively (81 prior tranche + 15 added in the two current passes).",
+    "crosscheck_register_count": 27,
+    "notes": "Qualitative research-coverage estimate, not article-count or lawyer-QA metric. This pass improved source and text coverage for AML, child justice, prisons and narcotics schedules. Two new amendment-instrument records were added without duplicating base laws. Publicly readable source text is not represented as locally archived/hash-verified; permission for storage/indexing/commercial use remains unknown. Cross-check register expanded to 22 entries for AML Decree 457/2020 date conflict, Prisons Law 14/2022 publication metadata conflict, and Decision 242/2026 schedule OCR verification. Second acquisition pass identified Child Law amendments through 2025 (including Art.49 repeal), four Child Law Executive Regulation amendments through 2020, and weapons Law 5/2019, Law 163/2022, Decision 1300/2019. 13 distinct records added, bringing total to 181. Research estimate increased to 63%; still 0 local original files archived/hash verified and 0 lawyer-verified records. Cross-check register now includes the Child Law Art.49 repeal in Social Security Law 12/2025, the 2075/2010 executive-regulation amendment chain, and SCC judgment 1/47 (2026) on weapons provisions. Progress metadata reconciled to the 58% baseline recorded before the current acquisition work; 96 net-new inventory records are now counted cumulatively (81 prior tranche + 15 added in the two current passes). Third acquisition pass upgraded cybercrime Law 175/2018 and Decree 1699/2020, Personal Data Law 151/2020 and Decree 816/2025, Human Trafficking Law 64/2010 and Decree 3028/2010, and Illegal Migration Law 82/2016 and Decree 983/2018. No duplicate base-law records added. Key source conflicts logged. Cross-check register includes Cybercrime Executive Regulation 1699/2020 vs ESCC 635/2020 heading conflict and Human Trafficking Executive Regulation 3028/2010 vs one secondary 2038/2010 miscitation.",
     "last_acquisition_pass_increment_percent": 2,
     "last_acquisition_pass_date": "2026-11-19"
   }
