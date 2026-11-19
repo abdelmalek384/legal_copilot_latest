@@ -698,7 +698,7 @@
         "international_cooperation"
       ],
       "priority": "P1",
-      "action": "Build the full Egyptian extradition and mutual legal assistance corpus: obtain Law 140/2014, Law 83/1954 historical treaty, Egypt's 2014 accession to Riyadh Convention 1983, UNTOC and both Palermo Protocols, bilateral agreements, and future CPL 174/2025 Book Five Arts 508–521. Extract exact Arabic text, reservations, central authorities, grounds for refusal, provisional detention, controlled delivery, asset tracing and entry-into-force dates.",
+      "action": "Normalize all 53 articles and all five schedules; acquire original Gazette scans for Laws5/2019 and163/2022 and older amendment chain 546/1954,29/1968,26/1978,101/1980,165/1981,162/2003,65/2010,90/2012,129/2014; verify Decision1300/2019 and any subsequent Interior Ministry rules for Schedule5 sound/air/gas weapons.",
       "candidate_sources": [
         "https://manshurat.org/node/3842",
         "https://www.qanouni.org/ar/convention/1581",
@@ -715,9 +715,9 @@
       ],
       "source_type": "official Gazette/regulator text and secondary full-text candidates; exact source terms must be reviewed per item",
       "permission_state": "unknown_or_pending",
-      "acquisition_state": "multiple_official_treaty_pdfs_and_full_arabic_texts_accessible_selected_articles_persisted",
+      "acquisition_state": "full_53_article_Law394_consolidation_through_163_2022_and_full_2019_2022_amendment_texts_accessible",
       "legal_review_state": "not_started",
-      "blocker": "Egyptian Riyadh accession deposit date and several bilateral exchange-of-ratification/entry-into-force dates conflict across metadata. Full treaty article extraction and authorized local archiving/hash are still pending.",
+      "blocker": "Current consolidated text is secondary-hosted but attributed to Court of Cassation portal; original Gazette scans for older amendments and the 2022 amendment not locally archived/hashed. Need review subsequent Interior Ministry implementing decisions and Schedule5.",
       "required_evidence": [
         "Egyptian accession deposit and entry into force for Riyadh 1983; assess Art.72 replacement of Law 83/1954",
         "all 72 articles and 1997 amended Art.69 of Riyadh Convention",
@@ -726,7 +726,8 @@
         "bilateral agreements: Turkey 222/1989; Morocco 229/1989; Hungary 129/1988; Romania 76/2003; Switzerland 177/2001; Pakistan 233/1994",
         "full Book Five of CPL 174/2025 Arts 508–521, including 508–510 and 512–513",
         "full Article 140/2014 relation to all treaties and future CPL repeal"
-      ]
+      ],
+      "last_researched_on": "2026-11-19"
     },
     {
       "queue_item_id": "ACQ-020",
