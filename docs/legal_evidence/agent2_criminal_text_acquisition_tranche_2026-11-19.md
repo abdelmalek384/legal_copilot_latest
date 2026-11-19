@@ -2057,3 +2057,101 @@ The full 194-article text at LawHub is annotated through PM Decree 1143/2020. Ne
 - **Original Gazette/regulator PDFs locally archived and SHA-256 verified:** 0.
 - **Egyptian lawyer-verified records:** 0.
 - **Next acquisition focus:** finish child-law implementing instruments and current consolidation; obtain the original 1954 weapons decision and full Law 5/2019 Gazette scan; then continue to cybercrime, AML/narcotics and criminal-procedure acquisition gaps.
+
+
+---
+
+## T. Acquisition pass — cybercrime, digital evidence, personal data, trafficking and migrant smuggling
+**Research date:** 19 November 2026.
+
+### T1. Cybercrime Law 175/2018 and Executive Regulations
+
+**Full Arabic text sources acquired:**
+- Law 175/2018, Official Gazette No.32 bis (c), 14 Aug 2018, full official PDF: https://escc.gov.eg/assets/docs/law-175-2018.pdf
+- PM Decree 1699/2020, FRA-hosted full Arabic text: https://fra.gov.eg/wp-content/uploads/2025/01/يُعمل-بأحكام-اللائحة-التنفيذية-المرافقة-فى-شأن-قانون-مكافحة-جرائم-تقنية-المعلومات-المشـار-إليـه.pdf
+- Full 15-article reproduction: https://alhasswalawfirm.com/law-library/decree-1699-2020
+
+**Law 175/2018 — selected exact provisions:** Article 2(1) requires service providers to preserve and store system logs for a continuous 180 days, including user-identifying data, content data under provider control, traffic data, terminal-device data and additional data specified by NTRA Board decision. Article 2(2) requires confidentiality and prohibits disclosure without a reasoned order from a competent judicial authority. Article 6 permits a reasoned investigative order for up to 30 days, renewable once, to seize, collect, preserve, search, inspect or access data/systems and require providers to produce stored information and connection data. Article 7 regulates website blocking and requires presentation to the court within 24 hours and a decision within 72 hours.
+
+**Exact Arabic excerpt — Law 175/2018, Art. 2(1):**
+
+> حفظ وتخزين سجل النظام المعلوماتي أو أي وسيلة لتقنية المعلومات، لمدة مائة وثمانين يوما متصلة.
+
+**PM Decree 1699/2020:** Official Proceedings/Gazette No.35 follow-up (c), 27 Aug 2020; effective 28 Aug 2020. The FRA-hosted text contains the full 15-article regulation. Article 9 sets technical admissibility/handling requirements for digital evidence: integrity-preserving collection and extraction; relevance and conformity with the investigative/judicial mandate; collection, extraction, preservation and sealing by authorized judicial officers or appointed experts; identification of tools/software; hash documentation; and preservation of the original. Article 10 requires documentation of the evidence and its metadata.
+
+**Exact Arabic excerpt — Executive Regulations, Art. 9(3):**
+
+> أن يتم جمع الدليل الرقمى واستخراجه وحفظه وتحريزه بمعرفة مأمورى الضبط القضائى المخول لهم التعامل فى هذه النوعية من الأدلة، أو الخبراء أو المتخصصين المنتدبين من جهات التحقيق أو المحاكمة، على أن يبين فى محاضر الضبط، أو التقارير الفنية على نوع ومواصفات البرامج والأدوات والأجهزة والمعدات التى تم استخدامها، مع توثيق كود وخوارزم Hash الناتج عن استخراج نسخ مماثلة ومطابقة للأصل من الدليل الرقمى بمحضر الضبط أو تقرير الفحص الفنى، مع ضمان استمرار الحفاظ على الأصل دون عبث به.
+
+**Numbering discrepancy:** the ESCC-hosted PDF at https://escc.gov.eg/assets/docs/law-175-2018-regulations.pdf displays “قرار رئيس مجلس الوزراء رقم (635) لسنة 2020” in its heading. The FRA-hosted full text, FRA catalogue, Eastlaws, Manshurat, LawHub and other complete reproductions identify the instrument as PM Decree 1699/2020, published 27 Aug 2020 and effective 28 Aug 2020. The ESCC heading is likely a source-copy defect, but the original Gazette No.35 follow-up (c) must be visually inspected. Do not create a separate 635/2020 instrument record on this evidence alone.
+
+### T2. Personal Data Protection Law 151/2020 and Executive Regulations 816/2025
+
+**Full Arabic text sources acquired:**
+- Law 151/2020, Official Gazette No.28 bis (e), 15 July 2020, official ESCC PDF: https://escc.gov.eg/assets/docs/law-151-2020.pdf
+- Decree 816/2025, full 43-article Arabic text: https://alhasswalawfirm.com/law-library/decree-816-2025
+- 26-page Arabic PDF reproducing Official Proceedings No.244 follow-up (a), 1 Nov 2025, reviewed 29 Oct 2026: https://legalin.law/wp-content/uploads/2026/10/LegalIn-PDPL-Executive-Regulations-816-2025-rev.pdf
+- Official PDPC endpoint (exists but was inaccessible in this pass): https://pdpc.gov.eg/assets/pdf-data/Executive%20Regulation.pdf
+
+**Law 151/2020 criminal provisions — exact Arabic excerpts:**
+
+Article 36:
+
+> يعاقب بغرامة لا تقل عن مائة ألف جنيه ولا تجاوز مليون جنيه كل حائز أو متحكم أو معالج جمع أو عالج أو أفشى أو أتاح أو تداول بيانات شخصية معالجة إلكترونياً بأي وسيلة من الوسائل في غير الأحوال المصرح بها قانوناً أو بدون موافقة الشخص المعني بالبيانات.
+
+Article 36 further provides imprisonment of at least six months and a fine of EGP 200,000–1,000,000, or either penalty, where the conduct is for material/moral benefit or to expose the data subject to danger or harm.
+
+Article 41:
+
+> يعاقب بالحبس مدة لا تقل عن ثلاثة شهور وبغرامة لا تقل عن خمسمائة ألف جنيه ولا تجاوز خمسة ملايين جنيه، أو بإحدى هاتين العقوبتين، كل حائز أو متحكم أو معالج جمع أو أتاح أو تداول أو عالج أو أفشى أو خزن أو نقل أو حفظ بيانات شخصية حساسة بدون موافقة الشخص المعني بالبيانات أو في غير الأحوال المصرح بها قانوناً.
+
+Articles 42–43 criminalize specified cross-border data-transfer and direct electronic marketing violations. Article 47 addresses liability of the person responsible for actual management of a violating legal entity; Article 48 provides for publication of conviction, increased penalties on recidivism and punishment of attempt; Article 49 provides settlement routes.
+
+**Executive Regulations 816/2025:** Gazette No.244 follow-up (a), 1 Nov 2025; effective 2 Nov 2025. The full 43-article text covers collection/consent, controller and processor obligations, breach response, DPO registration and functions, digital evidence, sensitive data, children's data, cross-border processing, direct marketing and licensing. Article 5 requires breach notification to the Centre within 72 hours of awareness and notification to the data subject within three working days after reporting to the Centre. Article 13 sets integrity, relevance, authorized collection and documentation conditions for digital evidence derived from personal data. Article 15 requires express written parental consent before collecting personal data of children under 15; for ages 15 to under 18, consent is governed by the stated child/guardian mechanism.
+
+**Exact Arabic excerpt — Decree 816/2025, Art. 5:**
+
+> يلتزم المتحكم والمعالج، بحسب الأحوال، حال حصول خرق أو انتهاك بإبلاغ المركز من خلال البوابة الإلكترونية أو الخط الساخن المعد لهذا الغرض من المركز، وذلك خلال اثنتين وسبعين ساعة من تاريخ علمه بحصول الخرق أو الانتهاك.
+
+Law 151 Art. 6 requires regulated entities to regularize their status within one year from issuance of the Executive Regulations. Since Decree 816 was issued 1 Nov 2025, the one-year period calculates to 1 Nov 2026; verify the exact deadline calculation against the original Gazette scan.
+
+### T3. Human trafficking — Law 64/2010 and Executive Regulations 3028/2010
+
+**Full Arabic texts acquired:**
+- Law 64/2010, full 30-article Arabic text, Gazette No.18 bis, 9 May 2010, text reproduced as updated through 2025: https://alhasswalawfirm.com/law-library/law-64-2010
+- Bilingual Arabic/English full statute PDF, ILO NATLEX: https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/89881/eg%2064%20of%202010.pdf
+- PM Decree 3028/2010, full 28-article Arabic text, Gazette No.47 bis, 30 Nov 2010: https://alhasswalawfirm.com/law-library/decree-3028-2010
+- Alternative full text: https://www.aldhshan.com/2026/02/3028-2010-64-2010.html
+
+The 3028/2010 regulation contains victim identification, protection, legal assistance, witness protection, shelter, international cooperation, asset tracing/freezing/confiscation and victim-support fund procedures. Arts. 4–7 address international police/judicial cooperation, mutual legal assistance, extradition of persons/objects, asset tracing/freezing and enforcement of foreign confiscation/recovery orders.
+
+**Numbering discrepancy:** one secondary SIS report says “2038/2010”; the Gazette-derived full text, Gazette No.47 bis (30 Nov 2010), Alhasswa and other complete reproductions identify PM Decree 3028/2010. Use 3028/2010 as the working record and retain 2038/2010 as an erroneous secondary citation pending original Gazette inspection. Law 82/2016 replaced the committee structure established under Law 64/2010; it did not repeal the substantive offences and penalties in Law 64/2010.
+
+### T4. Illegal Migration and Migrant Smuggling — Law 82/2016 and Executive Regulations 983/2018
+
+**Full Arabic text sources acquired:**
+- Law 82/2016, Official Gazette No.44 bis (a), 7 Nov 2016, official FRA PDF: https://fra.gov.eg/wp-content/uploads/2021/11/قانون-رقم-82-لسنة-2016-لمكافحة-الهجرة-غير-الشرعية-وتهريب-المهاجرين.pdf
+- Full law text: https://lawhub.info/eg/?p=12568
+- PM Decree 983/2018 full 24-article Arabic text: https://alhasswalawfirm.com/law-library/decree-983-2018
+- Alternative full text: https://lawhub.info/eg/?p=12572
+- Gazette No.19 bis (z), 15 May 2018 metadata/full text: https://www.laweg.net/framePlain.aspx?NID=138273&action=viewactivepages&itemid=111688&type=6
+- 14-page PDF copy hosted by Manshurat: https://manshurat.org/file/54431/download?token=y4SR-ZwS
+
+Law 82/2016 was published 7 Nov 2016 and effective 8 Nov 2016. Its issuance Art.2 transfers the committee and its rights/obligations from the Law 64/2010 framework to the new National Coordinating Committee. Decree 983/2018 was published 15 May 2018 and took effect 16 May 2018.
+
+Decree 983/2018 Arts. 8–11 designate the Ministry of Justice International and Cultural Cooperation Department, the Public Prosecution's International Cooperation/Execution Office and Cairo Interpol as cooperation points; regulate information exchange, investigations, mutual legal assistance, letters rogatory, extradition, asset recovery/freezing/confiscation and enforcement of foreign orders. Art.5 addresses unaccompanied children and safe return.
+
+**Exact Arabic excerpt — Decree 983/2018, Art. 9 opening:**
+
+> تقوم الجهات المشار إليها فى المادة السابقة فى سبيل تحقيق مكافحة الجرائم المنصوص عليها فى القانون بتبادل المعلومات وإجراء التحريات عن مرتكبى الجريمة وملاحقتهم وتقديم المساعدات فيما بينها، واتخاذ إجراءات المساعدات والإنابات القضائية وتسليم المجرمين والأشياء، واسترداد الأموال، ونقل المحكوم عليهم، وغير ذلك من صور التعاون القضائى والشرطى فى مجال المكافحة.
+
+### T5. Progress update after third acquisition pass — 19 November 2026
+
+- **Estimated assigned criminal-law domain completion: 65%** (qualitative research-coverage estimate; not an article-count, local corpus-ingestion or lawyer-verification metric). Prior pass: 63%.
+- **Inventory:** 181 records retained; no duplicate base-law records created in this pass.
+- **Newly upgraded:** official full Law 175/2018 PDF; full FRA-hosted Decree 1699/2020 text; official Law 151/2020 PDF and full 43-article Decree 816/2025 Arabic text; full Law 64/2010 and Decree 3028/2010 texts; official Law 82/2016 PDF and full Decree 983/2018 text.
+- **Exact-text extracts:** cybercrime 180-day retention and investigative orders; cybercrime regulation Art.9 digital-evidence integrity/hash rules; personal-data criminal Arts.36–49; Decree 816 Art.5 72-hour breach reporting and Art.13 digital-evidence rules; human-trafficking victim safeguards and international cooperation; migrant-smuggling MLA/extradition/asset recovery provisions.
+- **Source conflicts recorded:** Decree 1699/2020 versus “635/2020” heading in ESCC-hosted PDF; Decree 3028/2010 versus erroneous “2038/2010” in one secondary report.
+- **Original Gazette/regulator PDFs locally archived and SHA-256 verified:** 0.
+- **Egyptian lawyer-verified records:** 0.
+- **Next acquisition focus:** resolve the original Gazette source for 1699/2020; obtain original PDPC/Gazette copy of Decree 816/2025; continue with remaining implementing decisions and post-2025 criminal amendments.
