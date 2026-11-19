@@ -1,6 +1,6 @@
 # National Egyptian legal knowledge collection index
 
-Snapshot: 17 November 2026
+Snapshot: 20 November 2026
 
 This is the cross-domain research entry point for the Legal Copilot national Egyptian legal knowledge project. It tracks discovery, acquisition and evidence status. It is not a claim of complete or lawyer-verified law.
 
@@ -15,6 +15,7 @@ This is the cross-domain research entry point for the Legal Copilot national Egy
 - [Construction, industry, health and constitutional law harvest](../../data/research/egypt_sectoral_law_harvest_2026-11-17.csv)
 
 - [Criminal-law acquisition tranche — 19 November 2026](egypt_criminal_law_acquisition_tranche_2026-11-19.md) — Arabic excerpts, official Gazette text access, Penal Code and Criminal Procedure status, cybercrime, AML, drugs, weapons, child justice, prisons, extradition, amendment leads and progress estimates.
+- [Criminal-law acquisition tranche — 20 November 2026](egypt_criminal_law_acquisition_tranche_2026-11-20.md) — newly acquired Penal Code and weapons full-text transcriptions, Child Law executive regulation and 2015 amendments, Law 1/2024 full amendment text, and additional Arabic criminal-law amendment provisions; updated domain estimate 33%.
 
 ## Courts and judgments
 
