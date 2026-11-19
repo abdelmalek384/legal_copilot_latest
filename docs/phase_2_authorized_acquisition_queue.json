@@ -495,7 +495,7 @@
         "health_regulation"
       ],
       "priority": "P0",
-      "action": "Transcribe the EDA-hosted 14-page Law 182/1960 scan and complete 34-page Decision 44/2026 schedules; incorporate Decision 242/2026 (Official Proceedings No.179, 17 Aug 2026, effective 18 Aug) as an amendment to item 12 in Table 1 I(B) and Table 3. Preserve historical schedules and check for post-August 2026 instruments.",
+      "action": "Continue visual transcription of all 34 pages of Decision44/2026 and compare against superseded schedules; preserve exact Arabic/Latin chemical names, salts, isomers, derivatives and percentage thresholds. Transcribe Law182/1960 14-page scan; include Decision242/2026 Table1 I(B) item12 replacement (Venlafaxine, Desvenlafaxine, Carbidopa, Levodopa, Foscarbidopa, Melevodopa, Foslevodopa) and Table3 entries57–61 (amyl, isoamyl, isopropyl, isobutyl nitrites and cannabidiol); seek pharmacist verification.",
       "candidate_sources": [
         "https://edaegypt.gov.eg/ar/المرجع-التنظيمي-لهيئة-الدواء-المصرية/القوانين-واللوائح-التنفيذية/تعديلات-قانون-رقم-182-لسنة-1960/",
         "https://dev.edaegypt.gov.eg/media/dkjooww3/قرار-وزارة-الصحة-والسكان-رقم-44-لسنة-2026-ar-2026_.pdf",
@@ -504,9 +504,9 @@
       ],
       "source_type": "official Gazette/regulator text and secondary full-text candidates; exact source terms must be reviewed per item",
       "permission_state": "unknown_or_pending",
-      "acquisition_state": "official_eda_scans_for_law_182_and_full_2026_schedule_decisions_44_242_accessible",
+      "acquisition_state": "official_eda_law_182_pdf_and_2026_schedule_decisions_44_242_accessible_with_decision242_amended_rows_visually_transcribed",
       "legal_review_state": "not_started",
-      "blocker": "Law 182 PDF OCR is unavailable; 34-page Decision 44 schedules and 4-page Decision 242 amendment require full visual transcription. Original files not locally archived/hashed; reuse permission unknown.",
+      "blocker": "Decision44/2026 34-page schedule tables are image-based and require full visual transcription; original files not locally archived/hashed. Law182/1960 14-page scan OCR unavailable. Decision242/2026 replacement item12 and Table3 entries57–61 now visually transcribed but chemical nomenclature needs specialist review.",
       "required_evidence": [
         "full Law 182 Arabic text and amendment chain",
         "full 34-page Decision 44 schedules",
