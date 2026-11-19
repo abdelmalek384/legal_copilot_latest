@@ -664,6 +664,23 @@
       "legal_status": "working_current_identifiers_1463_2006_and_2367_2008_pending_Gazette",
       "finding": "The current official FRA 2023 consolidated PDF identifies Decrees1463/2006 (Gazette No.34,24 Aug2006) and2367/2008 (Gazette No.37 follow-up(b),11 Sep2008). An older FRA-hosted 2020 PDF cites 1432/2006 and2362/2008. Treat the current 2023 PDF/FRA index as the working identifiers, but retain the old-copy conflict pending Gazette scans.",
       "next_action": "Acquire Gazette No.34 (24 Aug2006) and No.37 follow-up(b) (11 Sep2008), compare original decision numbers and text with both FRA PDFs, and determine whether older citations are typographical errors or distinct instruments."
+    },
+    {
+      "evidence_id": "XREF-DRUG-LAW-182-APRIL-2024-LATEST-AMENDMENT-CLAIM",
+      "document_id": "EG-DRUGS-182-1960",
+      "practice_areas": [
+        "criminal",
+        "drugs"
+      ],
+      "url": "https://lawyeregypt.net/قانون-مكافحة-المخدرات-رقم-182-لسنة-1960-المعدل/",
+      "publisher": "LawyerEgypt consolidated text versus Egyptian Drug Authority official amendment index",
+      "source_class": "last-amendment date metadata discrepancy",
+      "observed_title_ar": "قانون رقم 182 لسنة 1960 بشأن مكافحة المخدرات وتنظيم استعمالها والاتجار فيها",
+      "source_state": "full_consolidation_claims_22_apr_2024_but_EDA_index_lists_19_2020_latest",
+      "collection_permission": "unknown",
+      "legal_status": "working_current_statutory_chain_through_law19_2020_plus_2026_schedule_decisions",
+      "finding": "LawyerEgypt labels its consolidated Law182/1960 text as updated according to the latest amendment issued 22 Apr 2024. EDA's official amendment index lists Laws206/1960,40/1966,16/1973,61/1977,45/1984,122/1989,134/2019 and19/2020, with no 2024 amending statute. The 22 Apr2024 date may be the source revision date rather than a new law; no instrument number or Gazette reference has been found.",
+      "next_action": "Search Official Gazette issues around 22 Apr 2024 for a Law182 amendment; if none exists, correct the source metadata to identify 22 Apr2024 as the consolidation review date, not a statutory amendment date."
     }
   ],
   "guardrails": [
