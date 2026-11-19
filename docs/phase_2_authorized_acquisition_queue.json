@@ -415,7 +415,7 @@
         "technology"
       ],
       "priority": "P0",
-      "action": "Archive/obtain authorized full Arabic text of Law 175/2018 and PM Decree 1699/2020; extract all 41 law articles and all regulation articles/appendices, especially Arts 9–10 digital-evidence rules. Verify subsequent amendments.",
+      "action": "Extract all 41 Law 175/2018 articles and all 15 regulation articles/appendices; preserve 180-day retention, reasoned investigative orders, website blocking, digital evidence Art.9 and documentation Art.10; resolve ESCC 635/2020 heading against original Gazette 1699/2020.",
       "candidate_sources": [
         "https://escc.gov.eg/assets/docs/law-175-2018.pdf",
         "https://masaar.net/ar/egypt_laws/اللائحة-التنفيذية-لقانون-مكافحة-جرائم-تقنية-المعلومات/",
@@ -423,16 +423,17 @@
       ],
       "source_type": "official Gazette/regulator text and secondary full-text candidates; exact source terms must be reviewed per item",
       "permission_state": "unknown_or_pending",
-      "acquisition_state": "full_text_accessible_not_archived_or_selected_excerpts_only",
+      "acquisition_state": "official_full_law_pdf_and_full_FRA_executive_regulation_text_accessible_digital_evidence_extracted",
       "legal_review_state": "not_started",
-      "blocker": "Official PDF text and full secondary regulation are readable, but original-file preservation, source-specific terms and intended-use permission are not established. Do not treat the unverified 635/2020 PDF as the regulation.",
+      "blocker": "FRA text identifies Decree 1699/2020 and provides full regulation; ESCC-hosted copy displays 635/2020 in heading. Original Official Gazette No.35 follow-up (c), 27 Aug 2020 must be visually inspected to resolve source-copy defect. Original files not locally archived/hashed.",
       "required_evidence": [
         "original Gazette issue and PDF SHA-256",
         "all 41 articles and all regulation appendices",
         "Article 11 and Regulation Article 9 digital evidence comparison",
         "later amendments and ministerial decisions",
         "Egyptian cybercrime-lawyer review"
-      ]
+      ],
+      "last_researched_on": "2026-11-19"
     },
     {
       "queue_item_id": "ACQ-014",
@@ -714,7 +715,7 @@
         "criminal"
       ],
       "priority": "P1",
-      "action": "Obtain full current Arabic text and amendment maps for Laws 64/2010 and 82/2016, PM Decrees 3028/2010 and 983/2018, and Presidential Decision 349/2024; collect committee and victim-protection decisions.",
+      "action": "Collate Law 64/2010 and Decree 3028/2010 against original Gazette No.18 bis and No.47 bis; verify the committee transfer by Law 82/2016; collate Law 82/2016 and Decree 983/2018 against Official Gazette No.44 bis (a) and No.19 bis (z); extract all 24 regulation articles and current amendments including Law 22/2022 and Decision 349/2024.",
       "candidate_sources": [
         "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/89881/eg%2064%20of%202010.pdf",
         "https://alhasswalawfirm.com/law-library/decree-3028-2010",
@@ -725,15 +726,16 @@
       ],
       "source_type": "official Gazette/regulator PDFs and secondary full-text sources; review source-specific terms before archival",
       "permission_state": "unknown_or_pending",
-      "acquisition_state": "full_text_accessible_not_archived_or_selected_excerpts_only",
+      "acquisition_state": "full_laws_and_full_executive_regulations_accessible_for_64_2010_3028_2010_and_82_2016_983_2018",
       "legal_review_state": "not_started",
-      "blocker": "Full text sources located; 3028/2010 update claim and later decisions need verification. The complete original Gazette scans and permission for local archiving are not yet secured.",
+      "blocker": "Full text reproductions and official PDFs accessible, but original Gazette files not locally archived/hashed. One SIS report cites 2038/2010 instead of 3028/2010; original Gazette scan still required. Law 64/2010 amendments and Presidential Decision 349/2024 need separate collation.",
       "required_evidence": [
         "all 28 articles of Decree 3028/2010 and all 487 lines of Decree 983/2018",
         "Law 22/2022 amendments to Arts 6,7,8,15",
         "Decision 349/2024 complete articles",
         "later committee decisions and Palermo Protocol instruments"
-      ]
+      ],
+      "last_researched_on": "2026-11-19"
     },
     {
       "queue_item_id": "ACQ-022",
@@ -747,7 +749,7 @@
         "criminal"
       ],
       "priority": "P0",
-      "action": "Extract Law 151/2020 and Decision 816/2025 fully; extract Telecom Law 10/2003 current Arts 64–69 and 77–87 after Law 172/2022; map judicial-data exclusions and provider duties.",
+      "action": "Extract Law 151/2020 Arts.1–49 including criminal Arts.36–49; segment all 43 articles of Decree 816/2025, especially breach reporting, digital evidence Art.13, children's data Art.15, cross-border transfer and direct marketing. Obtain original PDPC/Gazette PDF and collate Telecom Law 10/2003 after Law 172/2022.",
       "candidate_sources": [
         "https://escc.gov.eg/assets/docs/law-151-2020.pdf",
         "https://alhasswalawfirm.com/law-library/decree-816-2025",
@@ -756,16 +758,17 @@
       ],
       "source_type": "official Gazette/regulator PDFs and secondary full-text sources; review source-specific terms before archival",
       "permission_state": "unknown_or_pending",
-      "acquisition_state": "full_text_accessible_not_archived_or_selected_excerpts_only",
+      "acquisition_state": "official_law_151_pdf_and_full_43_article_816_2025_arabic_text_accessible",
       "legal_review_state": "not_started",
-      "blocker": "Full texts accessible but not locally archived/hashed; Decision 816/2025 later amendment status not independently established; confirm all data-disclosure powers against CPL and constitutional safeguards.",
+      "blocker": "PDPC official PDF endpoint inaccessible to browser; LegalIn Arabic PDF and Alhasswa full 43-article transcription reproduce Gazette text. Original Gazette No.244 follow-up (a) not locally archived/hashed; one-year compliance deadline computation should be checked against original issue.",
       "required_evidence": [
         "all 49 law articles and 43 regulation articles",
         "Art. 3(4) exclusion and Art. 34 judicial-police powers",
         "all criminal penalties Arts 36–49",
         "Telecom Arts 64–69 and 77–87 current text",
         "Egyptian privacy/telecom counsel review"
-      ]
+      ],
+      "last_researched_on": "2026-11-19"
     },
     {
       "queue_item_id": "ACQ-023",
