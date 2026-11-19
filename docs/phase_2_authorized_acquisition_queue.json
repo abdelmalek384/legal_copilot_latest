@@ -598,6 +598,141 @@
         "repeal/commencement transition review",
         "Egyptian international criminal cooperation lawyer review"
       ]
+    },
+    {
+      "queue_item_id": "ACQ-020",
+      "document_ids": [
+        "EG-ANTI-TERRORISM-94-2015",
+        "EG-ANTI-TERRORISM-AMEND-15-2020",
+        "EG-TERROR-LISTS-8-2015",
+        "EG-TERROR-LISTS-AMEND-11-2017",
+        "EG-TERROR-LISTS-AMEND-2-2020",
+        "EG-TERROR-LISTS-AMEND-14-2020"
+      ],
+      "practice_areas": [
+        "criminal"
+      ],
+      "priority": "P0",
+      "action": "Obtain complete Arabic Gazette texts for Anti-Terrorism Law 94/2015 and Law 8/2015 as amended; extract Arts 40–48 special investigative powers, listing procedure, review/appeal and all amendment deltas.",
+      "candidate_sources": [
+        "https://manshurat.org/node/14679",
+        "https://fra.gov.eg/wp-content/uploads/2021/11/قانون-8-لسنة-2015-فى-شأن-تنظيم-قوائم-الكيانات-الإرهابية.pdf",
+        "https://www.eglf.org/قانون-15-لسنة-2020/",
+        "https://www.eglf.org/قانون-2-لسنة-2020/",
+        "https://www.eglf.org/قانون-14-لسنة-2020/"
+      ],
+      "source_type": "official Gazette/regulator PDFs and secondary full-text sources; review source-specific terms before archival",
+      "permission_state": "unknown_or_pending",
+      "acquisition_state": "full_text_accessible_not_archived_or_selected_excerpts_only",
+      "legal_review_state": "not_started",
+      "blocker": "Full text is accessible, but original Gazette copies of amendment instruments and complete consolidated versions are not all archived; verify exact authorization and safeguards with Egyptian counsel.",
+      "required_evidence": [
+        "original Gazette copies and SHA-256",
+        "complete consolidated Art. 1 definitions and Arts 40–48",
+        "all amendments 11/2017, 2/2020, 14/2020, 15/2020",
+        "counsel review of special powers and constitutional limits"
+      ]
+    },
+    {
+      "queue_item_id": "ACQ-021",
+      "document_ids": [
+        "EG-HUMAN-TRAFFICKING-64-2010",
+        "EG-HUMAN-TRAFFICKING-EXEC-3028-2010",
+        "EG-HUMAN-TRAFFICKING-FUND-349-2024",
+        "EG-ILLEGAL-MIGRATION-82-2016",
+        "EG-ILLEGAL-MIGRATION-AMEND-22-2022",
+        "EG-ILLEGAL-MIGRATION-EXEC-983-2018"
+      ],
+      "practice_areas": [
+        "criminal"
+      ],
+      "priority": "P1",
+      "action": "Obtain full current Arabic text and amendment maps for Laws 64/2010 and 82/2016, PM Decrees 3028/2010 and 983/2018, and Presidential Decision 349/2024; collect committee and victim-protection decisions.",
+      "candidate_sources": [
+        "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/89881/eg%2064%20of%202010.pdf",
+        "https://alhasswalawfirm.com/law-library/decree-3028-2010",
+        "https://fra.gov.eg/wp-content/uploads/2021/11/",
+        "https://fra.gov.eg/wp-content/uploads/2021/11/قانون-رقم-82-لسنة-2016-لمكافحة-الهجرة-غير-الشرعية-وتهريب-المهاجرين.pdf",
+        "https://lawhub.info/eg/?p=12572",
+        "https://hrightsstudies.sis.gov.eg/media/28148/العدد-34-مكرر-ا-مو-م-من.pdf"
+      ],
+      "source_type": "official Gazette/regulator PDFs and secondary full-text sources; review source-specific terms before archival",
+      "permission_state": "unknown_or_pending",
+      "acquisition_state": "full_text_accessible_not_archived_or_selected_excerpts_only",
+      "legal_review_state": "not_started",
+      "blocker": "Full text sources located; 3028/2010 update claim and later decisions need verification. The complete original Gazette scans and permission for local archiving are not yet secured.",
+      "required_evidence": [
+        "all 28 articles of Decree 3028/2010 and all 487 lines of Decree 983/2018",
+        "Law 22/2022 amendments to Arts 6,7,8,15",
+        "Decision 349/2024 complete articles",
+        "later committee decisions and Palermo Protocol instruments"
+      ]
+    },
+    {
+      "queue_item_id": "ACQ-022",
+      "document_ids": [
+        "EG-PERSONAL-DATA-151-2020",
+        "EG-PERSONAL-DATA-EXEC-816-2025",
+        "EG-TELECOM-10-2003",
+        "EG-TELECOM-AMEND-172-2022"
+      ],
+      "practice_areas": [
+        "criminal"
+      ],
+      "priority": "P0",
+      "action": "Extract Law 151/2020 and Decision 816/2025 fully; extract Telecom Law 10/2003 current Arts 64–69 and 77–87 after Law 172/2022; map judicial-data exclusions and provider duties.",
+      "candidate_sources": [
+        "https://escc.gov.eg/assets/docs/law-151-2020.pdf",
+        "https://alhasswalawfirm.com/law-library/decree-816-2025",
+        "https://lawhub.info/eg/?p=11621",
+        "https://dspace.id.com.eg/items/380cc2e4-a7fc-4068-9337-33addccf8ede"
+      ],
+      "source_type": "official Gazette/regulator PDFs and secondary full-text sources; review source-specific terms before archival",
+      "permission_state": "unknown_or_pending",
+      "acquisition_state": "full_text_accessible_not_archived_or_selected_excerpts_only",
+      "legal_review_state": "not_started",
+      "blocker": "Full texts accessible but not locally archived/hashed; Decision 816/2025 later amendment status not independently established; confirm all data-disclosure powers against CPL and constitutional safeguards.",
+      "required_evidence": [
+        "all 49 law articles and 43 regulation articles",
+        "Art. 3(4) exclusion and Art. 34 judicial-police powers",
+        "all criminal penalties Arts 36–49",
+        "Telecom Arts 64–69 and 77–87 current text",
+        "Egyptian privacy/telecom counsel review"
+      ]
+    },
+    {
+      "queue_item_id": "ACQ-023",
+      "document_ids": [
+        "EG-ESIGN-15-2004",
+        "EG-ESIGN-EXEC-109-2005",
+        "EG-ESIGN-EXEC-AMEND-307-2010",
+        "EG-ESIGN-EXEC-AMEND-331-2020",
+        "EG-ESIGN-EXEC-AMEND-467-2024"
+      ],
+      "practice_areas": [
+        "criminal"
+      ],
+      "priority": "P1",
+      "action": "Obtain complete Law 15/2004 and current consolidated Executive Regulations after Decisions 307/2010, 331/2020 and 467/2024; extract technical trust-service standards and distinguish civil evidentiary effect from criminal digital evidence.",
+      "candidate_sources": [
+        "https://itida.gov.eg/English/Documents/1.pdf",
+        "https://lawhub.info/eg/?p=12201",
+        "https://esignature-egypt.com/English/Documents/E-Signature%20executive%20directive.pdf",
+        "https://dspace.id.com.eg/items/2985ae5e-f38f-4b3b-b8f8-040e4976ba84",
+        "https://mediadr.sis.gov.eg/handle/123456789/70196"
+      ],
+      "source_type": "official Gazette/regulator PDFs and secondary full-text sources; review source-specific terms before archival",
+      "permission_state": "unknown_or_pending",
+      "acquisition_state": "full_text_accessible_not_archived_or_selected_excerpts_only",
+      "legal_review_state": "not_started",
+      "blocker": "2024 amending decision is identified but full current consolidated regulation not yet extracted; Decision 307/2010 original Gazette text missing.",
+      "required_evidence": [
+        "complete 2005 regulation and technical annex",
+        "Decision 307/2010 Gazette text",
+        "Decision 331/2020 full text",
+        "Decision 467/2024 full text and replacement table",
+        "comparison with Law 175/2018 Art. 11"
+      ]
     }
   ],
   "next_decisions": [
