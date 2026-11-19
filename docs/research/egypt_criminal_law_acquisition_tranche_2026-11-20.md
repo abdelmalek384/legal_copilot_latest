@@ -994,3 +994,171 @@ Working estimates, not audited legal-completeness scores:
 - **Overall assigned criminal-law domain completion: approximately 49%**.
 
 The score increased because two major primary-text clusters are now accessible: cybercrime law + its executive regulation, and the AML law + the 2023 executive-regulation amendment. Full extraction of every article and every earlier AML amendment remains incomplete.
+
+
+---
+
+# 16. New acquisition pass — Child Executive Regulation 1143/2020 and AML regulation amendment chain
+
+## 16.1 Child Law Executive Regulation 2075/2010 — complete consolidated Arabic text located
+
+A full 194-article Arabic consolidated transcription of PM Decision 2075/2010 is now available, expressly stated to reflect amendments through 9 June 2020. This replaces the previous “full text incomplete” status for the base executive regulation.
+
+- Full consolidated 194-article text: https://alhasswalawfirm.com/law-library/decree-2075-2010
+- Alternative text / selected provisions: https://lawhub.info/eg/?p=12124
+- Original Decision 2075/2010 Gazette transcription: https://www.laweg.net/framePlain.aspx?NID=64854&action=viewactivepages&itemid=50826&type=6
+- Decision 1143/2020 full text transcription: https://ahmedazimelgamel.blogspot.com/2025/12/1143-2020-2075-2010.html
+- Decision 1143/2020 Gazette mirror catalogue/PDF: https://manshurat.org/node/67058 (page metadata and attached PDF available; direct fetch was intermittently blocked)
+- Gazette issue: 23 (bis), 9 June 2020; effective 10 June 2020.
+
+The consolidated text is a secondary legal-library transcription. It is a usable acquisition source, but not yet image-by-image checked against the Gazette PDF. Status: **T3 full text acquired, T2 Gazette issue identification corroborated**.
+
+## 16.2 PM Decision 1143/2020 — complete Arabic operative text acquired
+
+The complete instrument was retrieved from an independent Egyptian legal-research blog after the earlier source was blocked. It amends Decision 2075/2010.
+
+### المادة الأولى
+
+يستبدل بكلمة (اللقطاء) الواردة بالبند (1) من المادة (86) من اللائحة التنفيذية لقانون الطفل المشار إليها عبارة (الأطفال المعثور عليهم)، ويستبدل بعبارتي (الأسر البديلة)، (مجهولي النسب) عبارتا (الأسر البديلة الكافلة)، (كريمي النسب) حيثما وردتا في اللائحة التنفيذية المشار إليها.
+
+كما يستبدل بنصوص المواد (85 بندين (ب، هـ)، 89 بندين (1، 2)، 89 مكرراً، 90 فقرة أولى، 92، 99) النصوص الآتية:
+
+**المادة (85) (بندين ب، هـ):**
+(ب) العمل على توفير جميع أسباب الاتزان النفسي والاجتماعي ومن أهم هذه الأسباب الترفيه عن الأطفال في المناسبات المختلفة بوسائل وأساليب متعددة كالقيام برحلات وإعداد معسكرات ملائمة بمصاحبة أسرهم البديلة الكافلة.
+(هـ) الدعم المتكامل لدور الضيافة والإيواء الآمنة بأنواعها التي تقدم الرعاية للأطفال في حالة تعذر توفير الرعاية الأسرية البديلة لهم، وإلى حين توفيرها؛ بغرض الحفاظ على تنشئتهم الاجتماعية السليمة.
+
+**المادة (89) (بندان 1، 2):**
+1- أن تكون ديانة الأسرة ذات ديانة الطفل، وأن يكون الزوجان مصريين.
+واستثناء مما تقدم، يجوز للجنة العليا للأسر البديلة الكافلة الموافقة على كفالة طفل لأسرة بديلة مكونة من زوجين أحدهما مصري.
+2- أن تتكون الأسرة من زوجين تتوفر فيهما مقومات النضج الأخلاقي والاجتماعي بناء على بحث اجتماعي تقوم به الإدارة الاجتماعية المختصة والجمعية أو المؤسسة الأهلية المختصة، وألا تقل سن كل منهما عن واحد وعشرين سنة ولا تزيد على ستين سنة.
+ويجوز للجنة الأسر البديلة الكافلة المنصوص عليها في المادة (93) من هذه اللائحة الإعفاء من عدم جواز أن تزيد سن كل من الزوجين في الأسرة البديلة الكافلة على ستين سنة طبقاً لما يسفر عنه البحث الاجتماعي.
+واستثناء مما تقدم يجوز للأرامل والمطلقات ومن لم يسبق لهن الزواج وبلغن من العمر ما لا يقل عن ثلاثين سنة كفالة الأطفال إذا ارتأت اللجنة المنصوص عليها في المادة (93) من هذه اللائحة صلاحيتهن لذلك.
+
+**المادة (89) مكرراً:**
+يجوز استمرار الرعاية مؤقتاً مع الأب البديل الكافل في حالة وفاة الأم البديلة الكافلة أو الطلاق، وذلك بعد موافقة اللجنة العليا للأسر البديلة الكافلة.
+
+**المادة (90) (فقرة أولى):**
+تتقدم الأسرة التي ترغب في رعاية أحد الأطفال طبقاً لنظام الأسر البديلة الكافلة بطلب الكفالة على الموقع الإلكتروني للوزارة وتسجل الطلبات الواردة في سجل خاص، وتقوم الوزارة بإرساله إلى المديرية المختصة الكائن بها محل إقامة الأسرة الراغبة في الكفالة أو الجمعية أو المؤسسة الأهلية المختصة.
+
+**المادة (92):**
+يجوز أن يحمل الطفل كريم النسب، ذكراً كان أو أنثى، الاسم الذاتي للأب البديل الكافل ويحل محل الاسم الأول الوارد في شهادة ميلاده المميكنة أو لقب عائلة الأسرة البديلة الكافلة في نهاية اسمه ويثبت ذلك في ملف الطفل دون أن يترتب على ذلك أي أثر من آثار التبني.
+ويجوز أن يحمل الطفل كريم النسب، ذكراً أو أنثى، الاسم الذاتي للأم البديلة الكافلة بدلاً من الاسم الأول للأم الوارد في شهادة ميلاده المميكنة، ويثبت ذلك في ملف الطفل دون أن يترتب على ذلك أي أثر من آثار التبني.
+
+**المادة (99):**
+يجب على الأسرة البديلة الكافلة عند تسلم الطفل محل الرعاية فتح حساب في بنك ناصر الاجتماعي أو فتح دفتر توفير بمبلغ لا يقل عن ثلاثة آلاف جنيه أو إيداع هذا المبلغ في حساب الطفل حال وجود حساب أو دفتر توفير له، وتسلم الأسرة صورة ضوئية من إيصال الإيداع لإدارة الأسرة والطفولة بالمديرية التابع لها محل الإقامة.
+وعلى الأسرة البديلة الكافلة القيام بواجبات الرعاية للطفل محل الرعاية دون مقابل، ويحق لها أن توصي له أو تهبه من أملاكها القدر الذي تراه وفقاً للقانون، ولا يجوز الصرف من المبالغ المودعة في حساب الطفل ببنك ناصر الاجتماعي أو في دفتر التوفير الخاص به تحت أي مسمى إلا بموافقة اللجنة العليا للأسر البديلة الكافلة.
+ويكون للأب البديل الكافل أو الأم البديلة الكافلة بحسب الأحوال (حامل كارنيه الأسرة البديلة الكافلة) الولاية التعليمية على الطفل المكفول على أن تقوم الأسرة بإخطار الإدارة الاجتماعية سنوياً بشهادة إثبات قيد من المدرسة الملتحق بها الطفل.
+
+### المادة الثانية
+
+تضاف فقرة أخيرة إلى المادة (89) من اللائحة التنفيذية لقانون الطفل المشار إليها نصها الآتي:
+
+**المادة (89) (فقرة أخيرة):**
+ويجوز للجنة المشار إليها في هذه المادة الإعفاء من بعض الشروط المبينة بالبنود (2، 4، 12) طبقاً لما يسفر عنه البحث الاجتماعي.
+
+كما تضاف مواد جديدة بأرقام (90) مكرراً (أ)، (99) مكرراً، (112) مكرراً نصها الآتي:
+
+**المادة (90) مكرراً (أ):**
+تصدر الوزارة المختصة بالتضامن الاجتماعي كارنيه للأسر البديلة الكافلة يتم التعامل بموجبه مع كافة الجهات الحكومية وغير الحكومية ويتم تجديده سنوياً.
+
+**المادة (99) مكرراً:**
+يجوز منح الأسرة البديلة الكافلة الوصاية على الطفل بعد اجتيازها التقييم الخاص الذي تقوم به الوزارة المختصة بالتضامن الاجتماعي.
+وفي حالة منح الوصاية للأسرة البديلة الكافلة، يتم متابعة الطفل مرة على الأقل كل عام.
+
+**المادة (112) مكرراً:**
+تضع الوزارة المختصة بالتضامن الاجتماعي نظاماً لإدارة الحالة يتم من خلاله إنشاء وحدات إدارة حالة تهدف إلى تقديم خدمات الرعاية والحماية الاجتماعية، التي تقدمها الوزارة والمديريات التابعة لها والجهات الأخرى المعنية، للأطفال المستفيدين من خلال منفذ واحد في إطار بناء نظام معلوماتي إلكتروني وقاعدة بيانات تشمل أعداداً ومعلومات من الأطفال المستفيدين من خدمات الرعاية والحماية الاجتماعية وتحديد طبيعة الخدمات المقدمة لهم وتوثيقها ومتابعتها بما يحقق المصلحة الفضلى لهم، ويصدر باللائحة النموذجية لوحدات إدارة الحالة قرار من الوزير المختص بالتضامن الاجتماعي.
+
+### المادة الثالثة
+
+ينشر هذا القرار في الجريدة الرسمية، ويعمل به من اليوم التالي لتاريخ نشره.
+
+صدر برئاسة مجلس الوزراء في 17 شوال سنة 1441 هـ (الموافق 9 يونيه سنة 2020 م).
+رئيس مجلس الوزراء
+دكتور/ مصطفى كمال مدبولي
+
+**Substantive effects to index**
+- Replaces stigmatizing terminology in the regulation with “children found” and “foster/custodial alternative families” terminology.
+- Alters foster-family eligibility, nationality/religion and age requirements; permits limited exception where one spouse is Egyptian.
+- Introduces electronic application, annual foster-family card, educational guardianship and possible guardianship after ministry assessment.
+- Raises the required child savings deposit in Article 99 to EGP 3,000 and restricts withdrawals absent approval.
+- Creates a case-management information system and database for children receiving social protection services.
+
+## 16.3 Earlier Child Executive Regulation amendment — PM Decision 208/2014
+
+The official-text route identifies Decision 208/2014 as published 13 February 2014, Official Gazette issue 7. It substitutes Articles 85 and 87 of Decision 2075/2010, including the relevant foster-care age threshold language.
+
+- Manshurat catalogue/PDF: https://manshurat.org/node/3944
+- Secondary Gazette record: https://egyptianlaws.com/?p=144818
+- Searchable consolidated Regulation 2075/2010 shows the affected text and amendment attribution.
+
+Full standalone transcription of Decision 208/2014 remains to be captured; the amended operative text is present in the consolidated 2075/2010 source.
+
+## 16.4 AML Executive Regulation 951/2003 — full consolidated PDF acquired, including all identified amendments through 2023
+
+A current consolidated regulation PDF is now identified through FRA:
+https://fra.gov.eg/wp-content/uploads/2025/04/اللائحة-التنفيذية-لقانون-مكافحة-غسل-الأموال-1-1.pdf
+
+The PDF title block identifies the amendment chain as:
+- PM Decision 1463/2006;
+- PM Decision 2367/2008;
+- PM Decision 1569/2016;
+- PM Decision 2910/2019 (see discrepancy below);
+- PM Decision 457/2020;
+- PM Decision 3331/2023.
+
+An earlier FRA-hosted consolidation instead reports 1433/2006, 3367/2008 and 291/2019; this conflicts with the 2025 PDF and the FRA index. Do not normalize these numbers without inspecting the original Gazette covers and amending texts. The 2025 PDF itself is a consolidated text, not a substitute for the amending instruments.
+
+### Newly identified correction: Decision 2911/2019, not 2910/2019 (provisional)
+
+The actual Gazette PDF at https://fra.gov.eg/wp-content/uploads/2020/12/alamiria_2019_2910.pdf is headed **Decision 2911/2019**, published in Official Gazette issue 47 bis (د), 27 November 2019. The FRA index and 2025 consolidation say 2910/2019. This is a material document-number discrepancy. The Gazette heading visible in the PDF is preferred provisionally; retain both values in the acquisition register until the official issue cover and signed instrument are image-checked.
+
+The 2911/2019 instrument replaces Articles 50–54 of the Executive Regulation. Its Article 50 addresses the Unit's implementation of Egypt's obligations under international instruments and Security Council Resolution 1373/2001, with Articles 51–56 governing execution. Full PDF source:
+https://fra.gov.eg/wp-content/uploads/2020/12/alamiria_2019_2910.pdf
+
+### PM Decision 457/2020 — full operative text acquired
+
+**Publication:** Official Gazette issue 8 (bis), 23 February 2020; effective 24 February 2020.
+
+The decision substitutes the definitions of “funds/assets”, “terrorist financing” and “supervisory authorities” in Article 1 of the 951/2003 Regulation, and replaces Articles 3, 14, 22 bis, 22 bis (b), 22 bis (c), 23, and the beginning of Article 34 bis.
+
+Key Arabic operative text from Article 1:
+**الأموال أو الأصول:**
+جميع الأصول المالية والافتراضية والموارد الاقتصادية ومنها النفط والموارد الطبيعية الأخرى والممتلكات والعملات الوطنية أو الأجنبية، والأوراق المالية أو التجارية أياً كان قيمتها أو نوعها، سواء كانت مادية أو معنوية، منقولة أو ثابتة، أياً كانت وسيلة الحصول عليها، والوثائق والأدوات القانونية، والمستندات والصكوك والمحررات المثبتة لكل ما تقدم أياً كان شكلها، بما في ذلك الشكل الرقمي أو الإلكتروني وجميع الحقوق المتعلقة بأي منها بما في ذلك الائتمان المصرفي والشيكات السياحية والشيكات المصرفية والاعتمادات المستندية، وأية عوائد أو أرباح أو مصادر دخل أخرى مترتبة على أو متولدة من هذه الأموال أو الأصول، أو أية أصول أخرى يحتمل استخدامها للحصول على تمويل أو منتجات أو خدمات، وكذا تشمل الأصول الافتراضية والتي لها قيمة رقمية يمكن تداولها أو نقلها أو تحويلها رقمياً ويمكن استخدامها كأداة للدفع أو الاستثمار.
+
+**السلطات الرقابية:** identifies the relevant regulators, including the Central Bank, FRA, communications/ICT authority, ministries responsible for real estate brokers and precious metals, bar and accountants' syndicates, and the AML Unit for entities not supervised elsewhere.
+
+Full Arabic text:
+https://www.laweg.net/framePlain.aspx?ItemID=115318&NID=142337&Type=6&action=ViewActivePages
+
+## 16.5 AML Law 80/2002 amendment correction — Law 181/2008 text acquired
+
+The previous amendment inventory had Law 181/2008 but not its actual Arabic text. Full text is now available from the searchable Gazette transcription:
+https://www.laweg.net/framePlain.aspx?ItemID=9128&NID=7840&Type=6&action=ViewActivePages
+
+**Law 181/2008** (Official Gazette issue 25 bis, 22 June 2008) amended Law 80/2002:
+- substituted Articles 2 and 12;
+- amended Article 1(c)(11) and the final paragraph of Article 5;
+- added paragraphs to Articles 7 and 16;
+- expanded predicate-offence coverage and cross-border application language;
+- added duties to notify the AML Unit and provisions for publication of convictions and possible suspension of a legal person's activity.
+
+This is a separate statute amendment and must not be confused with PM Decision 2367/2008, which amended the Executive Regulation.
+
+## 16.6 Newly verified AML amendment register
+
+**Law 80/2002 amendments identified:** Laws 78/2003, 181/2008, 36/2014, 17/2020, 154/2022. Law 181/2008 full text now acquired; Laws 78/2003 and 36/2014 still require full instrument capture and reconciliation against the consolidated text.
+
+**Executive Regulation 951/2003 amendments identified:** PM Decisions 1463/2006, 2367/2008, 1569/2016, 2911/2019 (number discrepancy with 2910 in some catalogues), 457/2020, 3331/2023. The 2006, 2008 and 2016 source PDFs/catalogue records are found, but full article-by-article text capture and Gazette-cover verification remain.
+
+## 16.7 Progress recalibration
+
+Working estimates after acquiring the Child Executive Regulation consolidation and Decision 1143/2020 text, and the AML consolidated regulation / 457/2020 / 2911/2019 sources:
+
+- Discovery coverage: **96%**.
+- Actual Arabic text acquisition: **72%**.
+- Amendment and implementing-instrument mapping: **69%**.
+- Article-level extraction and QA: **55%**.
+- Lawyer verification: **0%**.
+- **Overall assigned criminal-law domain completion: approximately 53%**.
+
+The next high-value gaps are full Gazette-level extraction of PM Decisions 1463/2006, 2367/2008, 1569/2016 and 2911/2019; full text of Law 78/2003 and Law 36/2014; full consolidated text and article-level QA of Law 174/2025; weapons/drugs/prisons instruments; and a post-2023 Penal Code amendment sweep.
