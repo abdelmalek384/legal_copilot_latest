@@ -1207,3 +1207,250 @@ This pass added:
 **Lawyer verification:** 0%.  
 **Whole-project coverage:** not computable without the master-index denominator.
 
+
+---
+
+## L. Criminal evidence, judicial police, experts and forensic examination
+
+### L1. Law 174/2025 — new Code: police powers, evidence preservation, searches, communications and experts
+
+**Primary source:** Ministry of Justice-hosted Official Gazette PDF, issue 45 bis (d), 12 November 2025:  
+https://moj.gov.eg/backend/api/documents/download/20F3150C-29F1-487E-A0F0-FCCE10CB207B
+
+The following provisions are part of the promulgated code but are not operative until the postponed commencement date (1 October 2027 under Law 160/2026).
+
+**Code Article 24 — police inquiry:**
+
+> يتولى مأمورو الضبط القضائي البحث عن الجرائم ومرتكبيها، وجمع الاستدلالات التي تلزم للتحقيق والدعوى.
+
+**Article 25 — subordination to the Public Prosecution:**
+
+> مأمورو الضبط القضائي تابعون للنائب العام وخاضعون لإشرافه فيما يتعلق بأعمال وظائف الضبط القضائي.  
+> ويجوز للنائب العام أن يطلب إلى الجهة المختصة النظر في أمر كل من تقع منه مخالفة لواجباته، أو تقصير في عمله، وله أن يطلب إحالته إلى المحاكمة التأديبية، وهذا كله لا يمنع من رفع الدعوى الجنائية.
+
+**Article 26 — judicial-officer categories (opening and special nationwide categories):**
+
+> يكون من مأموري الضبط القضائي في دوائر اختصاصهم:  
+> 1. أعضاء النيابة العامة ومعاونوها.  
+> 2. ضباط الشرطة وضباط الشرف وأمناؤها والمساعدون ومراقبو ومندوبي الشرطة وضباط الصف ومعاونو الأمن.  
+> 3. العمد، ومشايخ البلاد، ومشايخ الخفراء.  
+> 4. نظار ووكلاء محطات السكك الحديدية الحكومية.
+
+The article then gives nationwide jurisdiction to specified National Security, Public Security, Community Protection, Transport Police, mounted police and Tourism Inspectorate officers, and permits designation of certain public employees by joint Justice Minister / competent minister decision. The exact list must be preserved in the code's article table, not summarized into an open-ended generic “police” category.
+
+**Article 27 — receiving reports and preserving evidence:**
+
+> يجب على مأموري الضبط القضائي أن يتلقوا البلاغات والشكاوى التي ترد إليهم بشأن الجرائم، وأن يرسلوها فورًا إلى النيابة العامة، ويجب عليهم وعلى مرؤوسيهم أن يحصلوا على جميع الإيضاحات، ويجروا المعاينات اللازمة لتسهيل تحقيق الوقائع التي تبلغ إليهم، أو التي يعلنون بها أية كانت، وعليهم أن يتخذوا جميع الوسائل التحفظية اللازمة للمحافظة على أدلة الجريمة.  
+> ويجب على مأموري الضبط القضائي إثبات بيانات الرقم القومي للمتهم فور تحديد هويته، وإرفاق مستخرج من هذه البيانات بالمحضر.
+
+**Article 32 — police questioning and expert assistance:**
+
+> يجوز لمأموري الضبط القضائي أثناء جمع الاستدلالات سماع أقوال من يكون لديهم معلومات عن الوقائع الجنائية ومركبها وسؤال المتهم عن ذلك، ولهم أن يستعينوا بالأطباء، وغيرهم من أهل الخبرة ويطلبوا رأيهم شفهياً أو بالكتابة.  
+> ولا يجوز لهم تحليف الشهود أو الخبراء اليمين إلا إذا خيف ألا يستطيعوا فيما بعد سماع الشهادة بيمين.
+
+**Article 34 — scene examination and physical trace preservation in flagrante delicto:**
+
+> يجب على مأمور الضبط القضائي في حالة التلبس بجناية أو جنحة أن ينتقل فورًا إلى محل الواقعة، ويعاين الآثار المادية للجريمة، ويحافظ عليها، ويثبت حالة الأماكن والأشخاص، وكل ما يفيد في كشف الحقيقة، ويسمع أقوال من كان حاضرًا، أو من يمكن الحصول منه على إيضاحات في شأن الواقعة ومركبها.  
+> ويجب عليه أن يخطر النيابة العامة فورًا بانتقاله، وعليها بمجرد إخطارها بجناية متلبس بها الانتقال فورًا إلى محل الواقعة متى اقتضى الأمر ذلك.
+
+**Article 54 — seizure of evidence:**
+
+> يجوز لمأمور الضبط القضائي أن يضبط الأشياء والأوراق التي يحتمل أن تكون قد استعملت في ارتكاب الجريمة، أو نتجت عن ارتكابها، أو وقعت عليها، وكل ما يفيد في كشف الحقيقة.  
+> وتوصف هذه الأشياء والأوراق وتعرض على المتهم، ويطلب منه إبداء ملاحظاته عليها، ويحرر بذلك محضر يوقعه المتهم، أو يذكر فيه امتناعه عن التوقيع.
+
+**Article 55 — sealed exhibits:**
+
+> توضع الأشياء والأوراق المضبوطة وفقًا للمادة ٥٤ من هذا القانون في حرز مغلق، ويختم عليها، ويكتب على شريط داخل الختم تاريخ المحضر المحرر بضبطها، ويشار إلى الواقعة التي حصل الضبط من أجلها.
+
+**Article 56 — opening seals:**
+
+> لا يجوز فض الأختام الموضوعة طبقًا للمادتين ٥٣، ٥٥ من هذا القانون إلا بحضور المتهم أو وكيله ومن ضبطت هذه الأشياء أو الأوراق، أو بعد دعوتهم لذلك.
+
+**Article 64 — delegation to judicial officers:**
+
+> يجوز لعضو النيابة العامة من درجة مساعد نيابة عامة على الأقل أن يندب أحد مأموري الضبط القضائي للقيام بعمل معين أو أكثر من أعمال التحقيق عدا استجواب المتهم.
+
+**Article 80 — communications, social media and digital monitoring:**
+
+> يجوز لعضو النيابة العامة، بعد الحصول على إذن من القاضي الجزئي، أن يصدر أمراً بضبط جميع الخطابات، والرسائل، والبرقيات، والجرائد والمطبوعات، والطرود، وأن يأمر بمراقبة الاتصالات السلكية واللاسلكية، وحسابات مواقع وتطبيقات التواصل الاجتماعي ومحتوياتها المختلفة غير المتاحة للكافة، والبريد الإلكتروني، والرسائل النصية أو المسموعة أو المصورة على الهواتف أو الأجهزة أو أية وسيلة تقنية أخرى، وضبط الوسائط الحاوية لها أو إجراء تسجيلات لأحاديث جرت في مكان خاص متى كان لذلك فائدة في ظهور الحقيقة في جناية أو جنحة معاقب عليها بالحبس لمدة تزيد على ثلاثة أشهر.  
+> ويجب أن يكون الأمر بالضبط أو الاطلاع أو المراقبة أو التسجيل لمدة لا تزيد على ثلاثين يوماً.  
+> ويصدر القاضي الإذن المشار إليه مسببا بناء على الأوراق والتحقيقات، ويجوز له أن يحدده لمدة أو لمدد أخرى مماثلة.
+
+**Article 81 — targeted monitoring of a device/site in specified offences:**
+
+> يجوز للقاضي الجزئي بناءً على طلب النيابة العامة في حالة قيام دلائل قوية على أن مرتكب إحدى الجرائم المنصوص عليها في المواد ١٦٦ مكرراً، ٣٠٨ مكرراً، ١٢ من قانون العقوبات، والبند ٢/ من المادة ٧٦ من قانون تنظيم الاتصالات الصادر بالقانون رقم ١٠ لسنة ٢٠٠٣ قد استخدم في ارتكابها هاتفاً معيناً ثابتاً أو محمولاً، أو أي موقع إلكتروني، أو أي وسيلة تقنية أخرى، أن يصدر أمراً مسببا بناءً على تقرير فني وشكوى المجني عليه في الجريمة المذكورة يوضح هذه الوسيلة أو ذلك الجهاز تحت المراقبة لمدة لا تزيد على ثلاثين يوماً قابلة للتجديد لمدة أو مدد أخرى مماثلة.
+
+**Article 99 — appointment of experts:**
+
+> إذا اقتضى التحقيق الاستعانة بخبير وجب على عضو النيابة العامة أن يصدر أمراً بندبه يفضل فيه المهمة التي يكلف بها، ويحلف الخبير اليمين أمام عضو النيابة العامة بأن يؤدي عمله بالأمانة والصدق ما لم يكن من فئات الخبراء الذين سبق أن أدوا اليمين قبل مزاولة أعمال الخبرة.
+
+**Article 100 — deadline and replacement:**
+
+> يحدد عضو النيابة العامة للخبير ميعاداً لتقديم التقرير، وله أن يستبدل به خبيراً آخر إذا لم يقدم التقرير في الميعاد المحدد.
+
+**Article 101 — expert attendance:**
+
+> يجوز لعضو النيابة العامة أن يحضر وقت مباشرة الخبير مهمته، ويجوز للخبير أن يؤدي مهمته بغير حضور الخصوم.
+
+**Article 102 — party-appointed consultant:**
+
+> يجوز للخصوم أن يستعينوا بخبير استشاري، ولهم أن يطلبوا تمكينه من الاطلاع على الأوراق وسائر ما سبق تقديمه للخبير المنتدب من قبل النيابة العامة، على ألا يترتب على ذلك تأخير السير في الدعوى.
+
+**Article 103 — challenge to expert:**
+
+> يجوز للخصوم إذا وجدت أسباب قوية تدعو لذلك، ويقدم طلب الرد مبيناً فيه أسبابه إلى عضو النيابة العامة للفصل فيه خلال ثلاثة أيام من يوم تقديمه.
+
+**Article-number/OCR note:** the official PDF OCR displays the arrest-outside-flagrante provision after the separate Articles 24–27 judicial-police section with a second “مادة (٢٧)” label. The sequence and prior transcription identify this arrest provision as Article 37, not a second Article 27. Preserve the OCR anomaly and visually collate the Gazette image before final normalization. The article numbering is not to be silently duplicated.
+
+### L2. Current Criminal Procedure Law 150/1950 — expert and evidence provisions
+
+Full Arabic secondary text:
+- https://alhasswalawfirm.com/law-library/law-150-1950
+- https://www.notariesofegypt.org/article.php?id=432
+- https://www.manshurat.org/node/14676
+
+**Article 86 — expert oath and written report:**
+
+> يجب على الخبراء أن يحلفوا أمام قاضي التحقيق يميناً على أن يبدوا رأيهم بالذمة وعليهم أن يقدموا تقريرهم كتابة.
+
+**Article 87 — report deadline / replacement:**
+
+> يحدد قاضي التحقيق ميعاداً للخبير ليقدم تقريره فيه، وللقاضي أن يستبدل به خبيراً آخر إذا لم يقدم التقرير في الميعاد المحدد.
+
+**Article 88 — defence expert:**
+
+> للمتهم أن يستعين بخبير استشاري ويطلب تمكينه من الاطلاع على الأوراق وسائر ما سبق تقديمه للخبير المعين من قبل القاضي، على ألا يترتب على ذلك تأخير السير في الدعوى.
+
+**Article 89 — expert challenge:**
+
+> للخصوم رد الخبير إذا وجدت أسباب قوية تدعو لذلك، ويقدم طلب الرد إلى قاضي التحقيق للفصل فيه، ويجب أن تبين فيه أسباب الرد. وعلى القاضي الفصل فيه في مدة ثلاثة أيام من يوم تقديمه.  
+> ويترتب على هذا الطلب عدم استمرار الخبير في عمله إلا في حالة الاستعجال بأمر من القاضي.
+
+These are the currently applicable expert provisions until Law 174/2025 commences, subject to intervening amendments and lawyer review. The corresponding future code provisions are Arts 99–103 (see L1).
+
+### L3. Experts before judicial authorities — Decree-Law 96/1952 and Law 91/2016
+
+**Full text / metadata:**
+- Eastlaws: https://www.eastlaws.com/legislation-full-text/ar/egypt/law/26-06-1952/no-96?id=800&type=1
+- Manshurat PDF record: https://manshurat.org/node/38162
+
+Decree-Law 96/1952, issued 20 June 1952, published 26 June 1952; amended by Law 91/2016 (Gazette No. 50 bis (d), 21 December 2016; effective 22 December 2016).
+
+**Article 1 — recognized expert categories:**
+
+> يقوم بأعمال الخبرة أمام جهات القضاء خبراء الجدول الحاليون وخبراء وزارة العدل ومصلحة الطب الشرعي والمصالح الأخرى التي يعهد إليها بأعمال الخبرة، وكل من ترى جهات القضاء عند الضرورة الاستعانة برأيهم الفني من غير من ذكروا.
+
+**Article 50 — judicial appointment:**
+
+> لجهات القضاء أن تندب للقيام بأعمال الخبرة خبيراً أو أكثر من خبراء الجدول، أو تندب مكتب خبراء وزارة العدل أو قسم الطب الشرعي أو إحدى المصالح الأخرى المعهود إليها بأعمال الخبرة فإذا رأت الظروف خاصة أن تندب من غير هؤلاء وجب أن تبين ذلك في الحكم، وفي مواد الضرائب لا يقع الندب إلا لخبراء وزارة العدل.
+
+**Law 91/2016 Article 1:**
+
+> تُستبدل عبارة (مساعد أول وزير العدل) بعبارة "الوكيل الدائم لوزارة العدل" أينما وردت في المرسوم بقانون رقم ٩٦ لسنة ١٩٥٢ بشأن تنظيم الخبرة أمام جهات القضاء.
+
+Law 91/2016 is an administrative amendment to the expert statute; it does not replace the substantive expert appointment and report provisions.
+
+### L4. Judicial Authority Law 46/1972 — prosecution and judicial police
+
+**Full Arabic text (secondary, with amendment notes):**
+- https://manshurat.org/node/63718
+- https://lawhub.info/eg/?p=16481
+
+Current copy says last amendment 26 June 2019 by Law 77/2019. The law contains the institutional basis for Public Prosecution supervision and judicial-police subordination.
+
+**Article 21 — Public Prosecution exclusive authority:**
+
+> تُمارِس النيابة العامة الاختصاصات المخولة لها قانوناً، ولها دون غيرها الحق في رفع الدعوى الجنائية ومباشرتها ما لم ينص القانون على خلاف ذلك.
+
+**Article 22 — judicial police subordination:**
+
+> مأمورو الضبط القضائي يكونون فيما يتعلق بأعمال وظائفهم تابعين للنيابة العامة، ويجوز لها عند الضرورة تكليف معاون النيابة تحقيق قضية بأكملها.
+
+**Article 27 — prison supervision:**
+
+> تتولى النيابة العامة الإشراف على السجون وغيرها من الأماكن التي تنفذ فيها الأحكام الجنائية ويحيط النائب العام وزير العدل بما يبدو للنيابة العامة من ملاحظات في هذا الشأن.
+
+**Article 134 — expert statute cross-reference:**
+
+> يُنظم القانون الخبرة أمام جهات القضاء ولدى النيابة العامة ويحدد حقوق الخبراء وواجباتهم وطريقة تأديبهم.
+
+**Law 77/2019** (Gazette 25 bis (b), 26 June 2019; effective 27 June 2019) amends Law 46/1972 among other laws, including the appointment framework for the Public Prosecutor. Text: https://www.eastlaws.com/legislation-full-text/ar/egypt/law/26-06-2019/no-77?id=1944174&sub=9636789&type=1
+
+Law 142/2006 is another material amendment to Law 46/1972 and appears in the amendment annotations for Arts 22, 24, 26, 27 and other provisions. The complete amendment chronology must be extracted before relying on a consolidated version.
+
+### L5. Minister of Justice Decision 3066/2021 — economic-court experts
+
+**Official Gazette text copy:** Waqa'i' No. 123, 3 June 2021, pages 3–6:  
+https://media.elbalad.news/2024/10/large/877/0/789.pdf
+
+Decision 3066/2021 issues rules for the work and engagement of experts registered in the Economic Courts' expert tables. It is not a general criminal-procedure rule, but is relevant to expert evidence in financial/economic offences.
+
+**Article 2 — appointment:**
+
+> للمحكمة، أو هيئة التحضير، أو إدارة الإفلاس، أو قضاة دائرة الإفلاس، أو الأوامر، أو التنفيذ، أو المستعجل بالمحاكم الاقتصادية عند الاقتضاء ندب خبير أو أكثر من جدول خبراء المحاكم الاقتصادية للقيام بمهام محددة يستلزم بحثها الاستعانة بالخبرة الفنية.
+
+**Article 4 — electronic expert register and appointment:**
+
+> ينشأ سجل إلكتروني لقيد الخبراء داخل النظام الإلكتروني للتقاضي أمام المحاكم الاقتصادية، ويعين الخبير صاحب الدور إلكترونياً من خلال هذا النظام، وتبلغ جهة الندب بالمحكمة الاقتصادية إلكترونياً بهذا التعيين خلال ٢٤ ساعة التالية لإيداع أمانة الخبير خزانة المحكمة.
+
+**Article 7 — expert electronic signature:**
+
+> يجب أن يكون للخبير المقيد أمام المحكمة الاقتصادية توقيع إلكترونى صالح للاستخدام، ولا يجوز تعيين الخبير أو الاستعانة به إلا فى حال توافر وصلاحية التوقيع الإلكترونى...
+
+**Article 8 — video conference meetings:**
+
+> ويجوز له الاجتماع بهم عن طريق خاصية الفيديو كونفرانس وفقاً للتقنية الفنية والإلكترونية التى تتوافق مع نظام التقاضى الإلكترونى أمام المحاكم الاقتصادية فى حال صدور موافقة كتابية بذلك من الخصوم ترفق بملف تقرير الخبرة.
+
+**Article 9 — signed digital expert report:**
+
+> يلتزم الخبير المعين بتحرير محاضر الأعمال والتقرير على الحاسب الآلي ويتم إيداع نسخة ورقية منه ممهورة بتوقيع الخبير أو لجنة الخبراء في ملف الدعوى ويتم تسليم نسخة رقمية موقعة إلكترونياً من الخبير المعين أو من الخبراء أعضاء لجنة الخبراء مجتمعين وذلك للقلم المختص باستلام الملفات الرقمية بأي من المحاكم الاقتصادية مرفقاً بها تسجيل لجلسات الفيديو كونفرانس الخاصة باجتماعاته مع أطراف النزاع.
+
+This is a particularly useful procedural source for authenticity, signature and preservation of electronic expert reports in economic-court matters. Decision 367/2021 in the same Gazette (No. 123, 3 June 2021) sets fees and expenses for economic-court experts and repeals Decision 3997/2009.
+
+### L6. Forensic document examination / expert offices — 2026 decisions
+
+**Minister of Justice Decision 439/2026**
+- Gazette: Waqa'i' No. 38, 16 February 2026.
+- Issued 25 January 2026; effective 31 January 2026.
+- Official Amiri Printing Presses text: https://www.alamiria.com/Sec/TashTxt?id=F9RwWnqSQgc%3D
+- SIS Gazette PDF: https://mediadr.sis.gov.eg/xmlui/bitstream/handle/123456789/121095/WQ38_20260216_3241.pdf?sequence=2
+
+**Article 1:**
+
+> ينقل مقر الإدارة العامة لشئون أبحاث التزييف والتزوير بالجيزة الكائن بديوان عام وزارة العدل بلاظوغلى إلى مقرها الجديد بمجمع مصالح وزارة العدل - حى السيدة زينب - محافظة القاهرة.
+
+This is an administrative location change for the General Department for Forgery and Counterfeiting Research, not a change to evidentiary standards.
+
+**Minister of Justice Decision 440/2026** in the same Gazette issue moves the Central Cairo Experts Office to the new premises at the Experts Department, 2B, 23 July Street, Abbassia. Official text: https://www.alamiria.com/Sec/TashTxt?id=pkBhei+HAPU%3D
+
+No separate comprehensive Forensic Medicine Act was identified in this pass. The statutory expert framework remains Decree-Law 96/1952 and the criminal-procedure provisions governing expert appointment, reports, oath, challenge and defence expert access.
+
+### L7. Evidence and investigation corrections / version mapping
+
+1. Until 1 October 2027, use Law 150/1950 as the current procedure-code source, including Arts 86–89 on experts; Law 174/2025 Arts 99–103 are future provisions.
+2. Law 174/2025 Arts 24–27 describe judicial-police duties, categories and evidence preservation; do not activate them before commencement.
+3. Law 174/2025 Art. 80 requires a reasoned order from the competent judge for monitoring specified communications, private social-media content, email, messages, devices and private conversations, for periods not exceeding 30 days per order.
+4. Law 174/2025 Art. 81 creates a separate targeted monitoring route for specified offences and requires strong evidence, a technical report and a victim complaint.
+5. Cybercrime Law 175/2018 Art. 11 remains the specific criminal digital-evidence rule, subject to technical conditions in PM Decree 1699/2020 Art. 9. Electronic Signature Law 15/2004 Arts 14–15 have a different civil/commercial/administrative scope.
+6. Law 96/1952 Art. 1 and Art. 50 establish recognized expert categories and judicial appointment sources; Law 46/1972 Art. 134 cross-refers to the expert statute.
+7. Minister of Justice Decision 3066/2021 applies only to Economic Courts' registered experts; it does not automatically govern all criminal forensic experts.
+8. Decisions 439/2026 and 440/2026 are administrative location changes, not amendments to substantive expert or evidence rules.
+
+## M. Progress update — evidence and expert rules
+
+**Estimated criminal-law domain completion: 55%** (up from 52%; approximate research-progress estimate).
+
+This pass adds the expert statute, judicial authority statute, expert amendments and current ministerial decisions, plus selected exact Arabic provisions from the old and future criminal procedure codes covering:
+- judicial-police authority and subordination;
+- report intake, scene examination and preservation;
+- seizure, sealing and chain of custody;
+- communications and digital-content monitoring;
+- expert appointment, written reports, defence experts and challenge;
+- economic-court expert e-signatures and video-conference records.
+
+**Full Arabic text accessible at source:** further expanded.  
+**Full official files locally archived and hash-verified:** still 0 in this session.  
+**Article-level full extraction:** incomplete; selected articles now persisted.  
+**Lawyer verification:** 0%.  
+**Whole-project coverage:** not computable without the master-index denominator.
+
