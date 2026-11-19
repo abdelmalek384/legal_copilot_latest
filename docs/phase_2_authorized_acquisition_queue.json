@@ -143,13 +143,23 @@
         "EG-CPL-AMEND-107-1962",
         "EG-CPL-AMEND-37-1972",
         "EG-CPL-AMEND-170-1981",
-        "EG-CPL-AMEND-23-1992"
+        "EG-CPL-AMEND-23-1992",
+        "EG-CPL-AMEND-426-1954",
+        "EG-CPL-AMEND-627-1955",
+        "EG-CPL-AMEND-121-1956",
+        "EG-CPL-AMEND-113-1957",
+        "EG-CPL-AMEND-63-1975",
+        "EG-CPL-AMEND-174-1998",
+        "EG-CPL-AMEND-340-1952",
+        "EG-CPL-AMEND-252-1952",
+        "EG-CPL-AMEND-252-1953",
+        "EG-CPL-AMEND-353-1952"
       ],
       "practice_areas": [
         "criminal"
       ],
       "priority": "P0",
-      "action": "Normalize current Law150 text through Art.560 from the 178-page reproduction; verify it against the Court of Cassation portal when available; acquire original Gazette texts for footnoted older amendments including 178/1951, 228/1951, 353/1952, 340/1952, 252/1952, 426/1954, 627/1955, 121/1956, 113/1957, 43/1958 and 63/1975; preserve 177/2020 and 1/2024 as verified separate amendments; retain Law150/1950 as operative until 1 Oct 2027.",
+      "action": "Acquire original Gazette scans for all historical amendment records; complete full texts for 353/1952, 252/1952 and 43/1958; resolve 252/1952 vs 252/1953 and 107/1962 vs 107/1963; complete article-by-article collation of the 178-page Law150 consolidation; preserve current effect until 1 Oct 2027.",
       "candidate_sources": [
         "https://manshurat.org/node/14419/relations",
         "https://manshurat.org/node/14577",
@@ -162,9 +172,9 @@
       ],
       "source_type": "official text and Gazette metadata candidates",
       "permission_state": "unknown_or_pending",
-      "acquisition_state": "full_178_page_current_law_150_text_through_2024_and_full_official_law_174_text_accessible",
+      "acquisition_state": "current_law_150_full_consolidation_through_2024_plus_multiple_older_amendment_full_texts_accessible",
       "legal_review_state": "urgent_review_required",
-      "blocker": "Law150 full text is a secondary-hosted reproduction attributed to Court of Cassation portal; official portal returned 502. Full Gazette scans for older amendments are not archived/hashed. Law174 official MOJ PDF and Law160 official Amiri Press text are accessible but not archived; Law160 Gazette PDF is request-copy restricted.",
+      "blocker": "Full consolidated text and several amendment transcriptions are accessible, but original Gazette scans are not locally archived/hashed. Law43/1958 full text not located; 353/1952 text partial; exact 252/1952 versus 252/1953 instrument mapping and 107/1962 versus 107/1963 source typo require original issue checks.",
       "required_evidence": [
         "Law 177/2020 full text and Art. 113 bis; separate Law 189/2020 Penal Code record",
         "Law 1/2024 Gazette text and all amended/new felony-appeal articles",
