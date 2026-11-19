@@ -14,6 +14,8 @@ This is the cross-domain research entry point for the Legal Copilot national Egy
 - [FRA/CBE regulatory instrument harvest](../../data/research/egypt_regulatory_instrument_harvest_2026-11-17.csv)
 - [Construction, industry, health and constitutional law harvest](../../data/research/egypt_sectoral_law_harvest_2026-11-17.csv)
 
+- [Criminal-law acquisition tranche — 19 November 2026](egypt_criminal_law_acquisition_tranche_2026-11-19.md) — Arabic excerpts, official Gazette text access, Penal Code and Criminal Procedure status, cybercrime, AML, drugs, weapons, child justice, prisons, extradition, amendment leads and progress estimates.
+
 ## Courts and judgments
 
 - [National judicial collection register](../../data/research/egypt_national_judicial_collection_register_2026-11-17.csv)
