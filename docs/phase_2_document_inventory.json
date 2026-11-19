@@ -266,6 +266,20 @@
       "source_class": "multilateral_treaty_text_and_status",
       "permission": "unknown",
       "next_action": "Verify Egypt signature, ratification/accession date, reservations and entry into force in UNTC; preserve Arabic treaty text."
+    },
+    "EG-ALAMIRIA": {
+      "authority": "General Authority for Amiri Printing Presses",
+      "source_url": "https://www.alamiria.com/",
+      "source_class": "official government Gazette text portal",
+      "permission": "unknown",
+      "next_action": "Use official indexed Arabic decisions; obtain and preserve the corresponding Gazette PDF under applicable terms."
+    },
+    "EG-EASTLAWS": {
+      "authority": "Eastlaws legal database",
+      "source_url": "https://www.eastlaws.com/",
+      "source_class": "secondary consolidated legislation and metadata",
+      "permission": "unknown",
+      "next_action": "Use for article-level discovery and amendment metadata only; verify with Gazette and official portals."
     }
   },
   "documents": [
@@ -430,7 +444,7 @@
         "replacement code instrument(s)",
         "commencement postponement/transition instrument(s)"
       ],
-      "notes": "Critical temporal-status review required. Do not infer operative status from the existence of replacement legislation. Full Arabic secondary text located. Keep current/historical status time-scoped and pending lawyer review; Law 1/2024 amendment checkpoint already exists and should not be duplicated.",
+      "notes": "Critical temporal-status review required. Do not infer operative status from the existence of replacement legislation. Full Arabic secondary text located. Keep current/historical status time-scoped and pending lawyer review; Law 1/2024 amendment checkpoint already exists and should not be duplicated. Current-code evidence provisions Arts 86–89 on expert oath, written report, defence expert and expert challenge captured from full secondary text. Keep as current candidate until Law 174/2025 commencement.",
       "source_urls": [
         {
           "url": "https://www.alamiria.com/Sec/TashTxt?id=YbxnlD3e4Qc%3D",
@@ -469,7 +483,7 @@
         "Law 160/2026 and any subsequent instruments",
         "transition/repeal review"
       ],
-      "notes": "Treat enactment, publication, commencement and operative legal effect as separate fields; specialist review required. Important update: official-source discovery found Law 160/2026 changing the commencement date to 1 October 2027. Original commencement wording in Law 174/2025 is not sufficient to state current operative status. Full Arabic code text accessible. Official Gazette Art. 2 reads 'مواد الجنايات'; Manshurat full text reads 'مواد الجنح'. Retain discrepancy; official Gazette text controls pending counsel review. Law 160/2026 amended Art. 6 commencement to 1 Oct 2027. Book Five international judicial cooperation/extradition excerpts Arts 511 and 514–521 transcribed in the Agent 2 tranche. Art. 511 sets incoming request channel and provisional detention ceiling; Arts 514–515 non-extradition grounds and challenge; Art. 517 controlled delivery; Arts 518–520 judicial assistance; Art. 521 presidential transfer/surrender. Full Articles 508–510 and 512–513 remain to be extracted.",
+      "notes": "Treat enactment, publication, commencement and operative legal effect as separate fields; specialist review required. Important update: official-source discovery found Law 160/2026 changing the commencement date to 1 October 2027. Original commencement wording in Law 174/2025 is not sufficient to state current operative status. Full Arabic code text accessible. Official Gazette Art. 2 reads 'مواد الجنايات'; Manshurat full text reads 'مواد الجنح'. Retain discrepancy; official Gazette text controls pending counsel review. Law 160/2026 amended Art. 6 commencement to 1 Oct 2027. Book Five international judicial cooperation/extradition excerpts Arts 511 and 514–521 transcribed in the Agent 2 tranche. Art. 511 sets incoming request channel and provisional detention ceiling; Arts 514–515 non-extradition grounds and challenge; Art. 517 controlled delivery; Arts 518–520 judicial assistance; Art. 521 presidential transfer/surrender. Full Articles 508–510 and 512–513 remain to be extracted. Further official Gazette extracts now captured for future code Arts 24–27, 32, 34, 54–56, 64, 80–81 and 99–103. Preserve OCR numbering anomaly for the second displayed 'Art. 27' in the arrest chapter; sequence indicates Article 37, pending visual Gazette collation.",
       "source_urls": [
         {
           "url": "https://dspace.id.com.eg/handle/123456789/4666",
@@ -4668,6 +4682,293 @@
           "status": "full_text_accessible_secondary"
         }
       ]
+    },
+    {
+      "document_id": "EG-EXPERTS-96-1952",
+      "official_title_ar": "المرسوم بقانون رقم 96 لسنة 1952 بشأن تنظيم الخبرة أمام جهات القضاء",
+      "practice_areas": [
+        "criminal",
+        "evidence",
+        "judicial_procedure"
+      ],
+      "document_type": "expert_evidence_law",
+      "instrument_number": 96,
+      "instrument_year": 1952,
+      "source_id": "EG-EASTLAWS",
+      "source_status": "full_text_accessible_not_archived",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "Law 91/2016",
+        "Law 150/1950 Arts 86–89",
+        "Law 174/2025 future Arts 99–103",
+        "Judicial Authority Law 46/1972 Art. 134"
+      ],
+      "notes": "Issued 20 Jun 1952; published/effective 26 Jun 1952. Arts 1 and 50 define recognized expert categories and judicial appointment sources. Amended by Law 91/2016.",
+      "source_urls": [
+        {
+          "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/law/26-06-1952/no-96?id=800&type=1",
+          "source_role": "Full article metadata/text",
+          "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://manshurat.org/node/38162",
+          "source_role": "PDF record, Gazette metadata",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-EXPERTS-AMEND-91-2016",
+      "official_title_ar": "قانون رقم 91 لسنة 2016 بتعديل بعض أحكام المرسوم بقانون رقم 96 لسنة 1952 بشأن تنظيم الخبرة أمام جهات القضاء",
+      "practice_areas": [
+        "criminal",
+        "evidence",
+        "judicial_procedure"
+      ],
+      "document_type": "amending_law",
+      "instrument_number": 91,
+      "instrument_year": 2016,
+      "source_id": "EG-EASTLAWS",
+      "source_status": "full_text_accessible_not_archived",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "Law 96/1952"
+      ],
+      "notes": "Gazette No. 50 bis (d), 21 Dec 2016; effective 22 Dec 2016. Replaces phrase مساعد أول وزير العدل with الوكيل الدائم لوزارة العدل wherever appearing.",
+      "source_urls": [
+        {
+          "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/law/21-12-2016/no-91?id=1859412&sub=9155829&type=1",
+          "source_role": "Full amendment text",
+          "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://manshurat.org/node/38162",
+          "source_role": "Base law metadata and relation",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-JUDICIAL-AUTHORITY-46-1972",
+      "official_title_ar": "قانون السلطة القضائية — القانون رقم 46 لسنة 1972",
+      "practice_areas": [
+        "criminal",
+        "evidence",
+        "judicial_procedure"
+      ],
+      "document_type": "judicial_authority_law",
+      "instrument_number": 46,
+      "instrument_year": 1972,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": "full_text_accessible_not_archived",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "Law 77/2019",
+        "Law 142/2006",
+        "Law 96/1952"
+      ],
+      "notes": "Art. 21 gives Public Prosecution exclusive authority to bring and conduct criminal proceedings unless law provides otherwise; Art. 22 makes judicial police subordinate to the Public Prosecution; Art. 27 provides prosecution prison oversight; Art. 134 cross-refers to expert law. Copy notes amendment by Law 77/2019.",
+      "source_urls": [
+        {
+          "url": "https://manshurat.org/node/63718",
+          "source_role": "Full 1,789-line Arabic text with amendment annotations",
+          "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://lawhub.info/eg/?p=16481",
+          "source_role": "Alternative full Arabic text",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-JUDICIAL-AUTHORITY-AMEND-77-2019",
+      "official_title_ar": "قانون رقم 77 لسنة 2019 بتعديل بعض أحكام قانون السلطة القضائية وقوانين أخرى",
+      "practice_areas": [
+        "criminal",
+        "evidence",
+        "judicial_procedure"
+      ],
+      "document_type": "amending_law",
+      "instrument_number": 77,
+      "instrument_year": 2019,
+      "source_id": "EG-EASTLAWS",
+      "source_status": "full_text_accessible_not_archived",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "Law 46/1972"
+      ],
+      "notes": "Gazette No. 25 bis (b), 26 Jun 2019; effective 27 Jun 2019. Amends Law 46/1972 among other laws, including appointment framework for Public Prosecutor.",
+      "source_urls": [
+        {
+          "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/law/26-06-2019/no-77?id=1944174&sub=9636789&type=1",
+          "source_role": "Full amendment text and Gazette metadata",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-JUDICIAL-AUTHORITY-AMEND-142-2006",
+      "official_title_ar": "قانون رقم 142 لسنة 2006 بتعديل بعض أحكام قانون السلطة القضائية",
+      "practice_areas": [
+        "criminal",
+        "evidence",
+        "judicial_procedure"
+      ],
+      "document_type": "amending_law",
+      "instrument_number": 142,
+      "instrument_year": 2006,
+      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
+      "source_status": "full_text_accessible_not_archived",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "Law 46/1972"
+      ],
+      "notes": "Identified as amendment to multiple Judicial Authority Law provisions, including Arts 22, 24, 26 and 27. Original Gazette text and full change map still to be collected.",
+      "source_urls": [
+        {
+          "url": "https://manshurat.org/node/63718",
+          "source_role": "Law 46/1972 full text with amendment annotations",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-EXPERTS-ECONOMIC-3066-2021",
+      "official_title_ar": "قرار وزير العدل رقم 3066 لسنة 2021 بإصدار القواعد المنظمة لعمل خبراء المحاكم الاقتصادية والاستعانة بهم",
+      "practice_areas": [
+        "criminal",
+        "evidence",
+        "judicial_procedure"
+      ],
+      "document_type": "ministerial_expert_rules",
+      "instrument_number": 3066,
+      "instrument_year": 2021,
+      "source_id": "EG-SIS-GAZETTE",
+      "source_status": "full_text_accessible_not_archived",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "Law 96/1952",
+        "Law 25/1968",
+        "Decision 367/2021"
+      ],
+      "notes": "Applies to experts registered with Economic Courts. Arts 4, 7, 8 and 9 regulate electronic expert registry, electronic signature, video-conference meetings and digitally signed expert reports with recordings.",
+      "source_urls": [
+        {
+          "url": "https://media.elbalad.news/2024/10/large/877/0/789.pdf",
+          "source_role": "Waqa'i' No. 123, 3 Jun 2021, pages 3–6, full PDF text copy",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-EXPERTS-ECONOMIC-FEES-367-2021",
+      "official_title_ar": "قرار وزير العدل رقم 367 لسنة 2021 بشأن قواعد تقدير أتعاب ومصروفات خبراء المحاكم الاقتصادية",
+      "practice_areas": [
+        "criminal",
+        "evidence",
+        "judicial_procedure"
+      ],
+      "document_type": "ministerial_expert_fees_decision",
+      "instrument_number": 367,
+      "instrument_year": 2021,
+      "source_id": "EG-SIS-GAZETTE",
+      "source_status": "full_text_accessible_not_archived",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "Decision 3066/2021",
+        "Law 96/1952"
+      ],
+      "notes": "Sets expert fees and expenses in Economic Courts; repeals Decision 3997/2009. Relevant only to Economic Courts expert work.",
+      "source_urls": [
+        {
+          "url": "https://media.elbalad.news/2024/10/large/877/0/789.pdf",
+          "source_role": "Waqa'i' No. 123, 3 Jun 2021, pages 7–9, full PDF text copy",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-FORENSIC-DOCUMENT-EXAM-DECISION-439-2026",
+      "official_title_ar": "قرار وزير العدل رقم 439 لسنة 2026 بشأن نقل مقر الإدارة العامة لشئون أبحاث التزييف والتزوير بالجيزة",
+      "practice_areas": [
+        "criminal",
+        "evidence",
+        "judicial_procedure"
+      ],
+      "document_type": "ministerial_forensic_administration_decision",
+      "instrument_number": 439,
+      "instrument_year": 2026,
+      "source_id": "EG-ALAMIRIA",
+      "source_status": "full_text_accessible_not_archived",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "Law 96/1952",
+        "Law 46/1972"
+      ],
+      "notes": "Issued 25 Jan 2026; effective 31 Jan 2026. Moves General Department for Forgery and Counterfeiting Research to the Ministry of Justice complex in Sayyida Zeinab. Administrative location change only; not a substantive evidence rule.",
+      "source_urls": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=F9RwWnqSQgc%3D",
+          "source_role": "Official Amiri Printing Presses Arabic text",
+          "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://mediadr.sis.gov.eg/xmlui/bitstream/handle/123456789/121095/WQ38_20260216_3241.pdf?sequence=2",
+          "source_role": "Official Gazette Waqa'i' No. 38, 16 Feb 2026",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-FORENSIC-EXPERT-OFFICE-DECISION-440-2026",
+      "official_title_ar": "قرار وزير العدل رقم 440 لسنة 2026 بشأن نقل مقر مكتب خبراء وسط القاهرة",
+      "practice_areas": [
+        "criminal",
+        "evidence",
+        "judicial_procedure"
+      ],
+      "document_type": "ministerial_expert_office_decision",
+      "instrument_number": 440,
+      "instrument_year": 2026,
+      "source_id": "EG-ALAMIRIA",
+      "source_status": "full_text_accessible_not_archived",
+      "collection_permission": "unknown",
+      "legal_status": "unknown",
+      "review_status": "discovery_only",
+      "required_related_records": [
+        "Law 96/1952",
+        "Law 46/1972"
+      ],
+      "notes": "Issued 25 Jan 2026; effective 31 Jan 2026. Moves the Central Cairo Experts Office to the new premises in Abbassia. Administrative location change only.",
+      "source_urls": [
+        {
+          "url": "https://www.alamiria.com/Sec/TashTxt?id=pkBhei+HAPU%3D",
+          "source_role": "Official Amiri Printing Presses Arabic text",
+          "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://mediadr.sis.gov.eg/xmlui/bitstream/handle/123456789/121095/WQ38_20260216_3241.pdf?sequence=2",
+          "source_role": "Official Gazette Waqa'i' No. 38, 16 Feb 2026",
+          "status": "full_text_accessible_secondary"
+        }
+      ]
     }
   ],
   "next_actions": [
@@ -4857,6 +5158,27 @@
     {
       "id": "ACT-CRIM-2026-15",
       "action": "Extract Law 174/2025 Book Five Arts 508–510 and 512–513 from the official Gazette PDF; preserve current/future version status and compare with existing treaties.",
+      "owner": "Research Agent 2",
+      "status": "not_started",
+      "blocking": false
+    },
+    {
+      "id": "ACT-CRIM-2026-16",
+      "action": "Extract full Law 96/1952 and Law 46/1972 amendment history, including Law 91/2016, 142/2006 and 77/2019; map judicial police and expert categories.",
+      "owner": "Research Agent 2",
+      "status": "not_started",
+      "blocking": false
+    },
+    {
+      "id": "ACT-CRIM-2026-17",
+      "action": "Extract full Decisions 3066/2021 and 367/2021 and identify all later expert-table and forensic-medicine decisions; distinguish Economic Court expert rules from criminal expert procedure.",
+      "owner": "Research Agent 2",
+      "status": "not_started",
+      "blocking": false
+    },
+    {
+      "id": "ACT-CRIM-2026-18",
+      "action": "Visually collate Law 174/2025 Article numbering around Arts 24–37 and the OCR duplicate Article 27; complete Arts 508–510 and 512–513.",
       "owner": "Research Agent 2",
       "status": "not_started",
       "blocking": false
@@ -5254,6 +5576,26 @@
         "publisher": "Egyptian Ministry of Finance / Manshurat Gazette copy / regional justice ministry repositories",
         "observed_title": "Egyptian extradition and international criminal cooperation treaty corpus",
         "finding": "Egypt's accession to Riyadh 1983 approved by Decision 278/2014; UNTOC and both Palermo Protocols have official MoF Gazette PDFs and active status records; six bilateral judicial cooperation/extradition treaties located with full text or official record. Entry-into-force metadata conflicts retained.",
+        "status": "full_text_accessible_selected_articles_persisted"
+      },
+      {
+        "evidence_id": "SRC-EXPERTS-JUDICIAL-POLICE-2026",
+        "document_ids": [
+          "EG-EXPERTS-96-1952",
+          "EG-EXPERTS-AMEND-91-2016",
+          "EG-JUDICIAL-AUTHORITY-46-1972",
+          "EG-JUDICIAL-AUTHORITY-AMEND-77-2019",
+          "EG-JUDICIAL-AUTHORITY-AMEND-142-2006",
+          "EG-EXPERTS-ECONOMIC-3066-2021",
+          "EG-EXPERTS-ECONOMIC-FEES-367-2021",
+          "EG-FORENSIC-DOCUMENT-EXAM-DECISION-439-2026",
+          "EG-FORENSIC-EXPERT-OFFICE-DECISION-440-2026"
+        ],
+        "source_type": "full Arabic law text, official Gazette decision PDFs and secondary legal text",
+        "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/law/26-06-1952/no-96?id=800&type=1",
+        "publisher": "Eastlaws / Manshurat / Amiri Printing Presses / SIS Gazette",
+        "observed_title": "Expert evidence, judicial authority and forensic examination instruments",
+        "finding": "Law 96/1952 full article text and Law 91/2016 amendment located; Law 46/1972 full text and amendments 142/2006 and 77/2019 identified; Decisions 3066/2021 and 367/2021 for Economic Court experts and 439/440/2026 forensic expert office relocations found.",
         "status": "full_text_accessible_selected_articles_persisted"
       }
     ],
