@@ -305,6 +305,40 @@
       "legal_status": "current_candidate_pending_lawyer_review",
       "finding": "Law 96/1952 Art. 1 identifies recognized expert sources including Ministry of Justice and Forensic Medicine; Art. 50 governs judicial appointment. Law 91/2016 amends administrative terminology. Law 46/1972 Art. 134 cross-refers to expert regulation.",
       "next_action": "Obtain Gazette copies, full amendment map and current expert ministerial decisions; distinguish general criminal expert rules from Economic Court-only Decision 3066/2021."
+    },
+    {
+      "evidence_id": "XREF-CPL-177-2020-VS-189-2020",
+      "document_id": "EG-CPL-AMEND-177-2020",
+      "practice_areas": [
+        "criminal",
+        "procedure"
+      ],
+      "url": "https://manshurat.org/node/67605",
+      "publisher": "Manshurat amendment record; Al-Dhshan full text; cross-checked with Penal Code Law 189/2020 record",
+      "source_class": "secondary consolidation misattribution corrected by separate amendment texts",
+      "observed_title_ar": "قانون رقم 177 لسنة 2020 بإضافة المادة 113 مكرراً إلى قانون الإجراءات الجنائية",
+      "source_state": "full_secondary_text_accessible_cpl_177_confirmed",
+      "collection_permission": "unknown",
+      "legal_status": "current_amendment_to_law_150_pending_lawyer_review",
+      "finding": "Law 177/2020 is the Criminal Procedure amendment adding Art. 113 bis (victim identity confidentiality), Gazette 36 bis, 5 Sep 2020, effective 6 Sep 2020. Law 189/2020 is a separate Penal Code amendment adding Art. 309 bis (b) on bullying. Manshurat's consolidated CPL metadata misattributes Law 189/2020 as the last CPL amendment.",
+      "next_action": "Correct the consolidated Law 150 amendment chain; keep separate document records for Law 177/2020 (CPL) and Law 189/2020 (Penal Code). Obtain Gazette image and visually verify both instruments."
+    },
+    {
+      "evidence_id": "XREF-CPL-150-AMENDMENT-CHAIN-2024",
+      "document_id": "EG-CRIMINAL-PROCEDURE-150-1950",
+      "practice_areas": [
+        "criminal",
+        "procedure"
+      ],
+      "url": "https://manshurat.org/node/14419/relations",
+      "publisher": "Manshurat law relations page; cross-checked against FRA, Eastlaws, Laweg and SIS Gazette sources",
+      "source_class": "amendment relation index plus selected full amendment texts",
+      "observed_title_ar": "قانون الإجراءات الجنائية رقم 150 لسنة 1950 — علاقات الوثيقة",
+      "source_state": "partial_amendment_chain_with_major_texts_accessible",
+      "collection_permission": "unknown",
+      "legal_status": "current_until_2027-10-01_pending_intervening_lawyer_review",
+      "finding": "Confirmed major amendments include Laws 95/2003, 145/2006, 74/2007, 71/2009, 83/2013, 49/2014, 138/2014, 16/2015, omnibus Law 11/2017, Law 177/2020 and Law 1/2024. Older candidates 271/1955,107/1962,37/1972,170/1981 and 23/1992 remain metadata-only. Original Law 150 Gazette No. 90 publication date remains conflicted: 15 Oct 1950 versus 15 Oct 1951.",
+      "next_action": "Collect and compare original Gazette pages for each amendment and complete the article-by-article current consolidation. Confirm original issue No. 90 date and effective date."
     }
   ],
   "guardrails": [
