@@ -3890,12 +3890,27 @@
         "Law 8/2015",
         "CPL 150/1950"
       ],
-      "notes": "Gazette 32 bis, 15 Aug 2015; effective 16 Aug 2015. Arts 40–48 contain special investigative powers. Law 15/2020 amends definitions and selected provisions; no standalone executive regulation found.",
+      "notes": "Gazette 32 bis, 15 Aug 2015; effective 16 Aug 2015. Arts 40–48 contain special investigative powers. Law 15/2020 amends definitions and selected provisions; no standalone executive regulation found.\nMerged additional acquisition notes: Current text incorporates Laws11/2017,15/2020 and149/2021. Defines terrorist act, financing, jurisdiction and criminal offences. Original Law94/2015 also acquired as a 24-page FRA-hosted PDF. For current text use LawHub/Manshurat consolidation incorporating Laws11/2017,15/2020 and149/2021; original PDF alone is not the current version.",
       "source_urls": [
         {
           "url": "https://manshurat.org/node/14679",
           "source_role": "Full Arabic text, 291 lines; source identifies Law 15/2020 amendment",
           "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://lawhub.info/eg/?p=11550",
+          "source_role": "Full current text or Gazette index/secondary text",
+          "status": "full_current_text_accessible_secondary_and_official_Gazette_copy"
+        },
+        {
+          "url": "https://fra.gov.eg/wp-content/uploads/2020/12/UG49861UG49862.pdf",
+          "source_role": "FRA-hosted 24-page original law PDF",
+          "status": "official_original_text_accessible_not_archived"
+        },
+        {
+          "url": "https://fra.gov.eg/تشريعات-مكافحة-غسل-الأموال-وتمويل-الإرهاب/",
+          "source_role": "FRA official AML/CFT legislation index listing Law94/2015 and Law8/2015",
+          "status": "official_index"
         }
       ]
     },
@@ -3916,12 +3931,17 @@
       "required_related_records": [
         "Law 94/2015"
       ],
-      "notes": "Issued 3 Mar 2020; effective day after publication. Replaces Art. 1(f), Arts 3 and 13; adds a paragraph to Art. 39; updates references to funds/assets.",
+      "notes": "Issued 3 Mar 2020; effective day after publication. Replaces Art. 1(f), Arts 3 and 13; adds a paragraph to Art. 39; updates references to funds/assets.\nMerged additional acquisition notes: Replaces Art.1(f) funds/assets definition, Art.3 terrorist financing definition and Art.13 criminalization.",
       "source_urls": [
         {
           "url": "https://www.eglf.org/قانون-15-لسنة-2020/",
           "source_role": "Full Arabic amendment text",
           "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://www.laweg.net/Default.aspx?FIID=257&action=LegsCates",
+          "source_role": "Full current text or Gazette index/secondary text",
+          "status": "full_text_accessible_Laweg_and_current_consolidation"
         }
       ]
     },
@@ -3978,7 +3998,7 @@
       "required_related_records": [
         "Law 8/2015"
       ],
-      "notes": "Amends Art. 1 definition(s); original Gazette text still to be obtained. Omnibus law also amends Criminal Procedure Law 150/1950 Arts 12, 277, 289, 384 and 395; it also amends Law 57/1959, Law 8/2015 and Law 94/2015. Full Gazette PDF: https://fra.gov.eg/wp-content/uploads/2017/04/alamiria_2017_11.pdf. Do not create a duplicate Law 11/2017 instrument record for the CPL amendment.",
+      "notes": "Amends Art. 1 definition(s); original Gazette text still to be obtained. Omnibus law also amends Criminal Procedure Law 150/1950 Arts 12, 277, 289, 384 and 395; it also amends Law 57/1959, Law 8/2015 and Law 94/2015. Full Gazette PDF: https://fra.gov.eg/wp-content/uploads/2017/04/alamiria_2017_11.pdf. Do not create a duplicate Law 11/2017 instrument record for the CPL amendment.\nMerged additional acquisition notes: Linked amendment to Law94/2015 and Law8/2015; exact article-level mapping and Gazette scan pending.",
       "source_urls": [
         {
           "url": "https://manshurat.org/node/63720",
@@ -3994,6 +4014,11 @@
           "url": "https://lawyeregypt.net/قانون-رقم-11-لسنة-2017-بشأن-تعديل-بعض-أحكام-ق-2/",
           "source_role": "Full Arabic text of omnibus Law 11/2017",
           "status": "full_text_accessible_secondary"
+        },
+        {
+          "url": "https://www.laweg.net/Default.aspx?FIID=257&action=LegsCates",
+          "source_role": "Full current text or Gazette index/secondary text",
+          "status": "full_text_accessible_Gazette_index_and_secondary"
         }
       ]
     },
@@ -7608,100 +7633,6 @@
       ]
     },
     {
-      "document_id": "EG-ANTITERROR-94-2015",
-      "official_title_ar": "قانون رقم 94 لسنة 2015 بإصدار قانون مكافحة الإرهاب",
-      "practice_areas": [
-        "criminal",
-        "terrorism",
-        "aml_cft"
-      ],
-      "document_type": "statute_or_statutory_amendment",
-      "instrument_number": 94,
-      "instrument_year": 2015,
-      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
-      "source_status": "official_24_page_FRA_PDF_original_2015_law_plus_current_secondary_consolidation",
-      "collection_permission": "unknown",
-      "legal_status": "current_consolidated_text_or_historical_amendment_embedded",
-      "review_status": "discovery_only",
-      "required_related_records": [
-        "EG-AML-80-2002"
-      ],
-      "notes": "Current text incorporates Laws11/2017,15/2020 and149/2021. Defines terrorist act, financing, jurisdiction and criminal offences. Original Law94/2015 also acquired as a 24-page FRA-hosted PDF. For current text use LawHub/Manshurat consolidation incorporating Laws11/2017,15/2020 and149/2021; original PDF alone is not the current version.",
-      "source_urls": [
-        {
-          "url": "https://lawhub.info/eg/?p=11550",
-          "source_role": "Full current text or Gazette index/secondary text",
-          "status": "full_current_text_accessible_secondary_and_official_Gazette_copy"
-        },
-        {
-          "url": "https://fra.gov.eg/wp-content/uploads/2020/12/UG49861UG49862.pdf",
-          "source_role": "FRA-hosted 24-page original law PDF",
-          "status": "official_original_text_accessible_not_archived"
-        },
-        {
-          "url": "https://fra.gov.eg/تشريعات-مكافحة-غسل-الأموال-وتمويل-الإرهاب/",
-          "source_role": "FRA official AML/CFT legislation index listing Law94/2015 and Law8/2015",
-          "status": "official_index"
-        }
-      ]
-    },
-    {
-      "document_id": "EG-ANTITERROR-AMEND-11-2017",
-      "official_title_ar": "قانون رقم 11 لسنة 2017 بتعديل بعض أحكام قوانين الإجراءات الجنائية والطعن أمام النقض وقوائم الكيانات الإرهابية ومكافحة الإرهاب",
-      "practice_areas": [
-        "criminal",
-        "terrorism",
-        "aml_cft"
-      ],
-      "document_type": "statute_or_statutory_amendment",
-      "instrument_number": 11,
-      "instrument_year": 2017,
-      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
-      "source_status": "full_text_accessible_Gazette_index_and_secondary",
-      "collection_permission": "unknown",
-      "legal_status": "current_consolidated_text_or_historical_amendment_embedded",
-      "review_status": "discovery_only",
-      "required_related_records": [
-        "EG-AML-80-2002"
-      ],
-      "notes": "Linked amendment to Law94/2015 and Law8/2015; exact article-level mapping and Gazette scan pending.",
-      "source_urls": [
-        {
-          "url": "https://www.laweg.net/Default.aspx?FIID=257&action=LegsCates",
-          "source_role": "Full current text or Gazette index/secondary text",
-          "status": "full_text_accessible_Gazette_index_and_secondary"
-        }
-      ]
-    },
-    {
-      "document_id": "EG-ANTITERROR-AMEND-15-2020",
-      "official_title_ar": "قانون رقم 15 لسنة 2020 بتعديل بعض أحكام قانون مكافحة الإرهاب رقم 94 لسنة 2015",
-      "practice_areas": [
-        "criminal",
-        "terrorism",
-        "aml_cft"
-      ],
-      "document_type": "statute_or_statutory_amendment",
-      "instrument_number": 15,
-      "instrument_year": 2020,
-      "source_id": "EG-SECONDARY-LEGAL-TRANSCRIPTIONS",
-      "source_status": "full_text_accessible_Laweg_and_current_consolidation",
-      "collection_permission": "unknown",
-      "legal_status": "current_consolidated_text_or_historical_amendment_embedded",
-      "review_status": "discovery_only",
-      "required_related_records": [
-        "EG-AML-80-2002"
-      ],
-      "notes": "Replaces Art.1(f) funds/assets definition, Art.3 terrorist financing definition and Art.13 criminalization.",
-      "source_urls": [
-        {
-          "url": "https://www.laweg.net/Default.aspx?FIID=257&action=LegsCates",
-          "source_role": "Full current text or Gazette index/secondary text",
-          "status": "full_text_accessible_Laweg_and_current_consolidation"
-        }
-      ]
-    },
-    {
       "document_id": "EG-ANTITERROR-AMEND-149-2021",
       "official_title_ar": "قانون رقم 149 لسنة 2021 بتعديل بعض أحكام قانون مكافحة الإرهاب",
       "practice_areas": [
@@ -8962,9 +8893,9 @@
       {
         "evidence_id": "SRC-CRIM-TERRORISM-ASSET-FREEZE-2026-11-19",
         "document_ids": [
-          "EG-ANTITERROR-94-2015",
-          "EG-ANTITERROR-AMEND-11-2017",
-          "EG-ANTITERROR-AMEND-15-2020",
+          "EG-ANTI-TERRORISM-94-2015",
+          "EG-TERROR-LISTS-AMEND-11-2017",
+          "EG-ANTI-TERRORISM-AMEND-15-2020",
           "EG-ANTITERROR-AMEND-149-2021",
           "EG-TERROR-LISTS-8-2015",
           "EG-TERROR-LISTS-AMEND-2-2020",
@@ -9047,11 +8978,11 @@
     "lawyer_verified_percent": 0,
     "official_full_text_files_archived_and_hash_verified_in_this_session": 0,
     "complete_arabic_texts_accessible_at_source_estimate": ">20 laws/codes and implementing/treaty instruments",
-    "new_inventory_records_added_this_session": 159,
-    "inventory_total_documents": 240,
+    "new_inventory_records_added_this_session": 152,
+    "inventory_total_documents": 237,
     "acquisition_queue_items": 24,
     "crosscheck_register_count": 38,
-    "notes": "Qualitative research-coverage estimate, not article-count or lawyer-QA metric. This pass improved source and text coverage for AML, child justice, prisons and narcotics schedules. Two new amendment-instrument records were added without duplicating base laws. Publicly readable source text is not represented as locally archived/hash-verified; permission for storage/indexing/commercial use remains unknown. Cross-check register expanded to 22 entries for AML Decree 457/2020 date conflict, Prisons Law 14/2022 publication metadata conflict, and Decision 242/2026 schedule OCR verification. Second acquisition pass identified Child Law amendments through 2025 (including Art.49 repeal), four Child Law Executive Regulation amendments through 2020, and weapons Law 5/2019, Law 163/2022, Decision 1300/2019. 13 distinct records added, bringing total to 181. Research estimate increased to 63%; still 0 local original files archived/hash verified and 0 lawyer-verified records. Cross-check register now includes the Child Law Art.49 repeal in Social Security Law 12/2025, the 2075/2010 executive-regulation amendment chain, and SCC judgment 1/47 (2026) on weapons provisions. Progress metadata reconciled to the 58% baseline recorded before the current acquisition work; 96 net-new inventory records are now counted cumulatively (81 prior tranche + 15 added in the two current passes). Third acquisition pass upgraded cybercrime Law 175/2018 and Decree 1699/2020, Personal Data Law 151/2020 and Decree 816/2025, Human Trafficking Law 64/2010 and Decree 3028/2010, and Illegal Migration Law 82/2016 and Decree 983/2018. No duplicate base-law records added. Key source conflicts logged. Cross-check register includes Cybercrime Executive Regulation 1699/2020 vs ESCC 635/2020 heading conflict and Human Trafficking Executive Regulation 3028/2010 vs one secondary 2038/2010 miscitation. Fourth acquisition pass acquired full official 546-article Law 174/2025 PDF and Law 160/2026 official Amiri Press text/Gazette metadata; extracted all Book Five Arts.508–521. Current commencement fixed at 1 Oct 2027; CPL150/1950 and Law140/2014 remain operative until then. Official/secondary Art.2 transition wording discrepancy recorded. Fifth acquisition pass acquired the full 178-page consolidated Arabic Law150/1950 text through Law1/2024, including Art.113 bis added by Law177/2020 and the felony appeal amendments. Full text is secondary-hosted but attributes source to Court of Cassation Legislation Portal; original portal endpoint returned 502. Footnotes reveal additional older amendment instruments requiring individual Gazette acquisition. Sixth acquisition pass added 10 distinct CPL historical amendment records and upgraded Law107/1962 to full Arabic text. Acquired multiple full amendment texts and expanded the historical chronology; original Gazette scans remain unarchived. Seventh acquisition pass upgraded Penal Code Law58/1937 to a full 540-article, 179-page Arabic consolidation updated through 4 Dec 2023 and added separate amendment records for Laws5/2018,164/2019 and6/2020. Later amendment records cross-linked to the full code and Gazette metadata. Eighth acquisition pass added 13 distinct prison amendment and geographic-centre decision records; full text sources acquired for Laws49/2014,106/2015,6/2018 and seven recent centre-creation decisions. Foundational Decisions113/1962 and1654/1971 remain metadata-only; Decision1265/2022 full text still pending. Ninth acquisition pass added Law15/2018 and geographic-centre decisions1265/2025,176/2026 and1739/2026; latest located instrument was published 14 Nov 2026 and effective 15 Nov 2026. Narcotics schedule pass visually transcribed Decision242/2026 replacement Table1 item12 and Table3 entries57–61 from the official EDA PDF. Full 34-page Decision44/2026 schedule transcription remains open. Tenth acquisition pass added 13 AML/CFT regulatory records, including full FIU Decision1/2024, full September2026 DNFBP CDD procedures, and FRA 2026 circulars/decision chain. Financial-institution CDD September2026 full text and several regulator PDFs remain inaccessible or unretrieved. Eleventh acquisition pass added eight terrorism/asset-freezing records: Law94/2015, its amendments11/2017,15/2020,149/2021; Law8/2015 and amendments2/2020,14/2020; and Law22/2018 asset-management law. Full current Arabic texts and amendment relations linked. Official-source upgrade: FRA-hosted original Law94/2015 PDF and Law22/2018 PDF acquired; FRA updated Law8/2015 link identified but document endpoint denied. Original files still not locally archived/hashed. Twelfth acquisition pass upgraded AML Executive Regulations Decree951/2003 to the official FRA-hosted 1,109-line consolidated Arabic text through Decree3331/2023 and added five separate amendment records (1463/2006,2367/2008,1569/2016,2910/2019,457/2020). Article12bis statistics, Art.21bis beneficial-owner register, Art.28bis(b) parallel financial investigations and Art.50bis(a) immediate freezing extracted. Gazette date/number conflicts retained. Thirteenth acquisition pass upgraded Drug Law182/1960 to a full 56-article consolidated Arabic text and added six historical amendment records (206/1960,40/1966,16/1973,61/1977,45/1984,122/1989). Linked Law19/2020 full text. EDA index lists Law19/2020 as latest statute amendment; LawyerEgypt's 22 Apr2024 'latest amendment' label is flagged as likely source revision date pending identification of a 2024 instrument. Weapons-law pass upgraded Law394/1954 to a full 53-article consolidated Arabic text through Law163/2022, cross-linked Law5/2019 and Law163/2022 primary/secondary texts, and added Gazette issue metadata. Child-law pass upgraded Law12/1996 to full 166-article current text through Law12/2025; recorded cross-statute repeal of Art.49 effective 4 Jul2025; linked Law186/2023 Art.72bis and full Child Executive Regulations 2075/2010 through Decree1143/2020.",
+    "notes": "Qualitative research-coverage estimate, not article-count or lawyer-QA metric. This pass improved source and text coverage for AML, child justice, prisons and narcotics schedules. Two new amendment-instrument records were added without duplicating base laws. Publicly readable source text is not represented as locally archived/hash-verified; permission for storage/indexing/commercial use remains unknown. Cross-check register expanded to 22 entries for AML Decree 457/2020 date conflict, Prisons Law 14/2022 publication metadata conflict, and Decision 242/2026 schedule OCR verification. Second acquisition pass identified Child Law amendments through 2025 (including Art.49 repeal), four Child Law Executive Regulation amendments through 2020, and weapons Law 5/2019, Law 163/2022, Decision 1300/2019. 13 distinct records added, bringing total to 181. Research estimate increased to 63%; still 0 local original files archived/hash verified and 0 lawyer-verified records. Cross-check register now includes the Child Law Art.49 repeal in Social Security Law 12/2025, the 2075/2010 executive-regulation amendment chain, and SCC judgment 1/47 (2026) on weapons provisions. Progress metadata reconciled to the 58% baseline recorded before the current acquisition work; 96 net-new inventory records are now counted cumulatively (81 prior tranche + 15 added in the two current passes). Third acquisition pass upgraded cybercrime Law 175/2018 and Decree 1699/2020, Personal Data Law 151/2020 and Decree 816/2025, Human Trafficking Law 64/2010 and Decree 3028/2010, and Illegal Migration Law 82/2016 and Decree 983/2018. No duplicate base-law records added. Key source conflicts logged. Cross-check register includes Cybercrime Executive Regulation 1699/2020 vs ESCC 635/2020 heading conflict and Human Trafficking Executive Regulation 3028/2010 vs one secondary 2038/2010 miscitation. Fourth acquisition pass acquired full official 546-article Law 174/2025 PDF and Law 160/2026 official Amiri Press text/Gazette metadata; extracted all Book Five Arts.508–521. Current commencement fixed at 1 Oct 2027; CPL150/1950 and Law140/2014 remain operative until then. Official/secondary Art.2 transition wording discrepancy recorded. Fifth acquisition pass acquired the full 178-page consolidated Arabic Law150/1950 text through Law1/2024, including Art.113 bis added by Law177/2020 and the felony appeal amendments. Full text is secondary-hosted but attributes source to Court of Cassation Legislation Portal; original portal endpoint returned 502. Footnotes reveal additional older amendment instruments requiring individual Gazette acquisition. Sixth acquisition pass added 10 distinct CPL historical amendment records and upgraded Law107/1962 to full Arabic text. Acquired multiple full amendment texts and expanded the historical chronology; original Gazette scans remain unarchived. Seventh acquisition pass upgraded Penal Code Law58/1937 to a full 540-article, 179-page Arabic consolidation updated through 4 Dec 2023 and added separate amendment records for Laws5/2018,164/2019 and6/2020. Later amendment records cross-linked to the full code and Gazette metadata. Eighth acquisition pass added 13 distinct prison amendment and geographic-centre decision records; full text sources acquired for Laws49/2014,106/2015,6/2018 and seven recent centre-creation decisions. Foundational Decisions113/1962 and1654/1971 remain metadata-only; Decision1265/2022 full text still pending. Ninth acquisition pass added Law15/2018 and geographic-centre decisions1265/2025,176/2026 and1739/2026; latest located instrument was published 14 Nov 2026 and effective 15 Nov 2026. Narcotics schedule pass visually transcribed Decision242/2026 replacement Table1 item12 and Table3 entries57–61 from the official EDA PDF. Full 34-page Decision44/2026 schedule transcription remains open. Tenth acquisition pass added 13 AML/CFT regulatory records, including full FIU Decision1/2024, full September2026 DNFBP CDD procedures, and FRA 2026 circulars/decision chain. Financial-institution CDD September2026 full text and several regulator PDFs remain inaccessible or unretrieved. Eleventh acquisition pass added eight terrorism/asset-freezing records: Law94/2015, its amendments11/2017,15/2020,149/2021; Law8/2015 and amendments2/2020,14/2020; and Law22/2018 asset-management law. Full current Arabic texts and amendment relations linked. Official-source upgrade: FRA-hosted original Law94/2015 PDF and Law22/2018 PDF acquired; FRA updated Law8/2015 link identified but document endpoint denied. Original files still not locally archived/hashed. Twelfth acquisition pass upgraded AML Executive Regulations Decree951/2003 to the official FRA-hosted 1,109-line consolidated Arabic text through Decree3331/2023 and added five separate amendment records (1463/2006,2367/2008,1569/2016,2910/2019,457/2020). Article12bis statistics, Art.21bis beneficial-owner register, Art.28bis(b) parallel financial investigations and Art.50bis(a) immediate freezing extracted. Gazette date/number conflicts retained. Thirteenth acquisition pass upgraded Drug Law182/1960 to a full 56-article consolidated Arabic text and added six historical amendment records (206/1960,40/1966,16/1973,61/1977,45/1984,122/1989). Linked Law19/2020 full text. EDA index lists Law19/2020 as latest statute amendment; LawyerEgypt's 22 Apr2024 'latest amendment' label is flagged as likely source revision date pending identification of a 2024 instrument. Weapons-law pass upgraded Law394/1954 to a full 53-article consolidated Arabic text through Law163/2022, cross-linked Law5/2019 and Law163/2022 primary/secondary texts, and added Gazette issue metadata. Child-law pass upgraded Law12/1996 to full 166-article current text through Law12/2025; recorded cross-statute repeal of Art.49 effective 4 Jul2025; linked Law186/2023 Art.72bis and full Child Executive Regulations 2075/2010 through Decree1143/2020. Inventory deduplication: merged three duplicate anti-terrorism records into the pre-existing canonical Law94/2015, Law15/2020 and Law11/2017 entries; updated queue/evidence references. Net-new unique inventory count recalculated against the 85-document project baseline.",
     "last_acquisition_pass_increment_percent": 1,
     "last_acquisition_pass_date": "2026-11-19"
   }
