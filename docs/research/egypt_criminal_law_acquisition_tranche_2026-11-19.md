@@ -270,7 +270,8 @@ The official PDF's final pages expose provisions on international criminal coope
 ## 10. Drug control Law 182/1960 and 2026 schedule substitution
 
 - Base: قانون مكافحة المخدرات وتنظيم استعمالها والاتجار فيها رقم 182 لسنة 1960; Official Gazette issue 131, 13 June 1960.
-- Prior amendment leads: Laws 40/1966, 45/1984 and 122/1989; later amendment and schedule decisions require reconciliation.
+- **Official Egyptian Drug Authority amendment catalogue** confirms this amendment chain: Laws 206/1960 (12 July 1960), 40/1966 (18 August 1966), 16/1973 (5 April 1973), 61/1977 (24 November 1977), 45/1984 (31 March 1984), 122/1989 (4 July 1989), 134/2019 (16 July 2019), and 19/2020 (18 March 2020): https://edaegypt.gov.eg/ar/المرجع-التنظيمي-لهيئة-الدواء-المصرية/القوانين-واللوائح-التنفيذية/تعديلات-قانون-رقم-182-لسنة-1960/
+- Secondary consolidated full Arabic text, with amendments stated through 22 April 2024, is available at https://lawyeregypt.net/قانون-رقم-۱۸۲-لسنة-۱۹٦۰-مكافحة-المخدرات-pdf/ . It exposes Arts 1–45 and amendment annotations; do not elevate this to official text without Gazette collation.
 - Health Minister Decision 44/2026 replaces the attached schedules. الوقائع المصرية issue 39 تابع (ج), 17 February 2026; effective on publication.
 - Full-text secondary record with operative articles and schedules: https://www.eastlaws.com/legislation-full-text/ar/egypt/health-population-minister-decision/17-02-2026/no-44?id=5386660&type=1
 - Gazette scan link: https://cdn.vetogate.com/UploadCache/libfiles/575/4/0x0o/451.pdf
@@ -287,7 +288,22 @@ The official PDF's final pages expose provisions on international criminal coope
 ينشر هذا القرار في الوقائع المصرية، ويعمل به من تاريخ نشره.
 
 - The schedules themselves are extensive and must be acquired as full annexes, not reduced to a short list.
-- Earlier project candidate notes listed Health Minister Decision 242/2026 dated 17 August 2026. It is not reconciled with the February 2026 Decision 44/2026; obtain its Gazette text and establish whether it is a distinct later schedule amendment or a misidentified record.
+- **Resolved: Decision 242/2026 is a distinct later schedule amendment, not a misidentified record.** The official EDA regulatory page lists it as dated 20 July 2026 and expressly says it modifies schedules substituted by Decision 44/2026. The EDA hosts the official Gazette PDF: https://www.edaegypt.gov.eg/media/lydpgqi5/لمكافحة-المخدرات_2026_242-وزير-الصحة.pdf
+- Gazette: الوقائع المصرية issue 179, 17 August 2026; the signed decision date is 20 July 2026; Art 2 says it takes effect the day after publication (18 August 2026).
+- **Verbatim Arabic — Decision 242/2026 operative amendment as read from the official Gazette scan:**
+
+وزارة الصحة والسكان  
+قرار رقم 242 لسنة 2026  
+بشأن تعديل الجداول الملحقة بالقانون رقم 182 لسنة 1960 في شأن مكافحة المخدرات وتنظيم استعمالها والاتجار فيها والمستبدلة بقرار وزير الصحة والسكان رقم 44 لسنة 2026
+
+(المادة الأولى)  
+يستبدل بنص البند (12) الوارد بالجدول رقم (1) - القسم الأول (ب) المرافق لقرار وزير الصحة والسكان رقم 44 لسنة 2026 المشار إليه النص الآتي:
+
+(المادة الثانية)  
+ينشر هذا القرار بالوقائع المصرية، ويعمل به من اليوم التالي لتاريخ نشره.
+
+- The same official four-page scan also shows additions to Table No. (3), section three, including amyl nitrite, isoamyl nitrite, isopropyl nitrite, isobutyl nitrite and cannabidiol (CBD). These entries must be transcribed carefully from the page images; the scan is authoritative.
+- Decision 242 therefore supersedes part of Decision 44's schedules; any “current controlled-substance schedule” dataset must apply both decisions in sequence, not only Decision 44.
 - Base-law secondary full-text lead: https://www.aldhshan.com/2026/02/182-1960.html
 
 ## 11. Weapons and ammunition Law 394/1954
@@ -360,12 +376,12 @@ The official PDF's final pages expose provisions on international criminal coope
 This is a transparent estimate for the assigned criminal-law domain, not for all Egyptian law.
 
 - Discovery coverage: approximately 85% of assigned instrument families have at least one concrete source lead.
-- Actual Arabic text acquisition: approximately 38%, weighted by instrument importance and full-text availability. The new additions are the FRA-hosted consolidated Law 80/2002 PDF and the official Gazette PDF of PM Decision 3331/2023; a 101-article secondary consolidation of Prison Decision 79/1961 was also located. Official full text layers opened for Laws 175/2018 and 174/2025; full amendment text captured for Laws 160/2026 and 186/2023; selected Arabic text captured for Laws 150/1950, 58/1937, 14/2022 and Decision 44/2026.
+- Actual Arabic text acquisition: approximately 42%, weighted by instrument importance and full-text availability. The new additions are the FRA-hosted consolidated Law 80/2002 PDF and the official Gazette PDF of PM Decision 3331/2023; a 101-article secondary consolidation of Prison Decision 79/1961 was also located. Official full text layers opened for Laws 175/2018 and 174/2025; full amendment text captured for Laws 160/2026 and 186/2023; selected Arabic text captured for Laws 150/1950, 58/1937, 14/2022 and Decision 44/2026.
 - Amendment and implementing-instrument mapping: approximately 28%; major amendment chains known but not complete or collated.
-- Article-level extraction and QA: approximately 23%; selected provisions extracted, plus the complete text layer of Law 80/2002, Decision 3331/2023 and a full 101-article secondary prison-regulation transcription, but not yet a fully collated canonical corpus.
+- Article-level extraction and QA: approximately 26%; selected provisions extracted, plus the complete text layer of Law 80/2002, Decision 3331/2023 and a full 101-article secondary prison-regulation transcription, but not yet a fully collated canonical corpus.
 - Lawyer verification: 0%.
-- **Overall assigned-domain completion: approximately 27%.** This counts complete text, amendments, commencement/repeal rules and QA, not discovery alone.
-- National contribution: criminal law is one of 30 domains in the prior national baseline. A 27% criminal-domain completion contributes approximately 0.9 percentage points in a simple equal-weight model (27% / 30). The national estimate remains approximately 1.5–2% pending an updated weighted baseline.
+- **Overall assigned-domain completion: approximately 29%.** This counts complete text, amendments, commencement/repeal rules and QA, not discovery alone.
+- National contribution: criminal law is one of 30 domains in the prior national baseline. A 29% criminal-domain completion contributes approximately 1.0 percentage point in a simple equal-weight model (29% / 30). The national estimate remains approximately 1.5–2% pending an updated weighted baseline.
 
 ## 16. Next acquisition priorities — avoid duplicate research
 
