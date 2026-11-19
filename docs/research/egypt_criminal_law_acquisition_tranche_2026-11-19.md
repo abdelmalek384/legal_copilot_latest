@@ -79,6 +79,22 @@ The official PDF's final pages expose provisions on international criminal coope
 ## 3. Future-code implementing decisions — new leads and unresolved issue
 
 - Minister of Justice Decision 4704/2026: forms required by the new Code. Gazette issue 217 تابع, 1 October 2026 (secondary metadata); secondary full Arabic text: https://alliedforlegalandtaxadvice.com/قرار-وزير-العدل-رقم-4704-لسنة-2026/ . Covers forms for criminal orders, absentia judgments, death-sentence committal and execution of custodial sentences.
+
+**Verbatim Arabic — Decision 4704/2026 (secondary full-text transcription):**
+
+قرار وزير العدل رقم 4704 لسنة 2026  
+في شأن النماذج التي يتطلبها قانون الإجراءات الجنائية
+
+المادة الأولى  
+يُحرر إعلان المتهم بالأمر الجنائي، وإعلان المتهم بالحكم الغيابي، وأمر إيداع المحكوم عليه بالإعدام في مركز الإصلاح والتأهيل، وأوامر تنفيذ الأحكام الصادرة بالعقوبات المقيدة للحرية بالتطبيق لقانون الإجراءات الجنائية وفقًا للنماذج المرفقة.
+
+المادة الثانية  
+يلغى كل حكم يخالف أحكام هذا القرار.
+
+المادة الثالثة  
+يُنشر هذا القرار في الوقائع المصرية، ويُعمل به اعتبارا من الأول من أكتوبر ٢٠٢٦.
+
+**Version caveat:** Decision 5209/2026 is reported to have amended the commencement date in Decisions 4704 and 4746. The original 4704 date above must not be displayed as its current application date without the official 5209 Gazette text.
 - Minister of Justice Decision 4746/2026: telephone/electronic notification centres and operating mechanism under Law 174/2025. Full signed Gazette text not obtained.
 - Minister of Justice Decision 5209/2026: secondary full Arabic reproductions at https://lawhub.info/eg/?p=19571 and https://ahmedazimelgamel.blogspot.com/2026/10/5209-2026.html . Secondary reporting identifies Gazette issue 217 تابع (أ), 1 October 2026.
 - **Important text conflict:** secondary reproductions/reporting do not consistently reproduce the direction of substitution in Decision 5209 (2027 replacing 2026 versus the reverse). Do not normalize its operative text until the official Gazette page image is acquired. The statutory commencement of Law 174/2025 remains 1 October 2027 under Law 160/2026.
@@ -119,6 +135,8 @@ The official PDF's final pages expose provisions on international criminal coope
 - Secondary searchable full text: https://manshurat.org/node/14677 (automated opening timed out).
 - Older secondary text at https://www.eglf.org/قانون-العقوبات-المصري/ says amendments through Law 21/2018 and is stale.
 - Law 141/2021 is confirmed by DSpace record: https://dspace.id.com.eg/items/cdd29154-1f0e-4f12-86f6-0184791301c7/full . Gazette date 15 August 2021; replaces Arts 306 bis (a) and 306 bis (b). Arabic PDF is listed in the bundle but bytes not acquired.
+
+**Arabic amending text status — Law 141/2021:** the DSpace item exposes two attachments, including Law.No.141-2021-AR.pdf (99.05 KB), and its abstract states that Article 1 replaces Penal Code Arts 306 bis (a) and 306 bis (b). The actual PDF bytes/text were not opened, so the operative wording is not transcribed here. Treat the PDF listing as located, not acquired.
 - Amendment chain and constitutional rulings still need full collation.
 
 ### Verbatim Arabic excerpt — original Code, secondary transcription
