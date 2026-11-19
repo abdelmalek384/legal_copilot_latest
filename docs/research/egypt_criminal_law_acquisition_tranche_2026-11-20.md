@@ -1196,3 +1196,102 @@ In Egyptian legislative drafting, “تستبدل عبارة (X) بعبارة (Y
 - Independent news report on the Gazette publication and 2027 commencement: https://www.elwatannews.com/news/details/8368891
 
 This correction is based on the enacted Arabic operative clause and the legislature's contemporaneous explanation, not the erroneous English-language/metadata interpretation of the substitution formula.
+
+
+---
+
+# 18. New acquisition pass — full new-code Gazette source, 2026 Penal Code implementation
+
+## 18.1 Law 174/2025 — full Official Gazette Arabic text acquired
+
+The full Official Gazette PDF is accessible directly from the Ministry of Justice and was opened as a 2,386-line text-extractable document. This is the strongest source for future implementation preparation of the new Code.
+
+- Ministry of Justice official PDF, Official Gazette issue 45 bis (د), 12 November 2025: https://moj.gov.eg/backend/api/documents/download/20F3150C-29F1-487E-A0F0-FCCE10CB207B
+- SIS / Supreme Council for Human Rights Gazette PDF mirror: https://hrightsstudies.sis.gov.eg/media/30130/قانون_رقم_174_لسنة_2025_با-صدار_قانون_الا-جراءات_الجنائي-ة_١.pdf
+- Full secondary HTML transcription: https://temp.manshurat.org/content/qnwn-ljrt-ljnyy-rqm-174-lsn-2025-0
+
+**Acquisition status:** Full PDF text layer acquired; article-level extraction and QA across the full code are not yet complete. Treat as a future-effective enactment, not current law before 1 October 2027.
+
+### Issuance provisions captured from the Official Gazette
+
+**المادة الثانية**
+يستمر نظر الطعون في الأحكام الغيابية الصادرة في مواد الجنايات قبل سريان هذا القانون بذات الأوضاع والإجراءات المقررة قبل العمل به.
+
+**المادة الثالثة**
+لا تسري أحكام الاستئناف في مواد الجنايات إلا على الدعاوى التي لم يفصل فيها من محاكم الجنايات اعتبارًا من تاريخ العمل بالقانون رقم ١ لسنة ٢٠٢٤ بتعديل بعض أحكام قانون الإجراءات الجنائية.
+
+**المادة الرابعة**
+يلغى قانون الإجراءات الجنائية الصادر بالقانون رقم ١٥٠ لسنة ١٩٥٠، والقانون رقم ١٤٠ لسنة ٢٠١٤ في شأن الأحكام الخاصة بتسليم المتهمين ونقل المحكوم عليهم، كما يلغى كل حكم يخالف أحكام هذا القانون والقانون المرافق له.
+
+**المادة الخامسة**
+مع عدم الإخلال بما ورد في شأن نص خاص في القانون المرافق بشأن الاختصاص بإصدار القرارات التنفيذية، يصدر وزير العدل القرارات اللازمة لتنفيذ أحكام هذا القانون والقانون المرافق له، وإلى حين صدور هذه القرارات يستمر العمل بالقرارات المعمول بها بما لا يتعارض مع أحكام هذا القانون والقانون المرافق له.
+
+**المادة السادسة — as amended by Law 160/2026**
+ينشر هذا القانون في الجريدة الرسمية، ويعمل به اعتبارًا من الأول من أكتوبر لعام 2027.
+
+### Text discrepancy to resolve in the issuance provisions
+The Ministry of Justice Official Gazette PDF text layer (page 2) reads in Article 2: “الأحكام الغيابية الصادرة في مواد الجنايات”. An Eastlaws transcription displays “مواد الجنح”. The official Gazette PDF controls provisionally; inspect the page image before final transcription. Do not silently normalize this discrepancy.
+
+### Immediate legal-app status
+- Until 30 September 2027, use Law 150/1950 and its amendments as the operative procedural code.
+- Index Law 174/2025 as enacted/future-effective; do not cite it as current law.
+- Law 160/2026 is effective from 1 October 2026 and fixes the future commencement date at 1 October 2027.
+- Preserve the transition in Article 3 of Law 174/2025 concerning felony appeals under Law 1/2024.
+
+## 18.2 Ministry of Justice Decision 896/2026 — implementing measure under Penal Code Article 293
+
+**Publication:** Egyptian Gazette Supplement, Official Gazette supplement / الوقائع المصرية issue 61, 15 March 2026; effective 16 March 2026.
+
+The full text appears in the official SIS-hosted Gazette PDF:
+https://mediadr.sis.gov.eg/bitstream/handle/123456789/123196/WQ61_20260315_9880.pdf?isAllowed=y&sequence=2
+
+### Actual Arabic operative text
+
+قرار وزير العدل رقم ٨٩٦ لسنة ٢٠٢٦
+
+**(المادة الأولى)**
+كل حكم واجب النفاذ يصدر بالإدانة تطبيقًا لنص المادة (٢٩٣) من قانون العقوبات، يستوجب قيام الجهات الواردة أدناه - متى اتصل علمها بالحكم - بتعليق استفادة المحكوم عليه من الخدمات المبينة بهذا القرار، إذا طلب المحكوم عليه الحصول عليها بمناسبة ممارسته نشاطه المهنى، وذلك لحين أدائه ما تجمد فى ذمته من دين نفقة لصالح المحكوم له وبنك ناصر الاجتماعي حسب الأحوال، ولا يرفع التعليق إلا بتقديم المحكوم عليه شهادة تفيد براءة ذمته للجهة القائمة بالتعليق، ويلتزم بنك ناصر الاجتماعي بإخطار هذه الجهات بالمحكوم عليهم المدينين، والذين سددوا مديونياتهم.
+
+الخدمات المشمولة تتضمن:
+- وزارة التضامن الاجتماعي: إصدار أو تجديد كارت خدمات الأشخاص ذوي الإعاقة.
+- وزارة الزراعة: خدمات كارت الفلاح، وصرف الأسمدة، وتسجيل الحصر الزراعي.
+- وزارة المالية / مصلحة الجمارك: إصدار أو تجديد رخصة مهنة التخليص الجمركي.
+- وزارة الكهرباء: تركيب عداد جديد، تغيير اسم المشترك، وتصريح حفر لمد كابل.
+- وزارة التموين: إصدار بطاقة تموين جديدة، بدل فاقد/تالف، وإضافة مواليد.
+- المحليات: رخص القيادة المهنية، المحال العامة، إشغال الطريق، وتراخيص الأنشطة التجارية.
+- وزارة الإسكان / أجهزة المدن: خدمات تراخيص البناء والتشغيل والمرافق والتصالح وتخصيص الأراضي وغيرها.
+- وزارة العدل: خدمات الشهر العقاري والتوثيق.
+- وزارة السياحة والآثار: تراخيص المنشآت السياحية والفندقية ومزاولة النشاط السياحي.
+- وزارة القوى العاملة: تصاريح عمل الأجانب وبعض تراخيص المهن الحرفية.
+- هيئة المجتمعات العمرانية الجديدة: الخدمات المماثلة التي تقدمها المراكز التكنولوجية والمحليات بالمدن الجديدة.
+
+**(المادة الثانية)**
+لوزير العدل من تلقاء نفسه أو بناءً على طلب الوزارات أو الجهات المعنية رفع أو إضافة جهات أو خدمات أخرى إلى هذا القرار.
+
+**(المادة الثالثة)**
+ينشر هذا القرار في الوقائع المصرية، ويعمل به من اليوم التالي لتاريخ نشره.
+
+صدر في ١٨/٢/٢٠٢٦
+وزير العدل
+المستشار/ محمود حلمي الشريف
+
+**Relevance:** This is an implementation measure tied to Penal Code Article 293 as amended by Law 6/2020. It is not itself a Penal Code amendment. It introduces cross-government service restrictions for convicted maintenance-debtors until proof of discharge. Include it in the Article 293 implementation cluster and verify the exact scope of each affected service with the issuing ministries.
+
+## 18.3 Penal Code amendment currentness sweep — result
+
+- The consolidated Penal Code text source still advertises 15 August 2021 / Law 141/2021 as its “last amendment”; that metadata is stale because Law 185/2023 amended Articles 306 bis (a), 306 bis (b), and 309 bis (b).
+- No enacted Penal Code amendment later than Law 185/2023 was confirmed in this pass. This is a negative search result, not proof that no later related ministerial or implementing decisions exist.
+- Law 896/2026 is a newly found 2026 implementing decision for Article 293; it does not amend the offence text.
+- 2022 draft proposals to amend Cybercrime Law 175/2018 were found in parliamentary reporting, but no enacted amendment was confirmed from those proposals. Do not index draft language as current statutory text.
+
+## 18.4 Progress recalibration
+
+Working estimates after obtaining the full Law 174/2025 Official Gazette text and Decision 896/2026:
+- Discovery coverage: **96%**.
+- Actual Arabic text acquisition: **74%**.
+- Amendment and implementing-instrument mapping: **71%**.
+- Article-level extraction and QA: **57%**.
+- Lawyer verification: **0%**.
+- **Overall assigned criminal-law domain completion: approximately 54%**.
+
+The new Criminal Procedure Code's full PDF is acquired but not yet article-QA'd; its future-effective status is now correctly recorded. Decision 896/2026 adds a current implementing instrument to the Penal Code Article 293 cluster.
