@@ -597,7 +597,20 @@
         "EG-PRISONS-396-1956",
         "EG-CRIMINAL-AMEND-19-2020",
         "EG-PRISONS-AMEND-14-2022",
-        "EG-PRISONS-EXEC-79-1961"
+        "EG-PRISONS-EXEC-79-1961",
+        "EG-PRISONS-AMEND-49-2014",
+        "EG-PRISONS-AMEND-106-2015",
+        "EG-PRISONS-AMEND-6-2018",
+        "EG-PRISONS-GEO-EXEC-113-1962",
+        "EG-PRISONS-GEO-EXEC-1654-1971",
+        "EG-PRISONS-GEO-EXEC-1776-2023",
+        "EG-PRISONS-GEO-EXEC-332-2024",
+        "EG-PRISONS-GEO-EXEC-426-2024",
+        "EG-PRISONS-GEO-EXEC-535-2024",
+        "EG-PRISONS-GEO-EXEC-60-2026",
+        "EG-PRISONS-GEO-EXEC-415-2026",
+        "EG-PRISONS-GEO-EXEC-514-2026",
+        "EG-PRISONS-GEO-EXEC-557-2026"
       ],
       "practice_areas": [
         "criminal",
@@ -605,7 +618,7 @@
         "human_rights"
       ],
       "priority": "P1",
-      "action": "Complete the Law 396/1956 article map with Laws 19/2020 and 14/2022; acquire Decree 1265/2022 and all Gazette amendments to Decree 79/1961, especially 1675/2011, 1342/2013, 3320/2014, 345/2017 and 1265/2022; check post-June-2022 changes.",
+      "action": "Acquire full original texts of Decisions113/1962 and1654/1971; retrieve Decision1265/2022 original Gazette scan; verify issue/date for Decisions426/2024,60/2026,557/2026; continue Law396 older amendment chain and all centre-specific decisions through 19 Nov 2026; compare 79/1961 prison regulations separately from 1654/1971 geographic-centre rules.",
       "candidate_sources": [
         "https://www.notariesofegypt.org/article.php?id=469",
         "https://temp.manshurat.org/file/87963/download?token=oPuxA7uk",
@@ -614,9 +627,9 @@
       ],
       "source_type": "official Gazette/regulator text and secondary full-text candidates; exact source terms must be reviewed per item",
       "permission_state": "unknown_or_pending",
-      "acquisition_state": "full_law_396_1956_law_14_2022_and_101_article_decree_79_1961_consolidation_accessible_secondary",
+      "acquisition_state": "Law396_amendment_chain_extended_through_2022_and_recent_2023_2026_geographic_centre_decisions_full_text_accessible",
       "legal_review_state": "not_started",
-      "blocker": "Original Gazette PDFs for Laws 19/2020 and 14/2022 and Decree 79/1961 amendment instruments are not locally archived/hashed. Decree 1265/2022 full text not yet acquired; post-June-2022 status unverified.",
+      "blocker": "Full text acquired for Laws49/2014,106/2015,6/2018 and multiple 2023–2026 geographic-centre decisions. Foundational geographic-centre internal regulation Decisions113/1962 and1654/1971 not located. Decision1265/2022 original text iframe unavailable. Some Gazette issue/date metadata for 426/2024,60/2026,557/2026 remains to verify.",
       "required_evidence": [
         "full 396/1956 text and article change map",
         "Law 19/2020 Article 52 bis and Narcotics Art 46 bis (a) change",
