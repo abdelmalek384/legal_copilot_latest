@@ -149,7 +149,7 @@
         "criminal"
       ],
       "priority": "P0",
-      "action": "Complete current Law150/1950 amendment map and article-level consolidation through 30 Sep 2027; retain Law140/2014 as operative until that date. Normalize all 546 articles of Law174/2025 from official MOJ PDF, cross-reference Law160/2026 fixed commencement 1 Oct 2027, complete Book Five 508–521 article map, inspect Article 2 and OCR/numbering anomalies against Gazette page images, and obtain formal copy of Gazette No.39 bis (b) if required.",
+      "action": "Normalize current Law150 text through Art.560 from the 178-page reproduction; verify it against the Court of Cassation portal when available; acquire original Gazette texts for footnoted older amendments including 178/1951, 228/1951, 353/1952, 340/1952, 252/1952, 426/1954, 627/1955, 121/1956, 113/1957, 43/1958 and 63/1975; preserve 177/2020 and 1/2024 as verified separate amendments; retain Law150/1950 as operative until 1 Oct 2027.",
       "candidate_sources": [
         "https://manshurat.org/node/14419/relations",
         "https://manshurat.org/node/14577",
@@ -162,9 +162,9 @@
       ],
       "source_type": "official text and Gazette metadata candidates",
       "permission_state": "unknown_or_pending",
-      "acquisition_state": "full_official_546_article_law_174_2025_pdf_and_law_160_2026_amendment_text_accessible_book_five_508_521_extracted",
+      "acquisition_state": "full_178_page_current_law_150_text_through_2024_and_full_official_law_174_text_accessible",
       "legal_review_state": "urgent_review_required",
-      "blocker": "Full official Law174 PDF and Law160 Amiri Press text are readable, but not locally archived/hashed. Law160 Gazette PDF in DSpace is restricted to request-copy. Current Law150 article-by-article consolidation and original Gazette image collation remain incomplete. Official Law174 Art.2 says felony absentia judgments; Manshurat says misdemeanours.",
+      "blocker": "Law150 full text is a secondary-hosted reproduction attributed to Court of Cassation portal; official portal returned 502. Full Gazette scans for older amendments are not archived/hashed. Law174 official MOJ PDF and Law160 official Amiri Press text are accessible but not archived; Law160 Gazette PDF is request-copy restricted.",
       "required_evidence": [
         "Law 177/2020 full text and Art. 113 bis; separate Law 189/2020 Penal Code record",
         "Law 1/2024 Gazette text and all amended/new felony-appeal articles",
