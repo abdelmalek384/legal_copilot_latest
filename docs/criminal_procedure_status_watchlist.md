@@ -1,6 +1,6 @@
 # Criminal procedure law: version and commencement watchlist
 
-**Research date:** 23 October 2026  
+**Research date:** 19 November 2026  
 **Purpose:** prevent Legal Copilot from presenting an enacted-but-not-yet-effective replacement code as the current operative text.
 
 ## Primary source records located
@@ -36,3 +36,18 @@ The source URLs are discovery references only. No automatic download is authoriz
 - Confirm the effect of postponement on repeal language in Law No. 174/2025 and the continuing application of Law No. 150/1950 before 1 October 2027.
 - Identify any intervening amendments, implementing decisions, and transitional rules.
 - Approve a date-aware retrieval test: a question asked as of 2026-10-23 must not receive an answer that assumes the 2025 Code is already in force.
+
+
+## 19 November 2026 — new full-text findings
+
+- Full Arabic text of Law No. 174/2025 is accessible from the Ministry of Justice-hosted Gazette PDF:
+  https://moj.gov.eg/backend/api/documents/download/20F3150C-29F1-487E-A0F0-FCCE10CB207B
+- A full secondary text with 3,167 extracted lines is also accessible:
+  https://temp.manshurat.org/content/qnwn-ljrt-ljnyy-rqm-174-lsn-2025-0
+- **Article 2 discrepancy:** the Ministry of Justice Gazette PDF reads “مواد الجنايات”; the Manshurat secondary HTML reads “مواد الجنح”. Use the official Gazette reading for the official-text field and retain the secondary variant in the audit trail. Do not silently normalize.
+- The official Gazette PDF and secondary full-text page are text-accessible; no local PDF archive/hash or permission for commercial reuse is asserted by this note.
+- Law 140/2014 is linked to the same deferred commencement/repeal issue. Do not mark it repealed before 1 October 2027 without a lawyer-reviewed transition determination.
+
+## Source and legal-status discipline
+
+The project inventory records full-text accessibility separately from local file acquisition, permission, operative legal status and lawyer review. A full text readable in a browser is not the same as an archived/hashed original Gazette file or permission to redistribute it. Keep the operative status of Law 150/1950 and the repeal of Law 140/2014 **pending Egyptian criminal-procedure lawyer review**, while preserving the statutory commencement date currently stated in Law 160/2026.
