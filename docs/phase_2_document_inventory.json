@@ -6212,17 +6212,17 @@
     "agent": "Research Agent 2",
     "domain": "Egyptian criminal law and procedure",
     "as_of": "2026-11-19",
-    "estimated_domain_completion_percent": 55,
+    "estimated_domain_completion_percent": 57,
     "previous_session_estimate_percent": 36,
     "whole_project_contribution_percent": null,
     "whole_project_contribution_reason": "Cannot calculate without master-index denominator and domain weights.",
     "lawyer_verified_percent": 0,
-    "official_full_text_files_archived_and_hashed_in_this_session": 0,
+    "official_full_text_files_archived_and_hash_verified_in_this_session": 0,
     "complete_arabic_texts_accessible_at_source_estimate": ">20 laws/codes and implementing/treaty instruments",
-    "new_inventory_records_added_this_session": 61,
-    "inventory_total_documents": 146,
+    "new_inventory_records_added_this_session": 77,
+    "inventory_total_documents": 162,
     "acquisition_queue_items": 24,
-    "crosscheck_register_count": 16,
-    "notes": "Approximate research progress, not an article-count or quality assurance metric. Browser-readable PDFs and secondary full texts are not represented as local archived/hash-verified files."
+    "crosscheck_register_count": 18,
+    "notes": "Approximate research progress, not an article-count or quality-assurance metric. Browser-readable PDFs and secondary full texts are not represented as locally archived/hash-verified files."
   }
 }
