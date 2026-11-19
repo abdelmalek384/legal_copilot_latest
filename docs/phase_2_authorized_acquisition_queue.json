@@ -574,6 +574,18 @@
       "queue_item_id": "ACQ-019",
       "document_ids": [
         "EG-EXTRADITION-140-2014",
+        "EG-ARAB-EXTRADITION-83-1954",
+        "EG-RIYADH-CONVENTION-1983",
+        "EG-RIYADH-ACCESSION-278-2014",
+        "EG-UNTOC-294-2003",
+        "EG-PALERMO-TRAFFICKING-295-2003",
+        "EG-PALERMO-SMUGGLING-297-2004",
+        "EG-BILATERAL-MLA-EXTRADITION-TURKEY-222-1989",
+        "EG-BILATERAL-MLA-EXTRADITION-MOROCCO-229-1989",
+        "EG-BILATERAL-MLA-EXTRADITION-HUNGARY-129-1988",
+        "EG-BILATERAL-MLA-EXTRADITION-ROMANIA-76-2003",
+        "EG-BILATERAL-MLA-SWITZERLAND-177-2001",
+        "EG-BILATERAL-EXTRADITION-PAKISTAN-233-1994",
         "EG-CRIMINAL-PROCEDURE-174-2025"
       ],
       "practice_areas": [
@@ -581,22 +593,34 @@
         "international_cooperation"
       ],
       "priority": "P1",
-      "action": "Obtain complete Arabic text of Law 140/2014, future CPL 174/2025 Arts 514–521, Arab League extradition convention approval Law 83/1954 and all bilateral/multilateral extradition, MLA and transfer-of-sentenced-persons treaties.",
+      "action": "Build the full Egyptian extradition and mutual legal assistance corpus: obtain Law 140/2014, Law 83/1954 historical treaty, Egypt's 2014 accession to Riyadh Convention 1983, UNTOC and both Palermo Protocols, bilateral agreements, and future CPL 174/2025 Book Five Arts 508–521. Extract exact Arabic text, reservations, central authorities, grounds for refusal, provisional detention, controlled delivery, asset tracing and entry-into-force dates.",
       "candidate_sources": [
-        "https://www.aldhshan.com/2026/02/140-2014.html",
-        "https://manshurat.org/node/6565",
-        "https://temp.manshurat.org/content/qnwn-ljrt-ljnyy-rqm-174-lsn-2025-0"
+        "https://manshurat.org/node/3842",
+        "https://www.qanouni.org/ar/convention/1581",
+        "https://mof.gov.eg/ar/legislation/",
+        "https://media.mof.gov.eg/mof-prd/2003_294_b4ded04751.pdf",
+        "https://media.mof.gov.eg/mof-prd/2003_295_6161158f4b.pdf",
+        "https://media.mof.gov.eg/mof-prd/2004_297_fcd4bfe94d.pdf",
+        "https://mksegypt.org/public/ar/decisions/30632",
+        "https://www.mksegypt.org/ar/decisions/27512",
+        "https://manshurat.org/node/20933",
+        "https://manshurat.org/node/37361",
+        "https://manshurat.org/file/50795/download?token=7arjmwr3",
+        "https://moj.gov.eg/backend/api/documents/download/20F3150C-29F1-487E-A0F0-FCCE10CB207B"
       ],
       "source_type": "official Gazette/regulator text and secondary full-text candidates; exact source terms must be reviewed per item",
       "permission_state": "unknown_or_pending",
-      "acquisition_state": "full_text_accessible_not_archived_or_selected_excerpts_only",
+      "acquisition_state": "multiple_official_treaty_pdfs_and_full_arabic_texts_accessible_selected_articles_persisted",
       "legal_review_state": "not_started",
-      "blocker": "Law 140/2014 full short text is accessible secondarily; treaty collection and new Code Arts 514–520 extraction remain incomplete. Law 140 repeal timing requires counsel review.",
+      "blocker": "Egyptian Riyadh accession deposit date and several bilateral exchange-of-ratification/entry-into-force dates conflict across metadata. Full treaty article extraction and authorized local archiving/hash are still pending.",
       "required_evidence": [
-        "all treaty texts and ratification instruments",
-        "new Code Arts 514–520 exact Arabic",
-        "repeal/commencement transition review",
-        "Egyptian international criminal cooperation lawyer review"
+        "Egyptian accession deposit and entry into force for Riyadh 1983; assess Art.72 replacement of Law 83/1954",
+        "all 72 articles and 1997 amended Art.69 of Riyadh Convention",
+        "UNTOC Arts 16 and 18; full Convention and Egypt's UNTC status/reservations",
+        "Palermo Trafficking Protocol and Smuggling Protocol full text and Egypt status",
+        "bilateral agreements: Turkey 222/1989; Morocco 229/1989; Hungary 129/1988; Romania 76/2003; Switzerland 177/2001; Pakistan 233/1994",
+        "full Book Five of CPL 174/2025 Arts 508–521, including 508–510 and 512–513",
+        "full Article 140/2014 relation to all treaties and future CPL repeal"
       ]
     },
     {
