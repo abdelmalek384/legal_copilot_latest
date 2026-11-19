@@ -2413,3 +2413,94 @@ The consolidated text footnote records that Art.309 bis (b) was added by Law 189
 - **Original Gazette PDFs locally archived and SHA-256 verified:** 0.
 - **Egyptian lawyer-verified records:** 0.
 - **Remaining Penal Code work:** obtain original Gazette scans for amendments; verify whether any Law 58/1937 amendment occurred after 4 December 2023; compare 2023 consolidated text against the original amendment instruments and the official Court of Cassation portal.
+
+
+---
+
+## Y. Acquisition pass — prison legislation amendment chain and geographic correction-centre decisions, 2023–2026
+**Research date:** 19 November 2026.
+
+### Y1. Additional Law 396/1956 amendments — full Arabic texts
+
+**Law 49/2014** — Official Gazette No.23 follow-up, 5 June 2014; effective 6 June 2014. Full Arabic text:
+https://www.eastlaws.com/legislation-full-text/ar/egypt/law/05-06-2014/no-49?id=1759016&type=1
+
+It is a linked multi-statute amendment. It replaces Penal Code Art.18(2), CPL Art.479 and Law 396/1956 Art.52(1). Preserve all three relations in the project rather than recording it as prison-only.
+
+**Law 106/2015** — Official Gazette No.42 bis (b), 20 October 2015; effective 21 October 2015. Full Arabic text:
+https://www.laweg.net/Default.aspx?FIID=229&action=LegsCates
+https://www.lawegypt.net/قرار-رئيس-جمهورية-مصر-العربية-بالقانو-21/
+https://manshurat.org/node/12380
+
+It updates statutory titles and terminology and replaces Arts.1,14,20,34,38,43,44(4),46,50,68,73,92 and 94; it adds Arts.8 bis,33 bis,34 bis and 38 bis and other related provisions. Article 33 bis requires government and university medical facilities to treat inmates referred from correction facilities, subject to implementing conditions.
+
+**Law 6/2018** — Official Gazette No.3 bis (c), 24 January 2018; effective 25 January 2018. Full Arabic text:
+https://www.laweg.net/framePlain.aspx?ItemID=110938&NID=137423&Type=6&action=ViewActivePages
+https://www.egyptlawfirm.net/قانون-رقم-6-لسنة-2018-بتعديل-بعض-احكام-قانون/
+
+It replaces Art.52 on conditional release. The current text permits release after serving half the sentence where conduct supports rehabilitation and release is not a public-security risk; the minimum time served is six months, and a life-sentence prisoner must serve at least twenty years.
+
+**Current Law 396 amendment chain cross-check:** the full consolidated LawHub text and Manshurat relationship page identify amendments including Laws 57/1968, 5/1972, 23/1973, 87/1973, 119/1974, 91/1976, 152/2001, 49/2014, 106/2015, 6/2018, 19/2020 and 14/2022. Original Gazette acquisition for the older amendments remains incomplete.
+
+### Y2. Foundational geographic-centre instruments
+
+All recent geographic-centre creation decisions cite:
+- Interior Minister Decision 113/1962 concerning geographic correction centres in governorates.
+- Interior Minister Decision 1654/1971 issuing the internal regulations for geographic correction centres.
+
+The two foundational decisions are now separately recorded as distinct instruments. Full original text and Gazette issue metadata were not located in this pass; they remain priority acquisition items. Do not substitute the general prison internal regulation, Decision 79/1961, for these geographic-centre rules.
+
+### Y3. Full Arabic text of recent geographic-centre decisions
+
+These decisions implement Law 396/1956 Art.2(3), assigning geographic correction centres to execute sentences for the statutory class of persons within specified police-district jurisdictions.
+
+**Decision 1776/2023** — Borg El Arab, Alexandria Governorate. Issued 14 September 2023; full Amiri Press Arabic text:
+https://www.alamiria.com/Sec/TashTxt?id=a3jU3dzrv3w%3D
+
+Article 1 establishes a geographic correction centre in Borg El Arab within Alexandria Security Directorate; Article 2 assigns execution of sentences for the Art.2(3) class; Article 3 provides publication and next-day commencement.
+
+**Decision 332/2024** — two geographic correction centres in Assiut Security Directorate. Published in Waqa'i issue 63, 16 March 2024; issued 24 February 2024; effective 17 March 2024. Full Amiri Press text:
+https://www.alamiria.com/Sec/TashTxt?id=n6BJaslNLX4%3D
+
+Article 1 establishes centres at First Assiut Police Department and Second Assiut Police Department; Article 2 assigns the statutory Art.2(3) sentence class; Article 3 provides publication and next-day commencement.
+
+**Decision 426/2024** — two geographic correction centres in Sohag and Luxor Security Directorates. Full Amiri Press Arabic text:
+https://www.alamiria.com/Sec/TashTxt?id=HKg3oKsiOzw%3D
+
+Article 1 establishes one centre at Al-Kawthar Police Department in Sohag and one at Taiba Police Centre in Luxor; Article 2 assigns the statutory Art.2(3) sentence class; Article 3 provides publication and next-day commencement. Gazette issue/date requires separate verification.
+
+**Decision 535/2024** — two geographic correction centres in Fayoum Security Directorate. Published in Waqa'i issue 91, 23 April 2024; effective 24 April 2024. Full Arabic text reproduction:
+https://www.youm7.com/story/2024/4/23/الجريدة-الرسمية-تنشر-قرار-إنشاء-مركزى-إصلاح-جغرافيين-بمديرية-أمن/6553410
+
+Article 1 establishes centres at Second Fayoum Police Department and New Fayoum Police Department; Article 2 assigns the statutory Art.2(3) sentence class; Article 3 provides publication and next-day commencement.
+
+**Decision 60/2026** — geographic correction centre at Riyadh Police Centre, Kafr El-Sheikh Security Directorate. Full Amiri Press Arabic text:
+https://www.alamiria.com/Sec/TashTxt?id=UKsIuB2RRRE%3D
+
+Article 1 establishes the centre at Riyadh Police Centre; Article 2 assigns execution for the Art.2(3) class within that geographic area; Article 3 provides publication and next-day commencement. Exact Waqa'i issue/date still to verify.
+
+**Decision 415/2026** — geographic correction centre at Aswan New City, Aswan Security Directorate. Published in Waqa'i issue 77, 7 April 2026; issued 7 March 2026; effective 8 April 2026. Full Amiri Press Arabic text:
+https://www.alamiria.com/Sec/TashTxt?id=mhcBogFUsPE%3D
+
+Article 1 establishes the centre at Aswan New City Police Department; Article 2 assigns execution for the Art.2(3) class within Aswan Security Directorate; Article 3 provides publication and next-day commencement.
+
+**Decision 514/2026** — geographic correction centre at Blaṭ Police Centre, New Valley Security Directorate. Published in Waqa'i issue 84, 16 April 2026; issued 18 March 2026; effective 17 April 2026. Full Amiri Press Arabic text:
+https://www.alamiria.com/Sec/TashTxt?id=SlyJ4ubxPxU%3D
+
+Article 1 establishes the centre at Blaṭ Police Centre; Article 2 assigns execution for the Art.2(3) class within Blaṭ, Dakhla and Farafra police-station areas; Article 3 provides publication and next-day commencement.
+
+**Decision 557/2026** — geographic correction centre at the police complex in Marsa Alam, Red Sea Security Directorate. Full Amiri Press Arabic text:
+https://www.alamiria.com/Sec/TashTxt?id=5O5NdNr9%2FN0%3D
+
+Article 1 establishes the centre at the Marsa Alam Police Department; Article 2 assigns execution for the Art.2(3) class within Marsa Alam, Shalateen and Halaib police-station areas; Article 3 provides publication and next-day commencement. Gazette issue/date requires separate verification.
+
+**Resolved numbering conflict:** some secondary news reports mislabelled the Blaṭ decision as 415/2026. The Amiri Press official text confirms 415/2026 is the Aswan New City decision and 514/2026 is the Blaṭ/New Valley decision. Maintain separate records for both.
+
+### Y4. Progress update after eighth acquisition pass — 19 November 2026
+
+- **Estimated assigned criminal-law domain completion: 75%** (qualitative research-coverage estimate; not article-count, local corpus-ingestion or lawyer-verification metric). Prior pass: 73%.
+- **New distinct records added:** 13 — Laws 49/2014, 106/2015, 6/2018; foundational geographic-centre Decisions 113/1962 and 1654/1971; and geographic-centre decisions 1776/2023, 332/2024, 426/2024, 535/2024, 60/2026, 415/2026, 514/2026 and 557/2026.
+- **Full text acquisition:** complete Arabic texts accessible for Laws 49/2014, 106/2015 and 6/2018; official Amiri Press texts for Decisions 1776/2023, 332/2024, 426/2024, 60/2026, 415/2026, 514/2026 and 557/2026; full secondary transcription for Decision 535/2024.
+- **Outstanding:** original text of Decisions 113/1962 and 1654/1971; full text of Decision 1265/2022; Gazette issue checks for 426/2024, 60/2026 and 557/2026; complete older Law 396 amendment chain.
+- **Original Gazette PDFs locally archived and SHA-256 verified:** 0.
+- **Egyptian lawyer-verified records:** 0.
