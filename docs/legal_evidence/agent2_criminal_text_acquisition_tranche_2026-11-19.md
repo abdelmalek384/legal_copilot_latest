@@ -2504,3 +2504,36 @@ Article 1 establishes the centre at the Marsa Alam Police Department; Article 2 
 - **Outstanding:** original text of Decisions 113/1962 and 1654/1971; full text of Decision 1265/2022; Gazette issue checks for 426/2024, 60/2026 and 557/2026; complete older Law 396 amendment chain.
 - **Original Gazette PDFs locally archived and SHA-256 verified:** 0.
 - **Egyptian lawyer-verified records:** 0.
+
+
+---
+
+## Z. Acquisition pass — latest geographic-centre decisions through 14 November 2026
+**Research date:** 19 November 2026.
+
+### Z1. Newly identified and recorded instruments
+
+**Law 15/2018** — changes statutory references from “مصلحة السجون / قطاع مصلحة السجون” to “قطاع السجون” throughout Law 396/1956. The current consolidated Law 396 text records this amendment; a separate standalone Gazette transcription was not located in this pass. Do not confuse this naming amendment with Law 14/2022, which later replaces prison terminology with “مراكز الإصلاح والتأهيل”.
+
+**Interior Minister Decision 1265/2025** — establishes the geographic correction centre at Al-Raml, Second Raml Police Department, Alexandria Security Directorate. Published in Waqa'i No.183, 19 August 2025; effective 20 August 2025. Full text reproduction:
+https://www.dostor.org/5181906
+
+The decision cites Law 396/1956 and foundational geographic-centre Decisions 113/1962 and 1654/1971.
+
+**Interior Minister Decision 176/2026** — establishes the geographic correction centre at South Port Said Police Department. Published 8 March 2026; effective 9 March 2026. Full text summary and Gazette notice:
+https://www.youm7.com/story/2026/3/8/الجريدة-الرسمية-تنشر-قرار-وزير-الداخلية-بإنشاء-مركز-الإصلاح-الجغرافي/7332277
+
+**Interior Minister Decision 1739/2026** — establishes the geographic correction centre at Menouf Police Department, Menoufia Security Directorate. Published in Waqa'i No.253, 14 November 2026; effective 15 November 2026. The decision's scope is the Menouf Police Department area and the class of persons identified in Law 396/1956 Art.2(3). Full text summary and Gazette issue metadata:
+https://www.cairo24.com/2529467
+https://www.youm7.com/story/2026/11/15/الجريدة-الرسمية-تنشر-قرار-إنشاء-مركز-إصلاح-جغرافى-بقسم-شرطة/7618705
+
+**Current implementation map:** geographic-centre decisions identified in this acquisition now include 1776/2023, 332/2024, 426/2024, 535/2024, 1265/2025, 176/2026, 60/2026, 415/2026, 514/2026, 557/2026 and 1739/2026. This is a discovery list, not proof that it is exhaustive. All are separate ministerial implementation instruments under Law 396/1956 and should not be merged into the 79/1961 general prison regulations or the still-missing 1654/1971 geographic-centre internal regulations.
+
+### Z2. Progress update after ninth acquisition pass — 19 November 2026
+
+- **Estimated assigned criminal-law domain completion: 76%** (qualitative research-coverage estimate; not article-count, local corpus-ingestion or lawyer-verification metric). Prior pass: 75%.
+- **New distinct records added:** four — Law 15/2018, Decisions 1265/2025, 176/2026 and 1739/2026.
+- **Latest instrument located:** Interior Minister Decision 1739/2026, published 14 November 2026 and effective 15 November 2026.
+- **Outstanding:** original Gazette PDF for Decision 1739/2026, exact full text for Decision 1265/2025 and 176/2026, Law 15/2018 standalone Gazette text, and the full foundational geographic-centre instruments 113/1962 and 1654/1971.
+- **Original Gazette PDFs locally archived and SHA-256 verified:** 0.
+- **Egyptian lawyer-verified records:** 0.
