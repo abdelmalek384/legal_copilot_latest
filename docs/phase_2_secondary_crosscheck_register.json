@@ -271,6 +271,40 @@
       "legal_status": "bilateral_treaties_status_pending_entry_into_force_check",
       "finding": "Several treaty records report entry-into-force dates before Gazette publication: Turkey 222/1989 (2 Jan vs 12 Jan 1992), Hungary 129/1988 (3 Oct 1988 before 17 Nov 1988 publication), Romania 76/2003 (10 Jul 2003 before 28 Aug 2003 publication). Morocco 229/1989 has 7 Nov vs 20 Nov 1997 publication metadata conflict and 11 Sep 1997 entry date. These may reflect international exchange/notification dates, but must not be normalized without the ratification record.",
       "next_action": "Obtain bilateral exchange-of-ratification notes and Gazette issue page images; keep issuance, Gazette publication, international entry into force and domestic commencement as separate fields."
+    },
+    {
+      "evidence_id": "XREF-174-2025-JUDICIAL-POLICE-OCR-ART27-37",
+      "document_id": "EG-CRIMINAL-PROCEDURE-174-2025",
+      "practice_areas": [
+        "criminal",
+        "evidence"
+      ],
+      "url": "https://moj.gov.eg/backend/api/documents/download/20F3150C-29F1-487E-A0F0-FCCE10CB207B",
+      "publisher": "Ministry of Justice Official Gazette PDF, issue 45 bis (d)",
+      "source_class": "official PDF OCR numbering anomaly",
+      "observed_title_ar": "قانون الإجراءات الجنائية 174 لسنة 2025 — مواد الضبط القضائي والقبض",
+      "source_state": "official_pdf_text_accessible_ocr_anomaly_pending_visual_collation",
+      "collection_permission": "unknown",
+      "legal_status": "future_commencement_2027-10-01_pending_lawyer_review",
+      "finding": "The PDF text extraction shows Art. 27 for judicial-police duties, then a second Art. 27 at the start of the arrest chapter after Arts 33–36. The sequence and prior extraction identify the second provision as Art. 37. Preserve the OCR anomaly and do not create duplicate Article 27 records until the Gazette page image is visually checked.",
+      "next_action": "Obtain page image for the printed page 17 and confirm whether numeral is 37; correct only after visual Gazette collation."
+    },
+    {
+      "evidence_id": "XREF-EXPERTS-96-1952-LAW91-2016",
+      "document_id": "EG-EXPERTS-96-1952",
+      "practice_areas": [
+        "criminal",
+        "evidence"
+      ],
+      "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/law/26-06-1952/no-96?id=800&type=1",
+      "publisher": "Eastlaws full article record and Manshurat PDF metadata",
+      "source_class": "secondary full text and amendment metadata",
+      "observed_title_ar": "المرسوم بقانون رقم 96 لسنة 1952 بشأن تنظيم الخبرة أمام جهات القضاء",
+      "source_state": "full_article_text_accessible_amendment_91_2016_identified",
+      "collection_permission": "unknown",
+      "legal_status": "current_candidate_pending_lawyer_review",
+      "finding": "Law 96/1952 Art. 1 identifies recognized expert sources including Ministry of Justice and Forensic Medicine; Art. 50 governs judicial appointment. Law 91/2016 amends administrative terminology. Law 46/1972 Art. 134 cross-refers to expert regulation.",
+      "next_action": "Obtain Gazette copies, full amendment map and current expert ministerial decisions; distinguish general criminal expert rules from Economic Court-only Decision 3066/2021."
     }
   ],
   "guardrails": [
