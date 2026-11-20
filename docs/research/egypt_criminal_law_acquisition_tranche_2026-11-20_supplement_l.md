@@ -221,7 +221,7 @@ The ILO and UNODC PDFs contain the complete 30-article Arabic statute, including
 تلتزم الجهات المعنية باتخاذ التدابير التعليمية والاجتماعية والثقافية اللازمة للحد من ظروف الاتجار بالبشر والطلب المحفز على استغلال الأشخاص.
 
 ### Regulation transcription gaps
-- The secondary text page contains articles 1–26, but the title/metadata claim 28 articles. Articles 27 and 28 are missing from the visible transcription; acquire Gazette PDF from Manshurat and compare.
+- The attached 14-page PDF reproduced from the Court of Cassation Information Centre contains Articles 1–26 and ends at Article 26. The page title's “1–28” label is a catalogue/page-title error, not evidence that Articles 27–28 are omitted from the regulation. The Egyptian Official Gazette scan is still required for independent visual verification.
 - Article 23 wording in the online transcription appears grammatically truncated at its start (“ضحايا الاتجار بالبشر تقديم المساعدات المالية...”). Verify against Gazette image; do not silently repair.
 - Article 9 refers to historical ministry names (e.g. وزارة الأسرة والسكان). Determine later administrative successor responsibilities from subsequent decisions; do not rewrite the historical regulation text.
 - Search for implementing decisions organizing the Victims Assistance Fund and National Coordinating Committee, including instruments listed in the 2023 Court of Cassation compilation: PM Decisions 192/2017, 1123/2017 and 60/2020; Ministry of Social Solidarity Decision 289/2021. Their full texts remain to be acquired and checked.
