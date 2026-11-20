@@ -176,3 +176,8 @@ These are working estimates, not audited completeness percentages. The scope has
 - Full Gazette title-page verification for the 2006/2008/2019 AML executive-regulation amendments; reconcile 1432/1463, 2367/3367, 2910/2911.
 - Child Executive Regulation update: identify and acquire the exact rules issued pursuant to new Child Law Art 72 bis.
 - Continue full signed-text acquisition for prison, weapons, narcotics and Criminal Procedure gaps already listed in the preceding tranche.
+
+
+### Official Egyptian FIU / AML Unit copy — later source acquisition
+- The Egyptian Money Laundering and Terrorist Financing Combating Unit's own website now provides the full Arabic Executive Regulation 951/2003 PDF: https://mlcu.org.eg/upload/uploadeditor/files/اللائحة%20التنفيذية%20لقانون%20مكافحة%20غسل%20الأموال%20%20.pdf
+- This is a stronger issuing-authority source than the secondary transcription and FRA-hosted copies listed above. It contains the 74-article text and article amendment footnotes, including Art 28 bis and Art 28 bis(A) added by Decision 3331/2023. Use this Unit-hosted PDF as the preferred complete text source; retain the 2025 FRA consolidation as the cross-check for amendment numbering and Gazette provenance.
