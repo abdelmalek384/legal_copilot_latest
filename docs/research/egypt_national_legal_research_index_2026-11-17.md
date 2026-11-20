@@ -1,4 +1,5 @@
 # National Egyptian legal knowledge collection index
+- [Criminal-law acquisition tranche — supplement C, 20 November 2026](egypt_criminal_law_acquisition_tranche_2026-11-20_supplement_c.md) — full Arabic September 2026 CDD procedures for non-financial professions; FRA Circulars 8/2026 and 10/2026; full Official Gazette FRA Decision 161/2024 and AML Unit Decision 1/2024; CBE 2026 sector-specific AML/CFT source map; corrected AML Executive Regulation 951/2003 amendment chronology with unresolved primary-source number/date conflicts. Updated overall criminal-law domain estimate: 65%.
 
 Snapshot: 20 November 2026
 
