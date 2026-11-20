@@ -85,3 +85,19 @@ This is an issue checklist, not a proposal to invent rules. The actual decision 
 3. Obtain the model contracts, bylaw templates, platform rules and annexes.
 4. Verify consultation with labour and employer organizations and the statutory publication/effective date.
 5. Obtain qualified Egyptian employment-lawyer review before coding or advising.
+
+
+### 4. Further Ministry meeting with recruitment and digital-work platforms — located in the 20 November 2026 research pass
+
+- **Official Ministry source:** https://www.labour.gov.eg/ar/الأخبار/وزير-العمل-يلتقي-عدد-ا-من-ممثلي-شركات-ومنصات-التوظيف-والعمل-الرقمي-لبحث-آليات-تنظيم-سوق-العمل/
+- The Ministry reports discussion of electronic recruitment platforms and brokerage, work through digital platforms, freelance work, remote work and flexible work.
+- The Minister described the next phase as establishing clear regulatory frameworks for these work patterns.
+- This reinforces that the subject remained in policy/regulatory development after the earlier 26 September meeting and 7 October MOU.
+- The exact publication date was not reliably exposed by the source in this research pass; do not infer it from search-engine crawl timing.
+- **Legal effect:** none established. This is a Ministry communication, not the Article 100 ministerial decision. It does not cure the statutory-instrument gap.
+
+## Updated acquisition result (20 November 2026)
+
+A candidate Decision 254/2026 on the formation and operation of committees for ratifying workplace regulations has surfaced in a secondary HR-document repository. It is recorded separately in [the Article 137 ratification-committee acquisition addendum](../legal_evidence/labour_article137_ratification_committees_and_new_gap_leads_2026-11-20.md). Its PDF is listed as 2.9 MB, but the file text, signature, Gazette issue/date/pages and commencement have not been independently inspected. It must not be treated as the Article 100 instrument or as verified legal authority.
+
+**Status remains:** no general Article 100 ministerial decision located. No change to verified or lawyer-reviewed status.
