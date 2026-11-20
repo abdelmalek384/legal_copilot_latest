@@ -80,6 +80,18 @@
 **مادة (19):**  
 ينص على النشر والعمل بالقانون في الإقليم المصري من تاريخ نشره، وفي الإقليم السوري بعد ستة أشهر من تاريخ النشر.
 
+
+### Additional Arabic transcription and procedural clause recovered
+- A 19-article Arabic text copy is also hosted as an EIPR PDF: https://eipr.org/sites/default/files/reports/pdf/law_no.10-1961_.pdf
+- The EIPR PDF labels the extracted text as reproduced from the legal portal Tashreaat; it is a secondary text source, not an official Gazette publication. Its PDF text extraction is incomplete in several clauses, but the visual Gazette scan remains the primary source.
+- The 19-article text is now located in Arabic, but a clean full machine-readable transcription still needs to be prepared from the Gazette images. The selected article excerpts above are not a substitute for that transcription.
+
+**مادة (12) — إجراءات الغلق والتحفظ:**  
+«للنيابة العامة في جميع الأحوال المنصوص عليها في المواد ٨ و٩ و١١ أن تصدر أمراً بإغلاق المحل أو المنزل المدار للدعارة أو الفجور، وتعتبر الأمتعة والأثاث المضبوط في المحال المنصوص عليها في المواد ٨ و٩ و١١ في حكم الأشياء المحجوز عليها إدارياً بمجرد ضبطها حتى يفصل في الدعوى نهائياً، وتسلم بعد جردها وإثباتها في محضر إلى حارس يكلف بالحراسة بغير أجر من الأشخاص الآتي ذكرهم ... وفي جميع الأحوال السابقة تفصل المحكمة في الدعوى العمومية على وجه الاستعجال في مدة لا تجاوز ثلاثة أسابيع، ويترتب على صدور الحكم منها بالبراءة سقوط أمر الإغلاق.»
+
+**مادة (17) — repeal:**  
+«يلغى القانون المتعلق بالبغاء الصادر بتاريخ ٢٤/٦/١٩٣٣ وتعديلاته والقانون رقم ٦٨ لسنة ١٩٥١ المشار إليه وكل نص يخالف أحكام هذا القانون.»
+
 ### Legal-system and currentness cautions
 - This law was enacted as a United Arab Republic statute. Its geographic commencement clause distinguishes the Egyptian and Syrian regions. For Egyptian legal-copilot use, store the Egyptian-region commencement rule and do not import the Syrian-region six-month delay.
 - The Gazette scan is complete, but the Arabic transcription above is selective, not a complete retype of all 19 articles. Several long provisions (especially Arts 7, 9, 11 and 12) should be transcribed directly from the scan before article-level QA is marked complete.
@@ -91,7 +103,7 @@
 
 | Instrument | Arabic text status | Source grade | Open work |
 |---|---|---|---|
-| Law 10/1961 | Complete two-page Official Gazette scan acquired; selected articles transcribed here | Gazette image hosted by secondary repository; visual scan inspected | Complete 19-article Arabic transcription; Gazette date confirmation; amendments/current penalty review |
+| Law 10/1961 | Complete two-page Official Gazette scan acquired; 19-article Arabic text also located in EIPR PDF; selected articles transcribed here | Gazette image hosted by secondary repository; visual scan inspected | Complete 19-article Arabic transcription; Gazette date confirmation; amendments/current penalty review |
 
 ## 3. Progress update (working estimate)
 
