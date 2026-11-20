@@ -85,3 +85,30 @@ The prior tranche metric (19/25 searchable full-text leads) is not changed by th
 - Preserve original Arabic text, OCR output and normalized text separately once a lawful source copy is obtained.
 - Check licence/permission before copying or redistributing the 2.9 MB PDF.
 - Keep verified=0 and lawyer_reviewed=0 until an Egyptian employment lawyer has checked the instrument against the Gazette.
+
+
+## 6. New legislative pipeline intelligence — Ministry statement of 14 November 2026
+
+Official Ministry/SIS coverage of the Minister's meeting with the ILO's Governance and Tripartism Department reports three separate developments:
+- The Minister said the Ministry had completed issuing the executive decisions for Labour Law 14/2025 after presenting them to the Supreme Council for Social Consultation.
+- The Ministry was preparing a draft law for domestic workers with ILO cooperation.
+- Proposed amendments to Trade Union Law 213/2017 had been discussed and agreed within the Supreme Council and referred to the Cabinet in preparation for referral to Parliament.
+
+Sources:
+- Official State Information Service: https://sis.gov.eg/ar/المركز-الإعلامي/الأخبار/وزير-العمل-مصر-تمضي-بخطى-ثابتة-لتطوير-منظومة-العمل-وتحديث-التشريعات-لتحقيق-التوازن-بين-العمال-وأصحاب-الأعمال/
+- Contemporary report of the Minister's 14-11-2026 statement: https://www.cairo24.com/2528947
+
+### Legal acquisition treatment
+1. The statement that executive decisions are complete is a Ministry policy/status statement, not an instrument inventory. It does not identify all decision numbers, publication dates or Gazette pages. Reconcile it against the existing 87-decision inventory and the statutory delegation matrix before closing any outstanding gap.
+2. In particular, it does **not** establish that a general Article 100 decision has been located. The separate Ministry discussion of platform work remains a policy lead until a numbered, signed and published decision is found.
+3. The domestic-workers bill is a draft/policy project, not current law. Acquire the bill text, explanatory memorandum and parliamentary referral record when publicly available. Do not apply it as binding law.
+4. The proposed amendments to Law 213/2017 are not yet an enacted amendment based on the evidence located. Obtain the Cabinet-approved draft, bill number, parliamentary referral, committee report, final enacted law and Gazette publication before updating the consolidated union-law text.
+
+Exact reported Arabic phrases from the Minister's statement:
+> تم الانتهاء من إصدار القرارات التنفيذية لقانون العمل، بعد عرضها على المجلس الأعلى للتشاور الاجتماعي
+
+> تعمل حاليًا على إعداد مشروع قانون العمالة المنزلية، بالتعاون مع منظمة العمل الدولية
+
+> جرى مناقشتها والتوافق بشأنها داخل المجلس، وإحالتها إلى مجلس الوزراء تمهيدًا لإحالتها إلى البرلمان
+
+Source status: official government communication reporting ministerial statements; not the signed bill, decision, or amendment text.
