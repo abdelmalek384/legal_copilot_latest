@@ -166,7 +166,7 @@ The ILO and UNODC PDFs contain the complete 30-article Arabic statute, including
 - Manshurat catalogue and PDF record: https://manshurat.org/node/20762
 - Full Arabic transcription (26 reproduced regulation articles) attributed by the host to the Court of Cassation legislation portal / Official Gazette: https://alhasswalawfirm.com/law-library/decree-3028-2010
 - The full source page provides an attachment described as the official text; the host is a secondary legal-library site. The Gazette scan must still be independently fetched and visually checked.
-- Critical metadata issue: the page title says “المادة 1-28” and describes a 28-article text, but the visible Arabic transcription ends at Article 26. No text for Articles 27–28 was found by searching the page. Do not assume that the regulation legally ends at Article 26; verify against the PDF / Gazette scan.
+- Article-count discrepancy resolved from the attachment: the linked 14-page Court of Cassation Information Centre PDF contains Articles 1–26 and ends at Article 26. The website page title's “المادة 1-28” label is a catalogue/page-title error; the attached reproduction does not omit Articles 27–28. Obtain the Egyptian Gazette scan only for independent source verification.
 
 ### Acquired operative Arabic text — issuing articles and definitions
 
@@ -240,7 +240,7 @@ The ILO and UNODC PDFs contain the complete 30-article Arabic statute, including
 |---|---|---|---|
 | Law 126/2008 | Full Gazette-style transcription located; criminally material clauses transcribed here | Secondary transcription of Gazette text | Official Gazette scan; full clause-by-clause retype / visual comparison |
 | Law 64/2010 | Full 30-article Arabic text in bilingual ILO and UNODC PDFs; material provisions transcribed here | International institutional copies, not Egyptian Gazette scan | Official Gazette scan; complete machine-readable Arabic transcription |
-| PM Decision 3028/2010 | 26 articles transcribed in secondary legal library; official-source attachment linked | Secondary transcription attributed to Court of Cassation Gazette portal; catalogue PDF exists | Verify article count; acquire/inspect Gazette scan; recover apparent missing Arts 27–28; correct Art 23 transcription |
+| PM Decision 3028/2010 | 26 articles transcribed in secondary legal library; official-source attachment linked | Secondary transcription attributed to Court of Cassation Gazette portal; catalogue PDF exists | Article count verified as 26 in the 14-page Court of Cassation PDF; acquire Gazette scan for independent verification and correct/check Art 23 transcription |
 
 ## 6. Progress update (working estimate)
 
@@ -258,7 +258,7 @@ The criminal-law domain remains an estimated **74% complete** after this acquisi
 The increase is modest because Law 64/2010 and its regulation are a new subdomain, while complete transcription, Gazette-image comparison and implementing-decision recovery remain outstanding. No lawyer verification is claimed.
 
 ## 7. Next acquisition targets (new work only)
-1. Retrieve and visually inspect the official Gazette scan of Decision 3028/2010; determine whether the regulation has 26 or 28 articles and repair the Art 23 text from the scan.
+1. Retrieve and visually inspect the official Gazette scan of Decision 3028/2010; verify the 26-article text against the Gazette scan and repair/check the Art 23 text.
 2. Acquire the full signed texts of PM Decisions 192/2017, 1123/2017 and 60/2020 and Ministry of Social Solidarity Decision 289/2021 concerning the anti-trafficking committee and victim support.
 3. Obtain the official Gazette scan of Law 126/2008 and compare every replacement/addition with the LAWEG transcription.
 4. Produce a complete machine-readable Arabic transcription of all 30 articles of Law 64/2010 from the ILO/UNODC PDFs, with page-level QA.
