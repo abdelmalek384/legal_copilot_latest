@@ -1902,3 +1902,113 @@ Working estimates after acquiring Law 134/2019, the complete official Decision 2
 - **Overall assigned criminal-law domain completion: approximately 61%**.
 
 Priority gaps now include the original official Court PDF for Judgment 33/47, Attorney General Circular 1/2026, older Law 182 amendments, full article-by-article extraction of the 2026 schedules (particularly Decision 44 plus 242), and the standalone 2015 weapons schedule instrument.
+
+
+---
+
+# 22. Further prison-regime acquisition — food and treatment standards, 2023–2024 amendments
+
+## 22.1 Decision 2069/2024 — prison food allowances amended; full operative framework identified
+
+**Interior Ministry Decision 2069/2024**, published in Egyptian Gazette issue 234 تابع (أ), 23 October 2024; effective 24 October 2024 (day after publication).
+
+- Secondary full report / text description: https://www.cairo24.com/2102333
+- Alternative report: https://www.shorouknews.com/news/view.aspx?cdate=27102024&id=fcc95927-38d8-4ea6-b2a4-cc0a2d117800
+- Related current source set for Decision 691/1998: https://www.ec-rf.net/wp-content/uploads/2024/09/حقوق-السجين-ى.pdf
+
+**Preamble and operative text acquired:**
+وزارة الداخلية
+قرار رقم ٢٠٦٩ لسنة ٢٠٢٤
+بعد الاطلاع على القانون رقم ٣٩٦ لسنة ١٩٥٦ في شأن تنظيم مراكز الإصلاح والتأهيل المجتمعي؛
+وعلى قرار وزير الداخلية رقم ٧٩ لسنة ١٩٦١ بإصدار اللائحة الداخلية لمراكز الإصلاح والتأهيل؛
+وعلى قرار وزير الداخلية رقم ٦٩١ لسنة ١٩٩٨ في شأن كيفية معاملة النزلاء ومعيشتهم؛
+وعلى دراسة المعهد القومي للتغذية التابع للهيئة العامة للمستشفيات والمعاهد التعليمية؛
+وبناءً على ما عرضه قطاع الحماية المجتمعية، وبعد موافقة النائب العام؛
+
+**المادة الأولى:**
+يستبدل بنصوص البنود أولاً وثانياً وثالثاً من مقرر أغذية النزلاء العاديين والجداول أرقام (١، ٢، ٣)، من المادة (٢) من قرار وزير الداخلية رقم ٦٩١ لسنة ١٩٩٨ المشار إليه، النصوص والجداول الآتية.
+
+**المادة الثانية:**
+ينشر هذا القرار بالوقائع المصرية، ويعمل به اعتباراً من اليوم التالي لتاريخ نشره.
+
+The Gazette image is embedded in the Cairo24 article and the actual replacement diet tables are not exposed as searchable HTML text in the reader. Status: operative scope and dates acquired, full table transcription remains open. The 2024 decision is a current implementation instrument and should be included in the prison conditions / health and nutrition subdomain.
+
+## 22.2 Decision 691/1998 — treatment and living standards instrument, amendment chain expanded
+
+Decision 691/1998 governs treatment, accommodation, clothing, food allowances and special dietary arrangements for prisoners/residents. It superseded Decision 503/1974 under its Article 9.
+
+The current amendment chain now identified includes:
+- Decision 8533/2000 — Gazette issue 171, 31 July 2000;
+- Decision 3909/2000 — Gazette issue 97, 3 May 2000;
+- Decision 5926/2005 — Gazette issue 100, 8 May 2005;
+- Decision 856/2009 — Gazette issue 122, 27 May 2009;
+- Decision 1164/2011 — modifies Article 1 (source footnote in ECRF study);
+- Decision 468/2017 — Gazette issue 56 تابع (أ), 8 March 2017;
+- Decision 1409/2019 — modifies Article 1 (source footnote in ECRF study);
+- Decision 1541/2023 — Gazette issue 184 تابع (أ), 22 August 2023;
+- Decision 2069/2024 — Gazette issue 234 تابع (أ), 23 October 2024.
+
+Sources/catalogue entries:
+- Decision 8533/2000: https://egyptianlaws.com/?p=161791
+- Decision 3909/2000: https://egyptianlaws.com/?p=161789
+- Decision 5926/2005: https://egyptianlaws.com/?p=165300
+- Decision 856/2009: https://egyptianlaws.com/?p=161601
+- Decision 468/2017: https://egyptianlaws.com/?p=165681
+- Decision 1541/2023: https://mksegypt.org/public/ar/nashras/10
+- Decision 2069/2024: https://www.cairo24.com/2102333
+- ECRF detailed consolidated legal study: https://www.ec-rf.net/wp-content/uploads/2024/09/حقوق-السجين-ى.pdf
+
+The ECRF study states that Article 1 of Decision 691/1998 was amended by Decisions 1164/2011, 468/2017 and 1409/2019, and that Decision 691/1998 repealed Decision 503/1974. Full standalone signed texts of these amending decisions are still to be obtained; the catalogue pages generally show only an image/iframe.
+
+## 22.3 Decision 1675/2011 — full Arabic amendment text acquired
+
+**Interior Ministry Decision 1675/2011**, Gazette issue 237 تابع, 16 October 2011; modifies the first paragraph of Article 72 of Decision 79/1961.
+
+- Full Arabic text: https://egylawsite.wordpress.com/2013/09/05/قرارت-هامة-لوزيرى-الداخلية-والعدل/
+- Gazette catalogue: https://egyptianlaws.com/?p=161761
+
+**المادة الأولى:**
+يستبدل بنص الفقرة الأولى من المادة (٧٢) من القرار الوزاري رقم ٧٩ لسنة ١٩٦١ باللائحة الداخلية للسجون، النص الآتي:
+«لا يجوز أن يزيد عدد الزائرين للمسجون أو المحبوس احتياطياً عن اثنين في المرة الواحدة للزيارة العادية إلا بموافقة مدير أو مأمور السجن بعد التثبت من وجود ضرورة تقتضي ذلك، وفي هذه الحالة لا يجوز أن يزيد عدد الزائرين على أربعة أشخاص».
+
+**المادة الثانية:**
+ينشر هذا القرار في الوقائع المصرية، ويلغى ما يخالفه من أحكام، ويعمل به من اليوم التالي لتاريخ نشره.
+
+This standalone text is now acquired, rather than relying only on the consolidated regulation's amendment footnote.
+
+## 22.4 Decision 3320/2014 — substantive effects cross-checked against independent legal analysis
+
+Interior Ministry Decision 3320/2014, Gazette issue 213 تابع, 18 September 2014, amended multiple provisions of Decision 79/1961. The consolidated regulation attributes changes to Articles 11, 12, 33, 34, 37, 39, 46, 47, 49 and 71, and addition of Article 85 bis (3) and Article 82 bis.
+
+Independent EIPR legal analysis confirms:
+- Article 71 amended to extend ordinary and special visit duration to 60 minutes;
+- addition of Article 85 bis (3) allowing one hour of exercise in the morning and one hour in the evening for specified non-working convicted prisoners, pretrial detainees and persons under health observation, subject to security and holiday conditions;
+- addition of Article 82 bis to establish a committee for classification of prisoners according to health condition.
+
+Sources:
+- Gazette catalogue: https://egyptianlaws.com/?p=161865
+- EIPR visit and correspondence analysis: https://eipr.org/content/الفصل-السادس-الزيارة-والمراسلة
+- EIPR prisoner classification and treatment analysis: https://eipr.org/content/الفصل-الثاني-تقسيم-المسجونين-ومعاملتهم-2
+
+The EIPR sources are secondary commentary, not the Gazette text. Exact substituted wording for each of the ten changes still requires the signed decision image.
+
+## 22.5 Prison internal regulation — full amendment chronology identified
+
+The 2022 Arab Reform Initiative study lists the 19 amending Interior Ministry decisions to Decision 79/1961:
+835/1968; 1318/1973; 1582/1973; 2270/1973; 765/1974; 1413/1976; 989/1977; 350/1978; 578/1978; 487/1979; 1890/1990; 9876/1999; 668/2002; 16630/2003; 39/2010; 1675/2011; 1342/2013; 3320/2014; 345/2017.
+
+Source: https://www.arab-reform.net/ar/publication/التكلفة-الاجتماعية-والاقتصادية-لمنظومة-السجون-في-مصر/
+
+This chronology is broader than the currently acquired standalone amendment set. The consolidated Decision 79/1961 source is the practical current text, but the 19 amending instruments must be separately obtained and reconciled before certifying a complete legislative history.
+
+## 22.6 Progress recalibration
+
+Working estimates after adding Decision 2069/2024, Decision 1675/2011 and the expanded Decision 691/1998 amendment chain:
+- Discovery coverage: **99%**.
+- Actual Arabic text acquisition: **84%**.
+- Amendment and implementing-instrument mapping: **84%**.
+- Article-level extraction and QA: **67%**.
+- Lawyer verification: **0%**.
+- **Overall assigned criminal-law domain completion: approximately 62%**.
+
+Open prison-specific acquisition tasks: the actual diet tables attached to Decision 2069/2024; the full text of Decision 691/1998 and its amendments (especially 1409/2019 and 1541/2023); standalone texts of Decisions 1342/2013, 3320/2014 and 345/2017; and image-checked Gazette covers for all 19 amendments to Decision 79/1961.
