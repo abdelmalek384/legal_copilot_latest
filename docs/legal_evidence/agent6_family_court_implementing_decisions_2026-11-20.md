@@ -400,3 +400,25 @@ This supplement now includes:
 **Aggregate in this file:** 59 complete articles/provisions plus 1 partial provision across 7 decisions; Decision 3387/2004 and Decision 10960/2007 remain leads only. This aggregate includes all decisions transcribed in this file and supersedes the earlier 28-article count.
 
 **Verification:** secondary reproductions only; no Gazette original independently collated; no lawyer review; rights clearance outstanding.
+
+
+---
+
+## 8. Current-law amendment alert — Justice Minister Decision 5931/2026
+
+**Important new currentness finding:** Decision 5931/2026 amending Justice Minister Decision 2722/2004 was published in الوقائع المصرية issue 248 تابع on 8 November 2026 and became effective 9 November 2026. The master repository already contains a shorter extract in `docs/legal_evidence/2026_late_year_decisions_arabic_text_tranche_2026-11-18.md`; therefore this Agent 6 file does **not** duplicate it.
+
+**Full Arabic text and metadata:** https://lawhub.info/eg/?p=20282.
+
+The full text adds Article 5 bis to Decision 2722/2004 and amends Article 2:
+- Employer notification may be sent by registered letter with an enforceable judgment copy, or electronically where available.
+- Payroll deduction begins from the salary due in the month after employer notification.
+- Accumulated maintenance arrears for three months or more may be scheduled and added to deductions, subject to statutory attachment limits in Law 1/2000 Art. 76.
+- Deduction cannot be stopped except by official fund notice, documented reconciliation proving payment, or an enforceable judicial ruling.
+- The fund or employer may notify the Administrative Prosecution or the employer's legal department if responsible staff refuse or neglect deduction/remittance.
+- Applications add national ID evidence, marriage/divorce documentation for the wife/custodian, children's birth certificates, and a signed annual declaration that entitlement continues and data will be updated yearly.
+- Nasser Social Bank may obtain relevant data electronically from state bodies.
+
+**Do not use the 2004 Decision 2722 text as current by itself.** The correct version chain is Decision 2722/2004 → Decision 5931/2026 (effective 9 November 2026). The repository's existing shared acquisition should be treated as the canonical text record; link this Agent 6 file to it rather than creating a second copy.
+
+**Source level:** LawHub secondary reproduction with full operative text and Gazette metadata; original Gazette page not independently compared in this pass. No lawyer review.
