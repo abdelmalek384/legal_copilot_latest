@@ -386,9 +386,9 @@ The listed sectors include ICT (with specified exceptions), financial/accounting
 
 This tranche newly surfaced 25 instrument records (18 ministerial decisions from 2025 and 6 ministerial decisions plus one Prime Minister decision from 2026). This is a tranche denominator, not the total universe of Egyptian labour instruments.
 
-- 15/25 (60%): searchable Arabic full-text sources located (including secondary reproductions) for direct article extraction.
-- 5/25 (20%): substantial Arabic text or official text fragments located, but complete text/schedules require extraction.
-- 5/25 (20%): Gazette/PDF lead or restricted bundle identified; full accessible Arabic text still pending.
+- 17/25 (68%): searchable Arabic full-text sources located (including secondary reproductions) for direct article extraction.
+- 6/25 (24%): substantial Arabic text or official text fragments located, but complete text/schedules require extraction.
+- 2/25 (8%): Gazette/PDF lead identified but not yet article-extracted (Decisions 162/2026 and 301/2025).
 - Gazette-anchored: 24/25 have an issue/date anchor or official catalogue record; Decision 187/2025 still needs issue/page confirmation.
 - Exact Gazette page matching: not yet complete for this tranche; record as pending rather than infer.
 - Qualified Egyptian lawyer review: 0%.
