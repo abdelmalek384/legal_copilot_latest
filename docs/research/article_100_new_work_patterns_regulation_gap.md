@@ -101,3 +101,12 @@ This is an issue checklist, not a proposal to invent rules. The actual decision 
 A candidate Decision 254/2026 on the formation and operation of committees for ratifying workplace regulations has surfaced in a secondary HR-document repository. It is recorded separately in [the Article 137 ratification-committee acquisition addendum](../legal_evidence/labour_article137_ratification_committees_and_new_gap_leads_2026-11-20.md). Its PDF is listed as 2.9 MB, but the file text, signature, Gazette issue/date/pages and commencement have not been independently inspected. It must not be treated as the Article 100 instrument or as verified legal authority.
 
 **Status remains:** no general Article 100 ministerial decision located. No change to verified or lawyer-reviewed status.
+
+
+### 5. Ministry's 14 November 2026 statement that executive decisions were completed — scope still needs instrument-level proof
+
+- **Official State Information Service coverage:** https://sis.gov.eg/ar/المركز-الإعلامي/الأخبار/وزير-العمل-مصر-تمضي-بخطى-ثابتة-لتطوير-منظومة-العمل-وتحديث-التشريعات-لتحقيق-التوازن-بين-العمال-وأصحاب-الأعمال/
+- The Minister stated: «تم الانتهاء من إصدار القرارات التنفيذية لقانون العمل، بعد عرضها على المجلس الأعلى للتشاور الاجتماعي».
+- The same 14 November account also reports that the Ministry was still discussing the regulatory framework for digital/platform work in a separate meeting with recruitment and digital-work platforms (see the Ministry item above).
+- **Reconciliation issue:** the broad statement that executive decisions have been completed does not identify the decision numbers or establish that the Article 100 instrument is among them. No signed, numbered and Gazette-published Article 100 regulation has been located in this research. Keep the gap open until the inventory can be matched to the Gazette and the Article 100 decision text is found.
+- The Minister also said a domestic-workers bill was being prepared with ILO cooperation and that proposed amendments to Law 213/2017 had been discussed and referred to the Cabinet for onward parliamentary referral. These are legislative pipeline items, not current enacted law, and do not fill Article 100.
