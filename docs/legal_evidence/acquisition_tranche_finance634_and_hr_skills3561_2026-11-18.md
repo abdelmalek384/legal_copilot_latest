@@ -48,3 +48,41 @@
 ### Verification status
 
 This is a partial extract, not a complete transcription. Additional reported features include four-year membership, quarterly reporting by the Chair to the Prime Minister, and repeal of Decision705/2014. Obtain complete issue46 bis (ج) PDF and transcribe every article, secretariat and local/sectoral coordination provisions before marking full text acquired.
+
+
+## 2A. Decision 3561/2026 — incremental Arabic clauses recovered after the initial partial extract
+
+**New retrieval routes:** official Amiri Press Gazette catalogue for Official Gazette issue 46 bis (C), 15 November 2026, 274.86 KB PDF: https://dspace.id.com.eg/items/cb156f2d-a809-4480-ada2-48df74251c68 . Secondary full-text/report routes: https://www.almasdar.com/176172 ; https://www.a7walegypt.com/39324 ; https://www.almasryalyoum.com/news/details/4415282 . The Gazette PDF remains request-copy gated in the catalogue; no access restriction was bypassed.
+
+### Additional article-level Arabic text
+
+**Article 5 — specialist committees (secondary transcription):**
+
+«للمجلس أن يشكل لجانًا نوعية من بين أعضائه أو من غيرهم للقيام بالمهام التي يوكلها إليها، على أن يراعى في تشكيل هذه اللجان تمثيل المنظمات النقابية العمالية ومنظمات أصحاب الأعمال، ويصدر المجلس لائحة داخلية لتنظيم عمل تلك اللجان».
+
+**Article 8 — reporting to the Prime Minister (secondary report attributing the clause to the final decision):**
+
+«يتولى رئيس المجلس عرض قرارات وتوصيات ونتائج أعمال المجلس على رئيس مجلس الوزراء بصفة دورية كل ثلاثة أشهر، أو كلما دعت الحاجة إلى ذلك».
+
+**Article 10 — commencement (secondary report of the final decision):**
+
+«ينشر هذا القرار في الجريدة الرسمية، ويعمل به من اليوم التالي لتاريخ نشره».
+
+### Additional operational rules surfaced
+
+Secondary reporting of the final decision also states that:
+- membership is for four years;
+- the council meets at least once every three months;
+- it may form specialist committees, with balanced representation of employers' organisations and trade unions;
+- the chair reports decisions, recommendations and results to the Prime Minister every three months or when needed.
+
+The Cabinet's 28 October 2026 project announcement separately describes the council's substantive policy remit: national human-resource skills and training policy; disability-inclusive training; alignment of education and training with current and future labour-market needs; a national skills-development programme; labour-market intelligence and demographic forecasting; coordination among education, training, employment and development-planning authorities; and technical training opportunities with universities and institutes. This is a **project announcement**, not a verbatim final article text; retain it as explanatory context only.
+
+### Crosswalk and status
+
+- **Enabling provision:** Labour Law 14/2025, Article 18.
+- **Effect:** operationalizes the statutory national council for human-resource skills development, chaired by the minister responsible for labour, with government, employer and worker representation.
+- **Effective date:** Gazette issue dated 15 November 2026; Article 10 is reported to make the decision effective the following day, 16 November 2026.
+- **Repeal:** secondary reports say PM Decision 705/2014 is repealed; verify the exact repeal clause against the Gazette page.
+- **Acquisition status:** the repository now contains additional article-level Arabic excerpts for Articles 5, 8 and 10, plus secondary reporting of membership duration and meeting frequency. It still does **not** contain a complete verbatim 10-article transcription, the full final text of Article 2, the complete secretariat provisions (if any), or a Gazette-page-matched scan.
+- **Do not mark complete:** keep `verified=0`, `lawyer_reviewed=0`; obtain issue 46 bis (C) through the ordinary request-copy workflow or a licensed library/Amiri Press copy and compare every article.
