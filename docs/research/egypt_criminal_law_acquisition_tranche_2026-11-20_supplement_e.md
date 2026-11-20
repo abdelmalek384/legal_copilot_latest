@@ -161,7 +161,7 @@ The FRA-hosted PDF filename contains `قرار-النائب-العام-رقم-27
   - Art 6: interested parties and Public Prosecution may appeal listing within 60 days to the designated Criminal Circuit of the Court of Cassation; appeal may include a request to exempt sums for food, rent, medicine/treatment and other expenses.
   - Art 7: statutory consequences of listing include suspension/prohibition of entities, closure of premises, funding bans, asset freezing, travel bans, passport restrictions and specified public-office/employment consequences.
   - Art 8: judicial appointment of an asset manager where necessary.
-  - Art 8 bis (added by Law 14/2020): Attorney General may order seizure/preservation and prevent disposition of funds/assets where serious information or evidence indicates that they derive from or finance activities of listed or unlisted terrorists/entities; the order must be presented to the Art 3 circuit within one month for confirmation, cancellation or amendment.
+  - Art 8 bis (added by Law 11/2017 and later amended by Law 14/2020): Attorney General may order seizure/preservation and prevent disposition of funds/assets where serious information or evidence indicates that they derive from or finance activities of listed or unlisted terrorists/entities; the order must be presented to the Art 3 circuit within one month for confirmation, cancellation or amendment.
   - Art 9: international judicial cooperation and information exchange.
 
 ### Law 2/2020 — full Arabic text
