@@ -1679,3 +1679,82 @@ Working estimates, not audited completion scores:
 - **Overall assigned criminal-law domain completion: approximately 58%**.
 
 This pass materially expands three clusters: prison law/regulations, weapons law/amendments, and the narcotics statute/schedules. The largest immediate acquisition gap is the official Gazette PDF and full schedule transcription of Decision 44/2026; next are the standalone 2015 weapons schedule decision, complete article-by-article text of Law 14/2022, and the prison-regulation amending decisions.
+
+
+## 20.11 Further acquisition — weapons licensing regulation and constitutional status, plus prison-regulation amendment trail
+
+### A. Interior Ministry Decision 1300/2019 — full 16-article Arabic text acquired
+
+Decision 1300/2019 governs licensing of sound pistols/rifles, air-pressure and gas-pressure weapons and their ammunition. Egyptian Gazette issue 158 تابع (ب), 14 July 2019.
+
+- Full Arabic text, 16 articles: https://www.mohamah.net/law/نصوص-ومواد-القرار-رقم-1300-لسنة-2019-باجراءات/
+- Alternative full text: https://egypionfreelawyer.blogspot.com/2020/07/1300-2019.html
+- Gazette catalogue: https://egyptianlaws.com/?p=167809
+- Official Supreme Constitutional Court judgment discussing Article 9 of this Decision: https://www.sccourt.gov.eg/DjangoPortalResources/Rules_Html/18374_47_1_1_2.html
+
+**Selected Arabic operative provisions**
+
+**مادة (١):**
+يشترط في من يطلب التصريح له بإحراز أو حيازة مسدسات وبنادق ضغط الهواء وضغط الغاز ما يأتي:
+١- ألا يقل السن عن ١٨ سنة ميلادية.
+٢- أن يكون محمود السيرة حسن السمعة.
+٣- ألا يكون قد سبق الحكم عليه بعقوبة جناية أو بعقوبة مقيدة للحرية في جريمة مخلة بالشرف أو الأمانة.
+٤- ألا يكون قد سبق سحب أو إلغاء ترخيص سلاحه أو ذخائره وذلك فيما عدا حالة الإلغاء للفقد.
+٥- تقديم شهادة طبية تفيد سلامة البنية الصحية والجسمانية وحاستي السمع والبصر.
+
+**مادة (٢):**
+يقدم طلب التصريح بإحراز أو حيازة مسدسات وبنادق ضغط الهواء وضغط الغاز أو تجديده إلى مأمور القسم أو المركز الذي يقيم بدائرته طالب التصريح على أن يحدد به نوع السلاح المطلوب التصريح به والغرض منه، مرفقاً به صورة بطاقة الرقم القومي، وصورتان شخصيتان، وصحيفة الحالة الجنائية، وشهادتان طبيتان (باطنة ونظر).
+
+**مادة (٨):**
+لمأمور القسم أو المركز رفض التصريح أو سحبه مؤقتاً أو تقصير مدته أو تقييده بأي شرط أو إلغاؤه، ويجوز التظلم من القرار خلال خمسة عشر يوماً من تاريخ الإخطار به، فإذا رأى المأمور رفض التظلم وجب رفع الأمر لقسم الرخص بالمديرية للعرض على مساعد مدير الأمن لشئون الأمن العام ليصدر قراراً نهائياً في ذلك خلال خمسة عشر يوماً من تاريخ عرض الأمر إليه. ويعتبر فوات الميعاد الأخير دون البت في التظلم بمثابة رفض للتظلم.
+
+**مادة (٩):**
+لا يجوز بأي حال من الأحوال التصريح بحيازة كاتمات أو مخفضات الصوت أو التلسكوبات لمسدسات وبنادق الصوت وضغط الهواء وضغط الغاز.
+
+**مادة (١٣):**
+تكون كمية الذخيرة المصرح بها وكيفية الصرف منها على النحو الآتي:
+عدد (٤٠٠) طلقة صوت سنوياً تصرف على دفعات بالنسبة لمسدسات وبنادق الصوت.
+عدد (٨٠٠٠) خردقة رش سنوياً تصرف على دفعات بالنسبة لمسدسات وبنادق ضغط الهواء وضغط الغاز متى كانت من نفس العيار.
+
+The full transcription contains the remaining provisions on eligible applicants (including private security guards and sports clubs), purchase and registration process, renewal, transfer, loss, annual ammunition limits and licensed dealer recordkeeping. Use the complete source for article-level analysis; do not rely solely on the excerpts above.
+
+### B. Supreme Constitutional Court Decision — Case 1/47 (constitutional), 9 September 2026
+
+Official SCC portal text:
+https://www.sccourt.gov.eg/DjangoPortalResources/Rules_Html/18374_47_1_1_2.html
+
+Gazette publication: Official Gazette issue 37 تابع, 10 September 2026.
+
+The petition challenged Penal/Weapons Law Article 35 bis (telescopes) and Article 9 of Decision 1300/2019 (prohibition on licensing silencers/telescopes for sound/air/gas weapons). The Court:
+- held it lacked jurisdiction to hear the challenge to Article 35 bis of Law 394/1954; and
+- ruled the challenge to Article 9 of Decision 1300/2019 inadmissible.
+
+**Practical legal-research treatment:** this is not a judgment invalidating Article 35 bis or Article 9. Record the jurisdictional and admissibility dispositions exactly. The decision does not supply a merits holding that resolves the constitutionality of those provisions.
+
+### C. Prison internal-regulation amendment trail — additional original instrument routes found
+
+The consolidated Decision 79/1961 text cites the following amending decisions; separate catalogue/text routes are now identified:
+
+- Interior Ministry Decision 1675/2011 — changes first paragraph of Article 72; Gazette issue 237 تابع, 16 October 2011: https://egyptianlaws.com/?p=161761
+- Interior Ministry Decision 1342/2013 — changes Article 11; Gazette issue 152 تابع, 2 July 2013: https://egyptianlaws.com/?p=161846
+- Interior Ministry Decision 3320/2014 — amends Articles 11, 12, 33, 34, 37, 39, 46, 47, 49 and 71; Gazette issue 213 تابع, 18 September 2014: https://egyptianlaws.com/?p=161865
+- Interior Ministry Decision 345/2017 — adds Articles 76 bis, 81 bis and 83 bis; Gazette publication 15 February 2017 (as recorded in the consolidated regulation).
+- The consolidated Decision 79/1961 text also identifies further amendments and terminology changes through 21 June 2022. The exact instrument numbers for each footnote are still to be extracted from the complete consolidated page and matched to Gazette issues.
+
+The three 2011/2013/2014 catalogue pages currently render a text shell with an embedded/iframe image rather than accessible article text. They are treated as identified source leads, not full text acquisition. The current consolidated 101-article text remains the practical interim text source.
+
+### D. New source-integrity and currentness notes
+- Decision 1300/2019 is a licensing decision under Law 394/1954, not an amendment to the parent statute.
+- The 2026 SCC decision is a jurisdiction/admissibility decision, not a merits ruling striking down the provisions.
+- Decision 1610/2015 remains a weapons-law lead only; its signed text and precise legal effect remain unverified.
+- Decision 44/2026 remains the current replacement schedules instrument identified for Law 182/1960; its full official Gazette PDF is still missing from the accessible source set.
+
+### E. Progress recalibration
+
+Working estimates after acquisition of Decision 1300/2019 and the 2026 SCC decision:
+- Discovery coverage: **98%**.
+- Actual Arabic text acquisition: **81%**.
+- Amendment and implementing-instrument mapping: **79%**.
+- Article-level extraction and QA: **63%**.
+- Lawyer verification: **0%**.
+- **Overall assigned criminal-law domain completion: approximately 59%**.
