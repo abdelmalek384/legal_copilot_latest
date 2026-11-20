@@ -1401,3 +1401,281 @@ Working estimates after this further AML pass:
 - **Overall assigned criminal-law domain completion: approximately 55%**.
 
 The principal improvement is access to the complete consolidated AML Executive Regulation and the full amendment text of Law 36/2014 via a regulator consolidation. The remaining AML gap is exact Gazette-image reconciliation of older amendment numbers and full standalone transcription of Law 78/2003.
+
+
+---
+
+# 20. New acquisition pass — prisons, weapons and narcotics (20 November 2026)
+
+## 20.1 Prisons / community rehabilitation centres — Decision 79/1961 full 101-article regulation acquired
+
+**Status:** Full Arabic text of the 101-article Internal Prison Regulation is now accessible in a consolidated transcription, expressly reflecting amendments through 21 June 2022. This is a major improvement over a mere citation.
+
+- Full 101-article Arabic text: https://alhasswalawfirm.com/law-library/decree-79-1961
+- Original Gazette catalogue/PDF: https://manshurat.org/node/12358
+- Supplementary prisoner's handbook reproducing the original regulation: https://www.ug-law.com/downloads/prisoners-handbook.pdf
+- Gazette publication: Egyptian Gazette issue 103, 28 December 1961.
+- Source status: T3 consolidated transcription; the publisher says it is transcribed from the Court of Cassation legislation portal. Original Gazette source object is identified; consolidated amendment-by-amendment image comparison remains open.
+
+### Selected actual operative text acquired
+
+**قرار وزير الداخلية رقم ٧٩ لسنة ١٩٦١ بشأن اللائحة الداخلية للسجون**
+
+**مادة (١):**
+يجب تشغيل كل محكوم عليه بالسجن المؤبد أو المشدد أو السجن أو الحبس مع الشغل في خدمات مركز الإصلاح الداخلية أو غيرها ما لم يأمر طبيب مركز إصلاح بغير ذلك ويثبت بكشف أحوال وتذكرة النزيل العمل الذي يعين للاشتغال به.
+
+**مادة (٢):**
+يكلف المحكوم عليه بالحبس البسيط والمحبوسون احتياطيا بالأعمال المتعلقة بتنظيف غرفهم, ويجوز إعفاؤهم من ذلك لأسباب إدارية أو صحية تدون بسجل النزيل ويجوز تشغيلهم داخل مركز إصلاح وتأهيل في غير تلك الأعمال إذا رغبوا في ذلك مع أخذ إقرار كتابي منهم بذلك, ويكون لهم الحق في اختيار نوع العمل الذي يباشرونه في حدود نظام مركز الإصلاح والتأهيل.
+
+**مادة (١١) — consolidated amended version:**
+يستحق النزيل أجرًا قدره عشرة جنيهات، كحد أدنى عن عمله اليومى ويجوز منح النزيل أجرًا أعلى مقابل قيامه بأعمال فنية ممتازة أو تحقيقه حجم إنتاج أكبر؛ وذلك بناءً على طلب مدير مركز الإصلاح والتأهيل وموافقة اللجنة المشار إليها فى المادة التاسعة من هذه اللائحة وذلك بعد اعتماد مساعد الوزير لقطاع الحماية المجتمعية.
+
+**مادة (١٢):**
+يجوز أن يجمع النزيل بين الأجر المقرر وأى أجر أو مكافأة أخرى عن أعمال يكلف بها داخل مركز إصلاح وتأهيل أو عن طريقه. ولا يصرف للنزيل أجر عن الأيام التى لا يؤدى فيها عملاً ولا عن الأيام التى يقل فيها إنتاجه عن معدل الإنتاج المقرر. ويصرف للنزيل الأجر اليومى المقرر للنزلاء خلال مدة علاجه من إصابة أو مرض بسبب العمل.
+
+The consolidated page includes the complete 101 articles and identifies amendment footnotes, including:
+- Decision 1675/2011;
+- Decision 1342/2013;
+- Decision 3320/2014;
+- Decision 345/2017 (adds Arts 76 bis, 81 bis and 83 bis);
+- further decisions and terminology changes through June 2022.
+A full amendment register still needs to be extracted from the consolidated page and each original Gazette instrument acquired separately. The regulation is not a simple “79/1961 as amended by 14/2022”: Law 14/2022 changes the parent statute's terminology and framework, and consequential regulation changes must be tracked separately.
+
+## 20.2 Law 14/2022 — full Arabic text of major operative provisions acquired
+
+**Law 14/2022**, Official Gazette issue 11 bis (ب), 20 March 2022; effective 21 March 2022. It changes Law 396/1956's title and terminology to the “Law on Regulation of Community Rehabilitation and Correction Centres” framework, replaces Articles 1, 2, 31 and 81, and repeals Articles 3, 4, 34 and Article 90(3).
+
+- Full Arabic text transcription: https://ahmedazimelgamel.blogspot.com/2022/03/14-2022-396-1956.html
+- Gazette metadata / article index: https://www.eastlaws.com/legislation-full-text/ar/egypt/law/20-03-2022/no-14?id=2049925&sub=10392046&type=1
+- Consolidated Law 396 text: https://www.aldhshan.com/2026/06/396-1956.html
+
+### Actual Arabic text acquired
+
+**مادة (١):**
+تنفذ العقوبات المقيدة للحرية في مراكز الإصلاح والتأهيل طبقًا لأحكام القانون، وتخضع للإشراف القضائي، وتهدف إلى رعاية وتأهيل المحكوم عليهم اجتماعيًا وثقافيًا، وهي ثلاثة أنواع:
+(أ) مراكز إصلاح وتأهيل عمومية.
+(ب) مراكز إصلاح جغرافية.
+(The blog transcription appears to omit or truncate a third category in the displayed extract; verify the complete signed/Gazette page before treating the list as exhaustive.)
+
+**مادة (٢) — terminology substitutions include:**
+- مسمى القانون «في شأن تنظيم مراكز الإصلاح والتأهيل المجتمعي» محل مسمى «في شأن تنظيم السجون».
+- عبارة «قطاع الحماية المجتمعية» محل «قطاع السجون».
+- عبارتا «مركز إصلاح وتأهيل» أو «مركز إصلاح» محل لفظ «سجن» في غير حالة النص عليه كعقوبة.
+- عبارتا «مدير مركز الإصلاح والتأهيل» أو «مدير مركز الإصلاح» محل «مأمور السجن».
+- «مركز إصلاح وتأهيل عمومي» / «مراكز إصلاح وتأهيل عمومية» محل «ليمان» / «ليمانات» / «سجن غير مركزي».
+- «مركز الإصلاح الجغرافي» / «مراكز الإصلاح الجغرافية» محل «سجن مركزي» / «سجون مركزية».
+- «نزيل» / «نزيلة» / «نزلاء» / «نزيلات» replace “سجين/مسجون” terminology where the provision concerns execution of imprisonment or pretrial detention.
+
+**مادة (٣):**
+تلغى المواد أرقام (٣، ٤، ٣٤، /٩٠ الفقرة الثالثة) من قانون تنظيم السجون المشار إليه، وتحذف عبارة «ومع ذلك لا توقع عليهم عقوبة النقل إلى الليمان» الواردة بنهاية المادة (٤٨)، كما يلغى كل حكم يخالف أحكام هذا القانون.
+
+**Caution:** the same consolidated statute is later amended/terminologically affected by subsequent instruments. Law 14/2022 is the enacted amendment, while the current consolidated terminology should be read with the full subsequent text and any later judicial decisions.
+
+## 20.3 Law 19/2020 — full operative Arabic text acquired (prisons and narcotics)
+
+**Law 19/2020**, Official Gazette issue 11 bis (ل), 18 March 2020; effective 19 March 2020. This instrument amends both Law 396/1956 and Law 182/1960.
+
+- Full Arabic text: https://www.eglf.org/قانون-19-لسنة-2020/
+- Gazette metadata / text index: https://www.eastlaws.com/legislation-full-text/ar/egypt/law/18-03-2020/no-19?id=1989148&type=1
+
+### Actual operative Arabic text
+
+**المادة الأولى:**
+تضاف إلى القانون رقم ٣٩٦ لسنة ١٩٥٦ فى شأن تنظيم السجون مادة جديدة برقم (٥٢ مكررًا)، نصها الآتى:
+
+**مادة (٥٢ مكررًا):**
+لا تسرى أحكام الإفراج تحت شرط الواردة فى هذا القانون على المحكوم عليهم لارتكابهم أيًا من الجرائم المنصوص عليها فى القانون رقم ١٠ لسنة ١٩١٤ فى شأن التجمهر، والقانون رقم ١٨٢ لسنة ١٩٦٠ فى شأن مكافحة المخدرات وتنظيم استعمالها والاتجار فيها عدا الجناية المنصوص عليها فى المادة (٣٧) منه، وقانون مكافحة غسل الأموال الصادر بالقانون رقم ٨٠ لسنة ٢٠٠٢، وقانون مكافحة الإرهاب الصادر بالقانون رقم ٩٤ لسنة ٢٠١٥.
+
+**المادة الثانية:**
+تلغى الفقرة الثانية من المادة (٤٦ مكررًا «أ») من القانون رقم ١٨٢ لسنة ١٩٦٠ فى شأن مكافحة المخدرات وتنظيم استعمالها والاتجار فيها.
+
+**المادة الثالثة:**
+ينشر هذا القانون فى الجريدة الرسمية، ويعمل به من اليوم التالى لتاريخ نشره.
+
+This is an important cross-statute rule: the exclusion from conditional release covers specified convictions, with an express exception for the felony in Article 37 of Law 182/1960. Do not simplify it to “all drug convictions are excluded” without checking the Article 37 carve-out.
+
+## 20.4 Law 396/1956 — current consolidated text and amendment chain
+
+A consolidated Arabic text reflecting Law 14/2022 is now available:
+https://www.aldhshan.com/2026/06/396-1956.html
+
+Additional full text source:
+https://manshurat.org/node/63717
+
+Known amendment chain identified from the consolidated text and secondary legislative review:
+- Law 57/1968;
+- Law 5/1972;
+- Law 23/1973;
+- Law 87/1973;
+- Law 119/1974;
+- Law 91/1976;
+- Law 152/2001;
+- Law 6/2009;
+- Law 49/2014;
+- Law 106/2015;
+- Law 6/2018;
+- Law 19/2020;
+- Law 14/2022.
+
+The amendment chain should be checked against Gazette issue covers and all intervening instruments; the list is a source-derived register, not a final certified consolidation. The Constitutional Supreme Court judgment in Case 49/30 judicial (3 March 2018) held Article 81 unconstitutional to the extent it failed to require proof that papers to be served were delivered to the prisoner personally. This constitutional holding must be integrated into the operative-text layer and not left as a footnote only.
+
+## 20.5 Law 182/1960 — original Official Gazette text source acquired
+
+**Law 182/1960** on narcotics control, use and trafficking:
+- Official Gazette issue 131, 13 June 1960; commencement one month after publication under Article 63 (the Gazette date is 13 June; the statutory commencement date is therefore 13 July 1960).
+- EDA-hosted Gazette PDF: https://www.edaegypt.gov.eg/media/ekgifxb3/1960-182.pdf
+- Gazette text extraction: https://www.edaegypt.gov.eg/media/ekgifxb3/1960-182.pdf
+- Current consolidated text / schedules should be versioned separately from the original 1960 statute; do not treat the original 1960 annexes as current.
+
+**Selected actual statutory text:**
+
+**مادة (١):**
+تعتبر جواهر مخدرة في تطبيق أحكام هذا القانون المواد المبينة في الجدول رقم (١) – الملحق به، وتستثنى منها المستحضرات المبينة بالجدول رقم (٢).
+
+**مادة (٢):**
+يحظر على أي شخص أن يجلب أو يصدر أو ينتج أو يملك أو يحرز أو يشتري أو يبيع جواهر مخدرة أو يتبادل عليها أو ينزل عنها بأي صفة كانت أو أن يتدخل بصفته وسيطاً في شيء من ذلك إلا في الأحوال المنصوص عليها في هذا القانون وبالشروط المبينة به.
+
+**مادة (٣):**
+لا يجوز جلب الجواهر المخدرة أو تصديرها إلا بمقتضى ترخيص كتابي من الجهة الإدارية المختصة.
+
+**مادة (٧):**
+لا يجوز الاتجار في الجواهر المخدرة إلا بعد الحصول على ترخيص بذلك من الجهة الإدارية المختصة في كل من الإقليمين.
+
+**مادة (٦٣):**
+ينشر هذا القانون في الجريدة الرسمية، ويعمل به في إقليم مصر بعد شهر من تاريخ نشره، ويتولى وزير الاقتصاد إصدار القرارات اللازمة لتنفيذه.
+
+**PDF source-integrity warning:** the EDA PDF text extraction appears to interleave columns/pages from another Gazette item (the extracted lines 36–50 contain unrelated cotton-trading provisions before continuing with Article 4 onward). The PDF is the official-hosted issue source, but its machine text layer is not a reliable linear transcription. Use the Gazette page images or a separate full transcription for exact Article 1–63 sequencing. The official PDF must not be represented as a clean, verified 63-article text layer.
+
+## 20.6 Decision 600/2023 — full Official Gazette replacement schedules acquired
+
+**Egyptian Drug Authority Decision 600/2023**, Egyptian Gazette supplement issue 200 bis (أ), 10 September 2023, replaced all schedules annexed to Law 182/1960.
+
+- Official EDA Gazette PDF (2,046 extracted lines): https://www.edaegypt.gov.eg/media/hwdfqm5o/القرار-الوزاري-رقم-600-لسنة-2023_.pdf
+- Publication date and operative provisions: Official Gazette issue 200 تابع (أ), 10 September 2023.
+- The PDF includes the signed two-article decision, explanatory memorandum and replacement schedules.
+
+**المادة الأولى:**
+تستبدل الجداول المرافقة بهذا القرار، بالجداول الملحقة بالقانون رقم ١٨٢ لسنة ١٩٦٠ المشار إليه.
+
+**المادة الثانية:**
+ينشر هذا القرار في الوقائع المصرية، ويعمل به من اليوم التالي لتاريخ نشره.
+
+The explanatory memorandum states that the replacement standardized chemical naming and table numbering, aligned schedules with international lists, and introduced group-based listing to cover synthetic drug families and their derivatives. This is a full Gazette source and should be retained as a historical schedule version only, because Decision 44/2026 later replaces the schedules.
+
+## 20.7 Health Minister Decision 44/2026 — current replacement schedules, full text route found
+
+**Decision 44/2026**, Minister of Health and Population, issued and published 17 February 2026, Egyptian Gazette issue 39 تابع (ج); effective on publication (17 February 2026). It replaces the schedules annexed to Law 182/1960.
+
+- Eastlaws full-text page / schedule content: https://www.eastlaws.com/legislation-full-text/ar/egypt/health-population-minister-decision/17-02-2026/no-44?id=5386660&type=1
+- SIS official announcement confirming Decision 44/2026 and the Constitutional Supreme Court ruling: https://sis.gov.eg/ar/المركز-الإعلامي/الأخبار/وزير-الصحة-يصدر-قرار-ا-عاجل-ا-لمواجهة-ظاهرة-تعاطي-المواد-المخدرة/
+- Official decision is described as implementing the Constitutional Supreme Court judgment of 16 February 2026 in Constitutional Case 33/47 (judicial constitutional), which found certain prior procedures for changing the schedules unconstitutional.
+- Full schedule text is available through the Eastlaws indexed page. Its indexed text includes the decision's two operative articles and extensive replacement schedules (Table 1, sections A and B and further tables).
+
+### Operative Arabic text captured
+
+**مادة (١):**
+تستبدل الجداول المرافقة لهذا القرار، بالجداول الملحقة بالقانون رقم ١٨٢ لسنة ١٩٦٠ المشار إليه.
+
+**مادة (٢):**
+ينشر هذا القرار في الوقائع المصرية، ويعمل به من تاريخ نشره.
+
+The replacement Table 1 includes, among other entries, cocaine, heroin, 6-MAM, and chemically defined families including naphthoylindoles, cyclohexylphenols, indazole carboxamides, substituted cathinones, phenethylamines, fentanyl analogues and additional synthetic compounds. These are legislative schedule classifications, not an exhaustive transcription here.
+
+**Critical status distinction:** Decision 44/2026 is the currently identified replacement-schedule instrument as of 20 November 2026. Decision 600/2023 should remain in the version history but must not be used as the current schedule. The full Gazette PDF for Decision 44/2026 has not yet been independently located in the official EDA/Gazette repository; Eastlaws currently supplies the full-text route, and SIS corroborates the issuance and constitutional trigger. Obtain the official Gazette PDF and archive all schedules as the next acquisition priority.
+
+## 20.8 Weapons and ammunition Law 394/1954 — current text, amendment instruments and Arabic provisions acquired
+
+**Original Law 394/1954:**
+- Full Arabic transcription / operative text: https://www.laweg.net/framePlain.aspx?NID=22117&action=viewactivepages&itemid=20760&type=6
+- Alternative consolidated text: https://lawyeregypt.net/قانون-الأسلحة-والذخائر-رقم-394-لسنة-1954/
+- Alternative current text, last claimed updated 2021: https://kanonmisr.com/ar/wp-content/uploads/2021/08/قانون-الاسلحة-والذخائر-رقم-394-لسنة-1954-حسب-اخر-تعديل-تم-في-2021.pdf
+- Original Gazette date discrepancy: Wikisource says 8 June 1954, while LAWEG and Manshurat catalogue say 8 July 1954. The LAWEG text identifies Gazette issue 53 bis dated 8 July 1954. The 8 July date is preferred provisionally; verify the actual Gazette cover before finalizing.
+
+**Amendment chain now identified:**
+- Law 546/1954;
+- Law 29/1968;
+- Law 26/1978;
+- Law 101/1980;
+- Law 165/1981;
+- Law 162/2003;
+- Law 90/2012;
+- Law 129/2014;
+- Law 5/2019;
+- Law 65/2010 (specific intelligence-officer exemption);
+- Law 163/2022.
+- Schedule/implementing decisions include Interior Ministry Decisions 13354/1995 (Table 3), 7726/1998 (Table 1 item), Decision 1300/2019 (sound/air/gas weapons conditions), and other schedule decisions. PM Decision 1610/2015 is identified in a consolidated Wikisource text but its exact effect and full Gazette text still need verification.
+
+### Law 5/2019 — full operative Arabic text acquired
+
+**المادة الأولى:**
+يُستبدل بنصى المادتين (٢٥ – مكررًا، ٢٨ / فقرة أولى) من القانون رقم ٣٩٤ لسنة ١٩٥٤ فى شأن الأسلحة والذخائر النصان الآتيان:
+
+**مادة (٢٥ – مكررًا):**
+يُعاقب بالحبس مدة لا تقل عن ثلاثة أشهر، وبغرامة لا تقل عن خمسمائة جنيه ولا تزيد على خمسة آلاف جنيه، كل من حاز أو أحرز بغير ترخيص سلاحًا من الأسلحة البيضاء المبينة بالجدول رقم (١).
+وتكون العقوبة الحبس لمدة لا تقل عن ثلاثة أشهر، وغرامة لا تقل عن ألف جنيه ولا تزيد على عشرة آلاف جنيه، إذا كان حيازة أو إحراز تلك الأسلحة فى أماكن التجمعات، أو وسائل النقل، أو أماكن العبادة.
+
+**مادة (٢٨ / فقرة أولى):**
+يُعاقب بالحبس مدة لا تقل عن سنة، وبغرامة لا تقل عن عشرة آلاف جنيه ولا تزيد على خمسين ألف جنيه، كل من اتجر أو استورد أو صنع بغير ترخيص الأسلحة البيضاء المبينة بالجدول رقم (١)، أو مسدسات وبنادق الصوت وضغط الهواء وضغط الغاز وذخائرها المبينة بالجدول رقم (٥) المرافق.
+
+**المادة الثانية:**
+تضاف مادتان جديدتان برقمى (١ – مكررًا، ٢٥ – مكررًا «أ») إلى القانون رقم ٣٩٤ لسنة ١٩٥٤ المشار إليه.
+
+**مادة (١ – مكررًا):**
+يصرح بإحراز أو حيازة مسدسات وبنادق الصوت وضغط الهواء وضغط الغاز وذخائرها المبينة بالجدول رقم (٥) المرافق وفقًا للشروط والإجراءات التى يصدر بها قرار من وزير الداخلية.
+
+**مادة (٢٥ – مكررًا «أ»):**
+يعاقب بغرامة لا تقل عن خمسمائة جنيه، ولا تزيد على خمسة آلاف جنيه، كل من خالف أحكام المادة (١ – مكررًا) من هذا القانون. وفى حالة العود، تكون العقوبة الحبس مدة لا تقل عن ثلاثة أشهر، وبغرامة لا تقل عن خمسة آلاف جنيه ولا تزيد على عشرة آلاف جنيه، أو بإحدى هاتين العقوبتين.
+
+**المادة الثالثة:**
+يضاف إلى القانون رقم ٣٩٤ لسنة ١٩٥٤ فى شأن الأسلحة والذخائر جدول جديد برقم (٥) بمسمى: «مسدسات وبنادق الصوت وضغط الهواء وضغط الغاز وذخائرها»، تدرج به أنواع هذه الأسلحة والذخائر التى يحددها قرار يصدر من وزير الداخلية.
+
+**المادة الرابعة:**
+على حائزى ومصنعى مسدسات وبنادق الصوت وضغط الهواء وضغط الغاز وذخائرها الواردة بالجدول رقم (٥) المشار إليه توفيق أوضاعهم خلال ستة أشهر من تاريخ سريان قرار وزير الداخلية المحدد للشروط والإجراءات اللازمة لذلك.
+
+**المادة الخامسة:**
+ينشر هذا القانون فى الجريدة الرسمية، ويعمل به من اليوم التالى لتاريخ نشره.
+
+- Full text: https://www.eglf.org/قانون-5-لسنة-2019/
+- Gazette issue 6 تابع, 7 February 2019.
+
+### Law 163/2022 — full Official Gazette operative text acquired
+
+**Law 163/2022**, Official Gazette issue 44 تابع (أ), 3 November 2022. Full 73-line PDF transcription:
+https://gate.ahram.org.eg/media/News/2022/11/6/2022-638033396014725011-472.pdf
+
+It replaces parts of Articles 4, 8, 10, 12, 26 and 30; adds Article 4(6) and Articles 26 bis, 26 bis (a), 26 bis (b).
+
+**Selected actual Arabic text:**
+
+**مادة (٢٦ مكرراً):**
+يعاقب بالسجن المؤبد، وبغرامة لا تجاوز خمسمائة ألف جنيه كل من جلب بغير ترخيص سلاحاً نارياً أو أياً من أجزائه المبينة بالجداول أرقام (٢، ٣، ٤) من هذا القانون أو ذخائرها أو المفرقعات أو أياً من مكوناتها، ولو بقصد إدخالها لدولة أخرى.
+وإذا وقعت الجريمة المشار إليها بالفقرة الأولى من هذه المادة بقصد استعمال الأسلحة أو ذخائرها أو المفرقعات أو أياً من مكوناتها في أي نشاط يخل بالأمن العام أو بالنظام العام أو يقصد المساس بنظام الحكم أو مبادئ الدستور أو النظم الأساسية للدولة أو بالوحدة الوطنية أو السلام الاجتماعي أو للقيام بالعمل الإرهابي المنصوص عليه بالمادة (٢) من قانون مكافحة الإرهاب الصادر بالقانون رقم ٩٤ لسنة ٢٠١٥ فتكون العقوبة الإعدام.
+ويقصد بالجلب في تطبيق أحكام هذه المادة إدخال سلاحاً نارياً أو أياً من أجزائه أو ذخائرها أو المفرقعات أو أي من مكوناتها للبلاد بأية طريقة غير مشروعة عبر الحدود أو المنافذ المصرية.
+
+**مادة (٢٦ مكرراً أ):**
+يعاقب بالحبس مدة لا تزيد على ستة أشهر، وبغرامة لا تجاوز خمسة آلاف جنيه أو بإحدى هاتين العقوبتين، كل من خالف أحكام المادة (١١ مكرراً) من هذا القانون، فإذا أظهر الجاني السلاح في أحد الأماكن المشار إليها بالمادة المذكورة فتكون العقوبة الحبس لمدة لا تقل عن ستة أشهر ولا تزيد على سنتين وبغرامة لا تقل عن عشرة آلاف جنيه ولا تجاوز ثلاثين ألف جنيه.
+
+**مادة (٢٦ مكرراً ب):**
+مع عدم الإخلال بأي عقوبة أشد، يعاقب بالحبس مدة لا تقل عن ستة أشهر ولا تجاوز سنتين، وبغرامة لا تجاوز عشرة آلاف جنيه أو بإحدى هاتين العقوبتين كل من أنشأ أو أدار أو استخدم موقعاً أو حساباً خاصاً على شبكة معلوماتية يعرض صوراً أو مقاطع فيديو للأسلحة المنصوص عليها في هذا القانون، وكل من نشر أو بث بإحدى طرق العلانية شيئاً مما ذكر سلفاً للتحريض على العنف باستعراض القوة أو التلويح بها أو تخويف الغير.
+
+This amendment is material to online conduct involving weapons displays, in addition to unlicensed importation and seizure/confiscation consequences.
+
+## 20.9 Consolidated weapons text and schedule verification
+
+- Full 2021-consolidated PDF (T3): https://kanonmisr.com/ar/wp-content/uploads/2021/08/قانون-الاسلحة-والذخائر-رقم-394-لسنة-1954-حسب-اخر-تعديل-تم-في-2021.pdf
+- Full current Arabic text route including Law 163/2022 additions: https://www.aldhshan.com/2026/06/394-1954.html
+- Law 163/2022 Gazette text: https://gate.ahram.org.eg/media/News/2022/11/6/2022-638033396014725011-472.pdf
+- PM Decision 1610/2015: identified in Wikisource's consolidated text, but not yet obtained as a standalone signed instrument. Do not treat its scope as established until the decision itself is extracted.
+- Gazette date conflict for the 1954 parent law: 8 June versus 8 July 1954 remains open. LAWEG and Manshurat say 8 July; Wikisource says 8 June.
+
+## 20.10 Current acquisition progress
+
+Working estimates, not audited completion scores:
+- Discovery coverage: **98%**.
+- Actual Arabic text acquisition: **80%**.
+- Amendment and implementing-instrument mapping: **78%**.
+- Article-level extraction and QA: **62%**.
+- Lawyer verification: **0%**.
+- **Overall assigned criminal-law domain completion: approximately 58%**.
+
+This pass materially expands three clusters: prison law/regulations, weapons law/amendments, and the narcotics statute/schedules. The largest immediate acquisition gap is the official Gazette PDF and full schedule transcription of Decision 44/2026; next are the standalone 2015 weapons schedule decision, complete article-by-article text of Law 14/2022, and the prison-regulation amending decisions.
