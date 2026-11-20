@@ -1758,3 +1758,147 @@ Working estimates after acquisition of Decision 1300/2019 and the 2026 SCC decis
 - Article-level extraction and QA: **63%**.
 - Lawyer verification: **0%**.
 - **Overall assigned criminal-law domain completion: approximately 59%**.
+
+
+---
+
+# 21. Superseding narcotics-table update — Law 134/2019, Constitutional Judgment 33/47 (2026), Ministerial Decisions 44/2026 and 242/2026
+
+This section updates and supersedes any implication in section 20.7 that Decision 44/2026 is the last modification of the narcotics schedules. **Decision 242/2026 is a later amendment and is the latest located schedule instrument as at 20 November 2026.**
+
+## 21.1 Law 134/2019 — full amendment text acquired
+
+Law 134/2019, Official Gazette issue 28 bis (أ), 16 July 2019; effective 17 July 2019. It added Article 1 bis to Law 182/1960.
+
+- Full Arabic text: https://www.mohamah.net/law/نصوص-ومواد-القانون-المصري-رقم-134-لسنة-2019-بتعديل-قانون-مكافحة-المخدرات/
+- EDA official amendment register: https://edaegypt.gov.eg/ar/المرجع-التنظيمي-لهيئة-الدواء-المصرية/القوانين-واللوائح-التنفيذية/تعديلات-قانون-رقم-182-لسنة-1960/
+- Alternative full transcription: https://www.egyptlawfirm.net/قانون-رقم-134-لسنة-2019-بتعديل-بعض-أحكام-القانون-رقم-182-لسنة-1960/
+
+**المادة الأولى:**
+تضاف مادة جديدة للقانون رقم ١٨٢ لسنة ١٩٦٠ في شأن مكافحة المخدرات وتنظيم استعمالها والاتجار فيها برقم (١ مكرراً)، نصها الآتي:
+
+**مادة (١ مكرراً):**
+تعتبر في حكم الجواهر المخدرة في تطبيق أحكام هذا القانون المواد المخلقة المبينة في الجدول رقم (١) الملحق به، ويصدر بتحديد ضوابط ومعايير هذه المواد قرار من الوزير المختص.
+وتسري على هذه المواد المخلقة جميع الأحكام الواردة في هذا القانون.
+
+**المادة الثانية:**
+ينشر هذا القانون في الجريدة الرسمية، ويعمل به من اليوم التالي لتاريخ نشره.
+
+This establishes Article 1 bis as the statutory basis for applying the Law 182/1960 regime to the synthetic substances listed in Table 1. The EDA official index independently identifies the full amendment sequence, including Laws 206/1960, 40/1966, 16/1973, 61/1977, 45/1984, 122/1989, 134/2019 and 19/2020.
+
+## 21.2 Supreme Constitutional Court Judgment — Case 33/47 (constitutional), 16 February 2026
+
+**Full Arabic judgment transcription:** https://ahmedazimelgamel.blogspot.com/2026/02/16-2-2026.html  
+**Alternative full text:** https://kanonmisr.com/ar/حكم-المحكمة-الدستورية-العليا-بشأن-جداول-المخدرات/  
+**Official Court portal / judgment record:** https://www.sccourt.gov.eg/ (the individual judgment HTML/PDF route still needs to be obtained from the Court portal; the full transcription is secondary pending that capture).
+
+### Holding — exact operative disposition
+
+**فلهذه الأسباب حكمت المحكمة:**
+**أولاً:** بعدم دستورية قرار رئيس هيئة الدواء المصرية رقم ٦٠٠ لسنة ٢٠٢٣ باستبدال الجداول الملحقة بقرار رئيس الجمهورية بالقانون رقم ١٨٢ لسنة ١٩٦٠ في شأن مكافحة المخدرات وتنظيم استعمالها والاتجار فيها.
+**ثانياً:** بسقوط قرارات رئيس هيئة الدواء المصرية السابقة واللاحقة على القرار المقضي بعدم دستوريته، الصادرة في شأن تعديل الجداول الملحقة بقرار رئيس الجمهورية بالقانون المشار إليه.
+
+### Legal reasoning captured
+- Article 32 of Law 182/1960 vests the schedule-amendment power in the competent Minister of Health.
+- Law 151/2019 establishing the Egyptian Drug Authority did not transfer the criminal-law schedule-amendment power under Law 182/1960 to the Authority's Chair; the substitution of the Authority Chair for the Minister applied to pharmacy-law regulatory functions under Law 127/1955.
+- Criminal schedules that determine criminalization and punishment require a legally competent authority and a valid instrument of the same legal nature; an administrative authority cannot extend its delegated remit by analogy.
+- Decision 600/2023 was therefore unconstitutional, violating legality of offences and penalties and separation of powers.
+- The Court also ordered the fall of prior and subsequent Egyptian Drug Authority Chair decisions amending the Law 182 schedules.
+- The Court explained that the pre-existing statutory schedules and amendments regain operative force after invalidation of the instrument that replaced them, for cases concerning facts during the invalidated schedule period, until valid schedules are enacted by a legally competent authority.
+- The judgment does **not** invalidate a decision issued by the Minister of Health in exercise of the statutory authority under Article 32.
+
+**Critical distinction:** Decision 44/2026 was issued by the Minister of Health and Population, not the EDA Chair. It is therefore a legally competent replacement instrument following the judgment. Decision 242/2026 is also a Minister of Health decision and validly amends Decision 44/2026.
+
+## 21.3 Health Minister Decision 44/2026 — official Gazette PDF now acquired
+
+The previously identified Eastlaws and secondary text sources are now supplemented by an official Egyptian Drug Authority-hosted scan:
+https://dev.edaegypt.gov.eg/media/dkjooww3/قرار-وزارة-الصحة-والسكان-رقم-44-لسنة-2026-ar-2026_.pdf
+
+The decision replaced all tables annexed to Law 182/1960 and was published in Egyptian Gazette issue 39 تابع (ج), 17 February 2026, effective on publication. Its preamble cites the Constitutional Court judgment in Case 33/47 of 16 February 2026. The official EDA-hosted scanned PDF is the preferred primary text; secondary transcriptions are aids only.
+
+## 21.4 Health Minister Decision 242/2026 — full official PDF and operative text acquired
+
+**Decision 242/2026**, Ministry of Health and Population, issued 20 July 2026, published in Egyptian Gazette issue 179, 17 August 2026; effective 18 August 2026.
+
+- Official EDA-hosted Gazette PDF (4 pages): https://dev.edaegypt.gov.eg/media/lydpgqi5/لمكافحة-المخدرات_2026_242-وزير-الصحة.pdf
+- EDA official legal index listing both Decision 44/2026 and Decision 242/2026: https://www.edaegypt.gov.eg/ar/المرجع-التنظيمي-لهيئة-الدواء-المصرية/القوانين-واللوائح-التنفيذية/تعديلات-قانون-رقم-182-لسنة-1960/
+- Gazette issue 179/2026 text metadata: https://www.mksegypt.org/public/index.php/ar/nashras/48
+- Secondary article explaining the amendment: https://www.elwatannews.com/news/details/8340822
+
+### Actual Arabic operative text
+
+**قرار رقم ٢٤٢ لسنة ٢٠٢٦**
+بشأن تعديل الجداول الملحقة بالقانون رقم ١٨٢ لسنة ١٩٦٠ في شأن مكافحة المخدرات وتنظيم استعمالها والاتجار فيها والمستبدلة بقرار وزير الصحة والسكان رقم ٤٤ لسنة ٢٠٢٦.
+
+**المادة الأولى:**
+يُستبدل بنص البند (١٢) الوارد بالجدول رقم (١) – القسم الأول (ب) المرافق لقرار وزير الصحة والسكان رقم ٤٤ لسنة ٢٠٢٦ المشار إليه النص الآتي:
+
+**المادة الثانية:**
+ينشر هذا القرار في الوقائع المصرية، ويعمل به من اليوم التالي لتاريخ نشره.
+
+صدر في ٢٠/٧/٢٠٢٦.
+وزير الصحة والسكان
+أ.د/ خالد عاطف عبد الغفار
+
+### Substance of the schedule amendment, from the official PDF pages 10–11
+- It replaces item 12 (the phenethylamine group) in Table 1, Section 1(B), Decision 44/2026.
+- The revised item retains the specified phenethylamine compounds and group description, but expressly lists a set of compounds outside the controlled derivative set, including Venlafaxine, Desvenlafaxine, Carbidopa, Levodopa, Foscabidopa, Melevodopa and Foslevodopa.
+- It adds five entries to Table 3, Section 3 (materials subject to certain restrictions on narcotic substances): items 57–60 are Amyl nitrite, Isoamyl nitrite, Isopropyl nitrite and Isobutyl nitrite; item 61 is Cannabidiol (CBD), with its scientific description printed in the Gazette schedule.
+
+The four-page official PDF has been opened and visually checked on the schedule pages. It is an image-first Gazette scan, so OCR text is incomplete; page-image review is the preferred reading for the table rows.
+
+### Current schedule chain as at 20 November 2026
+1. Original Law 182/1960 schedules and amendments validly made under the statute.
+2. EDA Chair Decision 600/2023 (and related EDA Chair decisions) were struck down / fell by the Constitutional Court judgment of 16 February 2026.
+3. Minister of Health Decision 44/2026 replaced the schedules by a competent authority after the judgment.
+4. Minister of Health Decision 242/2026 amended Decision 44/2026, effective 18 August 2026.
+5. No later schedule amendment was located in the EDA legal index through the present research pass. This is a currentness check, not a guarantee no later Gazette item exists.
+
+## 21.5 Attorney General Circular 1/2026 — implementation lead, text not yet acquired
+
+The Attorney General issued Circular Book No. 1/2026 on 23 February 2026 to implement the Constitutional Court judgment. News reports reproduce its purpose and some instructions but the complete signed Arabic circular has not yet been obtained.
+
+- Secondary report: https://www.masrawy.com/news/news_cases/details/2026/2/23/2947547/النائب-العام-يحدد-مصير-متهمي-جداول-المخدرات
+- Secondary report: https://www.vetogate.com/5601042
+- Court judgment full transcription: https://ahmedazimelgamel.blogspot.com/2026/02/16-2-2026.html
+
+The circular is important for pending prosecutions, judgments based on the invalidated schedules, and the procedural handling of the judgment's retroactive effect. It must be acquired as an independent instrument; do not substitute media summaries for its text.
+
+## 21.6 Law 182/1960 full amendment register — EDA official index reconciled
+
+The EDA official index lists these amendment statutes:
+- Law 206/1960 (12 July 1960);
+- Law 40/1966 (18 August 1966);
+- Law 16/1973 (5 April 1973);
+- Law 61/1977 (24 November 1977);
+- Law 45/1984 (31 March 1984);
+- Law 122/1989 (4 July 1989);
+- Law 134/2019 (16 July 2019);
+- Law 19/2020 (18 March 2020).
+
+Additional relevant currentness entries:
+- Law 95/2003 replaced the obsolete hard-labour penalties throughout criminal statutes with life imprisonment / rigorous imprisonment, as applicable.
+- Constitutional Court Judgment 49/17 judicial constitutional (published 27 June 1996) invalidated Article 48 bis of Law 182/1960.
+- Law 134/2019 added Article 1 bis for synthetic substances.
+- Law 19/2020 repealed the second paragraph of Article 46 bis (a).
+
+The older amendment statutes 206/1960, 40/1966, 16/1973 and 61/1977 remain to be individually acquired and transcribed. Law 45/1984 and Law 122/1989 are already identified in the consolidated text and require standalone Gazette-text capture, particularly for penalty provisions.
+
+## 21.7 Correction to earlier narcotics notes
+- Decision 44/2026 is no longer the latest schedule instrument; Decision 242/2026 amended it.
+- Decision 600/2023 was not a valid current schedule instrument after the Constitutional Court judgment. It was struck down, and earlier/later EDA Chair schedule decisions fell with it.
+- The competent schedule-amending authority under Article 32 of Law 182/1960 is the Minister of Health and Population; EDA Chair decisions are not to be treated as valid replacements.
+- The 2026 judgment restores the prior valid schedules for the relevant period and cases until replaced by a valid legal instrument; Decision 44/2026 is the subsequent valid replacement, with Decision 242/2026 its current amendment.
+- Do not apply Decision 600/2023's tables as current, nor use Decision 44/2026 without Decision 242/2026's later item-level changes.
+
+## 21.8 Progress recalibration
+
+Working estimates after acquiring Law 134/2019, the complete official Decision 242/2026 PDF, the official Decision 44/2026 PDF and the full judgment text:
+- Discovery coverage: **99%**.
+- Actual Arabic text acquisition: **83%**.
+- Amendment and implementing-instrument mapping: **82%**.
+- Article-level extraction and QA: **66%**.
+- Lawyer verification: **0%**.
+- **Overall assigned criminal-law domain completion: approximately 61%**.
+
+Priority gaps now include the original official Court PDF for Judgment 33/47, Attorney General Circular 1/2026, older Law 182 amendments, full article-by-article extraction of the 2026 schedules (particularly Decision 44 plus 242), and the standalone 2015 weapons schedule instrument.
