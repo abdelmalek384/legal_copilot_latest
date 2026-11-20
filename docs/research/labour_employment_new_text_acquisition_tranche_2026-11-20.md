@@ -377,11 +377,21 @@ Its preamble cites ILO Arab Labour Organization Conventions 13/1981 (work enviro
 
 The full Official Gazette supplement has now been located as an IDSC/MELES record: https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full. It is issue 225 supplement (A), dated 12-10-2026, Ministry of Labour, Amiri Press; the original PDF bundle is 6.13 MB and contains all five decisions. Obtain and inspect the PDF plus its item-specific licence rather than treating the individual secondary pages as the definitive source.
 
-Additional substantive findings from the 248/2026 secondary text:
-- Serious accidents: notification within 24 hours when occurring inside the establishment, and within 48 hours when occurring outside.
-- Occupational disease notification: within 24 hours after the health-insurance report.
+Additional substantive findings from the 248/2026 Arabic reproduction (https://ahmedazimelgamel.blogspot.com/2026/10/248-2026.html; corroborating press text https://www.youm7.com/story/2026/10/28/7590406):
+
+Exact Arabic Article 3:
+> تسري أحكام هذا القرار على جميع مواقع العمل، والمنشآت وفروعها أيًا كان نوعها، أو تبعيتها، سواء كانت برية أو بحرية أو جوية، وعلى المسطحات المائية بجميع أنواعها ووسائل النقل المختلفة.
+
+Exact Arabic Article 4 opening:
+> تلتزم كافة المنشآت وفروعها بإخطار الجهة الإدارية المختصة بما يلي: كل حادث جسيم خلال 24 ساعة من وقوعه داخل المنشأة أو الفرع أو موقع عمل، وخلال 48 ساعة من وقوعه خارج حدود المنشأة أو الفرع أو موقع العمل، ويتم الإخطار على النموذج رقم 1 المرافق بهذا القرار.
+
+Further provisions surfaced in the article-level text:
+- Occupational disease notification: within 24 hours after diagnosis is confirmed by the health-insurance authority.
 - Establishments with 30 or more workers: semi-annual statistics on ordinary/chronic/occupational diseases, serious accidents and work injuries.
-- False statistics/data are treated as a serious violation even after the reporting deadline.
+- Serious accidents include death; expected permanent disability of 35% or more; third-degree burns or greater; injury to multiple persons at the same site/time; and fires, collapses, explosions or hazardous-substance leaks causing work stoppage for one or more shifts.
+- False statistics/data may be treated as a serious violation even after the reporting deadline.
+
+The source reproduction also links the new decision to the prior Decision 126/2003 on workplace-injury forms/statistics. Confirm the exact repeal/transition clause and transcribe every annexed form from the Gazette PDF.
 
 Decision 249/2026 secondary material indicates establishments with 50+ workers as a threshold, subject to risk classifications and exceptions; the exact table must be transcribed from the Gazette PDF. Decision 252/2026 Arabic text lead: https://www.almasdar.com/print.aspx?id=175156. It begins with definitions and governs licensing/training systems for OSH; extract the full text and any annexes. The Gazette PDF is now a concrete full-issue acquisition target, not an unidentified source gap.
 
