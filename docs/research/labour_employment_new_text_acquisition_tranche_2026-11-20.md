@@ -279,10 +279,17 @@ Source discrepancy: the Gazette scan's preamble as OCR-rendered states “قان
 ## 2. Additional 2025 decisions discovered through Gazette cross-indexing
 
 ### Decision 187/2025 — approval of employee resignations
-EastLaws full-text lead: https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/14-09-2025/no-187?id=2177898&type=1  
-Decision date/publication shown as 14-09-2025; exact Gazette issue/page and an open full text are not yet obtained.
+Alternative article-by-article text source: https://www.youm7.com/story/2025/9/15/7122177 (15-09-2025; reproduces all nine articles in text and displays images of the signed decision and annex forms).  
+Official Ministry announcement lead: https://www.labour.gov.eg/ar/الأخبار/وزير-العمل-ي-صدر-قرار-ا-وزاري-ا-يوضح-ضوابط-وآليات-إعتماد-الإستقالات-العمالية-طبق-ا-لقانون-العمل-الجديد/  
+Legal-library metadata: https://www.mohamedabdelfattah.com/library/d/decree-2025-187  
+Decision date/effective date shown as 14-09-2025. Exact Gazette issue/page still not located.
 
-Search result identifies subject: mechanisms and controls for labour-office approval of resignations. Article 1 requires a written resignation signed by the worker or special attorney and approved by the competent labour office. Full text access is subscription-gated. Find an official Ministry PDF or Gazette scan; preserve as a source gap.
+All nine articles are now represented in the alternative text source. Key Arabic text from Article 1:
+> للعامل أن يُقدم استقالته كتابة لجهة عمله بشرط أن تكون مُوقعة من العامل أو من وكيله الخاص، ومعتمدة من أحد مكاتب علاقات العمل بمديريات العمل في المحافظات...
+
+Article 4: service ends only by acceptance or expiry of ten days from submission; the employee must continue working pending the decision/expiry. Article 5 allows written withdrawal within ten days of notification of acceptance, approved by the same labour-relations office. Article 6 excludes mutual termination agreements (التقايل) from the resignation-approval procedure but requires the agreement to record payment of all financial entitlements. Article 7 requires free will without coercion and settlement of entitlements. Article 8 requires the service certificate and return of deposited papers/tools. Article 9 makes the decision effective from 14-09-2025 and repeals conflicting prior provisions.
+
+Source classification: complete secondary article-by-article reproduction plus images of the signed decision/forms; not yet page-matched to Gazette. This is no longer an unavailable-text blocker, but Gazette issue/page verification remains open.
 
 ### Decision 267/2025 — apprenticeship / vocational progression
 Full Arabic transcription: https://lawhub.info/eg/?p=17307  
@@ -330,7 +337,25 @@ Law 14/2025 Article 137 (official-text reproduction) requires employers with 10+
 Exact Article 137 opening from the official-source reproduction:
 > على كل صاحب عمل يستخدم عشرة عمال فأكثر أن يعد لائحة بقواعد تنظيم العمل وفقا لطبيعة النشاط...
 
-The decision's full Arabic PDF is now identified. It should be acquired/parsed first because it directly addresses the user's employment-contract, wage, hours, leave, discipline and termination topics. Need extract exact article count, pages, forms, and commencement clause.
+The secondary full Arabic reproduction identifies **66 numbered articles**. It includes complete text for the core work-regulation lifecycle. Exact provisions extracted from the reproduction:
+
+> المادة (7) — يقدم طلب التصديق على اللائحة إلى مديرية العمل المختصة (مكتب علاقات العمل) من صاحب العمل أو الممثل القانوني للمنشأة مرفقًا به... ثلاث نسخ من مشروع اللائحة موقعة من المدير المسئول بالمنشأة وممهورة بخاتمها على كل صفحة...
+
+> المادة (8) — يجب على مديرية العمل المختصة موافاة المنظمة النقابية العمالية المختصة أو المفوض العمالي، بحسب الأحوال، بنسخة من مشروع اللائحة خلال ثلاثة أيام عمل على الأكثر من تاريخ استلامه من المنشأة.
+
+> المادة (46) — تحدد اللائحة واجبات العمال والأعمال المحظورة عليهم... كما تحدد ضمانات التحقيق مع العمال ومساءلتهم، مع مراعاة ما يلي: البدء في التحقيق خلال مدة لا تجاوز سبعة أيام من تاريخ اكتشاف المخالفة وألا تجاوز مدة التحقيق ثلاثة أشهر، إلا إذا ظهرت أدلة جديدة؛ وعدم جواز توقيع الجزاء بعد مضى ثلاثين يوما من انتهاء التحقيق.
+
+> المادة (61) — يجب أن تفرد اللائحة أحكام مستقلة لكل سبب من أسباب إنهاء علاقة العمل دون خلط بين الاستقالة الحكمية والصريحة، أو بين الاستقالة ومهلة الإخطار، أو بين الإنهاء والفصل التأديبي.
+
+> المادة (62) — يحظر النص في اللائحة على مهلة إخطار للاستقالة، ويجوز الاتفاق على مهلة إخطار فقط في حالات إنهاء العلاقة باتفاق الطرفين أو التقابل أو الفسخ بالتراضي.
+
+> المادة (64) — تلتزم المنشأة بمراجعة السياسات واللوائح الداخلية وتقييمها بشكل دوري...
+
+> المادة (65) — يجوز تعديل اللائحة، بناء على مقتضيات العمل، وبما لا يخل بالحقوق المكتسبة للعاملين...
+
+> المادة (66) — ينشر هذا القرار فى الوقائع المصرية، ويعمل به من اليوم التالي لتاريخ نشره.
+
+Decision date: 28-07-2026; Gazette issue 176 supplement, 13-08-2026. The text source therefore supplies an article count and detailed clauses, while the official DSpace item identifies the Gazette issue and the Arabic PDF. The PDF's item-specific licence still requires review before copying or redistribution. Page-by-page Gazette matching and annex capture remain pending.
 
 ### 3.2 Decisions 248–252/2026 — occupational health and safety package
 Ministry of Labour announcement (20-10-2026): https://www.labour.gov.eg/ar/الأخبار/وزير-العمل-يصدر-5-قرارات-تنفيذية-لتعزيز-منظومة-السلامة-والصحة-المهنية-وتأمين-بيئة-العمل/  
@@ -350,7 +375,15 @@ Decision 250/2026 Arabic opening from secondary reproduction:
 
 Its preamble cites ILO Arab Labour Organization Conventions 13/1981 (work environment), 6/1976 (work levels), 16/1983 (workers' social services) and 19/1998 (labour inspection), plus relevant fire/radiation/environment legislation. It also references Egypt's Maritime Labour Convention accession. Obtain all schedules and annexed tables: exposure limits, heat/noise/radiation, excavation, demolition, scaffolds, cranes and hot work. Do not use summaries as operative rules.
 
-Decision 249/2026 secondary summaries identify establishments with 50+ workers (and risk-tiered categories) as a key threshold for OSH units/committees; verify exact thresholds from signed text. A secondary legal library warns its text is for guidance and currentness not yet verified.
+The full Official Gazette supplement has now been located as an IDSC/MELES record: https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full. It is issue 225 supplement (A), dated 12-10-2026, Ministry of Labour, Amiri Press; the original PDF bundle is 6.13 MB and contains all five decisions. Obtain and inspect the PDF plus its item-specific licence rather than treating the individual secondary pages as the definitive source.
+
+Additional substantive findings from the 248/2026 secondary text:
+- Serious accidents: notification within 24 hours when occurring inside the establishment, and within 48 hours when occurring outside.
+- Occupational disease notification: within 24 hours after the health-insurance report.
+- Establishments with 30 or more workers: semi-annual statistics on ordinary/chronic/occupational diseases, serious accidents and work injuries.
+- False statistics/data are treated as a serious violation even after the reporting deadline.
+
+Decision 249/2026 secondary material indicates establishments with 50+ workers as a threshold, subject to risk classifications and exceptions; the exact table must be transcribed from the Gazette PDF. Decision 252/2026 Arabic text lead: https://www.almasdar.com/print.aspx?id=175156. It begins with definitions and governs licensing/training systems for OSH; extract the full text and any annexes. The Gazette PDF is now a concrete full-issue acquisition target, not an unidentified source gap.
 
 Decision 248/2026 relates to older Decision 126/2003 on workplace-injury forms/statistics. Record supersession/partial repeal only after reading the repeal clause.
 
@@ -386,9 +419,9 @@ The listed sectors include ICT (with specified exceptions), financial/accounting
 
 This tranche newly surfaced 25 instrument records (18 ministerial decisions from 2025 and 6 ministerial decisions plus one Prime Minister decision from 2026). This is a tranche denominator, not the total universe of Egyptian labour instruments.
 
-- 17/25 (68%): searchable Arabic full-text sources located (including secondary reproductions) for direct article extraction.
-- 6/25 (24%): substantial Arabic text or official text fragments located, but complete text/schedules require extraction.
-- 2/25 (8%): Gazette/PDF lead identified but not yet article-extracted (Decisions 162/2026 and 301/2025).
+- 19/25 (76%): searchable Arabic full-text sources located (including secondary reproductions) for direct article extraction.
+- 5/25 (20%): substantial Arabic text or official text fragments located, but complete text/schedules require extraction (the five 2026 OSH decisions).
+- 1/25 (4%): Gazette/PDF lead identified but not yet article-extracted (Decision 301/2025).
 - Gazette-anchored: 24/25 have an issue/date anchor or official catalogue record; Decision 187/2025 still needs issue/page confirmation.
 - Exact Gazette page matching: not yet complete for this tranche; record as pending rather than infer.
 - Qualified Egyptian lawyer review: 0%.
