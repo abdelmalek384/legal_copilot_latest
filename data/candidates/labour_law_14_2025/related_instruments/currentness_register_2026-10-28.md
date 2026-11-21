@@ -1,6 +1,6 @@
 # Labour Law No. 14 of 2025 — implementing-instrument currentness register
 
-**As-of date:** 2026-10-31  
+**As-of date:** 2026-11-21  
 **Purpose:** Track official-source leads that can affect interpretation or currentness of candidate cards. This is a research register, not a complete statement of current law.  
 **Activation status:** All candidate cards remain provisional; `search_eligible: false`.
 
@@ -313,3 +313,12 @@ The repository End User Agreement (last updated 2023-05-04) permits personal, no
 The Egyptian Ministry of Labour's 2025-12-26 announcement PDF hosted by the State Information Service was opened at https://mediadr.sis.gov.eg/bitstream/handle/123456789/117216/MOM20251226_0805.pdf?isAllowed=y&sequence=4. After the Ministry announcement, the PDF contains Decision 294/2025 Articles 1–4. Article 1 lists twelve paid-holiday categories and allows the Minister to substitute another day, particularly to unify national holidays. Article 2 grants full-pay leave, prohibits deduction from annual leave, and provides double pay or a substitute day on written request if work is required. Article 3 grants non-Muslim workers additional religious-holiday leave under the relevant Prime Minister decision. Article 4 provides for publication in Egyptian Proceedings and commencement the following day. The DSpace issue 291 metadata is dated 2025-12-25; EastLaws independently states commencement 2025-12-26, which is consistent with Article 4.
 
 **Evidence boundary:** this is a Ministry-hosted text copy, not the Official Gazette issue PDF or page-image comparison. SIS reuse terms, bulk collection permission and commercial reuse permission were not reviewed; no local bytes/hash were obtained. Keep Gazette comparison, rights and counsel gates open.
+
+
+## B. Currentness update — PM Decision 982/2026 remote-work Sunday scheme (2026-11-21)
+
+**New official Cabinet evidence:** At its meeting dated 30 September 2026, the Cabinet approved a *draft decision* to suspend the operation of PM Decision 982/2026, which had imposed Sunday remote work during specified monthly periods. Official Cabinet meeting record: https://www.cabinet.gov.eg/Meeting/Details/11910 (see heading/date and item 1 under “القرارات”, lines 9–11 and 29–30).
+
+The Cabinet record proves approval of a draft, not the final signed/published PM decision. As of this research pass, no final decision number, signed text, Official Gazette issue/date/page or express commencement clause for the suspension instrument was located. Do not mark PM Decision 982/2026 formally repealed/suspended solely on the Cabinet approval notice. Equally, do not treat the earlier month-specific extensions (PM Decisions 1305, 1572, 2033, 2377 and 2590/2026) as a continuing open-ended authority after September; each identified extension was time-limited to its stated month.
+
+**Legal-data status:** cabinet_approved_draft_to_suspend=true; final_signed_instrument_located=false; gazette_verified=false; current_operative_status=unresolved_pending_final_instrument. Search targets: Official Gazette issues after 30 September 2026, Amiri Press indexed PM decisions, Cabinet follow-up minutes, and any circular implementing the cessation. Keep the 982/2026 record and its extensions historically versioned; do not delete them.
