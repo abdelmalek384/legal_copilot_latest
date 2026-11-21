@@ -516,12 +516,12 @@ The 17 November national baseline remains the denominator reference; this update
 
 ### Labour-domain progress
 
-- **Assigned labour-domain research estimate: 68% (provisional project-management estimate; not legal verification).**
+- **Assigned labour-domain research estimate: 69% (provisional project-management estimate; not legal verification).**
 - Law 14/2025 implementing decisions: 35 Ministry of Labour decisions identified against the 68 announced Ministry decisions (51.5% discovery coverage). The Ministry-only count is unchanged by new Prime Minister decisions.
 - Identified formal instrument inventory: 51/51 records now have substantive text extracts or structured article maps (100% of identified inventory only; not the full legal universe).
 - Law 14/2025 delegation matrix: 53 explicit statutory delegation rows; not proof that all delegations have been identified.
 - New/updated source acquisitions: full searchable official Gazette PDFs for Law 148/2019 and PM Decision 2437/2021; official MOF Gazette PDF for Social Security Law 12/2025; Law 11/2026 amendment to Law148 Article111; NOSI Decision2/2026 bond schedule lead; PM Decisions 3356/2026 and 3561/2026; PM Decision3165/2026 official Amiri Press text; full text/source upgrades for Decisions 289/2025 and 291/2025; currentness update for PM Decision982/2026.
-- Historical PM Decision705/2014 is now reported repealed by PM Decision3561/2026; legacy transition register updated pending original Gazette page-image comparison.
+- Historical PM Decision705/2014 is now reported repealed by PM Decision3561/2026; legacy transition register updated pending original Gazette page-image comparison. Law90/2005 has also been acquired as a missing amendment to Law12/2003: Arts70,71,72,248 replaced; SCC Case26/27 invalidated Arts71–72 and the specified Art70 phrase; Law180/2008 then replaced Arts70–72. Original Law90 Gazette scan remains outstanding.
 - Lawyer-reviewed=0 and verified=0 for this Agent 4 research pass. No approval flags were changed.
 
 ### National corpus percentage — unchanged
