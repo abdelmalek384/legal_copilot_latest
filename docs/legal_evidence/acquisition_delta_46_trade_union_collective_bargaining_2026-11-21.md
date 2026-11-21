@@ -92,3 +92,11 @@ Issued 18 April 2022. It determines collective-bargaining levels, subjects, mech
 - This upgrades Decision35/2018 from secondary-transcription-only to an acquired Gazette facsimile and full Arabic text. It also supplies the official Gazette text for Decision37/2018.
 - **Unresolved anomaly:** the TOC says Decision35/2018, but the OCR-extracted body heading on printed p.3 appears to say Decision25/2018. The Ministry index, NATLEX metadata, subject, and independent transcription all identify Decision35/2018. Treat the identity as provisionally matched, not visually certified, until the page image is inspected.
 - Corrected status: Decision35/2018 complete 48-article Gazette facsimile text acquired; page-image/number discrepancy unresolved. Decision36/2018 complete Gazette facsimile and model-bylaw annex acquired. Decision37/2018 full Gazette text and timetable acquired; historical cycle only.
+
+
+## 9. Numbering discrepancy — unified union-establishment manual
+
+- The Ministry's 12 October 2022 announcement identifies the instrument as **Ministerial Decision 227/2022** approving the Unified Procedures Manual: https://www.labour.gov.eg/ar/الأخبار/في-كلمة-وزير-القوى-العاملة-أمام-الاجتماع-الثلاثي-الخامس-لمشروع-تعزيز-علاقات-العمل-بحضور-وفد-العمل-الدولية/
+- ILO supervisory material also refers to the manual as adopted by **Ministerial Resolution 227/2022**: https://normlex.ilo.org/dyn/nrmlx_en/f?p=NORMLEXPUB:13101:0::NO::P13101_COMMENT_ID:2556319
+- A Ministry-hosted December 2022 newsletter PDF search result instead says **277/2022**. This conflicts with the Ministry's October announcement and the ILO record; likely a transposition/typographical error, but do not silently normalize until the signed decision/manual cover page is obtained.
+- The manual itself has not yet been retrieved. Keep 227 as the better-supported working identifier, preserve 277 as a source discrepancy, and do not treat the manual's detailed steps as authenticated operative text until the underlying document is obtained.
