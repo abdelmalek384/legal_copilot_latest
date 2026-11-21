@@ -91,7 +91,7 @@ A title-based harvest cannot establish completeness. The law itself delegates do
 The companion CSV contains **52 explicit statutory delegation rows**. This is a mapping of the delegations surfaced from the accessible Law 14/2025 text, not proof that all possible delegations have been captured. The formal-instrument register contains 51 identified instruments; 35 Ministry of Labour decision numbers are identified against the 68 Ministry decisions cited in official 2025 announcements. Corpus completeness remains open.
 
 
-## 17 November 2026 follow-up — Prime Minister fund/council delegations
+## 17 November 2026 follow-up — Prime Minister fund/council delegations (historical snapshot; superseded where noted below)
 
 - **Article18 / Higher Council for Human Resource Skills:** Cabinet approved a *draft* PM decision on 28 October 2026 (official Cabinet meeting 11912: https://cabinet.gov.eg/Meeting/Details/11912). The draft summary specifies a four-year membership term, quarterly meetings, ministerial/employer/worker representation, disability-council representation, skills policy, education/training alignment and a national skills programme. The Official Gazette 2026 collection's visible issues through 12 November (issues 44, 44 bis A, 45 and 46) did not surface a final PM decision for this Council; no final number is assigned. Law Article18 required the PM decision within six months of the Law's commencement. With the general commencement candidate of 1 September 2025, the six-month date is 1 March 2026; the Cabinet draft approval is later. This is a timeline lead for counsel, not a finding about legal validity or compliance.
 - **Article20 / Training and Qualification Fund:** PM Decision3356/2026 was published in Official Gazette issue44 bis(A) on 1 November 2026 and takes effect the next day under Article18 of the secondary text. It maps the Fund's 18-article governance and contribution framework. It expressly repeals PM Decision1543/2003 by Article17. The separate Ministerial full-exemption decision under PM Decision3356 Article3 remains unlocated.
@@ -112,3 +112,26 @@ A new historical-instrument chain was recovered:
 - **Current gap:** Law14 Article273 now requires a Prime Minister decision to form the Fund Board, specify its powers/system and accounting rules; it also specifies EGP8–16 per worker/year for establishments with 20+ and permits deductions where the employer supplies services or a better benefit. No new PM Article273 decision was found in this pass. The old Ministerial Decision16/2012's composition/payment rules must not be assumed to satisfy the new PM-level delegation.
 
 **Source hierarchy:** Decision16/2012 is a secondary transcription at Laweg, not a retrieved Gazette binary. The Ministry's current legislation index is an official locator for Decisions215/2003 and217/2003 but did not expose their full texts in this pass. No instrument is lawyer-reviewed or promoted to verified.
+
+
+## 21 November 2026 update — Article 18/20 instruments located and source status improved
+
+### Article 18 — Supreme Council for Human Resource Skills Development
+
+The former “Cabinet-approved draft only” gap is closed at the instrument-identification level. **PM Decision 3561/2026** was published in Official Gazette issue 46 bis (C), 15 November 2026 and took effect 16 November 2026. Official Gazette repository metadata: https://dspace.id.com.eg/items/cb156f2d-a809-4480-ada2-48df74251c68 . The original 274.86 KB PDF is listed but direct access returned request-a-copy/502. Secondary text provides Article 1 membership, Article 2 functions and the commencement rule; see the 18 November acquisition tranche: [Decision 3561/2026 source record](../legal_evidence/acquisition_tranche_finance634_and_hr_skills3561_2026-11-18.md).
+
+Decision 3561/2026 also expressly repeals PM Decision 705/2014 (predecessor National Council for Human Resource Development), according to secondary reproductions: https://www.iqraa.news/233873/ . The legacy transition register now records 705/2014 as repealed by 3561/2026, pending primary Gazette page-image verification. The original 705/2014 remains historical, not current authority.
+
+**Status:** delegation instrument located; Gazette metadata source-matched; full text not yet primary-text-matched; lawyer review=0.
+
+### Article 20 — Training and Qualification Fund
+
+PM Decision 3356/2026 was already identified in the earlier register; this pass upgrades its text acquisition. Full 18-article Gazette facsimile, with printed pages 10–18, is available here: https://lawhub.info/eg/wp-content/uploads/2026/11/lawhub.info-eg-dec-3356-2026-.pdf . Gazette issue 44 bis (A), 1 November 2026; effective 2 November. Article 2 sets the 0.25% minimum-insured-wage contribution for establishments with 30+ workers, with annual per-worker bounds EGP10–30. Article 17 repeals PM Decision1543/2003. Article 3 delegates the full-exemption conditions to a further Minister of Labour decision; that ministerial instrument remains missing. Full acquisition and exact Arabic excerpt: [3356/2026 text acquisition](../legal_evidence/labour_pm_decisions_3356_3561_2026_arabic_text_acquisition_2026-11-21.md).
+
+**Critical reconciliation:** do not assume the historic 1% contribution remains collectible. Reconcile Enactment Article2 of Law14/2025, substantive Article20, Decision3356 Articles2–3 and the historical litigation savings clause; obtain the Article3 ministerial exemption/collection decision.
+
+### Remaining Article 18/20-related gaps
+
+- Article 18: original Gazette PDF and complete Article 1–10 exact transcription for Decision3561/2026; confirm whether any transitional provision preserves selected 705/2014 arrangements pending council formation.
+- Article 20: Minister of Labour decision under PM Decision3356 Article3 (full exemption conditions); implementation forms, payment instructions and fund bank/accounting controls.
+- Article 18's national council is distinct from the National Council for Wages and the Supreme Council for Workforce Planning and Employment. Preserve separate entity IDs and cross-references.
