@@ -82,3 +82,12 @@ Issued 18 April 2022. It determines collective-bargaining levels, subjects, mech
 - Decision 35/2018: complete 48-article Arabic secondary transcription; Gazette image matching pending.
 - Decision 50/2022: complete nine-section English translation; Arabic original missing; final paragraph of Section 5 flagged as superseded under Law 14/2025 based on ILO supervisory record.
 - Lawyer-reviewed: 0. Verified for production: 0. Rights clearance: not assessed.
+
+
+## 8. Later same-session source upgrade — Gazette issue 61 facsimile located
+
+- Full issue 61 (supplement), 14 March 2018, Arabic Gazette facsimile is now accessible through ILO/NATLEX: https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/108457/36-2018.pdf
+- Its table of contents identifies Decision35/2018 at printed p.3, Decision36/2018 at p.20, and Decision37/2018 at p.173. The searchable PDF contains the full 48-article Decision35 regulation, Decision36 with its model-bylaw annexes, and Decision37 with the 2018–2022 election schedules.
+- This upgrades Decision35/2018 from secondary-transcription-only to an acquired Gazette facsimile and full Arabic text. It also supplies the official Gazette text for Decision37/2018.
+- **Unresolved anomaly:** the TOC says Decision35/2018, but the OCR-extracted body heading on printed p.3 appears to say Decision25/2018. The Ministry index, NATLEX metadata, subject, and independent transcription all identify Decision35/2018. Treat the identity as provisionally matched, not visually certified, until the page image is inspected.
+- Corrected status: Decision35/2018 complete 48-article Gazette facsimile text acquired; page-image/number discrepancy unresolved. Decision36/2018 complete Gazette facsimile and model-bylaw annex acquired. Decision37/2018 full Gazette text and timetable acquired; historical cycle only.
