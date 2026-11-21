@@ -508,3 +508,24 @@ PRs #1858, #1859, #1860 and #1861 have now merged. The overall national legal-co
 ### Judicial acquisition count clarification
 
 The table distinguishes a **complete nationwide court corpus** from individual acquired items. The earlier judicial tranche already contains four full Supreme Constitutional Court judgments and 18 public Court of Cassation headnotes/principles. The new SCC public docket register adds 19 docket/date/disposition records, not 19 full judgments. The State Council portal lists 23 Supreme Administrative Court principle collections/parts, but PDF retrieval timed out in this pass, so those volumes remain acquisition leads. No court's full nationwide judgment corpus is complete.
+
+
+## 20. 21 November 2026 acquisition delta — labour domain and national progress
+
+The 17 November national baseline remains the denominator reference; this update records net-new labour-domain acquisition without re-opening the other 29 domains.
+
+### Labour-domain progress
+
+- **Assigned labour-domain research estimate: 68% (provisional project-management estimate; not legal verification).**
+- Law 14/2025 implementing decisions: 35 Ministry of Labour decisions identified against the 68 announced Ministry decisions (51.5% discovery coverage). The Ministry-only count is unchanged by new Prime Minister decisions.
+- Identified formal instrument inventory: 51/51 records now have substantive text extracts or structured article maps (100% of identified inventory only; not the full legal universe).
+- Law 14/2025 delegation matrix: 53 explicit statutory delegation rows; not proof that all delegations have been identified.
+- New/updated source acquisitions: full searchable official Gazette PDFs for Law 148/2019 and PM Decision 2437/2021; official MOF Gazette PDF for Social Security Law 12/2025; Law 11/2026 amendment to Law148 Article111; NOSI Decision2/2026 bond schedule lead; PM Decisions 3356/2026 and 3561/2026; PM Decision3165/2026 official Amiri Press text; full text/source upgrades for Decisions 289/2025 and 291/2025; currentness update for PM Decision982/2026.
+- Historical PM Decision705/2014 is now reported repealed by PM Decision3561/2026; legacy transition register updated pending original Gazette page-image comparison.
+- Lawyer-reviewed=0 and verified=0 for this Agent 4 research pass. No approval flags were changed.
+
+### National corpus percentage — unchanged
+
+**Overall nationwide legal-content completion remains approximately 1.5% (rounded to 2% for reporting), as estimated in the 17 November baseline.** The national denominator is still unknown; the 21 November labour acquisitions do not justify a numerical increase in nationwide coverage. Full national domains complete remains 0/30. National-corpus lawyer sign-off remains 0%.
+
+The project scorecard's separate technical/verified-corpus metrics must not be conflated with the nationwide legal-content estimate. This update increases the labour-domain research estimate only; it does not increase the verified corpus or technical completion score.
