@@ -167,3 +167,6 @@ This folder contains free/public source discovery, metadata registers and extrac
 
 
 81. [Full Arabic text — Decisions 267 and 270/2025; Decision 288 completion addendum](../legal_evidence/labour_decisions_267_270_2025_full_arabic_text_and_decision288_gap_addendum_2026-11-21.md) — adds complete 23-article Decision267 on apprenticeship/vocational progression and complete three-article Decision270 on establishment workforce-data reporting; also fills the missing Article2(1–6) and Article3(5) passages in the existing Decision288 text. Sources are secondary LAW HUB transcriptions; Gazette issue295(D) page-image matching and lawyer review remain pending. Keep verified=0.
+
+
+82. [Decision 271/2025 — full Arabic text and annex](../legal_evidence/labour_decision_271_2025_full_arabic_text_and_annex_2026-11-21.md) — four articles plus the employer reporting form for workers with disabilities/dwarfs; includes January/July reporting of workforce totals, protected-worker counts, roles and wages. Ministry/SIS PDF and official IDSC Arabic/English PDF metadata located; Gazette image comparison and lawyer review remain pending. verified=0.
