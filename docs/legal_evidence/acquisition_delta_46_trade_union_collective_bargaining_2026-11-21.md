@@ -78,8 +78,9 @@ Issued 18 April 2022. It determines collective-bargaining levels, subjects, mech
 ## 7. Status
 
 - Law 142/2019: official Ministry-hosted Gazette PDF; five substituted articles and four repealed articles mapped; visual review pending.
-- Decision 36/2018: official Ministry-hosted Gazette PDF with model-bylaw annex; annex verification pending.
-- Decision 35/2018: complete 48-article Arabic secondary transcription; Gazette image matching pending.
+- Decision 36/2018: complete Gazette issue61 facsimile text and model-bylaw annex acquired; page-image validation pending.
+- Decision 35/2018: complete 48-article Arabic text acquired in Gazette issue61 facsimile; TOC/body-heading number discrepancy (35 vs 25) awaits visual review.
+- Decision 37/2018: complete Gazette text and election timetable acquired; historical 2018–2022 cycle only.
 - Decision 50/2022: complete nine-section English translation; Arabic original missing; final paragraph of Section 5 flagged as superseded under Law 14/2025 based on ILO supervisory record.
 - Lawyer-reviewed: 0. Verified for production: 0. Rights clearance: not assessed.
 
