@@ -55,49 +55,11 @@ This is the operative contribution formula, not a generic 1% levy. The amount is
 
 The PDF text layer contains an anomalous page marker at extracted line 195 (“١٧٢”) where the surrounding sequence indicates printed page 17. The PDF uses Gazette page headers 10–18. Keep raw OCR and page-image correction separately; do not normalize the raw extraction silently.
 
-## 2. PM Decision 3561/2026 — Supreme Council for Human Resource Skills Development
+## 2. PM Decision 3561/2026 — already acquired in the 18 November tranche; delta only
 
-**Arabic title:** قرار رئيس مجلس الوزراء رقم ٣٥٦١ لسنة ٢٠٢٦ بشأن المجلس الأعلى لتنمية مهارات الموارد البشرية  
-**Gazette:** الجريدة الرسمية، العدد ٤٦ مكرر (ج)، ١٥ نوفمبر ٢٠٢٦  
-**Effective date:** ١٦ نوفمبر ٢٠٢٦ (Article 10; day after publication)  
-**Official Gazette repository item:** https://dspace.id.com.eg/items/cb156f2d-a809-4480-ada2-48df74251c68  
-**Repository metadata:** Amiri Press publisher; 15 November 2026; original bundle listed as 274.86 KB PDF. Direct download click returned a request-a-copy/502 error in this research pass.  
-**Secondary full-text/expanded transcription:** https://www.almasdar.com/176172  
-**Secondary detailed explanation:** https://www.elwatannews.com/news/details/8399042  
-**Official Cabinet approval announcement (draft approval, 28 October 2026):** https://sis.gov.eg/ar/المركز-الإعلامي/الأخبار/الحكومة-توافق-على-عدد-من-القرارات-الهامة-خلال-اجتماعها-الأسبوعي/
+The repository already contains the partial Arabic acquisition for PM Decision 3561/2026 in [the 18 November Gazette acquisition tranche](acquisition_tranche_finance634_and_hr_skills3561_2026-11-18.md). This file does not duplicate its Article 1–2 excerpts or council summary.
 
-**Status:** Gazette issue/date and decision number are source-matched to the official Amiri Press repository metadata. Article 1, the first item of Article 2 and a detailed article-level summary are available from secondary reproductions. Original Gazette PDF bytes and complete article-by-article transcription remain blocked by request-a-copy access. Keep as “Gazette-identified / secondary text”, not fully source-matched.
-
-### Article 1 — council formation
-
-The Council is chaired by the Minister responsible for labour. The membership includes representatives of 11 ministries (health; planning/economic development; education/technical education; higher education/research; industry; investment/trade; communications/ICT; social solidarity; local development; housing/urban communities; tourism/antiquities), a public-business-sector representative, the head of the Central Agency for Organization and Administration (or delegate), the National Council for Persons with Disabilities (or delegate), seven employer-organization representatives and seven labour-organization representatives. A Ministry of Military Production representative is invited permanently. Experts may be invited without a counted vote.
-
-**Exact Arabic text excerpt (secondary transcription of Article 1):**
-
-> يُشكل المجلس الأعلى لتنمية مهارات البشرية برئاسة الوزير المعني بشئون العمل
-
-### Article 2 — functions
-
-The secondary transcription identifies the Council's functions as:
-1. General policies for human-resource skill development and training/qualification, including people with disabilities, dwarfs and priority groups.
-2. Plans linking education/training to current and future labour-market needs and skills.
-3. National programme for human-resource skill development.
-4. Coordination with the Supreme Council for Workforce Planning and Employment inside/outside Egypt, labour-market information and demographic indicators.
-5. Coordination among ministries/agencies to align planning and employment with education/training and development plans.
-6. Coordination with universities/institutes to provide technical training opportunities.
-7. National strategy for workforce reskilling and future skills.
-The complete exact wording and remaining article boundaries require the Gazette PDF.
-
-### Article 10 — commencement
-
-Secondary reporting states the decision takes effect on the day following publication, i.e. 16 November 2026. Obtain exact Article 10 wording from the original PDF before final article matching.
-
-### Statutory relationship
-
-- Labour Law 14/2025 Article 18 creates the Supreme Council for Human Resource Skills Development and delegates its formation, powers and work system to a PM decision.
-- PM Decision 3561/2026 now fills this Article 18 delegation.
-- Do not confuse this Council with the National Council for Wages (separate body, separate statutory authority) or the Supreme Council for Workforce Planning and Employment (separate coordination body referenced in the Council's functions).
-- The Council's creation does not itself establish a specific new training benefit, wage entitlement or job placement programme; implementation depends on later policies/plans and decisions.
+**New delta from this pass:** secondary Gazette-text reporting confirms that Decision 3561/2026 expressly repeals PM Decision 705/2014. The legacy transition register row has been updated to repealed_by_pm_decision_3561_2026. Official Gazette metadata remains issue 46 bis (C), 15 November 2026; original 274.86 KB PDF remains request-a-copy/502 blocked. See the existing tranche for the source register and the 21 November update.
 
 ## 3. Additional Labour Law 14/2025 currentness update — PM Decision 982/2026 remote work
 
