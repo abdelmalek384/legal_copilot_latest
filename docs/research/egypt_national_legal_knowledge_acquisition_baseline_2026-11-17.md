@@ -507,7 +507,7 @@ PRs #1858, #1859, #1860 and #1861 have now merged. The overall national legal-co
 
 ### Judicial acquisition count clarification
 
-The table distinguishes a **complete nationwide court corpus** from individual acquired items. The earlier judicial tranche already contains four full Supreme Constitutional Court judgments and 18 public Court of Cassation headnotes/principles. The new SCC public docket register adds 19 docket/date/disposition records, not 19 full judgments. The State Council portal lists 23 Supreme Administrative Court principle collections/parts, but PDF retrieval timed out in this pass, so those volumes remain acquisition leads. No court's full nationwide judgment corpus is complete.
+The table distinguishes a **complete nationwide court corpus** from individual acquired items. The earlier judicial tranche already contains four full Supreme Constitutional Court judgments and 18 public Court of Cassation headnotes/principles. The SCC public docket register now contains 20 docket/date/disposition records (the 19 existing records plus SCC-020, Labour Law Case26/27), not 20 full judgments. The State Council portal lists 23 Supreme Administrative Court principle collections/parts, but PDF retrieval timed out in this pass, so those volumes remain acquisition leads. No court's full nationwide judgment corpus is complete.
 
 
 ## 20. 21 November 2026 acquisition delta — labour domain and national progress
@@ -529,3 +529,6 @@ The 17 November national baseline remains the denominator reference; this update
 **Overall nationwide legal-content completion remains approximately 1.5% (rounded to 2% for reporting), as estimated in the 17 November baseline.** The national denominator is still unknown; the 21 November labour acquisitions do not justify a numerical increase in nationwide coverage. Full national domains complete remains 0/30. National-corpus lawyer sign-off remains 0%.
 
 The project scorecard's separate technical/verified-corpus metrics must not be conflated with the nationwide legal-content estimate. This update increases the labour-domain research estimate only; it does not increase the verified corpus or technical completion score.
+
+
+- **SCC docket delta:** public case index now includes SCC-020, Case 26 of Judicial Year 27 (Constitutional), decided 13 January 2008 and published in Gazette issue4 bis on 27 January 2008. The official SCC source located is a later decision reproducing the dispositive holding, not the original judgment PDF. Public docket/date/disposition records: 20; full judgment count remains unchanged.
