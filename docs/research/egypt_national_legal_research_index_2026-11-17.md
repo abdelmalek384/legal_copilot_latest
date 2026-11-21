@@ -75,3 +75,8 @@ This is the cross-domain research entry point for the Legal Copilot national Egy
 - [Personal Data Protection Law 151/2020 and PDPC guidance acquisition](egypt_personal_data_protection_law_151_2020_acquisition_note.md) plus [8-row PDPL acquisition register](../../data/research/egypt_personal_data_protection_law_151_2020_acquisition_2026-11-17.csv) — official MCIT Law PDF, PDPC Decision 816/2025 source, two extracted PDPC guidelines, and unresolved compliance-window date/currentness.
 
 - [Clinical Medical Research Law 214/2020 and PM Decision 927/2022](egypt_clinical_research_law_214_2020_acquisition_note.md) with [12-row clinical research acquisition register](../../data/research/egypt_clinical_research_law_214_2020_harvest_2026-11-17.csv) — official GPO executive-regulation text and cross-reference queue for health research, participant rights, EDA and human samples.
+
+
+## 24. Labour / social insurance / social security source acquisition — 21 November 2026
+
+- [Labour, social insurance and social security primary-text acquisition supplement](../legal_evidence/labour_social_insurance_social_security_primary_text_acquisition_2026-11-21.md) — official full-text Gazette PDFs for Law 148/2019, PM Decision 2437/2021 and Social Security Law 12/2025; new Law 11/2026 Article 111 amendment and NOSI Decision 2/2026 bond schedule; amendment chain and 2026 NOSI wage/pension parameters; Decision 522/2026 secondary full text with Gazette-PDF QA gap. Labour-domain progress is estimated provisionally at 65%; the national legal-content estimate remains approximately 1.5% because the nationwide denominator is unknown. Lawyer-reviewed=0 and verified=0.
