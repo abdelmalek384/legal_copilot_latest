@@ -47,7 +47,7 @@ This is the operative contribution formula, not a generic 1% levy. The amount is
 
 - Labour Law 14/2025 issuance Article 2 continues the Training and Qualification Fund created under the former Labour Law 12/2003.
 - Labour Law 14/2025 Article 20 sets the Fund's statutory functions and delegates the board's formation, other powers, working system, financial treatment, branches, basic regulations and collection/accounting rules to a PM decision.
-- PM Decision 3356/2026 now supplies the current governance and fund resource framework and expressly repeals PM Decision 1543/2003.
+- PM Decision 3356/2026 now supplies the current governance and operational framework and expressly repeals PM Decision 1543/2003. The 0.25% contribution formula itself is prescribed by Labour Law Article 21; Decision 3356 Article 2 mirrors that statutory resource rule, while Article 3 delegates only the full-exemption rules to a separate Minister of Labour decision.
 - PM Decision 3356 Article 3 leaves a further ministerial decision outstanding: rules/conditions for full exemption from the 0.25% contribution where establishments train their own workers.
 - Do not assume that the former 1% training-fund contribution under Law 12/2003 remains collectible after the new statutory transition and PM Decision 3356/2026. Reconcile issuance Article 2, Labour Law Article 20, Decision 3356 Article 2, the old 1% litigation savings and any later ministerial exemption/collection rules before encoding liabilities.
 
