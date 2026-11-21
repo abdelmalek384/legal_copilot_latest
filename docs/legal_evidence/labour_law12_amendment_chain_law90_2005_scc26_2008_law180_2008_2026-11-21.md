@@ -12,11 +12,12 @@ Purpose: repair the historical version chain for former Labour Law 12/2003. This
 **Official index evidence:** Ministry of Finance Law 12/2003 page expressly lists Law 90/2005 as a related amendment: https://mof.gov.eg/ar/legislation/legislation-5fe86a117bfc600007cbf9d5  
 **Official Gazette page-image index:** Egypt Law and Judiciary Portal, 2005 laws index; Law 90 entry and operative opening: https://www.laweg.net/Default.aspx?Year=2005&action=LegsYears (entry at line 58–59 of the page extraction; individual page image available via item link).  
 **Secondary full-text reproduction:** https://hrdiscussion.com/hr66573.html  
+**Full reasoned judgment text (secondary transcription, includes the exact Law90/2005 Articles 71 and 72 in the Court's reasons at lines 70–74):** https://lib.legal-reform.org/legal-observatory-view/المحكمة-الدستورية-العليا---مجموعة-رقم-4---رقم-المبدأ-81---رقم-الصفحة-809---القضية-رقم-26---لسنة-27-ق---تاريخ-الجلسة-13-/-1-/-2008
 **Secondary article-by-article reproduction / constitutional history:**  
 - Article 71 and full amendment chain: https://ahmedazimelgamel.blogspot.com/2021/11/71.html  
 - Article 72 and full amendment chain: https://ahmedazimelgamel.blogspot.com/2021/11/72.html  
 - Article 70 excerpt / 2005–2008 chain: https://ashrfmshrf.info/worklaw/  
-**Status:** Official index confirms the amendment and affected articles; official Gazette image index found; full searchable Arabic text is secondary. Original Gazette issue PDF and page numbers remain to be acquired.
+**Status:** Official index confirms the amendment and affected articles; official Gazette image index found. Full text of Law90 Article70 and Article248 is reproduced by secondary legal sources; exact Law90 Articles71 and72 are reproduced in the full reasoned SCC Case26/27 judgment transcription (Legal Reform, lines 70–74). Original Gazette issue PDF/page images and line-by-line match remain outstanding.
 
 ### Operative scope
 
@@ -120,7 +121,7 @@ Sources:
 2. Store the original 2003 article text, Law90 replacement text, SCC-invalidated text/phrase and Law180 replacement text as four separate version events.
 3. For Article70, preserve the 2005 version and SCC strike as separate transformations before applying the 2008 replacement.
 4. For Articles71–72, mark the 2005 text invalidated by SCC Case26/27, then replace with the 2008 Labour Court text.
-5. For Article248, retain the 2005 amended text in the historical consolidated code unless a later amendment is located; do not assume Law180 amended it.
+5. Law90 Articles71 and72 are now text-acquired from the full SCC judgment transcription, which quotes the challenged 2005 text; visually compare with the Law90 Gazette before source-matching. For Article248, retain the 2005 amended text in the historical consolidated code unless a later amendment is located; do not assume Law180 amended it.
 6. Capture the SCC judgment's original Gazette issue4 bis PDF/page and verify the exact operative wording against the official SCC site.
 7. Acquire the original Law90/2005 Gazette issue22 supplement scan; the current full text is secondary. Compare all four amended articles, signature date, publication date and commencement.
 8. Acquire/retain the official Law180/2008 Ministry PDF and match the three operative articles to Gazette issue25 bis and printed pages.
