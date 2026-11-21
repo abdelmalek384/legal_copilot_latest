@@ -140,3 +140,6 @@ This folder contains free/public source discovery, metadata registers and extrac
 70. [Court of Cassation public principles register](../../data/research/egypt_cassation_public_principles_register_2026-11-17.csv) — 18 case numbers, dates, headnotes, legal topics and limitations.
 
 71. [SCC 2026 recent invalidity watchlist](egypt_scc_2026_recent_unconstitutionality_watchlist.md) — five recent invalidity notices affecting Law117/1958, Decree316/1994, Law110/1975, Law148/2019 and Agriculture Decision1432/1991; full judgments pending.
+
+
+72. [Labour, social insurance and social security primary-text acquisition supplement — 21 November 2026](../legal_evidence/labour_social_insurance_social_security_primary_text_acquisition_2026-11-21.md) — complete official Gazette text sources for Law 148/2019 and PM Decision 2437/2021; newly identified Law 11/2026 replacing Article 111 and NOSI Decision 2/2026/EGP100bn bond schedule; amendment chain Laws 25/2020, 18/2023, 172/2023 and 8/2024; full official MOF Gazette PDF for Social Security Law 12/2025; Decision 522/2026 full secondary transcription with Gazette PDF gap; official Ministry text for Labour Decision 289/2025 and secondary PDF for Decision 291/2025. Progress: 65% provisional assigned-domain estimate; 35/68 Ministry decisions identified (51.5%); verified=0.
