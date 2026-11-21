@@ -143,3 +143,84 @@ The full reasoned judgment transcription at Legal Reform reproduces the challeng
 > يصدر قرار اللجنة بأغلبية أعضائها الحاضرين
 
 The full Article71 text describes a five-member committee with two judges and three non-judicial members (labour administration, union and employer representatives), exclusive jurisdiction over individual labour disputes, a 60-day decision period, special 15-day dismissal applications and interim compensation. Article72 governs majority decisions, chair casting vote, enforceability as a first-instance judgment and appeal to the appellate court. These are historical provisions only; the SCC invalidated them.
+
+
+## 6. Law125/2010 — worker-rights priority statute and implementing instruments (new full-text acquisition)
+
+This is a separate historical statute, not an amendment to Law12/2003. Labour Law14/2025 issuance Article12 expressly repeals it. Its subordinate instruments are retained for historical liquidation, closure and insolvency events; post-1 September 2025 effect requires a separate legal determination.
+
+### 6.1 Law125/2010 — full four-article Arabic text located
+
+**Arabic title:** قانون رقم ١٢٥ لسنة ٢٠١٠ بشأن مرتبة امتياز حقوق العمال  
+**Gazette:** الجريدة الرسمية، العدد ٢٤ مكرر، ١٩ يونيو ٢٠١٠.  
+**Effective:** ٢٠ يونيو ٢٠١٠ (day after publication).  
+**Full Arabic text (Laweg legal/Gazette portal):** https://www.laweg.net/framePlain.aspx?ItemID=178&NID=68812&Type=14&action=ViewActivePages  
+**Secondary cross-check:** https://www.eastlaws.com/legislation-full-text/ar/egypt/law/19-06-2010/no-125?id=1510563&type=1  
+**Official Gazette repository record:** https://dspace.id.com.eg/items/04007b61-3b6a-4e9f-bc34-b2d716a3e26b/full (Arabic and English PDF bundle; access/licence conditions must be checked).
+
+**Article map:**
+- Article 1: employee amounts arising from employment have priority over all debtor assets and are paid before judicial expenses, public treasury claims and preservation/restoration costs; conflicting provisions are repealed.
+- Article 2: where an establishment/company is dissolved, liquidated, permanently closed or declared bankrupt, the order/judgment must set a deadline for payment of workers' rights; administrative authority monitors compliance and may act on behalf of interested persons.
+- Article 3: Cabinet must issue the Executive Regulations and identify the competent authority and procedures/deadline controls.
+- Article 4: publication and commencement the day after publication.
+
+**Exact Arabic excerpt — Article 1 (Laweg text):**
+
+> امتياز على جميع أموال المدين
+
+### 6.2 PM Decision2736/2010 — Executive Regulations, full 11 numbered clauses located
+
+**Arabic title:** قرار رئيس مجلس الوزراء رقم ٢٧٣٦ لسنة ٢٠١٠ بإصدار اللائحة التنفيذية للقانون رقم ١٢٥ لسنة ٢٠١٠ بشأن مرتبة امتياز حقوق العمال  
+**Gazette:** الجريدة الرسمية، العدد ٤١ مكرر، ١٩ أكتوبر ٢٠١٠.  
+**Effective:** ٢٠ أكتوبر ٢٠١٠.  
+**Full Arabic transcription (11 numbered clauses = 3 issuing provisions + 8 attached regulation articles):** https://alhasswalawfirm.com/law-library/decree-2736-2010  
+**Additional searchable PDF:** https://www.be-tax.com/uploads/images/63/18.pdf  
+**Official Gazette portal cited by transcription:** Court of Cassation Gazette legislation portal (link exposed at page line 147); original binary/page-image match remains pending.
+
+**Article map:**
+- Issuing Article 1: adopts attached Executive Regulation.
+- Issuing Article 2: preserves better employee benefits under individual/collective contracts, establishment bylaws and other rules.
+- Issuing Article 3: Gazette publication and commencement next day.
+- Regulation Article 1: defines wages and other entitlements, including leave balances, early-retirement compensation and other statutory/contractual compensation.
+- Article 2: Ministry of Manpower is competent authority.
+- Article 3: confirms privilege of wages/worker entitlements against debtor assets.
+- Article 4: for administrative dissolution/liquidation/closure, authority must set payment deadline not exceeding one year; court judgments must set a deadline consistent with applicable law.
+- Article 5: employer/liquidator/bankruptcy trustee must inventory wages/entitlements within 30 days; pay immediately if funds suffice; otherwise pay available amount and balance within deadline.
+- Article 6: monthly report to administrative authority on payment steps; authority reviews and follows up.
+- Article 7: nullifies acts/transactions/agreements that frustrate payment; workers/representatives may sue to annul and seek removal/liability of liquidator/trustee.
+- Article 8: competent authority follows implementation.
+
+**Exact Arabic excerpt — Regulation Article 4 (secondary transcription):**
+
+> على ألا يُجاوز سنة من صدور القرار
+
+This is a material deadline for historical liquidation/closure cases. Preserve the one-year cap only for the old-law period unless a current successor rule is identified.
+
+### 6.3 Ministerial Decision290/2010 — implementing instructions
+
+**Arabic title:** قرار وزيرة القوى العاملة والهجرة رقم ٢٩٠ لسنة ٢٠١٠ بإصدار التعليمات الخاصة بتنفيذ أحكام القانون رقم ١٢٥ لسنة ٢٠١٠ ولائحته التنفيذية رقم ٢٧٣٦ لسنة ٢٠١٠ بشأن مرتبة امتياز حقوق العمال  
+**Gazette:** الوقائع المصرية، العدد ٢٨٠، السنة ١٨٤، الخميس ٩ ديسمبر ٢٠١٠.  
+**Effective:** ١٠ ديسمبر ٢٠١٠ (day after publication).  
+**Full three-article text (Laweg portal):** https://www.laweg.net/framePlain.aspx?ItemID=57573&NID=72772&Type=6&action=ViewActivePages  
+**Official Ministry PDF (retrieval returned HTTP 502 in this pass):** https://www.labour.gov.eg/media/2cojxr30/قرار-وزير-القوي-العاملة-290-لسنه-2010باستصدار-التعليمات-الخاصة-بتنفيذ-قانون-مرتبة-امتياز-حقوق-العمال.pdf  
+**Secondary metadata / official PDF pointer:** https://www.mohamedabdelfattah.com/library/d/decree-2010-290
+
+**Main decision articles:**
+- Article 1: Ministry and its directorates are competent to implement Law125 and PM2736; Central Department for Labour Relations and Collective Bargaining coordinates with other agencies when needed.
+- Article 2: attached instructions apply across Labour Directorates, without prejudice to applicable liquidation/bankruptcy laws and PM Decision984/2003 as amended by PM2797/2007 (local closure committees and central grievance committee).
+- Article 3: publication in Al-Waqa’i and commencement the day after publication.
+- **Missing attachment:** the “attached instructions” referenced by Article2 are not reproduced in the extracted Laweg text. Obtain the complete Gazette issue280 or the Ministry PDF; do not treat the three issuing articles as the complete instrument.
+
+**Exact Arabic excerpt — Article 1 (Laweg text):**
+
+> وزارة القوى العاملة والهجرة والمديريات التابعة لها هى الجهة المختصة بتنفيذ أحكام القانون
+
+### 6.4 2025 repeal and transitional treatment — unresolved legal question
+
+- Labour Law14/2025 issuance Article12 expressly repeals Law125/2010, in addition to repealing Law12/2003.
+- No express replacement priority-of-worker-claims statute was identified in this research pass.
+- The new Law14/2025 preserves accrued wages/benefits under prior laws and arrangements (issuance Article4), but that savings clause should not automatically be treated as preserving the *priority ranking* of all claims in post-commencement insolvency proceedings.
+- PM2736/2010 and Ministerial Decision290/2010 were made under Law125/2010. Their continuing effect after repeal of the parent statute is not established by the located text. Law14/2025 issuance Article11 concerns non-conflicting decisions implementing the new Labour Law; it should not be assumed to preserve subordinate instruments under a separately repealed statute.
+- Required legal research: distinguish (a) insolvency/liquidation proceedings commenced before 1 September 2025; (b) accrued worker claims from pre-commencement service; (c) proceedings commenced after 1 September 2025; and (d) any independent priority under Civil Code, Companies Law, Bankruptcy Law11/2018 or other statutes. Qualified Egyptian counsel must decide whether any priority survives for each category.
+
+**Status:** Law125 full four-article text acquired from Laweg; PM2736 full 11-clause secondary text acquired; Decision290 main three articles acquired from Laweg, but its attached instructions remain missing. Original Gazette PDF/page-image matching and lawyer review remain pending.
