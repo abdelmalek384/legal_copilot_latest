@@ -85,3 +85,8 @@ This is the cross-domain research entry point for the Legal Copilot national Egy
 ## 25. New Labour Law 14/2025 Prime Minister implementing decisions — 21 November 2026
 
 - [PM Decisions 3356/2026 and 3561/2026 Arabic text acquisition](../legal_evidence/labour_pm_decisions_3356_3561_2026_arabic_text_acquisition_2026-11-21.md) — Decision 3356/2026 (Training and Qualification Fund; Gazette 44 bis (A), 1 Nov 2026; full 18-article secondary-hosted Gazette facsimile) and Decision 3561/2026 (Supreme Council for Human Resource Skills Development; Gazette 46 bis (C), 15 Nov 2026; official Gazette metadata and secondary text because PDF access is request-copy restricted). Article 18 and 20 delegations now have identified PM decisions. Article 3 exemption rules under Decision 3356 and Article 100 new-work-pattern rules remain open. Labour-domain project estimate: 68% provisional; national legal-content baseline remains approximately 1.5%; lawyer-reviewed=0 and verified=0.
+
+
+## 26. Historical Labour Law 12/2003 amendment chain — 21 November 2026
+
+- [Law90/2005, SCC Case26/27 and Law180/2008 acquisition](../legal_evidence/labour_law12_amendment_chain_law90_2005_scc26_2008_law180_2008_2026-11-21.md) — adds omitted Law90/2005 replacement of Labour Law12/2003 Arts70,71,72,248; official SCC source reproduces the 13 January 2008 invalidation of Arts71–72, the specified Art70 phrase and Justice Decision3539/2003; maps Law180/2008 replacement of Arts70–72. Law90 original Gazette scan remains outstanding. Labour-domain estimate now 69% provisional; national legal-content baseline remains ~1.5%, denominator unknown; lawyer-reviewed=0 and verified=0.
