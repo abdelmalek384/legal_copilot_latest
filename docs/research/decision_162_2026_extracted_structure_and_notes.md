@@ -126,3 +126,36 @@ The existing Article46 / Labour Law Article141 issue remains unresolved:
 - Counsel review: pending.
 - Collection/commercial reuse rights: unknown pending review of both DSpace item licences and source terms.
 - Retrieval eligibility: false.
+
+
+## Cross-source full-text acquisition — 21 November 2026
+
+A second full Arabic transcription of all 66 articles is now accessible in the Sada al-Qanun Labour Code portal:
+https://sadaalqanun.com/مدونة-العمل/
+
+The page labels Decision 162/2026 as dated 13 August 2026, identifies its 66 articles, and reproduces the preamble, Article 1 definitions, Articles 2–66, and commencement clause. This is an independent secondary transcription in addition to the previously inspected Riwaq/Ahmed Azim text. The IDSC record remains the official-Gazette metadata route; its Arabic PDF link continues to display a request-a-copy page, so the official scan has not been downloaded or hash-verified.
+
+### New cross-source Arabic text pins
+
+- **Art.2:** “على كل صاحب عمل يستخدم عشرة عمال فأكثر أن يعد لائحة بقواعد تنظيم العمل وفقا لطبيعة نشاط المنشأة”. It then enumerates 15 required regulatory subjects, including recruitment, training, contracts, service files, performance, promotion, transfers, wage protection, hours/rest/overtime, work patterns, leave, safe environment, termination, worker duties/investigation and disciplinary violations/sanctions.
+- **Art.3:** requires the internal regulation to preserve all benefits already actually granted to workers, whether arising from internal decisions, approved regulations, contracts or settled workplace practice.
+- **Arts.7–10:** the second source reproduces the submission/ratification process and central committee provisions. Preserve the procedural clocks already extracted (copy to union within three working days; 15-day union comment; up to five working days for employer correction; 30-day Directorate response mechanism) as secondary-text leads pending Gazette-page comparison.
+- **Art.14:** “وعند التعارض تسري دائما الأحكام التي تتضمن مزايا أفضل للعمال” — the more favourable worker-benefit rule.
+- **Art.15:** expressly lists retaining a worker's national ID/passport, restricting movement, compelling excessive hours, and unlawful wage deductions among forced-labour indicators to be prevented.
+- **Art.16:** requires anti-harassment, violence and bullying rules, complaint receipt, investigation and protective measures, with stronger discipline where the offender is a supervisor.
+- **Art.35:** internal wage system must respect equal pay for men and women for work of equal value.
+- **Arts.38–42:** regulate hours/rest, flexible/remote work, leave, overtime, OSH and disability-inclusive emergency planning.
+- **Art.46:** investigation starts within seven days of discovering the alleged violation; ordinary investigation period and wage-deduction caps are set in the article. The text must be checked against the first transcription and the Gazette before converting these clocks into automated deadlines.
+- **Art.47:** written investigation and hearing are the default; oral investigation is permitted for warning or a deduction not exceeding one day's basic wage, with the substance recorded in the sanction decision.
+- **Art.48:** disciplinary dismissal requires a labour-court judgment for gross misconduct; lower sanctions should be exhausted where the nature of the violation permits.
+- **Arts.49–59:** disciplinary schedule, maximum penalties, notice, repeat violations and financial-penalty registers/accounts.
+- **Arts.60–63:** separate treatment of each termination route, prohibition on an internal resignation notice period, and protection against seeking dismissal because of union activity.
+- **Arts.64–66:** periodic review and amendment of internal rules, protection of acquired rights, ratification of amendments and commencement. Art.66 provides effectiveness from the day after publication.
+
+### Reconciliation and source caveats
+
+1. The second transcription strengthens confidence in the article map and core text but does not replace the official Gazette image. Both transcriptions are secondary.
+2. A discrepancy in how the 30-day ratification mechanism is described across secondary summaries should be resolved by reading the complete Art.9 wording from the Gazette page image. Do not implement an automated “deemed approval” clock until this is done.
+3. Art.21 probation treatment should be checked in the actual article wording; earlier notes flag the three-month/one-time rule but the Gazette page match is still outstanding.
+4. Do not rely on Sada al-Qanun's commentary elsewhere on the portal for the meaning of Law14/2025; only the text explicitly headed Decision162/2026 belongs to this acquisition.
+5. The complete second transcription is available for research, but its reuse licence/terms and any commercial text-extraction rights remain unreviewed.
