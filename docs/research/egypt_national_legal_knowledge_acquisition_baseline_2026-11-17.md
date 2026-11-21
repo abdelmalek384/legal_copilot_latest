@@ -163,8 +163,8 @@ Additional statutes indexed include Laws 46/1972, 47/1972, 54/1964 as amended by
 |---|---:|---|
 | Legal-domain scope mapped | 36/36 (100%) | Scope definition only; not full legal coverage |
 | Source institutions/platforms registered | 29 | Government, courts, regulators and discovery sources |
-| Seed anchor instruments inventoried | 141 | Starter set, not the total universe of Egyptian laws and decisions; includes newly added Law90/2005 and Law180/2008 labour amendments |
-| Source PDFs opened | 35/141 (24.8% of seed list) | Includes government reprints, official agency copies and files with unreadable/garbled text layers; not all are bare Gazette originals |
+| Seed anchor instruments inventoried | 144 | Starter set, not the total universe of Egyptian laws and decisions; includes newly added Law90/2005 and Law180/2008 labour amendments |
+| Source PDFs opened | 35/144 (24.3% of seed list) | Includes government reprints, official agency copies and files with unreadable/garbled text layers; not all are bare Gazette originals |
 | Nationwide consolidated statute domains | 0/36 | No domain yet has all base laws, amendments, executive regulations and currentness fully consolidated |
 | Full official SCC judgment texts acquired/indexed | 6 | Five additional 2026 invalidity notices are registered as public homepage summaries only, not full judgments. Cases2/44 (2026), 115/25 (2026), 98/43 (2026), 100/43 (2023) and188/35 (2023); cases99/43 and16/24 remain cited-holding leads |
 | Lawyer-reviewed national instruments | 0 | Human legal review remains mandatory |
@@ -516,12 +516,12 @@ The 17 November national baseline remains the denominator reference; this update
 
 ### Labour-domain progress
 
-- **Assigned labour-domain research estimate: 69% (provisional project-management estimate; not legal verification).**
+- **Assigned labour-domain research estimate: 70% (provisional project-management estimate; not legal verification).**
 - Law 14/2025 implementing decisions: 35 Ministry of Labour decisions identified against the 68 announced Ministry decisions (51.5% discovery coverage). The Ministry-only count is unchanged by new Prime Minister decisions.
 - Identified formal instrument inventory: 51/51 records now have substantive text extracts or structured article maps (100% of identified inventory only; not the full legal universe).
 - Law 14/2025 delegation matrix: 53 explicit statutory delegation rows; not proof that all delegations have been identified.
 - New/updated source acquisitions: full searchable official Gazette PDFs for Law 148/2019 and PM Decision 2437/2021; official MOF Gazette PDF for Social Security Law 12/2025; Law 11/2026 amendment to Law148 Article111; NOSI Decision2/2026 bond schedule lead; PM Decisions 3356/2026 and 3561/2026; PM Decision3165/2026 official Amiri Press text; full text/source upgrades for Decisions 289/2025 and 291/2025; currentness update for PM Decision982/2026.
-- Historical PM Decision705/2014 is now reported repealed by PM Decision3561/2026; legacy transition register updated pending original Gazette page-image comparison. Law90/2005 has also been acquired as a missing amendment to Law12/2003: Arts70,71,72,248 replaced; SCC Case26/27 invalidated Arts71–72 and the specified Art70 phrase; Law180/2008 then replaced Arts70–72. Original Law90 Gazette scan remains outstanding.
+- Historical PM Decision705/2014 is now reported repealed by PM Decision3561/2026; legacy transition register updated pending original Gazette page-image comparison. Law90/2005 has also been acquired as a missing amendment to Law12/2003: Arts70,71,72,248 replaced; SCC Case26/27 invalidated Arts71–72 and the specified Art70 phrase; Law180/2008 then replaced Arts70–72. Original Law90 Gazette scan remains outstanding. Law125/2010 full four-article text, PM Decision2736/2010's 11 numbered clauses, and Ministerial Decision290/2010's three issuing articles have also been acquired; the Decision290 attached instructions remain missing, and the post-repeal priority status is unresolved.
 - Lawyer-reviewed=0 and verified=0 for this Agent 4 research pass. No approval flags were changed.
 
 ### National corpus percentage — unchanged
