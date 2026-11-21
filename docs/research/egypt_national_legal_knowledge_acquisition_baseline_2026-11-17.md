@@ -163,8 +163,8 @@ Additional statutes indexed include Laws 46/1972, 47/1972, 54/1964 as amended by
 |---|---:|---|
 | Legal-domain scope mapped | 36/36 (100%) | Scope definition only; not full legal coverage |
 | Source institutions/platforms registered | 29 | Government, courts, regulators and discovery sources |
-| Seed anchor instruments inventoried | 139 | Starter set, not the total universe of Egyptian laws and decisions |
-| Source PDFs opened | 35/139 (25.2% of seed list) | Includes government reprints, official agency copies and files with unreadable/garbled text layers; not all are bare Gazette originals |
+| Seed anchor instruments inventoried | 141 | Starter set, not the total universe of Egyptian laws and decisions; includes newly added Law90/2005 and Law180/2008 labour amendments |
+| Source PDFs opened | 35/141 (24.8% of seed list) | Includes government reprints, official agency copies and files with unreadable/garbled text layers; not all are bare Gazette originals |
 | Nationwide consolidated statute domains | 0/36 | No domain yet has all base laws, amendments, executive regulations and currentness fully consolidated |
 | Full official SCC judgment texts acquired/indexed | 6 | Five additional 2026 invalidity notices are registered as public homepage summaries only, not full judgments. Cases2/44 (2026), 115/25 (2026), 98/43 (2026), 100/43 (2023) and188/35 (2023); cases99/43 and16/24 remain cited-holding leads |
 | Lawyer-reviewed national instruments | 0 | Human legal review remains mandatory |
