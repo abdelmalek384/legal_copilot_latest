@@ -79,7 +79,7 @@ This is the cross-domain research entry point for the Legal Copilot national Egy
 
 ## 24. Labour / social insurance / social security source acquisition — 21 November 2026
 
-- [Labour, social insurance and social security primary-text acquisition supplement](../legal_evidence/labour_social_insurance_social_security_primary_text_acquisition_2026-11-21.md) — official full-text Gazette PDFs for Law 148/2019, PM Decision 2437/2021 and Social Security Law 12/2025; new Law 11/2026 Article 111 amendment and NOSI Decision 2/2026 bond schedule; amendment chain and 2026 NOSI wage/pension parameters; Decision 522/2026 secondary full text with Gazette-PDF QA gap. Labour-domain progress is estimated provisionally at 68%; the national legal-content estimate remains approximately 1.5% because the nationwide denominator is unknown. Lawyer-reviewed=0 and verified=0.
+- [Labour, social insurance and social security primary-text acquisition supplement](../legal_evidence/labour_social_insurance_social_security_primary_text_acquisition_2026-11-21.md) — official full-text Gazette PDFs for Law 148/2019, PM Decision 2437/2021 and Social Security Law 12/2025; new Law 11/2026 Article 111 amendment and NOSI Decision 2/2026 bond schedule; amendment chain and 2026 NOSI wage/pension parameters; Decision 522/2026 secondary full text with Gazette-PDF QA gap. Labour-domain progress is estimated provisionally at 69%; the national legal-content estimate remains approximately 1.5% because the nationwide denominator is unknown. Lawyer-reviewed=0 and verified=0.
 
 
 ## 25. New Labour Law 14/2025 Prime Minister implementing decisions — 21 November 2026
