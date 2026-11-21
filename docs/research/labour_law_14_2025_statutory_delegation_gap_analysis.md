@@ -88,7 +88,7 @@ A title-based harvest cannot establish completeness. The law itself delegates do
 
 ## 6. Progress measure
 
-The companion CSV contains **52 explicit statutory delegation rows**. This is a mapping of the delegations surfaced from the accessible Law 14/2025 text, not proof that all possible delegations have been captured. The formal-instrument register contains 51 identified instruments; 35 Ministry of Labour decision numbers are identified against the 68 Ministry decisions cited in official 2025 announcements. Corpus completeness remains open.
+The companion CSV contains **53 explicit statutory delegation rows**. This is a mapping of the delegations surfaced from the accessible Law 14/2025 text, not proof that all possible delegations have been captured. The formal-instrument register contains 51 identified instruments; 35 Ministry of Labour decision numbers are identified against the 68 Ministry decisions cited in official 2025 announcements. Corpus completeness remains open.
 
 
 ## 17 November 2026 follow-up — Prime Minister fund/council delegations (historical snapshot; superseded where noted below)
@@ -135,3 +135,8 @@ PM Decision 3356/2026 was already identified in the earlier register; this pass 
 - Article 18: original Gazette PDF and complete Article 1–10 exact transcription for Decision3561/2026; confirm whether any transitional provision preserves selected 705/2014 arrangements pending council formation.
 - Article 20: Minister of Labour decision under PM Decision3356 Article3 (full exemption conditions); implementation forms, payment instructions and fund bank/accounting controls.
 - Article 18's national council is distinct from the National Council for Wages and the Supreme Council for Workforce Planning and Employment. Preserve separate entity IDs and cross-references.
+
+
+### Article 21 — Training Fund contribution / exemption
+
+Law14 Article21 itself fixes the 0.25% contribution formula for establishments with 30 or more workers, with a minimum EGP10 and maximum EGP30 per worker annually. PM Decision3356/2026 Article2 repeats the statutory resource rule; it is not the source of the rate. PM Decision3356 Article3 delegates only the full-exemption rules to a separate Minister of Labour decision. That Ministerial exemption decision remains unlocated. The delegation matrix now contains a separate Article21 row to prevent conflating the Article20 Fund-governance delegation with Article21 contribution/exemption rules.
