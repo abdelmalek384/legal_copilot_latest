@@ -135,3 +135,13 @@ The 2026-08-25 Gas Egypt labour principle (termination, dismissal and warning) r
 - Continue searching the Ministry publications index, ministry announcements, and Labour Directorate channels. Keep the guide as a pending official acquisition lead; do not infer its rules from news reports.
 
 **Reuse caution:** Ministry publication does not automatically mean the booklet/guide may be copied into a commercial retrieval corpus. Check copyright and terms for each PDF before text ingestion, embedding or display.
+
+
+## Historical amendment correction — Law90/2005 and SCC Case26/27 (added 21 Nov 2026)
+
+NATLEX's Law12/2003 record already listed Laws90/2005 and 180/2008, but the detailed historical source chain is now acquired separately:
+- Law90/2005, Gazette issue22 supplement, 2 June 2005, amended Labour Law Arts70,71,72,248. Official Ministry of Finance related-law index: https://mof.gov.eg/ar/legislation/legislation-5fe86a117bfc600007cbf9d5 . Full text temporarily from HRDiscussion and Riwaq; original Gazette image still outstanding.
+- SCC Case26/27 (Constitutional), 13 January 2008, published Gazette issue4 bis, 27 January 2008, invalidated Arts71–72, struck the specified Art70 referral/forfeiture phrase and invalidated Justice Decision3539/2003. Official SCC source reproducing the dispositive holding: https://www.sccourt.gov.eg/DjangoPortalResources/Rules_Html/3234_30_14_6_2.html .
+- Law180/2008, Gazette issue25 bis, 22 June 2008, effective 23 June, replaced Arts70–72 and committee terminology. Official Ministry PDF: https://www.labour.gov.eg/media/1d3psheo/تعديل-قانون-العمل-بالقانون-رقم-180-لسنه-2008.pdf .
+
+Do not treat Law90 Arts71–72 as operative between 2005 and 2008 after the SCC ruling was published. Law90 Article248 remained in the historical consolidated code after Law180/2008 unless a later amendment is found. Full article/version mapping is in [the Law12 amendment chain acquisition](../legal_evidence/labour_law12_amendment_chain_law90_2005_scc26_2008_law180_2008_2026-11-21.md).
