@@ -122,3 +122,18 @@ Report separate percentages:
 - **Lawyer review and rights clearance:** 0 promoted to verified; no production import.
 
 **Do not describe the labour-law implementation corpus as complete until the 68/87 list is reconciled against the source register and all issuing authorities are accounted for.**
+
+
+## 7. New PM decisions acquired — 21 November 2026
+
+Two additional Prime Minister decisions published in November 2026 now fill important Labour Law 14/2025 delegations:
+
+1. **PM Decision 3356/2026 — Training and Qualification Fund**, Official Gazette issue 44 bis (A), 1 November 2026, effective 2 November. A searchable secondary-hosted Gazette facsimile contains all 18 articles (pp. 10–18): https://lawhub.info/eg/wp-content/uploads/2026/11/lawhub.info-eg-dec-3356-2026-.pdf. It implements Labour Law Article 20, sets the Fund contribution at 0.25% of the minimum insured wage per worker for establishments with 30+ workers (annual floor EGP10 / ceiling EGP30 per worker), requires quarterly non-cash payment, repeals PM Decision 1543/2003, and delegates full exemption rules to a further Minister of Labour decision. The exemption decision remains missing. Exact text/source QA is recorded in [the 21 November PM-decision acquisition file](../legal_evidence/labour_pm_decisions_3356_3561_2026_arabic_text_acquisition_2026-11-21.md).
+
+2. **PM Decision 3561/2026 — Supreme Council for Human Resource Skills Development**, Official Gazette issue 46 bis (C), 15 November 2026, effective 16 November. Official Amiri Press repository metadata identifies the Gazette bundle (274.86 KB): https://dspace.id.com.eg/items/cb156f2d-a809-4480-ada2-48df74251c68. Direct PDF access returned request-a-copy/502; secondary reproductions provide Article 1, Article 2 functions and commencement. It implements Labour Law Article 18. Full Gazette PDF and article-by-article text remain outstanding.
+
+The 17 November count of **50/50 identified formal instruments with substantive extracts/maps** is now superseded: this pass adds two newly identified PM decisions, both with substantive text/structured extracts, so the current identified-inventory measure is **52/52**. This remains 100% of the identified inventory only, not the full legal universe. The Ministry-only decision count remains **35/68 (51.5%)** because these two new decisions were issued by the Prime Minister, not the Minister of Labour.
+
+The previously missing Article 18 PM instrument is now located. Article 20 is also implemented by PM Decision 3356/2026. Remaining material gaps include the Minister of Labour exemption decision under Decision 3356 Article 3; Article 100 new-work-pattern rules; Article 254 anti-harassment/complaints code; Articles 263/265/266 OSH procedures/committee/medical-fitness standards; Article 272 social/cultural minimum services; Article 275 judicial-officer designations; and the separate night-inspection allowance decision under Decision 320/2025 Article 6.
+
+**Progress update:** assigned labour-domain project-management estimate increased from 65% to **67% (provisional)** after locating these two PM instruments and their operative text. Ministry decision discovery remains 35/68 (51.5%); identified formal instrument extraction coverage is 52/52 (100% of identified inventory only). Lawyer-reviewed=0; verified=0.
