@@ -48,3 +48,10 @@
 ### Verification status
 
 This is a partial extract, not a complete transcription. Additional reported features include four-year membership, quarterly reporting by the Chair to the Prime Minister, and repeal of Decision705/2014. Obtain complete issue46 bis (ج) PDF and transcribe every article, secretariat and local/sectoral coordination provisions before marking full text acquired.
+
+
+### 21 November 2026 source/status delta — Decision 705/2014 repeal
+
+A further secondary Gazette-text report confirms that PM Decision 3561/2026 **repeals PM Decision 705/2014** (the predecessor National Council for Human Resource Development): https://www.iqraa.news/233873/ . The new PM Decision 3561 is published in Official Gazette issue 46 bis (C), 15 November 2026, effective 16 November. The official DSpace Gazette item and original 274.86 KB bundle are recorded here: https://dspace.id.com.eg/items/cb156f2d-a809-4480-ada2-48df74251c68 . Direct PDF retrieval is request-a-copy/502, so the repeal clause remains secondary-text matched pending Gazette page-image verification.
+
+The legacy transition register row for PM Decision 705/2014 has been updated to repealed_by_pm_decision_3561_2026; preserve the old instrument for historical periods, not as current authority. No duplicate Decision 3561 article text is added here.
