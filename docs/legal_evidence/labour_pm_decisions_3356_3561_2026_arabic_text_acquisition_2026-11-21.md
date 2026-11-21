@@ -88,5 +88,5 @@ The Cabinet approval is not the final signed/published suspension decision. No f
 - The Article 3 ministerial exemption decision under PM Decision 3356/2026 remains missing.
 - The Article 100 new-work-pattern implementing decision remains missing; PM Decision 982/2026 is only a time-limited remote-work programme.
 - Other unresolved delegations are listed in §4; the list is not assumed exhaustive.
-- Assigned labour-domain project-management estimate remains 65% pending reweighting after this new acquisition. This is not a legal-verification score.
+- Assigned labour-domain project-management estimate is 68% (provisional) after the additional official-text and currentness acquisitions. This is not a legal-verification score.
 - Lawyer-reviewed = 0; verified = 0. Do not change any production/approval flags.
