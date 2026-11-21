@@ -128,3 +128,18 @@ Sources:
 9. Keep Law125/2010 and its subordinate instruments as separate historical records; map their relation to Law14/2025 issuance Article12 and accrued claims.
 
 **Status:** Law90 amendment scope and full text are secondary-source matched; SCC holding is confirmed by an official SCC source reproduction; Law180/2008 official Ministry PDF is located. Original Gazette page-image comparison and lawyer review remain pending. lawyer_reviewed=0; verified=0.
+
+
+### Newly acquired exact Arabic text — Law90/2005 Articles 71 and 72
+
+The full reasoned judgment transcription at Legal Reform reproduces the challenged Law90/2005 wording in its reasons (lines 70–74). This supplies the missing article text while the original Law90 Gazette page remains outstanding.
+
+**Article 71 opening (secondary full judgment transcription):**
+
+> تشكل بقرار من وزير العدل بالاتفاق مع الجهات المعنية لجان ذات اختصاص قضائي من
+
+**Article 72 opening (same source):**
+
+> يصدر قرار اللجنة بأغلبية أعضائها الحاضرين
+
+The full Article71 text describes a five-member committee with two judges and three non-judicial members (labour administration, union and employer representatives), exclusive jurisdiction over individual labour disputes, a 60-day decision period, special 15-day dismissal applications and interim compensation. Article72 governs majority decisions, chair casting vote, enforceability as a first-instance judgment and appeal to the appellate court. These are historical provisions only; the SCC invalidated them.
