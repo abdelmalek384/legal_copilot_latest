@@ -115,7 +115,7 @@ For every located instrument:
 ## 6. Correct progress reporting
 
 Report separate percentages:
-- **Identified-source extraction coverage:** 50/50 currently identified formal instruments have substantive extracts or structured maps.
+- **Identified-source extraction coverage:** 51/51 currently identified formal instruments have substantive extracts or structured maps.
 - **Original announced Ministry decision universe:** 35/68 identified (about 51.5% if the 68 figure is comparable); this is not a verified completeness percentage.
 - **Original announced total universe:** 87 announced, but no reliable comparable total denominator yet because later Prime Minister decisions are included in the current inventory and the original count is approximate.
 - **Primary-source Gazette comparison:** only the three ministerial decisions (259, 264 and 299/2025) have the current SIS issue-291 article-level comparison recorded; other instruments have varying levels of official indexed text, metadata or secondary text.
@@ -132,7 +132,7 @@ One newly identified Prime Minister decision and one full-text source upgrade no
 
 2. **PM Decision 3561/2026 — Supreme Council for Human Resource Skills Development**, Official Gazette issue 46 bis (C), 15 November 2026, effective 16 November. Official Amiri Press repository metadata identifies the Gazette bundle (274.86 KB): https://dspace.id.com.eg/items/cb156f2d-a809-4480-ada2-48df74251c68. Direct PDF access returned request-a-copy/502; secondary reproductions provide Article 1, Article 2 functions and commencement. It implements Labour Law Article 18. Full Gazette PDF and article-by-article text remain outstanding.
 
-The 17 November count of **50/50 identified formal instruments with substantive extracts/maps** is now superseded: this pass adds one new PM decision (3561/2026) to the identified inventory and acquires the complete 18-article text of already-identified PM Decision 3356/2026, so the current identified-inventory measure is **51/51**. This remains 100% of the identified inventory only, not the full legal universe. The Ministry-only decision count remains **35/68 (51.5%)** because these two new decisions were issued by the Prime Minister, not the Minister of Labour.
+The 17 November count of **50/50 identified formal instruments with substantive extracts/maps** is now superseded: this pass adds one new PM decision (3561/2026) to the identified inventory and acquires the complete 18-article text of already-identified PM Decision 3356/2026, so the current identified-inventory measure is **51/51**. This remains 100% of the identified inventory only, not the full legal universe. The Ministry-only decision count remains **35/68 (51.5%)** because both are Prime Minister instruments (one newly identified and one newly source-upgraded), not Ministry of Labour decisions.
 
 The previously missing Article 18 PM instrument is now located. Article 20 is also implemented by PM Decision 3356/2026. Remaining material gaps include the Minister of Labour exemption decision under Decision 3356 Article 3; Article 100 new-work-pattern rules; Article 254 anti-harassment/complaints code; Articles 263/265/266 OSH procedures/committee/medical-fitness standards; Article 272 social/cultural minimum services; Article 275 judicial-officer designations; and the separate night-inspection allowance decision under Decision 320/2025 Article 6.
 
