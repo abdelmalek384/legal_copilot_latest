@@ -170,3 +170,12 @@ This folder contains free/public source discovery, metadata registers and extrac
 
 
 82. [Decision 271/2025 — full Arabic text and annex](../legal_evidence/labour_decision_271_2025_full_arabic_text_and_annex_2026-11-21.md) — four articles plus the employer reporting form for workers with disabilities/dwarfs; includes January/July reporting of workforce totals, protected-worker counts, roles and wages. Ministry/SIS PDF and official IDSC Arabic/English PDF metadata located; Gazette image comparison and lawyer review remain pending. verified=0.
+
+
+## 2026-11-22 — acquisition batch
+
+83. [Decision 266/2025 — full 25-article Arabic text; annex gap recorded](../legal_evidence/decision_266_2025_full_arabic_articles_annex_gap_2026-11-22.md) — transcribes all 25 operative articles on skill measurement, prior-learning recognition, occupational licensing, exemptions, fees, testing, inspections and transition. The attached 434-occupation/code schedule is identified but not yet fully transcribed; therefore the instrument package is not marked complete. Gazette issue290(B), 24 Dec 2025, printed page 3 onward. Sources: Gazette facsimile reproduction, LAW HUB and IDSC catalogue. verified=0.
+
+84. [Decisions 319 and 320/2025 — complete Arabic texts](../legal_evidence/labour_decisions_319_320_2025_full_arabic_text_2026-11-22.md) — transcribes Decision319 (4 articles: surprise inspection campaigns, central committee, monthly reporting) and Decision320 (7 articles: night/off-hours inspection, nine assignment categories, reporting, employer cooperation, statistics and allowances). Gazette issue291, 25 Dec 2025. Decision319 has IDSC catalogue record and PDF attachments; Decision320 has an IDSC catalogue entry and Gazette-layout PDF reproduction pages 77–79. Gazette primary-page matching remains open. verified=0.
+
+85. [Decision 264/2025 — recovered missing Arabic articles](../legal_evidence/decision_264_2025_missing_articles_arabic_completion_2026-11-22.md) — fills the previously missing Articles9–18, 23 and 26–27, 31–36 in the existing 19 Nov parent transcription, with Articles28–30 repeated for continuity. Parent plus addendum now contain the full numbered article set 1–41, subject to consolidation and comparison against the Gazette. Secondary full text source Al-Masry Al-Youm, corroborated by LAW HUB/Riwaq; Gazette issue291 page matching and lawyer review pending. verified=0.
