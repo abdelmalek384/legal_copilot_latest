@@ -294,3 +294,10 @@ This is official administrative clarification, not an amendment to Decision249. 
 | 162/2026 | Separate 66-article full secondary transcription already documented; second complete source now available at https://sadaalqanun.com/مدونة-العمل/ | Official Gazette issue176 metadata; official PDF request-copy blocked |
 
 All five OSH decisions remain lawyer_reviewed=false, rights_cleared=false and verified=0. Do not treat this transcription batch as a certified Gazette copy.
+
+
+### Additional Arabic text recovery — 22 November 2026
+
+- Decision251/2026: Al-Masdar article https://www.almasdar.com/175152 now supplies the complete definitions in Article1, Article2's two-level licensing rule (Consultant A/B), and the opening of Article3 with the first degree requirement. The article cuts off after Article3(1); it does not complete eligibility. The Youm7 summary states level A requires at least 20 years' actual experience, internationally recognized certificates and prescribed tests, but that is a secondary summary, not verbatim text. Full articles/annexes remain outstanding.
+- Decision252/2026: Al-Masdar article https://www.almasdar.com/175156 supplies all nine definitions in Article1. The article ends there; no further operative articles have been recovered. The LAW HUB page still exposes a Google Drive iframe that was not parsed in this pass.
+- Full recovered Arabic excerpts are preserved in ../legal_evidence/osh_decisions_251_252_2026_arabic_text_recovery_addendum_2026-11-22.md. This improves the previous Article1–2 / opening-Article3 excerpt for 251 and completes Article1 definitions for 252, but neither instrument is a complete transcription. Official issue225(A) catalogue record exists; Gazette image match and lawyer review remain outstanding; verified=0.
