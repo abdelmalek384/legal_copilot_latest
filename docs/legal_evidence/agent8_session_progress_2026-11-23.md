@@ -18,7 +18,7 @@ Four separate acquisition tranches and four separate CSV instrument registers we
    - [Research note](agent8_maritime_ports_inland_navigation_2026-11-23.md)
    - [Instrument register](agent8_maritime_ports_inland_navigation_instruments_2026-11-23.csv)
 
-The canonical national acquisition CSV was fetched from the default branch before deduplication. It contains 452 lines including header (451 data records) after the 23 November environment, waste, water-pollution and health updates; the earlier 422-record figure was the pre-update snapshot. The master index dashboard is dated 18 November 2026 and reports 388 confirmed + 1 provisional instruments; that dashboard/register count discrepancy remains unresolved. This session used exact instrument-number/title checks against the live CSV and did not alter the canonical CSV or master index.
+The canonical national acquisition CSV was fetched from the default branch before deduplication. It contains 452 lines including header (451 data records) after the 23 November environment, waste, water-pollution and health updates; the earlier 422-record figure was the pre-update snapshot. The master index dashboard is dated 18 November 2026 and reports 388 confirmed + 1 provisional instruments; that dashboard/register count discrepancy remains unresolved. This session used exact instrument-number/title checks against the live CSV, updated existing instrument rows in place, and added new candidate rows for instruments not already registered. The master index dashboard was not altered.
 
 ## 2. Instrument and article counts
 
@@ -42,7 +42,7 @@ Counting method:
 ## 3. Source and rights status
 - Official/authority locators located: Amiri Press Law 167/2022 text; Court of Cassation Gazette download locator; GAFI/Transport Authority licensing guide; Amiri Press Decision 342/2023 text; DSpace/MELES Gazette metadata and PDF locators; Ministry of Finance and SIS pages for Law 83/2025; other ministry/court catalogue entries.
 - Secondary texts used: legal practitioner transcriptions, legal databases and news reports. Each tranche separates these from official source locators.
-- Four source-permission entries were added for the river/rail tranche; one Lawyer Egypt source entry was added for the metro tranche; three official authority-source entries (SCA, MTS, APA) were added for the maritime tranche. The source-permission register now contains **183 source records**.
+- Four source-permission entries were added for the river/rail tranche; one Lawyer Egypt source entry was added for the metro tranche; three official authority-source entries (SCA, MTS, APA) were added for the maritime tranche. The source-permission register now contains **189 source records** after six new source-family assessments for EEAA, IDA, MWRI, SIS Gazette PDFs, EDA and FAOLEX.
 - All relevant permission fields remain unknown. No commercial reuse rights were cleared.
 - Lawyer review: **0**.
 - Authenticated official Gazette PDF binaries/hash records acquired by this Agent 8 pass: **0**.
@@ -204,3 +204,8 @@ Canonical register updated with 13 new candidate rows EG-0440–EG-0452 and exis
 5. Continue article-level transcription of Law202/2020 and PM722/2022; then return to transport/road traffic and vehicle licensing.
 
 No commercial reuse rights, legal-currentness certification or lawyer review is claimed.
+
+
+## 12. Source-permission register reconciliation
+
+The source-permission register was updated to **189 source records**. Six source-family records were added for EEAA environment/waste legislation, IDA PM338/1995 PDF, MWRI Law48/1982 and PM92/2013 PDFs, SIS-hosted Gazette PDFs for health instruments, EDA blood/plasma legislation, and FAOLEX water/waste/environment Gazette reproductions. Every new record retains collection_permission = unknown and commercial_reuse_permission = unknown. Existing generic secondary-source records remain in place; no public-access or government-hosting status was treated as a reuse licence.
