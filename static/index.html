@@ -1885,7 +1885,7 @@ async function financePage(){
  PAGE='finance';
  let overview={},invoiceData={invoices:[]};
  try{[overview,invoiceData]=await Promise.all([api('/finance/invoices/overview'),api('/invoices')])}
- catch(_){shell(uiText('الفواتير والتحصيل','Invoices & Finance'),empty(uiText('تعذر تحميل بيانات التحصيل.','Could not load receivables.')));return}
+ catch(error){shell(uiText('الفواتير والتحصيل','Invoices & Finance'),h('div',{className:'notice danger',role:'alert',textContent:String(error?.message||uiText('تعذر تحميل بيانات التحصيل.','Could not load receivables.'))}));return}
  const fmt=n=>new Intl.NumberFormat(LANG==='ar'?'ar-EG':'en-US',{minimumFractionDigits:2,maximumFractionDigits:2}).format(Number(n||0)/100)+(LANG==='ar'?' ج.م':' EGP');
  const metric=(label,value)=>h('section',{className:'card'},h('div',{className:'mut',textContent:label}),h('h3',{textContent:fmt(value)}));
  const agingLabels=[['current',uiText('غير متأخر','Current')],['1_30',uiText('1–30 يوماً','1–30 days')],['31_60',uiText('31–60 يوماً','31–60 days')],['61_90',uiText('61–90 يوماً','61–90 days')],['over_90',uiText('أكثر من 90 يوماً','Over 90 days')]];
