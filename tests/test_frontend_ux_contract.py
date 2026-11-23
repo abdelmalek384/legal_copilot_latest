@@ -689,6 +689,17 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertNotIn("--ok:#15803D;--ok-l:#E7F6EC", HTML)
 
 
+    def test_compact_mobile_primary_navigation_uses_a_visible_full_width_row(self):
+        self.assertIn("#side{flex-wrap:wrap!important;align-items:center!important}", HTML)
+        self.assertIn("#side .primary-nav{flex:0 0 100%!important;width:100%!important;max-width:100%!important", HTML)
+        self.assertIn("min-height:46px!important", HTML)
+
+    def test_new_matter_modal_returns_focus_to_its_invoking_button(self):
+        self.assertIn("async function newCase(clientName='',trigger=null)", HTML)
+        self.assertIn("const opener=trigger&&typeof trigger.focus==='function'?trigger:document.activeElement", HTML)
+        self.assertIn("event=>newCase('',event.currentTarget)", HTML)
+
+
     def test_native_navigation_keeps_horizontal_mobile_and_forced_color_support(self):
         self.assertIn("#side .primary-nav button { width:auto; min-width:max-content; flex:0 0 auto; white-space:nowrap; }", HTML)
         self.assertIn("#side nav button.on { border: 1px solid Highlight; }", HTML)
