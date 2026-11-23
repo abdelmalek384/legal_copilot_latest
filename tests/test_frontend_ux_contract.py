@@ -1084,7 +1084,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("#main .research-thread{order:2", HTML)
         self.assertIn("#main #research-source-inspector", HTML)
         self.assertIn("uploadFiles=async files=>", HTML)
-        self.assertIn("const documentWorkspace=h('div',{})", HTML)
+        self.assertIn("const documentWorkspace=h('div',{className:'research-document-workspace'})", HTML)
 
     def test_figma_research_refresh_keeps_accessible_responsive_controls(self):
         self.assertIn("@media(max-width:800px){#side{background:var(--figma-navy)", HTML)
