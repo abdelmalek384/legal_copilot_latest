@@ -90,3 +90,8 @@ This is the cross-domain research entry point for the Legal Copilot national Egy
 ## 26. Historical Labour Law 12/2003 amendment chain — 21 November 2026
 
 - [Law90/2005, SCC Case26/27, Law180/2008 and Law125/2010 historical priority chain](../legal_evidence/labour_law12_amendment_chain_law90_2005_scc26_2008_law180_2008_2026-11-21.md) — adds Law90/2005 Arts70,71,72,248; official SCC reproduction of the 2008 invalidation; Law180/2008 replacement; full Law125/2010 text, PM Decision2736/2010's 11 clauses and Ministerial Decision290/2010's three articles. The Decision290 annexed instructions and original Law90 Gazette scan remain outstanding; post-repeal priority of worker claims is unresolved. Labour-domain estimate now 70% provisional; national legal-content baseline remains ~1.5%; lawyer-reviewed=0 and verified=0.
+
+
+## Traffic Law 66/1973 amendment-text supplement — 23 November 2026
+
+- [Traffic Law amendment-text acquisition supplement](../legal_evidence/traffic_law_66_1973_amendment_text_acquisition_supplement_2026-11-23.md) — adds source-linked partial Arabic text excerpts from Law 17/2024 (seven replaced provisions, newly inserted definitions and abandoned-vehicle procedures) and Law 155/1999 (amendment list and excerpt); re-confirms amendment chain and Regulation 1613/2008 with 2021/2024 amendments. Existing Law 66/1973 scan is not duplicated. Excerpts only; full text capture, visual Gazette QA, consolidated amendment/currentness review and lawyer sign-off remain open.
