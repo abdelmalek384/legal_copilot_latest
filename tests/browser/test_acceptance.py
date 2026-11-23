@@ -1059,7 +1059,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
             self.assertEqual(created.status, 200, created.text())
             case_id = created.json()["id"]
             case_ids.append(case_id)
-            source_text = f"{sentinel} — synthetic evidence passage for matter {index}."
+            source_text = f"📄 {sentinel} — synthetic evidence passage for matter {index}."
             document = self.page.request.post(
                 self.base_url + f"/cases/{case_id}/docs",
                 data={
