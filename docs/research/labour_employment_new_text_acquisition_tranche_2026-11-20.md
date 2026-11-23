@@ -657,216 +657,109 @@ The DSpace/IDSC catalogue item for issue 291 supplement independently lists Deci
 **Operational cross-links to evaluate (not legal conclusions):** Law 14/2025 provisions on individual dispute settlement and labour courts; Decision 260/2025 competent administrative authorities. Preserve the ten-day request window, 21-day committee period, 20-day court-hearing scheduling period, and special dismissal provisions as distinct fields only after lawyer-approved legal evaluation.
 
 #### Decision 319/2025 — inspection campaigns
-Secondary full text: https://lawhub.info/eg/?p=17024  
-IDSC/MELES item: https://dspace.id.com.eg/items/770ed15a-afb2-4503-8d53-de0b5926e0b7/full  
-The DSpace catalogue provides an Arabic title and operative Arabic Article 1 excerpt, although the record's language field says English. The official SIS-hosted issue 291 scan begins Decision 319 at printed page 75; full scan link in the bundle section above. The scan carries the not-valid-for-circulation watermark; full text extraction and visual QA remain pending.
 
-Arabic Article 1 excerpt:
-> تتولى الإدارة العامة لتفتيش العمل بديوان عام الوزارة إعداد خطة تنفيذية شهرية للتفتيش على المنشآت المخاطبة بأحكام قانون العمل المشار اليه، بنظام الحملات التفتيشية المفاجئة، وفقًا لموضوعات نوعية محددة على المستوى القومي.
+**Full four-article Arabic text captured (23 November 2026).** Sources:
+- Secondary full text: https://lawhub.info/eg/?p=17024
+- IDSC/MELES item with Arabic and English PDF files: https://dspace.id.com.eg/items/770ed15a-afb2-4503-8d53-de0b5926e0b7
+- Gazette anchor: issue 291 supplement, printed start page 75, within the SIS-hosted issue 291 bundle linked above.
+- The catalogue record identifies Ministry of Labour as issuer and 4-12-2025 as issue date; catalogue metadata is not a substitute for Gazette page comparison.
 
-Capture full signed text and any schedules; check relationship with Law 14/2025 labour inspection powers and Decision 320/2025.
+**Arabic text captured from secondary full-text reproduction:**
+
+وزارة العمل
+
+قرار رقم ٣١٩ لسنة ٢٠٢٥
+
+بشأن مع مراعاة أحكام الضبطية القضائية وضوابط التفتيش بمديريات العمل، ومع عدم الإخلال بحق المفتشين في دخول المنشآت بحرية تامة في أي وقت من النهار أو الليل دون الحاجة إلى إذن أو إخطار مسبق
+
+وزير العمل
+
+بعد الاطلاع على الدستور؛
+وعلى قانون العمل الصادر بالقانون رقم ١٤ لسنة ٢٠٢٥؛
+وبناءً على ما ارتأيناه تحقيقاً للصالح العام وحسن سير العمل.
+
+قرر:
+
+**(المادة الأولى)**
+مع مراعاة أحكام الضبطية القضائية وضوابط التفتيش بمديريات العمل، ومع عدم الإخلال بحق المفتشين في دخول المنشآت بحرية تامة في أي وقت من النهار أو الليل دون الحاجة إلى إذن أو إخطار مسبق، تتولى الإدارة العامة لتفتيش العمل بديوان عام الوزارة إعداد خطة تنفيذية شهرية للتفتيش على المنشآت المخاطبة بأحكام قانون العمل المشار إليه، بنظام الحملات التفتيشية المفاجئة، وفقاً لموضوعات نوعية محددة على المستوى القومي.
+
+**(المادة الثانية)**
+تنفذ الخطة المشار إليها في المادة الأولى من هذا القرار من خلال لجنة مركزية تعمل تحت إشرافنا المباشر تضم في عضويتها عناصر من المختصين ومفتشي الإدارة العامة لتفتيش العمل بديوان عام الوزارة، ومفتشي مديريات العمل، إلى جانب عملهم، ويعمل أعضاء اللجنة مجتمعين أو في مجموعات عمل أو منفردين، بناءً على توجيهات مكتوبة منا مباشرة.
+
+**(المادة الثالثة)**
+تلتزم اللجنة بعرض تقرير شهري كتابة علينا يتضمن نتائج أعمالها ورصد أبرز المخالفات الشائعة، واقتراح معالجة أسبابها على المستوى القومي.
+
+**(المادة الرابعة)**
+ينشر هذا القرار في الوقائع المصرية ويعمل به من اليوم التالي لتاريخ نشره.
+
+صدر بتاريخ ٤/١٢/٢٠٢٥  
+وزير العمل  
+محمد جبران
+
+**Evidence limits:** secondary full text and catalogue evidence are captured; visual comparison against Gazette page 75 and the separate Arabic PDF remains pending. No lawyer review or source-rights conclusion is asserted.
 
 #### Decision 320/2025 — night/out-of-hours inspection
-Full Arabic text: https://lawhub.info/eg/?p=17025  
-Official-catalogue record with separate Arabic PDF: https://dspace.id.com.eg/items/36c059d2-799d-422f-b37a-98d22a400188/full  
-Official SIS-hosted issue 291 scan: printed start page 77; full scan link in the bundle section above. Full scan-side text extraction/visual QA remains pending; the scan carries the not-valid-for-circulation watermark.\n
-Exact Arabic text:
-> مادة (1)  
-> في تطبيق أحكام هذا القرار يُقصد بالكلمات والعبارات التالية المعني المُبين قرين كُلٌ منها: التفتيش الليلي: التفتيش الذي يتم في الفترة ما بين غروب الشمس وشروقها.
 
-> مادة (2)  
-> مع عدم الإخلال بحق المفتشين في دخول المنشآت بحرية تامة في أي وقت من النهار أو الليل دون إذن مسبق أو إخطار. للجهة الإدارية المختصة تكليف مفتشي العمل والسلامة والصحة المهنية بالقيام بالتفتيش الليلي أو التفتيش في غير أوقات العمل الرسمية...
+**Full seven-article Arabic text captured (23 November 2026).** Sources:
+- Secondary full text: https://lawhub.info/eg/?p=17025
+- IDSC/MELES Official Gazette catalogue item with separate Arabic PDF: https://dspace.id.com.eg/items/36c059d2-799d-422f-b37a-98d22a400188
+- EastLaws record: https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/25-12-2025/no-320?id=5042307&type=1
+- Gazette anchor: issue 291 supplement, printed start page 77, within the SIS-hosted issue 291 bundle linked above. The SIS-hosted issue 291 scan carries the warning “صورة إلكترونية لا يعتد بها عند التداول”.
 
-> مادة (7)  
-> يُنشر هذا القرار في الوقائع المصرية، ويُعمل به من اليوم التالي لتاريخ نشره.
+**Arabic text captured from secondary full-text reproduction:**
 
-### 1.3 Separate issue 249, 6 November 2025 — Decision 214/2025
+وزارة العمل
 
-Gazette scan (third-party-hosted copy of the printed official publication): https://cdn.vetogate.com/UploadCache/libfiles/565/0/0x0o/228.pdf  
-Gazette issue 249, 6-11-2025; contents page 2; Decision 214 starts page 3 and ends page 7.
+قرار رقم ٣٢٠ لسنة ٢٠٢٥
 
-Decision 214/2025 — definition and formal requirements for employment contracts. The Gazette text is searchable and includes 9 articles.
+بشأن قواعد وإجراءات التكليف بتفتيش أماكن العمل ليلاً وفي غير أوقات العمل الرسمية
 
-Exact Arabic excerpts:
-> (المادة الأولى)  
-> تعريف عقد العمل: عقد العمل هو العقد الذى يتعهد بمقتضاه عامل بأن يعمل لدى صاحب عمل تحت إدارته أو إشرافه لقاء أجر.
+وزير العمل
 
-> (المادة الثانية)  
-> يلتزم صاحب العمل بتحرير عقد العمل كتابة باللغة العربية من أربع نسخ يحتفظ بنسخة لديه بملف خدمة العامل، وتسلم نسخة للعامل، وتودع الثالثة بمكتب التأمين الاجتماعى المختص، والنسخة الرابعة بالجهة الإدارية المختصة.
+بعد الاطلاع على الدستور؛
+وعلى القانون رقم ١٤ لسنة ٢٠٢٥ بإصدار قانون العمل؛
+وعلى الاتفاقيات الدولية التي صدقت عليها جمهورية مصر العربية؛
+وبعد العرض على المجلس الأعلى للتشاور الاجتماعي.
 
-> (المادة الخامسة)  
-> لا يلتزم صاحب العمل بالإيداع المشار إليه في المادة الثالثة من هذا القرار، إذا كانت عقود العمل غير محددة المدة مبرمة قبل تاريخ نفاذ قانون العمل المشار إليه (١ سبتمبر ٢٠٢٥). فإذا كانت عقود العمل محددة المدة مبرمة قبل نفاذ قانون العمل، فيجب إيداع نسخة منها عند أول تجديد.
+قرر:
 
-> (المادة السابعة)  
-> إذا كان العامل أجنبياً ولا يجيد اللغة العربية، يحرر عقد العمل باللغة العربية ولغة العامل أو اللغة العربية واللغة الإنجليزية، وفي حالة الاختلاف في التفسير يعمل بما تم تحريره باللغة العربية.
+**(المادة الأولى)**
+في تطبيق أحكام هذا القرار يُقصد بالكلمات والعبارات التالية المعنى المبين قرين كل منها:
+١- التفتيش الليلي: التفتيش الذي يتم في الفترة ما بين غروب الشمس وشروقها.
+٢- التفتيش في غير أوقات العمل الرسمية: التفتيش الذي تحدده الجهة الإدارية المختصة في غير مواعيد العمل الرسمية للتفتيش، وذلك للقائمين به.
 
-> (المادة التاسعة)  
-> ينشر هذا القرار في الوقائع المصرية، ويعمل به من اليوم التالي لتاريخ نشره...
+**(المادة الثانية)**
+مع عدم الإخلال بحق المفتشين في دخول المنشآت بحرية تامة في أي وقت من النهار أو الليل دون إذن مسبق أو إخطار، للجهة الإدارية المختصة تكليف مفتشي العمل والسلامة والصحة المهنية بالقيام بالتفتيش الليلي أو التفتيش في غير أوقات العمل الرسمية، وذلك في الحالات والأعمال التالية:
+١- المنشآت التي تعمل ثلاث ورديات.
+٢- المنشآت التي من طبيعتها العمل ليلاً.
+٣- المنشآت التي تستخدم أحداثاً أو نساء.
+٤- التفتيش على فترات الراحة، ومواعيد الغلق الليلي، والغلق الأسبوعي، والراحة الأسبوعية.
+٥- المنشآت التي تقوم بأعمال أو صناعات موسمية.
+٦- في حالة وجود خطر داهم على صحة العمال أو سلامتهم يستدعي انتقال المفتش ليلاً أو في غير أوقات العمل الرسمية.
+٧- التفتيش على وجبات الغذاء ليلاً.
+٨- إذا امتد التفتيش أثناء العمل لما بعد ساعات العمل الرسمية.
+٩- ما يُكلف به موظفو التفتيش المعنيون من التفتيش ليلاً أو في غير أوقات العمل الرسمية.
 
-Source discrepancy: the Gazette scan's preamble as OCR-rendered states “قانون العمل الصادر بالقانون رقم ٤ لسنة ٢٠٢٥” (Law No. 4), while the decision title/context and the governing statute are Law 14/2025. Preserve the Gazette's printed wording as captured and flag for inspection of the original image; do not silently correct it in the source text. The decision is signed 5-10-2025. The PDF has a third-party host, so the source class is “official Gazette scan, third-party host”, not direct official-host download.
+**(المادة الثالثة)**
+على المفتشين المكلفين بأعمال التفتيش الليلي وفي غير أوقات العمل الرسمية إعداد تقارير بنتيجة التفتيش لتُعرض على رؤسائهم في اليوم التالي للتفتيش، وذلك في حدود خطوط السير التي تعد مسبقاً للمفتشين للقيام بالمهام المكلفين بها.
 
-## 2. Additional 2025 decisions discovered through Gazette cross-indexing
+**(المادة الرابعة)**
+يلتزم أصحاب الأعمال أو من ينوب عنهم بتسهيل مهمة المكلفين بالتفتيش ومراقبة تنفيذ أحكام القانون، والقرارات المنفذة له، وتمكينهم من مباشرة أعمالهم، وأن يقدموا لهم المستندات والبيانات اللازمة لأداء مهمتهم.
 
-### Decision 187/2025 — approval of employee resignations
-Alternative article-by-article text source: https://www.youm7.com/story/2025/9/15/7122177 (15-09-2025; reproduces all nine articles in text and displays images of the signed decision and annex forms).  
-Official Ministry announcement lead: https://www.labour.gov.eg/ar/الأخبار/وزير-العمل-ي-صدر-قرار-ا-وزاري-ا-يوضح-ضوابط-وآليات-إعتماد-الإستقالات-العمالية-طبق-ا-لقانون-العمل-الجديد/  
-Legal-library metadata: https://www.mohamedabdelfattah.com/library/d/decree-2025-187  
-Decision date/effective date shown as 14-09-2025. Exact Gazette issue/page still not located.
+**(المادة الخامسة)**
+تلتزم الإدارات المختصة بتفتيش العمل والتفتيش التوجيهي للسلامة والصحة المهنية، ومديريات العمل والمناطق ومكاتب العمل التابعة لها بإعداد إحصائيات شهرية ونصف سنوية وسنوية بحالات التفتيش الليلي وفي غير أوقات العمل الرسمية.
 
-All nine articles are now represented in the alternative text source. Key Arabic text from Article 1:
-> للعامل أن يُقدم استقالته كتابة لجهة عمله بشرط أن تكون مُوقعة من العامل أو من وكيله الخاص، ومعتمدة من أحد مكاتب علاقات العمل بمديريات العمل في المحافظات...
+**(المادة السادسة)**
+يُمنح من يُكلف بالتفتيش الليلي، أو في غير أوقات العمل الرسمية مكافآت مالية يصدر بتحديدها وضوابط صرفها قرار من السلطة المختصة.
 
-Article 4: service ends only by acceptance or expiry of ten days from submission; the employee must continue working pending the decision/expiry. Article 5 allows written withdrawal within ten days of notification of acceptance, approved by the same labour-relations office. Article 6 excludes mutual termination agreements (التقايل) from the resignation-approval procedure but requires the agreement to record payment of all financial entitlements. Article 7 requires free will without coercion and settlement of entitlements. Article 8 requires the service certificate and return of deposited papers/tools. Article 9 makes the decision effective from 14-09-2025 and repeals conflicting prior provisions.
+**(المادة السابعة)**
+ينشر هذا القرار في الوقائع المصرية، ويعمل به من اليوم التالي لتاريخ نشره.
 
-Source classification: complete secondary article-by-article reproduction plus images of the signed decision/forms; not yet page-matched to Gazette. This is no longer an unavailable-text blocker, but Gazette issue/page verification remains open.
+صدر بتاريخ ٤/١٢/٢٠٢٥  
+وزير العمل  
+محمد جبران
 
-### Decision 267/2025 — apprenticeship / vocational progression
-Full Arabic transcription: https://lawhub.info/eg/?p=17307  
-EastLaws metadata: issue 295 supplement (D), 30-12-2025; signed 4-12-2025.
-
-Arabic opening:
-> قرار رقم 267 لسنة 2025  
-> بشأن تنظيم أحكام التدرج
-
-> يقصد بالمتدرج كل من التحق لدى صاحب عمل بقصد تعلم مهنة أو صنعة أو حرفة لقاء أجر خلال فترة زمنية محددة، وفقًا لاتفاق يبرم بين المتدرج أو ولى أمره وبين صاحب العمل.
-
-> يجب أن يكون اتفاق التدرج مكتوبًا، وموقع عليه عند إبرامه، ويلتزم صاحب العمل بتحرير اتفاق التدرج من ثلاثة نسخ...
-
-This decision links directly to apprenticeship, child work, vocational training and social insurance. The transcription identifies at least Articles 1–10 and further provisions; capture all clauses and any annexes.
-
-### Decision 270/2025 — workforce reporting by new establishments
-Full Arabic text lead: https://lawhub.info/eg/?p=17306  
-EastLaws metadata: issue 295 supplement (D), 30-12-2025; signed 12-11-2025.
-
-Arabic Article 1 excerpt:
-> تلتزم المنشآت الجديدة الخاضعة لأحكام قانون العمل المشار إليه أن ترسل إلى مديرية العمل المختصة ورقيًا أو إلكترونيًا بيانًا مفصلاً بعدد العمال طبقًا لمؤهلاتهم، ومهنهم، وفئات أعمارهم، وجنسياتهم، ونوعهم، والأجور التي يتقاضونها، وذلك خلال ثلاثين يومًا من تاريخ بدء العمل بالمنشأة.
-
-The text indicates three articles. Capture all clauses and forms. Distinguish its publication date from its signature date.
-
-## 3. New 2026 implementing instruments
-
-### 3.1 Decision 162/2026 — general rules for establishment work regulations
-Official Gazette/IDSC record: https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full  
-Separate MELES item with Arabic PDF: https://dspace.id.com.eg/items/5c91a8fb-c28a-4103-86c3-76410ebd91eb/full  
-Gazette: issue 176 supplement, 13-08-2026. Publisher/author: Amiri Press / Ministry of Labour. The catalogue lists Arabic PDF “D. No. 162-2026 لائحة تنظيم العمل.pdf” (321.3 KB) and English PDF (369.2 KB). DSpace also provides an item-specific licence file; check the licence before copying or redistributing the PDF.
-
-Full Arabic transcription lead: https://ahmedazimelgamel.blogspot.com/2026/08/162-2026.html  
-Additional Arabic text lead: https://sadaalqanun.com/مدونة-العمل/
-
-This is a major implementing instrument under Law 14/2025 Article 137. Catalogue abstract confirms these divisions:
-1. Definitions.
-2. Procedural rules for preparing, submitting and reviewing work regulations.
-3. Substantive rules: scope, worker dignity, recruitment, employment contracts/service files, training, job classification, performance, promotion/transfer, wage protection, working time/rest/leaves, work environment and worker safety.
-4. Investigations, worker safeguards and disciplinary sanctions.
-5. Termination of employment.
-6. Updating/developing work regulations.
-
-Law 14/2025 Article 137 (official-text reproduction) requires employers with 10+ workers to prepare a work-regulation bylaw covering promotion, transfer, wages, breaches and disciplinary sanctions; submit it for review/approval; obtain the competent union's opinion; and display it visibly. The law states the authority may issue general rules for this bylaw. Official Law 14 Gazette PDF: https://portal.eta.gov.eg/sites/default/files/2026-03/law.no_.14.of_.2025.pdf
-
-Exact Article 137 opening from the official-source reproduction:
-> على كل صاحب عمل يستخدم عشرة عمال فأكثر أن يعد لائحة بقواعد تنظيم العمل وفقا لطبيعة النشاط...
-
-The secondary full Arabic reproduction identifies **66 numbered articles**. It includes complete text for the core work-regulation lifecycle. Exact provisions extracted from the reproduction:
-
-> المادة (7) — يقدم طلب التصديق على اللائحة إلى مديرية العمل المختصة (مكتب علاقات العمل) من صاحب العمل أو الممثل القانوني للمنشأة مرفقًا به... ثلاث نسخ من مشروع اللائحة موقعة من المدير المسئول بالمنشأة وممهورة بخاتمها على كل صفحة...
-
-> المادة (8) — يجب على مديرية العمل المختصة موافاة المنظمة النقابية العمالية المختصة أو المفوض العمالي، بحسب الأحوال، بنسخة من مشروع اللائحة خلال ثلاثة أيام عمل على الأكثر من تاريخ استلامه من المنشأة.
-
-> المادة (46) — تحدد اللائحة واجبات العمال والأعمال المحظورة عليهم... كما تحدد ضمانات التحقيق مع العمال ومساءلتهم، مع مراعاة ما يلي: البدء في التحقيق خلال مدة لا تجاوز سبعة أيام من تاريخ اكتشاف المخالفة وألا تجاوز مدة التحقيق ثلاثة أشهر، إلا إذا ظهرت أدلة جديدة؛ وعدم جواز توقيع الجزاء بعد مضى ثلاثين يوما من انتهاء التحقيق.
-
-> المادة (61) — يجب أن تفرد اللائحة أحكام مستقلة لكل سبب من أسباب إنهاء علاقة العمل دون خلط بين الاستقالة الحكمية والصريحة، أو بين الاستقالة ومهلة الإخطار، أو بين الإنهاء والفصل التأديبي.
-
-> المادة (62) — يحظر النص في اللائحة على مهلة إخطار للاستقالة، ويجوز الاتفاق على مهلة إخطار فقط في حالات إنهاء العلاقة باتفاق الطرفين أو التقابل أو الفسخ بالتراضي.
-
-> المادة (64) — تلتزم المنشأة بمراجعة السياسات واللوائح الداخلية وتقييمها بشكل دوري...
-
-> المادة (65) — يجوز تعديل اللائحة، بناء على مقتضيات العمل، وبما لا يخل بالحقوق المكتسبة للعاملين...
-
-> المادة (66) — ينشر هذا القرار فى الوقائع المصرية، ويعمل به من اليوم التالي لتاريخ نشره.
-
-Decision date: 28-07-2026; Gazette issue 176 supplement, 13-08-2026. The text source therefore supplies an article count and detailed clauses, while the official DSpace item identifies the Gazette issue and the Arabic PDF. The PDF's item-specific licence still requires review before copying or redistribution. Page-by-page Gazette matching and annex capture remain pending.
-
-### 3.2 Decisions 248–252/2026 — occupational health and safety package
-Ministry of Labour announcement (20-10-2026): https://www.labour.gov.eg/ar/الأخبار/وزير-العمل-يصدر-5-قرارات-تنفيذية-لتعزيز-منظومة-السلامة-والصحة-المهنية-وتأمين-بيئة-العمل/  
-Gazette anchor confirmed for 248 and 250: Egyptian Gazette issue 225 supplement (A), 12-10-2026. The same five-decision package is 248, 249, 250, 251, 252/2026. Individual page numbers and each signed text still need source-level verification.
-
-| Decision | Subject | Text/source status |
-|---|---|---|
-| 248/2026 | Forms/statistics for ordinary, chronic and occupational diseases, serious accidents and work injuries | Full-text discovery page: https://lawhub.info/eg/?p=19704 ; alternative: https://www.mohamedabdelfattah.com/library/d/decree-2026-248 |
-| 249/2026 | Establishments required to create OSH functional units and committees | https://lawhub.info/eg/?p=19705 ; https://www.mohamedabdelfattah.com/library/d/decree-2026-249 |
-| 250/2026 | Workplace safety limits, standards, precautions and risk prevention | https://lawhub.info/eg/?p=19706 ; secondary text lead: https://ahmedazimelgamel.blogspot.com/2026/10/250-2026.html |
-| 251/2026 | Licensing experts/consultants in OSH and work-environment safety | https://lawhub.info/eg/?p=19707 |
-| 252/2026 | Licensing/training systems for OSH | https://lawhub.info/eg/?p=19708 |
-
-Decision 250/2026 Arabic opening from secondary reproduction:
-> مادة رقم 1  
-> يعمل بأحكام هذا القرار، والجداول ونماذج السجلات المرافقة له في شأن قواعد ومعايير وبيان حدود الأمان في أماكن العمل، والاشتراطات والاحتياطات اللازمة لدرء المخاطر بكافة أنواعها، وتوفير بيئة عمل آمنة.
-
-Its preamble cites ILO Arab Labour Organization Conventions 13/1981 (work environment), 6/1976 (work levels), 16/1983 (workers' social services) and 19/1998 (labour inspection), plus relevant fire/radiation/environment legislation. It also references Egypt's Maritime Labour Convention accession. Obtain all schedules and annexed tables: exposure limits, heat/noise/radiation, excavation, demolition, scaffolds, cranes and hot work. Do not use summaries as operative rules.
-
-The full Official Gazette supplement has now been located as an IDSC/MELES record: https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full. It is issue 225 supplement (A), dated 12-10-2026, Ministry of Labour, Amiri Press; the original PDF bundle is 6.13 MB and contains all five decisions. Obtain and inspect the PDF plus its item-specific licence rather than treating the individual secondary pages as the definitive source.
-
-Additional substantive findings from the 248/2026 Arabic reproduction (https://ahmedazimelgamel.blogspot.com/2026/10/248-2026.html; corroborating press text https://www.youm7.com/story/2026/10/28/7590406):
-
-Exact Arabic Article 3:
-> تسري أحكام هذا القرار على جميع مواقع العمل، والمنشآت وفروعها أيًا كان نوعها، أو تبعيتها، سواء كانت برية أو بحرية أو جوية، وعلى المسطحات المائية بجميع أنواعها ووسائل النقل المختلفة.
-
-Exact Arabic Article 4 opening:
-> تلتزم كافة المنشآت وفروعها بإخطار الجهة الإدارية المختصة بما يلي: كل حادث جسيم خلال 24 ساعة من وقوعه داخل المنشأة أو الفرع أو موقع عمل، وخلال 48 ساعة من وقوعه خارج حدود المنشأة أو الفرع أو موقع العمل، ويتم الإخطار على النموذج رقم 1 المرافق بهذا القرار.
-
-Further provisions surfaced in the article-level text:
-- Occupational disease notification: within 24 hours after diagnosis is confirmed by the health-insurance authority.
-- Establishments with 30 or more workers: semi-annual statistics on ordinary/chronic/occupational diseases, serious accidents and work injuries.
-- Serious accidents include death; expected permanent disability of 35% or more; third-degree burns or greater; injury to multiple persons at the same site/time; and fires, collapses, explosions or hazardous-substance leaks causing work stoppage for one or more shifts.
-- False statistics/data may be treated as a serious violation even after the reporting deadline.
-
-The source reproduction also links the new decision to the prior Decision 126/2003 on workplace-injury forms/statistics. Confirm the exact repeal/transition clause and transcribe every annexed form from the Gazette PDF.
-
-Decision 249/2026 secondary material indicates establishments with 50+ workers as a threshold, subject to risk classifications and exceptions; the exact table must be transcribed from the Gazette PDF. Decision 252/2026 Arabic text lead: https://www.almasdar.com/print.aspx?id=175156. It begins with definitions and governs licensing/training systems for OSH; extract the full text and any annexes. The Gazette PDF is now a concrete full-issue acquisition target, not an unidentified source gap.
-
-Decision 248/2026 relates to older Decision 126/2003 on workplace-injury forms/statistics. Record supersession/partial repeal only after reading the repeal clause.
-
-### 3.3 Prime Minister Decision 982/2026 — temporary weekly work arrangement
-Gazette PDF scan: https://www.cairo24.com/Upload/libfiles/181/0/811.pdf  
-Gazette: issue 14 (supplement), heading dated 2-04-2026; document signature line says 3-04-2026 (date mismatch to verify). Six articles; PDF OCR/search extraction is available.
-
-Exact Arabic text:
-> قرار رئيس مجلس الوزراء رقم 982 لسنة 2026
-
-> (المادة الأولى)  
-> تسري أحكام هذا القرار على كافة المنشآت والجهات الخاضعة لأحكام قانون العمل المشار إليه، ويلتزم أصحاب الأعمال من الأشخاص الطبيعيين أو الاعتباريين بتنفيذ أحكامه.
-
-> (المادة الثانية)  
-> تلتزم كافة المنشآت والجهات المبينة فيما بعد، خلال شهر أبريل من عام 2026، بتطبيق نظام العمل بعد يوم الأحد من كل أسبوع بالنسبة لكافة العاملين بها؛ بدءًا من يوم الأحد الموافق 5/4/2026...
-
-The listed sectors include ICT (with specified exceptions), financial/accounting services, marketing/media/digital, real estate, remote-training operations, non-service NGOs and union/employer federation offices. Other sectors apply it to non-essential administrative functions. Article 3 exempts specified service, health, transport, infrastructure, industrial/production and education operations; Article 4 preserves better existing rights/benefits. This appears expressly time-limited to April 2026; do not present as a permanent weekly-rest rule. Capture exact closing date and any extensions/amendments.
-
-## 4. New amendment/supersession and missing-instrument findings
-
-1. Foreign-worker permits: Decision 279/2025 Art. 39 repeals prior rules to the extent inconsistent. The legal-library cross-reference identifies 136/2003, 227/2004, 49/2008, 485/2010, 305/2015 and 146/2019 as superseded in this subject. Also inspect 357/2004 instructions. Store old texts as historical, not current.
-2. Training: Decision 264/2025 Art. 40 repeals prior conflicting provisions; Article 41 commencement is next day after publication. Capture the prior training-centre licensing decisions that are thereby superseded.
-3. Recruitment agencies: Decision 272/2025 Art. 52 repeals prior conflicting rules; collect its historical predecessors and mark the new instrument's commencement.
-4. OSH: Decisions 248–252/2026 form a new package. Existing 2003/2010/2016 OSH decisions may be displaced or partly superseded; do not mark blanket repeal without each decision's clause.
-5. Work regulations: Decision 162/2026 operationalizes Law 14/2025 Art. 137. Compare it with older Model Work Regulation Decision 185/2003 and any later amendments; preserve historical rules where not expressly displaced.
-6. Resignations: Decision 187/2025 is a new implementation lead. Full signed text and Gazette metadata are blocked behind subscription in the currently found source; find an alternative official PDF/scan.
-7. Collective disputes: Decision 300/2025 is a separate collective-dispute conciliation instrument; Decision 299/2025 covers individual amicable settlement. Do not conflate their committees, time limits or jurisdiction.
-8. Redundancy/closure: Decision 301/2025's six articles are now captured from the issue 290 scan (printed pages 50–51). Cross-check the scan text against the secondary transcriptions, confirm source rights/provenance, and map its criteria with Law 14/2025 Article 239 and Decision 259/2025 workers' entitlements.
-9. Ministerial holiday decisions: Decision 294/2025 must be cross-linked with Decision 346/2025 for Christian holidays; obtain the signed Gazette text of both before computing the current paid-holiday calendar.
-10. Amendments after 20-11-2026: search the Egyptian Gazette and Ministry decision catalogue for any subsequent amendments/repeals before marking any instrument current.
-
-## 5. Acquisition dashboard — non-inflated denominator
-
-This tranche newly surfaced 25 instrument records (18 ministerial decisions from 2025 and 6 ministerial decisions plus one Prime Minister decision from 2026). This is a tranche denominator, not the total universe of Egyptian labour instruments.
-
-- 20/25 (80%): searchable Arabic full-text sources located for direct article extraction, including secondary reproductions and the third-party-hosted Gazette scan copy of Decision 301/2025.
-- 5/25 (20%): substantial Arabic text or official text fragments located, but complete text/schedules require extraction (the five 2026 OSH decisions).
-- 0/25: metadata-only Gazette/PDF leads not yet article-extracted within this tranche (Decision 301/2025 moved to the text-acquired group; its source-rights/provenance review remains open).
-- Gazette-anchored: 24/25 have an issue/date anchor or official catalogue record; Decision 187/2025 still needs issue/page confirmation.
-- Exact Gazette page matching: not yet complete for this tranche. Decision 301/2025 has a third-party-hosted scan of the relevant Gazette issue and printed pages 50–51 visually inspected; independent official-host provenance and source-rights clearance remain pending. Do not generalize this result to the other instruments.
-- Qualified Egyptian lawyer review: 0%.
-- Production verified: 0%.
-
-The previous project-wide national-corpus estimate (~2%, rounded) is not recalculated here: the current acquisition adds evidence, but no unified instrument denominator or repository ingestion count has been re-audited. Do not claim a project-wide percentage-point increase from search results alone.
+**Evidence limits:** secondary full text is captured; visual comparison against Gazette page 77 and the separate Arabic catalogue PDF remains pending. The catalogue record identifies the instrument as an Official Gazette item but does not by itself establish redistribution rights. No lawyer review or production verification is claimed.
 
 ## 6. Repository ingestion and evidence controls
 
