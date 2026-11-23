@@ -145,3 +145,8 @@ Pages7–20 of the Gazette reproduction show Articles6–27. The visible subject
 - Added EG-0421: Decision468/2026 (partial transcription; 27-article regulation still requires full article-level extraction).
 - Central register: **420 rows**.
 - Same keyword-based proxy: **113/420 full-text indicators (26.9%)**, **49/420 partial-only indicators (11.7%)**, **161/420 with any text indicator (38.3%)**. Not an authentication, consolidation or lawyer-review measure.
+
+
+## Latest central-register progress (23 November 2026)
+
+**420 rows; 113/420 full-text indicators (26.9%); 49/420 partial-only indicators (11.7%); 161/420 with any text indicator (38.3%).** Same keyword-based proxy as prior snapshots; not a measure of official-source authentication, consolidation or lawyer review.
