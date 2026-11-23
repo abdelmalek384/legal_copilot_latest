@@ -3,7 +3,7 @@
 **Acquisition date:** 2026-11-23  
 **Instrument:** Ministry of Labour Decision 50/2026, بشأن تحديد قواعد وظروف وأحوال تشغيل الأطفال وتدريبهم والأعمال والمهن والصناعات التي يحظر تشغيلهم أو تدريبهم فيها.  
 **Publication:** Egyptian Proceedings, issue 64 supplement, 18 March 2026; printed pages 13–19 for the 18 articles and pages 20 onward for annexes.  
-**Text completeness:** all 18 operative articles captured from the issue PDF text layer, with OCR/transcription anomalies explicitly flagged. Annexes 1 and 2 are identified but not fully transcribed here. The PDF is a third-party-hosted Gazette reproduction; an IDSC/MELES catalogue record is not yet added in this acquisition note.
+**Text completeness:** all 18 operative articles captured from the issue PDF text layer, with OCR/transcription anomalies explicitly flagged. Annexes 1 and 2 were subsequently fully captured in a companion text-layer extraction note (linked from the research index); visual proofreading is still pending. The PDF is a third-party-hosted Gazette reproduction; an IDSC/MELES catalogue record is not yet added in this acquisition note.
 
 ## Source
 
@@ -146,11 +146,10 @@
 وزير العمل  
 حسن رداد
 
-## Annexes — not yet fully transcribed
+## Annexes — full text captured in companion note
 
-- **Table 1:** prohibited work environments, jobs, professions and industries for persons under 18. The PDF text extraction begins at printed page 20 and includes prohibitions relating to excessive physical/chemical/biological/mechanical risks, direct solar heat exposure at specified times, high-temperature work, radiation, explosives/flammables, dangerous machinery, electricity, and manual handling/lifting above specified sex-specific weights. The table continues beyond the excerpt captured in this note. It must be extracted in full and checked against page images.
-- **Table 2:** required healthy daily meal for each child employee/trainee, including food types, quantities and instructions. It is referenced in Article 11; full table extraction remains pending.
-- Do not treat this note as a complete capture of the Decision's legal content until both annexes are fully transcribed and reviewed.
+- **Table 1** and **Table 2** are fully captured from the PDF text layer in [the companion annex extraction](labour_decision_50_2026_annexes_1_2_full_text_capture_2026-11-23.md). The companion note includes the general prohibited environments, sex-specific load limits, 13 blanket industry/work categories, 10 industry-specific activity groups, four alternative meal schedules and seven meal-service instructions.
+- Visual proofreading against printed pages 20–27 is still pending. The text layer contains likely OCR errors and ambiguous quantity formatting; the companion note flags these rather than presenting them as verified literal text.
 
 ## Important OCR/transcription caveats
 
@@ -177,3 +176,8 @@
 - Source host is third party; no reuse or commercial permission inferred.
 - Currentness and lawyer review pending.
 - Keep production `verified=0`.
+
+
+## Annex acquisition update (23 November 2026)
+
+The earlier note described the annexes as incomplete. A subsequent extraction of the remaining PDF text-layer lines (printed pages 20–27) recovered both complete annex tables. They are now transcribed in the companion file. The corpus acquisition status is therefore **18 operative articles + both annexes captured**, with visual proofreading, OCR correction, currentness, source rights and counsel review still pending.
