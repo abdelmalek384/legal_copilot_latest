@@ -1293,7 +1293,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
             case_result.click()
             self.page.locator(".matter-section-nav").wait_for(state="visible", timeout=10000)
 
-            work_section = self.page.locator(".matter-section-nav button").filter(has_text="العمل")
+            work_section = self.page.locator(".matter-section-nav").get_by_role("button", name="العمل", exact=True)
             work_section.click()
             deadline_nav = self.page.locator(".matter-subnav button").filter(has_text="المواعيد القانونية")
             deadline_nav.wait_for(state="visible", timeout=15000)
