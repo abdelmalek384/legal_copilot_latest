@@ -76,3 +76,10 @@ class DocumentPassageAnnotationTests(unittest.TestCase):
         self.assertIn("passage-annotation-highlight", page)
         self.assertIn("Remove highlight", page)
         self.assertIn("The passage changed after this annotation", page)
+
+    def test_annotations_remain_anchored_to_original_extracted_text_after_correction(self):
+        html = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
+        page = html[html.index("const renderChunkReviewCards="):html.index("const renderAnalysis=()=>{")]
+        self.assertIn("const currentText=String(chunk.text||'')", page)
+        self.assertIn("Original extracted passage for highlighting", page)
+        self.assertIn("Latest recorded correction (working copy)", page)
