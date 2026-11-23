@@ -237,6 +237,7 @@ def group_candidate_entity_mentions(
     max_candidates: int = 5000,
     max_groups: int = 500,
     max_documents: int = 1000,
+    max_entities_per_document: int = 5000,
 ) -> dict[str, Any]:
     """Group exact normalized party/reference mentions within firm/matter scope.
 
@@ -250,6 +251,7 @@ def group_candidate_entity_mentions(
         ("max_candidates", max_candidates, 10000),
         ("max_groups", max_groups, 2000),
         ("max_documents", max_documents, 5000),
+        ("max_entities_per_document", max_entities_per_document, 20000),
     ):
         if isinstance(value, bool) or not isinstance(value, int) or not 1 <= value <= maximum:
             raise ValueError(f"{name} must be an integer between 1 and {maximum}")
@@ -274,7 +276,9 @@ def group_candidate_entity_mentions(
         entities = document.get("entities", [])
         if not isinstance(entities, list):
             raise ValueError("entities must be a list")
-        for entity in entities:
+        if len(entities) > max_entities_per_document:
+            truncated = True
+        for entity in entities[:max_entities_per_document]:
             if not isinstance(entity, dict) or entity.get("entity_type") not in allowed_types:
                 continue
             literal = entity.get("name_mention") if entity.get("entity_type") == "labelled_party" else entity.get("mention")
