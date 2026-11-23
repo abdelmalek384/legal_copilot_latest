@@ -76,6 +76,9 @@ jobs:
       - name: Test client profile and multi-matter linkage
         if: ${{ !cancelled() && steps.install_locked_dependencies.outcome == 'success' }}
         run: PYTHONPATH=. python tests/test_client_profiles.py
+      - name: Test profile migrations and database ownership boundaries
+        if: ${{ !cancelled() && steps.install_locked_dependencies.outcome == 'success' }}
+        run: PYTHONPATH=. python tests/test_profile_initial_schemas.py
       - name: Test separate-runtime routing and firm isolation
         if: ${{ !cancelled() && steps.install_locked_dependencies.outcome == 'success' }}
         run: PYTHONPATH=. python tests/test_app_separate_database_runtime.py
