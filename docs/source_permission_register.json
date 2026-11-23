@@ -3175,6 +3175,22 @@
       "permission_evidence": "No item-specific reuse license identified in the accessible catalogue metadata. The secondary MKSEgypt page displays CC BY 4.0 for site content; that license does not automatically apply to the Gazette scan or third-party material.",
       "bulk_download_or_api": "No bulk/API permission identified",
       "required_next_action": "Obtain the Gazette PDF through the repository's ordinary download link; preserve the scan separately from the CC BY secondary transcription and verify every amended article."
+    },
+    {
+      "source_id": "EG-QADAYA-LEGAL-TEXTS",
+      "authority": "Qadaya — secondary Egyptian legal-text publisher",
+      "source_page": "https://qadaya.net/",
+      "material_types": [
+        "Arabic reproduction of Law159/2003 judicial-statutes amendment"
+      ],
+      "access_status": "Full Arabic operative text and year-index entry located; original Official Gazette scan not located.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "No affirmative licence for collection, commercial reuse, redistribution or bulk extraction was established. Use as a secondary discovery/text lead only.",
+      "terms_checked_on": "2026-11-23",
+      "bulk_download_or_api": "Not established",
+      "required_next_action": "Obtain original Gazette issue and compare the Article1 amendment to Law47/1972 Article123; review site terms and written reuse permissions."
     }
   ]
 }
