@@ -1087,8 +1087,10 @@ class BrowserAcceptanceTests(unittest.TestCase):
 
         # Open a returned passage and add a lawyer annotation without modifying the uploaded source.
         client_card.locator(".src").first.get_by_role("button", name="فتح المقطع في ملف القضية").click()
-        analyze_documents = self.page.get_by_role("button", name="تحليل المستندات", exact=True)
-        analyze_documents.wait_for(state="visible", timeout=20000)
+        intelligence_panel = self.page.locator(".document-intelligence-panel")
+        intelligence_panel.wait_for(state="visible", timeout=20000)
+        analyze_documents = intelligence_panel.locator("button").first
+        analyze_documents.wait_for(state="visible", timeout=10000)
         analyze_documents.click()
         passage = self.page.locator(".passage-annotation-text").first
         passage.wait_for(state="visible", timeout=15000)
