@@ -148,3 +148,8 @@ Central register: **414 instrument rows**. Using the same keyword-based `content
 
 
 **Later revision (23 November 2026):** after adding Justice Minister Decision1729/2026, the register contains 415 rows: 108 full-text indicators (26.0%), 49 partial-only indicators (11.8%), and 157 with any text indicator (37.8%).
+
+
+## Latest central-register progress (23 November 2026)
+
+The register now contains **416 rows**: **110/416 full-text indicators (26.4%)**, **48/416 partial-only indicators (11.5%)**, and **157/416 with any text indicator (37.7%)**. This is the same keyword-based register proxy used in previous snapshots, not a measure of authenticated or lawyer-reviewed legal coverage.
