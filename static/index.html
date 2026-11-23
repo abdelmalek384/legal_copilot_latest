@@ -2946,7 +2946,7 @@ async function law(){
   let accessibleCases=[];
   try{accessibleCases=await api('/cases');accessibleCases.forEach(c=>matterSelect.append(new Option((c.title||('Matter '+c.id))+' (#'+c.id+')',String(c.id))))}catch(_){}
   scopeSelect.onchange=()=>{persistResearchScope();matterLabel.hidden=scopeSelect.value!=='firm_documents';openDocumentWorkspace.hidden=scopeSelect.value!=='firm_documents';if(scopeSelect.value!=='firm_documents'){documentWorkspace.replaceChildren();documentWorkspace.hidden=true;uploadPanel.hidden=true;paperclipButton.setAttribute('aria-expanded','false')}syncScopeTabs();if(scopeSelect.value==='firm_documents'&&!matterSelect.value)toast(LANG==='ar'?'اختر ملف قضية للبحث في مستندات المكتب':'Select a matter to search firm documents')};
-  const documentWorkspace=h('div',{});
+  const documentWorkspace=h('div',{className:'research-document-workspace'});
   const uploadInput=h('input',{type:'file',multiple:true,accept:'.pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document',className:'visually-hidden',tabIndex:-1,'aria-label':LANG==='ar'?'اختر ملفات PDF أو DOCX':'Choose PDF or DOCX files'});
   const uploadStatus=h('p',{className:'research-upload-status',role:'status','aria-live':'polite',textContent:LANG==='ar'?'اختر ملف قضية لإضافة مستندات إليها.':'Select a matter before adding documents.'});
   const uploadResults=h('div',{className:'research-upload-results',role:'list','aria-live':'polite','aria-relevant':'additions text','aria-atomic':'false'}),uploadWarnings=h('div',{className:'research-upload-warnings'});
