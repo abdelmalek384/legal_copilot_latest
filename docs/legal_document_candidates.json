@@ -9078,6 +9078,386 @@
           "status": "listed_2026-11-23"
         }
       ]
+    },
+    {
+      "document_id": "EG-LOCAL-ADMIN-REG-AMEND-314-1982",
+      "official_title": "قرار رئيس مجلس الوزراء رقم 314 لسنة 1982 بتعديل بعض أحكام اللائحة التنفيذية لقانون الحكم المحلي",
+      "document_type": "amending_executive_decision",
+      "law_number": "314",
+      "law_year": 1982,
+      "source_id": "EG-MANSHURAT",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "12-page scan located; Manshurat relation register confirms amendment to Decision 707/1979. Searchable administrative judgment quotes the amended Art.3 and Art.10, including local-unit responsibility for local public facilities and agricultural matters. Original Gazette issue 15, 15 April 1982 per secondary legal citations; full scan visual transcription remains open. No full text ingested into the repository: source reuse permissions remain unknown. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://manshurat.org/node/13283",
+          "source_role": "source locator or full-text page",
+          "status": "located_2026-11-23"
+        },
+        {
+          "url": "https://manshurat.org/file/24910/download?token=ULZzCRUL",
+          "source_role": "additional text, Gazette-scan or corroborating source",
+          "status": "located_2026-11-23"
+        },
+        {
+          "url": "https://lawhub.info/eg-j/?p=4828",
+          "source_role": "additional text, Gazette-scan or corroborating source",
+          "status": "located_2026-11-23"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LOCAL-ADMIN-REG-AMEND-1139-1984",
+      "official_title": "قرار رئيس مجلس الوزراء رقم 1139 لسنة 1984 بتعديل بعض أحكام اللائحة التنفيذية لقانون الحكم المحلي",
+      "document_type": "amending_executive_decision",
+      "law_number": "1139",
+      "law_year": 1984,
+      "source_id": "EG-MANSHURAT",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Manshurat relation register confirms amendment to Decision 707/1979. Issued 3 November 1984 and published 15 November 1984; 1-page PDF scan located. Full text not OCR-extracted; visual transcription and precise amendment article remain open. No full text ingested into the repository: source reuse permissions remain unknown. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://manshurat.org/node/13284",
+          "source_role": "source locator or full-text page",
+          "status": "located_2026-11-23"
+        },
+        {
+          "url": "https://manshurat.org/file/24912/download?token=SP6A2Q10",
+          "source_role": "additional text, Gazette-scan or corroborating source",
+          "status": "located_2026-11-23"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LOCAL-ADMIN-REG-AMEND-1251-1988",
+      "official_title": "قرار رئيس مجلس الوزراء رقم 1251 لسنة 1988 بتعديل بعض أحكام اللائحة التنفيذية لقانون نظام الإدارة المحلية",
+      "document_type": "amending_executive_decision",
+      "law_number": "1251",
+      "law_year": 1988,
+      "source_id": "EG-MANSHURAT",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Manshurat relation register confirms amendment to Decision 707/1979. Issued 24 November 1988, published and effective 1 December 1988; 5-page PDF scan located. Secondary consolidated text identifies amendments including Arts.48 bis, 56, 78 and 91 bis; exact text needs Gazette-image transcription. No full text ingested into the repository: source reuse permissions remain unknown. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://manshurat.org/node/13285",
+          "source_role": "source locator or full-text page",
+          "status": "located_2026-11-23"
+        },
+        {
+          "url": "https://manshurat.org/file/24914/download?token=l9LnSJmH",
+          "source_role": "additional text, Gazette-scan or corroborating source",
+          "status": "located_2026-11-23"
+        },
+        {
+          "url": "https://www.mohamah.net/law/نصوص-و-مواد-قانون-نظام-الإدارة-المحلية-في-مصر/",
+          "source_role": "additional text, Gazette-scan or corroborating source",
+          "status": "located_2026-11-23"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LOCAL-ADMIN-REG-AMEND-488-1989",
+      "official_title": "قرار رئيس مجلس الوزراء رقم 488 لسنة 1989 بتعديل بعض أحكام اللائحة التنفيذية لقانون نظام الإدارة المحلية",
+      "document_type": "amending_executive_decision",
+      "law_number": "488",
+      "law_year": 1989,
+      "source_id": "EG-MANSHURAT",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Full Arabic text recovered from the PDF search index. Gazette issue 21, 25 May 1989; issued 15 May 1989. Art.1 replaces Art.25 to assign the governorate study/recommendation and assistance functions regarding Awqaf investment plans, Islamic الدعوة, charity, mosque maintenance and protection of Awqaf assets. Source recital incorrectly refers to Decision 707/1978; flag as apparent source/printing error and verify against Gazette image. No full text ingested into the repository: source reuse permissions remain unknown. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://manshurat.org/node/13286",
+          "source_role": "source locator or full-text page",
+          "status": "located_2026-11-23"
+        },
+        {
+          "url": "https://manshurat.org/file/24916/download?token=lX6MAbbi",
+          "source_role": "additional text, Gazette-scan or corroborating source",
+          "status": "located_2026-11-23"
+        },
+        {
+          "url": "https://www.manshurat.org/file/24916/download?token=lX6MAbbi",
+          "source_role": "additional text, Gazette-scan or corroborating source",
+          "status": "located_2026-11-23"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LOCAL-ADMIN-REG-AMEND-1105-1990",
+      "official_title": "قرار رئيس مجلس الوزراء رقم 1105 لسنة 1990 بتعديل بعض أحكام اللائحة التنفيذية لقانون نظام الإدارة المحلية",
+      "document_type": "amending_executive_decision",
+      "law_number": "1105",
+      "law_year": 1990,
+      "source_id": "EG-MANSHURAT",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Manshurat relation register confirms amendment to Decision 707/1979. Issued 22 August 1990, published/effective 30 August 1990; one-page PDF scan located. Secondary current text annotates Art.94 bis as added by this decision, providing an independent organizational structure for a city of special importance; full Gazette transcription remains open. No full text ingested into the repository: source reuse permissions remain unknown. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://manshurat.org/node/13287",
+          "source_role": "source locator or full-text page",
+          "status": "located_2026-11-23"
+        },
+        {
+          "url": "https://manshurat.org/file/24918/download?token=gptkmQlr",
+          "source_role": "additional text, Gazette-scan or corroborating source",
+          "status": "located_2026-11-23"
+        },
+        {
+          "url": "https://www.badrashein.com/world/21-political-topics/511-قانون-نظام-الإدارة-المحلية-رقم-43-لسنة-1979ولائحته-التنفيذية-وشروط-الترشيح-للمجالس-الشعبية-المحلية",
+          "source_role": "additional text, Gazette-scan or corroborating source",
+          "status": "located_2026-11-23"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LOCAL-ADMIN-REG-AMEND-1543-1993",
+      "official_title": "قرار رئيس مجلس الوزراء رقم 1543 لسنة 1993 بتعديل المادة 35 من اللائحة التنفيذية لقانون نظام الإدارة المحلية",
+      "document_type": "amending_executive_decision",
+      "law_number": "1543",
+      "law_year": 1993,
+      "source_id": "EG-MKSEGYPT",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Full Arabic text located. Gazette publication 23 September 1993; issued 9 September 1993. Replaces paragraphs 1–3 of Art.35 governing sitting allowances for members of local popular and executive councils (historical nominal amounts). 2-page Gazette scan also located at Manshurat. No full text ingested into the repository: source reuse permissions remain unknown. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://www.mksegypt.org/ar/decisions/25345",
+          "source_role": "source locator or full-text page",
+          "status": "located_2026-11-23"
+        },
+        {
+          "url": "https://manshurat.org/node/13288",
+          "source_role": "additional text, Gazette-scan or corroborating source",
+          "status": "located_2026-11-23"
+        },
+        {
+          "url": "https://manshurat.org/file/24920/download?token=7UKKPOBC",
+          "source_role": "additional text, Gazette-scan or corroborating source",
+          "status": "located_2026-11-23"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LOCAL-ADMIN-REG-AMEND-2718-1996",
+      "official_title": "قرار رئيس مجلس الوزراء رقم 2718 لسنة 1996 بتعديل بعض أحكام اللائحة التنفيذية لقانون نظام الإدارة المحلية",
+      "document_type": "amending_executive_decision",
+      "law_number": "2718",
+      "law_year": 1996,
+      "source_id": "EG-MKSEGYPT",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Full Arabic text located. Issued 30 September 1996; Gazette issue 40, published/effective 10 October 1996. Replaces Art.29 on composition of local popular councils, 50% workers/farmers representation and replacement/election procedure when a seat becomes vacant. 2-page Gazette scan also located at Manshurat. No full text ingested into the repository: source reuse permissions remain unknown. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mksegypt.org/ar/decisions/27414",
+          "source_role": "source locator or full-text page",
+          "status": "located_2026-11-23"
+        },
+        {
+          "url": "https://manshurat.org/node/13289",
+          "source_role": "additional text, Gazette-scan or corroborating source",
+          "status": "located_2026-11-23"
+        },
+        {
+          "url": "https://manshurat.org/file/24922/download?token=39zifTKN",
+          "source_role": "additional text, Gazette-scan or corroborating source",
+          "status": "located_2026-11-23"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LOCAL-ADMIN-REG-AMEND-220-2000",
+      "official_title": "قرار رئيس مجلس الوزراء رقم 220 لسنة 2000 بتعديل بعض أحكام اللائحة التنفيذية لقانون نظام الإدارة المحلية",
+      "document_type": "amending_executive_decision",
+      "law_number": "220",
+      "law_year": 2000,
+      "source_id": "EG-MANSHURAT",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "One-page Gazette scan visually inspected. Gazette issue 26 تابع (أ), 2 February 2000; Art.2 effective the following day (3 February 2000). Art.1 adds to Art.18 the governor's responsibility to manage governorate-owned vehicle parking facilities and supervise operation of passenger vehicles within governorate boundaries. Full page image is preserved as the visual transcription source. No full text ingested into the repository: source reuse permissions remain unknown. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://manshurat.org/node/13290",
+          "source_role": "source locator or full-text page",
+          "status": "located_2026-11-23"
+        },
+        {
+          "url": "https://manshurat.org/file/24924/download?token=ygQ39PZf",
+          "source_role": "additional text, Gazette-scan or corroborating source",
+          "status": "located_2026-11-23"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LOCAL-ADMIN-LAW-AMEND-50-1981",
+      "official_title": "القانون رقم 50 لسنة 1981 بتعديل قانون نظام الحكم المحلي رقم 43 لسنة 1979",
+      "document_type": "law_amendment",
+      "law_number": "50",
+      "law_year": 1981,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official Ministry of Finance locator labels the law in force and links a 27-page official-hosted PDF; PDF is scan/image only in extraction. LawHub current consolidated text identifies replacement of Law 43 Arts.1,2,144,145 by Law 50/1981. Gazette issue 26, 25 June 1981 per secondary metadata. Ministry page warns its online text is guidance and Official Gazette is controlling. No full text ingested into the repository: source reuse permissions remain unknown. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/legislation-5fe86aa77bfc600007cbffcf",
+          "source_role": "source locator or full-text page",
+          "status": "located_2026-11-23"
+        },
+        {
+          "url": "https://media.mof.gov.eg/mof-prd/217_3d873503c3.pdf",
+          "source_role": "additional text, Gazette-scan or corroborating source",
+          "status": "located_2026-11-23"
+        },
+        {
+          "url": "https://lawhub.info/eg/?p=11568",
+          "source_role": "additional text, Gazette-scan or corroborating source",
+          "status": "located_2026-11-23"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LOCAL-ADMIN-LAW-AMEND-106-1987",
+      "official_title": "القانون رقم 106 لسنة 1987 بتعديل بعض أحكام قانون الحكم المحلي الصادر بالقانون رقم 43 لسنة 1979",
+      "document_type": "law_amendment",
+      "law_number": "106",
+      "law_year": 1987,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official Ministry of Finance locator labels the law in force and links a one-page official-hosted PDF scan. Article-level replacement text not yet OCR-extracted; Gazette image transcription remains open. No full text ingested into the repository: source reuse permissions remain unknown. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/legislation-5fe86a867bfc600007cbfe5e",
+          "source_role": "source locator or full-text page",
+          "status": "located_2026-11-23"
+        },
+        {
+          "url": "https://media.mof.gov.eg/mof-prd/221_0a9afe1097.pdf",
+          "source_role": "additional text, Gazette-scan or corroborating source",
+          "status": "located_2026-11-23"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LOCAL-ADMIN-LAW-AMEND-145-1988",
+      "official_title": "القانون رقم 145 لسنة 1988 بتعديل بعض أحكام قانون نظام الإدارة المحلية",
+      "document_type": "law_amendment",
+      "law_number": "145",
+      "law_year": 1988,
+      "source_id": "EG-LAWHUB-LOCAL-ADMIN",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "LAW HUB current consolidated text annotates Law 145/1988 as replacing the first paragraph of Art.145 and repealing the second paragraph of Art.144. Official Gazette scan and Ministry locator not yet recovered in this pass. No full text ingested into the repository: source reuse permissions remain unknown. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://lawhub.info/eg/?p=11568",
+          "source_role": "source locator or full-text page",
+          "status": "located_2026-11-23"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LOCAL-ADMIN-LAW-AMEND-9-1989",
+      "official_title": "القانون رقم 9 لسنة 1989 بإضافة المادة 4 مكرراً إلى قانون نظام الإدارة المحلية",
+      "document_type": "law_amendment",
+      "law_number": "9",
+      "law_year": 1989,
+      "source_id": "EG-LAWHUB-LOCAL-ADMIN",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "LAW HUB consolidated text identifies Art.4 bis as added by Law 9/1989, effective 17 February 1989, Gazette issue 11, 16 March 1989. Exact amendment Gazette text and the commencement discrepancy require primary verification. No full text ingested into the repository: source reuse permissions remain unknown. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://lawhub.info/eg/?p=11568",
+          "source_role": "source locator or full-text page",
+          "status": "located_2026-11-23"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LOCAL-ADMIN-LAW-AMEND-84-1996",
+      "official_title": "القانون رقم 84 لسنة 1996 بتعديل بعض أحكام قانون الإدارة المحلية الصادر بالقانون رقم 43 لسنة 1979",
+      "document_type": "law_amendment",
+      "law_number": "84",
+      "law_year": 1996,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official Ministry of Finance locator labels the law in force and links a five-page official-hosted PDF scan. LAW HUB identifies Art.97 as replaced by this law; related SCC/administrative-court material quotes the revised vacancy/complimentary-election rule. Gazette issue and article-by-article redline remain to be verified against the original pages. No full text ingested into the repository: source reuse permissions remain unknown. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/legislation-5fe86a4f7bfc600007cbfc51",
+          "source_role": "source locator or full-text page",
+          "status": "located_2026-11-23"
+        },
+        {
+          "url": "https://media.mof.gov.eg/mof-prd/225_7bf08c30af.pdf",
+          "source_role": "additional text, Gazette-scan or corroborating source",
+          "status": "located_2026-11-23"
+        },
+        {
+          "url": "https://lawhub.info/eg/?p=11568",
+          "source_role": "additional text, Gazette-scan or corroborating source",
+          "status": "located_2026-11-23"
+        },
+        {
+          "url": "https://lib.legal-reform.org/legal-observatory-view/المحكمة-الإدارية-العليا---مجموعة-رقم-3---رقم-المبدأ-69---رقم-الصفحة-555---القضية-رقم-8175---لسنة-49-ق---تاريخ-الجلسة-3-/-4-/-2004",
+          "source_role": "additional text, Gazette-scan or corroborating source",
+          "status": "located_2026-11-23"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LOCAL-ADMIN-LAW-AMEND-96-2003",
+      "official_title": "القانون رقم 96 لسنة 2003 بإضافة فقرتين ثالثة ورابعة إلى المادة 10 من قانون نظام الإدارة المحلية",
+      "document_type": "law_amendment",
+      "law_number": "96",
+      "law_year": 2003,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official Ministry of Finance locator labels the law in force and links a one-page official-hosted PDF scan. The title confirms two paragraphs were added to Art.10; full replacement text and commencement still require Gazette image transcription. No full text ingested into the repository: source reuse permissions remain unknown. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/legislation-5fe86a147bfc600007cbfa0f",
+          "source_role": "source locator or full-text page",
+          "status": "located_2026-11-23"
+        },
+        {
+          "url": "https://media.mof.gov.eg/mof-prd/226_c57e2459ec.pdf",
+          "source_role": "additional text, Gazette-scan or corroborating source",
+          "status": "located_2026-11-23"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LOCAL-ADMIN-LAW-AMEND-178-2005",
+      "official_title": "القانون رقم 178 لسنة 2005 بإلغاء الفقرة الثانية من المادة 89 من قانون نظام الإدارة المحلية",
+      "document_type": "law_amendment",
+      "law_number": "178",
+      "law_year": 2005,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official Ministry of Finance locator labels the law in force and links a one-page official-hosted PDF scan. Title confirms repeal of paragraph 2 of Art.89; Gazette page and commencement need visual verification. No full text ingested into the repository: source reuse permissions remain unknown. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/legislation-5fe869d27bfc600007cbf745",
+          "source_role": "source locator or full-text page",
+          "status": "located_2026-11-23"
+        },
+        {
+          "url": "https://media.mof.gov.eg/mof-prd/227_6b43187bc7.pdf",
+          "source_role": "additional text, Gazette-scan or corroborating source",
+          "status": "located_2026-11-23"
+        }
+      ]
     }
   ]
 }
