@@ -35,6 +35,8 @@ class DocumentPassageAnnotationTests(unittest.TestCase):
         self.assertIn("cs.firm_id=?", search)
         self.assertIn("m.case_id=cs.id AND m.user_id=?", search)
         self.assertIn("chunks_fts MATCH ?", search)
+        self.assertIn("ORDER BY rank,chunks.id LIMIT ? OFFSET ?", search)
+        self.assertIn("limit: int = Query(default=40, ge=1, le=100)", search)
         self.assertIn("client_document_text_search", search)
 
     def test_client_profile_ui_exposes_cross_matter_document_search(self):
@@ -42,6 +44,9 @@ class DocumentPassageAnnotationTests(unittest.TestCase):
         self.assertIn("const clientSearchPanel=client=>", html)
         self.assertIn("/documents/search-text?q=", html)
         self.assertIn("Client-wide document search", html)
+        self.assertIn("&limit=40&offset='+offset", html)
+        self.assertIn("Open passage in matter", html)
+        self.assertIn("chunkId:String(item.chunk_id)", html)
 
 
     def test_annotation_controls_expose_passage_help_and_list_semantics(self):
