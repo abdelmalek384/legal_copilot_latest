@@ -112,3 +112,27 @@ The existing procurement checkpoint already covers Law 182/2018 and Decision 692
 - **New full texts ingested into authorized repository corpus:** 0, because collection/reuse permission remains unknown.
 - **Whole-repository confirmed text-source coverage:** no percentage recalculated by this candidate-only commit. The repository's last audited baseline is in the 18 November 2026 inventory/checkpoint; this pass does not change the corpus numerator. Do not count candidate discovery as text-source coverage.
 - **Agent 7 research coverage:** do not reuse the earlier rough 46% estimate as a repository percentage. A new denominator and article-level rubric are required to calculate a defensible subdomain percentage after source permissions and the amendment matrix are reconciled.
+
+
+## G. Newly recovered amendment chain for Decision 707/1979 and Law 43/1979
+The relation page for the Executive Regulation (Manshurat) identifies **eight amending PM decisions**: 314/1982, 1139/1984, 1251/1988, 488/1989, 1105/1990, 1543/1993, 2718/1996 and 220/2000. This is a new amendment-chain result; it materially expands the local-government tranche beyond the base regulation.
+- Relation register: https://manshurat.org/node/13282/relations
+- 314/1982: 12-page scan; issued 7 April 1982, published 15 April 1982. A Supreme Administrative Court judgment quotes amended Arts.3 and 10, including the local-unit public-facilities remit and local agricultural affairs. Searchable quotation: https://lawhub.info/eg-j/?p=4828.
+- 1139/1984: 1-page scan; issued 3 November 1984, published 15 November 1984. Exact article effect remains to be transcribed.
+- 1251/1988: 5-page scan; issued 24 November 1988, published/effective 1 December 1988. Secondary consolidated text attributes amendments to Arts.48 bis, 56, 78 and 91 bis; Gazette transcription remains open.
+- 488/1989: full Arabic text recovered from the indexed Gazette PDF, Gazette issue 21, 25 May 1989. Art.1 replaces Art.25 with provisions on governorate cooperation with the Ministry of Awqaf in studying endowment investment plans, religious الدعوة, charity, mosque maintenance and protection of Awqaf assets. The source recital refers to Decision 707/1978 even though the base regulation is Decision 707/1979; preserve and flag this apparent source error.
+- 1105/1990: 1-page scan; issued 22 August 1990, published/effective 30 August 1990. Secondary consolidated text identifies Art.94 bis, for a city of special importance with an independent organizational structure.
+- 1543/1993: full Arabic text recovered from MKS Egypt; Gazette publication 23 September 1993. Replaces paragraphs 1–3 of Art.35 with sitting allowances for local popular and executive council members. The specified historical EGP amounts are not evidence of current allowance levels.
+- 2718/1996: full Arabic text recovered from MKS Egypt; Gazette issue 40, 10 October 1996. Replaces Art.29 governing local popular council composition and filling vacant seats, including the then-applicable workers/farmers representation rule.
+- 220/2000: one-page Gazette scan visually inspected; issue 26 تابع (أ), 2 February 2000; effective 3 February 2000. Art.1 adds to Art.18 the governor's authority over governorate-owned parking facilities and operation of passenger vehicles within governorate boundaries. Screenshot/source locator: https://manshurat.org/file/24924/download?token=ygQ39PZf.
+- Source-quality boundary: amendment scans are hosted by Manshurat, not authenticated here as official Amiri Press originals. Full text is available for 488/1989, 1543/1993 and 2718/1996; 220/2000 was visually inspected; remaining scans still need OCR and article-level transcription. No amendment should be treated as a fully reconciled current text until all eight and later amendments are checked.
+
+### Law 43/1979 statute amendment leads confirmed on Ministry portal
+The official Ministry of Finance legislation portal now supplies individual locators and linked PDFs for:
+- Law 50/1981 — 27-page official-hosted scan; Law HUB annotates replacements of Arts.1, 2, 144 and 145.
+- Law 106/1987 — one-page official-hosted scan.
+- Law 84/1996 — five-page official-hosted scan; Art.97 is replaced, including the local-council vacancy/complimentary-election rule.
+- Law 96/2003 — one-page official-hosted scan; adds two paragraphs to Art.10.
+- Law 178/2005 — one-page official-hosted scan; repeals paragraph 2 of Art.89.
+Additional amendments found in the consolidated transcription include Law 145/1988 (Art.145/Art.144 effects) and Law 9/1989 (adds Art.4 bis, with transcription metadata stating effective 17 February 1989 and Gazette issue 11 on 16 March 1989). The Law 43 relation register also points to Laws 168/1981, 26/1982 and 115/2011; original text/precise effects still need recovery.
+- Official Ministry portal caveat: the Ministry expressly says its online texts are for guidance and the Official Gazette is the controlling legal reference. The official-hosted PDFs are not automatically original Gazette scans; page and issue authentication remains required.
