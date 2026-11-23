@@ -593,7 +593,7 @@ The listed sectors include ICT (with specified exceptions), financial/accounting
 5. Work regulations: Decision 162/2026 operationalizes Law 14/2025 Art. 137. Compare it with older Model Work Regulation Decision 185/2003 and any later amendments; preserve historical rules where not expressly displaced.
 6. Resignations: Decision 187/2025 is a new implementation lead. Full signed text and Gazette metadata are blocked behind subscription in the currently found source; find an alternative official PDF/scan.
 7. Collective disputes: Decision 300/2025 is a separate collective-dispute conciliation instrument; Decision 299/2025 covers individual amicable settlement. Do not conflate their committees, time limits or jurisdiction.
-8. Redundancy/closure: Decision 301/2025 must be mapped to Law 14/2025 economic-termination provisions and Decision 259/2025 workers' entitlements; the exact criteria are still to be transcribed.
+8. Redundancy/closure: Decision 301/2025's six articles are now captured from the issue 290 scan (printed pages 50–51). Cross-check the scan text against the secondary transcriptions, confirm source rights/provenance, and map its criteria with Law 14/2025 Article 239 and Decision 259/2025 workers' entitlements.
 9. Ministerial holiday decisions: Decision 294/2025 must be cross-linked with Decision 346/2025 for Christian holidays; obtain the signed Gazette text of both before computing the current paid-holiday calendar.
 10. Amendments after 20-11-2026: search the Egyptian Gazette and Ministry decision catalogue for any subsequent amendments/repeals before marking any instrument current.
 
@@ -623,12 +623,12 @@ The previous project-wide national-corpus estimate (~2%, rounded) is not recalcu
 
 ## 7. Immediate next acquisition queue (avoid loops)
 
-1. Acquire/parse Decision 162/2026 Arabic PDF and map every article to printed Gazette pages; this is the highest-impact new instrument for workplace rules, discipline, wages, leave and termination.
-2. Acquire accessible Arabic text of Decisions 301/2025 and 300/2025 from their DSpace item records; compare the actual PDF text to secondary HTML.
-3. Complete Decisions 248–252/2026, including all tables/forms and Gazette page references.
-4. Extract full Decisions 259/2025, 260/2025, 264/2025, 272/2025, 294/2025, 299/2025 and 319/2025 from available Arabic sources; capture article-by-article.
+1. Acquire/parse Decision 162/2026 Arabic PDF and map every article and annex to printed Gazette pages; this remains the highest-impact new instrument for workplace rules, discipline, wages, leave and termination.
+2. Transcribe and visually QA Decision 260/2025's complete 32-row authority matrix from the SIS-hosted issue 291 scan (printed pages 7–11).
+3. Extract and visually QA Decisions 264/2025, 271/2025 (including its form), 272/2025 (including annexes), 292/2025, 294/2025, 299/2025, 319/2025 and 320/2025 from the SIS-hosted issue 291 scan using the printed page locators above.
+4. Compare the captured Decision 259/2025, 300/2025 and 301/2025 text against the corresponding scan page images and any secondary transcription; resolve extraction/OCR differences before structured ingestion.
 5. Acquire full Decision 187/2025 from an alternative source; no further EastLaws-only retries.
-6. Acquire Decision 301/2025 Arabic PDF and map selection criteria to Law 14/2025 termination articles.
-7. Search for later amendments to all decisions above; do not repeat already acquired texts.
+6. Complete Decisions 248–252/2026, including all OSH tables/forms and Gazette page references.
+7. Search for later amendments, repeal clauses and commencement/currentness evidence for all instruments above; do not repeat already acquired text searches.
 
 No legal approval is asserted.
