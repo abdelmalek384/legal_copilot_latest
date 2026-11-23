@@ -170,3 +170,6 @@ This folder contains free/public source discovery, metadata registers and extrac
 80. [Decision 49/2026 — hazardous/arduous work and remote areas, five articles and extracted schedule](../legal_evidence/labour_decision_49_2026_hazardous_work_remote_areas_arabic_capture_2026-11-23.md) — issue 64 supplement scan and IDSC/MELES catalogue lead; most Article 2 categories transcribed; printed pages 11–12 visually checked and show the construction/building sector as a standalone heading with no enumerated sub-list before Article 3.
 
 81. [Decision 50/2026 — child employment/training, all 18 operative articles and annex gaps](../legal_evidence/labour_decision_50_2026_child_work_training_complete_articles_annex_gaps_2026-11-23.md) — issue 64 supplement; child-work protections and obligations transcribed; Tables 1 and 2 still require full extraction and visual QA.
+
+
+82. [Decision 50/2026 — full Annexes 1 and 2 text capture](../legal_evidence/labour_decision_50_2026_annexes_1_2_full_text_capture_2026-11-23.md) — recovered all prohibited-work environments and occupation categories, sex-specific load limits, industry-specific prohibited activities, four meal alternatives and seven food-service instructions; visual proofreading of pages 20–27 remains pending.
