@@ -1,0 +1,114 @@
+# Agent 7 — Administrative, local government, public finance and election acquisition delta
+**Research date:** 23 November 2026  
+**Repository:** `abdelmalek384/legal_copilot_latest`  
+**Status:** discovery and text-retrieval pass; not a legal-corpus release.
+
+## Repository deduplication and gate
+The existing repository already has dedicated checkpoints for State Council/SCC, civil service, procurement, unified public finance, PPP, and elections (including `collection_checkpoint_3`, `40`, `55`, `67`, and `68`). This pass therefore adds only new source/version leads and amendment detail, rather than rewriting those checkpoints.
+
+The repository's source-reuse gate is controlling. Official-hosted PDFs and secondary full-text transcriptions were opened and text-extracted for research, but the source permission register records collection and commercial reuse as **unknown** for the relevant portals. Accordingly, no complete third-party or official-hosted text has been copied into the legal corpus in this commit. The candidate register and permission register now record the new instruments and unresolved rights gates. These are not corpus-ready records and are not lawyer-reviewed.
+
+## A. Local administration — Law 43/1979 and Decision 707/1979
+
+### 1. Law 43/1979
+- Official Ministry of Finance locator: https://mof.gov.eg/ar/legislation/legislation-5fe86ab47bfc600007cc005c
+- Original Gazette scan locator (Manshurat): https://manshurat.org/node/13261 — metadata states Official Gazette issue 25 (تابع), issued 20 June 1979, published and effective 21 June 1979; 24-page PDF.
+- Full current-consolidated Arabic transcription (LAW HUB): https://lawhub.info/eg/?p=11568 — 1,442 extracted lines, with article-level amendment and SCC judgment annotations.
+- Related amendment register (Manshurat): https://manshurat.org/node/13261/relations
+- Ministry of Finance locators additionally identify Law 50/1981, Law 106/1987, Law 84/1996, Law 96/2003 and Law 178/2005 as related instruments; the Manshurat relation list also identifies Laws 168/1981, 26/1982, 145/1988, 9/1989 and 115/2011, plus Law 225/1996.
+- Exact Arabic excerpt, current transcription, Art.1: «وحدات الإدارة المحلية هى المحافظة والمراكز والمدن والأحياء والقرى».
+- Exact Arabic excerpt, Art.2: local units «إنشاء وإدارة جميع المرافق العامة الواقعة فى دائرتها».
+- Important amendment/validity annotations found in the consolidated transcription:
+  - Art.1 and Art.2 replaced by Law 50/1981 (Official Gazette issue 26, 25 June 1981).
+  - Art.3's first paragraph later replaced by Law 84/1996; the transcription also annotates SCC judgment in Case 2/16 Constitutional, 3 February 1996, concerning the local-council election method.
+  - Art.4's local-fee provisions are annotated with SCC judgment in Case 36/18 Constitutional, 3 January 1988, invalidating Minister of Local Administration Decision 239/1971 and causing the fall of the related Art.4 provisions and PM Decision 870/1990.
+  - The 2003 and 2005 amendments are linked by the Ministry portal but their Gazette PDFs and exact article-level effects still need acquisition.
+- The Law HUB transcription is useful as a full Arabic recovery source, not an authenticated Gazette consolidation. Its annotations need cross-checking against each amending Gazette and SCC judgment.
+
+### 2. PM Decision 707/1979 — Executive Regulation
+- Official Ministry of Finance locator: https://mof.gov.eg/ar/legislation/legislation-5fe86ab67bfc600007cc0063 — portal labels the decision «سارٍ».
+- Gazette metadata: issue 29 مكرر, 25 July 1979. The issuing Art.2 says it takes effect on publication.
+- Manshurat scan/text locator: https://manshurat.org/node/13282 — 20-page PDF; the downloadable transcription returned 793 extracted lines.
+- Laweg issuing-clause page: https://www.laweg.net/framePlain.aspx?NID=50671&action=viewactivepages&itemid=39803&type=6 — exact issuing Arts.1–2 are visible.
+- Exact Arabic issuing excerpt: «يعمل باللائحة التنفيذية لقانون نظام الحكم المحلي المرافقة».
+- Annex text recovered includes allocation of local responsibilities across education, health, housing/urban planning, municipal utilities, roads, agriculture, irrigation, labour, culture, transport and local public assets. Examples in the transcription include local responsibilities for water and sewage, public cleanliness, roads and state property.
+- **Text-quality warning:** the OCR/transcription has inconsistent article numbering, Gazette page/date labels and apparent typographical errors. The 20-page scan must be visually inspected page-by-page and the complete amendment chain located before relying on any article as current law. Do not treat this as a clean current consolidation.
+
+## B. Political rights / election administration
+
+### 3. Law 45/2014 — Political Rights
+- Official NEA digital library: https://www.elections.eg/digital-library-laws
+- Official NEA Arabic PDF: https://www.elections.eg/images/pdfs/laws/PoliRights-2014-45.pdf.pdf — 23 pages; 749 extracted lines.
+- Gazette issue 23 (تابع), 5 June 2014. Issuing Art.3 provides commencement on the day after publication.
+- Exact Arabic Art.1 excerpt: «على كل مصري ومصرية بلغ ثماني عشرة سنة ميلادية أن يباشر بنفسه الحقوق السياسية الآتية».
+- Issuing Art.2 assigns the NEA the task of issuing the executive regulation and preserves earlier regulations/decisions under Law 73/1956 until the new regulation is issued, insofar as they do not conflict.
+- The official NEA PDF carries annotations for Decree-Law 92/2015, Law 198/2017 and Law 140/2020. It records, among other things, that Law 198/2017 repealed Chapter II of Law 45/2014. This is an official-hosted annotated text, not a substitute for obtaining every amending Gazette instrument.
+
+### 4. Decree-Law 92/2015
+- Official NEA PDF: https://www.elections.eg/images/pdfs/laws/HouseOfRepresentativesAmendments2015-92.pdf — 4 pages, but text extraction is garbled; visual transcription is needed.
+- Official NEA index lists it as amending Laws 45/2014 and 46/2014.
+- Secondary metadata/text recovery: https://temp.manshurat.org/node/4310 and https://www.elwatannews.com/news/details/779076.
+- The consolidated NEA Law 45 text annotates changes to Art.2, Art.12, Art.25 and Art.33. Exact Gazette page-by-page comparison remains open.
+
+### 5. Law 198/2017 — National Election Authority
+- Official NEA PDF: https://www.elections.eg/images/pdfs/laws/NEAlaw-2017-198.pdf.pdf — 15 pages; OCR extraction only 82 lines, although the official indexed result exposes the article structure.
+- Gazette issue 30 مكرر (ب), 1 August 2017; Art.37 provides commencement on the day after publication.
+- Exact Arabic Art.2 excerpt: «الهيئة الوطنية للانتخابات هيئة مستقلة، لها شخصية اعتبارية».
+- Art.36 repeals Chapter II of Law 45/2014 and conflicting provisions.
+- Full article-level OCR and visual inspection remain required.
+
+### 6. Law 140/2020
+- Official NEA PDF: https://www.elections.eg/images/pdfs/laws/PoliRightsAmendments2020-140.pdf — 9 pages; 363 extracted lines.
+- Gazette issue 26 مكرر (ك), 1 July 2020; commencement metadata indicates 2 July 2020.
+- It amends Law 45/2014, Law 46/2014 and Law 198/2017. Article-by-article consolidation map still required.
+
+## C. Public finance — Law 6/2022 amendment and current executive regulation
+
+### 7. Law 18/2024 — amendment to Law 6/2022
+- Official Gazette PDF hosted by ETA: https://www.eta.gov.eg/sites/default/files/2024-09/law_no.18-2024.pdf — 79 extracted lines.
+- Gazette issue 13 مكرر (أ), 30 March 2024; Art.5 provides commencement the day after publication.
+- It amends the transition to full program/performance budgeting (within no more than six years), definitions, and provisions including Arts.23, 30, 35 and 74; adds definitions and Arts.25 مكرراً and 31 مكرراً; and phases inclusion of economic public authorities in the general-government budget over no more than five fiscal years.
+- Exact Arabic transition excerpt: «خلال ست سنوات على الأكثر».
+- **OCR correction:** the text extractor misread the article number in the amended provision. The Gazette page image was checked; the heading is Art.30 (not Art.20). Keep the visual page as the controlling transcription aid.
+
+### 8. Minister of Finance Decision 73/2024 — Executive Regulation of Law 6/2022
+- Official Ministry of Finance PDF: https://media.mof.gov.eg/mof-prd/qrar_wzyr_almalyt_73_lsnt2024_7207e41665.pdf — 126 pages; 1,988 extracted lines.
+- Gazette issue 45 (تابع), 24 February 2024; issuing Art.4 makes it effective the day after publication.
+- Issuing Art.2 applies to central-government administrative units, local administration units, service public authorities, independent entities and oversight bodies, special units/funds/accounts, and economic public authorities, subject to stated exclusions.
+- Issuing Art.3 repeals the executive regulations to Law 53/1973 (public budget) and Law 127/1981 (government accounting).
+- This is a substantial newly recovered official-hosted text, not merely a locator. Full 126-page text is not copied into the repository because source reuse permission is still unknown.
+
+### 9. Minister of Finance Decision 94/2025 — amendment to Decision 73/2024
+- Official Ministry of Finance PDF: https://media.mof.gov.eg/mof-prd/qrar_wzyr_almalyt_rqm_94_lsnt_2025_btedyl_bed_ahkam_allayht_altnfydhyt_lqanwn_almalyt_aleamt_almwhd_alsadrt_bqrar_wzyr_almalyt_rqm_73_lsnt_2024_7202f97b5d.pdf — one page; 31 extracted lines.
+- Gazette issue 69 (تابع), 24 March 2025; Art.2 makes it effective the day after publication.
+- Art.1 replaces item 18 of Art.80 of Decision 73/2024. The annual amount for the specified deduction/settlement based on an authorized declaration increases from EGP 3,000 to EGP 6,000.
+- Exact Arabic excerpt: «بحد أقصى ستة آلاف جنيه فى السنة المالية الواحدة».
+- The official PDF directly identifies Decision 73/2024 as the amended regulation; some secondary reporting contains an inconsistent recital reference. Prefer the official Gazette PDF.
+
+## D. Related procurement amendment — incremental lead only
+The existing procurement checkpoint already covers Law 182/2018 and Decision 692/2019. This pass recovered:
+- Official Ministry of Finance locator for Law 188/2020: https://mof-web-prd.apps.fslabs.net/ar/legislation/legislation-5fe868ae7bfc600007cbec2b
+- Official-hosted PDF locator: https://mof-assets.apps.fslabs.net/mof-prd/2123_64f01cffad.pdf (3 pages; image-only/no usable text extraction).
+- Secondary full-text transcription: https://www.aldhshan.com/2026/02/188-2020-182-2018.html
+- The secondary text identifies Law 188/2020 as replacing Art.92 of Law 182/2018 concerning assignment of the contract or sums due under it. The official PDF must be visually transcribed and checked against Gazette issue 36 مكرر (ب), 5 September 2020 before treating the amendment as verified.
+- Decisions 28/2020 and 614/2020 remain amendment leads to Decision 692/2019; their full Gazette texts were not acquired in this pass.
+
+## E. Repository changes in this commit
+1. Added candidate metadata for Law 43/1979, Decision 707/1979, Law 45/2014, Decree-Law 92/2015, Law 198/2017, Law 140/2020, Law 18/2024, Decision 73/2024 and Decision 94/2025.
+2. Added/normalized source permission records for the Ministry of Finance legislation portal, ETA-hosted Gazette PDF, Manshurat and LAW HUB. All relevant collection and commercial-reuse fields remain **unknown**.
+3. No full legal text was ingested into the production corpus; no lawyer review is claimed.
+
+## F. Next acquisition targets (no checkpoint repetition)
+1. Visually transcribe Decision 707/1979 annex and identify all amending PM decisions; compare against the Law 43/1979 full text.
+2. Obtain Gazette texts for local-government amendments 168/1981, 26/1982, 106/1987, 145/1988, 9/1989, 84/1996, 96/2003, 178/2005, 115/2011 and Law 225/1996; map SCC rulings affecting local councils and fees.
+3. Extract Law 92/2015 and Law 198/2017 from official PDF page images; map Law 140/2020 into Law 45/2014 and Law 198/2017.
+4. Complete article-level review of Decision 73/2024 (126 pages), overlay Decision 94/2025 and search for any later amendments.
+5. Return to the existing procurement checkpoint for Gazette-image transcription of Law 188/2020 and full text of Decisions 28/2020 and 614/2020.
+6. Only after source permission is resolved, move the candidate records into the authorized acquisition workflow and local corpus.
+
+## Progress accounting
+- **New discovery records added:** 9.
+- **Full/near-full Arabic texts opened in this pass:** Law 43/1979 consolidated transcription; Decision 707/1979 annex transcription/scan; Law 45/2014 official NEA PDF; Law 198/2017 official NEA PDF (sparse OCR); Law 140/2020 official NEA PDF; Law 18/2024 official Gazette PDF; Decision 73/2024 official Gazette PDF; Decision 94/2025 official Gazette PDF. Law 92/2015 official PDF is located but OCR is not usable.
+- **New full texts ingested into authorized repository corpus:** 0, because collection/reuse permission remains unknown.
+- **Whole-repository confirmed text-source coverage:** no percentage recalculated by this candidate-only commit. The repository's last audited baseline is in the 18 November 2026 inventory/checkpoint; this pass does not change the corpus numerator. Do not count candidate discovery as text-source coverage.
+- **Agent 7 research coverage:** do not reuse the earlier rough 46% estimate as a repository percentage. A new denominator and article-level rubric are required to calculate a defensible subdomain percentage after source permissions and the amendment matrix are reconciled.
