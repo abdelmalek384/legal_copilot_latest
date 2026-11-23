@@ -419,17 +419,61 @@ Secondary full text: https://lawhub.info/eg/?p=17019
 The issue 291 scan starts the decision at printed page 70. The full scan-side visual comparison remains pending. Cross-link Decision 346/2025 on Christian holidays as a later related instrument; verify whether it supplements or modifies the holiday rules before presenting a consolidated answer.
 
 #### Decision 299/2025 — individual amicable-settlement committees
-Secondary full text: https://ahmedazimelgamel.blogspot.com/2026/01/299-2025.html  
-Official SIS-hosted issue 291 scan: printed start page 72; full scan link in the bundle section above. The scan carries the not-valid-for-circulation watermark; full text and page-by-page comparison remain pending.
 
-Exact Arabic text:
-> ( المادة الأولى )  
-> مع عدم الإخلال بحق التقاضي، إذا نشأ نزاع فردى بين صاحب العمل والعامل بشأن تطبيق أحكام قانون العمل المشار إليه، أو أي من القوانين ذات الصلة كان لأي منهما خلال عشرة أيام من تاريخ نشوء النزاع أن يطلب تسويته وديًا بمعرفة لجنة التسوية الودية المشكلة وفقا لنص المادة الثانية من هذا القرار.
+**Full seven-article Arabic text capture (23 November 2026):** a page-by-page PDF transcription is available from LawHub, showing Gazette issue 291 supplement pages 72–74:
+https://lawhub.info/eg/wp-content/uploads/2025/12/lawhub.info-eg-dec-299-2025.pdf
 
-> ( المادة الرابعة )  
-> ... ويجب أن تنتهي اللجنة من أعمالها خلال واحد وعشرين يومًا من تاريخ تقديم الطلب...
+The DSpace/IDSC catalogue item for issue 291 supplement independently lists Decision 299/2025 and the matching issue date (25-12-2025): https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc/full. The issue's PDF bundle is separately hosted in the SIS digital repository, but its embedded scan carries the warning “صورة إلكترونية لا يعتد بها عند التداول”. The LawHub-hosted PDF is a secondary-hosted Gazette scan/transcription, not an official-host download, rights clearance, or certified circulation copy. Text below is transcribed from that PDF text layer; compare every line to the scan images before indexing. No lawyer review.
 
-The source provides at least Articles 1–5 in full and continues. Extract all articles, forms, and referral procedure. Compare to Law 14/2025 individual dispute settlement and the competent-authority matrix in Decision 260/2025.
+**Arabic text captured (all seven articles):**
+
+وزارة العمل  
+قرار رقم ٢٩٩ لسنة ٢٠٢٥  
+في شأن تشكيل لجنة التسوية الودية ونظام عملها
+
+وزير العمل  
+بعد الاطلاع على الدستور؛  
+وعلى قانون العمل الصادر بالقانون رقم ١٤ لسنة ٢٠٢٥؛  
+وعلى اتفاقيات العمل الدولية التي صدقت عليها مصر؛  
+وبعد العرض على المجلس الأعلى للتشاور الاجتماعي؛  
+قرر:
+
+**(المادة الأولى)**
+مع عدم الإخلال بحق التقاضي، إذا نشأ نزاع فردي بين صاحب العمل والعامل بشأن تطبيق أحكام قانون العمل المشار إليه، أو أي من القوانين ذات الصلة كان لأي منهما خلال عشرة أيام من تاريخ نشوء النزاع أن يطلب تسويته ودياً بمعرفة لجنة التسوية الودية المشكلة وفقا لنص المادة الثانية من هذا القرار.
+
+**(المادة الثانية)**
+تشكل لجنة التسوية الودية برئاسة مدير مديرية العمل المختصة أو من ينيبه، وعضوية كل من:
+١- العامل، أو من يمثله.
+٢- صاحب العمل، أو من يمثله.
+ولرئيس اللجنة أن يستعين بمن يراه من ذوي الخبرة وفقا للموضوع المعروض على اللجنة.
+
+**(المادة الثالثة)**
+يجب تقديم طلب التسوية الودية من أحد طرفي النزاع إلى مديرية العمل المختصة التي يقع في دائرتها مقر المنشأة على النموذج المعد لذلك، على أن يحدد أسباب النزاع وطلباته.
+وتلتزم المديرية بإمساك سجل ورقي أو إلكتروني لقيد طلبات تسوية النزاعات الفردية يدون فيه موضوع النزاع، وبيانات طرفيه، وأسبابه، واسم المنشأة، وتاريخ تقديم الطلب، ونوع القطاع، ونوع النشاط الاقتصادي، وإجراءات التسوية، وما انتهت إليه اللجنة من نتائج، وسجل آخر لقيد النزاعات التي تم إحالتها للمحكمة العمالية المختصة للفصل فيها بعد تعذر تسويتها ودياً.
+
+**(المادة الرابعة)**
+على رئيس اللجنة أن يدعو طرفي النزاع للاستماع إلى طلباتهما وأسباب النزاع واتخاذ الإجراءات اللازمة للوصول إلى حلول مرضية للطرفين، وعليه أن يبذل العناية الواجبة للتوصل للتسوية الودية بينهما، وله في سبيل ذلك استدعاء من ترى ضرورة استدعائه أو الانتقال إلى مقر المنشأة.
+ويجب أن تنتهي اللجنة من أعمالها خلال واحد وعشرين يوماً من تاريخ تقديم الطلب، فإذا تمت التسوية الودية، يثبت رئيس اللجنة ذلك في محضر يوقعه طرفا النزاع، ويلحق بمحضر الجلسة التي تم فيها، ويحَال إلى قاضي الأمور الوقتية بالمحكمة العمالية المختصة، ويكون قابلاً للتنفيذ بالأمر الذي يصدره وينتهي به النزاع في حدود ما تمت التسوية الودية فيه.
+
+**(المادة الخامسة)**
+في حالة تعذر التسوية الودية على رئيس اللجنة تحرير محضر بذلك وأسبابه، وما تم فيه من إجراءات، ويوقع منه ومن طرفي النزاع، على أن يثبت في المحضر ما تم من أعمال، وما تلقته اللجنة من مستندات ورأيها في موضوع النزاع.
+فإذا رفض أحد الطرفين التوقيع، على رئيس اللجنة إثبات ذلك، واستكمال الإجراءات.
+ويحال النزاع إلى المحكمة العمالية المختصة بناء على طلب أي من طرفيه، ويقدم الطلب على النموذج المعد لذلك ليحدد قلم كتاب المحكمة جلسة لنظر النزاع في مدة لا تجاوز عشرين يوماً من تاريخ ورود الطلب، وفقاً لما نص عليه القانون.
+ويرفق بالإحالة محضر أعمال اللجنة، ومذكرة تتضمن ملخص النزاع وأسبابه، وحجج وأقوال الطرفين.
+
+**(المادة السادسة)**
+فإذا كان موضوع النزاع يتعلق بفصل العامل، وجب على المحكمة العمالية أن تفصل في هذا الطلب بصفة مستعجلة خلال ثلاثة أشهر من تاريخ أول جلسة، فإذا رأت من ظاهر الأوراق صحة طلب العامل، ألزمت صاحب العمل أن يؤدي إلى العامل ما يعادل أجره من تاريخ الفصل، وبحد أقصى ستة أشهر، ويكون قرارها نهائياً.
+وتخصم المبالغ التي استوفاها العامل نفاذاً لقرار المحكمة من مبلغ التعويض الذي يحكم به أو أي مبالغ أخرى مستحقة له قبل صاحب العمل، مع مراعاة نص المادة ١٤٣ من قانون العمل المشار إليه.
+فإذا كان فصل العامل بسبب النشاط النقابي، قضت المحكمة بإعادته إلى عمله إذا طلب ذلك.
+
+**(المادة السابعة)**
+ينشر هذا القرار في الوقائع المصرية، ويعمل به اعتباراً من اليوم التالي لتاريخ نشره.
+
+صدر بتاريخ ٤/١٢/٢٠٢٥  
+وزير العمل  
+محمد جبران
+
+**Operational cross-links to evaluate (not legal conclusions):** Law 14/2025 provisions on individual dispute settlement and labour courts; Decision 260/2025 competent administrative authorities. Preserve the ten-day request window, 21-day committee period, 20-day court-hearing scheduling period, and special dismissal provisions as distinct fields only after lawyer-approved legal evaluation.
 
 #### Decision 319/2025 — inspection campaigns
 Secondary full text: https://lawhub.info/eg/?p=17024  
