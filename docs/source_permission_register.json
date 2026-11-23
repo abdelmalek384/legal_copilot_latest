@@ -3042,6 +3042,22 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "No bulk/API permission established; single item locator only",
       "required_next_action": "Obtain original PDF through authorized route, hash it, visually compare Decision4498/4499 pages, and assess reuse rights separately."
+    },
+    {
+      "source_id": "EG-DSpace-DECISION241-2024",
+      "authority": "Middle East Library for Economic Services DSpace repository; item metadata attributes the decree to the Prime Minister",
+      "source_page": "https://dspace.id.com.eg/items/42bc8d35-dc8d-487c-99b8-497d0cf063e1",
+      "material_types": [
+        "Catalogue record for PM Decision241/2024; Arabic and English PDF attachments"
+      ],
+      "access_status": "Public catalogue metadata inspected 2026-11-23; lists Arabic PDF (125.44 KB) and English PDF (194.38 KB). No authorized downloadable bytes or Gazette page images captured in this pass.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "The catalogue record identifies decision title, date, issuer and file names. No source-specific licence or written collection/commercial reuse permission was established. Catalogue visibility does not establish rights to download, extract, store, redistribute or commercially use attached files.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "Single item locator; no bulk/API permission established",
+      "required_next_action": "Acquire original Gazette issue5 مكرر through an authorized route; compare the Arabic attachment against Gazette pages, hash the bytes, and assess reuse permission separately."
     }
   ]
 }
