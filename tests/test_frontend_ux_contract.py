@@ -34,6 +34,13 @@ class FrontendUXContractTests(unittest.TestCase):
         reminder = HTML[HTML.index("async function sendSetupTestReminder()"):HTML.index("\nasync function setupHealthPage()")]
         self.assertIn("catch(error){toast(String(error?.message||err(error)))}", reminder)
 
+    def test_legal_review_history_and_save_surface_network_failures(self):
+        review = HTML[HTML.index("async function reviewWorkbench()"):HTML.index("\nasync function documentsPage()")]
+        self.assertIn("catch(error){toast(String(error?.message||err(error)))}});", review)
+        self.assertIn("draw();}catch(error){toast(String(error?.message||err(error)))}finally{submit.disabled=false}});", review)
+        self.assertNotIn("catch(_){}});\n const submit=btn(txt('حفظ حدث المراجعة'", review)
+        self.assertNotIn("draw();}catch(_){}finally{submit.disabled=false}});", review)
+
     def test_firm_mfa_policy_controls_are_visible_and_accessibly_named(self):
         self.assertIn("Firm MFA policy", HTML)
         self.assertIn("Require MFA for firm administrators", HTML)
