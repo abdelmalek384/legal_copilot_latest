@@ -6438,8 +6438,9 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         )
         self.assertEqual(chunks_response.status_code, 200, chunks_response.text)
         chunk = chunks_response.json()["chunks"][0]
+        chunk_text = chunk["text"]
         selected = "Alice"
-        start = source_text.index(selected)
+        start = chunk_text.index(selected)
         end = start + len(selected)
         payload = {
             "start_offset": start,
