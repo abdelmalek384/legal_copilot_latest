@@ -18,7 +18,7 @@ Four separate acquisition tranches and four separate CSV instrument registers we
    - [Research note](agent8_maritime_ports_inland_navigation_2026-11-23.md)
    - [Instrument register](agent8_maritime_ports_inland_navigation_instruments_2026-11-23.csv)
 
-The canonical national acquisition CSV was fetched from the default branch before deduplication. It contains 439 lines including header (438 data records) after the 23 November environment, waste and Nile/water pollution updates; the earlier 422-record figure was the pre-update snapshot. The master index dashboard is dated 18 November 2026 and reports 388 confirmed + 1 provisional instruments; that dashboard/register count discrepancy remains unresolved. This session used exact instrument-number/title checks against the live CSV and did not alter the canonical CSV or master index.
+The canonical national acquisition CSV was fetched from the default branch before deduplication. It contains 452 lines including header (451 data records) after the 23 November environment, waste, water-pollution and health updates; the earlier 422-record figure was the pre-update snapshot. The master index dashboard is dated 18 November 2026 and reports 388 confirmed + 1 provisional instruments; that dashboard/register count discrepancy remains unresolved. This session used exact instrument-number/title checks against the live CSV and did not alter the canonical CSV or master index.
 
 ## 2. Instrument and article counts
 
@@ -166,3 +166,41 @@ Canonical register updated with 14 candidate records EG-0426–EG-0439. New reco
 5. Continue the pending full-text mirror of Law202/2020 and PM722/2022 (80 articles, 56 articles and 18 annexes), then expand into transport/health sectors.
 
 No original Amiri Press file hash, lawyer review, or commercial reuse clearance is claimed.
+
+
+## 11. Follow-on acquisition — Health facilities, blood/plasma and Egyptian Health Council
+
+New dossier: [Health-sector medical facilities, blood/plasma and Egyptian Health Council legislation](health_facilities_blood_plasma_egyptian_health_council_2026-11-23.md).
+
+Canonical register updated with 13 new candidate rows EG-0440–EG-0452 and existing rows EG-0271 (Law87/2024), EG-0272 (PM2856/2024) and EG-0354 (PM1966/2026) updated in place. No duplicates were added for the 2024 public-utility concession law or its executive regulation.
+
+### Actual Arabic text / source acquisition
+- Law51/1981: consolidated 21-article Arabic source through Law141/2006 located; licensing, management, inspection, closure, offences and transitional licensing provisions captured.
+- Law153/2004: full amendment text located; replaces 13 provisions of Law51 and inserts Art16 bis; corrigendum issue31 (29 Jul 2004) identified.
+- Law141/2006: single-article amendment to Art18 located by PDF metadata and secondary consolidated text.
+- Health Minister Decision216/1982: full 25-article Arabic executive regulation source located; premises, clinical rooms, operating theatres, staffing, licensing and inspection requirements captured.
+- Health Minister Decision545/1982: full six-article amendment text captured; changes plans, hospital licence information, manager contract and inspection committee.
+- Law12/2022: full 20-article Official Gazette PDF located; establishes Egyptian Health Council, licensing examinations, five-year renewable licence, Egyptian Board, national health-worker register and training accreditation.
+- PM Decision378/2023: full 39-article regulation and fee schedules located in Official Gazette issue39 bis (و), 4 Oct 2023. Gazette contents page prints 3798/2023 while body title prints 378/2023; body preamble says Law12/2023 while fee schedule says Law12/2022. These are preserved as anomalies pending page-image inspection.
+- Law8/2021: full Arabic statute source located in EDA-hosted Official Gazette PDF; blood operations, plasma collection/manufacture/export, licensing, fees, donor registry and Blood Operations Monitoring Council.
+- PM Decision2603/2021: full 17-page executive regulation PDF located at EDA (English translation) and Arabic secondary PDF/text; selected licensing, testing, plasma and closure provisions captured.
+- Decision439/2024: complete Official Proceedings issue258 PDF text read; committee composition, scope, approvals and repeal clause captured. Preamble cites Decision4/2023 while Article3 repeals Decision41/2023; text layer prints «مادة35» where Article3 appears.
+- Decision121/2024: official Amiri Press text locator identified; Article1 applies attached blood-centre specifications, but the technical annex remains to be acquired.
+- Existing Law87/2024 and PM2856/2024 records updated with official Amiri Press/SIS/MOHP text sources; concession exclusions and executive regulation procedures captured.
+
+### Scoped progress
+- Health-facility / blood-plasma / Health Council package: **10/13 = 77%** have a complete searchable text source or complete PDF copy located. Decisions4/2023 and41/2023 are recital-only; Decision121/2024 has Article1 locator but its attached standards remain unacquired.
+- Watercourse/sewerage package remains **10/11 = 91%** source/PDF acquisition.
+- Environment Law4/1994 chain remains **6/12 = 50%** complete searchable sources located.
+- Waste Management Law202/2020 chain remains **3/3 = 100%** complete searchable sources located.
+- Canonical acquisition register now has **451 data records** (452 lines including header).
+- Whole-corpus percentage remains unavailable: no reliable denominator exists for all in-scope Egyptian legislation; register rows are not a corpus denominator.
+
+### Next acquisition priorities
+1. Acquire and transcribe Decision121/2024 attached blood-centre specifications and the full Arabic PM2603/2021 regulation/annexes.
+2. Resolve Decision378/2023 vs3798/2023 and Law12/2022 vs12/2023 discrepancies from Gazette page images and Amiri Press catalogue.
+3. Obtain Decision4/2023 and Decision41/2023 full texts; reconcile with Decision439/2024 preamble/repeal.
+4. Complete Law51/1981 amendment history and PM216/1982 subsequent ministerial amendments, including the 1985 lead.
+5. Continue article-level transcription of Law202/2020 and PM722/2022; then return to transport/road traffic and vehicle licensing.
+
+No commercial reuse rights, legal-currentness certification or lawyer review is claimed.
