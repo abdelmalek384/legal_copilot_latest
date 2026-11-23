@@ -1114,6 +1114,32 @@ class BrowserAcceptanceTests(unittest.TestCase):
             document_ids.append(document.json()["document_id"])
             source_texts.append(source_text)
 
+        # A different client in the same firm deliberately has the same search
+        # sentinel; the target client's search must not leak that other client's file.
+        unrelated_client = self.page.request.post(
+            self.base_url + "/clients",
+            data={"name": "SYNTHETIC UNRELATED CLIENT PRIVATE"},
+            headers=headers,
+            timeout=8000,
+        )
+        self.assertEqual(unrelated_client.status, 200, unrelated_client.text())
+        unrelated_case = self.page.request.post(
+            self.base_url + "/cases",
+            data={"title": "SYNTHETIC UNRELATED CLIENT PRIVATE MATTER",
+                  "client_id": unrelated_client.json()["id"]},
+            headers=headers,
+            timeout=8000,
+        )
+        self.assertEqual(unrelated_case.status, 200, unrelated_case.text())
+        unrelated_upload = self.page.request.post(
+            self.base_url + f"/cases/{unrelated_case.json()['id']}/docs",
+            data={"name": "unrelated-client-private.txt",
+                  "text": f"{sentinel} — private unrelated-client passage."},
+            headers=headers,
+            timeout=8000,
+        )
+        self.assertEqual(unrelated_upload.status, 200, unrelated_upload.text())
+
         self.click_more_nav("العملاء وتعارض المصالح")
         client_card = self.page.locator(".card").filter(has_text=client_name).last
         query = client_card.get_by_label("البحث في مستندات العميل")
@@ -1123,6 +1149,8 @@ class BrowserAcceptanceTests(unittest.TestCase):
         search_results = client_card.locator('[aria-live="polite"]')
         self.assertEqual(search_results.get_attribute("aria-busy"), "false")
         self.assertEqual(client_card.locator(".src").count(), 2)
+        self.assertNotIn("SYNTHETIC UNRELATED CLIENT PRIVATE MATTER", client_card.inner_text())
+        self.assertNotIn("unrelated-client-private.txt", client_card.inner_text())
         for title in case_titles:
             client_card.locator(".src").filter(has_text=title).wait_for(state="visible", timeout=10000)
         self.assertIn(sentinel, client_card.locator(".src").first.inner_text())
