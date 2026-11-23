@@ -7314,8 +7314,8 @@ def search_client_document_text(
         raise HTTPException(404, "client profile not found")
 
     needle = norm(q.strip())
-    # Reuse Arabic normalization, stopword removal, and light stemming from indexing.
-    query_tokens = tokens(needle)[:20]
+    # Match the firm FTS index: normalized text tokens, without extra stemming.
+    query_tokens = re.findall(r"[\w]+", needle, flags=re.UNICODE)[:20]
     if not query_tokens:
         raise HTTPException(422, "enter at least one searchable word")
     fts_query = " AND ".join('"' + token.replace('"', '""') + '"' for token in query_tokens)
