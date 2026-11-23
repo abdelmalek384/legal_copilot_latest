@@ -1906,5 +1906,16 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("catch(error){toast(String(error?.message||err(error)))}", actions)
         self.assertIn("PAGE='clients';clients()", actions)
 
+    def test_dashboard_task_and_calendar_mutations_surface_api_failures(self):
+        for action in (
+            "try{await api('/tasks/'+t.id+'/done','POST');dash()}catch(error){toast(String(error?.message||err(error)))}",
+            "try{await api('/deadlines/'+x.id+'/done','POST');dash()}catch(error){toast(String(error?.message||err(error)))}",
+            "try{await api('/tasks/'+t.id+'/claim','POST');dash()}catch(error){toast(String(error?.message||err(error)))}",
+            "try{await api('/tasks/'+t.id+'/done','POST');tasksPage()}catch(error){toast(String(error?.message||err(error)))}",
+            "try{await api('/tasks/'+x.id+'/done','POST');calendarPage()}catch(error){toast(String(error?.message||err(error)))}",
+            "try{await api('/deadlines/'+x.id+'/done','POST');calendarPage()}catch(error){toast(String(error?.message||err(error)))}",
+        ):
+            self.assertIn(action, HTML)
+
 if __name__ == "__main__":
     unittest.main()
