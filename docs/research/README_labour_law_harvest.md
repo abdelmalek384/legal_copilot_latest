@@ -155,3 +155,8 @@ This folder contains free/public source discovery, metadata registers and extrac
 
 
 76. [Decision 266/2025 — skill measurement and occupational licensing, complete 25 articles](../legal_evidence/labour_decision_266_2025_skill_measurement_licensing_complete_articles_2026-11-23.md) — full operative Arabic text captured; secondary annex lists 421 occupation/code pairs, of which full row-by-row extraction and Gazette image QA remain outstanding; official SIS issue-290(B) public catalogue lead recorded.
+
+
+77. [Decisions 289–291/2025 — industrial hours, intermittent work and overtime, complete Arabic operative texts](../legal_evidence/labour_decisions_289_291_2025_complete_arabic_text_2026-11-23.md) — Decision 289 (2 articles), 290 (4 articles/7 categories), 291 (5 articles); SIS Ministry source for 289 and secondary Gazette PDF text for 290–291; visual QA/currentness/rights/lawyer review pending.
+
+**Correction to item 76 / Decision 266 annex:** complete secondary LawHub page inspection shows the annex ends at **entry 435**, not 421. Earlier 421 figure was an incomplete-preview count and is corrected in the Decision 266 evidence note. The 435 entries remain unverified against Gazette page images.
