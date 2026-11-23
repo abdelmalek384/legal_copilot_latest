@@ -847,6 +847,8 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.page.get_by_role("button", name="فتح مساحة ذكاء المستندات").click()
         self.page.get_by_role("button", name="تحليل المستندات").click()
         self.page.get_by_text("التصنيفات المقترحة", exact=True).wait_for(timeout=15000)
+        intelligence_panel = self.page.locator(".document-intelligence-panel").last
+        self.assertTrue(intelligence_panel.is_visible())
         self.assertIn("دعوى رقم ١٢٣/٢٠٢٥", self.page.locator("body").inner_text())
         self.assertIn("٥٠٠٠ جنيه", self.page.locator("body").inner_text())
         self.assertIn("المدعي: طرف تجريبي", self.page.locator("body").inner_text())
