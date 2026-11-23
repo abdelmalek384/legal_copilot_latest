@@ -1503,18 +1503,25 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
 
         # The binary must not be released if the mandatory access-audit write fails.
         class AuditFailingConnection:
-            def __init__(self, connection):
-                self.connection = connection
+            def __init__(self, runtime, context):
+                self.runtime = runtime
+                self.context = context
+
+            def _connection(self):
+                # FastAPI executes sync routes in a worker thread. Resolve the
+                # runtime's thread-local connection there instead of reusing
+                # the main test thread's SQLite handle.
+                return self.runtime.firm_connection(self.context)
 
             def execute(self, sql, parameters=()):
                 if "INSERT INTO security_audit_events" in sql:
                     raise sqlite3.OperationalError("injected audit failure")
-                return self.connection.execute(sql, parameters)
+                return self._connection().execute(sql, parameters)
 
             def __getattr__(self, name):
-                return getattr(self.connection, name)
+                return getattr(self._connection(), name)
 
-        with patch.object(app, "conn", return_value=AuditFailingConnection(firm_db)):
+        with patch.object(app, "conn", return_value=AuditFailingConnection(self.runtime, context)):
             audit_failure = self.client.get(
                 f"/cases/{case_id}/docs/{document_id}/original"
             )
