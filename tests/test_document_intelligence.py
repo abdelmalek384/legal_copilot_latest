@@ -109,6 +109,20 @@ class DocumentIntelligenceTests(unittest.TestCase):
         self.assertEqual(event["date_mentions"], [date_evidence["mention"]])
         self.assertEqual(event["party_mentions"], [party_evidence["mention"]])
 
+    def test_structured_candidates_bound_sentence_scan_and_report_truncation(self):
+        text = "جلسة بتاريخ 01/01/2025. " * 8
+        result = extract_structured_candidates(text, max_sentences=3)
+        self.assertEqual(result["sentences_inspected"], 3)
+        self.assertLessEqual(len(result["events"]), 3)
+        self.assertTrue(result["truncated"])
+        self.assertTrue(any("max_sentences" in item for item in result["limitations"]))
+
+    def test_structured_candidates_reject_invalid_sentence_limits(self):
+        for value in (0, -1, True, "10", 50001):
+            with self.subTest(max_sentences=value):
+                with self.assertRaises(ValueError):
+                    extract_structured_candidates("جلسة.", max_sentences=value)
+
     def test_structured_candidates_link_english_event_date_and_relation(self):
         text = (
             "[[PDF_PAGE:7]]\n"
