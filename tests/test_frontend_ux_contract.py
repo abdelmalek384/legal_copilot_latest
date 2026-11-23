@@ -41,6 +41,14 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertNotIn("catch(_){}});\n const submit=btn(txt('حفظ حدث المراجعة'", review)
         self.assertNotIn("draw();}catch(_){}finally{submit.disabled=false}});", review)
 
+
+    def test_research_and_firm_workflows_surface_mutation_and_load_errors(self):
+        self.assertIn("accessibleCases=await api('/cases');accessibleCases.forEach(c=>matterSelect.append(new Option((c.title||('Matter '+c.id))+' (#'+c.id+')',String(c.id))))}catch(error){toast(String(error?.message||err(error)))}", HTML)
+        self.assertIn("Research memo saved to matter notes')}catch(error){toast(String(error?.message||err(error)))}", HTML)
+        self.assertIn("renderDiscovery(await api('/research/discover','POST',{q:messageQuestion}),messageQuestion)}catch(error){toast(String(error?.message||err(error)))}", HTML)
+        self.assertIn("Holiday calendar saved and change recorded'));await loadHolidays()}\n   catch(error){toast(String(error?.message||err(error)))}", HTML)
+        self.assertIn("await loadInvoices()}catch(error){toast(String(error?.message||err(error)))}}));", HTML)
+
     def test_firm_mfa_policy_controls_are_visible_and_accessibly_named(self):
         self.assertIn("Firm MFA policy", HTML)
         self.assertIn("Require MFA for firm administrators", HTML)
