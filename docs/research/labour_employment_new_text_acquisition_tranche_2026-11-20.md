@@ -388,7 +388,7 @@ The source includes a list of national/religious holidays and special provisions
 
 #### Decision 299/2025 — individual amicable-settlement committees
 Secondary full text: https://ahmedazimelgamel.blogspot.com/2026/01/299-2025.html  
-Gazette: issue 291 supplement, 25-12-2025.
+Official SIS-hosted issue 291 scan: printed start page 72; full scan link in the bundle section above. The scan carries the not-valid-for-circulation watermark; full text and page-by-page comparison remain pending.
 
 Exact Arabic text:
 > ( المادة الأولى )  
@@ -402,7 +402,7 @@ The source provides at least Articles 1–5 in full and continues. Extract all a
 #### Decision 319/2025 — inspection campaigns
 Secondary full text: https://lawhub.info/eg/?p=17024  
 IDSC/MELES item: https://dspace.id.com.eg/items/770ed15a-afb2-4503-8d53-de0b5926e0b7/full  
-The DSpace catalogue provides an Arabic title and operative Arabic Article 1 excerpt, although the record's language field says English. Gazette issue 291 supplement, 25-12-2025.
+The DSpace catalogue provides an Arabic title and operative Arabic Article 1 excerpt, although the record's language field says English. The official SIS-hosted issue 291 scan begins Decision 319 at printed page 75; full scan link in the bundle section above. The scan carries the not-valid-for-circulation watermark; full text extraction and visual QA remain pending.
 
 Arabic Article 1 excerpt:
 > تتولى الإدارة العامة لتفتيش العمل بديوان عام الوزارة إعداد خطة تنفيذية شهرية للتفتيش على المنشآت المخاطبة بأحكام قانون العمل المشار اليه، بنظام الحملات التفتيشية المفاجئة، وفقًا لموضوعات نوعية محددة على المستوى القومي.
