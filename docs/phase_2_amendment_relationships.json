@@ -560,6 +560,103 @@
         "Search for extension or reenactment",
         "Qualified Egyptian counsel review"
       ]
+    },
+    {
+      "relationship_id": "REL-LAW136-1984-AMENDS-STATE-COUNCIL-47",
+      "source_instrument_id": "EG-STATE-COUNCIL-AMENDMENT-136-1984",
+      "target_instrument_id": "EG-STATE-COUNCIL-47-1972",
+      "relationship_type": "amends",
+      "status": "official_gazette_text_located_provision_mapping_verified_from_official_pdf",
+      "affected_provisions": [
+        "Adds Articles54 bis and68 bis",
+        "Replaces Article1",
+        "Replaces Article73(7)",
+        "Replaces Article83",
+        "Replaces Article91",
+        "Terminology substitutions in specified provisions"
+      ],
+      "stated_effect": "Introduces the Supreme Administrative Court conflict/precedent referral panel and a special administrative affairs council; revises judicial appointment, tenure and disciplinary provisions.",
+      "instrument_effective_date": "1984-08-03",
+      "source_url": "https://sis.gov.eg/media/647517/%D9%82%D8%A7%D9%86%D9%88%D9%86-%D8%B1%D9%82%D9%85-163%D9%84%D8%B3%D9%86%D8%A9-1984-%D8%A8%D8%B4%D8%A3%D9%86-%D8%AA%D8%B9%D8%AF%D9%8A%D9%84-%D8%A8%D8%B9%D8%B6-%D8%A7%D8%AD%D9%83%D8%A7%D9%85-%D9%82%D8%A7%D9%86%D9%88%D9%86-%D9%85%D8%AC%D9%84%D8%B3-%D8%A7%D9%84%D8%AF%D9%88%D9%84%D8%A9-47-%D9%84%D8%B3%D9%86%D8%A9-1972.pdf",
+      "required_evidence": [
+        "Page-by-page scan/transcription comparison",
+        "Full current amendment chain after 1984",
+        "Egyptian administrative-law counsel review"
+      ]
+    },
+    {
+      "relationship_id": "REL-LAW77-2019-AMENDS-STATE-COUNCIL-47",
+      "source_instrument_id": "EG-STATE-COUNCIL-AMENDMENT-77-2019",
+      "target_instrument_id": "EG-STATE-COUNCIL-47-1972",
+      "relationship_type": "amends",
+      "status": "official_gazette_pdf_located_secondary_full_text_and_provision_mapping_located",
+      "affected_provisions": [
+        "Article83, first three paragraphs"
+      ],
+      "stated_effect": "Provides for appointment of the President of the State Council from among the seven most senior Vice-Presidents for a four-year term or remaining period to retirement, whichever is nearer, renewable once.",
+      "instrument_effective_date": "2019-06-27",
+      "source_url": "https://sis.gov.eg/media/647533/%D9%82%D8%A7%D9%86%D9%88%D9%86-%D8%B1%D9%82%D9%85-77-%D9%84%D8%B3%D9%86%D8%A9-2019-%D8%A8%D8%B4%D8%A3%D9%86-%D8%AA%D8%B9%D8%AF%D9%8A%D9%84-%D8%A8%D8%B9%D8%B6-%D8%A7%D8%AD%D9%83%D8%A7%D9%85-%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86-%D8%B1%D9%82%D9%8575-%D9%84%D8%B3%D9%86%D8%A9-1963.pdf",
+      "required_evidence": [
+        "Compare full secondary transcription against Gazette issue25 مكرر (ب)",
+        "Search subsequent changes to Article83",
+        "Egyptian counsel review"
+      ]
+    },
+    {
+      "relationship_id": "REL-LAW77-2019-AMENDS-ADMIN-PROSECUTION-117",
+      "source_instrument_id": "EG-STATE-COUNCIL-AMENDMENT-77-2019",
+      "target_instrument_id": "EG-ADMINISTRATIVE-PROSECUTION-117-1958",
+      "relationship_type": "amends",
+      "status": "official_gazette_pdf_located_secondary_full_text_and_provision_mapping_located",
+      "affected_provisions": [
+        "Article35"
+      ],
+      "stated_effect": "Replaces Article35: President of the Administrative Prosecution Authority is appointed by presidential decision from the seven most senior Vice-Presidents for four years or until the nearer retirement date, once only.",
+      "instrument_effective_date": "2019-06-27",
+      "source_url": "https://sis.gov.eg/media/647533/%D9%82%D8%A7%D9%86%D9%88%D9%86-%D8%B1%D9%82%D9%85-77-%D9%84%D8%B3%D9%86%D8%A9-2019-%D8%A8%D8%B4%D8%A3%D9%86-%D8%AA%D8%B9%D8%AF%D9%8A%D9%84-%D8%A8%D8%B9%D8%B6-%D8%A7%D8%AD%D9%83%D8%A7%D9%85-%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86-%D8%B1%D9%82%D9%8575-%D9%84%D8%B3%D9%86%D8%A9-1963.pdf",
+      "required_evidence": [
+        "Compare Article35 text to Gazette scan",
+        "Trace any later amendments",
+        "Egyptian counsel review"
+      ]
+    },
+    {
+      "relationship_id": "REL-PM714-2019-AMENDS-CIVIL-SERVICE-REG-1216",
+      "source_instrument_id": "EG-CIVIL-SERVICE-EXEC-REG-AMENDMENT-714-2019",
+      "target_instrument_id": "EG-CIVIL-SERVICE-EXEC-REG-1216-2017",
+      "relationship_type": "amends",
+      "status": "secondary_full_text_located_gazette_issue_and_effective_date_metadata_located",
+      "affected_provisions": [
+        "Article189"
+      ],
+      "stated_effect": "Replaces Article189 with a transitional higher-qualification reappointment mechanism, expressly available only until 1 November 2019, subject to enumerated conditions.",
+      "instrument_effective_date": "2019-03-21",
+      "source_url": "https://www.elmodawanaeg.com/%D9%82%D8%B1%D8%A7%D8%B1-%D8%B1%D8%A6%D9%8A%D8%B3-%D9%85%D8%AC%D9%84%D8%B3-%D8%A7%D9%84%D9%88%D8%B2%D8%B1%D8%A7%D8%A1-%D8%B1%D9%82%D9%85-714-%D9%84%D8%B3%D9%86%D8%A9-2019-%D8%A8%D8%AA%D8%B9%D8%AF/",
+      "required_evidence": [
+        "Original Gazette issue11 مكرر (أ) image/PDF",
+        "Check later amendment/repeal of Article189",
+        "Counsel review; do not present the time-limited route as current"
+      ]
+    },
+    {
+      "relationship_id": "REL-PM1509-2026-AMENDS-CIVIL-SERVICE-REG-1216",
+      "source_instrument_id": "EG-CIVIL-SERVICE-EXEC-REG-AMENDMENT-1509-2026",
+      "target_instrument_id": "EG-CIVIL-SERVICE-EXEC-REG-1216-2017",
+      "relationship_type": "amends",
+      "status": "full_cc_by_secondary_text_located_official_gazette_issue_metadata_located",
+      "affected_provisions": [
+        "Replaces Articles52,53,54,55,56,57,58,59,62",
+        "Adds Articles51 bis,51 bis 1,52 bis,57 bis"
+      ],
+      "stated_effect": "Reworks selection and renewal for leadership and supervisory positions, establishes training/preparation mechanisms, scoring criteria, integrity checks and presidential appointment pathway for supervisory positions.",
+      "instrument_effective_date": "2026-05-19",
+      "source_url": "https://mksegypt.org/ar/decisions/34436",
+      "required_evidence": [
+        "Obtain original Gazette PDF and SHA-256",
+        "Compare all replaced and added articles line-by-line",
+        "Check subsequent 2026 amendments and implementing PM decisions",
+        "Egyptian counsel review"
+      ]
     }
   ],
   "next_actions": [
