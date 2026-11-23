@@ -172,3 +172,8 @@
 3. Verify the exact treaty decision and the 2014 PM decision cited in the preamble.
 4. Acquire later PM decisions appointing the members, approving internal committee rules, or operationalising the Council.
 5. No lawyer review is claimed.
+
+
+## Register progress at acquisition
+
+414 rows; 107 full-text indicators (25.8%); 49 partial-only indicators (11.8%); 156 with any text indicator (37.7%). Same keyword-based register proxy; not a national corpus completion rate or verification metric.
