@@ -24,7 +24,7 @@ LEGAL_FIRM_TEST_SOURCE_MATCHED_FIRM_ID=42
 
 The answer path accepts only a set of sources whose backend records are all explicitly marked `source_matched_unreviewed`, have `verified=false`, and carry the complete source-match evidence package checked by `tools.answer_trust_tier`:
 
-- original and independent-copy SHA-256 values and distinct source IDs;
+- original and independent-copy SHA-256 values that differ, plus distinct source IDs (a byte-identical copy is not independent evidence);
 - complete article inventory and resolved text differences;
 - publication/effective-date evidence;
 - explicit collection, storage, extraction, indexing, commercial-use and excerpt-display permission evidence.
