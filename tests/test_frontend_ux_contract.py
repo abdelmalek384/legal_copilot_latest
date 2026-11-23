@@ -570,7 +570,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("new Option(uiText('المواعيد القانونية','Legal deadlines'),'deadline')", calendar)
         self.assertIn("new Option(uiText('المهام','Tasks'),'task')", calendar)
         self.assertIn("const filtered=()=>", calendar)
-        self.assertIn("kind.onchange=()=>{drawMonth();drawAgenda()}", calendar)
+        self.assertIn("kind.onchange=matterFilter.onchange=()=>{drawMonth();drawAgenda()}", calendar)
         self.assertIn("const today=btn(uiText('اليوم','Today')", calendar)
 
     def test_invoice_and_subscription_amounts_share_arabic_piaster_parser(self):
@@ -863,7 +863,7 @@ class FrontendUXContractTests(unittest.TestCase):
 
     def test_source_inspector_preserves_document_page_and_confidence_provenance(self):
         self.assertIn("p.original_document_name||p.document_name||source.original_document_name||source.document_name||source.file_name", HTML)
-        self.assertIn("source.page_number??p.page_number", HTML)
+        self.assertIn("const pageLocation=[source.page_number,source.page,p.page_number,p.page]", HTML)
         self.assertIn("source.text_location||p.text_location||source.location||p.location", HTML)
         self.assertIn("source.confidence??p.confidence", HTML)
         self.assertIn("(typeof confidence==='number'||typeof confidence==='string')&&confidence!==''", HTML)
@@ -1335,7 +1335,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("/research/answers/'+encodeURIComponent(m.answer_id)+'/rating", HTML)
         self.assertIn("/research/answer-ratings?limit=100&offset=0", HTML)
         self.assertIn("/research/answer-ratings/export.csv", HTML)
-        self.assertIn("bubble.append(trustTierBadge(answerTier||'unreviewed'))", HTML)
+        self.assertIn("answerAnalysisPanel.append(trustTierBadge(answerTier||'unreviewed'))", HTML)
         self.assertLess(HTML.index(".answer-rating-panel{"), HTML.index("</style>"))
         self.assertLess(HTML.index(".research-rating-tools{"), HTML.index("</style>"))
 
@@ -1377,20 +1377,20 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("research-status-banner", HTML)
 
     def test_primary_navigation_groups_existing_routes_without_weakening_role_gates(self):
-        nav_start = HTML.index("h('nav',{className:'primary-nav'")
-        nav_end = HTML.index("h('span',{className:'nav-scroll-hint'", nav_start)
-        nav = HTML[nav_start:nav_end]
-        self.assertIn("navLabel('مساحة العمل','Workspace')", nav)
-        self.assertIn("navLabel('إدارة المكتب','Firm administration')", nav)
+        start = HTML.index("const allNavItems=")
+        end = HTML.index("h('span',{className:'nav-scroll-hint'", start)
+        nav = HTML[start:end]
         for route in ("dash", "cases", "clients", "law", "documents", "tasks", "calendar", "finance", "feedback", "settings"):
             self.assertIn("['" + route + "'", nav)
+        self.assertIn("const primaryIds=new Set(['dash','cases','law','documents','calendar'])", nav)
+        self.assertIn("const primaryItems=allNavItems.filter(item=>primaryIds.has(item[0]))", nav)
+        self.assertIn("const moreItems=allNavItems.filter(item=>!primaryIds.has(item[0]))", nav)
+        self.assertIn("className:'nav-more'", nav)
+        self.assertIn("navLabel('المزيد','More')", nav)
         self.assertIn("ME.role==='admin'", nav)
         self.assertIn("ME.platform_roles", nav)
         self.assertIn("ME.can_review_legal", nav)
-        self.assertIn("className:'nav-group'", nav)
         self.assertIn("window.DOCUMENT_REVIEW_TARGET=null", nav)
-        self.assertIn("#side .nav-group-label{display:none}", HTML)
-        self.assertIn("#side .nav-group button{width:auto;min-width:max-content", HTML)
         self.assertIn("answer-rating-panel", HTML)
 
 
@@ -1701,7 +1701,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("try{toPiasters(line.price.value);clearFieldInvalid(line.price)}catch(_){}})", casework)
         self.assertIn("markFieldInvalid(line.quantity)", casework)
         self.assertIn("markFieldInvalid(line.price)", casework)
-        self.assertIn("markFieldInvalid(missingDescription.description)", HTML)
+        self.assertIn("invalidField=requiredFields.find(field=>!String(field.value||'').trim()||!field.checkValidity())", HTML)
         self.assertIn("requiredFields.filter(field=>!String(field.value||'').trim()||!field.checkValidity()).forEach(markFieldInvalid)", casework)
 
     def test_display_density_preference_persists_per_firm_and_user_and_preserves_targets(self):
