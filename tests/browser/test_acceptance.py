@@ -464,7 +464,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
 
         self.page.set_viewport_size({"width": 390, "height": 844})
         self.page.get_by_role("button", name="العملاء والقضايا", exact=True).click()
-        new_case_opener = self.page.get_by_role("button", name="+ قضية جديدة")
+        new_case_opener = self.page.get_by_role("button", name="+ قضية جديدة").first
         new_case_opener.click()
         dialog = self.page.get_by_role("dialog", name="قضية جديدة")
         dialog.wait_for(state="visible", timeout=8000)
@@ -825,7 +825,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.assertIn("المدعي: طرف تجريبي", self.page.locator("body").inner_text())
         self.assertIn("المادة ١٠١", self.page.locator("body").inner_text())
         self.assertIn("رقم الصفحة غير مسجل", self.page.locator("body").inner_text())
-        classification = self.page.get_by_label("تصنيف مسودة للمستند synthetic-matter-fixture-v2.docx")
+        classification = self.page.get_by_label("تصنيف المستند synthetic-matter-fixture-v2.docx")
         classification.select_option("contract")
         self.page.get_by_text("تم تعديل تصنيف مسودة في هذه الشاشة فقط", exact=False).wait_for(timeout=5000)
         self.page.get_by_label("الإصدار السابق").select_option(str(document_v1_id))
@@ -1085,7 +1085,9 @@ class BrowserAcceptanceTests(unittest.TestCase):
 
         # Open a returned passage and add a lawyer annotation without modifying the uploaded source.
         client_card.get_by_role("button", name="فتح المقطع في ملف القضية").first.click()
-        self.page.get_by_role("button", name="تحليل المستندات", exact=True).click()
+        analyze_documents = self.page.get_by_role("button", name="تحليل المستندات", exact=True)
+        analyze_documents.wait_for(state="visible", timeout=20000)
+        analyze_documents.click()
         passage = self.page.locator(".passage-annotation-text").first
         passage.wait_for(state="visible", timeout=15000)
         selected = self.page.evaluate("""(sentinel) => {
@@ -1263,7 +1265,9 @@ class BrowserAcceptanceTests(unittest.TestCase):
 
             self.assertEqual(self.browser_errors, [], f"browser errors before invoice at {width}px: {self.browser_errors}")
             self.page.locator(".matter-section-nav button").filter(has_text="المالية").click()
-            self.page.locator(".matter-subnav button").filter(has_text="الفواتير").click()
+            invoice_nav = self.page.locator(".matter-subnav button").filter(has_text="الفواتير")
+            invoice_nav.wait_for(state="visible", timeout=12000)
+            invoice_nav.click()
             self.page.get_by_placeholder("وصف الفاتورة أو نطاق العمل").fill(
                 f"فاتورة اختبار {width}"
             )
