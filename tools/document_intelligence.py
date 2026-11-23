@@ -238,6 +238,7 @@ def group_candidate_entity_mentions(
     max_groups: int = 500,
     max_documents: int = 1000,
     max_entities_per_document: int = 5000,
+    max_entity_records: int = 100000,
 ) -> dict[str, Any]:
     """Group exact normalized party/reference mentions within firm/matter scope.
 
@@ -252,12 +253,14 @@ def group_candidate_entity_mentions(
         ("max_groups", max_groups, 2000),
         ("max_documents", max_documents, 5000),
         ("max_entities_per_document", max_entities_per_document, 20000),
+        ("max_entity_records", max_entity_records, 500000),
     ):
         if isinstance(value, bool) or not isinstance(value, int) or not 1 <= value <= maximum:
             raise ValueError(f"{name} must be an integer between 1 and {maximum}")
 
     buckets: dict[tuple[str, str, str, str], list[dict[str, Any]]] = {}
     candidate_count = 0
+    entity_records_inspected = 0
     truncated = False
     documents_truncated = len(documents) > max_documents
     allowed_types = {"labelled_party", "case_reference", "legal_reference"}
@@ -279,6 +282,10 @@ def group_candidate_entity_mentions(
         if len(entities) > max_entities_per_document:
             truncated = True
         for entity in entities[:max_entities_per_document]:
+            if entity_records_inspected >= max_entity_records:
+                truncated = True
+                break
+            entity_records_inspected += 1
             if not isinstance(entity, dict) or entity.get("entity_type") not in allowed_types:
                 continue
             literal = entity.get("name_mention") if entity.get("entity_type") == "labelled_party" else entity.get("mention")
@@ -343,7 +350,7 @@ def group_candidate_entity_mentions(
             "common ownership, party equivalence, case linkage or legal relationship."
         ),
         "limitations": [
-            "Only the first max_documents caller-supplied documents and first max_entities_per_document entities per document are examined; truncated results are incomplete.",
+            "Processing is capped at max_documents documents, max_entities_per_document entities per document and max_entity_records entity records overall; truncated results are incomplete.",
             "Only labelled-party, case-reference and legal-reference mentions are grouped.",
             "Normalization applies Unicode NFKC, case-folding and whitespace collapse only; no fuzzy or transliteration matching is performed.",
             "Common names and repeated reference strings may belong to different people, entities or matters.",
