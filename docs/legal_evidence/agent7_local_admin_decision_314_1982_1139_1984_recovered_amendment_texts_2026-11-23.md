@@ -157,3 +157,57 @@ The following paragraph in the consolidated text begins the governorate-specific
 4. Decision 1139/1984 is recovered only to the extent of the substituted first paragraph of Regulation Article 14. Do not represent this as the full standalone decision.
 5. The consolidated source contains obvious OCR/typing errors elsewhere (including malformed words and headings). The text above has only been lightly normalized for spacing and paragraph breaks; compare every quotation against the Gazette image before legal reliance.
 6. Current-law use requires reconciling later amendments, especially Decisions 1251/1988, 488/1989, 1105/1990, 1543/1993, 2718/1996 and 220/2000, as well as any later legislation or constitutional rulings.
+
+
+## C. Additional text recovered from an independent consolidated source (23 November 2026)
+
+A second consolidated reproduction was located at Badrashein Online, https://www.badrashein.com/world/21-political-topics/511-قانون-نظام-الإدارة-المحلية-رقم-43-لسنة-1979ولائحته-التنفيذية-وشروط-الترشيح-للمجالس-الشعبية-المحلية. Its article annotations independently identify the Gazette issue/date for Decision 1139/1984 and supply additional Decision 314/1982 text. The site reproduces the 707/1979 regulation in a consolidated form; it is a secondary source and contains OCR/typing defects. The quotations below are normalized only for paragraph layout.
+
+### PM Decision 314/1982 — additional recovered replacement provisions
+
+**Replacement Article 11 — land reclamation within the governorate:**
+
+> تتولى المحافظة القيام باستصلاح الأراضى داخل الزمام والأراضى المتاخمة والممتدة إلى مسافة كيلومترين وذلك فى إطار السياسة العامة للدولة وبعد أخذ رأى وزارة استصلاح الأراضى وللمحافظة تقرير قواعد التصرف فى الأراضى المشار إليها فى حدود القواعد العامة التى يضعها مجلس الوزراء على أن تعطى الأولوية فى هذا التصرف لأبناء المحافظة المقيمين فيها ممن يعملون بالزراعة، على أن تؤول حصيلة هذا التصرف وكذلك نصيب المحافظة فى قيمة الأراضى المستصلحة خارج الزمام إلى الحساب الخاص المنصوص عليه فى المادة 36 من القانون لتخصيصها لأغراض استصلاح الأراضى على مستوى المحافظة.
+>
+> كما تتولى المحافظة:
+>
+> 1- دراسة أساليب ومقومات استصلاح الأراضى ورفع كفاءة وإمكانيات تنفيذ المشروعات الخاصة بذلك بما يحقق أهدافها.
+> 2- تنفيذ سياسة التوطين فى الأراضى المستصلحة بهدف تحقيق توزيع الكثافة السكانية.
+> 3- إنشاء وإدارة المجمعات الزراعية فى المناطق المستصلحة.
+> 4- تنظيم شئون المجتمعات الجديدة وتوفير الخدمات بمناطق استصلاح الأراضى.
+
+**Replacement Article 49 — industrial-zone boundaries and service committees:**
+
+> يصدر قرار المحافظ المختص بتحديد نطاق المناطق الصناعية بالمحافظة وإنشاء لجان للخدمات بها بناء على اقتراح المجلس الشعبى المحلى للمحافظة وبعد أخذ رأى وزراء التخطيط والمالية والصناعة والقوى العاملة.
+
+**Replacement item (4) of Article 65 — coordination of development plans:**
+
+> 4- يتولى وزير التخطيط بالاتفاق مع الوزير المختص بالحكم المحلى والوزراء المختصين الربط والتنسيق بين هذه الخطط والخطة العامة للدولة.
+
+**Replacement final paragraph of Article 71 — conditional donations:**
+
+> لا يجوز للوحدة المحلية قبول التبرعات المقيدة بشرط يخرج تنفيذه عن سلطة الوحدة أو أن يغير تخصيصها بغير موافقة المحافظ وتعرض الوحدة المحلية الأمر على المحافظ مشفوعا بتقرير يتضمن قيمة التبرع واسم الشخص أو الجهة التى قدمته والشروط المقيدة له أو مبررات تغيير تخصيصه والغرض من ذلك.
+>
+> فإذا كان التبرع مقدما من هيئة أو شخص أجنبى تصدر الموافقة على قبوله من رئيس مجلس الوزراء.
+
+**Replacement Article 90 — annual inventory and assessment of local fees:**
+
+> تقوم لجنة الحصر والتقدير المنصوص عليها فى المادة 84 فى شهر سبتمبر من كل سنة بحصر ما يكون قد استجد من المحال وغيرها خلال السنة وتقدير الرسوم المستحقة عليها على أن يتبع فى ذلك الإجراءات السابقة.
+
+### PM Decision 1139/1984 — full substituted first paragraph of Regulation Article 14
+
+The Badrashein consolidated regulation independently labels the first paragraph of Article 14 as substituted by Decision 1139/1984 and identifies Gazette issue 46, 15 November 1984. The recovered paragraph is:
+
+> تعمل الوحدات المحلية كل فى دائرة اختصاصها، فى إطار السياسة العامة للمجلس الأعلى للثقافة والخطة العامة للدولة على تيسير سبل الثقافة للمواطنين لربطهم بالقيم الفكرية والروحية والأخلاقية للمجتمع وكذلك تنمية المواهب فى شتى مجالات الفكر والفن، وذلك بإنشاء وإدارة المتاحف ودور الكتب العامة ودور العرض والمسارح ومنح التراخيص الخاصة بها ومراقبة نشاطها.
+
+### Independent-source corroboration — Decision 1105/1990
+
+The same Badrashein consolidated regulation labels Article 94 bis as added by PM Decision 1105/1990. Its text reads:
+
+> يكون للمدينة ذات الأهمية الخاصة والتى يصدر بتنظيمها قرار من رئيس الجمهورية هيكل تنظيمى مستقل يشمل جميع العاملين فى مجال اختصاصها، ويعتبر العاملون بالمدينة وحدة واحدة فيما يتعلق بالأقدمية والترقية والنقل مع مراعاة تخصصاتهم.
+
+This corroborates the single-paragraph recovery already recorded in the Agent 7 research delta. It does not constitute the full standalone Decision 1105/1990 text.
+
+## Additional source-quality note
+
+The Badrashein page is useful as an independent second transcription for the 707/1979 regulation and amendment annotations. It is not an official publication and contains numerous typographical/OCR anomalies elsewhere (including misspellings and malformed cross-references). These additional clauses are article-level recoveries only; the original Gazette page images for Decisions 314/1982 and 1139/1984 remain outstanding.
