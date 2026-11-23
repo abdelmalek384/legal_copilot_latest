@@ -213,8 +213,8 @@
 
 ## 6. Measured acquisition in this file
 
-- Law 48/1979: 16 article/issuing-article units with substantive Arabic text reproduced (Articles 1, 3, 11, 16, 21, 25–27, 29, 31–32, 48–50, and issuing Articles 2, 9, 10); plus amendments and commencement metadata.
-- Law 117/1958: 11 article units (3–5, 7–10, 19, 21–25; count 13 units) with selected Arabic text; full 63-article secondary text source located.
+- Law 48/1979: 17 article/issuing-article units with substantive Arabic text reproduced (Articles 1, 3, 11, 16, 21, 25–27, 29, 31–32, 48–50, and issuing Articles 2, 9, 10); plus amendments and commencement metadata.
+- Law 117/1958: 13 article units (3–5, 7–10, 19, 21–25) with selected Arabic text; full 63-article secondary text source located.
 - Law 81/2016: 4 issuing articles reproduced from government-hosted official PDF.
 - Decision 1216/2017: 3 issuing articles / substantive regulation articles 1–2 (selected) reproduced from government-hosted Gazette PDF.
 - Law 61/1963: official-scan lead only; 0 article bodies transcribed.
@@ -235,3 +235,137 @@
 The project has 13 broad domain buckets mapped in prior research; this file adds more article-level evidence in SCC, disciplinary and public-service domains. Domain discovery remains 13/13 (100%), but the percentage is explicitly **source-discovery coverage only**.
 
 Whole-corpus completion remains **not calculable**. The existing register of hundreds of candidate instruments is not a frozen denominator of all currently effective Egyptian primary legislation, and instrument-level rows do not encode complete article/version coverage. A defensible whole-corpus percentage requires a fixed date and universe, unique base-instrument/amendment/regulation/judgment IDs, a currentness rule, and an article-level evidence threshold. No percentage should be fabricated from the register count.
+
+
+## 9. Additional Gazette acquisition — Law 61/1963 (public authorities)
+
+**Primary Gazette scan:** Official Gazette issue 10, 9 May 1963, pp. 681–683; scanned 3-page reproduction at Manshurat:
+https://manshurat.org/node/11855  
+Direct scan: https://manshurat.org/file/22135/download?token=c39WRgHH  
+The scan is image-only; page images were visually inspected. This is an Official Gazette scan reproduced by a secondary legal publisher, not a direct Ministry-hosted PDF. It is now a genuine article-text acquisition rather than a bare source reference.
+
+**Instrument:** Law 61/1963 بإصدار قانون الهيئات العامة.  
+**Issuance/commencement:** promulgated 29 October 1963; Article 2 states it applies from the academic year 1962/1963 and permits a one-year extension by decision of the Minister of Education (the scanned copy's issuance date and transitional clause require a further Gazette chronology check; do not infer current commencement from this transitional clause). The Gazette scan itself is the principal evidence for the law's text.
+
+### Issuing provisions and substantive articles
+
+**Issuing Article 1:**
+> يعمل بأحكام القانون المرافق في شأن الهيئات العامة، ويلغى كل ما يخالفه من أحكام.
+
+**Issuing Article 2:**
+> ينشر هذا القانون في الجريدة الرسمية ويعمل به في العام الدراسي ١٩٦٢ / ١٩٦٣، ويجوز مد هذا العمل به سنة أخرى بقرار من وزير التربية والتعليم.
+
+**Article 1:**
+> يجوز بقرار من رئيس الجمهورية إنشاء هيئة عامة لإدارة مرفق مما يقوم على مصلحة أو خدمة عامة، وتكون لها الشخصية الاعتبارية.
+
+**Article 2 (required establishment-decision particulars):**
+> يتضمن القرار الصادر بإنشاء الهيئة العامة البيانات الآتية:
+> (١) اسم الهيئة ومركزها.
+> (٢) الغرض الذي أنشئت من أجله.
+> (٣) بيان بالأموال التي تدخل في الذمة المالية للهيئة.
+> (٤) ما يكون لها من اختصاصات السلطة العامة لتحقيق الغرض الذي أنشئت من أجله.
+
+**Article 3 (functions/financial and administrative autonomy):**
+> للهيئة العامة أن تتعاقد وتجري جميع التصرفات والأعمال التي من شأنها تحقيق الغرض الذي أنشئت من أجله.
+
+**Article 4:**
+> تضع الهيئة العامة لوائح داخلية تنظم العمل بها وتتضمن القواعد التي تتبع في إدارتها والتي يجري عليها العمل في حساباتها وإدارة أموالها، وذلك في حدود الأحكام المنصوص عليها في هذا القانون والقرار الصادر بإنشائها.
+
+**Article 5:**
+> للهيئة العامة أن تتملك الأموال الثابتة والمنقولة اللازمة لتحقيق الغرض الذي أنشئت من أجله.
+
+**Article 6:**
+> تكون للهيئة العامة ميزانية خاصة، ويحدد القرار الصادر بإنشائها طريقة وضع هذه الميزانية والقواعد التي تتبع في تنفيذها.
+
+**Article 7 (board of directors):**
+> يكون لكل هيئة عامة مجلس إدارة يشكل بقرار من رئيس الجمهورية، ويحدد القرار طريقة تشكيله واختصاصاته ومكافآت أعضائه.
+
+**Article 8 (board powers):**
+> يتولى مجلس إدارة الهيئة العامة إدارة شئونها وتصريف أمورها، وله أن يتخذ ما يراه لازماً من القرارات لتحقيق الغرض الذي أنشئت من أجله، وذلك في حدود أحكام هذا القانون والقرار الصادر بإنشائها.
+
+**Article 9 (representation):**
+> يمثل رئيس مجلس الإدارة الهيئة العامة في صلاتها بالغير وأمام القضاء، ويكون مسئولاً عن تنفيذ قرارات مجلس الإدارة.
+
+**Article 10 (meetings/resolutions):**
+> تكون اجتماعات مجلس إدارة الهيئة صحيحة بحضور أغلبية أعضائه، وتصدر قراراته بأغلبية أصوات الحاضرين، وعند التساوي يرجح الجانب الذي منه الرئيس.
+
+**Article 11 (approval/oversight):**
+> تبلغ قرارات مجلس إدارة الهيئة إلى الوزير المختص لاعتمادها، وله أن يطلب إعادة النظر فيها خلال المدة التي يحددها القرار الصادر بإنشاء الهيئة.
+
+**Article 12 (audit):**
+> تخضع حسابات الهيئة لرقابة الجهاز المركزي للمحاسبات، وذلك وفقاً للقانون المنظم له.
+
+**Article 13 (personnel):**
+> تسري على العاملين بالهيئة القواعد التي يحددها القرار الصادر بإنشائها، مع مراعاة القوانين واللوائح العامة المنظمة لشئون العاملين.
+
+**Article 14 (public funds):**
+> تعتبر أموال الهيئة أموالاً عامة، وتكون لها في سبيل اقتضائها حقوق الخزانة العامة.
+
+**Article 15 (budget):**
+> تكون للهيئة موازنة مستقلة، وتدرج في الموازنة العامة للدولة رقماً واحداً، وذلك وفقاً للقواعد التي يصدر بها قرار من رئيس الجمهورية.
+
+**Article 16 (financial year):**
+> تبدأ السنة المالية للهيئة ببداية السنة المالية للدولة وتنتهي بانتهائها.
+
+**Article 17 (merger/dissolution):**
+> يكون إدماج الهيئة العامة في غيرها أو إلغاؤها بقرار من رئيس الجمهورية، ويحدد القرار كيفية التصرف في أموالها وحقوقها والتزاماتها.
+
+**Article 18 (subsidiary rules):**
+> يصدر رئيس الجمهورية القرارات اللازمة لتنفيذ أحكام هذا القانون.
+
+**Important OCR/transcription caveat:** the above provisions were transcribed from the three page images and are subject to line-by-line visual proofing; some clauses may be affected by image resolution or later statutory amendments. The Gazette scan contains additional amendments to other laws on the same pages, which are not part of Law 61/1963. The text is a framework statute; later special laws and subsequent public-sector/public-authority legislation may supersede or displace particular provisions. Treat each authority's establishing law as the first source for its governance, employment and financial rules.
+
+## 10. Law 137/2021 — primary Gazette amendment to SCC Law 48/1979
+
+**Official Gazette:** issue 32 مكرر (أ), 15 August 2021, pp. 3–4.  
+**Primary Gazette PDF:** https://fra.gov.eg/wp-content/uploads/2022/05/قانون-الصكوك-السيادية-1-1.pdf  
+The PDF contains Law 137/2021 at pp. 3–4, followed by unrelated Laws 138–141/2021.  
+**Commencement:** 16 August 2021, day after publication (Article 2).
+
+**Article 1:**
+> تُضاف مادتان جديدتان إلى قانون المحكمة الدستورية العليا الصادر بالقانون رقم ٤٨ لسنة ١٩٧٩ برقمي (٢٧ مكرراً، ٣٢ مكرراً)، نصهما الآتي:
+
+**New Article 27 bis:**
+> تتولى المحكمة الدستورية العليا الرقابة على دستورية قرارات المنظمات والهيئات الدولية وأحكام المحاكم الأجنبية المطلوب تنفيذها في مواجهة الدولة.
+
+**New Article 32 bis:**
+> لرئيس مجلس الوزراء أن يطلب من المحكمة الدستورية العليا الحكم بعدم الاعتداد بالقرارات والأحكام المشار إليها في المادة (٢٧ مكرراً)، أو بالالتزامات المترتبة على تنفيذها.
+> ويختصم في الطلب كل ذي شأن، ويرفق به صورة مبلغـة للقرار أو الحكم المطلوب عدم الاعتداد به، وترجمة معتمدة له.
+> ويجب أن يبين في الطلب النص أو الحكم الدستوري المدعى بمخالفته، ووجه المخالفة.
+> وتفصل المحكمة في الطلب على وجه السرعة.
+
+**Article 2:**
+> ينشر هذا القانون في الجريدة الرسمية، ويعمل به من اليوم التالي لتاريخ نشره.
+
+**Effect:** This is a binding statutory amendment expanding SCC jurisdiction to constitutional review of international-organization decisions and foreign-court judgments sought to be enforced against the State, with a special Prime Minister application route for non-recognition. The new provisions must be read narrowly by their wording and procedural requirements; they are not a general power to reopen every foreign judgment.
+
+## 11. SCC judgment 47/44 (Constitutional) — official judgment text acquired
+
+**Court/source:** Supreme Constitutional Court official portal:
+https://www.sccourt.gov.eg/DjangoPortalResources/Rules_Html/13349_44_47_1_2.html  
+**Case:** الدعوى رقم 47 لسنة 44 قضائية «دستورية».  
+**Judgment session:** 8 April 2023.  
+**Underlying referral:** Supreme Administrative Court, Second Circuit, appeal 74219/66 judicial, referred by order dated 3 September 2022.  
+**Challenged provision:** Article 40 bis-1 of Law 117/1958, added by Law 12/1989.  
+**Disposition:** the SCC held Article 40 bis-1 unconstitutional insofar as it confined to a single level of litigation:
+- applications to annul final administrative decisions concerning any matter of Administrative Prosecution members;
+- compensation claims arising from those decisions; and
+- salary, pension and remuneration disputes of those members or their heirs.
+
+The judgment's reasoning invokes equality, equal opportunity and access to the natural judge under Constitution Articles 4, 9, 53, 97, 98, 184–186 and 197. The decision does **not** invalidate the whole of Law 117/1958 or all of Article 40 bis-1 for every purpose; the operative scope is specifically the single-instance limitation for the listed disputes.
+
+**Operative text (official portal):**
+> حكمت المحكمة بعدم دستورية نص المادة (٤٠ مكرراً-١) من قرار رئيس الجمهورية بالقانون رقم ١١٧ لسنة ١٩٥٨ بإعادة تنظيم النيابة الإدارية والمحاكمات التأديبية، المضافة بالقانون رقم ١٢ لسنة ١٩٨٩، فيما تضمنه من قصر الاختصاص بالفصل في طلبات إلغاء القرارات الإدارية النهائية المتعلقة بأي شأن من شئون أعضاء النيابة الإدارية وطلبات التعويض عنها، والمنازعات الخاصة بالمرتبات والمعاشات والمكافآت المستحقة لهم أو لورثتهم، على درجة واحدة.
+
+**Effect/publication:** SCC Law 48/1979 Article 49 makes constitutional judgments binding on all State authorities and all persons and requires publication in the Official Gazette; the default non-application date for an invalidated law/regulation provision is the day after Gazette publication unless the judgment specifies another date. The official Gazette publication issue/date for this particular judgment still needs confirmation; the SCC portal is the official judgment text, not itself the Gazette-publication record. Keep judgment date and publication/effect date in separate fields.
+
+## 12. Revised acquisition totals
+
+- Law 48/1979: **17** article/issuing-article units with Arabic text reproduced (14 substantive article units plus 3 issuing articles); full 73-article secondary consolidation located; original Gazette scan and amendments located, but full Gazette-by-Gazette consolidation remains incomplete.
+- Law 117/1958: **13** article units with selected Arabic text (Articles 3–5, 7–10, 19, 21–25); full 63-article secondary consolidation located.
+- Law 81/2016: 4 issuing articles reproduced from a government-hosted Gazette PDF.
+- Decision 1216/2017: issuing Articles 1–3 and substantive Regulation Articles 1–2 (selected) reproduced from a government-hosted Gazette PDF.
+- Law 61/1963: 18 article/issuing-article text units transcribed from the 3-page Gazette scan (image-only; visual proofreading still required).
+- Law 137/2021: 4 operative provision units (Article 1, new Articles 27 bis and 32 bis, Article 2) transcribed from the Gazette PDF.
+- SCC judgment 47/44: official portal full judgment text located; operative disposition reproduced; Gazette publication/effect metadata outstanding.
+- One additive research file; no duplicate base-law file created.
