@@ -1029,6 +1029,54 @@ class BrowserAcceptanceTests(unittest.TestCase):
             self.page.locator(".research-thread").inner_text(),
         )
 
+    def test_client_wide_document_search_spans_two_matters_for_one_client(self) -> None:
+        self.login(self.state["owner_a_email"])
+        headers = self.csrf_headers()
+        client_name = "SYNTHETIC TWO-MATTER CLIENT SEARCH 2026"
+        client = self.page.request.post(
+            self.base_url + "/clients",
+            data={"name": client_name},
+            headers=headers,
+            timeout=8000,
+        )
+        self.assertEqual(client.status, 200, client.text())
+        client_id = client.json()["id"]
+        sentinel = "PILOTSHAREDCLIENTPASSAGE2026"
+        case_titles = [
+            "SYNTHETIC CLIENT SEARCH MATTER ONE",
+            "SYNTHETIC CLIENT SEARCH MATTER TWO",
+        ]
+        for index, title in enumerate(case_titles, start=1):
+            created = self.page.request.post(
+                self.base_url + "/cases",
+                data={"title": title, "client_id": client_id},
+                headers=headers,
+                timeout=8000,
+            )
+            self.assertEqual(created.status, 200, created.text())
+            case_id = created.json()["id"]
+            document = self.page.request.post(
+                self.base_url + f"/cases/{case_id}/docs",
+                data={
+                    "name": f"synthetic-client-search-{index}.txt",
+                    "text": f"{sentinel} — synthetic evidence passage for matter {index}.",
+                },
+                headers=headers,
+                timeout=8000,
+            )
+            self.assertEqual(document.status, 200, document.text())
+
+        self.page.get_by_role("button", name="العملاء وتعارض المصالح", exact=True).click()
+        client_card = self.page.locator(".card").filter(has_text=client_name).last
+        query = client_card.get_by_label("البحث في مستندات العميل")
+        query.fill(sentinel)
+        client_card.get_by_role("button", name="بحث", exact=True).click()
+        for title in case_titles:
+            client_card.get_by_text(title, exact=True).wait_for(timeout=10000)
+        self.assertIn(sentinel, client_card.inner_text())
+        self.assertIn("مقاطع مطابقة عبر القضايا المسموح بها", client_card.inner_text())
+
+
     def test_cross_firm_case_identifier_does_not_reveal_other_firm_sentinel(self) -> None:
         self.login(self.state["owner_a_email"])
         response = self.page.request.get(
