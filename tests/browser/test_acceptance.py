@@ -843,8 +843,21 @@ class BrowserAcceptanceTests(unittest.TestCase):
         classification = self.page.get_by_label("تصنيف المستند synthetic-matter-fixture-v2.docx")
         classification.select_option("contract")
         self.page.get_by_text("تغيير غير محفوظ؛ اضغط حفظ التصنيف لتسجيله في سجل التدقيق.", exact=False).wait_for(timeout=5000)
-        self.page.get_by_label("الإصدار السابق").select_option(str(document_v1_id))
-        self.page.get_by_label("الإصدار اللاحق").select_option(str(document_v2_id))
+        earlier_version = self.page.get_by_label("الإصدار السابق")
+        later_version = self.page.get_by_label("الإصدار اللاحق")
+        self.page.wait_for_function(
+            """(expected) => Array.from(document.querySelector('select[aria-label="الإصدار السابق"]').options)
+                .some(option => option.value === expected)""",
+            str(document_v1_id),
+            timeout=8000,
+        )
+        available_versions = earlier_version.locator("option").evaluate_all(
+            "(options) => Array.from(options).map(option => option.value)"
+        )
+        self.assertIn(str(document_v1_id), available_versions, f"Earlier-version options: {available_versions}")
+        self.assertIn(str(document_v2_id), available_versions, f"Later-version options: {available_versions}")
+        earlier_version.select_option(str(document_v1_id))
+        later_version.select_option(str(document_v2_id))
         self.page.get_by_role("button", name="مقارنة النصوص").click()
         comparison = self.page.locator("body").inner_text()
         self.assertIn("٥٠٠٠ جنيه", comparison)
