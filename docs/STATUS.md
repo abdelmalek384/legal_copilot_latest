@@ -1,6 +1,6 @@
 # Legal Copilot — release-candidate status
 
-**Updated:** 2026-11-16  
+**Updated:** 2026-11-23  
 **Decision:** **NOT READY** for lawyer pilot or production. This is an engineering checkpoint, not legal, security or operational certification. Historical tracker detail is archived at [STATUS history](archive/STATUS_history_through_2026-11-13.md).
 
 ## AI-1 delivery
@@ -1366,3 +1366,13 @@ The previously recorded estimates remain unchanged pending exact-head automated 
 
 
 - PR #1759 extends the global-search `>` command palette with ArrowDown entry, wrapped ArrowUp/ArrowDown focus movement and Escape-to-close/focus-return. Command results continue to come only from the current role/permission-filtered navigation collection. Inline JavaScript syntax parsing passed; the browser keyboard interaction remains unexecuted because Actions runners are unavailable.
+
+
+## AI-2 pilot stabilization continuation — 2026-11-23
+
+- Draft PR [#1905](https://github.com/abdelmalek384/legal_copilot_latest/pull/1905) continues the existing Case File Intelligence work: client-wide extracted-text search across linked matters with per-matter membership checks, scoped passage annotations, immutable source-text offsets/digests, Arabic/English review controls, OCR/partial-extraction disclosures, and the two-matter browser acceptance workflow. The PR remains draft and unmerged.
+- Draft PR [#1907](https://github.com/abdelmalek384/legal_copilot_latest/pull/1907) isolates the compact-screen primary navigation touch-target/visibility correction on a main-based branch. It remains draft and unmerged.
+- **Evidence:** the focused `document-workspace` CI job passed on the immediately preceding implementation head (`6c93dc8e193f6838c23e48a7466eeb388a402d8c`). The frontend UX contract suite passed all 203 tests on an earlier head (`c253408073230a12f342fe3caafdef8d9c387a66`). Browser acceptance for the latest implementation and the exact-head full test suite are still running; no pass is claimed for the new two-matter browser flow yet.
+- CodeQL, Bandit and dependency audit passed on preceding exact heads; current runs are being repeated. The non-database safety regression still reports source-permission-register and unrelated file-store/corpus safety failures. These are AI-1/legal-corpus or platform security-owner workstreams; this AI-2 continuation does not alter corpus records or source permissions.
+- A local checkout/test run was not possible in this execution environment because GitHub DNS resolution failed. No local test pass is claimed.
+- **Release decision remains NOT READY.** Remaining gates include exact-head browser acceptance, Arabic/English lawyer walkthrough, cross-firm denial verification, migration and backup/restore rehearsal, production configuration and independent security review. This checkpoint is engineering progress, not legal/security/operational certification.
