@@ -93,7 +93,7 @@ This is a later and distinct extension instrument. It should be linked to, but n
 
 ## 6. Register progress snapshot (23 November 2026)
 
-The central acquisition register now contains **411 instrument rows**. Applying the same keyword-based content_observed proxy used in the prior project update yields **103/411 full-text indicators (25.1%)**, **50/411 partial-only indicators (12.2%)**, and **153/411 rows with any text indicator (37.2%)**. This is a register-level acquisition signal only; it does not measure article-by-article completeness, source authentication, amendment currentness or lawyer review. A national-corpus completion percentage remains uncalculable without a closed Gazette-derived denominator.
+The central acquisition register now contains **412 instrument rows**. Applying the same keyword-based content_observed proxy used in the prior project update yields **104/412 full-text indicators (25.2%)**, **50/412 partial-only indicators (12.1%)**, and **154/412 rows with any text indicator (37.4%)**. This is a register-level acquisition signal only; it does not measure article-by-article completeness, source authentication, amendment currentness or lawyer review. A national-corpus completion percentage remains uncalculable without a closed Gazette-derived denominator.
 
 
 ## 7. Earlier extension — Finance Minister Decision 188/2026
