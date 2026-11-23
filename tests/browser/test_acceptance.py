@@ -858,8 +858,10 @@ class BrowserAcceptanceTests(unittest.TestCase):
         classification = self.page.get_by_label("تصنيف المستند synthetic-matter-fixture-v2.docx")
         classification.select_option("contract")
         self.page.get_by_text("تغيير غير محفوظ؛ اضغط حفظ التصنيف لتسجيله في سجل التدقيق.", exact=False).wait_for(timeout=5000)
-        earlier_version = self.page.get_by_label("الإصدار السابق")
-        later_version = self.page.get_by_label("الإصدار اللاحق")
+        # The app can keep another workspace panel mounted in the page shell;
+        # bind version selectors to the active matter panel, not the first global match.
+        earlier_version = intelligencePanel.get_by_label("الإصدار السابق")
+        later_version = intelligencePanel.get_by_label("الإصدار اللاحق")
         available_versions = earlier_version.locator("option").evaluate_all(
             "(options) => Array.from(options).map(option => option.value)"
         )
