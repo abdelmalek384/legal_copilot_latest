@@ -2002,14 +2002,14 @@
         "ministerial decisions",
         "labour-related legislation indexes"
       ],
-      "access_status": "official Ministry of Labour legislation index search-indexed; Law 14/2025 entry observed; direct page fetch returned 502; no direct file URL or PDF bytes obtained",
+      "access_status": "official Ministry index and multiple official Gazette/Dspace records located; full Gazette PDF text extraction available for Decisions 48-50/2026 through a mirror; official DSpace Gazette PDF locators for Decisions 162/2026 and 248-252/2026; secondary full text for Decisions 269-270/2025 and 291/2025. Direct Ministry legislation page has download listings; collection and commercial reuse permissions remain unknown.",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
-      "permission_evidence": null,
+      "permission_evidence": "Official index/Gazette availability is not a licence. No affirmative permission for bulk extraction, local archival, commercial indexing, display or redistribution was identified. Preserve source-specific provenance and rights status.",
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
-      "required_next_action": "Use the Ministry index as an official discovery/cross-reference source only. Identify the exact direct PDF URL through ordinary authorized access when available; compare any Ministry copy against the Official Gazette; review current terms and establish separate permission for local storage, extraction, indexing, display, commercial use and redistribution. Do not infer that the index entry itself provides the Gazette bytes or a reuse licence.",
+      "required_next_action": "Capture and visually authenticate the DSpace Gazette PDFs for issues 176 and 225 (تابع أ), extract full Arabic text including annexes, compare Decisions 48-50 against the original Gazette, obtain issue 295 PDF for Decisions 260/270/291 and 269's signed text, and review written reuse terms before production ingestion.",
       "access_evidence": "On 2026-10-31 the official Ministry of Labour laws-and-legislation index was visible in search results and listed Law No. 14/2025 as a Basic Law, alongside the repealed 2003 Labour Law and related legislation. The Ministry's official publications index also lists Law 14/2025 and a Q&A publication. Direct page opening returned HTTP 502, and no direct PDF download URL was exposed in the search-indexed text. This is an official index/discovery lead only; it does not establish that the Ministry page hosts the authoritative Gazette bytes or grants collection/commercial reuse permission."
     },
     {
