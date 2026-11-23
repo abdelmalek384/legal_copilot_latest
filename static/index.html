@@ -2346,6 +2346,8 @@ async function clients(initialQuery=''){
     const data=await api('/clients/'+encodeURIComponent(client.id)+'/documents/search-text?q='+encodeURIComponent(needle)+'&limit=40&offset='+offset);
     const rows=Array.isArray(data.items)?data.items:[];
     total=Number(data.total)||0;
+    const maxOffset=total?Math.floor((total-1)/40)*40:0;
+    if(offset>maxOffset){offset=maxOffset;return run(false)}
     const previous=btn(uiText('السابق','Previous'),()=>{offset=Math.max(0,offset-40);run(false)},'g');
     const next=btn(uiText('التالي','Next'),()=>{if(offset+40<total){offset+=40;run(false)}},'g');
     previous.disabled=offset===0;
