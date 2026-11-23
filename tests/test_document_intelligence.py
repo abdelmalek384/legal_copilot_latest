@@ -490,6 +490,32 @@ class DocumentIntelligenceTests(unittest.TestCase):
                 "original_sha256": "not-a-hash",
             }])
 
+    def test_duplicate_group_rejects_document_and_hash_record_overflow(self):
+        with self.assertRaisesRegex(ValueError, "max_documents"):
+            group_same_matter_duplicates([
+                {"firm_id": "f", "matter_id": "m", "document_id": f"d{i}"}
+                for i in range(2)
+            ], max_documents=1)
+
+        with self.assertRaisesRegex(ValueError, "max_hash_records"):
+            group_same_matter_duplicates([
+                {"firm_id": "f", "matter_id": "m", "document_id": "d1",
+                 "original_sha256": "a" * 64},
+                {"firm_id": "f", "matter_id": "m", "document_id": "d2",
+                 "extracted_text_sha256": "b" * 64},
+            ], max_hash_records=1)
+
+    def test_duplicate_group_rejects_invalid_limits(self):
+        for name, value in (
+            ("max_documents", True),
+            ("max_documents", 20001),
+            ("max_hash_records", 0),
+            ("max_hash_records", "100"),
+        ):
+            with self.subTest(name=name, value=value):
+                with self.assertRaises(ValueError):
+                    group_same_matter_duplicates([], **{name: value})
+
 
     def test_extracts_legal_references_and_event_mentions_as_unverified_candidates(self):
         result = extract_review_candidates(
