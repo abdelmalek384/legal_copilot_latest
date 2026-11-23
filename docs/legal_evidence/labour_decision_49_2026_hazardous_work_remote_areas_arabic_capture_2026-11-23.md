@@ -149,7 +149,7 @@
 
 **سابعاً – قطاع التشييد والبناء:**
 
-<text omitted in extracted PDF text layer; inspect Gazette page image to recover any sub-list or qualifications before treating this sector as operative classification>
+لا تظهر بعد هذا العنوان أي قائمة فرعية؛ تنتقل الصفحة المصورة مباشرة إلى المادة الثالثة. لذلك لا يوجد في النسخة المصورة التي تمت معاينتها تفصيل مرقم إضافي لقطاع التشييد والبناء.
 
 **(المادة الثالثة)**
 
@@ -195,3 +195,8 @@
 - Article 2 schedule: all extracted categories captured except the construction-sector sub-list, which is missing from the PDF text layer and needs page-image inspection.
 - Primary Gazette issue/page identity visible; host provenance is third-party.
 - No source reuse clearance or lawyer sign-off; keep `verified=0`.
+
+
+## Visual QA correction — construction heading (23 November 2026)
+
+Inspected the actual scan images for printed pages 11–12 (PDF zero-based pages 10–11). The heading «سابعاً – قطاع التشييد والبناء» is followed immediately by Article 3 on the same printed page; page 12 continues Article 3, then Articles 4 and 5. There is no missing construction-sector sub-list between the heading and Article 3 in the scan. The earlier gap was caused by assuming the Ministry press-release count of seven energy/radiation activities also meant a detailed construction list. Correct disposition: sector 7 is present as a standalone heading with no enumerated sub-items in the retrieved Gazette scan. Keep the category's scope as an interpretation question for counsel, not a missing-text defect.
