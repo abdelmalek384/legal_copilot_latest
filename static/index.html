@@ -1826,8 +1826,8 @@ async function platformBillingPage(){
   h('h3',{textContent:p.firm_name+' · '+p.method}),
   h('p',{className:'mut',textContent:uiText('المبلغ بالقروش: ','Amount in piasters: ')+p.amount_piasters+' · '+uiText('المرجع: ','Reference: ')+p.transfer_reference+' · '+p.created_at}),
   h('div',{className:'row'},
-   btn(uiText('اعتماد التحويل','Approve transfer'),async()=>{if(!confirm(uiText('تأكيد مراجعة التحويل واعتماد الاشتراك؟','Confirm you verified the transfer and approve the subscription?')))return;await api('/platform/billing/payment-submissions/'+p.id+'/approve','POST');platformBillingPage()},'g'),
-   btn(uiText('رفض','Reject'),async()=>{const reason=window.prompt(uiText('سبب الرفض','Reason for rejection'));if(!reason||!reason.trim())return;await api('/platform/billing/payment-submissions/'+p.id+'/reject','POST',{reason:reason.trim()});platformBillingPage()},'d')))):empty(uiText('لا توجد تحويلات بانتظار المراجعة.','No transfer submissions awaiting review.'));
+   btn(uiText('اعتماد التحويل','Approve transfer'),async()=>{if(!confirm(uiText('تأكيد مراجعة التحويل واعتماد الاشتراك؟','Confirm you verified the transfer and approve the subscription?')))return;try{await api('/platform/billing/payment-submissions/'+p.id+'/approve','POST');toast(uiText('تم اعتماد التحويل','Transfer approved'));platformBillingPage()}catch(error){toast(String(error?.message||err(error)))}},'g'),
+   btn(uiText('رفض','Reject'),async()=>{const reason=window.prompt(uiText('سبب الرفض','Reason for rejection'));if(!reason||!reason.trim())return;try{await api('/platform/billing/payment-submissions/'+p.id+'/reject','POST',{reason:reason.trim()});toast(uiText('تم رفض التحويل','Transfer rejected'));platformBillingPage()}catch(error){toast(String(error?.message||err(error)))}},'d')))):empty(uiText('لا توجد تحويلات بانتظار المراجعة.','No transfer submissions awaiting review.'));
  shell(uiText('مراجعة مدفوعات الاشتراك','Subscription payment review'),...cards);
 }
 
@@ -1876,8 +1876,8 @@ async function correctionQueuePage(){
   h('p',{textContent:uiText('التصحيح المقترح: ','Suggested correction: ')+item.correction_note}),
   h('p',{className:'mut',textContent:uiText('مقدم الاقتراح: ','Submitted by: ')+item.created_by+' · '+uiText('الاستخدام التدريبي: لا شيء','Training use: none')}),
   item.status==='pending'?h('div',{className:'row'},
-   btn(uiText('قبول','Accept'),async()=>{const note=window.prompt(uiText('ملاحظة المراجعة (اختياري)','Review note (optional)'))||'';await api('/admin/corrections/'+item.id+'/review','POST',{status:'accepted',review_note:note});correctionQueuePage()},'g'),
-   btn(uiText('رفض','Reject'),async()=>{const note=window.prompt(uiText('سبب الرفض (اختياري)','Reason (optional)'))||'';await api('/admin/corrections/'+item.id+'/review','POST',{status:'rejected',review_note:note});correctionQueuePage()},'d')):h('p',{className:'mut',textContent:item.review_note||''})
+   btn(uiText('قبول','Accept'),async()=>{const note=window.prompt(uiText('ملاحظة المراجعة (اختياري)','Review note (optional)'))||'';try{await api('/admin/corrections/'+item.id+'/review','POST',{status:'accepted',review_note:note});toast(uiText('تم قبول التصحيح','Correction accepted'));correctionQueuePage()}catch(error){toast(String(error?.message||err(error)))}},'g'),
+   btn(uiText('رفض','Reject'),async()=>{const note=window.prompt(uiText('سبب الرفض (اختياري)','Reason (optional)'))||'';try{await api('/admin/corrections/'+item.id+'/review','POST',{status:'rejected',review_note:note});toast(uiText('تم رفض التصحيح','Correction rejected'));correctionQueuePage()}catch(error){toast(String(error?.message||err(error)))}},'d')):h('p',{className:'mut',textContent:item.review_note||''})
  )):[empty(uiText('لا توجد اقتراحات تصحيح.','No correction suggestions yet.'))];
  shell(uiText('مراجعة تصحيحات الإجابات','Answer correction review'),...cards);
 }
