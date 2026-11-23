@@ -688,6 +688,12 @@ jobs:
       - name: Test conservative document intelligence extraction helpers
         if: ${{ !cancelled() && steps.install_locked_dependencies.outcome == 'success' }}
         run: PYTHONPATH=. python tests/test_document_intelligence.py
+      - name: Test isolated database profile schemas
+        if: ${{ !cancelled() && steps.install_locked_dependencies.outcome == 'success' }}
+        run: PYTHONPATH=. python tests/test_profile_initial_schemas.py
+      - name: Test application routing across firm and corpus databases
+        if: ${{ !cancelled() && steps.install_locked_dependencies.outcome == 'success' }}
+        run: PYTHONPATH=. python tests/test_app_separate_database_runtime.py
       - name: Check frontend JavaScript syntax
         if: ${{ !cancelled() && steps.install_locked_dependencies.outcome == 'success' }}
         run: |
