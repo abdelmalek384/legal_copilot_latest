@@ -2948,20 +2948,51 @@
     },
     {
       "source_id": "EG-MKSEGYPT",
-      "authority": "MKS Egypt Legal Research",
-      "source_page": "https://mksegypt.org/ar/decisions",
+      "authority": "MKSEgypt legal memory / legislation and judgments database",
+      "source_page": "https://mksegypt.org/",
       "material_types": [
-        "Egyptian legislation and executive decisions",
-        "administrative and judicial legal texts"
+        "Arabic full-text transcriptions of Egyptian statutes, executive decisions and court judgments"
       ],
-      "access_status": "full Arabic decision transcriptions located for selected local-administration amendments",
+      "access_status": "Full searchable Arabic decision and judgment texts observed; pages display Creative Commons Attribution 4.0 notice.",
+      "collection_permission": "cc_by_4_0_attributed_use_subject_to_license_scope",
+      "commercial_reuse_permission": "cc_by_4_0_applies_to_site_text_as_displayed_only; embedded_third_party_scans_and_materials_not_cleared",
+      "terms_url": "https://creativecommons.org/licenses/by/4.0/",
+      "permission_evidence": "The MKS Egypt pages for SCC Cases 2/16 (1996) and 36/18 (1998), SAC Appeal 2566/34 (1990), PM Decisions 1543/1993 and 2718/1996 display a CC BY 4.0 attribution notice in the page footer. Permission is limited to text as displayed on those pages; embedded Gazette scans and third-party materials are not cleared.",
+      "terms_checked_on": "2026-11-23",
+      "bulk_download_or_api": "No bulk/API permission established; individual page access only",
+      "required_next_action": "Preserve attribution and license notice; verify each page-specific license scope before reusing embedded scans or third-party material."
+    },
+    {
+      "source_id": "EG-LEGAL-REFORM",
+      "authority": "Legal Reform Observatory",
+      "source_page": "https://lib.legal-reform.org/legal-observatory-view/",
+      "material_types": [
+        "Supreme Administrative Court judgments and legal principles"
+      ],
+      "access_status": "Full Arabic judgment text located for SAC Appeal 8175/49 (3 April 2004)",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
-      "permission_evidence": "Publicly accessible decision transcriptions and legal research pages were located. No evidence of permission for bulk extraction, local storage, OCR, indexing, display or commercial reuse has been established.",
+      "permission_evidence": "Publicly accessible legal-observatory page contains the judgment's panel, legal principles, facts and reasons. No bulk collection, local storage, indexing, display or commercial reuse permission established.",
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
-      "required_next_action": "Review site terms and obtain written permission for intended corpus uses; verify all decision texts against original Gazette pages."
+      "required_next_action": "Review terms and request written permission for intended corpus uses; verify against official State Council judgment publication."
+    },
+    {
+      "source_id": "EG-LAWEG-LOCAL-ADMIN",
+      "authority": "Laweg Egyptian legal legislation archive",
+      "source_page": "https://www.laweg.net/",
+      "material_types": [
+        "Egyptian laws, executive decisions and Gazette transcriptions"
+      ],
+      "access_status": "Full text of PM Decision 736/1998 located",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Publicly accessible Arabic decision transcription with issue and publication metadata. No evidence of permission for bulk extraction, local storage, indexing, display or commercial reuse has been established.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Review site terms and request permission for intended corpus uses; authenticate the transcription against the Egyptian Gazette."
     }
   ]
 }
