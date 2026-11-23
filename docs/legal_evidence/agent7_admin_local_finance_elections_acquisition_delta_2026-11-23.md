@@ -136,3 +136,40 @@ The official Ministry of Finance legislation portal now supplies individual loca
 - Law 178/2005 — one-page official-hosted scan; repeals paragraph 2 of Art.89.
 Additional amendments found in the consolidated transcription include Law 145/1988 (Art.145/Art.144 effects) and Law 9/1989 (adds Art.4 bis, with transcription metadata stating effective 17 February 1989 and Gazette issue 11 on 16 March 1989). The Law 43 relation register also points to Laws 168/1981, 26/1982 and 115/2011; original text/precise effects still need recovery.
 - Official Ministry portal caveat: the Ministry expressly says its online texts are for guidance and the Official Gazette is the controlling legal reference. The official-hosted PDFs are not automatically original Gazette scans; page and issue authentication remains required.
+
+
+## H. Actual SCC and Supreme Administrative Court decisions recovered
+### SCC Case 2/16 (3 February 1996) — local-council electoral system
+- **Official SCC full judgment:** https://www.sccourt.gov.eg/DjangoPortalResources/Rules_Html/895_16_2_1_2.html (136 extracted lines).
+- **MKS Egypt full transcription:** https://mksegypt.org/public/ar/judgments-of-the-supreme-constitutional-court/15497 (197 lines; page displays CC BY 4.0 attribution).
+- The Court held unconstitutional Arts.3, 10, 39, 47, 59, 66 and 75 مكرراً of Law 43/1979, but only insofar as they prescribed a single individual seat and selection of the remaining local-council members by party lists. The reasoning addresses equality, freedom of expression, political participation, voter/nominee equality and the disproportionate advantage given to party members.
+- The judgment also states that although the councils' composition is invalid from election, acts and decisions made before publication of the judgment in the Official Gazette remain valid unless separately annulled/amended by the competent authority or struck down on another ground.
+- Exact Arabic operative excerpt: «حكمت المحكمة بعدم دستورية المواد (3، 10، 39، 47، 59، 66، 75 مكرراً)» — the qualification following this excerpt limits the ruling to the combined party-list/individual-seat system.
+
+### SCC Case 36/18 (3 January 1998) — unpublished local fees
+- **Full Arabic judgment:** https://mksegypt.org/ar/judgments-of-the-supreme-constitutional-court/15543 (129 lines; page displays CC BY 4.0 attribution).
+- **Corrected date:** the judgment was delivered **3 January 1998**, not 3 January 1988. An earlier Agent 7 checkpoint's 1988 date was a transcription error.
+- Gazette publication is recorded as 15 January 1998; the next day, 16 January 1998, is the effective non-application/refund date stated in PM Decision 736/1998.
+- The SCC invalidated Minister of Local Administration Decision 239/1971 on unified local fees and held that inseverable provisions of Art.4 of the issuing law to Law 43/1979 and PM Decision 870/1990 fell with it. Central reasoning: publication is a condition of a normative rule's enforceability against third parties; a rule not published cannot bind them.
+- Exact Arabic operative excerpt: «بعدم دستورية قرار وزير الإدارة المحلية رقم 239 لسنة 1971 بشأن الرسوم الموحدة للمجالس المحلية».
+
+### PM Decision 736/1998 — direct implementation of SCC Case 36/18
+- Full text: https://www.laweg.net/framePlain.aspx?NID=52053&action=viewactivepages&itemid=40599&type=6.
+- Gazette Egyptian Facts issue 53 تابع (أ), 7 March 1998.
+- Art.1 prohibits local units from collecting any fee on the basis of Art.4 of Law 43/1979 issuing provisions or Decision 239/1971, and requires repayment of prior collections from 16 January 1998. Art.2 directs the competent authorities to implement.
+- Exact Arabic excerpt: «يحظر على وحدات الإدارة المحلية تحصيل أية رسوم بأى وجه من الوجوه».
+
+### Supreme Administrative Court — three full-text decisions
+1. **Appeal 2566/34, 23 December 1990** — full text: https://www.mksegypt.org/ar/judgments-of-the-supreme-administrative-court/3354 (131 lines; CC BY 4.0 page notice). Interprets Decision 707/1979 Arts.94 and 96 as amended by Decision 314/1982. The special ministry-budget treatment of directorate heads/deputies means the competent ministry, not an individual governorate directorate, is the relevant seniority/promotion unit for those posts. The Court rejected the administration's appeal.
+2. **Appeals 8175 and 9771/49, 3 April 2004** — full text: https://lib.legal-reform.org/legal-observatory-view/المحكمة-الإدارية-العليا---مجموعة-رقم-3---رقم-المبدأ-69---رقم-الصفحة-555---القضية-رقم-8175---لسنة-49-ق---تاريخ-الجلسة-3-/-4-/-2004 (77 lines). Applies Law 43/1979 Arts.3, 76 and 97 (Art.97 as replaced by Law 84/1996) and Decision 707/1979 Art.29 (replaced by Decision 2718/1996). It fixes the date for worker status at the nomination filing date and applies same-category vote succession for a vacant seat before a supplementary election.
+3. **Appeal 1282/45, 28 August 2001** — full text: https://lawhub.info/eg-j/?p=4828 (judgment text at lines 220–261). Applies Civil Code Art.970, Law 43/1979 Art.26 and Decision 707/1979 Arts.3 and 10 as amended by Decision 314/1982. Holds that the governor may protect state public/private property and remove encroachments administratively; the delegated local-unit head was competent to remove an encroachment on Agricultural Reform Authority land. Appeal allowed; first-instance annulment reversed and claim dismissed.
+
+### Further SCC-related administrative appeals
+- Supreme Administrative Court Appeal 4479/46, 8 November 2003: https://lawhub.info/eg-j/?p=50749 — applies Case 36/18 to local fee decisions and explains the effect of the invalidated fee basis.
+- General Assembly of the State Council opinion 519/2002, 9 June 2002 is quoted in the official Tax Authority Circular 9/2002: https://www.rta.gov.eg/sites/default/files/periodical-books/9_16.pdf. It confirms that occupant fees cannot be collected after the SCC invalidated Decision 239/1971 and Art.4 of Law 43/1979.
+- PM Decision 736/1998 is the implementing measure prohibiting those collections and requiring refunds from 16 January 1998.
+
+### Source and legal-status notes
+- SCC Case 2/16 has an official SCC-hosted HTML judgment. SCC Case 36/18 is fully transcribed on MKS Egypt; an official SCC-hosted copy was not found in this pass. MKS Egypt pages display CC BY 4.0; the repository source register now records the license as applying to site text as displayed only, not embedded third-party scans.
+- Legal Reform and LAW HUB judgments are secondary full-text reproductions; MKS Egypt texts are licensed transcriptions, not Gazette originals. None of these entries is marked lawyer-reviewed.
+- These judgments affect the operative status of Law 43/1979 and its fee provisions. The consolidated statute must carry judgment-driven invalidity annotations, not only statutory amendment notes.
