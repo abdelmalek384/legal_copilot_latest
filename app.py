@@ -7314,11 +7314,11 @@ def search_client_document_text(
         raise HTTPException(404, "client profile not found")
 
     needle = norm(q.strip())
-    tokens = re.findall(r"[\w]+", needle, flags=re.UNICODE)
-    tokens = [token for token in tokens if token][:20]
-    if not tokens:
+    # Reuse Arabic normalization, stopword removal, and light stemming from indexing.
+    query_tokens = tokens(needle)[:20]
+    if not query_tokens:
         raise HTTPException(422, "enter at least one searchable word")
-    fts_query = " AND ".join('"' + token.replace('"', '""') + '"' for token in tokens)
+    fts_query = " AND ".join('"' + token.replace('"', '""') + '"' for token in query_tokens)
     joins = (
         " FROM chunks_fts JOIN chunks ON chunks.id=chunks_fts.rowid "
         "JOIN docs d ON d.id=chunks.document_id AND d.case_id=chunks.case_id "
@@ -7343,7 +7343,7 @@ def search_client_document_text(
         "d.name AS document_name,cs.title AS case_title,cs.case_number,cs.case_year,"
         "bm25(chunks_fts) AS rank"
         + joins + access + " ORDER BY rank LIMIT ? OFFSET ?",
-        (tokens[0],) + params + (limit, offset),
+        (query_tokens[0],) + params + (limit, offset),
     ).fetchall()
     c.execute(
         "INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
