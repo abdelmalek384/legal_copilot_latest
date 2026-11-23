@@ -6588,10 +6588,15 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(selected_a.status_code, 200, selected_a.text)
 
         created = self._mutate(
-            "post", "/cases", json={"title": "FIRM_A_PRIVATE_SEARCH_SENTINEL"}
+            "post", "/cases",
+            json={
+                "title": "FIRM_A_PRIVATE_SEARCH_SENTINEL",
+                "client": "FIRM_A_PRIVATE_CLIENT_SENTINEL",
+            },
         )
         self.assertEqual(created.status_code, 200, created.text)
         case_id = created.json()["id"]
+        client_id = created.json()["client_id"]
         first = self._mutate(
             "post", f"/cases/{case_id}/docs",
             json={"name": "private-alpha.txt", "text": "FIRM_A_PRIVATE_TEXT_SENTINEL جلسة بتاريخ 15/03/2025."},
@@ -6620,6 +6625,22 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         extracted = self.client.get("/documents/search-text?q=FIRM_A_PRIVATE_TEXT_SENTINEL")
         self.assertEqual(extracted.status_code, 200, extracted.text)
         self.assertEqual(extracted.json()["total"], 0)
+
+        client_search = self.client.get(
+            f"/clients/{client_id}/documents/search-text",
+            params={"q": "FIRM_A_PRIVATE_TEXT_SENTINEL"},
+        )
+        self.assertIn(client_search.status_code, (200, 404), client_search.text)
+        if client_search.status_code == 200:
+            self.assertNotIn(
+                "FIRM_A_PRIVATE_CLIENT_SENTINEL",
+                client_search.json().get("client_name", ""),
+            )
+            self.assertEqual(client_search.json()["total"], 0)
+            self.assertNotIn(
+                "FIRM_A_PRIVATE_TEXT_SENTINEL",
+                repr(client_search.json().get("items", [])),
+            )
 
         comparison = self.client.get(
             "/documents/compare",
