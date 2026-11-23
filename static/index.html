@@ -2892,7 +2892,7 @@ async function law(){
   [['verified_corpus',LANG==='ar'?'القانون المتحقق':'Verified law'],['firm_documents',LANG==='ar'?'مستندات المكتب':'Firm documents'],['metadata_only',LANG==='ar'?'فهرس المصادر':'Source catalog']].forEach(([value,label])=>{const tab=h('button',{type:'button',className:'research-scope-tab',textContent:label,'aria-pressed':String(value===scopeSelect.value),onclick:()=>{scopeSelect.value=value;persistResearchScope();syncScopeTabs();matterLabel.hidden=value!=='firm_documents';openDocumentWorkspace.hidden=value!=='firm_documents';if(value!=='firm_documents'){documentWorkspace.replaceChildren();documentWorkspace.hidden=true;uploadPanel.hidden=true;paperclipButton.setAttribute('aria-expanded','false')}paperclipButton.disabled=value!=='firm_documents'||!matterSelect.value;paperclipButton.title=value!=='firm_documents'?(LANG==='ar'?'اختر مستندات المكتب أولاً':'Choose Firm documents first'):(!matterSelect.value?(LANG==='ar'?'اختر ملف قضية أولاً':'Select a matter first'):(LANG==='ar'?'إرفاق مستندات ملف القضية':'Attach matter documents'));if(value==='firm_documents'&&!matterSelect.value)toast(LANG==='ar'?'اختر ملف قضية للبحث في مستندات المكتب':'Select a matter to search firm documents')}});tab.dataset.scope=value;scopeTabButtons.push(tab);scopeTabs.append(tab)});
   scopeSelect.hidden=true;
   let accessibleCases=[];
-  try{accessibleCases=await api('/cases');accessibleCases.forEach(c=>matterSelect.append(new Option((c.title||('Matter '+c.id))+' (#'+c.id+')',String(c.id))))}catch(_){}
+  try{accessibleCases=await api('/cases');accessibleCases.forEach(c=>matterSelect.append(new Option((c.title||('Matter '+c.id))+' (#'+c.id+')',String(c.id))))}catch(error){toast(String(error?.message||err(error)))}
   scopeSelect.onchange=()=>{persistResearchScope();matterLabel.hidden=scopeSelect.value!=='firm_documents';openDocumentWorkspace.hidden=scopeSelect.value!=='firm_documents';if(scopeSelect.value!=='firm_documents'){documentWorkspace.replaceChildren();documentWorkspace.hidden=true;uploadPanel.hidden=true;paperclipButton.setAttribute('aria-expanded','false')}syncScopeTabs();if(scopeSelect.value==='firm_documents'&&!matterSelect.value)toast(LANG==='ar'?'اختر ملف قضية للبحث في مستندات المكتب':'Select a matter to search firm documents')};
   const documentWorkspace=h('div',{});
   const uploadInput=h('input',{type:'file',multiple:true,accept:'.pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document',className:'visually-hidden',tabIndex:-1,'aria-label':LANG==='ar'?'اختر ملفات PDF أو DOCX':'Choose PDF or DOCX files'});
@@ -3164,7 +3164,7 @@ async function law(){
        actions.append(makeBtn(LANG==='ar'?'تصدير مذكرة بحث':'Export research memo',()=>exportMemo(priorQuestion,result),'g'));
        actions.append(makeBtn(LANG==='ar'?'اقتراح تصحيح':'Suggest a correction',()=>suggestCorrection(priorQuestion,m),'g'));
        if(typeof m.answer_id==='string'&&/^ans_[A-Za-z0-9_-]{32}$/.test(m.answer_id))actions.append(makeBtn(LANG==='ar'?'نسخ معرّف الإجابة':'Copy answer ID',()=>copyText(m.answer_id),'g'));
-       if(m.id)actions.append(makeBtn(LANG==='ar'?'حفظ إلى ملف قضية':'Save to matter',async()=>{if(!matterSelect.value){showResearchMatterError();return}try{await api('/research/conversations/'+activeId+'/save-to-matter','POST',{case_id:Number(matterSelect.value),message_id:m.id});toast(LANG==='ar'?'تم حفظ مذكرة البحث في ملاحظات القضية':'Research memo saved to matter notes')}catch(_){}},'g'));
+       if(m.id)actions.append(makeBtn(LANG==='ar'?'حفظ إلى ملف قضية':'Save to matter',async()=>{if(!matterSelect.value){showResearchMatterError();return}try{await api('/research/conversations/'+activeId+'/save-to-matter','POST',{case_id:Number(matterSelect.value),message_id:m.id});toast(LANG==='ar'?'تم حفظ مذكرة البحث في ملاحظات القضية':'Research memo saved to matter notes')}catch(error){toast(String(error?.message||err(error)))}},'g'));
 
        bubble.append(actions);
        if(typeof m.answer_id==='string'&&/^ans_[A-Za-z0-9_-]{32}$/.test(m.answer_id)){
@@ -3228,7 +3228,7 @@ async function law(){
                : (LANG==='ar'?'لم تُسجل مصادر لهذا البحث ولم يُسجل نطاقه.':'No source records were returned; the search scope was not recorded.');
          answerAnalysisPanel.append(pill(emptyScope,'soon'));
          const messageQuestion=messages.slice(0,messageIndex).reverse().find(x=>x.role==='user')?.content||priorQuestion||'';
-         if(messageScope!=='metadata_only')actions.append(makeBtn(LANG==='ar'?'اكتشاف بيانات وصفية للمصادر':'Discover source metadata',async()=>{if(!messageQuestion.trim())return;scopeSelect.value='metadata_only';try{renderDiscovery(await api('/research/discover','POST',{q:messageQuestion}),messageQuestion)}catch(_){}},'g'));
+         if(messageScope!=='metadata_only')actions.append(makeBtn(LANG==='ar'?'اكتشاف بيانات وصفية للمصادر':'Discover source metadata',async()=>{if(!messageQuestion.trim())return;scopeSelect.value='metadata_only';try{renderDiscovery(await api('/research/discover','POST',{q:messageQuestion}),messageQuestion)}catch(error){toast(String(error?.message||err(error)))}},'g'));
        }
      }
      if(m.role==='assistant'){
@@ -3846,7 +3846,7 @@ async function view(id){if(window.DOCUMENT_REVIEW_TARGET&&Number(window.DOCUMENT
   };
   const saveHolidays=btn(uiText('حفظ تقويم المكتب','Save firm calendar'),async()=>{
    try{await api('/deadline-holidays','PUT',{holidays:firmHolidays});toast(uiText('تم حفظ تقويم العطلات مع تسجيل التغيير','Holiday calendar saved and change recorded'));await loadHolidays()}
-   catch(_){}
+   catch(error){toast(String(error?.message||err(error)))}
   });
   const loadHolidays=async()=>{
    const data=await api('/deadline-holidays');
@@ -3925,7 +3925,7 @@ async function view(id){if(window.DOCUMENT_REVIEW_TARGET&&Number(window.DOCUMENT
    card.append(h('ul',{},...item.lines.map(line=>h('li',{textContent:line.description+' · '+(line.quantity_milli/1000)+' × '+fmt(line.unit_price_piasters)+' = '+fmt(line.line_total_piasters)}))));
    const actions=h('div',{className:'row'});
    actions.append(btn(uiText('طباعة الفاتورة','Print invoice'),()=>window.open('/invoices/'+item.id+'/print','_blank','noopener,noreferrer'),'g'));
-   if(item.status==='draft')actions.append(btn(uiText('إصدار الفاتورة','Issue invoice'),async()=>{if(!confirm(uiText('إصدار الفاتورة وتثبيت رقمها؟ لا يمكن تعديلها بعد الإصدار.','Issue this invoice and lock its number? It cannot be edited after issue.')))return;try{await api('/invoices/'+item.id+'/issue','POST');await loadInvoices()}catch(_){}}));
+   if(item.status==='draft')actions.append(btn(uiText('إصدار الفاتورة','Issue invoice'),async()=>{if(!confirm(uiText('إصدار الفاتورة وتثبيت رقمها؟ لا يمكن تعديلها بعد الإصدار.','Issue this invoice and lock its number? It cannot be edited after issue.')))return;try{await api('/invoices/'+item.id+'/issue','POST');await loadInvoices()}catch(error){toast(String(error?.message||err(error)))}}));
    if(item.status==='issued'&&item.payments.length===0)actions.append(btn(uiText('إلغاء الفاتورة','Void invoice'),async()=>{const reason=window.prompt(uiText('أدخل سبب إلغاء الفاتورة','Enter a reason for voiding this invoice'));if(!reason||reason.trim().length<5)return;try{await api('/invoices/'+item.id+'/void','POST',{reason:reason.trim()});await loadInvoices()}catch(e){toast(String(e.message||e))}},'d'));
    if(item.status==='issued'&&item.balance_piasters>0){
     const amount=h('input',{type:'number',min:'0.01',step:'0.01',placeholder:uiText('مبلغ الدفعة بالجنيه','Payment amount in EGP'),'aria-label':uiText('مبلغ الدفعة بالجنيه','Payment amount in EGP')});
