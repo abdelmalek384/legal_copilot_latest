@@ -849,6 +849,8 @@ class BrowserAcceptanceTests(unittest.TestCase):
         research_document_workspace.wait_for(state="visible", timeout=10000)
         intelligence_panel = research_document_workspace.locator(".document-intelligence-panel")
         intelligence_panel.wait_for(state="visible", timeout=10000)
+        intelligence_panel.get_by_text("2 مستندات", exact=False).wait_for(timeout=10000)
+        self.assertIn("synthetic-matter-fixture.docx", intelligence_panel.inner_text())
         intelligence_panel.get_by_role("button", name="تحليل المستندات", exact=True).click()
         intelligence_panel.get_by_text("التصنيفات المقترحة", exact=True).wait_for(timeout=15000)
         self.assertTrue(intelligence_panel.is_visible())
