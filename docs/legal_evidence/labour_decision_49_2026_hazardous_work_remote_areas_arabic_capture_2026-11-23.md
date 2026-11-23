@@ -200,3 +200,8 @@
 ## Visual QA correction — construction heading (23 November 2026)
 
 Inspected the actual scan images for printed pages 11–12 (PDF zero-based pages 10–11). The heading «سابعاً – قطاع التشييد والبناء» is followed immediately by Article 3 on the same printed page; page 12 continues Article 3, then Articles 4 and 5. There is no missing construction-sector sub-list between the heading and Article 3 in the scan. The earlier gap was caused by assuming the Ministry press-release count of seven energy/radiation activities also meant a detailed construction list. Correct disposition: sector 7 is present as a standalone heading with no enumerated sub-items in the retrieved Gazette scan. Keep the category's scope as an interpretation question for counsel, not a missing-text defect.
+
+
+## Official catalogue provenance update
+
+The official Amiria Press / MELES catalogue record for the complete Egyptian Proceedings issue 64 supplement identifies the publisher as **المطابع الأميرية**, date 18 March 2026, and lists Decisions 48, 49 and 50 in the abstract: https://dspace.id.com.eg/items/f32b4a07-6598-4ed8-a170-60d631a57221. The catalogue file is access-restricted and its click-through opens a “request a copy” form; it was not directly downloadable in this session. This improves issue-level bibliographic corroboration but does not authenticate the third-party-hosted text line-by-line or grant reuse rights.
