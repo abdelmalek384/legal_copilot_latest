@@ -738,6 +738,24 @@
       "required_evidence": [
         "Continue Gazette comparison, recover original issue pages, compute SHA-256, trace later amendments, and obtain Egyptian counsel review."
       ]
+    },
+    {
+      "relationship_id": "REL-SCC-47-44-2023-INVALIDATES-LAW117-ARTICLE40BIS1",
+      "source_instrument_id": "EG-SCC-JUDGMENT-47-44-2023-04-08",
+      "target_instrument_id": "EG-ADMINISTRATIVE-PROSECUTION-117-1958",
+      "relationship_type": "judicially_invalidates_part_of_provision",
+      "status": "official_scc_full_judgment_text_located_operational_scope_verified",
+      "affected_provisions": [
+        "Article40 bis-1, added by Law12/1989; only the restriction of specified members' disputes to one level of litigation"
+      ],
+      "stated_effect": "Declares unconstitutional the one-instance-only restriction for annulment claims concerning final administrative decisions about Administrative Prosecution members, compensation claims arising from those decisions, and salary/pension/bonus disputes of members or their heirs. Do not record as repeal of the whole Article40 bis-1.",
+      "instrument_effective_date": "2023-04-08",
+      "source_url": "https://www.sccourt.gov.eg/DjangoPortalResources/Rules_Html/13349_44_47_1_2.html",
+      "required_evidence": [
+        "Check Official Gazette publication and operative date",
+        "Check subsequent legislative amendment or implementation",
+        "Egyptian constitutional-law counsel review"
+      ]
     }
   ],
   "next_actions": [
