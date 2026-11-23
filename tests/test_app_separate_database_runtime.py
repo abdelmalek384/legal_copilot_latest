@@ -6844,11 +6844,11 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         owner = {"id": self.user_id, "firm_id": self.firm_a, "name": "First Owner"}
         app.save_doc(
             firm_db, owner, first_id, "first-matter.txt",
-            "Shared phrase appears in the first client's first matter.",
+            "Shared phrase appears in the first client's first matter. مستند العميل الأول.",
         )
         app.save_doc(
             firm_db, owner, second_id, "second-matter.txt",
-            "Shared phrase appears in the same client's second matter.",
+            "Shared phrase appears in the same client's second matter. مستند العميل الثاني.",
         )
         app.save_doc(
             firm_db, owner, unrelated_id, "unrelated-matter.txt",
@@ -6865,6 +6865,13 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             {item["case_id"] for item in admin_results.json()["items"]},
             {first_id, second_id},
         )
+        arabic_results = self.client.get(
+            f"/clients/{shared_client_id}/documents/search-text",
+            params={"q": "العميل"},
+        )
+        self.assertEqual(arabic_results.status_code, 200, arabic_results.text)
+        self.assertEqual(arabic_results.json()["total"], 2)
+
 
         member_id = self.runtime.create_global_identity(
             "Single Matter Member", "single-matter-member@example.test", app.hash_pw(self.password)
