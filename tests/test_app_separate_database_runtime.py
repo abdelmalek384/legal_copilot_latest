@@ -6411,6 +6411,88 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         finally:
             junior.close()
 
+    def test_document_passage_annotations_are_persisted_and_case_scoped(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        first = self._mutate("post", "/cases", json={"title": "Annotation Matter Alpha"})
+        second = self._mutate("post", "/cases", json={"title": "Annotation Matter Beta"})
+        self.assertEqual(first.status_code, 200, first.text)
+        self.assertEqual(second.status_code, 200, second.text)
+        alpha_case, beta_case = first.json()["id"], second.json()["id"]
+        source_text = "Plaintiff Alice signed the contract."
+        uploaded = self._mutate(
+            "post", f"/cases/{alpha_case}/docs",
+            json={"name": "annotation-source.txt", "text": source_text},
+        )
+        self.assertEqual(uploaded.status_code, 200, uploaded.text)
+        detail = self._mutate("get", f"/cases/{alpha_case}")
+        self.assertEqual(detail.status_code, 200, detail.text)
+        document_id = next(
+            item["document_id"] for item in detail.json()["docs"]
+            if item["name"] == "annotation-source.txt"
+        )
+        chunks_response = self._mutate(
+            "get", f"/cases/{alpha_case}/docs/{document_id}/chunks"
+        )
+        self.assertEqual(chunks_response.status_code, 200, chunks_response.text)
+        chunk = chunks_response.json()["chunks"][0]
+        selected = "Alice"
+        start = source_text.index(selected)
+        end = start + len(selected)
+        payload = {
+            "start_offset": start,
+            "end_offset": end,
+            "selected_text": selected,
+            "source_text_sha256": chunk["text_sha256"],
+            "note": "Confirm the party name against the signed original.",
+            "color": "yellow",
+        }
+        created = self._mutate(
+            "post",
+            f"/cases/{alpha_case}/docs/{document_id}/chunks/{chunk['id']}/annotations",
+            json=payload,
+        )
+        self.assertEqual(created.status_code, 201, created.text)
+        annotation_id = created.json()["id"]
+
+        refreshed = self._mutate(
+            "get", f"/cases/{alpha_case}/docs/{document_id}/chunks"
+        )
+        self.assertEqual(refreshed.status_code, 200, refreshed.text)
+        annotations = refreshed.json()["chunks"][0]["annotations"]
+        self.assertEqual(len(annotations), 1)
+        self.assertEqual(annotations[0]["selected_text"], selected)
+        self.assertEqual(annotations[0]["note"], payload["note"])
+        self.assertEqual(annotations[0]["start_offset"], start)
+        self.assertEqual(annotations[0]["end_offset"], end)
+
+        stale = self._mutate(
+            "post",
+            f"/cases/{alpha_case}/docs/{document_id}/chunks/{chunk['id']}/annotations",
+            json={**payload, "selected_text": "Mallory"},
+        )
+        self.assertEqual(stale.status_code, 422, stale.text)
+        cross_case = self._mutate(
+            "post",
+            f"/cases/{beta_case}/docs/{document_id}/chunks/{chunk['id']}/annotations",
+            json=payload,
+        )
+        self.assertEqual(cross_case.status_code, 404, cross_case.text)
+
+        removed = self._mutate(
+            "delete",
+            f"/cases/{alpha_case}/docs/{document_id}/annotations/{annotation_id}",
+        )
+        self.assertEqual(removed.status_code, 200, removed.text)
+        after_delete = self._mutate(
+            "get", f"/cases/{alpha_case}/docs/{document_id}/chunks"
+        )
+        self.assertEqual(after_delete.status_code, 200, after_delete.text)
+        self.assertEqual(after_delete.json()["chunks"][0]["annotations"], [])
+
+
     def test_document_metadata_search_is_limited_to_accessible_matters(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
