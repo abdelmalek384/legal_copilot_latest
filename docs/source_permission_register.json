@@ -3058,6 +3058,23 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "Single item locator; no bulk/API permission established",
       "required_next_action": "Acquire original Gazette issue5 مكرر through an authorized route; compare the Arabic attachment against Gazette pages, hash the bytes, and assess reuse permission separately."
+    },
+    {
+      "source_id": "EG-MOF-LAW188-2020",
+      "authority": "Egyptian Ministry of Finance legislation portal; official Ministry-hosted reproduction of Official Gazette scan",
+      "source_page": "https://mof.gov.eg/ar/legislation/legislation-5fe868ae7bfc600007cbec2b",
+      "file_url": "https://media.mof.gov.eg/mof-prd/2123_64f01cffad.pdf",
+      "material_types": [
+        "Law188/2020 amending Public Contracts Law182/2018; 3-page Official Gazette scan"
+      ],
+      "access_status": "Official MOF legislation record and direct 3-page PDF inspected 2026-11-23. Page images visually confirm Official Gazette issue36 مكرر (ب), 5 September 2020, printed pages7–9. Ministry page labels the hosted texts as guidance and states that the Official Gazette is the controlling reference. PDF bytes were not downloaded locally or hashed.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://mof.gov.eg/ar/legislation/legislation-5fe868ae7bfc600007cbec2b",
+      "permission_evidence": "The source is an official Ministry record and reproduces Gazette page images. Official hosting and public access do not themselves establish permission for bulk extraction, commercial redistribution or model ingestion. The Ministry page states the Gazette is the controlling reference.",
+      "terms_checked_on": "2026-11-23",
+      "bulk_download_or_api": "Single instrument PDF; no bulk/API permission established",
+      "required_next_action": "Acquire exact PDF bytes through an authorized route, record SHA-256, visually compare all 3 pages and operative text; retain official Gazette as controlling source and assess rights separately."
     }
   ]
 }
