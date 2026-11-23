@@ -7342,7 +7342,7 @@ def search_client_document_text(
         "chunks.page,substr(chunks.text,1,1200) AS excerpt,"
         "d.name AS document_name,cs.title AS case_title,cs.case_number,cs.case_year,"
         "bm25(chunks_fts) AS rank"
-        + joins + access + " ORDER BY rank LIMIT ? OFFSET ?",
+        + joins + access + " ORDER BY rank,chunks.id LIMIT ? OFFSET ?",
         params + (limit, offset),
     ).fetchall()
     c.execute(
