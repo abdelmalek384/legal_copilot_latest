@@ -242,10 +242,15 @@ class SubscriptionBillingRouteTests(unittest.TestCase):
             self.client_a, "post", "/billing/subscribe", json={"plan_code": "small_firm"}
         )
         self.assertEqual(started.status_code, 200, started.text)
-        invitation = self._mutate(
-            self.client_a, "post", "/invitations",
-            json={"email": "revoke-after-expiry@example.test", "role": "lawyer"},
-        )
+        # This route test exercises invitation lifecycle and revocation, not the
+        # delivery provider. Keep the outbound identity-link side effect isolated
+        # so the test remains deterministic without production mail credentials.
+        from unittest.mock import patch
+        with patch.object(app, "_send_identity_link", return_value=True):
+            invitation = self._mutate(
+                self.client_a, "post", "/invitations",
+                json={"email": "revoke-after-expiry@example.test", "role": "lawyer"},
+            )
         self.assertEqual(invitation.status_code, 200, invitation.text)
         invitation_id = invitation.json()["invitation_id"]
 
