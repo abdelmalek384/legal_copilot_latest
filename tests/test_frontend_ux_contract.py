@@ -601,7 +601,7 @@ class FrontendUXContractTests(unittest.TestCase):
         workflow = (ROOT / ".github" / "workflows" / "browser-e2e.yml").read_text(encoding="utf-8")
         browser_tests = (ROOT / "tests" / "browser" / "test_acceptance.py").read_text(encoding="utf-8")
         self.assertIn("axe-core@4.10.3", workflow)
-        self.assertIn("uses: actions/setup-node@v6", workflow)
+        self.assertIn("uses: actions/setup-node@v7", workflow)
         self.assertIn("axe.min.js", browser_tests)
         self.assertIn("self.page.route(", browser_tests)
         self.assertIn("self.page.add_script_tag(url=\"/__axe__/axe.min.js\")", browser_tests)
@@ -1455,7 +1455,7 @@ class FrontendUXContractTests(unittest.TestCase):
 
     def test_matter_extraction_review_discloses_ocr_and_partial_page_status(self):
         start = HTML.index("const renderChunkReviewCards=")
-        end = HTML.index("const suggestCorrection=", start)
+        end = HTML.index("body=h('div',{className:'card'},intelligencePanel", start)
         page = HTML[start:end]
         self.assertIn("reviewDoc.ocr_used===true||reviewDoc.ocr_used===1", page)
         self.assertIn("reviewDoc.extraction_status==='partial_text_ocr_unavailable'", page)
