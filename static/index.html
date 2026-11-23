@@ -3204,7 +3204,7 @@ async function law(){
              });
              ratingStatus.textContent=(LANG==='ar'?'تم حفظ التقييم':'Rating saved')+' · '+(saved.benchmark_ready?(LANG==='ar'?'مكتمل لقياس الأداء':'Benchmark-ready'):(LANG==='ar'?'غير مكتمل لقياس الأداء':'Not benchmark-ready'));
              toast(LANG==='ar'?'تم حفظ تقييمك داخل المكتب':'Your rating was saved within this firm');
-           }catch(_){ }finally{saveRating.disabled=false}
+           }catch(error){ratingStatus.textContent=String(error?.message||err(error));toast(String(error?.message||err(error)))}finally{saveRating.disabled=false}
          },'g');
          const clearRatingError=field=>{field.removeAttribute('aria-invalid');field.removeAttribute('aria-describedby');if(!overall.hasAttribute('aria-invalid')&&!citationAccuracy.hasAttribute('aria-invalid')&&!expected.hasAttribute('aria-invalid'))ratingError.hidden=true};overall.onchange=()=>clearRatingError(overall);citationAccuracy.onchange=()=>clearRatingError(citationAccuracy);expected.oninput=()=>clearRatingError(expected);ratingPanel.append(ratingTitle,ratingChoices,h('div',{className:'answer-rating-fields'},overall,citationAccuracy,expected,answerable,notes),ratingError,saveRating,ratingStatus);
          answerNotesPanel.append(ratingPanel);
@@ -3286,7 +3286,7 @@ async function law(){
          await api('/research/conversations/'+c.id,'DELETE');
          if(activeId===c.id){activeId=null;renderMessages([])}
          await drawList();
-       }catch(_){}
+       }catch(error){toast(String(error?.message||err(error)))}
      }});
      sidebar.append(h('div',{className:'research-conversation-row'},openButton,renameButton,deleteButton));
    }
