@@ -133,7 +133,7 @@ Static CSS inspection found control borders and focus indicators too faint for r
 
 ## Document passage annotation accessibility — 2026-11-23
 
-The passage-annotation controls now expose a focusable, named passage; associate the annotation action with concise instructions; identify the note/color editor as a labelled group; and expose saved annotations as a labelled list with list-item semantics. A source-contract regression protects these semantics. This is a code-level improvement only: keyboard text-selection behavior, screen-reader announcements, contrast and responsive interaction still require exact-build browser/manual acceptance.
+The passage-annotation controls now expose a focusable, named passage; associate the annotation action with concise instructions; identify the note/color editor as a labelled group; and expose saved annotations as a labelled list with list-item semantics. A source-contract regression protects these semantics. The extracted-text review history now behaves as a disclosure with `aria-controls`, a live `aria-expanded` state, a labelled region and a hide action. This is a code-level improvement only: keyboard text-selection behavior, screen-reader announcements, contrast and responsive interaction still require exact-build browser/manual acceptance.
 
 ## UI implementation continuation — 2026-11-17
 
