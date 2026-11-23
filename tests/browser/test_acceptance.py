@@ -1046,6 +1046,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
             "SYNTHETIC CLIENT SEARCH MATTER ONE",
             "SYNTHETIC CLIENT SEARCH MATTER TWO",
         ]
+        document_ids = []
         for index, title in enumerate(case_titles, start=1):
             created = self.page.request.post(
                 self.base_url + "/cases",
@@ -1065,6 +1066,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
                 timeout=8000,
             )
             self.assertEqual(document.status, 200, document.text())
+            document_ids.append(document.json()["document_id"])
 
         self.page.get_by_role("button", name="العملاء وتعارض المصالح", exact=True).click()
         client_card = self.page.locator(".card").filter(has_text=client_name).last
@@ -1075,6 +1077,45 @@ class BrowserAcceptanceTests(unittest.TestCase):
             client_card.get_by_text(title, exact=True).wait_for(timeout=10000)
         self.assertIn(sentinel, client_card.inner_text())
         self.assertIn("مقاطع مطابقة عبر القضايا المسموح بها", client_card.inner_text())
+
+        # Open a returned passage and add a lawyer annotation without modifying the uploaded source.
+        client_card.get_by_role("button", name="فتح المقطع في ملف القضية").first.click()
+        self.page.get_by_role("button", name="تحليل المستندات", exact=True).click()
+        passage = self.page.locator(".passage-annotation-text").first
+        passage.wait_for(state="visible", timeout=15000)
+        selected = self.page.evaluate("""(sentinel) => {
+            const passage = document.querySelector('.passage-annotation-text');
+            if (!passage) return false;
+            const walker = document.createTreeWalker(passage, NodeFilter.SHOW_TEXT);
+            let node;
+            while ((node = walker.nextNode())) {
+                const start = node.textContent.indexOf(sentinel);
+                if (start < 0) continue;
+                const range = document.createRange();
+                range.setStart(node, start);
+                range.setEnd(node, start + sentinel.length);
+                const selection = window.getSelection();
+                selection.removeAllRanges();
+                selection.addRange(range);
+                return true;
+            }
+            return false;
+        }""", sentinel)
+        self.assertTrue(selected, "synthetic passage should be selectable for annotation")
+        self.page.get_by_role("button", name="تظليل المقطع المحدد وإضافة ملاحظة").click()
+        annotation_note = "SYNTHETIC LAWYER REVIEW NOTE"
+        self.page.get_by_label("ملاحظة التحديد").fill(annotation_note)
+        self.page.get_by_role("button", name="حفظ التظليل والملاحظة").click()
+        self.page.locator(".passage-annotation-highlight").wait_for(state="visible", timeout=10000)
+        self.assertIn(annotation_note, self.page.locator(".passage-annotation-list").inner_text())
+
+        # The source chunk remains unchanged; annotations are separate records.
+        chunks = self.page.request.get(
+            self.base_url + f"/cases/{self.page.evaluate('window.CASE_ID')}/docs/{document_ids[0]}/chunks",
+            timeout=8000,
+        )
+        self.assertEqual(chunks.status, 200, chunks.text())
+        self.assertTrue(any(row.get("text", "").startswith(sentinel) for row in chunks.json()["chunks"]))
 
 
     def test_cross_firm_case_identifier_does_not_reveal_other_firm_sentinel(self) -> None:
