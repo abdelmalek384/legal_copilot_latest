@@ -6861,6 +6861,24 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         )
         self.assertEqual(admin_results.status_code, 200, admin_results.text)
         self.assertEqual(admin_results.json()["total"], 2)
+        page_one = self.client.get(
+            f"/clients/{shared_client_id}/documents/search-text",
+            params={"q": "shared phrase", "limit": 1, "offset": 0},
+        )
+        page_two = self.client.get(
+            f"/clients/{shared_client_id}/documents/search-text",
+            params={"q": "shared phrase", "limit": 1, "offset": 1},
+        )
+        self.assertEqual(page_one.status_code, 200, page_one.text)
+        self.assertEqual(page_two.status_code, 200, page_two.text)
+        self.assertEqual(page_one.json()["total"], 2)
+        self.assertEqual(page_two.json()["total"], 2)
+        self.assertEqual(len(page_one.json()["items"]), 1)
+        self.assertEqual(len(page_two.json()["items"]), 1)
+        self.assertNotEqual(
+            page_one.json()["items"][0]["chunk_id"],
+            page_two.json()["items"][0]["chunk_id"],
+        )
         self.assertEqual(
             {item["case_id"] for item in admin_results.json()["items"]},
             {first_id, second_id},
