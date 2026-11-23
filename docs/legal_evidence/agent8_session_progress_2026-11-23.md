@@ -18,7 +18,7 @@ Four separate acquisition tranches and four separate CSV instrument registers we
    - [Research note](agent8_maritime_ports_inland_navigation_2026-11-23.md)
    - [Instrument register](agent8_maritime_ports_inland_navigation_instruments_2026-11-23.csv)
 
-The canonical national acquisition CSV was fetched from the default branch before deduplication. It contains 452 lines including header (501 data records) after the 23 November environment, waste, water-pollution and health updates; the earlier 422-record figure was the pre-update snapshot. The master index dashboard is dated 18 November 2026 and reports 388 confirmed + 1 provisional instruments; that dashboard/register count discrepancy remains unresolved. This session used exact instrument-number/title checks against the live CSV, updated existing instrument rows in place, and added new candidate rows for instruments not already registered. The master index dashboard was not altered.
+The canonical national acquisition CSV was fetched from the default branch before deduplication. It contains 452 lines including header (511 data records) after the 23 November environment, waste, water-pollution and health updates; the earlier 422-record figure was the pre-update snapshot. The master index dashboard is dated 18 November 2026 and reports 388 confirmed + 1 provisional instruments; that dashboard/register count discrepancy remains unresolved. This session used exact instrument-number/title checks against the live CSV, updated existing instrument rows in place, and added new candidate rows for instruments not already registered. The master index dashboard was not altered.
 
 ## 2. Instrument and article counts
 
@@ -193,7 +193,7 @@ Canonical register updated with 13 new candidate rows EG-0440–EG-0452 and exis
 - Watercourse/sewerage package remains **10/11 = 91%** source/PDF acquisition.
 - Environment Law4/1994 chain remains **6/12 = 50%** complete searchable sources located.
 - Waste Management Law202/2020 chain remains **3/3 = 100%** complete searchable sources located.
-- Canonical acquisition register now has **501 data records** (452 lines including header).
+- Canonical acquisition register now has **511 data records** (452 lines including header).
 - Whole-corpus percentage remains unavailable: no reliable denominator exists for all in-scope Egyptian legislation; register rows are not a corpus denominator.
 
 ### Next acquisition priorities
@@ -214,9 +214,9 @@ The source-permission register was updated to **189 source records**. Six source
 ## 13. Session-wide acquisition summary (23 November 2026)
 
 Across Agent8's four transport dossiers plus the environment, waste, Nile/watercourse and health dossiers:
-- **111 candidate unique instruments** identified/registered across the Agent8 tranche registers (31 transport; 2 new environment-regulation candidates; 1 new waste-regulation amendment; 14 water/sewerage instruments and amendment leads; 13 health-sector instruments; 7 tax-procedure instruments added in this follow-on pass).
+- **121 candidate unique instruments** identified/registered across the Agent8 tranche registers (31 transport; 2 new environment-regulation candidates; 1 new waste-regulation amendment; 14 water/sewerage instruments and amendment leads; 13 health-sector instruments; 7 tax-procedure instruments added in this follow-on pass).
 - **30 new candidate rows** added to the canonical national acquisition CSV in the environment/waste/water/health passes; **17 existing canonical rows** updated in place with actual text observations and improved provenance.
-- Canonical national register now has **501 data rows**. Its denominator is not the total in-scope Egyptian legislation; do not convert this count into a whole-corpus completion percentage.
+- Canonical national register now has **511 data rows**. Its denominator is not the total in-scope Egyptian legislation; do not convert this count into a whole-corpus completion percentage.
 - Four substantive new Arabic text dossiers were committed for environment, waste management, Nile/water pollution/sewerage, and health; the earlier four transport dossiers remain in the repository.
 - Source-permission register now has **189 source assessments**, with all new collection and commercial reuse permissions unknown.
 
@@ -242,8 +242,8 @@ Canonical register updated: **7 new instrument rows EG-0453–EG-0459** added fo
 
 ### Scoped progress
 - Unified Tax Procedures package: **9/9 = 100%** have a located text source or complete PDF. This includes two instruments (Decision518/2023 and Decision538/2023) where the operative Arabic text is presently sourced from secondary reproductions and the official source status is metadata/catalogue or restricted Gazette access; it does not mean all nine originals have been visually checked or locally mirrored.
-- Canonical national acquisition register now has **501 data rows** (459 lines including header).
-- Agent8 candidate unique instrument count rises from 103 to **111** after adding the seven new tax-procedure instruments.
+- Canonical national acquisition register now has **511 data rows** (459 lines including header).
+- Agent8 candidate unique instrument count rises from 111 to **121** after adding the seven new tax-procedure instruments.
 - Whole-corpus percentage remains unavailable: there is no defensible denominator for all in-scope Egyptian legislation. Scoped source acquisition rates must not be represented as whole-corpus completion.
 
 ### Next acquisition priorities
@@ -276,7 +276,7 @@ Canonical register updated: **8 new instrument rows EG-0460–EG-0467** added fo
 ### Scoped progress
 - VAT / small-project follow-on package: **8/8 = 100%** have an official government-hosted PDF or official Ministry record with operative text source. Several are image-only scans with selected transcription still incomplete; this is source acquisition, not full verbatim local mirroring.
 - Unified Tax Procedures package remains **9/9 = 100%** source texts located, with two instruments still relying on secondary operative-text copies.
-- Canonical national acquisition register now has **501 data rows** (467 lines including header).
+- Canonical national acquisition register now has **511 data rows** (467 lines including header).
 - Agent8 candidate unique instrument count rises from 68 to **76** after adding eight VAT/small-project instruments.
 - Whole-corpus percentage remains unavailable: no defensible denominator exists for all in-scope Egyptian legislation.
 
@@ -318,7 +318,7 @@ Canonical register updated: **16 new instrument rows EG-0468–EG-0483** added:
 
 ### Scoped progress
 - Historical VAT amendment tranche: **16/16 = 100%** have an official government-hosted source, official MOF record or official Gazette/Amiri Press text locator. This does not mean every scanned provision is fully transcribed or all page images independently QA-checked.
-- Canonical national acquisition register now has **501 data rows** (483 lines including header).
+- Canonical national acquisition register now has **511 data rows** (483 lines including header).
 - Agent8 candidate unique instrument count rises from 76 to **92** after adding sixteen historical VAT instruments.
 - Source-permission register remains at **189 source records**; existing ETA, MOF, Customs and GAFI source-family records were expanded. Collection and commercial reuse permission remain **unknown**.
 - Whole-corpus percentage remains unavailable because no defensible denominator exists for all in-scope Egyptian legislation.
@@ -357,7 +357,7 @@ Canonical register updated: **11 new instrument rows EG-0484–EG-0494** added f
 
 ### Scoped progress
 - Defined Income Tax Law91 package: **13/13 = 100%** have a located official source or complete searchable PDF/Gazette scan/official record with operative text. The Law159/2023 ETA copy is partial and relies on Amiri Press/secondary full text; all source status distinctions are explicit.
-- Canonical national acquisition register now has **501 data rows** (494 lines including header).
+- Canonical national acquisition register now has **511 data rows** (494 lines including header).
 - Agent8 candidate unique instrument count rises from 92 to **103** after adding eleven new income-tax instruments.
 - Source-permission register remains at **189 source records**; existing ASA, ETA, MOF and Amiri Press source-family records expanded. Collection and commercial reuse permission remain **unknown**.
 - Whole-corpus percentage remains unavailable; no defensible denominator exists for all in-scope Egyptian legislation.
@@ -391,7 +391,7 @@ Canonical register updated: **8 new instrument rows EG-0495–EG-0502** added fo
 
 ### Scoped progress
 - Defined 2017–2020 Income Tax amendment tranche: **8/8 = 100%** have official ETA-hosted Gazette sources; six are scan/image sources, and two have searchable text layers.
-- Canonical national acquisition register now has **501 data rows** (502 lines including header).
+- Canonical national acquisition register now has **511 data rows** (502 lines including header).
 - Agent8 candidate unique instrument count rises from 103 to **111** after adding eight income-tax amendments.
 - Source-permission register remains at **189 source records**; ETA tax source-family record expanded. Collection and commercial reuse permissions remain **unknown**.
 - Whole-corpus percentage remains unavailable.
@@ -401,5 +401,38 @@ Canonical register updated: **8 new instrument rows EG-0495–EG-0502** added fo
 2. Extract all remaining rate tables and consolidate Article8 across Laws82/2017,97/2018,26/2020,175/2023,7/2024 and151/2026.
 3. Reconcile Law199/2020 Article5 repeal under Law153/2026.
 4. Continue checking the MOF Decision991/2005 amendment index for any other executive regulation decisions beyond the five already acquired.
+
+No lawyer review, commercial reuse clearance, local binary hashing or consolidated Income Tax Law is claimed.
+
+
+## 19. Follow-on acquisition — early Income Tax Law91 amendments (2005–2015)
+
+New dossier: [Early Income Tax Law91 amendments, 2005–2015](income_tax_law91_2005_early_amendments_2005_2015_arabic_text_2026-11-23.md).
+
+Canonical register updated: **10 new instrument rows EG-0503–EG-0512** added for Laws181/2005, 1/2007, 101/2012, 11/2013, 164/2013, 53/2014, 201/2014 and96/2015, plus Finance Minister Decisions778/2010 and172/2015. Law17/2015 was already present in the repository and was not duplicated.
+
+### Actual Arabic text / source acquisition
+- Law181/2005: one-page ETA Gazette scan; amends Article50 item9 for Central Bank securities/deposit-certificate returns.
+- Law1/2007: one-page ETA scan; extends Article106 rule to companies and establishments regardless of legal form.
+- Decision778/2010: two-page ETA Proceedings PDF; adds four invoice/recordkeeping articles to Income Tax Regulation991/2005; first page inspected and selected text captured.
+- Law101/2012: 11-page ETA Gazette PDF; pages3–5 inspected; payment incentives, Article8 rate changes, social-justice and anti-evasion provisions.
+- Law11/2013: seven-page ETA Gazette PDF; pages2–4 inspected; Article8 rates, EGP7,000 personal exemption, non-primary employer withholding and 2.5% real-estate disposal tax.
+- Law164/2013: one-page ETA scan; adds 80% bank loan-provision deduction under Article52/2.
+- Law53/2014: 14-page ETA Gazette PDF; pages2–5 inspected; broad capital gains, dividends, real estate, residence and stamp-duty amendments.
+- Law201/2014: one-page ETA scan; requires electronic tax payment by companies/legal persons.
+- Decision172/2015: 17-page ETA Proceedings PDF; pages2–4 inspected; broad rewrite of Executive Regulation991/2005.
+- Law96/2015: four-page ETA Gazette PDF; pages3–4 inspected; historical temporary 5% additional tax above EGP1m and Article8 rate changes.
+
+### Scoped progress
+- Early Income Tax Law91 tranche: **10/10 = 100%** have official ETA-hosted Gazette/Proceedings sources; some multi-page sources still require full page-by-page transcription.
+- Canonical national acquisition register now has **511 data rows** (512 lines including header).
+- Agent8 candidate unique instrument count rises from 111 to **121** after adding ten early income-tax instruments.
+- Source-permission register remains at **189 source records**; ETA source-family record expanded. Collection and commercial reuse permissions remain **unknown**.
+- Whole-corpus percentage remains unavailable.
+
+### Next acquisition priorities
+1. Complete the remaining page transcription for Laws101/2012,11/2013,53/2014 and Decision172/2015; inspect page2 of Decision778/2010.
+2. Continue ETA archive with remaining early amendments not yet acquired: Laws11/2013,164/2013,53/2014,201/2014,96/2015,17/2015,172/2015,101/2012,778/2010,1/2007 and181/2005 are now separately captured; next target remaining pre-2012 and any missing 2010–2015 amendments.
+3. Build an article-level consolidated Law91 and Regulation991 from 2005 through Law151/2026, preserving superseded versions and effective dates.
 
 No lawyer review, commercial reuse clearance, local binary hashing or consolidated Income Tax Law is claimed.
