@@ -177,3 +177,8 @@
 ## Register progress at acquisition
 
 414 rows; 107 full-text indicators (25.8%); 49 partial-only indicators (11.8%); 156 with any text indicator (37.7%). Same keyword-based register proxy; not a national corpus completion rate or verification metric.
+
+
+## Register progress after Decision 1729/2026 acquisition
+
+415 rows; 108 full-text indicators (26.0%); 49 partial-only indicators (11.8%); 157 with any text indicator (37.8%). Same keyword-based proxy, not a legal verification measure.
