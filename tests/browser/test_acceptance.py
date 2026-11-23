@@ -1116,6 +1116,8 @@ class BrowserAcceptanceTests(unittest.TestCase):
         query.fill(sentinel)
         client_card.get_by_role("button", name="بحث", exact=True).click()
         client_card.locator(".src").nth(1).wait_for(state="visible", timeout=15000)
+        search_results = client_card.locator('[aria-live="polite"]')
+        self.assertEqual(search_results.get_attribute("aria-busy"), "false")
         self.assertEqual(client_card.locator(".src").count(), 2)
         for title in case_titles:
             client_card.locator(".src").filter(has_text=title).wait_for(state="visible", timeout=10000)
