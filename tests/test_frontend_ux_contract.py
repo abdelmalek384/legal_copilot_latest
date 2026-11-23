@@ -1931,5 +1931,14 @@ class FrontendUXContractTests(unittest.TestCase):
             self.assertIn("error?.message||", HTML)
             self.assertIn(fallback, HTML)
 
+    def test_platform_billing_and_correction_review_actions_surface_api_errors(self):
+        for action in (
+            "try{await api('/platform/billing/payment-submissions/'+p.id+'/approve','POST');toast(uiText('تم اعتماد التحويل','Transfer approved'));platformBillingPage()}catch(error){toast(String(error?.message||err(error)))}",
+            "try{await api('/platform/billing/payment-submissions/'+p.id+'/reject','POST',{reason:reason.trim()});toast(uiText('تم رفض التحويل','Transfer rejected'));platformBillingPage()}catch(error){toast(String(error?.message||err(error)))}",
+            "try{await api('/admin/corrections/'+item.id+'/review','POST',{status:'accepted',review_note:note});toast(uiText('تم قبول التصحيح','Correction accepted'));correctionQueuePage()}catch(error){toast(String(error?.message||err(error)))}",
+            "try{await api('/admin/corrections/'+item.id+'/review','POST',{status:'rejected',review_note:note});toast(uiText('تم رفض التصحيح','Correction rejected'));correctionQueuePage()}catch(error){toast(String(error?.message||err(error)))}",
+        ):
+            self.assertIn(action, HTML)
+
 if __name__ == "__main__":
     unittest.main()
