@@ -538,6 +538,28 @@
         "Qualified Egyptian counsel review"
       ],
       "notes": "Issuing Article1 limits the attached controls until the end of FY2023/2024; classify as historical/expired for that period unless later extension or reenactment is found."
+    },
+    {
+      "relationship_id": "REL-PM-241-2024-COMPLIMENTS-4499-2023",
+      "source_instrument_id": "EG-PM-DECISION-241-2024-INVESTMENT-SPENDING",
+      "target_instrument_id": "EG-PM-DECISION-4499-2023-EXPENDITURE-RATIONALIZATION",
+      "relationship_type": "related_temporary_investment_spending_control",
+      "status": "official_mof_locator_and_secondary_full_text_located_historical_expiry_stated",
+      "affected_provisions": [
+        "FY2023/2024 investment plan funding",
+        "Newly added project contracts",
+        "Passenger vehicle procurement",
+        "External financing and foreign-currency components"
+      ],
+      "stated_effect": "Separate companion controls for investment spending during FY2023/2024; expressly expire at the end of that fiscal year and are not an amendment to Law182/2018.",
+      "instrument_effective_date": "2024-02-05",
+      "source_url": "https://mksegypt.org/ar/decisions/21747",
+      "required_evidence": [
+        "Official Gazette issue5 مكرر, 4 February 2024, original pages",
+        "Verify end-of-FY2023/2024 expiry clause",
+        "Search for extension or reenactment",
+        "Qualified Egyptian counsel review"
+      ]
     }
   ],
   "next_actions": [
