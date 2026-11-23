@@ -18,7 +18,7 @@ Four separate acquisition tranches and four separate CSV instrument registers we
    - [Research note](agent8_maritime_ports_inland_navigation_2026-11-23.md)
    - [Instrument register](agent8_maritime_ports_inland_navigation_instruments_2026-11-23.csv)
 
-The canonical national acquisition CSV was fetched from the default branch before deduplication. It contains 425 lines including header (424 data records) after the 23 November environment and waste-text updates; the earlier 422-record figure was the pre-update snapshot. The master index dashboard is dated 18 November 2026 and reports 388 confirmed + 1 provisional instruments; that dashboard/register count discrepancy remains unresolved. This session used exact instrument-number/title checks against the live CSV and did not alter the canonical CSV or master index.
+The canonical national acquisition CSV was fetched from the default branch before deduplication. It contains 439 lines including header (438 data records) after the 23 November environment, waste and Nile/water pollution updates; the earlier 422-record figure was the pre-update snapshot. The master index dashboard is dated 18 November 2026 and reports 388 confirmed + 1 provisional instruments; that dashboard/register count discrepancy remains unresolved. This session used exact instrument-number/title checks against the live CSV and did not alter the canonical CSV or master index.
 
 ## 2. Instrument and article counts
 
@@ -133,3 +133,36 @@ A second connected legal-text tranche was acquired, avoiding duplicate rows:
 
 ### Quality / next steps
 The official EEAA PM722 PDF and FAOLEX Gazette reproduction provide complete searchable sources, so the next blocker is transcription and page-image QA rather than discovery. Next work: mirror all 80 Law202 articles, 56 PM722 regulation articles and 18 annexes; inspect PM1113 page images; acquire complete PM342/2025 Gazette attachment; retrieve PM662/2025 extended producer responsibility instrument; then continue to Law48/1982 and its Nile-pollution implementing regulation. No commercial reuse permissions or lawyer review are claimed.
+
+
+## 10. Follow-on acquisition — Nile/watercourse pollution and sewerage discharge laws
+
+New dossier: [Nile water pollution Law48/1982, Law93/1962 and implementing/amending decisions](nile_water_pollution_law48_1982_and_sewerage_law93_1962_text_2026-11-23.md).
+
+Canonical register updated with 14 candidate records EG-0426–EG-0439. New records cover Law48/1982, Law103/2015, PM Decision402/2009, Ministerial Decisions219/2010, 92/2013, 208/2018 and 289/2018, Law93/1962, Minister Decision44/2000, Decision308/2020, and identified historical/related amendment leads 8/1983, 43/1985, 383/2011 and 789/2013.
+
+### Arabic text / source acquisition
+- Law48/1982: all 19 articles located in a Ministry of Water Resources and Irrigation-hosted Arabic PDF; all 19 articles normalized in the dossier, with exact source locator.
+- Law103/2015: full two-article amendment text acquired from Official Gazette issue40 bis (ب), 7 Oct 2015; it replaces Law48 Article16 penalty with EGP50,000–200,000 fine plus up to one year imprisonment (or either), doubling for repeat violations.
+- PM Decision92/2013: full 64-article regulation source located in a 646-line MWRI-hosted searchable PDF and a 32-page Gazette reproduction; selected articles on discharge licensing, river vessels, sampling, freshwater/non-freshwater standards, fees and enforcement captured.
+- PM Decisions219/2010, 208/2018 and 289/2018: full operative Arabic texts captured. These respectively amend Art82 fee, TDS/effluent standards in Arts51/52, and groundwater monitoring/brine discharge fees with new Art15 bis.
+- Law93/1962: complete 22-article Arabic text located in FAOLEX PDF; key Articles7–18 extracted.
+- PM Decision44/2000: complete 17-page PDF located; FAOLEX identifies 24 articles and subject scope, but OCR is too poor for reliable text extraction.
+- Minister Decision308/2020: PDF and text locators located; complete operative text still to be extracted.
+- PM Decisions8/1983,43/1985,383/2011 and789/2013 were identified in recitals, but their full Gazette texts remain gaps.
+
+### Scoped progress
+- Nile/watercourse and sewerage package: **10/11 = 91%** have a full Arabic text source or complete PDF copy located; Decision383/2011 remains recital-only. This measures source discovery, not complete local transcription or currentness.
+- Environment Law4/1994 chain remains **6/12 = 50%** complete searchable source texts located.
+- Waste Management Law202/2020 chain remains **3/3 = 100%** complete searchable source texts located.
+- Canonical acquisition register now has **438 data records** (439 lines including header).
+- No repository-wide percentage is claimed: there is no defensible denominator for all Egyptian legislation. Register row count is not a corpus denominator.
+
+### Next acquisition priorities
+1. Transcribe the 64-article PM92/2013 regulation and numeric tables with page-image QA.
+2. Obtain PM383/2011 and PM789/2013 texts, and original PM8/1983 and PM43/1985 Gazette pages; resolve Decision8/1982 vs8/1983 recital anomaly.
+3. Transcribe PM44/2000 and PM308/2020 full text and technical tables.
+4. Integrate Law213/1994 changes to Law48/1982 and Law147/2021 Water Resources and Irrigation Law effects.
+5. Continue the pending full-text mirror of Law202/2020 and PM722/2022 (80 articles, 56 articles and 18 annexes), then expand into transport/health sectors.
+
+No original Amiri Press file hash, lawyer review, or commercial reuse clearance is claimed.
