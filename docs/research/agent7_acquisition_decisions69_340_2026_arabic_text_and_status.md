@@ -127,3 +127,8 @@ The register now contains **416 rows**: **110/416 full-text indicators (26.4%)**
 ## Latest central-register progress (23 November 2026)
 
 **420 rows; 113/420 full-text indicators (26.9%); 49/420 partial-only indicators (11.7%); 161/420 with any text indicator (38.3%).** Same keyword-based proxy as prior snapshots; not a measure of official-source authentication, consolidation or lawyer review.
+
+
+## Latest register snapshot (23 November 2026)
+
+**421 rows; 114/421 full-text indicators (27.1%); 49/421 partial-only indicators (11.6%); 162/421 with any text indicator (38.5%).** Same keyword-based proxy, not authenticated or lawyer-reviewed coverage.
