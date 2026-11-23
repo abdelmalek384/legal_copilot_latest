@@ -2336,14 +2336,17 @@ async function clients(initialQuery=''){
   const restoreState=window.DOCUMENT_CLIENT_SEARCH_RETURN&&Number(window.DOCUMENT_CLIENT_SEARCH_RETURN.clientId)===Number(client.id)?window.DOCUMENT_CLIENT_SEARCH_RETURN:null;
   const query=h('input',{type:'search',value:restoreState?String(restoreState.query||''):'',placeholder:uiText('ابحث في مستندات جميع قضايا هذا العميل','Search documents across this client’s matters'),'aria-label':uiText('البحث في مستندات العميل','Search client documents'),style:'width:min(100%,420px)'});
   const results=h('div',{className:'stack','aria-live':'polite'});
-  let offset=restoreState?Math.max(0,Number(restoreState.offset)||0):0,total=0;
+  let offset=restoreState?Math.max(0,Number(restoreState.offset)||0):0,total=0,searchRequest=0;
   const run=async(reset=true)=>{
+   const request=++searchRequest;
    const needle=query.value.trim();
-   if(!needle){results.replaceChildren(h('p',{className:'mut',textContent:uiText('أدخل كلمات للبحث.','Enter search terms.')}));query.focus();return}
+   if(!needle){results.setAttribute('aria-busy','false');results.replaceChildren(h('p',{className:'mut',textContent:uiText('أدخل كلمات للبحث.','Enter search terms.')}));query.focus();return}
    if(reset)offset=0;
-   results.replaceChildren(h('p',{className:'mut',textContent:uiText('جارٍ البحث في القضايا المسموح بها…','Searching accessible matters…')}));
+   results.setAttribute('aria-busy','true');
+   results.replaceChildren(h('p',{className:'mut',role:'status',textContent:uiText('جارٍ البحث في القضايا المسموح بها…','Searching accessible matters…')}));
    try{
     const data=await api('/clients/'+encodeURIComponent(client.id)+'/documents/search-text?q='+encodeURIComponent(needle)+'&limit=40&offset='+offset);
+    if(request!==searchRequest)return;
     const rows=Array.isArray(data.items)?data.items:[];
     total=Number(data.total)||0;
     const maxOffset=total?Math.floor((total-1)/40)*40:0;
@@ -2352,6 +2355,7 @@ async function clients(initialQuery=''){
     const next=btn(uiText('التالي','Next'),()=>{if(offset+40<total){offset+=40;run(false)}},'g');
     previous.disabled=offset===0;
     next.disabled=offset+40>=total;
+    results.setAttribute('aria-busy','false');
     results.replaceChildren(
      h('p',{className:'mut',textContent:String(total)+' '+uiText('مقاطع مطابقة عبر القضايا المسموح بها','matching passages across accessible matters')+' · '+(total?String(offset+1)+'–'+String(Math.min(offset+40,total)):'0')}),
      ...(rows.length?rows.map(item=>h('article',{className:'src'},
@@ -2373,7 +2377,7 @@ async function clients(initialQuery=''){
      h('div',{className:'row'},previous,h('span',{className:'mut',textContent:total?String(offset+1)+'–'+String(Math.min(offset+40,total))+' / '+total:'0 / 0'}),next),
      h('p',{className:'mut',textContent:data.warning||''})
     );
-   }catch(error){results.replaceChildren(h('p',{className:'notice danger',role:'alert',textContent:String(error.message||error)}))}
+   }catch(error){if(request===searchRequest){results.setAttribute('aria-busy','false');results.replaceChildren(h('p',{className:'notice danger',role:'alert',textContent:String(error.message||error)}))}}
   };
   query.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();run()}};
   if(restoreState){window.DOCUMENT_CLIENT_SEARCH_RETURN=null;Promise.resolve().then(()=>run(false))}
