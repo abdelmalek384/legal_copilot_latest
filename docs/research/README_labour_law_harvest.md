@@ -143,3 +143,6 @@ This folder contains free/public source discovery, metadata registers and extrac
 
 
 72. [Decision 272/2025 — domestic and overseas recruitment operations, Arabic extracts](../legal_evidence/labour_decision_272_2025_arabic_extracts_2026-11-23.md) — new extractable PDF reproduction and selected Arabic passages on licensing, capital/guarantees, agency duties, electronic recruitment security, pre-departure orientation and complaints; full article transcription, visual QA, rights and counsel review remain pending.
+
+
+73. [Decision 288/2025 — rest-break exceptions and arduous work, complete secondary Arabic text](../legal_evidence/labour_decision_288_2025_complete_secondary_arabic_text_2026-11-23.md) — all six operative articles transcribed from LawHub and issue-level metadata corroborated by Amiria Press/SIS catalogue; Gazette page-image comparison, OCR review, rights and counsel review remain pending.
