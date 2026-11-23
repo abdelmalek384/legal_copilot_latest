@@ -668,15 +668,13 @@ jobs:
       COPILOT_ENV: development
     steps:
       - name: Check out repository
-        if: ${{ !cancelled() && steps.install_locked_dependencies.outcome == 'success' }}
         uses: actions/checkout@v7
       - name: Set up Python
-        if: ${{ !cancelled() && steps.install_locked_dependencies.outcome == 'success' }}
         uses: actions/setup-python@v7
         with:
           python-version: '3.12'
       - name: Install hash-locked application dependencies
-        if: ${{ !cancelled() && steps.install_locked_dependencies.outcome == 'success' }}
+        id: install_locked_dependencies
         run: python -m pip install --require-hashes -r requirements-py312.lock
       - name: Test passage annotation and client retrieval contracts
         if: ${{ !cancelled() && steps.install_locked_dependencies.outcome == 'success' }}
