@@ -1454,13 +1454,15 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("Original file is unavailable or was purged under the retention policy.", page)
 
     def test_matter_extraction_review_discloses_ocr_and_partial_page_status(self):
-        start = HTML.index("const renderChunkReviewCards=")
-        end = HTML.index("body=h('div',{className:'card'},intelligencePanel", start)
+        start = HTML.index("const renderChunkReviewCards=()=>{")
+        end = HTML.index("const renderAnalysis=()=>{", start)
         page = HTML[start:end]
-        self.assertIn("reviewDoc.ocr_used===true||reviewDoc.ocr_used===1", page)
-        self.assertIn("reviewDoc.extraction_status==='partial_text_ocr_unavailable'", page)
+        self.assertIn("item.doc.ocr_used===true||item.doc.ocr_used===1", page)
+        self.assertIn("item.doc.extraction_status==='partial_text_ocr_unavailable'", page)
         self.assertIn("const extractedPage=chunk.page!==undefined&&chunk.page!==null&&chunk.page!==''?chunk.page:chunk.page_number", page)
-        self.assertIn("value:chunk.page!==undefined&&chunk.page!==null&&chunk.page!==''?chunk.page:(chunk.page_number??'')", page)
+        self.assertIn("OCR was used; verify the transcription against the original file", page)
+        self.assertIn("Text extraction is partial; OCR was unavailable for some pages", page)
+        self.assertIn("...(ocrUsed||partialExtraction?[extractionDisclosure]:[])", page)
 
 
     def test_matter_ask_explains_verified_corpus_abstention(self):
