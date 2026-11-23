@@ -5,7 +5,7 @@
   "source_file": "static/index.html",
   "source_commit": "d609fdf4e9f608ab7c3b1c6a9cba2426a7311112",
   "generated_on": "2026-11-23",
-  "entry_count": 1572,
+  "entry_count": 1573,
   "entries": [
     {
       "id": "AR-0001",
@@ -17455,6 +17455,15 @@
     {
       "id": "AR-1572",
       "arabic": "لا توجد مستندات قانونية متحققة متاحة؛ سيمتنع المساعد عن التخمين حتى تتوفر مصادر مستوفية للمراجعة.",
+      "source_file": "static/index.html",
+      "source_lines": [
+        3396
+      ],
+      "review_status": "pending_native_review"
+    },
+    {
+      "id": "AR-1573",
+      "arabic": "لا توجد مستندات قانونية متحققة متاحة؛ سيمتنع المساعد عن التخمين. أضف مصادر مستوفية للمراجعة لبدء البحث.",
       "source_file": "static/index.html",
       "source_lines": [
         3396
