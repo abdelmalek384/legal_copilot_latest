@@ -778,3 +778,209 @@ Additional acquisition in this pass:
 - Law 170/2025 Article 11: binding force of central unit recommendations only after Cabinet approval captured verbatim.
 - Official State Ownership Policy 2026–2030: official document acquired as policy instrument, not legislation.
 - New linked government institution: central State-Owned Companies Unit (وحدة الشركات المملوكة للدولة), created under Law 170/2025 Article 2.
+
+
+## 10. Law 172/2025 — Drinking Water and Sanitation Utility Regulation
+
+### Source, metadata and full-text status
+
+- **Instrument:** Law 172/2025 بإصدار قانون تنظيم مرفق مياه الشرب والصرف الصحي.
+- **Official Gazette:** issue 35 مكرر, 1 September 2025.
+- **Issuance:** 1 September 2025.
+- **Commencement:** after six months from date of issuance (issuing Article 6); nominally 1 March 2026, subject to statutory time computation.
+- **Official Gazette archive:** SIS Amiri Press collection record: https://mediadr.sis.gov.eg/handle/123456789/107535
+- **Official Gazette scan reproduction:** https://gate.ahram.org.eg/media/News/2025/9/3/2025-638925114735791860-579.pdf
+- **Official Amiri Press searchable text:** https://www.alamiria.com/Sec/TashTxt?id=62hcpQwNrKI%3D (site request timed out in this session; search index returns the Arabic text).
+- **Full Arabic text (79 numbered articles):** https://lawhub.info/eg/?p=15525
+- **Secondary article-by-article text:** https://abdelazizandpartners.com/legal-library/water-sanitation-utility-172-2025/
+- **Additional text source (its title claims 85 articles; the Gazette/LawHub numbering ends at Article 79, so do not use the “85” label as article count):** https://alhasswalawfirm.com/law-library/law-172-2025
+- **UNEP/FAO legislation record and attachment:** https://leap.unep.org/en/countries/eg/national-legislation/law-no-172-2025-law-regulating-drinking-water-and-sanitation
+
+The Official Gazette record is a new primary-source locator; the Amiri Press direct page timed out, but the Gazette PDF is indexed and the full 79-article Arabic text was retrieved from a secondary source. The full article text has not yet been independently proofread page-by-page against the Gazette scan.
+
+### Issuing Articles 1–6 — Arabic text
+
+**Article 1 — scope:**
+> مع عدم الإخلال بأحكام الاتفاقيات الدولية السارية فى جمهورية مصر العربية يعمل بأحكام هذا القانون والقانون المرافق فى شأن تنظيم جميع الأنشطة والخدمات المتعلقة بمرفق مياه الشرب والصرف الصحى.
+
+**Article 2 — transition for existing service providers:**
+> يلتزم مقدمو أى من خدمات مرفق مياه الشرب أو الصرف الصحى الذين يزاولون النشاط فى تاريخ العمل بهذا القانون والقانون المرافق بتوفيق أوضاعهم طبقاً لأحكامهما خلال خمس سنوات تبدأ من تاريخ العمل باللائحة التنفيذية للقانون المرافق.
+>
+> ويلتزم مقدمو أى من خدمات مرفق مياه الشرب أو الصرف الصحى، المخاطبون بحكم الفقرة الأولى من هذه المادة، غير المستوفين لشروط الحصول على رخصة دائمة وفقاً للشروط والأحكام الواردة بالقانون المرافق، بالتقدم إلى جهاز تنظيم مرفق مياه الشرب والصرف الصحى وحماية المستهلك خلال مدة لا تجاوز عاماً من تاريخ العمل باللائحة التنفيذية للقانون المرافق للحصول على رخص مؤقتة لمزاولة النشاط.
+>
+> ويكون منح الرخص المؤقتة وفقاً للضوابط والشروط الواردة بالباب الرابع من القانون المرافق.
+>
+> وخلال مدة توفيق الأوضاع يُستثنى مقدمو خدمات مرفق مياه الشرب أو الصرف الصحى الحاصلون على رخص مؤقتة من استيفاء الاشتراطات الفنية ومعايير الأداء المنصوص عليها فى المواد (٣٠/ فقرة ثانية، ٣١، ٣٣) من القانون المرافق.
+>
+> وذلك كله على النحو الذي تحدده اللائحة التنفيذية للقانون المرافق.
+>
+> ويجوز لمجلس الوزراء، بناء على عرض الوزير المختص بشئون الإسكان والمرافق والمجتمعات العمرانية مد المهلة المنصوص عليها بالفقرة الأولى من هذه المادة لمدة أخرى مماثلة إذا دعت الضرورة لذلك.
+
+**Article 3 — reorganization of regulator and repeal of Decree 136/2004:**
+> يحل جهاز تنظيم مرفق مياه الشرب والصرف الصحى وحماية المستهلك المنظم وفق أحكام القانون المرافق محل جهاز تنظيم مياه الشرب والصرف الصحى وحماية المستهلك المنشأ بموجب قرار رئيس الجمهورية رقم ١٣٦ لسنة ٢٠٠٤، وتئول إليه ما له من حقوق وما عليه من التزامات، ويُنقل العاملون بجهاز تنظيم مياه الشرب والصرف الصحى وحماية المستهلك إلى الجهاز المعاد تنظيمه بذات حالاتهم الوظيفية وأجورهم وبدلاتهم وإجازاتهم ومزاياهم النقدية والعينية.
+>
+> ويُلغى قرار رئيس الجمهورية رقم ١٣٦ لسنة ٢٠٠٤، كما يُلغى كل حكم يخالف أحكام هذا القانون والقانون المرافق.
+
+**Article 4 — industrial-zone utility costs:**
+> مع عدم الإخلال بالتراخيص الممنوحة لإقامة وترفيق وإدارة المناطق الصناعية تتحمل الجهات التي تتولى إشراف وإدارة المناطق والمدن الصناعية بجميع تكاليف التشغيل والصيانة وأعمال الإحلال والتجديد وإعادة التأهيل والتوسعات اللازمة لجميع منشآت وشبكات مياه الشرب والصرف الصحى والصرف الصناعى المنشأة بتلك المناطق والمدن لضمان استمرارية تشغيلها بالكفاءة المطلوبة.
+
+**Article 5 — executive regulation and interim continuity:**
+> يُصدر رئيس مجلس الوزراء، بناء على عرض الوزير المختص بشئون الإسكان والمرافق والمجتمعات العمرانية اللائحة التنفيذية للقانون المرافق خلال ستة أشهر من تاريخ العمل به.
+>
+> وإلى أن تصدر اللائحة التنفيذية للقانون المرافق يستمر العمل باللوائح والقرارات السارية بما لا يتعارض مع أحكام هذا القانون والقانون المرافق.
+
+**Article 6 — publication/commencement:**
+> ينشر هذا القانون في الجريدة الرسمية، ويُعمل به بعد مرور ستة أشهر من تاريخ صدوره.
+>
+> يُبصم هذا القانون بخاتم الدولة، ويُنفذ كقانون من قوانينها.
+
+### Substantive Articles — exact Arabic extracts of particular administrative importance
+
+**Article 1 — definitions:** defines the Ministry and Minister of Housing, the regulator, public utility, water/sewer facilities and networks, industrial wastewater, tariffs, service creator/provider and recipient. Among its express definitions:
+> مرفق مياه الشرب والصرف الصحى: المرفق العام المختص بإنشاء وإدارة وتشغيل وصيانة جميع ما يتعلق بمياه الشرب والصرف الصحى.
+>
+> منشآت مياه الشرب: العقارات الخاصة بأنشطة وخدمات مياه الشرب كمحطات المياه الرئيسية والروافع بمختلف طاقاتها، أو العقارات الملحقة أو المرتبطة أو ذات الصلة بها...
+>
+> شبكات مياه الشرب: خطوط المياه الرئيسية أو الفرعية أينما كانت، ووصلات المياه حتى عدادات متلقى الخدمة...
+>
+> الصرف الصناعي: المخلفات السائلة التى تنتج من الأنشطة الصناعية والتجارية والطبية، والحيوانية، وكذا التصرفات الناتجة من المنشآت ذات الأغراض المختلفة، والتي تختلف خصائصها عن خصائص الصرف الصحى الآدمى...
+
+**Article 3 — administrative removal of encroachments:**
+> يحظر التعدى على منظومة مياه الشرب أو الصرف الصحى بأى وسيلة كانت، وحال وقوع هذا التعدى يكون لرئيس الجهة الإدارية المختصة أو من يفوضه سلطة إزالة هذا التعدى بالطريق الإدارى على نفقة المتعدى دون الإخلال بالمسئولية الجنائية والمدنية له.
+
+**Article 4 — network connections and discharges:**
+> مع مراعاة أحكام القانون رقم ٩٣ لسنة ١٩٦٢ في شأن صرف المخلفات السائلة، والقانون رقم ٢٧ لسنة ١٩٧٨ فى شأن تنظيم الموارد العامة للمياه اللازمة للشرب والاستعمال الآدمى، يُحظر تركيب أية توصيلات على شبكات مياه الشرب أو الصرف الصحى، أو صرف مياه الصرف الصحى، عن طريق الكسح أو باستعمال أى وسائل أخرى على شبكة الصرف الصحى إلا بموافقة مسبقة من مقدمي الخدمة، بعد الحصول على موافقة الجهة الإدارية المختصة.
+>
+> كما يُحظر صرف أى مخلفات سائلة غير الصرف الصحى على شبكات الصرف الصحى إلا بموافقة مسبقة من مقدمى الخدمة، بعد الحصول على موافقة الجهة الإدارية المختصة، وبعد معالجتها وفقاً للاشتراطات المقررة بالتشريعات المنظمة لذلك، وطبقاً للقدرات الاستيعابية الهيدروليكية لعناصر منظومة الصرف الصحى ومواقع معالجة مياه الصرف الصحى.
+>
+> وذلك كله على النحو الذي تحدده اللائحة التنفيذية لهذا القانون، واللوائح المعتمدة لمقدمي الخدمة.
+
+**Article 5 — industrial wastewater:**
+> يُحظر على أى شخص طبيعي أو اعتباري صرف مياه الصرف الصناعى على شبكات الصرف الصحى إلا بموافقة مسبقة من مقدمي الخدمة.
+
+**Article 9 — coordination before planning/building permissions:**
+> تلتزم الجهة الإدارية المختصة بالتنسيق مع مقدمي الخدمة كل في نطاق اختصاصه قبل إصدار أى قرارات باعتماد مخططات تفصيلية، أو إنشاء تقاسيم، أو إصدار أي تراخيص بناء أياً كانت الأنشطة المصرح بها لضمان توافر خدمات مياه الشرب والصرف الصحى بها، أو دراسة كيفية توصيل خدمات مياه الشرب والصرف الصحي لها حال عدم توافرها وتحديد الجهة المسئولة عن إنشاء تلك المرافق.
+>
+> كما تلتزم الجهة الإدارية المختصة بالتنسيق مع مقدمى الخدمة كل في نطاق اختصاصه قبل إصدار تراخيص مزاولة الأنشطة بجميع أنواعها لدراسة مدى تأثيرها على شبكات مياه الشرب والصرف الصحى بالمناطق القائمة.
+
+**Article 13 — legal status of regulator:**
+> جهاز تنظيم مرفق مياه الشرب والصرف الصحى وحماية المستهلك هيئة عامة خدمية، يتمتع بالشخصية الاعتبارية، ويتبع مجلس الوزراء، ويكون مقره الرئيس مدينة القاهرة، ويجوز بقرار من مجلس إدارة الجهاز إنشاء فروع له في المحافظات.
+
+**Article 15 — regulator's powers (selected items):**
+> يتولى الجهاز الاختصاصات اللازمة لتحقيق أهدافه ، وله على الأخص:
+> ١- تحديد الأسس والقواعد والضوابط العامة التي يلتزم بها أطراف مرفق مياه الشرب والصرف الصحي التي تضمن توازن المصالح بين متلقى الخدمة ومقدمها، وتعزز المنافسة الحرة والمشروعة.
+> ٢- وضع القواعد والإجراءات التى تكفل حماية حقوق متلقى الخدمة.
+> ٣- التحقق من استيفاء مشروعات مرفق مياه الشرب والصرف الصحى للاشتراطات الفنية ومعايير الأداء اللازمة، وذلك قبل البدء فى مزاولة النشاط أو تقديم الخدمة وخلال فترة مزاولة النشاط أو تقديم الخدمة.
+> ٤- منح التراخيص الخاصة بمزاولة أى من أنشطة مرفق مياه الشرب والصرف الصحى المختلفة على مستوى الجمهورية وتقديم أى من الخدمات المتعلقة بها، وذلك وفقاً لأحكام هذا القانون ولائحته التنفيذية.
+> ٦- مراجعة واعتماد نماذج العقود والاتفاقات وتعديلاتها، والتي تنظم العلاقة بين مقدمى الخدمة بعضهم البعض، وبين مقدمي الخدمة ومتلقى الخدمة.
+> ١٦- بحث شكاوى متلقى الخدمة بما يكفل تحقيق التوازن بين مصالحهم ومصالح مقدمى الخدمة، والعمل على الحد من المنازعات التى قد تنشأ في هذا الشأن.
+> ١٩- النظر فى المنازعات التى تنشأ بين المرخص لهم من مقدمي الخدمة بعضهم البعض، وبين مقدمى ومتلقى الخدمة.
+> ٢٢- الرقابة والتفتيش على مقدمي خدمات مرفق مياه الشرب والصرف الصحى للتأكد من التزامهم بالتراخيص الصادرة لهم من الجهاز وبالقوانين واللوائح والمواصفات القياسية المصرية...
+
+**Article 16 — Board of regulator:** Board chaired by the competent Minister, with executive and consumer representatives and other relevant authorities (full composition in the source text).
+
+**Article 29 — provider obligations:**
+> تضمن التزامات مقدمى الخدمة تجاه متلقى تلك الخدمات على الأخص ما يلى:
+> ١- عدم التمييز والمساواة، وتكافؤ الفرص، والشفافية فى تقديم أى من خدمات مرفق مياه الشرب والصرف الصحى المختلفة.
+> ٢- الالتزام بضمان استمرارية تقديم خدمات مرفق مياه الشرب أو الصرف الصحى المختلفة.
+> ٣- توفير مياه صالحة للشرب بكميات مناسبة طبقاً للاحتياجات والدراسات المعتمدة لتغطية أوجه الاستخدامات المختلفة، وذلك طبقاً لجميع المواصفات والمعايير والاشتراطات المقررة.
+> ٥- تلقى وتسجيل جميع الشكاوى المقدمة من متلقى أى من خدمات مرفق مياه الشرب أو الصرف الصحى المختلفة، وبحثها، والتحقيق فيها، والرد عليها خلال خمسة عشر يوماً بحد أقصى من تاريخ وصول الشكوى لمقدم الخدمة.
+> ٦- الالتزام بإتاحة جميع المعلومات المتعلقة بتقديم أى من خدمات مرفق مياه الشرب أو الصرف الصحى المختلفة.
+> ٧- عدم القيام بأى ممارسات احتكارية من أي نوع كانت أثناء تقديم أى من خدمات مرفق مياه الشرب والصرف الصحي المختلفة.
+
+**Article 42 — public property status of infrastructure:**
+> تتضمن منشآت مرفق مياه الشرب والصرف الصحى على سبيل المثال وليس الحصر الآتي:
+> ١- شبكات ومحطات مياه الشرب بجميع أنواعها، وما يرتبط بها من ملحقات.
+> ٢- شبكات ومحطات الصرف الصحى بجميع أنواعها، وما يرتبط بها من ملحقات.
+> ٣- خطوط الإمداد بمياه الشرب وخطوط الصرف الصحى بأقطارها المختلفة.
+> ٤- خزانات مياه الشرب والصرف الصحى.
+> ٥- المعدات الأخرى التابعة للهيئات، والأجهزة، والشركات القائمة على إنشاء وتقديم وإدارة خدمات مياه الشرب والصرف الصحى.
+> ٦- شبكة المعلومات، والبنية المعلوماتية الخاصة بإدارة وتشغيل منظومة مياه الشرب، أو الصرف الصحى.
+>
+> وتعد منشآت وشبكات مياه الشرب والصرف الصحى المخصصة للمنفعة العامة من الأموال العامة، ولا يجوز التصرف فيها أو الحجز عليها أو تملكها أو كسب أي حق عيني عليها بالتقادم.
+
+**Article 50 — licensing:**
+> يُحظر على مقدمى الخدمة مزاولة النشاط إلا بترخيص من الجهاز، يصدر وفقاً للأسس والضوابط والقواعد والاشتراطات والإجراءات الصادرة عن مجلس إدارة الجهاز طبقاً لأحكام هذا القانون ولائحته التنفيذية.
+>
+> ويجب على كل من يزاول أياً من أنشطة مرفق مياه الشرب والصرف الصحى المختلفة أن يتخذ شكل الشخص الاعتباري.
+
+**Article 55 — administrative sanctions:** regulator may issue written warning, order removal at violator's expense, suspend a licence for up to one year while preserving continuity of service and recipient rights, or revoke the licence and take steps to protect recipients, including managing facilities for the violator's account and expense.
+
+**Article 57 — tariff:** regulator sets transparent economic calculation rules; Minister presents for Cabinet approval; Cabinet may fund targeted lower tariffs with Ministry of Finance paying the difference to providers annually.
+
+**Article 60 — meter refusal and judicial access:**
+> يلتزم مقدم الخدمة بتركيب عداد أو أكثر لقياس استهلاك مياه الشرب لمتلقى الخدمة بمجرد توافر شروط الانتفاع بها، وذلك وفقاً للضوابط التي تحددها اللائحة التنفيذية لهذا القانون.
+>
+> وفى حالة رفض مقدم الخدمة لطلب تركيب العداد يجب أن يكون الرفض مسبباً، ويجوز لمقدم الطلب أن يتظلم إلى الجهاز وتكون قرارات الجهاز بالبت في التظلم ملزمة لمقدم الخدمة.
+>
+> وذلك كله دون الإخلال بحق ذوى الشأن في اللجوء للقضاء.
+
+**Article 61 — billing disputes:** providers must read meters regularly, bill for no more than one month excluding arrears, and maintain an internal complaint system; the regulator also receives and monitors billing complaints.
+
+**Article 74 — unlicensed service:**
+> مع مراعاة حكم المادة الثانية من مواد إصدار هذا القانون، يعاقب بالحبس وبغرامة لا تقل عن خمسين ألف جنيه ولا تزيد على خمسمائة ألف جنيه، أو بإحدى هاتين العقوبتين، كل من قام بمزاولة أنشطة مرفق مياه الشرب والصرف الصحى دون ترخيص من الجهاز.
+
+**Article 78 — corporate and actual-manager liability:**
+> يُعاقب المسئول عن الإدارة الفعلية للشخص الاعتبارى المخالف بذات العقوبات المقررة عن الأفعال التي ترتكب بالمخالفة لأحكام هذا القانون متى ثبت علمه بها، وكانت المخالفة قد وقعت بسبب إخلاله بواجبات وظيفته.
+>
+> ويكون الشخص الاعتبارى مسئولاً بالتضامن عن الوفاء بما يحكم به من عقوبات مالية وتعويضات بالتطبيق لأحكام هذا القانون.
+
+### Executive regulation status and transitional rules
+
+- Article 5 of the issuing provisions required a Prime Minister executive regulation within six months from the law's effective date. Since Article 6 makes the law effective six months after 1 September 2025, the nominal deadline is around 1 September 2026.
+- Targeted searches of the Amiri Press, Gazette archive, and legal repositories in this pass did **not** locate a separately identifiable executive regulation decision for Law 172/2025. This is a search result, not proof that none has been issued.
+- Until the executive regulation is issued, Article 5 expressly continues existing regulations and decisions to the extent not inconsistent with the new law.
+- Existing service providers have five years from the effective date of the executive regulation to regularize their status; providers not qualifying for permanent licences must seek temporary licences within one year from the regulation's effective date (issuing Article 2).
+- The Prime Minister may extend the five-year adjustment period for another equivalent period if necessary, on the competent Minister's proposal.
+- Presidential Decree 136/2004 establishing the former regulator is expressly repealed; its rights, liabilities and employees transfer to the reorganized statutory regulator (issuing Article 3).
+
+### Jurisdiction and public-law character
+
+- The regulator is expressly a **public service authority** with legal personality reporting to the Cabinet (Article 13).
+- Its licensing, inspection, enforcement and tariff functions are statutory regulatory powers; individual licence and administrative sanction decisions should be analyzed as public-law acts.
+- Article 15 gives the regulator a role in disputes between licensees and between providers and recipients; Article 60 expressly preserves access to the courts after the regulator decides a meter-installation grievance.
+- Not every consumer/provider dispute is necessarily an administrative court case: distinguish regulatory decisions by the public authority from contractual/private-law disputes between providers and recipients, and check the statutory text and the identity/capacity of the defendant.
+- Infrastructure designated for public benefit is public money (Article 42), protected against disposition, attachment, private ownership and acquisitive prescription.
+
+## 11. Minister of Health Decision 182/2025 — drinking-water quality standards
+
+### Metadata and source
+
+- **Instrument:** Minister of Health and Population Decision 182/2025 بشأن المواصفات والمعايير اللازم توافرها لاعتبار المياه صالحة للشرب وللاستعمال الآدمي.
+- **Issue:** Al-Waqa'i al-Misriyya issue 156, 17 July 2025.
+- **Decision date:** 12 June 2025.
+- **Commencement:** day after publication, 18 July 2025.
+- **Official Amiri Press searchable text:** https://www.alamiria.com/Sec/TashTxt?id=gekAwOqbqcc%3D
+- **Gazette scan reproduction:** https://www.vetogate.com/Upload/libfiles/552/8/542.pdf
+- **Secondary full text:** https://ahmedazimelgamel.blogspot.com/2025/07/182-2025.html
+- **EastLaws metadata:** https://www.eastlaws.com/legislation-full-text/ar/egypt/health-population-minister-decision/17-07-2025/no-182?id=2171525&type=1
+
+### Articles 1–4 — exact Arabic text
+
+**Article 1:**
+> يعمل فى شأن المواصفات والمعايير اللازم توافرها لاعتبار المياه صالحة للشرب وللاستعمال الآدمى بالمواصفات والمعايير الواردة بالجداول المرافقة لهذا القرار.
+
+**Article 2:**
+> تختص الإدارة المركزية لمعامل الصحة العامة بوزارة الصحة والسكان وما يتبعها فنياً من المعامل المشتركة بمديريات الشئون الصحية بالمحافظات بإجراء الفحوص والتحاليل الخاصة بالمياه للتأكد من صلاحيتها للشرب وللاستعمال الآدمى.
+
+**Article 3:**
+> يكون تنفيذ المعايير وخطط الرصد الذاتى والتفتيش الدورى وفقاً لما هو وارد بالملحقين رقمى (١، ٢) المرافقين لهذا القرار.
+
+**Article 4:**
+> ينشر هذا القرار فى الوقائع المصرية، ويعمل به من اليوم التالى لتاريخ نشره ويلغى كل قرار يخالف أحكامه.
+
+### Legal-effect classification and relationship to Law 172/2025
+
+This is a ministerial regulatory decision published in the Official Gazette supplement *Al-Waqa'i al-Misriyya*. It is not merely guidance: its operative Articles 1–4 make the attached water quality specifications, self-monitoring and periodic inspection plans the applicable standards. The numerical schedules and annexes are substantive and must be preserved as structured tables, not paraphrased.
+
+It predates Law 172/2025's commencement and is expressly within the class of existing regulations/decisions that continue under Law 172/2025 issuing Article 5 to the extent they do not conflict with the new law. The 2007 Decision 458/2007 is an antecedent and is superseded to the extent inconsistent with Decision 182/2025 (Article 4 repeals conflicting decisions).
+
+**Outstanding:** retrieve and transcribe both annexes, including each physical/chemical/microbiological parameter, limit, sampling frequency, monitoring plan and inspection protocol. Do not replace the tables with a narrative summary.
+
+## 12. Additional current-law and regulation acquisition gaps
+
+1. **Law 172/2025 executive regulation:** continue checking the Official Gazette, Amiri Press and Cabinet for the Prime Minister decision due within six months from commencement. Record the decision number, Gazette issue, commencement and any repeal/savings.
+2. **Law 172/2025 subordinate instruments:** identify regulator board decisions, licensing regulations, approved contract forms, tariffs, service standards and enforcement procedures.
+3. **Decision 182/2025 annexes:** extract both annexes with complete tables and verify the source scan.
+4. **Regulator organization:** retrieve the Prime Minister's decision organizing the reorganized Water and Wastewater Regulatory Authority under Article 3, plus any board formation decisions.
+5. **Administrative litigation:** collect judgments reviewing the regulator's licence decisions, tariffs, service interruption decisions, water-quality enforcement and public utility disputes; preserve whether the ruling is binding precedent or case-specific.
