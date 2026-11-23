@@ -3125,6 +3125,56 @@
       "terms_checked_on": "2026-11-23",
       "bulk_download_or_api": "Request-copy restricted; no bulk/API permission",
       "required_next_action": "Use ordinary request-a-copy route if the full PDF is needed; otherwise use secondary consolidated text for discovery only and preserve provenance/rights flags. Compare against original Gazette issue284 pages when authorized."
+    },
+    {
+      "source_id": "EG-SIS-GAZETTE-ADMIN-JUDICIARY-1984-2019",
+      "authority": "Egyptian State Information Service (SIS), Official Gazette PDF repository",
+      "source_page": "https://sis.gov.eg/",
+      "material_types": [
+        "Official Gazette issue31 dated 2 August 1984; Law136/1984 amending State Council Law47/1972",
+        "Official Gazette issue25 مكرر (ب) dated 26 June 2019; Law77/2019 amending several judicial statutes including Laws117/1958 and47/1972"
+      ],
+      "access_status": "Both official SIS-hosted Gazette PDFs located; Law136 PDF opened and Arabic text extracted; Law77 PDF located but full local byte capture and checksum not completed.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": "2026-11-23",
+      "permission_evidence": "Official government hosting and public Gazette availability do not establish bulk extraction, commercial reuse, or redistribution permission. Use as primary verification references; no production-corpus ingestion until repository legal-text rights gate is cleared.",
+      "bulk_download_or_api": "No bulk/API permission identified",
+      "required_next_action": "Capture PDF bytes through lawful access, compute SHA-256, compare transcriptions page-by-page, and obtain a source-specific rights assessment."
+    },
+    {
+      "source_id": "EG-ELMODAWANA-714-2019",
+      "authority": "El Modawana Egyptian legal text website",
+      "source_page": "https://www.elmodawanaeg.com/",
+      "material_types": [
+        "Full Arabic transcription of Prime Minister Decision714/2019 amending Civil Service Executive Regulation Article189"
+      ],
+      "access_status": "Full text opened 2026-11-23; page exposes a link described as the official image, but Gazette image/PDF has not yet been obtained.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": "2026-11-23",
+      "permission_evidence": "No affirmative license for collection, commercial reuse, or redistribution identified. Used as a secondary text source for discovery and legal mapping only.",
+      "bulk_download_or_api": "No bulk/API permission identified",
+      "required_next_action": "Obtain the official Gazette image through the page's ordinary link or an official archive; verify exact text and expiry clause."
+    },
+    {
+      "source_id": "EG-MELES-GAZETTE-2026-20MA-DECISION1509",
+      "authority": "Middle East Library for Economic Services DSpace repository; item identifies Amiri Press as Gazette publisher",
+      "source_page": "https://dspace.id.com.eg/items/a636667f-d1cd-4ba1-b535-c38a243f41cb",
+      "material_types": [
+        "Official Gazette issue20 مكرر (أ), 18 May 2026",
+        "PM Decision1509/2026; PDF attachment 213.32 KB"
+      ],
+      "access_status": "Catalogue metadata and attachment listing accessible; a separate Gazette PDF mirror and full secondary text also located. Local DSpace PDF bytes and hash not captured.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://dspace.id.com.eg/items/a636667f-d1cd-4ba1-b535-c38a243f41cb",
+      "terms_checked_on": "2026-11-23",
+      "permission_evidence": "No item-specific reuse license identified in the accessible catalogue metadata. The secondary MKSEgypt page displays CC BY 4.0 for site content; that license does not automatically apply to the Gazette scan or third-party material.",
+      "bulk_download_or_api": "No bulk/API permission identified",
+      "required_next_action": "Obtain the Gazette PDF through the repository's ordinary download link; preserve the scan separately from the CC BY secondary transcription and verify every amended article."
     }
   ]
 }
