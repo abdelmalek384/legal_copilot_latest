@@ -7206,7 +7206,7 @@ def compare_accessible_document_versions(
             provenance.append({
                 "chunk_id": int(row["id"]),
                 "reference": row["ref"],
-                "page": row["page"],
+                "page": int(row["page"]) if row["page"] is not None else None,
                 "start": start,
                 "end": total_chars,
             })
