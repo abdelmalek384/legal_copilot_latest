@@ -34,7 +34,7 @@ Counting method:
 - River transport: Law 167/2022 has 7 issuing articles + 21 attached-law articles (28).
 - Railways: Law 152/1980 has 28 articles; Law 149/2006 has 2 issuing articles; PM Decision 3452/2023 has 4 issuing articles (34).
 - Metro/tunnels: Law 113/1983 has 21 articles.
-- Maritime/ports/inland navigation: Law 30/1975 has 17 articles; Law 4/1998 has 3; Law 34/2014 has 2 (all on official SCA authority pages); Law 6/1967 has 5; Law 1/1996 has 8; Law 22/1998 has 2; Law 10/2017 has 3; Law 10/1956 has 22; Minister Decision 282/1998 has 73 (the latter seven items are secondary transcriptions).
+- Maritime/ports/inland navigation: Law 30/1975 has 17 articles; Law 4/1998 has 3; Law 34/2014 has 2 (all on official SCA authority pages); Law 6/1967 has 5; Law 1/1996 has 8; Law 22/1998 has 2; Law 10/2017 has 3; Law 10/1956 has 22; Minister Decision 282/1998 has 73 (the latter six items are secondary transcriptions).
 - Of the 218 complete provisions, 22 were read on official SCA authority pages and 196 in secondary text sources. These are complete provisions read, not necessarily locally transcribed verbatim. They were **not** locally transcribed verbatim into the repository and were **not** visually verified against official Gazette page images. Article maps, version notes, source URLs and remaining acquisition work are preserved in the tranche notes.
 - Additional amendments/decisions were identified at metadata or selected-clause level but their complete article bodies are not counted.
 - One corrigendum to Law 167/2022 (reported Gazette issue 48 bis (ب), 6 Dec 2022) is separately tracked as a correction/version event and is not counted as a distinct amending law.
@@ -50,7 +50,7 @@ Counting method:
 - No legal-currentness certification is made.
 
 ## 4. Deduplication decisions
-- The national acquisition CSV had no exact matching row for the 19 tranche instruments at the time of the check.
+- The national acquisition CSV had no exact matching row for the 31 tranche instruments at the time of the check.
 - Existing collection checkpoints 30 and 38 already cross-reference Tourism Law 8/2022, Executive Regulation 705/2023 and River Transport Law 167/2022. Those are useful prior leads, but the canonical CSV had no Law 167/2022 instrument row; no duplicate tourism work was undertaken.
 - The Agent 8 registers use IDs RA8-053 through RA8-083, continuing the prior Agent 8 sequence RA8-001 through RA8-052.
 - The national master index and canonical acquisition CSV were not modified. The Agent 8 notes/registers are separate artifacts pending owner review and later canonical reconciliation.
