@@ -9755,6 +9755,35 @@
           "status": "located_2026-11-23"
         }
       ]
+    },
+    {
+      "document_id": "EG-PM-DECISION-241-2024-INVESTMENT-SPENDING",
+      "official_title": "قرار رئيس مجلس الوزراء رقم 241 لسنة 2024 بشأن ترشيد الإنفاق الاستثماري بالجهات الداخلة في الموازنة العامة للدولة والهيئات العامة الاقتصادية في ظل الأزمة الاقتصادية الحالية",
+      "document_type": "prime_minister_decision",
+      "law_number": "241",
+      "law_year": 2024,
+      "source_id": "EG-MKSEGYPT",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "secondary_full_text_located_official_locator_located",
+      "text_verification_note": "Full Arabic secondary transcription located. Official MOF index confirms Official Gazette issue5 مكرر, 4 February 2024; DSpace catalogue lists Arabic PDF. Expressly limited to FY2023/2024 and expires at year end; historical unless later extension/reenactment is found. Original Gazette pages and PDF hash outstanding.",
+      "source_urls": [
+        {
+          "url": "https://mksegypt.org/ar/decisions/21747",
+          "source_role": "secondary full Arabic transcription; CC BY 4.0 site text",
+          "status": "located_2026-11-23"
+        },
+        {
+          "url": "https://mof.gov.eg/ar/legislation/decisions/cat-5fe2a20d7bfc600007cbce3a?page=4",
+          "source_role": "official Ministry of Finance locator; guidance only",
+          "status": "located_2026-11-23"
+        },
+        {
+          "url": "https://dspace.id.com.eg/items/42bc8d35-dc8d-487c-99b8-497d0cf063e1",
+          "source_role": "MELES DSpace catalogue listing Arabic and English PDFs; request-copy status",
+          "status": "located_2026-11-23"
+        }
+      ]
     }
   ]
 }
