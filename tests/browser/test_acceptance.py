@@ -1214,7 +1214,10 @@ class BrowserAcceptanceTests(unittest.TestCase):
             dialog.get_by_placeholder("عنوان القضية").fill(case_title)
             dialog.get_by_placeholder("اسم العميل (اختياري)").fill(f"عميل تجريبي {width}")
             dialog.get_by_role("button", name="حفظ القضية").click()
-            self.page.get_by_text(case_title, exact=True).wait_for(timeout=10000)
+            case_result = self.page.get_by_text(case_title, exact=True)
+            case_result.wait_for(timeout=10000)
+            case_result.click()
+            self.page.locator(".matter-section-nav").wait_for(state="visible", timeout=10000)
 
             self.page.locator(".matter-section-nav button").filter(has_text="العمل").click()
             deadline_nav = self.page.locator(".matter-subnav button").filter(has_text="المواعيد القانونية")
