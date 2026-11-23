@@ -322,3 +322,67 @@ The judgment's reasoning invokes equality, equal opportunity and access to the n
 - Law 137/2021: 4 operative provision units (Article 1, new Articles 27 bis and 32 bis, Article 2) transcribed from the Gazette PDF.
 - SCC judgment 47/44: official portal full judgment text located; operative disposition reproduced; Gazette publication/effect metadata outstanding.
 - One additive research file; no duplicate base-law file created.
+
+
+## 13. Local administration amendment and constitutional judgment — new article text
+
+### Law 84/1996 — amendment of Local Administration Law 43/1979
+
+**Instrument:** Law 84/1996 بتعديل بعض أحكام قانون نظام الإدارة المحلية الصادر بالقرار بقانون رقم 43 لسنة 1979.  
+**Gazette:** Official Gazette issue 24 مكرر, 21 June 1996.  
+**Issuance:** 12 June 1996.  
+**Commencement:** 22 June 1996, day after publication (Article 4).  
+**Source:** Laweg reproduction of Gazette text: https://www.laweg.net/framePlain.aspx?ItemID=19093&NID=19506&Type=6&action=ViewActivePages. The Ministry of Finance catalogue also lists Law 84/1996 as related to Law 43/1979 and labels its entry «سارٍ», with the standard Gazette-control disclaimer: https://mof.gov.eg/ar/legislation/legislation-5fe86a4f7bfc600007cbfc51.
+
+**Article 1 — affected provisions:** substitutes Local Administration Law 43/1979 Articles 3(1), 10, 39, 47, 59, 66, 75 bis, 76(1)–(2), 79(1)–(3), 83, 85, 86 and 97.
+
+**Replacement Article 3, first paragraph:**
+> يكون لكل وحدة من وحدات الإدارة المحلية مجلس شعبى محلى يشكل من أعضاء يتم انتخابهم عن طريق الانتخاب المباشر السرى العام وفقا لأحكام هذا القانون، على أن يكون نصف عدد الأعضاء على الأقل من العمال والفلاحين، وذلك طبقا لتعريف العامل والفلاح المنصوص عليه فى القانون رقم ٣٨ لسنة ١٩٧٢ فى شأن مجلس الشعب.
+
+**Replacement Article 75 bis:**
+> يكون انتخاب أعضاء المجالس الشعبية المحلية على اختلاف مستوياتها عن طريق الانتخاب المباشر السرى العام.
+> ويحدد لكل مرشح رمز يصدر به قرار من المحافظ.
+> وعلى الناخب أن يبدى رأيه باختيار العدد المطلوب انتخابه، وتعتبر باطلة جميع الأصوات المعلقة على شرط، أو التى تعطى لأكثر من العدد المطلوب، أو أقل من نصف هذا العدد، أو إذا أثبت الناخب رأيه على بطاقة غير التى سلمها إليه رئيس اللجنة، أو على ورقة عليها توقيع الناخب أو أى إشارة أو علامة أخرى تدل عليه.
+
+**Replacement Article 86 (election administration):**
+> مع مراعاة أحكام هذا القانون ولائحته التنفيذية، تجرى مديرية الأمن عملية الانتخاب لعضوية المجالس الشعبية المحلية طبقا للقواعد والإجراءات المنصوص عليها فى القانون رقم ٧٣ لسنة ١٩٥٦ بتنظيم مباشرة الحقوق السياسية، ويشترك فى الانتخاب الناخبون المقيدة أسماؤهم فى جداول الانتخاب بالوحدة المحلية التى يجرى فيها.
+> ويعلن المحافظ نتيجة الانتخاب ويدعو المجالس الشعبية المحلية المنتخبة إلى الاجتماع.
+> وفى جميع الأحوال يجب أن تجتمع هذه المجالس خلال ثلاثين يوما من تاريخ إعلان نتيجة الانتخاب.
+
+**Article 2 — dissolution and interim continuity:**
+> تحل المجالس الشعبية المحلية القائمة.
+> وتتولى لجان مؤقتة تضم جميع الأعضاء السابقين للجان الدائمة للمجالس الشعبية المحلية المنحلة تسيير الأمور الضرورية والعاجلة، وذلك فى نطاق اختصاص كل مجلس، لحين تشكيل المجالس المنتخبة وفق أحكام هذا القانون خلال مدة أقصاها عشرة أشهر من تاريخ العمل به.
+> وتعرض القرارات التى اتخذتها اللجان المؤقتة على المجالس المنتخبة فى أول اجتماع لها بعد تشكيلها لتقرر ما تراه بشأنها، فإذا لم تعرض أو عرضت ولم يوافق عليها المجلس زال ما كان لها من أثر، ما لم يقرر المجلس اعتماد نفاذها فى الفترة السابقة أو تسوية ما ترتب عليها من آثار بوجه آخر.
+
+**Article 3:** repeals the fourth paragraph of Article 79 and second paragraph of Article 82 of Law 43/1979.
+
+**Article 4:**
+> ينشر هذا القانون فى الجريدة الرسمية، ويعمل به من اليوم التالى لتاريخ نشره.
+
+**Currentness caution:** the replaced electoral provisions are historical versions and must not be treated as current without the subsequent amendments, constitutional transition and later legal/institutional developments. The existing repo record already captures Law 43/1979 and Laws 50/1981, 136/1984? (not a local-law amendment), 106/1987, 145/1988, 9/1989, 84/1996 and 96/2003 as amendment leads. Relationship metadata also lists Laws 168/1981 and 26/1982. These should be mapped by affected article and Gazette text, not merely listed as relations.
+
+### SCC judgment 2/16 (Constitutional) — local council electoral formula
+
+**Court:** Supreme Constitutional Court.  
+**Case:** الدعوى رقم ٢ لسنة ١٦ قضائية «دستورية».  
+**Session date:** 3 February 1996.  
+**Referral:** Administrative Court, Cairo, Individual and Entities Disputes Circuit, case 8821/46 judicial; referred after the underlying proceedings concerning Presidential Decision 337/1992 and Interior Minister Decision 5206/1992.  
+**Official court portal copy:** https://www.sccourt.gov.eg/DjangoPortalResources/Rules_Html/895_16_2_1_2.html  
+**Full text mirror:** https://mksegypt.org/public/ar/judgments-of-the-supreme-constitutional-court/15497
+
+**Operative disposition:**
+> حكمت المحكمة بعدم دستورية المواد (٣، ١٠، ٣٩، ٤٧، ٥٩، ٦٦، ٧٥ مكرراً) من قانون نظام الإدارة المحلية الصادر بالقرار بقانون رقم ٤٣ لسنة ١٩٧٩، وذلك فيما قررته من انتخاب عضو واحد فى كل مجلس من المجالس الشعبية المحلية بطريق الانتخاب الفردى، وانتخاب باقى أعضائه عن طريق القوائم الحزبية.
+
+**Reasoning / legal significance:** the judgment rejected the electoral arrangement that reserved one individual seat while the remaining seats were allocated through party lists. It held that the arrangement privileged party-affiliated candidates and impaired equality, equal opportunity and political participation. It treated the relevant local-council election provisions as unconstitutional only to the extent of the mixed individual/party-list formula; it did not strike down the entire Local Administration Law.
+
+**Interim effect expressly addressed by the Court:**
+> ... وكان استصحاب الطبيعة الكاشفة لأحكامها، وعملاً بأثرها الرجعى، مؤداه: أن يكون تكوين هذه المجالس باطلاً منذ انتخابها، إلا أن هذا البطلان لا يستتبع إسقاط ما اتخذته هذه المجالس من قرارات أو إجراءات منذ إنشائها وحتى تاريخ نشر هذا الحكم فى الجريدة الرسمية، بل تظل هذه القرارات والإجراءات وكذلك تصرفاتها الأخرى قائمة على أصلها من الصحة، وتبقى صحيحة ونافذة وذلك ما لم يتقرر إلغاؤها أو تعديلها من الجهة المختصة دستورياً، أو يقضى بعدم دستورية أحكامها من المحكمة الدستورية العليا، إن كان لذلك ثمة وجه آخر غير ما بنى عليه هذا الحكم.
+
+**Publication/effect gap:** the decision text states the preservation cut-off by reference to its Gazette publication date, but the Gazette issue/date for publication of this specific judgment has not yet been verified in this pass. Do not substitute the 3 February 1996 session date for the publication/effect date. Article 49 of SCC Law 48/1979 supplies the general rule: constitutional judgments bind all State authorities and all persons, and an invalidated statutory provision is not applied from the day after publication unless the judgment specifies otherwise.
+
+## 14. New local-government acquisition summary
+
+- Law 84/1996: 4 operative/transition articles; replacement text captured for Articles 3, 75 bis and 86 of Law 43/1979.
+- SCC judgment 2/16 (Constitutional): official court portal full-text URL acquired; operative ruling and transitional preservation paragraph captured.
+- The Law 84/1996 and judgment records are additive to existing Local Administration Law 43/1979 files; no duplicate base-law file created.
+- Local Administration Law 43/1979 amendment list to continue mapping: Laws 50/1981, 168/1981, 26/1982, 106/1987, 145/1988, 9/1989, 84/1996 and 96/2003. Law 50/1981 has official MoF Gazette text; Law 84/1996 has full Gazette reproduction; the others remain at mixed primary/secondary acquisition stages.
