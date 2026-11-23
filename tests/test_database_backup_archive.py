@@ -184,7 +184,9 @@ class RecoveryArchiveTransportTests(unittest.TestCase):
             self.skipTest(f"symlinks unavailable: {exc}")
         with self.assertRaises(DatabaseBundleError):
             upload_encrypted_bundle(
-                self.s3, self.kms, link, **self.config
+                self.s3, self.kms, link,
+                expected_sha256=hashlib.sha256(self.bundle.read_bytes()).hexdigest(),
+                **self.config,
             )
 
     def test_upload_rejects_source_truncated_after_open(self):
