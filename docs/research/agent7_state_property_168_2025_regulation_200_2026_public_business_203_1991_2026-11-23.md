@@ -1430,3 +1430,20 @@ The decision cites the Constitution, Public Business Sector Law 203/1991, and Pr
 - Law 154/2026: 2/2 issuing articles transcribed from the government-hosted Gazette PDF.
 - Decision 652/2026: 2 operative articles transcribed from the Gazette scan reproduction.
 - Law 170/2025: corrected to **5 issuing + 14 substantive = 19 article units**; all 14 substantive article texts are now represented in this file from the full secondary Arabic transcription cross-checked against the official Amiri Press searchable text. Original Gazette page-image comparison remains outstanding.
+
+
+## 21. Latest register update — 23 November 2026
+
+The register now contains **405 instrument records**. Since the 394-row baseline, eleven new non-duplicate instruments have been appended:
+- Laws 170/2025, 172/2025, 203/1991, 185/2020 and 154/2026;
+- Decisions 1590/1991, 948/2021, 182/2025, 1315/2026, 3660/2026 and 652/2026.
+
+Existing entries EG-0173 (Law 168/2025) and EG-0174 (Decision 200/2026) were enriched, not duplicated.
+
+Using the same revised unique-row keyword proxy described in Section 16, the updated register now yields:
+- **98/405 (24.2%)** rows with full-text indicators;
+- **48/405 (11.9%)** rows with partial-only indicators;
+- **146/405 (36.0%)** unique rows with at least one text-acquisition indicator;
+- **259/405 (64.0%)** rows without a matching indicator.
+
+This is a revised inventory evidence proxy, not a completeness percentage. It counts source text indicators and does not certify that every article is transcribed, current, authenticated or amendment-consolidated. The 13/13 domain discovery map remains 100%; whole-national-corpus completion remains not calculable.
