@@ -4639,5 +4639,7 @@ body:has(.research-layout){background:#f3f5f8;color:#1d2c42;font-family:Inter,"N
  #main .research-thread .research-answer-tabs{gap:4px!important;padding:3px!important}
  #main .research-thread .research-answer-tabs [role=tab]{min-height:40px!important;padding:7px 4px!important;font-size:11px!important}
 }
+/* Primary navigation must remain at least 44px high on compact phone layouts. */
+@media(max-width:760px){#side .primary-nav button{height:auto!important;min-height:46px!important;padding-block:11px!important}}
 </style>
 </html>
