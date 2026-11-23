@@ -420,6 +420,49 @@ class DocumentIntelligenceTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             build_date_mention_timeline([{"filename": "x.pdf", "candidates": []}])
 
+    def test_timeline_bounds_document_candidate_and_global_scans(self):
+        documents = [
+            {"document_id": "doc-1", "filename": "one.pdf", "candidates": [
+                {"kind": "date", "value": "2025-01-01"},
+                {"kind": "date", "value": "2025-01-02"},
+            ]},
+            {"document_id": "doc-2", "filename": "two.pdf", "candidates": [
+                {"kind": "date", "value": "2025-01-03"},
+            ]},
+        ]
+        per_document = build_date_mention_timeline(
+            documents, max_candidates_per_document=1
+        )
+        self.assertEqual(per_document["documents_inspected"], 2)
+        self.assertEqual(per_document["candidate_records_inspected"], 2)
+        self.assertEqual(len(per_document["dated_mentions"]), 2)
+        self.assertTrue(per_document["truncated"])
+
+        global_limit = build_date_mention_timeline(
+            documents, max_candidate_records=1
+        )
+        self.assertEqual(global_limit["candidate_records_inspected"], 1)
+        self.assertEqual(len(global_limit["dated_mentions"]), 1)
+        self.assertTrue(global_limit["truncated"])
+
+        document_limit = build_date_mention_timeline(
+            documents, max_documents=1
+        )
+        self.assertEqual(document_limit["documents_inspected"], 1)
+        self.assertTrue(document_limit["truncated"])
+
+    def test_timeline_rejects_invalid_processing_limits(self):
+        for name, value in (
+            ("max_documents", True),
+            ("max_documents", 5001),
+            ("max_candidates_per_document", 0),
+            ("max_candidates_per_document", "5"),
+            ("max_candidate_records", 500001),
+        ):
+            with self.subTest(name=name, value=value):
+                with self.assertRaises(ValueError):
+                    build_date_mention_timeline([], **{name: value})
+
 
     def test_duplicate_groups_are_scoped_to_same_firm_and_matter(self):
         digest = "a" * 64
