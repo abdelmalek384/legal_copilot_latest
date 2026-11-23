@@ -1,7 +1,7 @@
 # Research Agent 8 — River transport acquisition tranche
 **Session date:** 2026-11-23  
 **Scope:** Egyptian river transport legislation; deduplicated against the live canonical acquisition CSV fetched from the default branch.  
-**Repository baseline:** `data/research/egypt_initial_statute_acquisition_register_2026-11-17.csv` (422 lines including header at time of check; 421 records). The register contained no river-transport matches for Law 167/2022 or Decisions 340/341/342/2024, Decision 1/2024, or administrative Decisions 255/256/2025. Search hits for numerals alone were false positives (e.g. Environment Law 102/1983 and Water Law 147/2021).  
+**Repository baseline:** `data/research/egypt_initial_statute_acquisition_register_2026-11-17.csv` (423 lines including header; 422 data records at time of check). The register contained no river-transport matches for Law 167/2022 or Decisions 340/341/342/2024, Decision 1/2024, or administrative Decisions 255/256/2025. Search hits for numerals alone were false positives (e.g. Environment Law 102/1983 and Water Law 147/2021).  
 **New Agent 8 rows:** RA8-053 through RA8-059 (7 candidate unique instruments). This is a separate Agent 8 tranche register; the canonical national register/master index was not modified.
 
 ## 1. Main statute — Law 167/2022
