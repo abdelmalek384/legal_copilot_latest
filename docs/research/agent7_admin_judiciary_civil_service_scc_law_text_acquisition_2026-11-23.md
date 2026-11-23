@@ -217,7 +217,7 @@
 - Law 117/1958: 13 article units (3–5, 7–10, 19, 21–25) with selected Arabic text; full 63-article secondary text source located.
 - Law 81/2016: 4 issuing articles reproduced from government-hosted official PDF.
 - Decision 1216/2017: 3 issuing articles / substantive regulation articles 1–2 (selected) reproduced from government-hosted Gazette PDF.
-- Law 61/1963: official-scan lead only; 0 article bodies transcribed.
+- Law 61/1963: 4 article/issuing-article units transcribed; Articles 3–18 remain untranscribed.
 - New research file created; existing statutory checkpoint files not duplicated.
 
 ## 7. Outstanding acquisition priorities
@@ -239,15 +239,14 @@ Whole-corpus completion remains **not calculable**. The existing register of hun
 
 ## 9. Additional Gazette acquisition — Law 61/1963 (public authorities)
 
-**Primary Gazette scan:** Official Gazette issue 10, 9 May 1963, pp. 681–683; scanned 3-page reproduction at Manshurat:
+**Primary Gazette scan:** Official Gazette issue 10, 9 May 1964, pp. 681–683; scanned 3-page reproduction at Manshurat:
 https://manshurat.org/node/11855  
 Direct scan: https://manshurat.org/file/22135/download?token=c39WRgHH  
-The scan is image-only; page images were visually inspected. This is an Official Gazette scan reproduced by a secondary legal publisher, not a direct Ministry-hosted PDF. It is now a genuine article-text acquisition rather than a bare source reference.
+The scan is image-only and has been visually inspected. It is an Official Gazette scan reproduced by a secondary legal publisher, not a direct Ministry-hosted PDF.
 
-**Instrument:** Law 61/1963 بإصدار قانون الهيئات العامة.  
-**Issuance/commencement:** promulgated 29 October 1963; Article 2 states it applies from the academic year 1962/1963 and permits a one-year extension by decision of the Minister of Education (the scanned copy's issuance date and transitional clause require a further Gazette chronology check; do not infer current commencement from this transitional clause). The Gazette scan itself is the principal evidence for the law's text.
+**Instrument:** Law 61/1963 إصدار قانون الهيئات العامة. Manshurat metadata records issuance 29 October 1963; the Gazette scan header is issue 10 dated 9 May 1964. Preserve issue date and issuance date separately.
 
-### Issuing provisions and substantive articles
+### Text transcribed from the Gazette scan
 
 **Issuing Article 1:**
 > يعمل بأحكام القانون المرافق في شأن الهيئات العامة، ويلغى كل ما يخالفه من أحكام.
@@ -258,62 +257,16 @@ The scan is image-only; page images were visually inspected. This is an Official
 **Article 1:**
 > يجوز بقرار من رئيس الجمهورية إنشاء هيئة عامة لإدارة مرفق مما يقوم على مصلحة أو خدمة عامة، وتكون لها الشخصية الاعتبارية.
 
-**Article 2 (required establishment-decision particulars):**
+**Article 2:**
 > يتضمن القرار الصادر بإنشاء الهيئة العامة البيانات الآتية:
 > (١) اسم الهيئة ومركزها.
 > (٢) الغرض الذي أنشئت من أجله.
 > (٣) بيان بالأموال التي تدخل في الذمة المالية للهيئة.
 > (٤) ما يكون لها من اختصاصات السلطة العامة لتحقيق الغرض الذي أنشئت من أجله.
 
-**Article 3 (functions/financial and administrative autonomy):**
-> للهيئة العامة أن تتعاقد وتجري جميع التصرفات والأعمال التي من شأنها تحقيق الغرض الذي أنشئت من أجله.
+**Text still outstanding:** the scan visibly continues with provisions through at least Article 18 on pp. 682–683, but Articles 3–18 have not yet been reliably transcribed. Their wording is intentionally not reconstructed from generic public-authority-law templates. The law's application today must be tested against each authority's special establishing law and later legislation.
 
-**Article 4:**
-> تضع الهيئة العامة لوائح داخلية تنظم العمل بها وتتضمن القواعد التي تتبع في إدارتها والتي يجري عليها العمل في حساباتها وإدارة أموالها، وذلك في حدود الأحكام المنصوص عليها في هذا القانون والقرار الصادر بإنشائها.
-
-**Article 5:**
-> للهيئة العامة أن تتملك الأموال الثابتة والمنقولة اللازمة لتحقيق الغرض الذي أنشئت من أجله.
-
-**Article 6:**
-> تكون للهيئة العامة ميزانية خاصة، ويحدد القرار الصادر بإنشائها طريقة وضع هذه الميزانية والقواعد التي تتبع في تنفيذها.
-
-**Article 7 (board of directors):**
-> يكون لكل هيئة عامة مجلس إدارة يشكل بقرار من رئيس الجمهورية، ويحدد القرار طريقة تشكيله واختصاصاته ومكافآت أعضائه.
-
-**Article 8 (board powers):**
-> يتولى مجلس إدارة الهيئة العامة إدارة شئونها وتصريف أمورها، وله أن يتخذ ما يراه لازماً من القرارات لتحقيق الغرض الذي أنشئت من أجله، وذلك في حدود أحكام هذا القانون والقرار الصادر بإنشائها.
-
-**Article 9 (representation):**
-> يمثل رئيس مجلس الإدارة الهيئة العامة في صلاتها بالغير وأمام القضاء، ويكون مسئولاً عن تنفيذ قرارات مجلس الإدارة.
-
-**Article 10 (meetings/resolutions):**
-> تكون اجتماعات مجلس إدارة الهيئة صحيحة بحضور أغلبية أعضائه، وتصدر قراراته بأغلبية أصوات الحاضرين، وعند التساوي يرجح الجانب الذي منه الرئيس.
-
-**Article 11 (approval/oversight):**
-> تبلغ قرارات مجلس إدارة الهيئة إلى الوزير المختص لاعتمادها، وله أن يطلب إعادة النظر فيها خلال المدة التي يحددها القرار الصادر بإنشاء الهيئة.
-
-**Article 12 (audit):**
-> تخضع حسابات الهيئة لرقابة الجهاز المركزي للمحاسبات، وذلك وفقاً للقانون المنظم له.
-
-**Article 13 (personnel):**
-> تسري على العاملين بالهيئة القواعد التي يحددها القرار الصادر بإنشائها، مع مراعاة القوانين واللوائح العامة المنظمة لشئون العاملين.
-
-**Article 14 (public funds):**
-> تعتبر أموال الهيئة أموالاً عامة، وتكون لها في سبيل اقتضائها حقوق الخزانة العامة.
-
-**Article 15 (budget):**
-> تكون للهيئة موازنة مستقلة، وتدرج في الموازنة العامة للدولة رقماً واحداً، وذلك وفقاً للقواعد التي يصدر بها قرار من رئيس الجمهورية.
-
-**Article 16 (financial year):**
-> تبدأ السنة المالية للهيئة ببداية السنة المالية للدولة وتنتهي بانتهائها.
-
-**Article 17 (merger/dissolution):**
-> يكون إدماج الهيئة العامة في غيرها أو إلغاؤها بقرار من رئيس الجمهورية، ويحدد القرار كيفية التصرف في أموالها وحقوقها والتزاماتها.
-
-**Article 18 (subsidiary rules):**
-> يصدر رئيس الجمهورية القرارات اللازمة لتنفيذ أحكام هذا القانون.
-
-**Important OCR/transcription caveat:** the above provisions were transcribed from the three page images and are subject to line-by-line visual proofing; some clauses may be affected by image resolution or later statutory amendments. The Gazette scan contains additional amendments to other laws on the same pages, which are not part of Law 61/1963. The text is a framework statute; later special laws and subsequent public-sector/public-authority legislation may supersede or displace particular provisions. Treat each authority's establishing law as the first source for its governance, employment and financial rules.
+**Transcription caveat:** the above four units are visual transcriptions from the scan and need independent proofread against a higher-resolution original. The same Gazette pages contain amendments to other laws, which are outside Law 61/1963.
 
 ## 10. Law 137/2021 — primary Gazette amendment to SCC Law 48/1979
 
@@ -365,7 +318,7 @@ The judgment's reasoning invokes equality, equal opportunity and access to the n
 - Law 117/1958: **13** article units with selected Arabic text (Articles 3–5, 7–10, 19, 21–25); full 63-article secondary consolidation located.
 - Law 81/2016: 4 issuing articles reproduced from a government-hosted Gazette PDF.
 - Decision 1216/2017: issuing Articles 1–3 and substantive Regulation Articles 1–2 (selected) reproduced from a government-hosted Gazette PDF.
-- Law 61/1963: 18 article/issuing-article text units transcribed from the 3-page Gazette scan (image-only; visual proofreading still required).
+- Law 61/1963: 4 article/issuing-article text units transcribed from the 3-page Gazette scan (image-only; independent proofreading still required).
 - Law 137/2021: 4 operative provision units (Article 1, new Articles 27 bis and 32 bis, Article 2) transcribed from the Gazette PDF.
 - SCC judgment 47/44: official portal full judgment text located; operative disposition reproduced; Gazette publication/effect metadata outstanding.
 - One additive research file; no duplicate base-law file created.
