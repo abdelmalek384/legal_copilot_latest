@@ -3557,6 +3557,14 @@ function documentIntelligencePanel(caseId,documents){
     if(remaining<=0)break;
     remaining--;
     const reviewLabel=latest?({accepted:uiText('تمت المراجعة','Reviewed — accepted'),corrected:uiText('تم تصحيح النص','Text corrected'),needs_recheck:uiText('يتطلب إعادة الفحص','Needs recheck')}[latest.outcome]||uiText('له سجل مراجعة','Review recorded')):uiText('لم تتم المراجعة','Not yet reviewed');
+    const extractedPage=chunk.page!==undefined&&chunk.page!==null&&chunk.page!==''?chunk.page:chunk.page_number;
+    const ocrUsed=item.doc.ocr_used===true||item.doc.ocr_used===1;
+    const partialExtraction=item.doc.extraction_status==='partial_text_ocr_unavailable';
+    const extractionDisclosure=h('p',{className:'mut',role:'note',textContent:[
+     ocrUsed?uiText('تم استخدام OCR؛ راجع النص مقابل الملف الأصلي لأن التعرف الآلي قد يخطئ.','OCR was used; verify the transcription against the original file because automated recognition can be wrong.'):null,
+     partialExtraction?uiText('استخراج النص جزئي؛ لم تتوفر بيانات OCR لبعض الصفحات، وقد يكون المحتوى ناقصاً.','Text extraction is partial; OCR was unavailable for some pages, so content may be missing.'):null
+    ].filter(Boolean).join(' ')});
+
     const note=h('input',{type:'text',maxLength:2000,placeholder:uiText('ملاحظة المراجع (اختيارية)','Reviewer note (optional)'),'aria-label':uiText('ملاحظة مراجعة المقطع ','Review note for chunk ')+chunk.id});
     const correction=h('textarea',{rows:4,maxLength:20000,placeholder:uiText('أدخل النص المصحح بعد الرجوع إلى المستند الأصلي.','Enter corrected text after checking the original document.'),'aria-label':uiText('النص المصحح للمقطع ','Corrected text for chunk ')+chunk.id,style:'display:none;width:100%'});
     // Passage offsets and digests are anchored to immutable extracted chunk text, never to a corrected working copy.
@@ -3656,7 +3664,8 @@ function documentIntelligencePanel(caseId,documents){
     edit.onclick=()=>{const show=correction.style.display==='none';correction.style.display=show?'block':'none';save.style.display=show?'inline-flex':'none';if(show)correction.focus()};
     cards.push(h('article',{className:'card extraction-review-card'},
      h('div',{className:'row'},h('b',{textContent:item.doc.name}),pill(reviewLabel,latest&&latest.outcome!=='needs_recheck'?'done':'soon')),
-     h('p',{className:'mut',textContent:[chunk.ref,latest&&latest.page_reference?uiText('مرجع المراجع: ','Reviewer reference: ')+latest.page_reference:chunk.page?uiText('صفحة ','Page ')+chunk.page:''].filter(Boolean).join(' · ')}),
+     ...(ocrUsed||partialExtraction?[extractionDisclosure]:[]),
+     h('p',{className:'mut',textContent:[chunk.ref,latest&&latest.page_reference?uiText('مرجع المراجع: ','Reviewer reference: ')+latest.page_reference:extractedPage?uiText('صفحة ','Page ')+extractedPage:''].filter(Boolean).join(' · ')}),
      latest&&latest.page_reference?h('p',{className:'mut',textContent:uiText('مرجع أدخله المراجع ولم يتم التحقق منه مقابل الملف الأصلي.','Reviewer-entered reference; not verified against the original file.')}):null,
      h('div',{},h('b',{textContent:uiText('النص المستخرج الأصلي القابل للتحديد','Original extracted passage for highlighting')}),passage),
      annotateButton,annotationEditor,
@@ -4795,6 +4804,11 @@ body:has(.research-layout){background:#f3f5f8;color:#1d2c42;font-family:Inter,"N
 @media(max-width:760px){#side .primary-nav button{height:auto!important;min-height:46px!important;padding-block:11px!important}}
 #main .matter-section-nav button,#main .matter-subnav button{height:46px!important;min-height:46px!important}
 
+/* Keep mobile primary navigation visible on its own full-width row. */
+@media(max-width:800px){
+ #side{flex-wrap:wrap!important;align-items:center!important}
+ #side .primary-nav{flex:0 0 100%!important;width:100%!important;max-width:100%!important;min-width:0!important;order:10!important;min-height:46px!important}
+}
 </style>
 </html>
 
