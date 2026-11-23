@@ -1396,7 +1396,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
             control = self.runtime.control_connection()
             control.execute(
                 "DELETE FROM api_rate_limit_windows WHERE bucket=? AND client_key=?",
-                ("/firm/data-export.zip", "127.0.0.1"),
+                ("/firm/data-export.zip", f"{self.state['firm_a_id']}:127.0.0.1"),
             )
             control.commit()
             with self.page.expect_download(timeout=15000) as export_download:
