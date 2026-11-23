@@ -28,12 +28,13 @@
 2. جمع نتائج الأبحاث من المراصد الإقليمية، ومراجعتها ونشرها وحفظها بالشكل المناسب.
 3. رصد متغيرات سوق العمل، ومدى تطور مستوى المهارات والمؤهلات المطلوبة.
 4. التنسيق بين الجهات المختصة لدعم البحث الميداني بغرض جمع المعلومات الضرورية وتحديثها.
+5. إصدار ونشر التقارير الدورية بشأن معلومات سوق العمل على المستوى القطاعي أو الجغرافي أو القومي.
 
 **Transcription caveat:** the Al-Masdar page's extracted text has a visibly garbled phrase in item 3 (shown as «متغیرات سوق العمل، ومدى تطور...»). The wording above is a cautious normalization of the evident sentence, not a primary-source verified reading. Recheck against the Gazette page image before treating it as exact.
 
 ## Additional official indexed text leads — not yet captured as a complete article-by-article text
 
-The Amiri Printing Houses' search-indexed text page returns the decision preamble and the opening of Article 1. Its indexed result also exposes substantial portions of Articles 4–12 and 15–17, including:
+The Amiri Printing Houses' search-indexed text page returns the preamble, Articles 1–2 (including Article 2 item 5), and Articles 15–17 verbatim. Its indexed result also exposes substantial portions of Articles 4–12, including:
 - Article 4: central coordination of research priorities, annual plans, expansion of regional observatories, training and external funding.
 - Article 5: continuation of existing regional observatories and their personnel.
 - Article 6: ability to establish additional regional observatories.
@@ -48,6 +49,22 @@ The Amiri Printing Houses' search-indexed text page returns the decision preambl
 - Article 17: publication and commencement.
 
 These are discovery-level article maps, not verbatim captures. Articles 3, 13 and 14 have not been recovered in full in this pass. Do not infer their wording or fill gaps from summaries.
+
+## Additional verbatim indexed text recovered from the official Amiri Printing Houses result
+
+The official indexed result also exposes the following provisions verbatim. These are copied from the search-indexed official page, not checked against the Gazette PDF page images:
+
+### المادة الخامسة عشرة — متابعة أعمال العاملين بالمراصد
+
+تقوم الإدارة العامة لمعلومات سوق العمل بمتابعة أداء العاملين بالمراصد الإقليمية والمرصد التنسيقى واقتراح الدورات التدريبية اللازمة لتنمية مهاراتهم فى ضوء احتياجاتهم الفعلية المرفوعة من لجان التسيير أو المهام الجديدة التى يكلفون بها. وتعمل بالتنسيق مع المرصد المركزى التنسيقى والجهات الشريكة على تطوير آليات عملها بما يتواكب مع مستجدات سوق العمل والإمكانيات المتاحة.
+
+### المادة السادسة عشرة — اللجان الإدارية والفنية
+
+يجوز وفقًا لحجم الأعمال ومقتضيات العمل وتطوره، تشكيل لجان إدارية وفنية أو مجموعات عمل، على أن تكون برئاسة مدير عام الإدارة العامة لمعلومات سوق العمل، وتضم فى عضويتها عدد من الخبراء الماليين والقانونيين والفنيين والإداريين، ولها أن تستعين بمن تراه كلما دعت الحاجة إلى ذلك، وتتولى تحضير أعمال مجلس إدارة المرصد التنسيقى، ومتابعة تنفيذ قراراته وتوصياته، والتنسيق بين الجهات الشريكة.
+
+### المادة السابعة عشرة — النشر والعمل بالقرار
+
+ينشر هذا القرار فى الوقائع المصرية، ويعمل به من اليوم التالى لتاريخ نشره. تحريرًا فى 15/4/2026. وزير العمل: حسن رداد.
 
 ## Operational context (not a substitute for the decision)
 
@@ -65,7 +82,7 @@ The State Information Service reported that the first central observatory meetin
 ## Required next steps
 
 - Obtain the restricted Arabic PDF or Gazette issue 108 copy through an authorized route; inspect page images and hash the acquired original.
-- Complete verbatim Articles 3 and 13–14 and compare all 17 articles against the Gazette.
+- Complete verbatim Articles 3 and 13–14, obtain verbatim text for Articles 4–12 from the official index, and compare all 17 articles against the Gazette.
 - Resolve the Article 2 OCR/typographic ambiguity.
 - Review data confidentiality, privacy and data-sharing duties before any product workflow uses observatory data.
 - Check amendments, repeal/conflict status and currentness.
