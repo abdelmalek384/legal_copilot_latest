@@ -6474,6 +6474,12 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             json={**payload, "selected_text": "Mallory"},
         )
         self.assertEqual(stale.status_code, 422, stale.text)
+        stale_digest = self._mutate(
+            "post",
+            f"/cases/{alpha_case}/docs/{document_id}/chunks/{chunk['id']}/annotations",
+            json={**payload, "source_text_sha256": "0" * 64},
+        )
+        self.assertEqual(stale_digest.status_code, 409, stale_digest.text)
         cross_case = self._mutate(
             "post",
             f"/cases/{beta_case}/docs/{document_id}/chunks/{chunk['id']}/annotations",
