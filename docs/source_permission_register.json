@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "assessment_date": "2026-11-23",
-  "note": "A register of source candidates and permission questions, not a claim that rights have been granted. Public accessibility and open access do not by themselves establish bulk collection, commercial reuse, or redistribution rights. Agent 8 river-transport and railway acquisition tranche (2026-11-23): four source-family records added; all collection and commercial reuse permissions remain unknown pending terms review or written authorization. Agent 8 metro/tunnels tranche (2026-11-23): Lawyer Egypt secondary source family added; collection and commercial reuse permissions unknown. Agent 8 maritime/ports/inland-navigation tranche (2026-11-23): three official authority-source records added; all reuse permissions remain unknown.",
+  "note": "A register of source candidates and permission questions, not a claim that rights have been granted. Public accessibility and open access do not by themselves establish bulk collection, commercial reuse, or redistribution rights. Agent 8 river-transport and railway acquisition tranche (2026-11-23): four source-family records added; all collection and commercial reuse permissions remain unknown pending terms review or written authorization. Agent 8 metro/tunnels tranche (2026-11-23): Lawyer Egypt secondary source family added; collection and commercial reuse permissions unknown. Agent 8 maritime/ports/inland-navigation tranche (2026-11-23): three official authority-source records added; all reuse permissions remain unknown. Agent 8 environment, waste-management, Nile/water-pollution and health-sector tranches (2026-11-23): six additional government/FAOLEX source-family assessments added (EEAA, IDA, MWRI, SIS Gazette repository, EDA and FAOLEX water/waste texts). All collection and commercial reuse permissions remain unknown; official hosting and public accessibility are not reuse licences.",
   "sources": [
     {
       "source_id": "EG-ADNANLAWYER-LEGAL-TEXTS",
@@ -3319,6 +3319,102 @@
       "terms_checked_on": "2026-11-23",
       "bulk_download_or_api": "Public web page; no bulk/API permission established",
       "required_next_action": "Review APA website terms and obtain Gazette originals for Law 6/1967 and Decree 494/1986 before legal-text ingestion."
+    },
+    {
+      "source_id": "EG-EEAA-ENVIRONMENT-AND-WASTE-LAW-LIBRARY",
+      "authority": "Egyptian Environmental Affairs Agency (EEAA)",
+      "source_page": "https://www.eeaa.gov.eg/laws/55/index; https://www.eeaa.gov.eg/Laws/56/index; https://www.eeaa.gov.eg/Uploads/Laws/Files/20221004120054988.pdf; https://www.eeaa.gov.eg/Uploads/Laws/Files/20250526101230761.pdf",
+      "material_types": [
+        "Official Arabic law-library index for Environment Law4/1994, Law105/2015, Executive Regulation338/1995 and amendments; Waste Management Law202/2020 and PM Decision722/2022; official EEAA-hosted Gazette PDF copies."
+      ],
+      "access_status": "Public official EEAA pages and PDFs inspected 23 November 2026. PM722/2022 2,961-line text layer and PM720/2012 Gazette PDF text layer source-located; law-library index lists the environment amendment chain. Official administrative source, not all original Gazette page images.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "No explicit licence authorizing bulk acquisition, local mirroring, commercial indexing, redistribution or republication was identified in this pass. Public access or government hosting does not by itself establish reuse permission.",
+      "terms_checked_on": "2026-11-23",
+      "bulk_download_or_api": "Individual public pages/PDFs; no bulk/API permission established",
+      "required_next_action": "Review EEAA terms and seek written permission before bulk/local mirroring or commercial display; obtain original Gazette binaries where available."
+    },
+    {
+      "source_id": "EG-IDA-ENVIRONMENT-EXECUTIVE-REGULATION-338-1995",
+      "authority": "Industrial Development Authority (IDA), Egypt",
+      "source_page": "https://ida.gov.eg/uploads/files/pdfs/laws/338-1995.pdf",
+      "material_types": [
+        "Government authority-hosted Arabic Gazette reproduction of PM Decision338/1995 Executive Regulation to Environment Law4/1994, searchable text layer with annexes."
+      ],
+      "access_status": "Public IDA-hosted 2,728-line PDF text layer inspected 23 November 2026; issue51 supplement, 28 Feb 1995 identified. OCR/header anomalies remain; no local PDF binary/hash acquired.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "No explicit licence authorizing bulk acquisition, local mirroring, commercial indexing, redistribution or republication was identified in this pass. Public access or government hosting does not by itself establish reuse permission.",
+      "terms_checked_on": "2026-11-23",
+      "bulk_download_or_api": "Individual public pages/PDFs; no bulk/API permission established",
+      "required_next_action": "Review IDA site terms and request written authorization for bulk extraction/local mirroring; verify page images and obtain original Amiri Press Gazette scan."
+    },
+    {
+      "source_id": "EG-MWRI-NILE-WATERCOURSE-LEGISLATION",
+      "authority": "Ministry of Water Resources and Irrigation (MWRI), Egypt",
+      "source_page": "https://www.mwri.gov.eg/wp-content/uploads/2020/01/Law-Nile-48-82.pdf; https://www.mwri.gov.eg/wp-content/uploads/2020/01/LAw-Regulations-48-82.pdf",
+      "material_types": [
+        "Official MWRI-hosted Arabic PDF of Law48/1982 (19 articles); official MWRI-hosted searchable Arabic text of PM Decision92/2013 revised Executive Regulation (64 articles and annexed water-quality standards)."
+      ],
+      "access_status": "Public official ministry PDFs opened and text layers inspected 23 November 2026; 646-line regulation PDF and all 19 Law48 articles source-located. Underlying Decision8/1983/402/2009/383/2011 amendment history not fully verified.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "No explicit licence authorizing bulk acquisition, local mirroring, commercial indexing, redistribution or republication was identified in this pass. Public access or government hosting does not by itself establish reuse permission.",
+      "terms_checked_on": "2026-11-23",
+      "bulk_download_or_api": "Individual public pages/PDFs; no bulk/API permission established",
+      "required_next_action": "Review MWRI site terms and seek written authorization for bulk extraction or commercial reuse; verify Gazette originals and all numerical water-quality tables."
+    },
+    {
+      "source_id": "EG-SIS-GAZETTE-HEALTH-2023-2024",
+      "authority": "State Information Service (SIS) Media/Document Repository, Egypt",
+      "source_page": "https://mediadr.sis.gov.eg/bitstream/handle/123456789/47210/OG39_20231004_0126.pdf?isAllowed=y&sequence=1; https://mediadr.sis.gov.eg/bitstream/handle/123456789/79455/WQ258_20241120_7462.pdf?isAllowed=y&sequence=2; https://mediadr.sis.gov.eg/handle/123456789/63697?locale-attribute=ar",
+      "material_types": [
+        "Official Gazette issue39 bis (و), 4 Oct 2023 (Egyptian Health Council executive regulation); Official Proceedings issue258, 20 Nov 2024 (Health Minister Decision439/2024); Official Gazette issue25 bis, 23 Jun 2024 (Law87/2024)."
+      ],
+      "access_status": "Public SIS-hosted Gazette PDFs opened and text layers inspected 23 November 2026. The 2023 Gazette PDF has contents/body decision-number mismatch; 2024 Proceedings PDF exposes Decision439/2024 with Article numbering anomalies.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "No explicit licence authorizing bulk acquisition, local mirroring, commercial indexing, redistribution or republication was identified in this pass. Public access or government hosting does not by itself establish reuse permission.",
+      "terms_checked_on": "2026-11-23",
+      "bulk_download_or_api": "Individual public pages/PDFs; no bulk/API permission established",
+      "required_next_action": "Review SIS repository terms and request permission for bulk downloading/local mirroring or commercial display; inspect page images and preserve Gazette issue/version metadata."
+    },
+    {
+      "source_id": "EG-EDA-BLOOD-PLASMA-LEGISLATION",
+      "authority": "Egyptian Drug Authority (EDA), Egypt",
+      "source_page": "https://dev.edaegypt.gov.eg/media/qt2lptuz/2021-8.pdf; https://www.edaegypt.gov.eg/media/mkwle5kk/minister-decree-no-2603.pdf; https://www.edaegypt.gov.eg/media/2lfhbcbe/minister-decree-no-2603.pdf",
+      "material_types": [
+        "EDA-hosted Arabic Official Gazette PDF for Law8/2021 on blood operations and plasma; EDA-hosted 17-page English translation of PM Decision2603/2021 executive regulation."
+      ],
+      "access_status": "Public EDA-hosted PDFs opened and text layers inspected 23 November 2026. The law PDF is Arabic; executive-regulation PDF is English translation; secondary Arabic copy located separately.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "No explicit licence authorizing bulk acquisition, local mirroring, commercial indexing, redistribution or republication was identified in this pass. Public access or government hosting does not by itself establish reuse permission.",
+      "terms_checked_on": "2026-11-23",
+      "bulk_download_or_api": "Individual public pages/PDFs; no bulk/API permission established",
+      "required_next_action": "Review EDA website terms and request written permission for bulk/local mirroring or commercial display; obtain the original Arabic PM2603/2021 Gazette PDF and technical annexes."
+    },
+    {
+      "source_id": "EG-FAOLEX-EGYPT-WASTE-WATER-ENVIRONMENT-LAWS",
+      "authority": "FAOLEX (FAO Legal Office database)",
+      "source_page": "https://faolex.fao.org/docs/pdf/egy199134.pdf; https://faolex.fao.org/docs/pdf/egy179415.pdf; https://faolex.fao.org/docs/pdf/egy179418.pdf; https://faolex.fao.org/docs/pdf/egy195608.pdf",
+      "material_types": [
+        "Arabic Gazette reproductions/text layers for Law202/2020 Waste Management; Law93/1962 liquid-waste discharge; PM Decision44/2000; Law103/2015 amending Law48/1982."
+      ],
+      "access_status": "Public FAOLEX PDFs inspected 23 November 2026. Law202 text layer 796 lines; Law93 full 22-article text; Decision44 PDF OCR severely degraded; Law103 two-article amendment PDF.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "No explicit licence authorizing bulk acquisition, local mirroring, commercial indexing, redistribution or republication was identified in this pass. Public access or government hosting does not by itself establish reuse permission.",
+      "terms_checked_on": "2026-11-23",
+      "bulk_download_or_api": "Individual public pages/PDFs; no bulk/API permission established",
+      "required_next_action": "Review FAOLEX terms and source attribution requirements; confirm underlying Gazette provenance and seek authorization for bulk redistribution or commercial reuse."
     }
   ]
 }
