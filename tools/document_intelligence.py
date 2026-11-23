@@ -187,7 +187,11 @@ def extract_review_candidates(text: str, max_candidates: int = 250) -> dict[str,
 
 
 
-def group_same_matter_duplicates(documents: list[dict[str, Any]]) -> list[dict[str, Any]]:
+def group_same_matter_duplicates(
+    documents: list[dict[str, Any]],
+    max_documents: int = 5000,
+    max_hash_records: int = 100000,
+) -> list[dict[str, Any]]:
     """Group duplicate candidates only inside identical firm/matter scopes.
 
     Each record requires firm_id, matter_id, document_id and may include
@@ -195,9 +199,27 @@ def group_same_matter_duplicates(documents: list[dict[str, Any]]) -> list[dict[s
     uppercase 64-character SHA-256 hex strings. The caller must still enforce
     authorization before supplying records. Groups are review candidates;
     matching extracted text does not mean the original files are identical.
+
+    Unlike candidate extractors, this API returns a list rather than a
+    truncation envelope. It therefore rejects over-limit inputs instead of
+    silently returning incomplete duplicate groups.
     """
     if not isinstance(documents, list):
         raise TypeError("documents must be a list")
+    for name, value, maximum in (
+        ("max_documents", max_documents, 20000),
+        ("max_hash_records", max_hash_records, 500000),
+    ):
+        if isinstance(value, bool) or not isinstance(value, int) or not 1 <= value <= maximum:
+            raise ValueError(f"{name} must be an integer between 1 and {maximum}")
+    if len(documents) > max_documents:
+        raise ValueError("documents exceed max_documents; duplicate grouping was not performed")
+    hash_records = sum(
+        sum(item.get(basis) is not None for basis in ("original_sha256", "extracted_text_sha256"))
+        for item in documents if isinstance(item, dict)
+    )
+    if hash_records > max_hash_records:
+        raise ValueError("hash records exceed max_hash_records; duplicate grouping was not performed")
     buckets: dict[tuple[str, str, str, str], list[dict[str, str]]] = {}
     for item in documents:
         if not isinstance(item, dict):
