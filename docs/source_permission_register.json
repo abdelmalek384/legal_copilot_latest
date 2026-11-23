@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "assessment_date": "2026-11-23",
-  "note": "A register of source candidates and permission questions, not a claim that rights have been granted. Public accessibility and open access do not by themselves establish bulk collection, commercial reuse, or redistribution rights. Agent 8 river-transport and railway acquisition tranche (2026-11-23): four source-family records added; all collection and commercial reuse permissions remain unknown pending terms review or written authorization.",
+  "note": "A register of source candidates and permission questions, not a claim that rights have been granted. Public accessibility and open access do not by themselves establish bulk collection, commercial reuse, or redistribution rights. Agent 8 river-transport and railway acquisition tranche (2026-11-23): four source-family records added; all collection and commercial reuse permissions remain unknown pending terms review or written authorization. Agent 8 metro/tunnels tranche (2026-11-23): Lawyer Egypt secondary source family added; collection and commercial reuse permissions unknown.",
   "sources": [
     {
       "source_id": "EG-ADNANLAWYER-LEGAL-TEXTS",
@@ -3255,6 +3255,22 @@
       "terms_checked_on": "2026-11-23",
       "bulk_download_or_api": "Single public news page; no bulk/API permission established",
       "required_next_action": "Obtain the signed decision/Gazette page; review publisher terms and preserve secondary-source status."
+    },
+    {
+      "source_id": "EG-LAWYEREGYPT-METRO-LAWS113-1983-33-2018",
+      "authority": "Lawyer Egypt legal-information website (secondary statutory reproductions)",
+      "source_page": "https://lawyeregypt.net/قانون-إنشاء-الهيئة-القومية-للأنفاق/; https://lawyeregypt.net/قانون-رقم-33-لسنة-2018-بتعديل-بعض-أحكام-القانون-رقم-113-لسنة-1983-بإنشاء-الهيئة-القومية-للأنفاق/",
+      "material_types": [
+        "Secondary full Arabic text of Law 113/1983 as consolidated through 2020 and text of Law 33/2018 amending Articles 2 and 3."
+      ],
+      "access_status": "Public searchable legal text pages inspected 23 November 2026; Law 113 page has a conflicting Gazette year in its heading; full official Gazette issue not compared.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://lawyeregypt.net/",
+      "permission_evidence": "No affirmative licence for full-text mirroring, bulk extraction, commercial indexing, redistribution or republication identified. Public access does not establish reuse permission.",
+      "terms_checked_on": "2026-11-23",
+      "bulk_download_or_api": "Individual public pages; no bulk/API permission established",
+      "required_next_action": "Review site terms and seek written authorization before local mirroring or commercial reuse; compare all reproduced articles with original Gazette page images."
     }
   ]
 }
