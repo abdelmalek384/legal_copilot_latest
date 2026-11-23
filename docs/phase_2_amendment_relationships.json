@@ -964,6 +964,49 @@
         "later amendments/corrigenda and commencement review",
         "qualified Egyptian labour-lawyer sign-off"
       ]
+    },
+    {
+      "relationship_id": "REL-STATE-COUNCIL-159-2003-AMENDS-47-1972",
+      "source_instrument_id": "EG-STATE-COUNCIL-AND-JUDICIARY-AMENDMENT-159-2003",
+      "target_instrument_id": "EG-STATE-COUNCIL-47-1972",
+      "relationship_type": "amends_specified_provisions",
+      "status": "secondary_full_text_located_official_gazette_verification_pending",
+      "affected_provisions": [
+        "Article 123"
+      ],
+      "stated_effect": "Substitutes «ستاً وستين سنة» for «ثمان وستين سنة» in Article123 (judicial retirement-age wording).",
+      "instrument_effective_date": "2003-10-01_as_stated_in_secondary_text",
+      "source_url": "https://qadaya.net/?p=9751",
+      "required_evidence": [
+        "official Gazette issue/page scan",
+        "comparison of exact amendment wording",
+        "subsequent retirement-age amendments and operative status",
+        "qualified Egyptian judicial-lawyer review"
+      ]
+    },
+    {
+      "relationship_id": "REL-SAC-APPEAL-203-38-1995-INTERPRETS-LAW47-ART24",
+      "source_instrument_id": "EG-SAC-APPEAL-203-38-1995",
+      "target_instrument_id": "EG-STATE-COUNCIL-47-1972",
+      "relationship_type": "interprets",
+      "status": "secondary_full_judgment_text_located_official_copy_pending",
+      "affected_provisions": [
+        "Article 24"
+      ],
+      "source_url": "https://mksegypt.org/ar/judgments-of-the-supreme-administrative-court/14492",
+      "notes": "Judicial assistance/fee-exemption application and calculation of the annulment deadline; verify exact holding and subsequent treatment."
+    },
+    {
+      "relationship_id": "REL-SAC-APPEAL-4286-35-1992-INTERPRETS-LAW47-ART24",
+      "source_instrument_id": "EG-SAC-APPEAL-4286-35-1992",
+      "target_instrument_id": "EG-STATE-COUNCIL-47-1972",
+      "relationship_type": "interprets",
+      "status": "secondary_full_judgment_text_located_official_copy_pending",
+      "affected_provisions": [
+        "Article 24"
+      ],
+      "source_url": "https://www.mksegypt.org/ar/judgments-of-the-supreme-administrative-court/5935",
+      "notes": "Certain knowledge of individual administrative decisions; burden of proof and adequacy of knowledge."
     }
   ],
   "next_actions": [
