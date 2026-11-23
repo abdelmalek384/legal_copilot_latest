@@ -176,3 +176,6 @@ This folder contains free/public source discovery, metadata registers and extrac
 
 
 83. [Decision 75/2026 — women’s employment, maternity protection and night work, complete 15-article Arabic text](../legal_evidence/labour_decision_75_2026_women_work_maternity_night_work_complete_arabic_text_2026-11-23.md) — official Amiri Printing Houses text is search-indexed; full secondary transcription captured and IDSC/MELES catalogue record located; direct official page fetch, Gazette image QA, rights and lawyer review pending.
+
+
+84. [Decision 74/2026 — labour-market observatories, partial Arabic text capture](../legal_evidence/labour_decision_74_2026_market_observatories_partial_arabic_capture_2026-11-23.md) — Articles 1–2 captured from a secondary transcription; official Amiri Printing Houses index and issue-108 catalogue metadata located; Articles 3 and 13–14, complete Gazette comparison, restricted PDF access, rights and lawyer review remain outstanding.
