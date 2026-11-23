@@ -93,12 +93,15 @@ class DatabaseBackupBundleTests(unittest.TestCase):
         from unittest.mock import patch
 
         fixed_ns = 987654321
+        fixed_stamp = "20261123-120000"
         existing = self.backup_dir / (
-            f"tenancy-{database_backup.time.strftime('%Y%m%d-%H%M%S')}-{fixed_ns}.dbbundle.enc"
+            f"tenancy-{fixed_stamp}-{fixed_ns}.dbbundle.enc"
         )
         existing_bytes = b"pre-existing backup must be preserved"
         existing.write_bytes(existing_bytes)
-        with patch("database_backup.time.time_ns", return_value=fixed_ns):
+        with patch("database_backup.time.strftime", return_value=fixed_stamp), patch(
+            "database_backup.time.time_ns", return_value=fixed_ns
+        ):
             with self.assertRaises(DatabaseBundleError):
                 create_backup_bundle(
                     self.runtime, self.cipher, self.backup_dir, quiesced=True
