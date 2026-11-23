@@ -337,6 +337,11 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.network_errors: list[str] = []
         self.page.on("pageerror", lambda error: self.browser_errors.append(str(error)))
         self.page.on(
+            "console",
+            lambda message: self.browser_errors.append(f"console.{message.type}: {message.text}")
+            if message.type == "error" else None,
+        )
+        self.page.on(
             "requestfailed",
             lambda request: self.network_errors.append(
                 f"{request.method} {request.url}: {request.failure}"
@@ -1098,7 +1103,16 @@ class BrowserAcceptanceTests(unittest.TestCase):
         # Open a returned passage and add a lawyer annotation without modifying the uploaded source.
         client_card.locator(".src").first.get_by_role("button", name="فتح المقطع في ملف القضية").click()
         intelligence_panel = self.page.locator(".document-intelligence-panel")
-        intelligence_panel.wait_for(state="visible", timeout=20000)
+        try:
+            intelligence_panel.wait_for(state="visible", timeout=20000)
+        except PlaywrightTimeoutError as exc:
+            raise AssertionError(
+                f"Passage navigation did not open the matter workspace; "
+                f"case_id={self.page.evaluate('window.CASE_ID')!r}; "
+                f"toast={self.page.locator('#toast').inner_text(timeout=1000)!r}; "
+                f"browser_errors={self.browser_errors}; network_errors={self.network_errors}; "
+                f"body={self.page.locator('body').inner_text(timeout=1500)[:1800]!r}"
+            ) from exc
         analyze_documents = intelligence_panel.locator("button").first
         analyze_documents.wait_for(state="visible", timeout=10000)
         analyze_documents.click()
