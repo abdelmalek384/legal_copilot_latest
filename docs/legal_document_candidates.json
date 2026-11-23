@@ -9678,6 +9678,83 @@
           "status": "full_text_opened_2026-11-23"
         }
       ]
+    },
+    {
+      "document_id": "EG-PUBLIC-CONTRACTS-EXEC-REG-AMENDMENT-289-2021",
+      "official_title": "قرار وزير المالية رقم 289 لسنة 2021 بتعديل اللائحة التنفيذية لقانون تنظيم التعاقدات التي تبرمها الجهات العامة",
+      "document_type": "amending_decision",
+      "law_number": "289",
+      "law_year": 2021,
+      "source_id": "EG-RIWAQ-ALJAMAL-289-2021-PROCUREMENT",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "secondary_full_text_located",
+      "text_verification_note": "Full Arabic secondary transcription located; Gazette issue 125 تابع, 6 June 2021, effective 7 June 2021 per source. Replaces five provisions previously amended by Decision614/2020 and adds beneficial-owner definition. Original Gazette comparison, hash, amendment redline and lawyer review outstanding.",
+      "source_urls": [
+        {
+          "url": "https://ahmedazimelgamel.blogspot.com/2021/06/289-2021-692-2019.html",
+          "source_role": "secondary full Arabic transcription",
+          "status": "located_2026-11-23"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-PM-DECISION-4498-2023-GOVERNMENT-SPENDING",
+      "official_title": "قرار رئيس مجلس الوزراء رقم 4498 لسنة 2023 برفع كفاءة الإنفاق الحكومي وتعظيم الإيرادات",
+      "document_type": "prime_minister_decision",
+      "law_number": "4498",
+      "law_year": 2023,
+      "source_id": "EG-SIS-GAZETTE-2023-11-26-ISSUE47",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_gazette_text_located_secondary_full_text_located",
+      "text_verification_note": "Official Gazette issue47 مكرر, 26 Nov 2023, PDF text layer and secondary CC BY 4.0 full text located. Article20 effective day after publication. Official Gazette PDF not locally hashed; verify currentness, all pages, and subsequent amendments before staging.",
+      "source_urls": [
+        {
+          "url": "https://mediadr.sis.gov.eg/bitstream/handle/123456789/46639/OG47_20231126_0952.pdf?isAllowed=y&sequence=1",
+          "source_role": "official Gazette PDF",
+          "status": "located_2026-11-23"
+        },
+        {
+          "url": "https://mksegypt.org/ar/decisions/17076",
+          "source_role": "secondary full Arabic transcription; CC BY 4.0 site text",
+          "status": "located_2026-11-23"
+        },
+        {
+          "url": "https://mof.gov.eg/ar/legislation/legislation-19",
+          "source_role": "official Ministry of Finance locator; guidance text only",
+          "status": "located_2026-11-23"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-PM-DECISION-4499-2023-EXPENDITURE-RATIONALIZATION",
+      "official_title": "قرار رئيس مجلس الوزراء رقم 4499 لسنة 2023 بشأن ترشيد الإنفاق العام بالجهات الداخلة في الموازنة العامة للدولة والهيئات العامة الاقتصادية في ظل الأزمة الاقتصادية الحالية",
+      "document_type": "prime_minister_decision",
+      "law_number": "4499",
+      "law_year": 2023,
+      "source_id": "EG-MKSEGYPT",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "secondary_full_text_located_official_locator_located",
+      "text_verification_note": "Official Gazette issue47 مكرر, 26 Nov 2023, effective 27 Nov 2023. Secondary full Arabic text located. Issuing Article1 limits application to end of FY2023/2024; classify historical/expired for that period unless a later extension or reenactment is found. Official MOF locator and SIS issue locator found; original PDF not locally hashed.",
+      "source_urls": [
+        {
+          "url": "https://mksegypt.org/ar/decisions/17077",
+          "source_role": "secondary full Arabic transcription; CC BY 4.0 site text",
+          "status": "located_2026-11-23"
+        },
+        {
+          "url": "https://mof.gov.eg/ar/legislation/legislation-20",
+          "source_role": "official Ministry of Finance locator; guidance text only",
+          "status": "located_2026-11-23"
+        },
+        {
+          "url": "https://mediadr.sis.gov.eg/handle/123456789/46639",
+          "source_role": "official Gazette issue locator",
+          "status": "located_2026-11-23"
+        }
+      ]
     }
   ]
 }
