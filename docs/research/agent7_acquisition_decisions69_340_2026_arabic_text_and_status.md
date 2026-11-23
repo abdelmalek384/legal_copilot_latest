@@ -107,3 +107,8 @@ The Ministry's official legislation page provides the instrument identity, issue
 - Enriched existing EG-0275 (Decision271/2026) with the complete 16-page secondary-hosted Gazette reproduction and corrected article count (17, not 20). No duplicate Decision271 row created.
 - Updated central register from 412 to 414 rows.
 - Text-acquisition proxy: 106/414 full-text indicators (25.6%); 50/414 partial-only indicators (12.1%); 156/414 any-text indicators (37.7%). Not an authentication, consolidation or lawyer-review metric.
+
+
+## Progress revision after Decision 3561/2026 acquisition
+
+The central register remains at 414 rows. The newly completed transcription upgrades one existing row (EG-0321) from partial-only to full-text indicator: **107/414 full-text indicators (25.8%)**, **49/414 partial-only indicators (11.8%)**, and **156/414 with any text indicator (37.7%)**. Same keyword-based register proxy; not an authentication, consolidation or lawyer-review measure.
