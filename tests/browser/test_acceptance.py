@@ -809,11 +809,11 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.assertTrue(history_filter.is_visible())
 
         scope = self.page.get_by_role("button", name="مستندات المكتب", exact=True)
-        matter = self.page.locator(".research-controls select").nth(1)
+        matter = self.page.locator(".research-composer-controls select").nth(1)
         composer = self.page.locator(".research-composer textarea")
 
         scope.click()
-        self.page.locator(".research-composer button").click()
+        self.page.get_by_role("button", name="إرسال", exact=True).click()
         self.assertIn("اختر ملف قضية", self.page.locator("body").inner_text())
 
         matter.select_option(str(case_id))
@@ -838,7 +838,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.page.get_by_role("button", name="بحث", exact=True).click()
         self.page.get_by_text(sentinel, exact=False).wait_for(timeout=8000)
         composer.fill(sentinel)
-        self.page.locator(".research-composer button").click()
+        self.page.get_by_role("button", name="إرسال", exact=True).click()
         self.page.get_by_text("مستند مكتب غير متحقق", exact=False).wait_for(timeout=20000)
         answer_tabs = self.page.locator(".research-answer-tabs")
         self.assertTrue(answer_tabs.is_visible())
@@ -937,14 +937,14 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.page.locator(".research-list-head").get_by_role("button", name="محادثة جديدة").click()
         self.page.locator(".research-thread .research-empty").wait_for(timeout=10000)
         composer.fill(sentinel)
-        self.page.locator(".research-composer button").click()
+        self.page.get_by_role("button", name="إرسال", exact=True).click()
         self.page.get_by_text("لم يُعثر على نص قانوني متحقق ذي صلة", exact=False).wait_for(timeout=20000)
         latest_assistant = self.page.locator(".research-thread .research-message.assistant").last.inner_text()
         self.assertNotIn(sentinel, latest_assistant)
 
         self.page.get_by_role("button", name="القانون المتحقق", exact=True).click()
         composer.fill("synthetic verified fixture deadline example")
-        self.page.locator(".research-composer button").click()
+        self.page.get_by_role("button", name="إرسال", exact=True).click()
         self.page.get_by_text("CORPUS_ONLY_VERIFIED_SENTINEL_2C77").wait_for(timeout=12000)
         candidate_body = self.page.locator(".research-thread").inner_text()
         # The fixture uses example.test and has no central permission-register
@@ -965,7 +965,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
 
         self.page.get_by_role("button", name="فهرس المصادر", exact=True).click()
         composer.fill("SYNTHETIC METADATA ONLY INSTRUMENT 2026")
-        self.page.locator(".research-composer button").click()
+        self.page.get_by_role("button", name="إرسال", exact=True).click()
         self.page.get_by_text("SYNTHETIC METADATA ONLY INSTRUMENT 2026").wait_for(timeout=10000)
         discovery = self.page.locator(".research-thread").inner_text()
         self.assertIn("لم يُسترجع أي نص قانوني", discovery)
@@ -979,9 +979,9 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.page.locator(".research-scope-tabs button").first.wait_for(state="visible", timeout=10000)
 
         scope = self.page.get_by_role("button", name="مستندات المكتب", exact=True)
-        matter = self.page.locator(".research-controls select").nth(1)
+        matter = self.page.locator(".research-composer-controls select").nth(1)
         composer = self.page.locator(".research-composer textarea")
-        send = self.page.locator(".research-composer button")
+        send = self.page.get_by_role("button", name="إرسال", exact=True)
 
         # Verify the actual Tab sequence from the scope selector through
         # matter selection, query entry, and submission; no pointer interaction.
@@ -1106,6 +1106,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
             dialog.get_by_role("button", name="حفظ القضية").click()
             self.page.get_by_text(case_title, exact=True).wait_for(timeout=10000)
 
+            self.page.locator(".matter-section-nav button").filter(has_text="العمل").click()
             self.page.locator(".matter-subnav button").filter(has_text="المواعيد القانونية").click()
             deadline_title = self.page.get_by_placeholder("نوع الموعد (استئناف، طعن، تقديم مستند...)")
             deadline_title.fill(f"موعد تجريبي {width}")
@@ -1570,9 +1571,9 @@ class BrowserAcceptanceTests(unittest.TestCase):
                 const named = (el) => {
                     if ((el.getAttribute('aria-label') || '').trim()) return true;
                     const ids = (el.getAttribute('aria-labelledby') || '').split(/\\s+/).filter(Boolean);
-                    if (ids.some((id) => (document.getElementById(id)?.innerText || '').trim())) return true;
-                    if (el.labels && [...el.labels].some((label) => label.innerText.trim())) return true;
-                    if (['BUTTON', 'A'].includes(el.tagName) && (el.innerText || '').trim()) return true;
+                    if (ids.some((id) => (document.getElementById(id)?.textContent || '').trim())) return true;
+                    if (el.labels && [...el.labels].some((label) => label.textContent.trim())) return true;
+                    if (['BUTTON', 'A'].includes(el.tagName) && (el.textContent || '').trim()) return true;
                     if (el.tagName === 'INPUT' && ['submit', 'button', 'reset'].includes(el.type) && el.value.trim()) return true;
                     return false;
                 };
