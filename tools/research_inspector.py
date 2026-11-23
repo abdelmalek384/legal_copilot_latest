@@ -8,8 +8,11 @@ from collections.abc import Mapping
 import re
 from urllib.parse import urlsplit
 
+from tools.answer_trust_tier import source_match_evidence_ready
+
 
 STATUS_VERIFIED = "verified_operative_text"
+STATUS_SOURCE_MATCHED = "source_matched_unreviewed"
 STATUS_SECONDARY = "secondary_copy"
 STATUS_USER_SUPPLIED = "user_supplied_unverified"
 STATUS_METADATA_ONLY = "metadata_only"
@@ -181,13 +184,69 @@ def source_status(source, as_of=None):
         if as_of_date is None:
             return STATUS_REVIEW
 
+    provenance = source.get("provenance")
+    if not isinstance(provenance, Mapping):
+        return STATUS_REVIEW
+
+    # A dedicated non-production test scope may expose a source-matched label,
+    # but only when the complete machine evidence package and reuse permissions
+    # are present. This does not imply lawyer approval or current law.
+    if source.get("scope") == "firm_test_source_matched":
+        if source.get("verified") is not False or source.get("case_id") is not None:
+            return STATUS_REVIEW
+        if provenance.get("status") != "registry_linked":
+            return STATUS_REVIEW
+        if provenance.get("document_type") in {"secondary", "commentary", "guide", "summary"}:
+            return STATUS_SECONDARY
+        if not isinstance(provenance.get("official_title"), str) or not provenance["official_title"].strip():
+            return STATUS_REVIEW
+        if not _valid_review_evidence_url(provenance.get("source_url")):
+            return STATUS_REVIEW
+        original_sha256 = provenance.get("original_sha256")
+        if not isinstance(original_sha256, str) or not re.fullmatch(r"[0-9a-fA-F]{64}", original_sha256):
+            return STATUS_REVIEW
+        if provenance.get("review_status") not in {"pending_source_review", "pending_lawyer_review"}:
+            return STATUS_REVIEW
+        if provenance.get("legal_status") not in {"unknown", "under_review"}:
+            return STATUS_REVIEW
+        if any(provenance.get(key) is not False for key in (
+            "authenticity_verified", "status_verified", "amendment_history_verified"
+        )):
+            return STATUS_REVIEW
+        if not source_permission_evidence_ready(provenance):
+            return STATUS_REVIEW
+        if not str(provenance.get("permission_evidence") or "").strip():
+            return STATUS_REVIEW
+        evidence = provenance.get("source_match_evidence")
+        if not isinstance(evidence, Mapping) or evidence.get("original_capture_sha256") != original_sha256:
+            return STATUS_REVIEW
+        if not source_match_evidence_ready(provenance):
+            return STATUS_REVIEW
+        publication = _calendar_date(evidence.get("publication_date"))
+        effective = _calendar_date(evidence.get("effective_date"))
+        if publication is None or effective is None or publication > as_of_date or effective > as_of_date:
+            return STATUS_REVIEW
+        if effective < publication:
+            return STATUS_REVIEW
+        if not isinstance(provenance.get("gazette_issue"), str) or not provenance["gazette_issue"].strip():
+            return STATUS_REVIEW
+        if not isinstance(provenance.get("gazette_pages"), str) or not provenance["gazette_pages"].strip():
+            return STATUS_REVIEW
+        reviews = provenance.get("review_evidence", [])
+        if not isinstance(reviews, list):
+            return STATUS_REVIEW
+        if any(
+            isinstance(event, Mapping)
+            and event.get("review_type") == "lawyer_approval"
+            and event.get("outcome") == "pass"
+            for event in reviews
+        ):
+            return STATUS_REVIEW
+        return STATUS_SOURCE_MATCHED
+
     # Only an explicitly selected verified-corpus scope may pass the legal-status gates.
     # Missing, malformed, or future scope values must not inherit a verified label.
     if source.get("scope") != "verified_corpus":
-        return STATUS_REVIEW
-
-    provenance = source.get("provenance")
-    if not isinstance(provenance, Mapping):
         return STATUS_REVIEW
     document_type = provenance.get("document_type")
     if not isinstance(document_type, str) or not document_type.strip():
