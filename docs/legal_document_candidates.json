@@ -10379,6 +10379,73 @@
       ],
       "text_acquisition_status": "secondary_full_text_or_operating_articles_located",
       "text_verification_note": "Discovery only. Do not treat this record as a verified consolidated/current text. Compare with visually authenticated Official Gazette pages, identify later amendments/corrigenda, review source terms, and obtain Egyptian labour-lawyer sign-off."
+    },
+    {
+      "document_id": "EG-STATE-COUNCIL-AND-JUDICIARY-AMENDMENT-159-2003",
+      "official_title": "قرار رئيس جمهورية مصر العربية بالقانون رقم 159 لسنة 2003 بتعديل بعض أحكام قانون السلطة القضائية وقوانين الهيئات القضائية",
+      "document_type": "multi_statute_judicial_amendment_law",
+      "law_number": "159",
+      "law_year": 2003,
+      "source_id": "EG-QADAYA-LEGAL-TEXTS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Secondary full Arabic text located at https://qadaya.net/?p=9751 and year index at https://www.laweg.net/Default.aspx?Year=2003&action=LegsYears. Article 1 replaces the phrase «ثمان وستين سنة» with «ستاً وستين سنة» in Article 123 of State Council Law47/1972, alongside parallel amendments to judicial bodies' statutes. Article 2 states publication in the Official Gazette and commencement from 1 October 2003. Date of issue: 24 September 2003. Exact Gazette issue/page and official scan not yet verified. Keep secondary-source status; no source reuse permission established.",
+      "source_urls": [
+        {
+          "url": "https://qadaya.net/?p=9751",
+          "source_role": "secondary full Arabic operative text",
+          "status": "full operative text located_2026-11-23"
+        },
+        {
+          "url": "https://www.laweg.net/Default.aspx?Year=2003&action=LegsYears",
+          "source_role": "secondary legal database year index",
+          "status": "metadata and operative clause corroborated_2026-11-23"
+        }
+      ],
+      "text_acquisition_status": "secondary_full_arabic_operative_text_acquired_official_gazette_scan_pending",
+      "text_verification_note": "The amendment is narrow and provision-specific (State Council Law47/1972 Article123). Verify the original Gazette page and any later age-limit amendments before using it as current law."
+    },
+    {
+      "document_id": "EG-SAC-APPEAL-203-38-1995",
+      "official_title": "المحكمة الإدارية العليا — الطعن رقم 203 لسنة 38 قضائية — جلسة 21 نوفمبر 1995",
+      "document_type": "supreme_administrative_court_judgment",
+      "case_number": "203",
+      "judicial_year": 38,
+      "judgment_date": "1995-11-21",
+      "source_id": "EG-MKSEGYPT-JUDGMENTS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Full Arabic judgment text located at https://mksegypt.org/ar/judgments-of-the-supreme-administrative-court/14492. Discusses Article24 of State Council Law47/1972: application for judicial-fee exemption/assistance interrupts the annulment-action time limit until decision on that application; the action must then be filed within the statutory period. Text is secondary, not an official court-hosted copy. Compare against official judgment record before reliance.",
+      "source_urls": [
+        {
+          "url": "https://mksegypt.org/ar/judgments-of-the-supreme-administrative-court/14492",
+          "source_role": "secondary full Arabic judgment transcription",
+          "status": "full_text_located_2026-11-23"
+        }
+      ],
+      "text_acquisition_status": "secondary_full_arabic_judgment_text_acquired",
+      "text_verification_note": "Judgment text available in searchable Arabic; official certified copy, panel metadata and subsequent treatment not verified."
+    },
+    {
+      "document_id": "EG-SAC-APPEAL-4286-35-1992",
+      "official_title": "المحكمة الإدارية العليا — الطعن رقم 4286 لسنة 35 قضائية — جلسة 26 ديسمبر 1992",
+      "document_type": "supreme_administrative_court_judgment",
+      "case_number": "4286",
+      "judicial_year": 35,
+      "judgment_date": "1992-12-26",
+      "source_id": "EG-MKSEGYPT-JUDGMENTS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Full Arabic judgment text located at https://www.mksegypt.org/ar/judgments-of-the-supreme-administrative-court/5935. Interprets Article24 of Law47/1972: certain knowledge of an individual administrative decision must be conclusive, not speculative or presumed, and sufficiently comprehensive to identify the decision's contents and legal effect; the administration bears the burden of proving publication, notification or certain knowledge. Text is secondary, not official court-hosted.",
+      "source_urls": [
+        {
+          "url": "https://www.mksegypt.org/ar/judgments-of-the-supreme-administrative-court/5935",
+          "source_role": "secondary full Arabic judgment transcription",
+          "status": "full_text_located_2026-11-23"
+        }
+      ],
+      "text_acquisition_status": "secondary_full_arabic_judgment_text_acquired",
+      "text_verification_note": "Full searchable Arabic text located; official judgment record and subsequent treatment not verified."
     }
   ]
 }
