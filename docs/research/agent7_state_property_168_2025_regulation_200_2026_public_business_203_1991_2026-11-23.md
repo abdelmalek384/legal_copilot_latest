@@ -984,3 +984,37 @@ It predates Law 172/2025's commencement and is expressly within the class of exi
 3. **Decision 182/2025 annexes:** extract both annexes with complete tables and verify the source scan.
 4. **Regulator organization:** retrieve the Prime Minister's decision organizing the reorganized Water and Wastewater Regulatory Authority under Article 3, plus any board formation decisions.
 5. **Administrative litigation:** collect judgments reviewing the regulator's licence decisions, tariffs, service interruption decisions, water-quality enforcement and public utility disputes; preserve whether the ruling is binding precedent or case-specific.
+
+
+## 13. Prime Minister Decision 1315/2026 — governance of State representatives in companies
+
+### Metadata and primary source
+
+- **Instrument:** Prime Minister Decision 1315/2026 بشأن الضوابط والمعايير الموحدة لحوكمة اختيار ممثلي الدولة وشركاتها ومتابعة أدائهم.
+- **Official Gazette:** issue 18 مكرر, 4 May 2026.
+- **Primary Gazette scan reproduction:** https://cdn.vetogate.com/UploadCache/libfiles/582/4/0x0o/612.pdf
+- **Secondary full text:** https://mksegypt.org/ar/decisions/34429
+- The decision expressly cites Law 170/2025, Law 203/1991, Law 97/1983, Law 159/1981 and the State Ownership Policy framework.
+
+### Articles and legal effect
+
+This is a binding Prime Minister decision published in the Official Gazette, not merely the State Ownership Policy's nonbinding policy language. It establishes uniform governance controls for selecting State representatives and monitoring their performance.
+
+**Article 1:** decision title and subject; establishes unified controls and standards for governance of selection of State and company representatives and monitoring their performance.
+
+**Article 2:** establishes a common framework for nomination, selection and assessment of candidates representing State entities and their companies, linked to professional qualifications, relevant experience, competence and integrity.
+
+**Articles 3 onward:** the Gazette scan sets candidate requirements, documentation, nomination procedures, evaluation and performance-monitoring requirements. The decision includes a structured process for evaluation and reporting. The complete page-by-page verbatim transcription is still outstanding; the official Gazette PDF is retained as the primary source locator.
+
+**Legal hierarchy:** Decision 1315/2026 implements the State-ownership governance framework but cannot override Law 170/2025, the Companies Law, Law 203/1991 or special company-establishment laws. The statutory Law 170/2025 provisions on the central unit's reasoned opinion within seven working days (Article 9), data access (Article 10), Cabinet-approved binding recommendations (Article 11) and prior approval/restrictions on new companies (Article 12) remain the governing enabling provisions.
+
+### Cross-reference
+
+- Law 170/2025 Articles 2, 9–13.
+- Law 203/1991 and Law 185/2020, particularly board composition, executive/non-executive separation and employee/disciplinary provisions.
+- Decision 1590/1991 as amended by Decision 948/2021, including independent board members and proportional representation.
+- State Ownership Policy 2026–2030, which is policy guidance but gains legal relevance through the express references in Law 170/2025 and the binding implementing decisions.
+
+### Acquisition gap
+
+The Gazette PDF is primary evidence, but the full text has not yet been transcribed. Retrieve and transcribe all articles and annexes, preserving eligibility criteria, nomination documents, review stages, time limits, performance indicators, reporting obligations and any transitional clauses.
