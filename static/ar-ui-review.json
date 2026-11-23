@@ -17471,13 +17471,13 @@
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-1572",
+      "id": "AR-1574",
       "arabic": "تم استخدام OCR؛ راجع النص مقابل الملف الأصلي لأن التعرف الآلي قد يخطئ.",
       "source_file": "static/index.html",
       "review_status": "pending_native_review"
     },
     {
-      "id": "AR-1573",
+      "id": "AR-1575",
       "arabic": "استخراج النص جزئي؛ لم تتوفر بيانات OCR لبعض الصفحات، وقد يكون المحتوى ناقصاً.",
       "source_file": "static/index.html",
       "review_status": "pending_native_review"
