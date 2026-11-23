@@ -260,11 +260,13 @@ def group_candidate_entity_mentions(
 
     buckets: dict[tuple[str, str, str, str], list[dict[str, Any]]] = {}
     candidate_count = 0
+    documents_inspected = 0
     entity_records_inspected = 0
     truncated = False
     documents_truncated = len(documents) > max_documents
     allowed_types = {"labelled_party", "case_reference", "legal_reference"}
     for document in documents[:max_documents]:
+        documents_inspected += 1
         if not isinstance(document, dict):
             raise TypeError("each document must be a mapping")
         firm_id, matter_id, document_id = (
@@ -343,6 +345,8 @@ def group_candidate_entity_mentions(
         "groups": groups,
         "group_count": len(groups),
         "candidate_count": candidate_count,
+        "documents_inspected": documents_inspected,
+        "entity_records_inspected": entity_records_inspected,
         "truncated": truncated,
         "requires_review": True,
         "warning": (
