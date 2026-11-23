@@ -462,6 +462,8 @@ jobs:
           python-version: '3.12'
       - name: Install hash-locked application dependencies
         run: python -m pip install --require-hashes -r requirements-py312.lock
+      - name: Test conservative document intelligence extraction helpers
+        run: PYTHONPATH=. python tests/test_document_intelligence.py
       - name: Test passage annotation and client retrieval contracts
         run: PYTHONPATH=. python tests/test_document_annotations.py
       - name: Test persisted passage annotations and case scoping
