@@ -160,3 +160,6 @@ This folder contains free/public source discovery, metadata registers and extrac
 77. [Decisions 289–291/2025 — industrial hours, intermittent work and overtime, complete Arabic operative texts](../legal_evidence/labour_decisions_289_291_2025_complete_arabic_text_2026-11-23.md) — Decision 289 (2 articles), 290 (4 articles/7 categories), 291 (5 articles); SIS Ministry source for 289 and secondary Gazette PDF text for 290–291; visual QA/currentness/rights/lawyer review pending.
 
 **Correction to item 76 / Decision 266 annex:** complete secondary LawHub page inspection shows the annex ends at **entry 435**, not 421. Earlier 421 figure was an incomplete-preview count and is corrected in the Decision 266 evidence note. The 435 entries remain unverified against Gazette page images.
+
+
+78. [Decision 346/2025 — Christian employees' religious holidays, complete two-article Arabic text](../legal_evidence/labour_decision_346_2025_christian_religious_holidays_arabic_text_2026-11-23.md) — IDSC-hosted government release and press reproductions; Gazette page-image comparison, exact cross-reference, rights and lawyer review pending.
