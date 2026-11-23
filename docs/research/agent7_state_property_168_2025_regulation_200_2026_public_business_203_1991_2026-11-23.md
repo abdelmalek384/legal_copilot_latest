@@ -740,7 +740,7 @@ The official Amiri Press text and secondary full-text reproduction identify thes
 >
 > كما يصدر رئيس مجلس الوزراء بناء على عرض الرئيس التنفيذى للوحدة، وبعد موافقة مجلس الوزراء، قرارًا بآليات معالجة موقف الفائض من العمالة في الشركات المملوكة للدولة، على أن يراعى أن يكون تمويل التكلفة المالية المترتبة على هذه الآليات، دون تحميل الموازنة العامة للدولة أى أعباء في هذا الشأن.
 
-**Articles 15–19:** the complete 19-article Arabic text is available in the linked full-text sources. The final articles contain supplementary governance/implementation and publication provisions. Their full verbatim transcription remains outstanding in this pass; do not treat the excerpts above as the complete substantive law.
+**Article count:** the attached law ends at substantive Article 14. The complete 14 substantive article bodies are transcribed in Section 17 below; there are no substantive Articles 15–19. The five issuing articles plus fourteen substantive articles make 19 article units in total.
 
 ### State Ownership Policy document — executive instrument / guidance classification
 
@@ -766,7 +766,7 @@ Do not infer that Law 170/2025 converts every public authority or every company 
 ### Gaps
 
 - Direct official Gazette PDF for Law 170/2025 issue 33 مكرر (ج) not yet downloaded/visually inspected; Amiri Press searchable text is official source and the full secondary text is accessible.
-- Verbatim transcription of Articles 3–5 and 15–19 remains to be completed and independently proofread.
+- Verbatim transcription of the remaining substantive Articles 3–5, 7–8 has been added in Section 17; all 14 substantive article bodies are now represented, subject to independent Gazette page-image proofreading.
 - The Cabinet decision organizing the central unit and any implementing decisions under Articles 3, 9, 12 and 14 need to be collected individually.
 - The second-edition policy document's exact adoption decision, publication date and operative annexes should be captured separately.
 - No assumption is made that all provisions of Law 170/2025 are self-executing; implementing decisions are expressly contemplated.
