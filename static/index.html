@@ -2335,15 +2335,22 @@ async function clients(initialQuery=''){
  const clientSearchPanel=client=>{
   const query=h('input',{type:'search',placeholder:uiText('ابحث في مستندات جميع قضايا هذا العميل','Search documents across this client’s matters'),'aria-label':uiText('البحث في مستندات العميل','Search client documents'),style:'width:min(100%,420px)'});
   const results=h('div',{className:'stack','aria-live':'polite'});
-  const run=async()=>{
+  let offset=0,total=0;
+  const run=async(reset=true)=>{
    const needle=query.value.trim();
    if(!needle){results.replaceChildren(h('p',{className:'mut',textContent:uiText('أدخل كلمات للبحث.','Enter search terms.')}));query.focus();return}
+   if(reset)offset=0;
    results.replaceChildren(h('p',{className:'mut',textContent:uiText('جارٍ البحث في القضايا المسموح بها…','Searching accessible matters…')}));
    try{
-    const data=await api('/clients/'+encodeURIComponent(client.id)+'/documents/search-text?q='+encodeURIComponent(needle)+'&limit=40');
+    const data=await api('/clients/'+encodeURIComponent(client.id)+'/documents/search-text?q='+encodeURIComponent(needle)+'&limit=40&offset='+offset);
     const rows=Array.isArray(data.items)?data.items:[];
+    total=Number(data.total)||0;
+    const previous=btn(uiText('السابق','Previous'),()=>{offset=Math.max(0,offset-40);run(false)},'g');
+    const next=btn(uiText('التالي','Next'),()=>{if(offset+40<total){offset+=40;run(false)}},'g');
+    previous.disabled=offset===0;
+    next.disabled=offset+40>=total;
     results.replaceChildren(
-     h('p',{className:'mut',textContent:String(data.total||0)+' '+uiText('مقاطع مطابقة عبر القضايا المسموح بها','matching passages across accessible matters')}),
+     h('p',{className:'mut',textContent:String(total)+' '+uiText('مقاطع مطابقة عبر القضايا المسموح بها','matching passages across accessible matters')+' · '+(total?String(offset+1)+'–'+String(Math.min(offset+40,total)):'0')}),
      ...(rows.length?rows.map(item=>h('article',{className:'src'},
       h('b',{textContent:(item.document_name||uiText('مستند','Document'))+' · '+(item.case_title||uiText('قضية رقم ','Matter #')+item.case_id)}),
       h('p',{className:'mut',textContent:(item.page?uiText('صفحة ','Page ')+item.page+' · ':'')+(item.ref||'')}),
@@ -2357,6 +2364,7 @@ async function clients(initialQuery=''){
        });
       },'g')
      )):[h('p',{className:'mut',textContent:uiText('لا توجد مقاطع مطابقة في القضايا المسموح بها.','No matching passages in accessible matters.')})]),
+     h('div',{className:'row'},previous,h('span',{className:'mut',textContent:total?String(offset+1)+'–'+String(Math.min(offset+40,total))+' / '+total:'0 / 0'}),next),
      h('p',{className:'mut',textContent:data.warning||''})
     );
    }catch(error){results.replaceChildren(h('p',{className:'notice danger',role:'alert',textContent:String(error.message||error)}))}
