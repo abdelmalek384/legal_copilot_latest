@@ -18,7 +18,7 @@ Four separate acquisition tranches and four separate CSV instrument registers we
    - [Research note](agent8_maritime_ports_inland_navigation_2026-11-23.md)
    - [Instrument register](agent8_maritime_ports_inland_navigation_instruments_2026-11-23.csv)
 
-The canonical national acquisition CSV was fetched from the default branch before deduplication. It contained 424 lines including header (423 data records) after the 23 November environment-text update; the earlier 422-record figure was the pre-update snapshot. The master index dashboard is dated 18 November 2026 and reports 388 confirmed + 1 provisional instruments; that dashboard/register count discrepancy remains unresolved. This session used exact instrument-number/title checks against the live CSV and did not alter the canonical CSV or master index.
+The canonical national acquisition CSV was fetched from the default branch before deduplication. It contains 425 lines including header (424 data records) after the 23 November environment and waste-text updates; the earlier 422-record figure was the pre-update snapshot. The master index dashboard is dated 18 November 2026 and reports 388 confirmed + 1 provisional instruments; that dashboard/register count discrepancy remains unresolved. This session used exact instrument-number/title checks against the live CSV and did not alter the canonical CSV or master index.
 
 ## 2. Instrument and article counts
 
@@ -110,3 +110,26 @@ No original publisher-hosted Gazette binary/hash was acquired in this tranche; s
 3. Extract complete Decisions1741/2005,1095/2011,710/2012,720/2012,544/2016,618/2017 and1963/2017 with annexes; resolve the 710/720 numbering split.
 4. Acquire the original Amiri Press binary for Decision2466/2024 and check subsequent EEAA Decision342/2025.
 5. Continue with the Waste Management Law202/2020 and PM722/2022, and Law48/1982/Nile pollution regulation, after exact duplicate checks.
+
+
+## 9. Follow-on acquisition — Waste Management Law202/2020 and executive regulation
+
+A second connected legal-text tranche was acquired, avoiding duplicate rows:
+- New dossier: [Waste Management Law202/2020, PM722/2022 and PM1113/2024 Arabic text](waste_management_law202_2020_pm722_2022_amendments_text_2026-11-23.md).
+- Updated existing canonical records EG-0089 (PM722/2022), EG-0139 (Law202/2020), and EG-0136 (Minister Decision342/2025) in place.
+- Added EG-0425 for PM Decision1113/2024; no duplicate Law202/2020 or PM722/2022 records added.
+
+### Actual Arabic text / source acquisition
+- Law202/2020: full Official Gazette issue41 bis (ب), 13 Oct 2020, 796-line searchable Arabic PDF reproduction located via FAOLEX; issuing Arts1–6 and selected substantive articles and penalties captured in dossier.
+- PM722/2022: complete 2,961-line Arabic Official Gazette PDF hosted by EEAA, issue7 bis (ج), 22 Feb 2022; full 56-article regulation and 18 annexes source-located. Actual Arabic text captured for issuing articles, selected Arts1,18,24,25,35–37,51–55, Annex6, Annexes7,11,17,18, and healthcare-waste disposal standards.
+- PM1113/2024: complete operative text source-located in Gazette issue14 supplement PDF, 4 Apr 2024; replacements to regulation Arts1(18) and29, amendment to Art25, and repeal clause captured. The text layer has a numbering anomaly («المادة الثامنة» then «المادة الثالثة» and «المادة الرابعة»), preserved for page-image review.
+- Minister Decision342/2025: official EEAA service page supplies the operational registration/accreditation rules and requirements; secondary publication report gives issue272 supplement, 3 Dec 2025 and effective-date claim. Complete Gazette attachment still needed.
+
+### Scoped progress percentages
+- **Environment Law4/1994 amendment/executive-regulation chain:** 6/12 = **50%** have a complete searchable Arabic source located. This is source discovery, not verified current consolidation.
+- **Waste Management Law202/2020 instrument chain (3 core instruments: Law202/2020, PM722/2022, PM1113/2024):** 3/3 = **100%** have complete searchable Arabic text sources located. The 80-article statute, 56-article regulation/18 annexes and 2024 amendment are not yet fully mirrored verbatim article-by-article into the repository.
+- **Repository-wide percentage:** still not defensibly calculable because the project has no verified denominator representing all Egyptian legislation or a stable in-scope corpus. Do not use the count of current register rows as the denominator.
+- **Canonical acquisition register:** now 424 data records (425 lines including header). The master dashboard count remains a separate inconsistent metric and was not overwritten.
+
+### Quality / next steps
+The official EEAA PM722 PDF and FAOLEX Gazette reproduction provide complete searchable sources, so the next blocker is transcription and page-image QA rather than discovery. Next work: mirror all 80 Law202 articles, 56 PM722 regulation articles and 18 annexes; inspect PM1113 page images; acquire complete PM342/2025 Gazette attachment; retrieve PM662/2025 extended producer responsibility instrument; then continue to Law48/1982 and its Nile-pollution implementing regulation. No commercial reuse permissions or lawyer review are claimed.
