@@ -6469,6 +6469,21 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(annotations[0]["start_offset"], start)
         self.assertEqual(annotations[0]["end_offset"], end)
 
+        # The database must reject edits even if a caller bypasses the HTTP API.
+        tenant = self.runtime.firm_connection(
+            self.runtime.resolve_context(self.user_id, self.firm_a)
+        )
+        with self.assertRaises(sqlite3.IntegrityError):
+            tenant.execute(
+                "UPDATE document_passage_annotations SET note=? WHERE id=?",
+                ("tampered annotation note", annotation_id),
+            )
+        persisted_note = tenant.execute(
+            "SELECT note FROM document_passage_annotations WHERE id=?",
+            (annotation_id,),
+        ).fetchone()["note"]
+        self.assertEqual(persisted_note, payload["note"])
+
         stale = self._mutate(
             "post",
             f"/cases/{alpha_case}/docs/{document_id}/chunks/{chunk['id']}/annotations",
