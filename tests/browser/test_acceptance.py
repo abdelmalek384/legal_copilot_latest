@@ -844,11 +844,13 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.assertIn("اختر ملف قضية", self.page.locator("body").inner_text())
 
         matter.select_option(str(case_id))
-        self.page.get_by_role("button", name="فتح مساحة ذكاء المستندات").click()
-        intelligence_panel = self.page.locator(".document-intelligence-panel").last
+        self.page.get_by_role("button", name="فتح مساحة ذكاء المستندات", exact=True).click()
+        research_document_workspace = self.page.locator(".research-document-workspace")
+        research_document_workspace.wait_for(state="visible", timeout=10000)
+        intelligence_panel = research_document_workspace.locator(".document-intelligence-panel")
         intelligence_panel.wait_for(state="visible", timeout=10000)
         intelligence_panel.get_by_role("button", name="تحليل المستندات", exact=True).click()
-        self.page.get_by_text("التصنيفات المقترحة", exact=True).wait_for(timeout=15000)
+        intelligence_panel.get_by_text("التصنيفات المقترحة", exact=True).wait_for(timeout=15000)
         self.assertTrue(intelligence_panel.is_visible())
         self.assertIn("دعوى رقم ١٢٣/٢٠٢٥", self.page.locator("body").inner_text())
         self.assertIn("٥٠٠٠ جنيه", self.page.locator("body").inner_text())
