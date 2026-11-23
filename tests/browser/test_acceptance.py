@@ -689,7 +689,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.assertEqual(after_removal.status, 200, after_removal.text())
         self.assertFalse(any(row["user_id"] == member_id for row in after_removal.json()["members"]))
 
-        self.page.locator("#side").get_by_role("button", name="القضايا").click()
+        self.page.locator("#side").get_by_role("button", name="العملاء والقضايا", exact=True).click()
         self.page.get_by_text("SYNTHETIC CASEFLOW PRIMARY MATTER", exact=True).wait_for(timeout=10000)
         self.assertIn("SYNTHETIC CASEFLOW SECOND MATTER", self.page.locator("body").inner_text())
 
