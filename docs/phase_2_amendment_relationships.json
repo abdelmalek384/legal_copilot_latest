@@ -756,6 +756,214 @@
         "Check subsequent legislative amendment or implementation",
         "Egyptian constitutional-law counsel review"
       ]
+    },
+    {
+      "relationship_id": "REL-EG-LABOUR-MINISTER-DECREE-48-2026-IMPLEMENTS-LABOUR-14-2025",
+      "source_instrument_id": "EG-LABOUR-MINISTER-DECREE-48-2026",
+      "target_instrument_id": "EG-LABOUR-14-2025",
+      "relationship_type": "implements",
+      "status": "source_located_text_and_gazette_verification_pending",
+      "affected_provisions": "Decision-specific provisions as stated in the instrument title; exact enabling articles and article-by-article mapping pending Gazette text review.",
+      "source_url": "https://www.vetogate.com/Upload/libfiles/578/6/982.pdf",
+      "required_evidence": [
+        "complete Gazette PDF and issue/page range",
+        "full Arabic operative text and annexes/forms",
+        "enabling-article mapping to Law 14/2025",
+        "later amendments/corrigenda and commencement review",
+        "qualified Egyptian labour-lawyer sign-off"
+      ]
+    },
+    {
+      "relationship_id": "REL-EG-LABOUR-MINISTER-DECREE-49-2026-IMPLEMENTS-LABOUR-14-2025",
+      "source_instrument_id": "EG-LABOUR-MINISTER-DECREE-49-2026",
+      "target_instrument_id": "EG-LABOUR-14-2025",
+      "relationship_type": "implements",
+      "status": "source_located_text_and_gazette_verification_pending",
+      "affected_provisions": "Decision-specific provisions as stated in the instrument title; exact enabling articles and article-by-article mapping pending Gazette text review.",
+      "source_url": "https://www.vetogate.com/Upload/libfiles/578/6/982.pdf",
+      "required_evidence": [
+        "complete Gazette PDF and issue/page range",
+        "full Arabic operative text and annexes/forms",
+        "enabling-article mapping to Law 14/2025",
+        "later amendments/corrigenda and commencement review",
+        "qualified Egyptian labour-lawyer sign-off"
+      ]
+    },
+    {
+      "relationship_id": "REL-EG-LABOUR-MINISTER-DECREE-50-2026-IMPLEMENTS-LABOUR-14-2025",
+      "source_instrument_id": "EG-LABOUR-MINISTER-DECREE-50-2026",
+      "target_instrument_id": "EG-LABOUR-14-2025",
+      "relationship_type": "implements",
+      "status": "source_located_text_and_gazette_verification_pending",
+      "affected_provisions": "Decision-specific provisions as stated in the instrument title; exact enabling articles and article-by-article mapping pending Gazette text review.",
+      "source_url": "https://www.vetogate.com/Upload/libfiles/578/6/982.pdf",
+      "required_evidence": [
+        "complete Gazette PDF and issue/page range",
+        "full Arabic operative text and annexes/forms",
+        "enabling-article mapping to Law 14/2025",
+        "later amendments/corrigenda and commencement review",
+        "qualified Egyptian labour-lawyer sign-off"
+      ]
+    },
+    {
+      "relationship_id": "REL-EG-LABOUR-MINISTER-DECREE-162-2026-IMPLEMENTS-LABOUR-14-2025",
+      "source_instrument_id": "EG-LABOUR-MINISTER-DECREE-162-2026",
+      "target_instrument_id": "EG-LABOUR-14-2025",
+      "relationship_type": "implements",
+      "status": "source_located_text_and_gazette_verification_pending",
+      "affected_provisions": "Decision-specific provisions as stated in the instrument title; exact enabling articles and article-by-article mapping pending Gazette text review.",
+      "source_url": "https://dspace.id.com.eg/items/dae71be0-2519-407f-b239-08fa7a4eb536/full",
+      "required_evidence": [
+        "complete Gazette PDF and issue/page range",
+        "full Arabic operative text and annexes/forms",
+        "enabling-article mapping to Law 14/2025",
+        "later amendments/corrigenda and commencement review",
+        "qualified Egyptian labour-lawyer sign-off"
+      ]
+    },
+    {
+      "relationship_id": "REL-EG-LABOUR-MINISTER-DECREE-248-2026-IMPLEMENTS-LABOUR-14-2025",
+      "source_instrument_id": "EG-LABOUR-MINISTER-DECREE-248-2026",
+      "target_instrument_id": "EG-LABOUR-14-2025",
+      "relationship_type": "implements",
+      "status": "source_located_text_and_gazette_verification_pending",
+      "affected_provisions": "Decision-specific provisions as stated in the instrument title; exact enabling articles and article-by-article mapping pending Gazette text review.",
+      "source_url": "https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full",
+      "required_evidence": [
+        "complete Gazette PDF and issue/page range",
+        "full Arabic operative text and annexes/forms",
+        "enabling-article mapping to Law 14/2025",
+        "later amendments/corrigenda and commencement review",
+        "qualified Egyptian labour-lawyer sign-off"
+      ]
+    },
+    {
+      "relationship_id": "REL-EG-LABOUR-MINISTER-DECREE-249-2026-IMPLEMENTS-LABOUR-14-2025",
+      "source_instrument_id": "EG-LABOUR-MINISTER-DECREE-249-2026",
+      "target_instrument_id": "EG-LABOUR-14-2025",
+      "relationship_type": "implements",
+      "status": "source_located_text_and_gazette_verification_pending",
+      "affected_provisions": "Decision-specific provisions as stated in the instrument title; exact enabling articles and article-by-article mapping pending Gazette text review.",
+      "source_url": "https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full",
+      "required_evidence": [
+        "complete Gazette PDF and issue/page range",
+        "full Arabic operative text and annexes/forms",
+        "enabling-article mapping to Law 14/2025",
+        "later amendments/corrigenda and commencement review",
+        "qualified Egyptian labour-lawyer sign-off"
+      ]
+    },
+    {
+      "relationship_id": "REL-EG-LABOUR-MINISTER-DECREE-250-2026-IMPLEMENTS-LABOUR-14-2025",
+      "source_instrument_id": "EG-LABOUR-MINISTER-DECREE-250-2026",
+      "target_instrument_id": "EG-LABOUR-14-2025",
+      "relationship_type": "implements",
+      "status": "source_located_text_and_gazette_verification_pending",
+      "affected_provisions": "Decision-specific provisions as stated in the instrument title; exact enabling articles and article-by-article mapping pending Gazette text review.",
+      "source_url": "https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full",
+      "required_evidence": [
+        "complete Gazette PDF and issue/page range",
+        "full Arabic operative text and annexes/forms",
+        "enabling-article mapping to Law 14/2025",
+        "later amendments/corrigenda and commencement review",
+        "qualified Egyptian labour-lawyer sign-off"
+      ]
+    },
+    {
+      "relationship_id": "REL-EG-LABOUR-MINISTER-DECREE-251-2026-IMPLEMENTS-LABOUR-14-2025",
+      "source_instrument_id": "EG-LABOUR-MINISTER-DECREE-251-2026",
+      "target_instrument_id": "EG-LABOUR-14-2025",
+      "relationship_type": "implements",
+      "status": "source_located_text_and_gazette_verification_pending",
+      "affected_provisions": "Decision-specific provisions as stated in the instrument title; exact enabling articles and article-by-article mapping pending Gazette text review.",
+      "source_url": "https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full",
+      "required_evidence": [
+        "complete Gazette PDF and issue/page range",
+        "full Arabic operative text and annexes/forms",
+        "enabling-article mapping to Law 14/2025",
+        "later amendments/corrigenda and commencement review",
+        "qualified Egyptian labour-lawyer sign-off"
+      ]
+    },
+    {
+      "relationship_id": "REL-EG-LABOUR-MINISTER-DECREE-252-2026-IMPLEMENTS-LABOUR-14-2025",
+      "source_instrument_id": "EG-LABOUR-MINISTER-DECREE-252-2026",
+      "target_instrument_id": "EG-LABOUR-14-2025",
+      "relationship_type": "implements",
+      "status": "source_located_text_and_gazette_verification_pending",
+      "affected_provisions": "Decision-specific provisions as stated in the instrument title; exact enabling articles and article-by-article mapping pending Gazette text review.",
+      "source_url": "https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full",
+      "required_evidence": [
+        "complete Gazette PDF and issue/page range",
+        "full Arabic operative text and annexes/forms",
+        "enabling-article mapping to Law 14/2025",
+        "later amendments/corrigenda and commencement review",
+        "qualified Egyptian labour-lawyer sign-off"
+      ]
+    },
+    {
+      "relationship_id": "REL-EG-LABOUR-MINISTER-DECREE-260-2025-IMPLEMENTS-LABOUR-14-2025",
+      "source_instrument_id": "EG-LABOUR-MINISTER-DECREE-260-2025",
+      "target_instrument_id": "EG-LABOUR-14-2025",
+      "relationship_type": "implements",
+      "status": "source_located_text_and_gazette_verification_pending",
+      "affected_provisions": "Decision-specific provisions as stated in the instrument title; exact enabling articles and article-by-article mapping pending Gazette text review.",
+      "source_url": "https://dspace.id.com.eg/items/6b5ec126-0558-4eb5-9a88-8fba3b2fa880/full",
+      "required_evidence": [
+        "complete Gazette PDF and issue/page range",
+        "full Arabic operative text and annexes/forms",
+        "enabling-article mapping to Law 14/2025",
+        "later amendments/corrigenda and commencement review",
+        "qualified Egyptian labour-lawyer sign-off"
+      ]
+    },
+    {
+      "relationship_id": "REL-EG-LABOUR-MINISTER-DECREE-269-2025-IMPLEMENTS-LABOUR-14-2025",
+      "source_instrument_id": "EG-LABOUR-MINISTER-DECREE-269-2025",
+      "target_instrument_id": "EG-LABOUR-14-2025",
+      "relationship_type": "implements",
+      "status": "source_located_text_and_gazette_verification_pending",
+      "affected_provisions": "Decision-specific provisions as stated in the instrument title; exact enabling articles and article-by-article mapping pending Gazette text review.",
+      "source_url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/11-12-2025/no-269?id=5008536&type=1",
+      "required_evidence": [
+        "complete Gazette PDF and issue/page range",
+        "full Arabic operative text and annexes/forms",
+        "enabling-article mapping to Law 14/2025",
+        "later amendments/corrigenda and commencement review",
+        "qualified Egyptian labour-lawyer sign-off"
+      ]
+    },
+    {
+      "relationship_id": "REL-EG-LABOUR-MINISTER-DECREE-270-2025-IMPLEMENTS-LABOUR-14-2025",
+      "source_instrument_id": "EG-LABOUR-MINISTER-DECREE-270-2025",
+      "target_instrument_id": "EG-LABOUR-14-2025",
+      "relationship_type": "implements",
+      "status": "source_located_text_and_gazette_verification_pending",
+      "affected_provisions": "Decision-specific provisions as stated in the instrument title; exact enabling articles and article-by-article mapping pending Gazette text review.",
+      "source_url": "https://lawhub.info/eg/?p=17306",
+      "required_evidence": [
+        "complete Gazette PDF and issue/page range",
+        "full Arabic operative text and annexes/forms",
+        "enabling-article mapping to Law 14/2025",
+        "later amendments/corrigenda and commencement review",
+        "qualified Egyptian labour-lawyer sign-off"
+      ]
+    },
+    {
+      "relationship_id": "REL-EG-LABOUR-MINISTER-DECREE-291-2025-IMPLEMENTS-LABOUR-14-2025",
+      "source_instrument_id": "EG-LABOUR-MINISTER-DECREE-291-2025",
+      "target_instrument_id": "EG-LABOUR-14-2025",
+      "relationship_type": "implements",
+      "status": "source_located_text_and_gazette_verification_pending",
+      "affected_provisions": "Decision-specific provisions as stated in the instrument title; exact enabling articles and article-by-article mapping pending Gazette text review.",
+      "source_url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/30-12-2025/no-291?id=5064176&type=1",
+      "required_evidence": [
+        "complete Gazette PDF and issue/page range",
+        "full Arabic operative text and annexes/forms",
+        "enabling-article mapping to Law 14/2025",
+        "later amendments/corrigenda and commencement review",
+        "qualified Egyptian labour-lawyer sign-off"
+      ]
     }
   ],
   "next_actions": [
