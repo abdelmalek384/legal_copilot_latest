@@ -547,7 +547,7 @@ def _page_at(position: int, page_markers: list[tuple[int, int]]):
     return page_markers[marker_index][1] if marker_index >= 0 else None
 
 
-def extract_structured_candidates(text: str, max_items: int = 250) -> dict[str, Any]:
+def extract_structured_candidates(text: str, max_items: int = 250, max_sentences: int = 10000) -> dict[str, Any]:
     """Build provenance-linked entity, event and explicit-relationship candidates.
 
     This is a conservative rule-based structuring pass over extracted text. It
@@ -561,6 +561,8 @@ def extract_structured_candidates(text: str, max_items: int = 250) -> dict[str, 
         raise ValueError("document text exceeds analysis limit")
     if isinstance(max_items, bool) or not isinstance(max_items, int) or not 1 <= max_items <= 500:
         raise ValueError("max_items must be an integer between 1 and 500")
+    if isinstance(max_sentences, bool) or not isinstance(max_sentences, int) or not 1 <= max_sentences <= 50000:
+        raise ValueError("max_sentences must be an integer between 1 and 50000")
 
     page_markers = [(match.start(), int(match.group(1))) for match in _PAGE_MARKER.finditer(text)]
     # Collect each signal family independently, then interleave families before
@@ -640,7 +642,12 @@ def extract_structured_candidates(text: str, max_items: int = 250) -> dict[str, 
 
     events = []
     relationships = []
+    sentences_inspected = 0
     for sentence_start, sentence_end in _sentence_spans(text):
+        if sentences_inspected >= max_sentences:
+            truncated = True
+            break
+        sentences_inspected += 1
         sentence = text[sentence_start:sentence_end].strip()
         if not sentence:
             continue
@@ -713,6 +720,7 @@ def extract_structured_candidates(text: str, max_items: int = 250) -> dict[str, 
         "entity_count": len(entities),
         "event_count": len(events),
         "relationship_count": len(relationships),
+        "sentences_inspected": sentences_inspected,
         "truncated": truncated,
         "requires_review": True,
         "limitations": [
@@ -721,6 +729,7 @@ def extract_structured_candidates(text: str, max_items: int = 250) -> dict[str, 
             "Relationships are emitted only for explicit relation phrases; direction and legal effect require human confirmation.",
             "All values retain source offsets and available PDF page markers but may reflect extraction or OCR errors.",
             "A missing candidate does not prove that an entity, event or relationship is absent.",
+            "Only the first max_sentences sentence-like spans are inspected; truncated results may omit later events and relationships.",
         ],
     }
 
