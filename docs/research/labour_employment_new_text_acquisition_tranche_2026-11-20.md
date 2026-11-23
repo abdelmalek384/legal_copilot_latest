@@ -25,7 +25,7 @@ Full Arabic transcription lead: https://lawhub.info/eg/?p=17073
 Secondary publication with text: https://www.almasdar.com/print.aspx?id=165261  
 Gazette anchor: issue 290 supplement (B), 24-12-2025. Gazette page: pending original bundle inspection.
 
-Verified text excerpt (secondary transcription):
+Arabic text excerpt (secondary transcription; Gazette page matching pending):
 > قرار رقم 266 لسنة ٢٠٢٥  
 > بشأن قواعد وإجراءات قياس مستوى المهارة وترخيص مزاولة المهن والحرف
 
@@ -63,7 +63,7 @@ Forty numbered articles are exposed in the LawHub Arabic text (Articles 1–40).
 > مادة (39)  
 > يُلغى كل قرار أو نص أو حكم سابق يُخالف أو يتعارض مع أحكام هذا القرار.
 
-The source page continues through Article 40. Preserve exact article numbering and the Arabic page text as source-matched, not lawyer-reviewed. It expressly supersedes conflicting earlier instruments, including the historical foreign-worker decisions identified in the linked legal-library records: 136/2003 (amended by 227/2004), 49/2008, 485/2010, 305/2015 and 146/2019; also inspect 357/2004 instructions. Do not infer blanket repeal beyond the wording of Article 39.
+The source page continues through Article 40. Preserve exact article numbering and the Arabic text as a secondary transcription; Gazette page matching remains pending and lawyer review has not occurred. It expressly supersedes conflicting earlier instruments, including the historical foreign-worker decisions identified in the linked legal-library records: 136/2003 (amended by 227/2004), 49/2008, 485/2010, 305/2015 and 146/2019; also inspect 357/2004 instructions. Do not infer blanket repeal beyond the wording of Article 39.
 
 #### Decision 300/2025 — conciliation in collective labour disputes
 Official-catalogue record and Arabic Gazette scan lead: https://dspace.id.com.eg/items/cb171410-fad2-4fa8-95b8-b4d44090473a/full  
@@ -556,8 +556,8 @@ The previous project-wide national-corpus estimate (~2%, rounded) is not recalcu
 
 ## 6. Repository ingestion and evidence controls
 
-- Every excerpt above is source-matched, not lawyer-reviewed.
-- Keep verified=0; no automated source match changes lawyer-review status.
+- Evidence labels are instrument-specific: distinguish official catalogue metadata, third-party-hosted Gazette scan copies, and secondary transcriptions; do not label secondary HTML as Gazette-matched text.
+- Keep verified=0; no automated text extraction or catalogue match changes lawyer-review status.
 - Each document record must store: instrument ID, Arabic title, issuer, signed date, Gazette publication date, issue/supplement, printed page range, source URL, source class, retrieval timestamp, exact Arabic text, annexes, OCR/transcription status, amendment/repeal links, and lawyer-review status.
 - Preserve source variants separately: Gazette image/PDF, official ministry reproduction, official catalogue record, secondary full-text transcription, and OCR output.
 - Do not overwrite source Arabic with normalized OCR. Store normalization in a derived field and preserve the raw capture.
