@@ -2333,9 +2333,10 @@ async function clients(initialQuery=''){
  cq.oninput=()=>{if(cq.value.trim().length>=2){cq.removeAttribute('aria-invalid');cq.removeAttribute('aria-describedby');cqError.hidden=true}};cq.onkeydown=e=>e.key==='Enter'&&run();
  const search=h('input',{type:'search',placeholder:uiText('ابحث باسم العميل أو الهاتف أو البريد الإلكتروني','Search client name, phone or email'),'aria-label':uiText('بحث في ملفات العملاء','Search client profiles'),style:'width:min(100%,420px)'});if(initialQuery)search.value=String(initialQuery).slice(0,200);
  const clientSearchPanel=client=>{
-  const query=h('input',{type:'search',placeholder:uiText('ابحث في مستندات جميع قضايا هذا العميل','Search documents across this client’s matters'),'aria-label':uiText('البحث في مستندات العميل','Search client documents'),style:'width:min(100%,420px)'});
+  const restoreState=window.DOCUMENT_CLIENT_SEARCH_RETURN&&Number(window.DOCUMENT_CLIENT_SEARCH_RETURN.clientId)===Number(client.id)?window.DOCUMENT_CLIENT_SEARCH_RETURN:null;
+  const query=h('input',{type:'search',value:restoreState?String(restoreState.query||''):'',placeholder:uiText('ابحث في مستندات جميع قضايا هذا العميل','Search documents across this client’s matters'),'aria-label':uiText('البحث في مستندات العميل','Search client documents'),style:'width:min(100%,420px)'});
   const results=h('div',{className:'stack','aria-live':'polite'});
-  let offset=0,total=0;
+  let offset=restoreState?Math.max(0,Number(restoreState.offset)||0):0,total=0;
   const run=async(reset=true)=>{
    const needle=query.value.trim();
    if(!needle){results.replaceChildren(h('p',{className:'mut',textContent:uiText('أدخل كلمات للبحث.','Enter search terms.')}));query.focus();return}
@@ -2357,6 +2358,7 @@ async function clients(initialQuery=''){
       h('p',{textContent:item.excerpt||''}),
       btn(uiText('فتح المقطع في ملف القضية','Open passage in matter'),()=>{
        window.DOCUMENT_REVIEW_TARGET={caseId:Number(item.case_id),documentId:Number(item.document_id),chunkId:String(item.chunk_id)};
+       window.DOCUMENT_CLIENT_SEARCH_RETURN={clientId:Number(client.id),clientName:String(client.name||''),query:query.value.trim(),offset};
        PAGE='cases';TAB='docs';
        view(Number(item.case_id)).catch(()=>{
         window.DOCUMENT_REVIEW_TARGET=null;
@@ -2370,6 +2372,7 @@ async function clients(initialQuery=''){
    }catch(error){results.replaceChildren(h('p',{className:'notice danger',role:'alert',textContent:String(error.message||error)}))}
   };
   query.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();run()}};
+  if(restoreState){window.DOCUMENT_CLIENT_SEARCH_RETURN=null;Promise.resolve().then(()=>run(false))}
   return h('div',{className:'stack',style:'margin-top:12px;padding-top:12px;border-top:1px solid var(--line)'},
    h('b',{textContent:uiText('البحث في مستندات العميل عبر القضايا','Client-wide document search')}),
    h('div',{className:'row'},query,btn(uiText('بحث','Search'),run,'g')),
@@ -4214,7 +4217,8 @@ async function view(id){if(window.DOCUMENT_REVIEW_TARGET&&Number(window.DOCUMENT
  if(TAB==='ask')body=h('div',{},h('section',{className:'research-scope-guidance',role:'note'},h('b',{textContent:uiText('كيف يعمل البحث القانوني','How legal research works')}),h('p',{textContent:uiText('يبحث النطاق الافتراضي في النصوص القانونية المتحقق منها فقط. إذا لم يوجد نص مستوفٍ لشروط المصدر والمراجعة، سيمتنع النظام عن الإجابة بدلاً من التخمين. استخدم اكتشاف فهرس المصادر للعثور على بيانات وصفية فقط، أو اختر مستندات المكتب وحدد ملف قضية.','The default scope searches verified legal text only. If no source meets provenance and review requirements, the assistant abstains rather than guessing. Use source-catalog discovery for metadata only, or choose firm documents and select a matter.')})),h('div',{className:'card'},askBox(id)));
  if(TAB==='log')body=h('div',{className:'card'},c.events.map(e=>h('div',{className:'row'},h('span',{textContent:e.text}),h('span',{className:'mut',textContent:e.who+' · '+new Date(e.at.replace(' ','T')+'Z').toLocaleString(LANG==='ar'?'ar-EG':'en-US',{dateStyle:'short',timeStyle:'short'})}))));
  const matterMeta=[c.case_number&&[uiText('رقم القضية','Case number'),c.case_number],c.case_year&&[uiText('السنة','Year'),c.case_year],c.court&&[uiText('المحكمة','Court'),c.court],c.circuit&&[uiText('الدائرة','Circuit'),c.circuit],c.stage&&[uiText('المرحلة','Stage'),c.stage]].filter(Boolean);
- shell(c.title,h('div',{className:'matter-context-strip'},h('span',{className:'matter-client-context',textContent:uiText('العميل: ','Client: ')+(c.client||'—')}),pill(c.status==='open'?uiText('مفتوحة','Open'):uiText('مغلقة','Closed'),c.status==='open'?'open':'closed'),...matterMeta.map(([label,value])=>h('span',{className:'matter-meta-chip'},h('span',{className:'mut',textContent:label}),h('b',{textContent:String(value)}))),h('span',{className:'matter-progress-context'},prog({done_tasks:dn,open_tasks:tot-dn}),h('span',{className:'mut',textContent:dn+'/'+tot+' '+uiText('مهام','tasks')}))),
+ const clientSearchReturn=window.DOCUMENT_CLIENT_SEARCH_RETURN?btn(uiText('العودة إلى نتائج بحث العميل','Back to client search results'),()=>{const state=window.DOCUMENT_CLIENT_SEARCH_RETURN;if(!state)return;PAGE='clients';TAB='sum';clients(state.clientName)},'g'):null;
+ shell(c.title,clientSearchReturn,h('div',{className:'matter-context-strip'},h('span',{className:'matter-client-context',textContent:uiText('العميل: ','Client: ')+(c.client||'—')}),pill(c.status==='open'?uiText('مفتوحة','Open'):uiText('مغلقة','Closed'),c.status==='open'?'open':'closed'),...matterMeta.map(([label,value])=>h('span',{className:'matter-meta-chip'},h('span',{className:'mut',textContent:label}),h('b',{textContent:String(value)}))),h('span',{className:'matter-progress-context'},prog({done_tasks:dn,open_tasks:tot-dn}),h('span',{className:'mut',textContent:dn+'/'+tot+' '+uiText('مهام','tasks')}))),
   h('div',{className:'matter-navigation'},tabGroupNav,tabDetailNav),body)}
 
 // Bilingual UI: interface labels are translated; user-entered case/legal text is never translated.
