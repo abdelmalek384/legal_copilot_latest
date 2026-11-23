@@ -59,7 +59,7 @@ Decision550 extends the period in **Article14(a)**, the five-year census. It doe
 - **Decision date:** 29 September 2026.
 - **Publication:** الوقائع المصرية issue 215 تابع (أ), 29 September 2026.
 - **Scope:** extends by six months, to **2 April 2027**, (a) the delay-interest exemption period under Article3 of Law3/2026 and (b) the period for applications to settle real-estate-tax disputes under Articles5 and 6 of Law3/2026.
-- **Sources:** https://www.onyxberg.com/ar/news/«المالية»-تمدد-إعفاء-مقابل-التأخير-والتصالح-في-المنازعات-الضريبية-العقارية-حتى-أبريل- ; https://www.cairo24.com/2512220 ; https://www.almsryalaan.com/article/78930/
+- **Sources:** https://www.onyxberg.com/ar/news/%D8%A7%D9%84%D9%85%D8%A7%D9%84%D9%8A%D8%A9-%D8%AA%D9%85%D8%AF%D8%AF-%D8%A5%D8%B9%D9%81%D8%A7%D8%A1-%D9%85%D9%82%D8%A7%D8%A8%D9%84-%D8%A7%D9%84%D8%AA%D8%A3%D8%AE%D9%8A%D8%B1-%D9%88%D8%A7%D9%84%D8%AA%D8%B5%D8%A7%D9%84%D8%AD-%D9%81%D9%8A-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D8%B2%D8%B9%D8%A7%D8%AA-%D8%A7%D9%84%D8%B6%D8%B1%D9%8A%D8%A8%D9%8A%D8%A9-%D8%A7%D9%84%D8%B9%D9%82%D8%A7%D8%B1%D9%8A%D8%A9-%D8%AD%D8%AA%D9%89-%D8%A3%D8%A8%D8%B1%D9%8A%D9%84- ; https://www.cairo24.com/2512220 ; https://www.almsryalaan.com/article/78930/
 - **Source quality:** secondary sources reproduce the two operative effects and identify the Gazette issue/date. No full official Gazette transcription or original Amiri Press binary was obtained. The exact Arabic drafting of the two articles is therefore **not quoted as verbatim** below.
 
 ### Operative content confirmed from secondary reports (not a verbatim transcription)
