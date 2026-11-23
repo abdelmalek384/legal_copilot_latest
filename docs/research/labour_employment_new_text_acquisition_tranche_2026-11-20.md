@@ -484,18 +484,76 @@ Exact Arabic excerpts:
 This instrument includes licensing/recruitment agencies, registers, fees, data-protection and cyber-security requirements for electronic recruitment, complaints, and labour representation abroad. Preserve the entire text and all annexed forms.
 
 #### Decision 292/2025 — hours in preparatory/complementary/guarding/cleaning work
-Secondary full text: https://lawhub.info/eg/?p=17022  
-EastLaws record: https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/25-12-2025/no-292?id=5042304&type=1  
-Official SIS-hosted issue 291 scan: printed start page 67; full scan link in the bundle section above. Full scan-side text extraction/visual QA remains pending; the scan carries the not-valid-for-circulation watermark.\n
-Exact Arabic text:
-> مادة (5)  
-> يلتزم صاحب العمل بتحديد ساعات العمل في الأعمال المشار إليها في المواد السابقة على أن يكون الحد الأقصى لساعات العمل الفعلية هي ٤٨ ساعة في الأسبوع.
 
-> مادة (6)  
-> مع عدم الإخلال بأحكام المادة رقم (121) من قانون العمل المشار إليه، يكون الحد الأقصى لساعات العمل الإضافية في الأعمال المشار إليها في المواد السابقة اثنتي عشرة ساعة في الأسبوع بواقع ساعتين بحد أقصى في اليوم الواحد.
+**Full seven-article Arabic text captured (23 November 2026).** Sources:
+- Secondary full text: https://lawhub.info/eg/?p=17022
+- EastLaws record: https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/25-12-2025/no-292?id=5042304&type=1
+- Gazette anchor: issue 291 supplement, printed start page 67, within the SIS-hosted issue 291 bundle linked above. The scan carries the warning “صورة إلكترونية لا يعتد بها عند التداول”.
+- IDSC/MELES issue 291 catalogue record lists Decision 292/2025 among the contents: https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc/full
 
-It defines preparatory and complementary work, guarding (including electronic/cyber monitoring), and cleaning. Capture Articles 1–7 and compare against Law 14/2025 Arts 118–123 and relevant ILO hours-of-work instruments.
+**Arabic text captured from secondary full-text reproduction:**
 
+وزارة العمل
+
+قرار رقم ٢٩٢ لسنة ٢٠٢٥
+
+بشأن تحديد الحد الأقصى لساعات العمل الفعلية والإضافية في الأعمال التجهيزية والتكميلية وأعمال الحراسة والنظافة
+
+وزير العمل
+
+بعد الاطلاع على الدستور؛
+وعلى قانون العمل الصادر بالقانون رقم ١٤ لسنة ٢٠٢٥؛
+وعلى اتفاقيات منظمة العمل الدولية التي صدقت عليها جمهورية مصر العربية؛
+وبعد العرض على المجلس الأعلى للتشاور الاجتماعي.
+
+قرر:
+
+**الأعمال التجهيزية**
+
+**مادة (١)**
+يقصد بالأعمال التجهيزية، جميع الأعمال اللازمة لإعداد وتهيئة مكان العمل أو الآلات أو المعدات أو الأنظمة التقنية أو التشغيلية، والتي يجب إنجازها قبل بدء ساعات العمل المقررة لتمكين المنشأة من مزاولة نشاطها اليومي بفاعلية وكفاءة، وتشمل على الأخص الأعمال الآتية:
+- تشغيل وفحص وصيانة الماكينات والآلات والأفران والغلايات والقوى المحركة وأنظمة التحكم الآلي التي تستلزم وقتاً محدداً قبل بدء الإنتاج الفعلي.
+- تجهيز المواد الخام والمستلزمات اللوجستية اللازمة لخطوط الإنتاج أو تقديم الخدمات، بما في ذلك عمليات الفرز والتصنيف والتجهيز الأولي.
+- إعداد بيئة العمل الرقمية، وتفعيل الأنظمة والشبكات الحاسوبية اللازمة لسير العمل، والتحقق من جاهزية البنية التحتية التكنولوجية والمنصات الرقمية.
+- الأعمال التحضيرية في قطاعات الخدمات التي تتطلب إعداداً خاصاً قبل استقبال العملاء أو بدء تقديم الخدمة.
+
+**الأعمال التكميلية**
+
+**مادة (٢)**
+يقصد بالأعمال التكميلية، جميع الأعمال التي تتطلب استكمالها بعد انتهاء ساعات العمل المقررة، أو التي تكون ضرورية لاستمرارية العمليات أو لمعالجة طوارئ فنية، وتشمل على الأخص الأعمال الآتية:
+- الأعمال اللازمة لصيانة واستكمال إصلاح الماكينات أو الآلات أو الأنظمة التقنية عند حدوث خلل أو عطل بها قد يترتب عليه تعطيل العمل في الوردية التالية أو الإضرار بسير الإنتاج.
+- الأعمال اللازمة لاستمرار سير العمل الذي يتعذر وقفه أو تعطيله، مثل عمليات حفر آبار البترول أو تشغيل محطات الطاقة أو مراكز البيانات أو أنظمة الدعم التقني على مدار الساعة.
+- الأعمال اللازمة لاستكمال عمليات الشحن والتفريغ أو التخزين أو التوزيع التي لا يمكن تأجيلها، والتي قد يترتب على عدم إنجازها في الأوقات المحددة تأخر تصدير أو تسليم المنتجات أو البضائع، بما في ذلك ما يتعلق بمنصات التجارة الإلكترونية والتسليم الفوري.
+- إنهاء العمليات الصناعية أو الخدمية التكميلية التي لا يجوز من الناحية الفنية تراكمها أو تركها دون إنهاء، كعمليات التنقية أو التبريد أو التوثيق الرقمي النهائي للعمليات، أو إعداد التقارير الفورية الضرورية لاستمرارية العمل.
+
+**أعمال الحراسة**
+
+**مادة (٣)**
+يقصد بأعمال الحراسة، الأعمال التي يقوم بها الخفراء وعمال الإطفاء والعمال المخصصون لحراسة المنشأة والعاملين في أنظمة الأمن والمراقبة الإلكترونية والسيبرانية، لضمان أمن وسلامة الأفراد والممتلكات والمعدات والبيانات الحساسة، سواء أثناء ساعات العمل الرسمية أو خارجها.
+
+**أعمال النظافة**
+
+**مادة (٤)**
+يقصد بأعمال النظافة، جميع الأعمال التي يقوم بها عمال النظافة للحفاظ على نظافة وترتيب أماكن العمل والمنشآت ومرافقها، بما في ذلك تعقيم وتطهير الأماكن الحيوية والمعدات، سواء قبل بدء العمل أو بعد انتهائه أو أثناء فترات توقف العمليات الإنتاجية، وذلك لضمان بيئة عمل صحية وآمنة وفقاً لمعايير واشتراطات السلامة والصحة المهنية وتأمين بيئة العمل.
+
+**الحد الأقصى لساعات العمل الفعلية والإضافية**
+
+**مادة (٥)**
+يلتزم صاحب العمل بتحديد ساعات العمل في الأعمال المشار إليها في المواد السابقة على أن يكون الحد الأقصى لساعات العمل الفعلية هي ٤٨ ساعة في الأسبوع.
+
+**مادة (٦)**
+مع عدم الإخلال بأحكام المادة رقم (١٢١) من قانون العمل المشار إليه، يكون الحد الأقصى لساعات العمل الإضافية في الأعمال المشار إليها في المواد السابقة اثنتي عشرة ساعة في الأسبوع بواقع ساعتين بحد أقصى في اليوم الواحد.
+
+**مادة (٧)**
+ينشر هذا القرار في الوقائع المصرية، ويعمل به من اليوم التالي لتاريخ نشره.
+
+صدر بتاريخ ٤/١٢/٢٠٢٥  
+وزير العمل  
+محمد جبران
+
+**Cross-reference note:** the decision expressly preserves Article 121 of Law 14/2025 and sets a weekly ceiling of 48 actual hours plus a 12-hour weekly overtime ceiling, at no more than two overtime hours per day, for the defined categories. Do not generalize these limits to all work categories without legal review. The listed examples expressly include data centres, digital platforms and cyber/electronic surveillance work; preserve those terms as source text rather than paraphrasing them away.
+
+**Evidence limits:** this is a secondary full-text transcription pending line-by-line comparison with Gazette pages 67–69. No official Gazette page image has been visually QA'd in this pass; no rights clearance or lawyer review is claimed. The SIS issue 291 scan is not a certified circulation copy. No verified flag is warranted.
 #### Decision 294/2025 — paid holidays
 
 **Additional Arabic text capture (23 November 2026):** the State Information Service digital repository exposes an individual Ministry of Labour PDF, dated 26-12-2025, containing the decision details and all four operative articles:
