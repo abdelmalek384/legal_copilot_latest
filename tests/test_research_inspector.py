@@ -6,7 +6,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from tools.research_inspector import (
-    STATUS_METADATA_ONLY, STATUS_REVIEW, STATUS_USER_SUPPLIED, STATUS_VERIFIED,
+    STATUS_METADATA_ONLY, STATUS_REVIEW, STATUS_SOURCE_MATCHED, STATUS_USER_SUPPLIED, STATUS_VERIFIED,
     citation_text, research_memo, source_permission_evidence_ready, source_status,
     has_current_review_evidence, _valid_review_evidence_url,
 )
@@ -86,6 +86,78 @@ class ResearchInspectorTests(unittest.TestCase):
             candidate = valid_source()
             candidate["provenance"][key] = value
             self.assertEqual(source_status(candidate, "2026-10-24"), STATUS_REVIEW, key)
+
+    def _source_matched_candidate(self):
+        source = valid_source()
+        source["scope"] = "firm_test_source_matched"
+        source["verified"] = False
+        provenance = source["provenance"]
+        provenance.update({
+            "review_status": "pending_source_review",
+            "legal_status": "under_review",
+            "authenticity_verified": False,
+            "status_verified": False,
+            "amendment_history_verified": False,
+            "review_evidence": [],
+            "source_match_evidence": {
+                "validator_passed": True,
+                "original_capture_sha256": "a" * 64,
+                "independent_copy_sha256": "b" * 64,
+                "independent_copy_source_id": "independent-copy-1",
+                "publication_date": "2019-12-15",
+                "effective_date": "2020-01-01",
+                "reuse_rights_evidence": "Explicit collection and commercial reuse grant",
+                "reuse_rights_evidence_url": "https://example.gov/rights/grant",
+                "approved_uses": [
+                    "collection", "storage", "text_extraction", "indexing",
+                    "commercial_product_use", "excerpt_display",
+                ],
+                "article_inventory_complete": True,
+                "differences_resolved_against_primary": True,
+                "publication_and_effective_dates_verified": True,
+                "reuse_rights_allowed": True,
+            },
+        })
+        return source
+
+    def test_source_matched_scope_requires_complete_non_lawyer_evidence(self):
+        source = self._source_matched_candidate()
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_SOURCE_MATCHED)
+
+        source = self._source_matched_candidate()
+        source["provenance"]["source_match_evidence"]["article_inventory_complete"] = False
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+
+        source = self._source_matched_candidate()
+        source["provenance"]["source_match_evidence"]["original_capture_sha256"] = "c" * 64
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+
+        source = self._source_matched_candidate()
+        source["provenance"]["commercial_reuse_permission"] = "unknown"
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+
+        source = self._source_matched_candidate()
+        source["provenance"]["review_evidence"] = [{
+            "review_type": "lawyer_approval", "outcome": "pass",
+        }]
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+
+        source = self._source_matched_candidate()
+        source["verified"] = True
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+
+        source = self._source_matched_candidate()
+        source["case_id"] = 9
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_USER_SUPPLIED)
+
+        source = self._source_matched_candidate()
+        source["provenance"]["document_type"] = "secondary"
+        self.assertEqual(source_status(source, "2026-10-24"), "secondary_copy")
+
+    def test_source_matched_scope_does_not_claim_currentness(self):
+        source = self._source_matched_candidate()
+        source["provenance"]["source_match_evidence"]["effective_date"] = "2027-01-01"
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
 
     def test_malformed_review_type_and_document_type_fail_closed_without_crashing(self):
         for value in ([], {}, 7, None):
