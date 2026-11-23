@@ -33,7 +33,7 @@ The firm-test path also runs the lexical claim-support check even if the general
 
 ## Source-status gate implementation
 
-The shared source inspector now has a separate `source_matched_unreviewed` status for the `firm_test_source_matched` scope. It requires the same complete machine evidence package used by the answer trust classifier, exact original-capture hash binding, explicit source-level collection and commercial-reuse permission evidence, pending review state, false authenticity/status/amendment verification flags, and no passed lawyer-approval event. It rejects secondary/commentary records and dates outside the requested as-of date. This status is not `verified`, does not establish current law, and does not enable retrieval by itself.
+The shared source inspector now has a separate `source_matched_unreviewed` status for the `firm_test_source_matched` scope. It requires the same complete machine evidence package used by the answer trust classifier, exact original-capture hash binding, explicit source-level collection and commercial-reuse permission evidence, pending review state, false authenticity/status/amendment verification flags, and no recorded lawyer-approval decision, failed review event, or malformed review record. It rejects secondary/commentary records and dates outside the requested as-of date. This status is not `verified`, does not establish current law, and does not enable retrieval by itself.
 
 The corpus provenance adapter does not yet persist or return the complete `source_match_evidence` package, and the dedicated search scope still returns no candidates. A separately owned corpus-schema/adapter change and a permission-cleared candidate are still required before an end-to-end source-matched retrieval test is possible.
 
