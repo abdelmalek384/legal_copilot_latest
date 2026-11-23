@@ -2,9 +2,9 @@
 Research date: 20 November 2026  
 Research Agent: 4  
 Branch: research/labour-acquisition-2026-11-20  
-Evidence status: Source-matched / not lawyer-reviewed. All production verified flags remain 0.
+Evidence status: mixed-source acquisition; secondary transcriptions and third-party-hosted Gazette scan copies are labelled per instrument. Gazette page matching, source provenance, and reuse rights remain instrument-specific; not lawyer-reviewed. All production verified flags remain 0.
 
-This is an incremental acquisition tranche. It does not reproduce the existing partial Law 14/2025 Gazette comparison or the already recorded Decision 48–50/2026 nursery/leave/child-work acquisition. It records newly located instruments, Gazette anchors, actual Arabic text excerpts, supersession clues, and outstanding source checks.
+This is an incremental acquisition tranche. It does not reproduce the existing partial Law 14/2025 Gazette comparison or the already recorded Decision 48–50/2026 nursery/leave/child-work acquisition. It records newly located instruments, Gazette anchors, Arabic text excerpts/captures, supersession clues, and outstanding source checks. A Gazette issue/date catalogue record or a third-party-hosted scan copy is not automatically treated as source-rights clearance or an authenticated official download.
 
 ## 1. High-value new acquisition: 2025 Gazette supplements
 
@@ -79,10 +79,50 @@ Arabic opening:
 This is a core instrument for collective bargaining/dispute workflows. Extract all articles and reconcile against Law 14/2025 Chapter on collective labour disputes and the preceding 2003 rules.
 
 #### Decision 301/2025 — redundancy selection criteria
-Official-catalogue record: https://dspace.id.com.eg/items/f5fa9b6f-f745-4ee5-90e5-ba5d498252a3/full  
-Gazette anchor: issue 290 supplement (B), 24-12-2025. DSpace lists an Arabic PDF (110.14 KB) and English PDF (190.79 KB). This is an official-Gazette/Ministry-attributed document record, but the full Arabic clauses still need OCR/transcription and page matching.
 
-Subject: objective criteria for selecting workers to be laid off where an establishment closes partially or reduces size/activity. Map it to Law 14/2025 provisions on economic dismissal, closure, and the competent committee. Do not substitute secondary summaries for the actual criteria.
+**New acquisition (23 November 2026):** a complete six-article Arabic scan of Official Gazette issue 290 supplement (B), 24-12-2025, was located at a third-party-hosted PDF mirror: https://cdn.vetogate.com/UploadCache/libfiles/570/2/0x0o/22.pdf. The Official Gazette/IDSC catalogue record independently lists the same issue/date and Ministry of Labour, and identifies Decision 301/2025 with the same title: https://dspace.id.com.eg/items/f5fa9b6f-f745-4ee5-90e5-ba5d498252a3/full. The issue contents page gives Decision 301 a start page of 50; the scan shows its text on printed pages 50–51. The PDF mirror is not the official publisher's domain; preserve its source class as `third_party_hosted_gazette_scan_copy`, not as an official direct download. The catalogue/PDF correspondence is strong metadata corroboration, but source provenance and rights for copying/redistribution remain unresolved.
+
+**Arabic text captured from the scan (six articles; no annex identified):**
+
+قرار رقم ٣٠١ لسنة ٢٠٢٥  
+بشأن المعايير الموضوعية لاختيار من سيتم الاستغناء عنهم من العمال حال إغلاق المنشأة جزئياً أو تقليص حجمها أو نشاطها
+
+**(المادة الأولى)**  
+تسري أحكام هذا القرار على جميع المنشآت الخاضعة لقانون العمل المشار إليه، وذلك في الحالات التي تقرر فيها المنشأة الإغلاق الجزئي أو تقليص النشاط أو حجم العمالة لأي سبب اقتصادي أو فني أو تنظيمي يثبت جديته.
+
+**(المادة الثانية)**  
+يتعين على صاحب العمل، في حال عدم وجود اتفاقية جماعية سارية تتضمن معايير موضوعية للاختيار، أن يجري مشاورات جادة مع المنظمة النقابية العمالية المعنية - إن وجدت - بشأن تحديد الفئات أو العمال المرشح الاستغناء عنهم، وذلك بعد صدور قرار المنشأة وقبل بدء التنفيذ، وعلى أن تتم المشاورات خلال مدة لا تقل عن (٧) سبعة أيام عمل.
+
+**(المادة الثالثة)**  
+يلتزم صاحب العمل عند تحديد العمال الذين سيتم الاستغناء عنهم بمبادئ:
+١- الشفافية في عرض الأسباب الاقتصادية أو الفنية.  
+٢- الموضوعية وعدم التمييز.  
+٣- تحقيق التوازن بين مصلحة المنشأة وحماية الاستقرار الأسري والاجتماعي للعمال.  
+٤- إتاحة البيانات للمنظمة النقابية بما يمكنها من إبداء رأيها.
+
+**(المادة الرابعة)**  
+بمراعاة ما نصت عليه المادة (٢٣٩) من قانون العمل المشار إليه من معايير استرشادية للعمال الذين يمكن الاستغناء عنهم حال إغلاق المنشأة أو تقليص حجمها أو نشاطها يجوز اختيار هؤلاء العمال وفقاً للمعايير والأولويات التالية:
+١- إعطاء الأولوية في الاستمرار بالخدمة للأقدم في تاريخ التعيين، ما لم يثبت وجود أسباب فنية موضوعية مخالفة.  
+٢- إعطاء الأولوية في الاستمرار للعامل الذي يمتلك القدرات والمهارات المهنية، كمستوى الكفاءة التقنية، والقدرة على شغل أكثر من وظيفة داخل المنشأة، والتخصصات النادرة، ونتائج تقييمات الأداء خلال السنوات الثلاث الأخيرة.  
+٣- الاستغناء عن العامل الذي حصل على جزاءات تأديبية أو اتسمت مدة خدمته بالمنشأة بعدم الكفاءة، ويعتبر من قبيل ذلك ما يلي (التأخر في إنجاز المهام – التهرب من المسؤوليات والتكليفات – عدم القدرة على العمل ضمن فريق – الغياب المتكرر – افتعال المشكلات... الخ).  
+٤- مراعاة ظروف العامل الأسرية بما في ذلك عدد أفراد الأسرة الذين يعولهم وحالتهم الصحية، وعدم وجود مصدر دخل بديل للأسرة.  
+٥- الإبقاء على العامل الذي يعول أحد أفراد أسرته حتى الدرجة الثانية من الأشخاص ذوي الإعاقة أو الأقزام أو الأيتام.  
+٦- الإبقاء على العامل الذي يعاني من أمراض مؤثرة على قدرته البدنية أو الجسمانية أو الذهنية نظراً لصعوبة حصوله على فرصة عمل بديلة.
+
+**(المادة الخامسة)**  
+لا يخل هذا القرار بأي معايير أخرى تتضمنها اتفاقية عمل جماعية مبرمة بين صاحب العمل وممثلي العمال.  
+كما لا يخل بالتزام صاحب العمل بمراعاة مهلة الإخطار القانونية، وصرف جميع مستحقاته المالية وعلى الأخص المقابل النقدي لرصيد إجازاته التي لم يحصل عليها، والمكافأة المنصوص عليها بالمادة (٢٤١) من قانون العمل المشار إليه كحد أدنى.  
+وفي جميع الأحوال يلتزم صاحب العمل بإخطار الجهة الإدارية المختصة بقرار الاستغناء والمبررات والمعايير التي تم تطبيقها، ويجوز للجهة الإدارية المختصة أن تتحقق من سلامة تطبيق المعايير الواردة في هذا القرار، وأن تطلب من المنشأة أي مستندات لازمة للتحقق.
+
+**(المادة السادسة)**  
+ينشر هذا القرار في الوقائع المصرية، ويعمل به من اليوم التالي لتاريخ نشره.
+
+وزير العمل  
+محمد جبران
+
+**Page and relationship notes:** the issue contents page lists Decision 301 at printed page 50; the text continues on printed page 51. Visual inspection of the printed page 51 image confirms the statutory cross-reference is **Article 239** of Law 14/2025 (Arabic numerals ٢٣٩); PDF text extraction dropped the leading digit in one line. The decision therefore operationalizes the selection criteria contemplated by Law 14/2025 Article 239. Commencement is the day after publication, i.e. 25-12-2025 based on the issue date; this is a text-derived commencement calculation, not a separate amendment/currentness review.
+
+**Evidence label:** `third_party_hosted_gazette_scan_copy; catalogue metadata corroborated; printed pages 50–51 visually inspected; original-host provenance and reuse rights pending; not lawyer-reviewed; not production-verified`. Do not promote this to `verified` or ingest it for commercial display until source rights and the repository's full provenance requirements are satisfied.
 
 ### 1.2 Official Gazette/IDSC catalogue: issue 291 supplement, 25 December 2025
 
@@ -429,11 +469,11 @@ The listed sectors include ICT (with specified exceptions), financial/accounting
 
 This tranche newly surfaced 25 instrument records (18 ministerial decisions from 2025 and 6 ministerial decisions plus one Prime Minister decision from 2026). This is a tranche denominator, not the total universe of Egyptian labour instruments.
 
-- 19/25 (76%): searchable Arabic full-text sources located (including secondary reproductions) for direct article extraction.
+- 20/25 (80%): searchable Arabic full-text sources located for direct article extraction, including secondary reproductions and the third-party-hosted Gazette scan copy of Decision 301/2025.
 - 5/25 (20%): substantial Arabic text or official text fragments located, but complete text/schedules require extraction (the five 2026 OSH decisions).
-- 1/25 (4%): Gazette/PDF lead identified but not yet article-extracted (Decision 301/2025).
+- 0/25: metadata-only Gazette/PDF leads not yet article-extracted within this tranche (Decision 301/2025 moved to the text-acquired group; its source-rights/provenance review remains open).
 - Gazette-anchored: 24/25 have an issue/date anchor or official catalogue record; Decision 187/2025 still needs issue/page confirmation.
-- Exact Gazette page matching: not yet complete for this tranche; record as pending rather than infer.
+- Exact Gazette page matching: not yet complete for this tranche. Decision 301/2025 has a third-party-hosted scan of the relevant Gazette issue and printed pages 50–51 visually inspected; independent official-host provenance and source-rights clearance remain pending. Do not generalize this result to the other instruments.
 - Qualified Egyptian lawyer review: 0%.
 - Production verified: 0%.
 
