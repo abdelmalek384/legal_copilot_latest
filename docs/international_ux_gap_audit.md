@@ -131,6 +131,10 @@ Static CSS inspection found control borders and focus indicators too faint for r
 - Follow-up status-palette calculation (current effective tokens): open 5.71:1, done 6.45:1, soon 4.61:1, late 5.76:1 and closed 4.74:1 against their respective backgrounds; sampled normal-text status pairs now clear 4.5:1. Continue browser sampling of actual component surfaces and hover/disabled states.
 
 
+## Document passage annotation accessibility — 2026-11-23
+
+The passage-annotation controls now expose a focusable, named passage; associate the annotation action with concise instructions; identify the note/color editor as a labelled group; and expose saved annotations as a labelled list with list-item semantics. A source-contract regression protects these semantics. This is a code-level improvement only: keyboard text-selection behavior, screen-reader announcements, contrast and responsive interaction still require exact-build browser/manual acceptance.
+
 ## UI implementation continuation — 2026-11-17
 
 The following code-level gaps have now been addressed in the frontend:
