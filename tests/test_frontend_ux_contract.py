@@ -1186,7 +1186,7 @@ class FrontendUXContractTests(unittest.TestCase):
         shell = HTML[HTML.index("function shell(title"):HTML.index("\nfunction mfaFirmSwitcher()")]
         self.assertIn("Global search across accessible matters", shell)
         self.assertIn("limit:'8',offset:'0'", shell)
-        self.assertIn("api('/cases/search?'+params.toString())", shell)
+        self.assertIn("api('/cases/search?'+matterParams.toString())", shell)
         self.assertIn("globalSearchInput.onkeydown", shell)
         self.assertIn("globalSearchInput.oninput=()=>globalSearchResults.replaceChildren()", shell)
         self.assertIn("view(item.id)", shell)
