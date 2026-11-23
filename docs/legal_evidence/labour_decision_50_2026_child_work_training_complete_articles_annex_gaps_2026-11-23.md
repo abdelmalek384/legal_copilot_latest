@@ -181,3 +181,8 @@
 ## Annex acquisition update (23 November 2026)
 
 The earlier note described the annexes as incomplete. A subsequent extraction of the remaining PDF text-layer lines (printed pages 20–27) recovered both complete annex tables. They are now transcribed in the companion file. The corpus acquisition status is therefore **18 operative articles + both annexes captured**, with visual proofreading, OCR correction, currentness, source rights and counsel review still pending.
+
+
+## Official catalogue provenance update
+
+The official Amiria Press / MELES catalogue record for the complete Egyptian Proceedings issue 64 supplement identifies the publisher as **المطابع الأميرية**, date 18 March 2026, and lists Decisions 48, 49 and 50 in the abstract: https://dspace.id.com.eg/items/f32b4a07-6598-4ed8-a170-60d631a57221. The catalogue file is access-restricted and its click-through opens a “request a copy” form; it was not directly downloadable in this session. This improves issue-level bibliographic corroboration but does not authenticate the third-party-hosted text line-by-line or grant reuse rights.
