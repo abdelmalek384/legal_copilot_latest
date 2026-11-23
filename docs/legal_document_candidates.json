@@ -551,6 +551,54 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
       "required_next_action": "Review terms and request written reuse permission; compare each provision and amendment annotation to the Gazette and constitutional judgments."
+    },
+    {
+      "source_id": "EG-MKSEGYPT",
+      "authority": "MKSEgypt legal memory / legislation and judgments database",
+      "source_page": "https://mksegypt.org/",
+      "material_types": [
+        "Arabic full-text transcriptions of Egyptian statutes, executive decisions and court judgments"
+      ],
+      "access_status": "Full searchable Arabic decision and judgment texts observed; pages display Creative Commons Attribution 4.0 notice.",
+      "collection_permission": "cc_by_4_0_attributed_use_subject_to_license_scope",
+      "commercial_reuse_permission": "cc_by_4_0_applies_to_site_text_as_displayed_only; embedded_third_party_scans_and_materials_not_cleared",
+      "terms_url": "https://creativecommons.org/licenses/by/4.0/",
+      "permission_evidence": "Pages for SCC Cases 2/16 (1996) and 36/18 (1998), SAC Appeal 2566/34 (1990), PM Decisions 1543/1993 and 2718/1996 display a CC BY 4.0 attribution notice. License applies to page text as displayed, not embedded Gazette scans or third-party materials.",
+      "terms_checked_on": "2026-11-23",
+      "bulk_download_or_api": "No bulk/API permission established; individual page access only",
+      "required_next_action": "Preserve attribution and license notice; verify page-specific license scope before reusing embedded scans or third-party material."
+    },
+    {
+      "source_id": "EG-LEGAL-REFORM",
+      "authority": "Legal Reform Observatory",
+      "source_page": "https://lib.legal-reform.org/legal-observatory-view/",
+      "material_types": [
+        "Supreme Administrative Court judgments and legal principles"
+      ],
+      "access_status": "Full Arabic judgment text located for SAC Appeals 8175/49 and 9771/49 (3 April 2004)",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Publicly accessible legal-observatory page contains panel, legal principles, facts and reasons; no permission for bulk collection, local storage, indexing, display or commercial reuse established.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Review terms and request written permission; verify against official State Council judgment publication."
+    },
+    {
+      "source_id": "EG-LAWEG-LOCAL-ADMIN",
+      "authority": "Laweg Egyptian legal legislation archive",
+      "source_page": "https://www.laweg.net/",
+      "material_types": [
+        "Egyptian laws, executive decisions and Gazette transcriptions"
+      ],
+      "access_status": "Full text of PM Decision 736/1998 located",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Publicly accessible Arabic decision transcription with issue and publication metadata; no evidence of permission for bulk extraction, local storage, indexing, display or commercial reuse.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Review terms and request permission; authenticate the transcription against the Egyptian Gazette."
     }
   ],
   "documents": [
