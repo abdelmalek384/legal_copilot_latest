@@ -18,7 +18,7 @@ Four separate acquisition tranches and four separate CSV instrument registers we
    - [Research note](agent8_maritime_ports_inland_navigation_2026-11-23.md)
    - [Instrument register](agent8_maritime_ports_inland_navigation_instruments_2026-11-23.csv)
 
-The canonical national acquisition CSV was fetched from the default branch before deduplication. It contained 423 lines including header (422 data records) at the time of the check. The master index dashboard is dated 18 November 2026 and reports 388 confirmed + 1 provisional instruments; that dashboard/register count discrepancy remains unresolved. This session used exact instrument-number/title checks against the live CSV and did not alter the canonical CSV or master index.
+The canonical national acquisition CSV was fetched from the default branch before deduplication. It contained 424 lines including header (423 data records) after the 23 November environment-text update; the earlier 422-record figure was the pre-update snapshot. The master index dashboard is dated 18 November 2026 and reports 388 confirmed + 1 provisional instruments; that dashboard/register count discrepancy remains unresolved. This session used exact instrument-number/title checks against the live CSV and did not alter the canonical CSV or master index.
 
 ## 2. Instrument and article counts
 
