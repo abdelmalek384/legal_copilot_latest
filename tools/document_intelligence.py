@@ -17,6 +17,7 @@ from typing import Any
 MAX_ANALYSIS_CHARS = 1_000_000
 MAX_COMPARE_CHARS = 100_000
 MAX_DIFF_SEGMENTS = 200
+MAX_PAGE_MARKERS = 20000
 _PAGE_MARKER = re.compile(r"\[\[PDF_PAGE:(\d+)\]\]")
 _DIGITS = r"0-9٠-٩"
 _MONTH_TOKEN = (
@@ -117,6 +118,19 @@ def classify_document(filename: str, text: str) -> dict[str, Any]:
     return {"category": category, "signal_strength": "multiple_keyword_matches" if count >= 2 else "single_keyword_match",
             "matched_terms": matched, "requires_review": True}
 
+def _collect_page_markers(text: str) -> list[tuple[int, int]]:
+    """Collect bounded page offsets; never silently lose page provenance."""
+    markers = []
+    for match in _PAGE_MARKER.finditer(text):
+        if len(markers) >= MAX_PAGE_MARKERS:
+            raise ValueError(
+                f"document exceeds {MAX_PAGE_MARKERS} page markers; "
+                "page provenance was not partially extracted"
+            )
+        markers.append((match.start(), int(match.group(1))))
+    return markers
+
+
 def _candidate(kind: str, match: re.Match, text: str,
                page_markers: list[tuple[int, int]]) -> dict[str, Any]:
     start, end = match.span()
@@ -153,7 +167,7 @@ def extract_review_candidates(text: str, max_candidates: int = 250) -> dict[str,
     if isinstance(max_candidates, bool) or not isinstance(max_candidates, int) or not 1 <= max_candidates <= 1000:
         raise ValueError("max_candidates must be an integer between 1 and 1000")
     candidates = []
-    page_markers = [(match.start(), int(match.group(1))) for match in _PAGE_MARKER.finditer(text)]
+    page_markers = _collect_page_markers(text)
     patterns = [
         ("date", pattern) for pattern in _DATE_PATTERNS
     ] + [
