@@ -1212,7 +1212,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
         history_button.click()
         case_b_history = case_b_intelligence.locator('[aria-label="سجل مراجعة النص المستخرج"]')
         case_b_history.get_by_text("مقبول", exact=False).wait_for(timeout=10000)
-        self.assertIn(case_titles[other_index].replace("SYNTHETIC ", ""), case_b_history.inner_text())
+        self.assertIn(f"synthetic-client-search-{other_index + 1}.txt", case_b_history.inner_text())
 
         # Return again and reopen Case A: its saved annotation must still exist.
         self.page.get_by_role("button", name="العودة إلى نتائج بحث العميل", exact=True).click()
