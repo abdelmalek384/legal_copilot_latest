@@ -9747,11 +9747,21 @@
       "language": "ar",
       "candidate_status": "discovery_only",
       "text_acquisition_status": "secondary_full_text_located",
-      "text_verification_note": "Full Arabic secondary transcription located; Gazette issue 125 تابع, 6 June 2021, effective 7 June 2021 per source. Replaces five provisions previously amended by Decision614/2020 and adds beneficial-owner definition. Original Gazette comparison, hash, amendment redline and lawyer review outstanding.",
+      "text_verification_note": "Full Arabic secondary transcription located; issue-level DSpace catalogue confirms Gazette issue125 تابع, 6 June 2021, and lists restricted Arabic PDF; effective 7 June 2021 per source. Original Gazette file is request-copy restricted; do not bypass. Replaces five provisions previously amended by Decision614/2020 and adds beneficial-owner definition. Original page comparison, hash and lawyer review outstanding.",
       "source_urls": [
         {
           "url": "https://ahmedazimelgamel.blogspot.com/2021/06/289-2021-692-2019.html",
           "source_role": "secondary full Arabic transcription",
+          "status": "located_2026-11-23"
+        },
+        {
+          "url": "https://dspace.id.com.eg/items/d8439473-f9d3-4396-9e50-a7f32ce49c6e",
+          "source_role": "MELES DSpace catalogue record; Arabic and English PDF request-copy restricted",
+          "status": "located_2026-11-23"
+        },
+        {
+          "url": "https://dspace.id.com.eg/items/96d5f5e8-acf5-404a-9c1a-f37834aaab47",
+          "source_role": "Official Proceedings issue125 (تابع) catalogue metadata; publisher Amiri Press",
           "status": "located_2026-11-23"
         }
       ]
