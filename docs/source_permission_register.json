@@ -3109,6 +3109,22 @@
       "terms_checked_on": "2026-11-23",
       "bulk_download_or_api": "Request-copy restricted; no bulk/API permission",
       "required_next_action": "Use ordinary request-a-copy route if access is needed; otherwise retain secondary transcription as discovery only and compare against authorized Gazette pages."
+    },
+    {
+      "source_id": "EG-DSpace-DECISION614-2020",
+      "authority": "Middle East Library for Economic Services DSpace repository; item metadata identifies Ministry of Finance decision",
+      "source_page": "https://dspace.id.com.eg/items/6b86a4f6-7bd6-4741-a1b6-58b57d33e7a2/full",
+      "material_types": [
+        "Finance Minister Decision614/2020; Arabic and English PDF attachments; catalogue metadata and abstract"
+      ],
+      "access_status": "Catalogue record inspected 2026-11-23. Lists Arabic PDF 163.09 KB and English PDF 494.75 KB, issue date 2020-12-16. Arabic attachment download leads to request-a-copy form. Attached license.txt is a generic placeholder saying 'NOTE: PLACE YOUR OWN LICENSE HERE', not an item-specific reuse grant. No PDF bytes obtained.",
+      "collection_permission": "not_allowed_without_explicit_exception_or_license",
+      "commercial_reuse_permission": "not_allowed_without_explicit_exception_or_license",
+      "terms_url": "https://dspace.id.com.eg/items/6b86a4f6-7bd6-4741-a1b6-58b57d33e7a2/full",
+      "permission_evidence": "The Arabic file is access-gated by a request-a-copy form. The repository's license bundle is only a generic placeholder, not an item-specific license. Do not bypass the request process. Secondary LAW HUB consolidated text is available for manual research but does not clear DSpace source rights.",
+      "terms_checked_on": "2026-11-23",
+      "bulk_download_or_api": "Request-copy restricted; no bulk/API permission",
+      "required_next_action": "Use ordinary request-a-copy route if the full PDF is needed; otherwise use secondary consolidated text for discovery only and preserve provenance/rights flags. Compare against original Gazette issue284 pages when authorized."
     }
   ]
 }
