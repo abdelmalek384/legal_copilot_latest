@@ -15,13 +15,13 @@ class ResearchAndClientsStartupTests(unittest.TestCase):
         self.assertIn("Retry", law)
 
     def test_clients_page_mounts_even_when_client_api_fails(self):
-        clients = HTML[HTML.index("async function clients()"):HTML.index("\nasync function casesPage()")]
+        clients = HTML[HTML.index("async function clients(initialQuery=''){"):HTML.index("\nasync function casesPage()")]
         self.assertIn("let profiles=[],profilesError=null", clients)
         self.assertIn("Could not load client profiles", clients)
         self.assertIn("shell(uiText('العملاء','Clients')", clients)
 
     def test_conflict_search_uses_backend_matches_contract(self):
-        clients = HTML[HTML.index("async function clients()"):HTML.index("\nasync function casesPage()")]
+        clients = HTML[HTML.index("async function clients(initialQuery=''){"):HTML.index("\nasync function casesPage()")]
         self.assertIn("api('/conflicts','POST',{q:cq.value.trim()})", clients)
         self.assertIn("matches.length?matches.map", clients)
 
