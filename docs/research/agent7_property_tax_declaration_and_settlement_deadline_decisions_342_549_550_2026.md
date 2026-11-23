@@ -116,3 +116,29 @@ The central acquisition register now contains **412 instrument rows**. Applying 
 > يُنشر هذا القرار في الوقائع المصرية.
 
 Reported preamble cites Law196/2008 and its executive regulation, Finance Minister Decision69/2026, and Real Estate Tax Authority memorandum No.216 dated 6 April 2026. Decision69/2026 is a predecessor instrument whose complete scope and exact text remain to be acquired. Decision550/2026 later cites Decisions69,188 and 340/2026; Decision340/2026's subject and operative text remain unverified. Do not infer the content of Decision340 solely from the later citation.
+
+
+## 8. Predecessor Decision 69/2026 — full operative text captured
+
+- **Issuer:** Minister of Finance.
+- **Publication:** Egyptian Proceedings issue 36 supplement, 14 February 2026.
+- **Source:** Al-Masdar reproduction at https://www.almasdar.com/167714; EastLaws record https://www.eastlaws.com/legislation-full-text/ar/egypt/finance-minister/14-02-2026/no-69?id=5469154&type=1.
+- **Source status:** secondary full-text reproduction; Gazette PDF/hash not acquired.
+
+**Preamble as reported by Al-Masdar:** Minister of Finance; after reviewing Law196/2008 and its Executive Regulation; the memorandum of the Chair of the Real Estate Tax Authority No.10 dated 8 January 2026; and in the public interest.
+
+**قرار وزير المالية رقم 69 لسنة 2026**
+
+**المادة الأولى**
+
+تمد فترة تقديم الإقرارات الضريبية المنصوص عليها في البند (أ) من المادة (14) من قانون الضريبة على العقارات المبنية المشار إليه حتى 31-3-2026.
+
+**المادة الثانية**
+
+ينشر هذا القرار في الوقائع المصرية.
+
+This is the first located instrument in the 2026 extension chain. It was superseded as to the filing deadline by Decision188 (30 June), Decision342 (30 September), and Decision550 (31 December 2026). It does not amend the separate Article14(b) annual-census obligation.
+
+## 9. Progress snapshot after this pass (23 November 2026)
+
+Central register: **414 instrument rows**. Using the same keyword-based `content_observed` proxy as the prior snapshot: **106/414 full-text indicators (25.6%)**, **50/414 partial-only indicators (12.1%)**, **156/414 with any text indicator (37.7%)**. This is a register-content proxy, not a measurement of authenticated, consolidated or lawyer-reviewed law. The nationwide denominator remains open.
