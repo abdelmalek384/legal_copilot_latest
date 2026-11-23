@@ -330,7 +330,12 @@ class DatabaseBackupBundleTests(unittest.TestCase):
                 swapped = True
             return real_open(path, flags, *args, **kwargs)
 
-        with patch.object(database_backup.os, "open", side_effect=swap_root_before_open):
+        supported = set(os.supports_dir_fd)
+        supported.add(swap_root_before_open)
+        with (
+            patch.object(database_backup.os, "open", new=swap_root_before_open),
+            patch.object(database_backup.os, "supports_dir_fd", supported),
+        ):
             with self.assertRaisesRegex(DatabaseBundleError, "root changed during backup"):
                 database_backup._copy_original_objects(
                     self.db, self.firm_id, object_root, payload
