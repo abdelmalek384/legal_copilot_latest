@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 class DocumentPassageAnnotationTests(unittest.TestCase):
     def test_firm_migration_binds_annotations_to_document_case_and_chunk(self):
-        migration = (ROOT / "migrations" / "firm" / "0024_document_passage_annotations.sql").read_text(encoding="utf-8")
+        migration = (ROOT / "migrations" / "firm" / "0025_document_passage_annotations.sql").read_text(encoding="utf-8")
         self.assertIn("document_passage_annotations_scope_insert", migration)
         self.assertIn("document_passage_annotations_scope_update", migration)
         self.assertIn("document_passage_annotations_immutable", migration)
