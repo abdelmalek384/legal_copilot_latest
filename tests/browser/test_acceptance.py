@@ -827,7 +827,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.assertIn("رقم الصفحة غير مسجل", self.page.locator("body").inner_text())
         classification = self.page.get_by_label("تصنيف المستند synthetic-matter-fixture-v2.docx")
         classification.select_option("contract")
-        self.page.get_by_text("تم تعديل تصنيف مسودة في هذه الشاشة فقط", exact=False).wait_for(timeout=5000)
+        self.page.get_by_text("تغيير غير محفوظ؛ اضغط حفظ التصنيف لتسجيله في سجل التدقيق.", exact=False).wait_for(timeout=5000)
         self.page.get_by_label("الإصدار السابق").select_option(str(document_v1_id))
         self.page.get_by_label("الإصدار اللاحق").select_option(str(document_v2_id))
         self.page.get_by_role("button", name="مقارنة النصوص").click()
