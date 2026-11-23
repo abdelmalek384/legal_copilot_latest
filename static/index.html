@@ -3673,7 +3673,8 @@ function documentIntelligencePanel(caseId,documents){
   if(!cards.length)cards.push(h('p',{className:'mut',textContent:needsAttentionOnly?uiText('لا توجد مقاطع تحتاج مراجعة حالياً.','No passages currently need attention.'):uiText('لا توجد مقاطع نصية متاحة للمراجعة.','No extracted text chunks are available for review.')}));
   const historyResults=h('div',{id:'document-review-history-'+caseId,role:'region','aria-label':uiText('سجل مراجعة النص المستخرج','Extracted text review history')});
   const historyButton=btn(uiText('عرض سجل المراجعة','View review history'),async()=>{
-   if(historyButton.getAttribute('aria-expanded')==='true'){historyResults.replaceChildren();historyButton.setAttribute('aria-expanded','false');historyButton.textContent=uiText('عرض سجل المراجعة','View review history');return}\n   historyButton.disabled=true;historyButton.setAttribute('aria-expanded','true');historyButton.textContent=uiText('إخفاء سجل المراجعة','Hide review history');historyResults.replaceChildren(h('p',{className:'mut',role:'status','aria-live':'polite',textContent:uiText('جارٍ تحميل سجل المراجعة...','Loading review history...')}));
+   if(historyButton.getAttribute('aria-expanded')==='true'){historyResults.replaceChildren();historyButton.setAttribute('aria-expanded','false');historyButton.textContent=uiText('عرض سجل المراجعة','View review history');return}
+   historyButton.disabled=true;historyButton.setAttribute('aria-expanded','true');historyButton.textContent=uiText('إخفاء سجل المراجعة','Hide review history');historyResults.replaceChildren(h('p',{className:'mut',role:'status','aria-live':'polite',textContent:uiText('جارٍ تحميل سجل المراجعة...','Loading review history...')}));
    try{
     const records=[];
     for(const item of cache.values()){
