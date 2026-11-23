@@ -364,20 +364,35 @@ def group_candidate_entity_mentions(
     }
 
 
-def build_date_mention_timeline(documents: list[dict[str, Any]]) -> dict[str, Any]:
-    """Build a review queue of parseable date mentions from caller-scoped documents.
+def build_date_mention_timeline(
+    documents: list[dict[str, Any]],
+    max_documents: int = 1000,
+    max_candidates_per_document: int = 5000,
+    max_candidate_records: int = 100000,
+) -> dict[str, Any]:
+    """Build a bounded review queue of date mentions from caller-scoped documents.
 
-    Each input item must contain document_id, filename and the candidates list
-    returned by extract_review_candidates. Dates are mentions, not events or
-    deadlines. Numeric day-first dates follow the Egyptian DD/MM/YYYY convention;
-    ISO year-first dates are parsed separately. Two-digit years are not guessed.
+    Dates are mentions, not events or deadlines. Numeric day-first dates follow
+    the Egyptian DD/MM/YYYY convention; ISO year-first dates are parsed
+    separately. Two-digit years are not guessed. Truncation is explicit.
     """
     if not isinstance(documents, list):
         raise TypeError("documents must be a list")
+    for name, value, maximum in (
+        ("max_documents", max_documents, 5000),
+        ("max_candidates_per_document", max_candidates_per_document, 20000),
+        ("max_candidate_records", max_candidate_records, 500000),
+    ):
+        if isinstance(value, bool) or not isinstance(value, int) or not 1 <= value <= maximum:
+            raise ValueError(f"{name} must be an integer between 1 and {maximum}")
     dated = []
     unparsed = []
+    documents_inspected = 0
+    candidate_records_inspected = 0
+    truncated = len(documents) > max_documents
     arabic_digits = str.maketrans("٠١٢٣٤٥٦٧٨٩", "0123456789")
-    for document in documents:
+    for document in documents[:max_documents]:
+        documents_inspected += 1
         if not isinstance(document, dict):
             raise TypeError("each document must be a mapping")
         document_id = document.get("document_id")
@@ -387,7 +402,13 @@ def build_date_mention_timeline(documents: list[dict[str, Any]]) -> dict[str, An
             raise ValueError("each document requires a non-empty document_id")
         if not isinstance(filename, str) or not isinstance(candidates, list):
             raise ValueError("each document requires filename and candidates")
-        for candidate in candidates:
+        if len(candidates) > max_candidates_per_document:
+            truncated = True
+        for candidate in candidates[:max_candidates_per_document]:
+            if candidate_records_inspected >= max_candidate_records:
+                truncated = True
+                break
+            candidate_records_inspected += 1
             if not isinstance(candidate, dict) or candidate.get("kind") != "date":
                 continue
             raw = candidate.get("value")
@@ -453,11 +474,18 @@ def build_date_mention_timeline(documents: list[dict[str, Any]]) -> dict[str, An
                 unparsed.append(item)
             else:
                 dated.append(item)
+        if truncated and candidate_records_inspected >= max_candidate_records:
+            break
     dated.sort(key=lambda item: (item["normalized_date"], item["document_id"], item["date_mention"]))
     return {
         "dated_mentions": dated,
         "unparsed_mentions": unparsed,
+        "documents_inspected": documents_inspected,
+        "candidate_records_inspected": candidate_records_inspected,
+        "truncated": truncated,
         "limitations": [
+            "Only the first max_documents caller-supplied documents and max_candidates_per_document candidates per document are examined; max_candidate_records is a global scan ceiling.",
+            "When truncated is true, the returned timeline is incomplete and must not be treated as exhaustive.",
             "A date mention is not necessarily an event date, filing date, or legal deadline.",
             "Context and legal effect must be confirmed by a lawyer.",
             "Only documents supplied by the caller are considered; callers must enforce firm and matter scope.",
