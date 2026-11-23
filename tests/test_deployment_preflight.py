@@ -346,6 +346,7 @@ class DeploymentPreflightTests(unittest.TestCase):
         (root / "corpus").mkdir(exist_ok=True)
         env = {
             "ADMIN_TOKEN": "a" * 40,
+            "COPILOT_IDENTITY_RATE_LIMIT_KEY": "r" * 48,
             "MIN_SCORE": "0.3",
             "COPILOT_CONTROL_DB": str(root / "control" / "control.sqlite3"),
             "COPILOT_TENANT_DB_ROOT": str(tenant_root),
