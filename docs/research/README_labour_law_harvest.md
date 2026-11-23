@@ -163,3 +163,10 @@ This folder contains free/public source discovery, metadata registers and extrac
 
 
 78. [Decision 346/2025 — Christian employees' religious holidays, complete two-article Arabic text](../legal_evidence/labour_decision_346_2025_christian_religious_holidays_arabic_text_2026-11-23.md) — IDSC-hosted government release and press reproductions; Gazette page-image comparison, exact cross-reference, rights and lawyer review pending.
+
+
+79. [Decision 48/2026 — workplace nurseries, complete eight-article Arabic text](../legal_evidence/labour_decision_48_2026_workplace_nurseries_complete_arabic_text_2026-11-23.md) — issue 64 supplement scan; employer nursery duties, 100-worker threshold, 500m shared-facility radius, accessibility, licensing and employee contribution percentages; page-image, rights and counsel review pending.
+
+80. [Decision 49/2026 — hazardous/arduous work and remote areas, five articles and extracted schedule](../legal_evidence/labour_decision_49_2026_hazardous_work_remote_areas_arabic_capture_2026-11-23.md) — issue 64 supplement scan and IDSC/MELES catalogue lead; most Article 2 categories transcribed, construction-sector sub-list missing from text layer and flagged for image review.
+
+81. [Decision 50/2026 — child employment/training, all 18 operative articles and annex gaps](../legal_evidence/labour_decision_50_2026_child_work_training_complete_articles_annex_gaps_2026-11-23.md) — issue 64 supplement; child-work protections and obligations transcribed; Tables 1 and 2 still require full extraction and visual QA.
