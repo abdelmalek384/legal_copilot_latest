@@ -18,7 +18,7 @@ Four separate acquisition tranches and four separate CSV instrument registers we
    - [Research note](agent8_maritime_ports_inland_navigation_2026-11-23.md)
    - [Instrument register](agent8_maritime_ports_inland_navigation_instruments_2026-11-23.csv)
 
-The canonical national acquisition CSV was fetched from the default branch before deduplication. It contains 452 lines including header (458 data records) after the 23 November environment, waste, water-pollution and health updates; the earlier 422-record figure was the pre-update snapshot. The master index dashboard is dated 18 November 2026 and reports 388 confirmed + 1 provisional instruments; that dashboard/register count discrepancy remains unresolved. This session used exact instrument-number/title checks against the live CSV, updated existing instrument rows in place, and added new candidate rows for instruments not already registered. The master index dashboard was not altered.
+The canonical national acquisition CSV was fetched from the default branch before deduplication. It contains 452 lines including header (466 data records) after the 23 November environment, waste, water-pollution and health updates; the earlier 422-record figure was the pre-update snapshot. The master index dashboard is dated 18 November 2026 and reports 388 confirmed + 1 provisional instruments; that dashboard/register count discrepancy remains unresolved. This session used exact instrument-number/title checks against the live CSV, updated existing instrument rows in place, and added new candidate rows for instruments not already registered. The master index dashboard was not altered.
 
 ## 2. Instrument and article counts
 
@@ -193,7 +193,7 @@ Canonical register updated with 13 new candidate rows EG-0440–EG-0452 and exis
 - Watercourse/sewerage package remains **10/11 = 91%** source/PDF acquisition.
 - Environment Law4/1994 chain remains **6/12 = 50%** complete searchable sources located.
 - Waste Management Law202/2020 chain remains **3/3 = 100%** complete searchable sources located.
-- Canonical acquisition register now has **458 data records** (452 lines including header).
+- Canonical acquisition register now has **466 data records** (452 lines including header).
 - Whole-corpus percentage remains unavailable: no reliable denominator exists for all in-scope Egyptian legislation; register rows are not a corpus denominator.
 
 ### Next acquisition priorities
@@ -214,9 +214,9 @@ The source-permission register was updated to **189 source records**. Six source
 ## 13. Session-wide acquisition summary (23 November 2026)
 
 Across Agent8's four transport dossiers plus the environment, waste, Nile/watercourse and health dossiers:
-- **68 candidate unique instruments** identified/registered across the Agent8 tranche registers (31 transport; 2 new environment-regulation candidates; 1 new waste-regulation amendment; 14 water/sewerage instruments and amendment leads; 13 health-sector instruments; 7 tax-procedure instruments added in this follow-on pass).
+- **76 candidate unique instruments** identified/registered across the Agent8 tranche registers (31 transport; 2 new environment-regulation candidates; 1 new waste-regulation amendment; 14 water/sewerage instruments and amendment leads; 13 health-sector instruments; 7 tax-procedure instruments added in this follow-on pass).
 - **30 new candidate rows** added to the canonical national acquisition CSV in the environment/waste/water/health passes; **17 existing canonical rows** updated in place with actual text observations and improved provenance.
-- Canonical national register now has **458 data rows**. Its denominator is not the total in-scope Egyptian legislation; do not convert this count into a whole-corpus completion percentage.
+- Canonical national register now has **466 data rows**. Its denominator is not the total in-scope Egyptian legislation; do not convert this count into a whole-corpus completion percentage.
 - Four substantive new Arabic text dossiers were committed for environment, waste management, Nile/water pollution/sewerage, and health; the earlier four transport dossiers remain in the repository.
 - Source-permission register now has **189 source assessments**, with all new collection and commercial reuse permissions unknown.
 
@@ -242,8 +242,8 @@ Canonical register updated: **7 new instrument rows EG-0453–EG-0459** added fo
 
 ### Scoped progress
 - Unified Tax Procedures package: **9/9 = 100%** have a located text source or complete PDF. This includes two instruments (Decision518/2023 and Decision538/2023) where the operative Arabic text is presently sourced from secondary reproductions and the official source status is metadata/catalogue or restricted Gazette access; it does not mean all nine originals have been visually checked or locally mirrored.
-- Canonical national acquisition register now has **458 data rows** (459 lines including header).
-- Agent8 candidate unique instrument count rises from 61 to **68** after adding the seven new tax-procedure instruments.
+- Canonical national acquisition register now has **466 data rows** (459 lines including header).
+- Agent8 candidate unique instrument count rises from 68 to **76** after adding the seven new tax-procedure instruments.
 - Whole-corpus percentage remains unavailable: there is no defensible denominator for all in-scope Egyptian legislation. Scoped source acquisition rates must not be represented as whole-corpus completion.
 
 ### Next acquisition priorities
@@ -254,3 +254,37 @@ Canonical register updated: **7 new instrument rows EG-0453–EG-0459** added fo
 5. Search for any later decisions/circulars under the Unified Tax Procedures Law and verify no post-538/2023 amendment to Decision286/2021.
 
 No lawyer review, commercial reuse clearance, local Gazette binary hashing or complete page-image verification is claimed.
+
+
+## 15. Follow-on acquisition — VAT statute, VAT executive regulation and small-project tax regime
+
+New dossier: [VAT Law67/2016, 2025–2026 amendments and small-project tax regime](vat_law67_2016_2025_2026_amendments_small_project_relief_arabic_acquisition_2026-11-23.md).
+
+Canonical register updated: **8 new instrument rows EG-0460–EG-0467** added for Laws5/2025, 6/2025 and157/2025, and Finance Minister Decisions190/2025, 417/2025, 418/2025, 420/2025 and639/2026. Existing Law149/2026 and its correction event remain in the pre-existing EG-0335 / Law149 dossier; no duplicates were created.
+
+### Actual Arabic text / source acquisition
+- Law5/2025: complete five-page searchable ETA Official Gazette PDF (124 lines); selected operative articles on registration regularization, amended/missing returns and pre-2020 dispute settlement transcribed. Time-limited windows must be checked before presenting any relief as currently open.
+- Law6/2025: complete five-page searchable ETA Official Gazette PDF (102 lines); selected definitions, eligibility, exclusions, exemptions, turnover-based rates, returns and simplified-record provisions transcribed. Effective 1 March 2025.
+- Law157/2025: five-page ETA Official Gazette scan; all page images visually inspected. Replaces tobacco/cigarette, commercial-premises and alcohol schedule entries, revises exemptions, adds crude oil at 10%, and repeals specified schedule entries. Full schedule table transcription remains open.
+- Decision190/2025: official three-page MOF PDF with searchable text; amends VAT regulation Articles37 and59, including credit-balance refund procedure and banderole requirements.
+- Decision417/2025: official four-page MOF PDF plus full secondary transcription; changes indirect-input definition, input VAT on stock, continuous-service treatment, split production-line shipment suspension and schedule-tax escalation.
+- Decision418/2025: ETA-hosted two-page scanned decision visually inspected; establishes a 36% VAT base for specified continuing construction contracts and a certificate-based subcontractor payment treatment.
+- Decision420/2025: ETA-hosted two-page scan visually inspected; supplies Law6/2025 benefit/withdrawal and annual-return forms and defines simplified registers, ledgers and documents.
+- Decision639/2026: official Customs Authority-hosted five-page Ministry decision scan visually inspected; amends VAT Regulation66/2017 provisions on medical equipment, production lines, credit-balance timing, rentals and nicotine pouch/strip entries. Gazette issue/page and full verbatim transcription remain open.
+- Existing Law149/2026 and the August 2026 corrigendum remain cross-linked; neither was duplicated.
+
+### Scoped progress
+- VAT / small-project follow-on package: **8/8 = 100%** have an official government-hosted PDF or official Ministry record with operative text source. Several are image-only scans with selected transcription still incomplete; this is source acquisition, not full verbatim local mirroring.
+- Unified Tax Procedures package remains **9/9 = 100%** source texts located, with two instruments still relying on secondary operative-text copies.
+- Canonical national acquisition register now has **466 data rows** (467 lines including header).
+- Agent8 candidate unique instrument count rises from 68 to **76** after adding eight VAT/small-project instruments.
+- Whole-corpus percentage remains unavailable: no defensible denominator exists for all in-scope Egyptian legislation.
+
+### Next acquisition priorities
+1. Fully transcribe the five-page Decision639/2026 scan and identify its Gazette issue/date and commencement.
+2. Finish all Law157/2025 VAT schedule tables, including price bands and fixed amounts, with page-image QA.
+3. Consolidate VAT Executive Regulation66/2017 through Decisions190/2025, 417/2025 and639/2026, preserving every replaced provision.
+4. Obtain the original Gazette/Amiri Press PDF for Decisions418/2025 and420/2025 and extract the attached forms under Decision420.
+5. Verify the Law5/2025 extensions and time-limited settlement windows; map any later amendments to Laws5/2025 and6/2025.
+
+No lawyer review, commercial reuse clearance, local Gazette binary hash or complete consolidated tax code is claimed.
