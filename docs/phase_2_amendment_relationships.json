@@ -657,6 +657,87 @@
         "Check subsequent 2026 amendments and implementing PM decisions",
         "Egyptian counsel review"
       ]
+    },
+    {
+      "relationship_id": "REL-LAW12-1989-AMENDS-ADMIN-PROSECUTION-117",
+      "source_instrument_id": "EG-ADMIN-PROSECUTION-AMENDMENT-12-1989",
+      "target_instrument_id": "EG-ADMINISTRATIVE-PROSECUTION-117-1958",
+      "relationship_type": "amends",
+      "status": "secondary_text_and_consolidated_annotations_located_official_gazette_scan_missing",
+      "affected_provisions": [
+        "Replaces Articles1,2,4,36,38 bis,39,40,47 bis",
+        "Adds Articles2 bis,2 bis 1 and35; further provisions to verify"
+      ],
+      "stated_effect": "Major structural amendment to the Administrative Prosecution Authority and disciplinary proceedings law, including the Authority's composition, disciplinary litigation and member guarantees.",
+      "instrument_effective_date": "1989-04-21",
+      "source_url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/law/20-04-1989/no-12?id=4763&sub=1716133&type=1",
+      "required_evidence": [
+        "Continue Gazette comparison, recover original issue pages, compute SHA-256, trace later amendments, and obtain Egyptian counsel review."
+      ]
+    },
+    {
+      "relationship_id": "REL-LAW171-1981-AMENDS-ADMIN-PROSECUTION-117",
+      "source_instrument_id": "EG-ADMIN-PROSECUTION-AMENDMENT-171-1981",
+      "target_instrument_id": "EG-ADMINISTRATIVE-PROSECUTION-117-1958",
+      "relationship_type": "amends",
+      "status": "secondary_operational_text_located_official_gazette_scan_missing",
+      "affected_provisions": [
+        "Replaces Articles12 and14"
+      ],
+      "stated_effect": "Revises referral/disposition of investigation files and allocation of disciplinary prosecution between the Administrative Prosecution Authority and administrative entities.",
+      "instrument_effective_date": "1981-11-05",
+      "source_url": "https://www.laweg.net/framePlain.aspx?ItemID=67146&NID=83988&Type=6&action=ViewActivePages",
+      "required_evidence": [
+        "Continue Gazette comparison, recover original issue pages, compute SHA-256, trace later amendments, and obtain Egyptian counsel review."
+      ]
+    },
+    {
+      "relationship_id": "REL-LAW13-2017-AMENDS-STATE-COUNCIL-47",
+      "source_instrument_id": "EG-STATE-COUNCIL-AND-JUDICIARY-AMENDMENT-13-2017",
+      "target_instrument_id": "EG-STATE-COUNCIL-47-1972",
+      "relationship_type": "amends",
+      "status": "secondary_full_text_located",
+      "affected_provisions": [
+        "Article83, first paragraph"
+      ],
+      "stated_effect": "Introduces a nomination procedure for appointment of the State Council President from among the seven most senior Vice-Presidents, with three nominees submitted by the special general assembly; later superseded by Law77/2019's amendment to Article83.",
+      "instrument_effective_date": "2017-04-28",
+      "source_url": "https://lawyeregypt.net/%D9%82%D8%A7%D9%86%D9%88%D9%86-%D8%B1%D9%82%D9%85-13-%D9%84%D8%B3%D9%86%D8%A9-2017%D8%8C-%D8%A8%D8%B4%D8%A3%D9%86-%D8%AA%D8%B9%D8%AF%D9%8A%D9%84-%D8%A8%D8%B9%D8%B6-%D8%A3%D8%AD%D9%83%D8%A7%D9%85/",
+      "required_evidence": [
+        "Continue Gazette comparison, recover original issue pages, compute SHA-256, trace later amendments, and obtain Egyptian counsel review."
+      ]
+    },
+    {
+      "relationship_id": "REL-LAW13-2017-AMENDS-ADMIN-PROSECUTION-117",
+      "source_instrument_id": "EG-STATE-COUNCIL-AND-JUDICIARY-AMENDMENT-13-2017",
+      "target_instrument_id": "EG-ADMINISTRATIVE-PROSECUTION-117-1958",
+      "relationship_type": "amends",
+      "status": "secondary_full_text_located_later_amendment_77_2019_verified",
+      "affected_provisions": [
+        "Article35"
+      ],
+      "stated_effect": "Replaces the appointment rule for the Authority President; later amended again by Law77/2019.",
+      "instrument_effective_date": "2017-04-28",
+      "source_url": "https://lawyeregypt.net/%D9%82%D8%A7%D9%86%D9%88%D9%86-%D8%B1%D9%82%D9%85-13-%D9%84%D8%B3%D9%86%D8%A9-2017%D8%8C-%D8%A8%D8%B4%D8%A3%D9%86-%D8%AA%D8%B9%D8%AF%D9%8A%D9%84-%D8%A8%D8%B9%D8%B6-%D8%A3%D8%AD%D9%83%D8%A7%D9%85/",
+      "required_evidence": [
+        "Continue Gazette comparison, recover original issue pages, compute SHA-256, trace later amendments, and obtain Egyptian counsel review."
+      ]
+    },
+    {
+      "relationship_id": "REL-LAW17-2007-AMENDS-STATE-COUNCIL-47",
+      "source_instrument_id": "EG-STATE-COUNCIL-AND-JUDICIARY-AMENDMENT-17-2007",
+      "target_instrument_id": "EG-STATE-COUNCIL-47-1972",
+      "relationship_type": "amends",
+      "status": "official_mof_locator_and_secondary_relationship_index_located_provision_mapping_pending",
+      "affected_provisions": [
+        "Not yet mapped; full text required"
+      ],
+      "stated_effect": "Manshurat's relationship index lists Law47/1972 among the statutes amended by Law17/2007. Do not infer the exact affected provisions until the full text is acquired.",
+      "instrument_effective_date": "2007-05-09",
+      "source_url": "https://manshurat.org/node/20263/relations",
+      "required_evidence": [
+        "Continue Gazette comparison, recover original issue pages, compute SHA-256, trace later amendments, and obtain Egyptian counsel review."
+      ]
     }
   ],
   "next_actions": [
