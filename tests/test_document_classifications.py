@@ -155,7 +155,7 @@ class DocumentClassificationContractTests(unittest.TestCase):
     def test_extraction_review_card_shows_latest_corrected_text_separately(self):
         html = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
         app = (ROOT / "app.py").read_text(encoding="utf-8")
-        endpoint = app[app.index("def list_document_chunks"):app.index('@app.post("/cases/{cid}/docs/{document_id}/chunks/{chunk_id}/review")')]
+        endpoint = app[app.index("def list_document_chunks"):app.index('@app.post("/cases/{cid}/docs/{document_id}/chunks/{chunk_id}/review",')]
         self.assertIn("latest.outcome==='corrected'", html)
         self.assertIn("latest.original_text", html)
         self.assertIn("latest.reviewed_text", html)
