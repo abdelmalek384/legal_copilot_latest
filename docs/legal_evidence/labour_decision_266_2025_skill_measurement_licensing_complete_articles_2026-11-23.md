@@ -204,7 +204,7 @@ The SIS record identifies the official issue and public file, but the attachment
 
 ## Annex schedule — national occupation list
 
-The secondary page appends a table titled «جدول المهن الخاضعة لقياس مستوى المهارة» with **421 numbered occupation entries** and occupational codes. Examples visible in the source include:
+The secondary page appends a table titled «جدول المهن الخاضعة لقياس مستوى المهارة» with **435 numbered occupation entries** and occupational codes. Examples visible in the source include:
 - 1 — إخصائي في بكتيريا النبات (قطن) — 213113
 - 31 — فني شبكات الحاسب — 351302
 - 114 — ميكانيكي تركيب أنظمة تكييف مركزي — 712706
@@ -212,7 +212,7 @@ The secondary page appends a table titled «جدول المهن الخاضعة �
 - 248 — إلكترونى صيانة أجهزة الحاسوب — 742223
 - 421 — عامل شحن يدوي عام — 933301
 
-The full 421-row annex is not transcribed here. Preserve the occupation codes as strings, not numbers, and verify every name/code pair from the Gazette page images before using the schedule for licence eligibility.
+The full 435-row annex is not transcribed here. Preserve the occupation codes as strings, not numbers, and verify every name/code pair from the Gazette page images before using the schedule for licence eligibility.
 
 ## Operational extraction and review flags
 
@@ -228,8 +228,13 @@ The full 421-row annex is not transcribed here. Preserve the occupation codes as
 ## Corpus disposition
 
 - 25 operative articles: complete secondary transcription captured in this file.
-- Annex: 421 occupation-code rows identified; full row-by-row transcription and visual QA pending.
+- Annex: 435 occupation-code rows identified; full row-by-row transcription and visual QA pending.
 - Official publication evidence: SIS public issue 290(B) record and Amiria Press catalogue record identify the bundle; direct PDF retrieval was unavailable in this session.
 - Text rights and commercial reuse permission: pending.
 - Currentness and lawyer review: pending.
 - Keep `verified=0`; do not ingest the annex as production-verified.
+
+
+## Material correction — annex row count (23 November 2026)
+
+A subsequent inspection of the complete LawHub page through its final numbered rows (lines 875–889 of the extracted page) shows that the annex runs through **entry 435**, not 421. The earlier 421 count was based on an incomplete preview/snippet and was incorrect. The actual tail includes entries 422–435 (ship mooring, lubricating equipment, food preparation, drinks service, waiter, kitchen assistants, door-to-door sales, recycling, sorting, collection, safe disposal and porter occupations). This corrects every earlier 421 reference in this file. The secondary transcription remains unverified against Gazette page images; 435 is the observed secondary-page row count, not an independently authenticated Gazette count. Do not use this schedule for production eligibility decisions until all 435 rows are checked against the primary scan.
