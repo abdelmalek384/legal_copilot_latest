@@ -28,7 +28,18 @@
 
 **Publication metadata:** Egyptian Proceedings issue 13 تابع (أ), 16 January 2020. Official MOF Decision 692 page identifies Decision 28/2020 as a related amendment: https://mof.gov.eg/ar/legislation/legislation-5fe868c87bfc600007cbecd3 . Secondary record: https://egyptianlaws.com/?p=179166 . Full consolidated Arabic regulation with article-level pre-amendment notes: https://lawhub.info/eg/?p=12694 .
 
-The LAW HUB consolidated text explicitly labels **Articles 31 (temporary bid security) and 82 (final security)** as amended by Decision 28/2020 and preserves the immediately preceding wording. The current text expressly includes electronic payment and permits security through the specified guarantee/offset mechanisms. The prior Article 31 text accepted foreign-bank guarantees with local-bank endorsement; the amended text shown in the consolidation no longer reproduces that clause in the same form. Article 82 likewise revises the permitted set-off route for final security. This is a secondary amendment map; obtain Decision 28/2020's own Gazette pages for a definitive redline. Egyptianlaws' page embeds images/iframes rather than exposing the operative text in its HTML, so this route did not yield a complete standalone transcription.
+**Primary-source acquisition upgrade:** the official MOF record directly identifies Decision 28/2020 and hosts a two-page Gazette scan: https://mof.gov.eg/ar/legislation/legislation-5fe868a97bfc600007cbeb77 and https://media.mof.gov.eg/mof-prd/2051_d69bcd5817.pdf . Both page images were visually checked. They show Egyptian Proceedings issue 13 تابع (أ), 16 January 2020, printed pages 2–3. The decision is signed 16 January 2020 and Article 2 makes it effective the day after publication (17 January 2020).
+
+**Arabic operative text transcribed from the official MOF-hosted Gazette page images:**
+> **المادة الأولى:** يستبدل بنصي البند (2) من المادتين (31)، و(82) من اللائحة التنفيذية لقانون تنظيم التعاقدات التي تبرمها الجهات العامة المشار إليها، النصان الآتيان:
+>
+> **المادة (31):** 2- يجوز لصاحب العطاء طلب سداد التأمين المؤقت، أو جزء منه خصمًا من مستحقاته عن عمليات أخرى في الجهة الإدارية ذاتها أو غيرها من الجهات الإدارية التي تسري عليها أحكام القانون، متى كانت صالحة للصرف في تاريخ جلسة فتح المظاريف الفنية، على أن يرفق صاحب العطاء بالطلب مستندًا معتمدًا ومختومًا من الإدارة المختصة بالجهة الإدارية المستحق لديها مبالغ له، يكون موجهًا للجهة الإدارية المقدم إليها العطاء، وبخصوص عملية بذاتها، يتضمن قبول تلك الجهة خصم مبلغ التأمين المؤقت أو جزء منه من المبالغ المستحقة لديها، وتعهدها بحجزه تحت حساب التأمين المؤقت المطلوب، إلى حين تقديم صاحب العطاء مستندًا معتمدًا ومختومًا من الإدارة المختصة بالجهة الإدارية المقدم إليها العطاء بالموافقة على الصرف، أو طلب هذه الجهة إتاحة ذلك المبلغ لها.
+>
+> **المادة (82):** 2- يجوز لصاحب العطاء الفائز طلب أداء التأمين النهائي، أو جزء منه خصمًا من مستحقاته عن عمليات أخرى في الجهة الإدارية ذاتها أو غيرها من الجهات الإدارية التي تسري عليها أحكام القانون، متى كانت صالحة للصرف في التاريخ المحدد للأداء، على أن يرفق صاحب العطاء بالطلب مستندًا معتمدًا ومختومًا من الإدارة المختصة بالجهة الإدارية المستحق لديها مبالغ له، يكون موجهًا للجهة الإدارية المقدم إليها العطاء، بخصوص عملية بذاتها، يتضمن قبول تلك الجهة خصم مبلغ التأمين النهائي، أو جزء منه من المبالغ المستحقة لديها، وتعهدها بحجزه تحت حساب التأمين النهائي المطلوب، إلى حين تقديم صاحب العطاء مستندًا معتمدًا ومختومًا من الإدارة المختصة بالجهة الإدارية المقدم إليها العطاء بالموافقة على الصرف، أو طلب هذه الجهة إتاحة ذلك المبلغ لها.
+>
+> **المادة الثانية:** ينشر هذا القرار في الوقائع المصرية، ويعمل به من اليوم التالي لتاريخ نشره. صدر في 16/1/2020.
+
+The two-page official scan is a strong page-image source match, but its bytes were not downloaded locally or SHA-256 hashed.
 
 ## 3. Finance Minister Decision 614/2020 — Decision 692/2019 Executive Regulation
 
