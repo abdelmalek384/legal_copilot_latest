@@ -9458,6 +9458,142 @@
           "status": "located_2026-11-23"
         }
       ]
+    },
+    {
+      "document_id": "EG-SCC-JUDGMENT-2-16-1996-LOCAL-COUNCILS",
+      "official_title": "حكم المحكمة الدستورية العليا في الدعوى رقم 2 لسنة 16 قضائية دستورية",
+      "document_type": "constitutional_judgment",
+      "law_number": "2",
+      "law_year": 1996,
+      "source_id": "EG-SCC",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official SCC HTML judgment located and opened (136 lines); MKS Egypt has a full transcribed page (197 lines) with CC BY 4.0 attribution. Judgment dated 3 February 1996. Declares Arts.3,10,39,47,59,66 and 75 bis of Law 43/1979 unconstitutional insofar as they required one individual seat and the rest by party lists. It explains equality and political participation and preserves acts/decisions of the councils until publication of the judgment in the Official Gazette. Exact Gazette publication date must be separately verified. No full judgment/decision text copied into repository in this pass; source permission or full-text reuse scope must be followed. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://www.sccourt.gov.eg/DjangoPortalResources/Rules_Html/895_16_2_1_2.html",
+          "source_role": "primary or full-text source",
+          "status": "full_text_located_2026-11-23"
+        },
+        {
+          "url": "https://mksegypt.org/public/ar/judgments-of-the-supreme-constitutional-court/15497",
+          "source_role": "corroborating full-text source",
+          "status": "full_text_located_2026-11-23"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-SCC-JUDGMENT-36-18-1998-LOCAL-FEES",
+      "official_title": "حكم المحكمة الدستورية العليا في الدعوى رقم 36 لسنة 18 قضائية دستورية",
+      "document_type": "constitutional_judgment",
+      "law_number": "36",
+      "law_year": 1998,
+      "source_id": "EG-MKSEGYPT",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Full Arabic text located (129 lines) on MKS Egypt page displaying CC BY 4.0. Judgment dated 3 January 1998; published in Official Gazette 15 January 1998; effects from 16 January 1998 as PM Decision 736/1998 records. Declares Minister of Local Administration Decision 239/1971 unconstitutional and holds that inseverable provisions of Art.4 of the issuing law to Law 43/1979 and PM Decision 870/1990 fall. Core holding: an unpublished normative rule cannot bind third parties; publication is a condition of enforceability. No full judgment/decision text copied into repository in this pass; source permission or full-text reuse scope must be followed. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mksegypt.org/ar/judgments-of-the-supreme-constitutional-court/15543",
+          "source_role": "primary or full-text source",
+          "status": "full_text_located_2026-11-23"
+        },
+        {
+          "url": "https://egyls.com/حكم-المحكمة-الدستورية-العليا-رقم-٣٦-لسنة-١٨-دستورية/",
+          "source_role": "corroborating full-text source",
+          "status": "full_text_located_2026-11-23"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-SAC-JUDGMENT-2566-34-1990-PROMOTION",
+      "official_title": "حكم المحكمة الإدارية العليا في الطعن رقم 2566 لسنة 34 قضائية",
+      "document_type": "administrative_judgment",
+      "law_number": "2566",
+      "law_year": 1990,
+      "source_id": "EG-MKSEGYPT",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Full Arabic judgment text located (131 lines) on MKS Egypt page displaying CC BY 4.0. Judgment dated 23 December 1990. Interprets Arts.94 and 96 of PM Decision 707/1979 as amended by Decision 314/1982: directorate employees generally form one seniority/promotion unit within the directorate, but director-general/deputy director-general posts are ministry-budget posts; the competent ministry is the grouping for seniority and promotion. Court rejected the administration's appeal and upheld relative annulment of the promotion decision. No full judgment/decision text copied into repository in this pass; source permission or full-text reuse scope must be followed. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://www.mksegypt.org/ar/judgments-of-the-supreme-administrative-court/3354",
+          "source_role": "primary or full-text source",
+          "status": "full_text_located_2026-11-23"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-SAC-JUDGMENT-8175-49-2004-LOCAL-COUNCIL",
+      "official_title": "حكم المحكمة الإدارية العليا في الطعنين رقمي 8175 و9771 لسنة 49 قضائية عليا",
+      "document_type": "administrative_judgment",
+      "law_number": "8175/9771",
+      "law_year": 2004,
+      "source_id": "EG-LEGAL-REFORM",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Full Arabic judgment text located (77 lines) on Legal Reform Observatory. Session 3 April 2004; the two connected appeals concern local council candidate status and vacancy replacement. It applies Law 43/1979 Arts.3,76,97 (Art.97 as replaced by Law 84/1996) and Decision 707/1979 Art.29 as replaced by Decision 2718/1996. It holds candidate status is assessed at filing; when a seat becomes vacant, the next candidate of the same category by valid votes takes the seat, otherwise a supplementary election; replacement term is the remainder of predecessor's term. No full judgment/decision text copied into repository in this pass; source permission or full-text reuse scope must be followed. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://lib.legal-reform.org/legal-observatory-view/المحكمة-الإدارية-العليا---مجموعة-رقم-3---رقم-المبدأ-69---رقم-الصفحة-555---القضية-رقم-8175---لسنة-49-ق---تاريخ-الجلسة-3-/-4-/-2004",
+          "source_role": "primary or full-text source",
+          "status": "full_text_located_2026-11-23"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-SAC-JUDGMENT-1282-45-2001-STATE-PROPERTY",
+      "official_title": "حكم المحكمة الإدارية العليا في الطعن رقم 1282 لسنة 45 قضائية",
+      "document_type": "administrative_judgment",
+      "law_number": "1282",
+      "law_year": 2001,
+      "source_id": "EG-LAWHUB-LOCAL-ADMIN",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Full Arabic judgment transcription located (264 extracted lines, with judgment text at lines 220–261) on LAW HUB. Session 28 August 2001. Applies Civil Code Art.970, Law 43/1979 Art.26 (as amended by Law 50/1981), and Decision 707/1979 Arts.3 and 10 (as amended by Decision 314/1982). Holds governor may protect state public/private property and remove encroachments administratively; delegated head of local unit acted within competence in removing encroachment on Agricultural Reform Authority land. Appeal allowed; first-instance annulment reversed and claim dismissed. No full judgment/decision text copied into repository in this pass; source permission or full-text reuse scope must be followed. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://lawhub.info/eg-j/?p=4828",
+          "source_role": "primary or full-text source",
+          "status": "full_text_located_2026-11-23"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-SAC-JUDGMENT-4479-46-2003-LOCAL-FEES",
+      "official_title": "حكم المحكمة الإدارية العليا في الطعن رقم 4479 لسنة 46 قضائية عليا",
+      "document_type": "administrative_judgment",
+      "law_number": "4479",
+      "law_year": 2003,
+      "source_id": "EG-LAWHUB-LOCAL-ADMIN",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Full Arabic judgment text located (295 extracted lines) on LAW HUB. Session 8 November 2003. Applies SCC Case 36/18 (3 January 1998) and its publication 15 January 1998 to local-fee recovery disputes; confirms the unconstitutionality of Decision 239/1971 and the fall of Art.4 of Law 43/1979 issuing provisions and PM Decision 870/1990. The judgment treats the unconstitutional basis as incapable of supporting the challenged local fee decision. No full judgment/decision text copied into repository in this pass; source permission or full-text reuse scope must be followed. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://lawhub.info/eg-j/?p=50749",
+          "source_role": "primary or full-text source",
+          "status": "full_text_located_2026-11-23"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-PM-DECISION-736-1998-LOCAL-FEES",
+      "official_title": "قرار رئيس مجلس الوزراء رقم 736 لسنة 1998 بشأن حظر تحصيل رسوم محلية استناداً إلى أحكام غير دستورية",
+      "document_type": "prime_minister_decision",
+      "law_number": "736",
+      "law_year": 1998,
+      "source_id": "EG-LAWEG-LOCAL-ADMIN",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Full Arabic text located on Laweg; Gazette Egyptian Facts issue 53 تابع (أ), 7 March 1998. Issued after SCC Case 36/18 (3 January 1998). Art.1 prohibits local units from collecting any fees under Art.4 of Law 43/1979 issuing provisions and Decision 239/1971, and orders refund of prior collections from 16 January 1998 (the day after the judgment's publication). Art.2 requires implementation. No full judgment/decision text copied into repository in this pass; source permission or full-text reuse scope must be followed. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://www.laweg.net/framePlain.aspx?NID=52053&action=viewactivepages&itemid=40599&type=6",
+          "source_role": "primary or full-text source",
+          "status": "full_text_located_2026-11-23"
+        }
+      ]
     }
   ]
 }
