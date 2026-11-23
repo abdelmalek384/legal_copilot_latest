@@ -3736,7 +3736,7 @@ function documentIntelligencePanel(caseId,documents){
    const persisted=item.classification&&item.classification.classification;
    const canEdit=!!(item.classification&&item.classification.can_edit===true);
    const current=draftOverrides.get(String(item.doc.document_id))||(persisted&&persisted.category)||item.suggestion.category;
-   const select=h('select',{'aria-label':uiText('تصنيف المستند ','Document classification for '),disabled:!canEdit},...categories.map(([value,label])=>new Option(label,value)));
+   const select=h('select',{'aria-label':uiText('تصنيف المستند ','Document classification for ')+item.doc.name,disabled:!canEdit},...categories.map(([value,label])=>new Option(label,value)));
    select.value=current;
    const note=h('input',{type:'text',maxLength:2000,placeholder:uiText('ملاحظة سبب التصنيف (اختيارية)','Classification rationale (optional)'),disabled:!canEdit,'aria-label':uiText('ملاحظة التصنيف ','Classification note for ')+item.doc.name});
    select.onchange=()=>{draftOverrides.set(String(item.doc.document_id),select.value);status.textContent=uiText('تغيير غير محفوظ؛ اضغط حفظ التصنيف لتسجيله في سجل التدقيق.','Unsaved change; choose Save classification to record it in the audit history.')};
