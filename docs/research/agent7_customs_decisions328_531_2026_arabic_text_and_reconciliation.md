@@ -85,7 +85,7 @@ The three decisions amend different provisions and are not interchangeable. A co
 - Added EG-0419: Decision531/2026 (complete two-article text from Gazette image).
 - Existing Decision262/2026 remains EG-0294 and now has full Arabic text from the Ministry-hosted two-page PDF.
 - Central register: **418 rows**.
-- Same keyword-based proxy: **112/418 full-text indicators (26.8%)**, **48/418 partial-only indicators (11.5%)**, **159/418 with any text indicator (38.0%)**. This is not a measure of official-source authentication, consolidated currentness or lawyer review.
+- Same keyword-based proxy: **112/418 full-text indicators (26.8%)**, **48/418 partial-only indicators (11.5%)**, **160/418 with any text indicator (38.3%)**. This is not a measure of official-source authentication, consolidated currentness or lawyer review.
 
 
 ## Latest central-register progress (23 November 2026)
@@ -95,4 +95,4 @@ The three decisions amend different provisions and are not interchangeable. A co
 
 ## Latest register snapshot (23 November 2026)
 
-**421 rows; 114/421 full-text indicators (27.1%); 49/421 partial-only indicators (11.6%); 162/421 with any text indicator (38.5%).** Same keyword-based proxy, not authenticated or lawyer-reviewed coverage.
+**421 rows; 114/421 full-text indicators (27.1%); 49/421 partial-only indicators (11.6%); 163/421 with any text indicator (38.7%).** Same keyword-based proxy, not authenticated or lawyer-reviewed coverage.
