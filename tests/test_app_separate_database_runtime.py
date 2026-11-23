@@ -1290,7 +1290,9 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
 
         def fake_llm(prompt):
             captured["prompt"] = prompt
-            if "OCR-ONLY MATTER SENTINEL" in prompt:
+            # Match the user's question, not the retrieved evidence: both uploads may
+            # legitimately appear in one authorized matter context.
+            if "What is the OCR-only matter sentinel?" in prompt:
                 return "The OCR-only matter contains OCR-ONLY MATTER SENTINEL [1]."
             return "The retrieved matter passage states the renewal date is 17 September 2027 [1]."
 
