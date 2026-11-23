@@ -1334,7 +1334,9 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
 
         # This is a synthetic unit test with a fake LLM; explicitly scope the
         # firm-data approval to this call rather than relying on deployment env.
-        with patch.dict("os.environ", {"LLM_FIRM_DATA_PROCESSING_APPROVED": "1"}):
+        with patch.dict("os.environ", {"LLM_FIRM_DATA_PROCESSING_APPROVED": "1"}), patch.object(
+            app, "LLM", side_effect=fake_llm
+        ):
             ocr_answer = app.ask(
                 firm_db, "What is the OCR-only matter sentinel?",
                 case_id=case_id, firm_id=self.firm_a, scope="firm_documents",
