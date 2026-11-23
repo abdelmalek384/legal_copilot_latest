@@ -31,6 +31,12 @@ The answer path accepts only a set of sources whose backend records are all expl
 
 The firm-test path also runs the lexical claim-support check even if the general optional claim-support switch is disabled. Citations and existing answer contradiction/pinpoint checks remain in force. Failed or incomplete checks produce sources only.
 
+## Source-status gate implementation
+
+The shared source inspector now has a separate `source_matched_unreviewed` status for the `firm_test_source_matched` scope. It requires the same complete machine evidence package used by the answer trust classifier, exact original-capture hash binding, explicit source-level collection and commercial-reuse permission evidence, pending review state, false authenticity/status/amendment verification flags, and no passed lawyer-approval event. It rejects secondary/commentary records and dates outside the requested as-of date. This status is not `verified`, does not establish current law, and does not enable retrieval by itself.
+
+The corpus provenance adapter does not yet persist or return the complete `source_match_evidence` package, and the dedicated search scope still returns no candidates. A separately owned corpus-schema/adapter change and a permission-cleared candidate are still required before an end-to-end source-matched retrieval test is possible.
+
 ## Law 14/2025 boundary
 
 The current Law 14/2025 candidate is **not eligible for this mode**. Its manifest records collection/reuse permissions as unknown, the candidate corpus file is not committed, the original scan reports copy/print restrictions, and the candidate is not search-eligible. This implementation does not import or retrieve that text, alter any `verified` flag, or bypass source-rights restrictions. The explicit `firm_test_source_matched` search scope currently returns no candidates; a separate permission-cleared candidate retrieval adapter is still required. The PR's synthetic tests inject a synthetic backend hit to verify the answer-label gate, not real Law 14 retrieval. It provides the isolated test-firm response gate for a future source record only after all technical and permission evidence is complete.
