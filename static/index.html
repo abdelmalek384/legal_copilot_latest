@@ -2078,7 +2078,7 @@ async function sendSetupTestReminder(){
   const result=await api('/setup/test-reminder','POST');
   toast(LANG==='ar'?result.message_ar:result.message_en);
   if(result.status==='accepted_by_smtp')firstRunPage();else setupHealthPage();
- }catch(_){}
+ }catch(error){toast(String(error?.message||err(error)))}
 }
 async function setupHealthPage(){
  PAGE='setup-health';
@@ -2108,7 +2108,7 @@ async function firstRunPage(){
    const refreshed=await api('/session');ME={...ME,...refreshed};sessionStorage.me=JSON.stringify(ME);
    toast(uiText('تم حفظ بيانات المكتب.','Firm details saved.'));
    firstRunPage();
-  }catch(_){}
+  }catch(error){toast(String(error?.message||err(error)))}
  },'g');
  const profileDone=(data.checklist||[]).find(item=>item.id==='firm_details')?.done===true;
  const profileCard=h('section',{className:'card'},
