@@ -2353,8 +2353,11 @@ async function clients(initialQuery=''){
  importInput.onchange=async()=>{
   const file=importInput.files?.[0];if(!file)return;
   if(file.size>1000000){toast(uiText('الحد الأقصى لملف الاستيراد 1 ميغابايت','CSV import limit is 1 MB'));importInput.value='';return}
+  let csvText;
+  try{csvText=new TextDecoder('utf-8',{fatal:true}).decode(await file.arrayBuffer())}
+  catch{toast(uiText('يجب أن يكون الملف بترميز UTF-8 صالح','The file must use valid UTF-8 encoding'));importInput.value='';return}
   try{
-   const result=await api('/clients/import.csv','POST',{csv:await file.text()});
+   const result=await api('/clients/import.csv','POST',{csv:csvText});
    toast(uiText('تم استيراد ','Imported ')+result.created+' · '+uiText('تم تخطي ','skipped ')+result.skipped);
    clients();
   }catch(_){}
