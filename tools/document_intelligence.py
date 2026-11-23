@@ -236,6 +236,7 @@ def group_candidate_entity_mentions(
     documents: list[dict[str, Any]],
     max_candidates: int = 5000,
     max_groups: int = 500,
+    max_documents: int = 1000,
 ) -> dict[str, Any]:
     """Group exact normalized party/reference mentions within firm/matter scope.
 
@@ -248,15 +249,16 @@ def group_candidate_entity_mentions(
     for name, value, maximum in (
         ("max_candidates", max_candidates, 10000),
         ("max_groups", max_groups, 2000),
+        ("max_documents", max_documents, 5000),
     ):
         if isinstance(value, bool) or not isinstance(value, int) or not 1 <= value <= maximum:
             raise ValueError(f"{name} must be an integer between 1 and {maximum}")
 
     buckets: dict[tuple[str, str, str, str], list[dict[str, Any]]] = {}
     candidate_count = 0
-    truncated = False
+    truncated = len(documents) > max_documents
     allowed_types = {"labelled_party", "case_reference", "legal_reference"}
-    for document in documents:
+    for document in documents[:max_documents]:
         if not isinstance(document, dict):
             raise TypeError("each document must be a mapping")
         firm_id, matter_id, document_id = (
@@ -333,6 +335,7 @@ def group_candidate_entity_mentions(
             "common ownership, party equivalence, case linkage or legal relationship."
         ),
         "limitations": [
+            "Only the first max_documents caller-supplied documents are examined; truncated results are incomplete.",
             "Only labelled-party, case-reference and legal-reference mentions are grouped.",
             "Normalization applies Unicode NFKC, case-folding and whitespace collapse only; no fuzzy or transliteration matching is performed.",
             "Common names and repeated reference strings may belong to different people, entities or matters.",
