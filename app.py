@@ -7290,6 +7290,81 @@ def search_accessible_document_text(
     }
 
 
+@app.get("/clients/{client_id}/documents/search-text")
+def search_client_document_text(
+    client_id: int,
+    q: str = Query(min_length=1, max_length=200),
+    limit: int = Query(default=40, ge=1, le=100),
+    offset: int = Query(default=0, ge=0, le=100000),
+    u: dict = Depends(user),
+):
+    """Search extracted passages across this client's matters visible to the current user."""
+    c = conn()
+    client = c.execute(
+        "SELECT id,name FROM clients WHERE id=?",
+        (client_id,),
+    ).fetchone()
+    if client is None:
+        raise HTTPException(404, "client profile not found")
+    if u["role"] != "admin" and not c.execute(
+        "SELECT 1 FROM cases cs JOIN members m ON m.case_id=cs.id "
+        "WHERE cs.client_id=? AND cs.firm_id=? AND m.user_id=? LIMIT 1",
+        (client_id, int(u["firm_id"]), int(u["id"])),
+    ).fetchone():
+        raise HTTPException(404, "client profile not found")
+
+    needle = norm(q.strip())
+    tokens = re.findall(r"[\\w]+", needle, flags=re.UNICODE)
+    tokens = [token for token in tokens if token][:20]
+    if not tokens:
+        raise HTTPException(422, "enter at least one searchable word")
+    fts_query = " AND ".join('"' + token.replace('"', '""') + '"' for token in tokens)
+    joins = (
+        " FROM chunks_fts JOIN chunks ON chunks.id=chunks_fts.rowid "
+        "JOIN docs d ON d.id=chunks.document_id AND d.case_id=chunks.case_id "
+        "AND d.firm_id=? JOIN cases cs ON cs.id=chunks.case_id "
+        "AND cs.firm_id=d.firm_id "
+    )
+    access = (
+        " WHERE chunks_fts MATCH ? AND cs.client_id=? AND cs.firm_id=? "
+        "AND (?='admin' OR EXISTS(SELECT 1 FROM members m "
+        "WHERE m.case_id=cs.id AND m.user_id=?))"
+    )
+    params = (
+        int(u["firm_id"]), fts_query, int(client_id), int(u["firm_id"]),
+        u["role"], int(u["id"]),
+    )
+    total = int(c.execute(
+        "SELECT COUNT(*)" + joins + access, params
+    ).fetchone()[0])
+    rows = c.execute(
+        "SELECT chunks.id AS chunk_id,chunks.case_id,chunks.document_id,chunks.ref,"
+        "chunks.page,substr(chunks.text,max(1,instr(chunks.norm,?)-450),1200) AS excerpt,"
+        "d.name AS document_name,cs.title AS case_title,cs.case_number,cs.case_year,"
+        "bm25(chunks_fts) AS rank"
+        + joins + access + " ORDER BY rank LIMIT ? OFFSET ?",
+        (tokens[0],) + params + (limit, offset),
+    ).fetchall()
+    c.execute(
+        "INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
+        (int(u["firm_id"]), int(u["id"]), "client_document_text_search"),
+    )
+    c.commit()
+    return {
+        "client_id": int(client_id),
+        "client_name": str(client["name"]),
+        "items": [dict(row) for row in rows],
+        "total": total,
+        "limit": limit,
+        "offset": offset,
+        "warning": (
+            "Results span this client's matters only where the current user has access. "
+            "They are extracted-text matches, not verified facts or legal conclusions; "
+            "check each passage against its original document."
+        ),
+    }
+
+
 @app.get("/documents/search")
 def search_accessible_documents(
     q: str = Query(default="", max_length=200),
