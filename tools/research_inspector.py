@@ -215,7 +215,7 @@ def source_status(source, as_of=None):
         document_type = provenance.get("document_type")
         if not isinstance(document_type, str) or not document_type.strip():
             return STATUS_REVIEW
-        if document_type in {"secondary", "commentary", "guide", "summary"}:
+        if document_type.strip().casefold() in {"secondary", "commentary", "guide", "summary"}:
             return STATUS_SECONDARY
         if not isinstance(provenance.get("official_title"), str) or not provenance["official_title"].strip():
             return STATUS_REVIEW
@@ -278,7 +278,7 @@ def source_status(source, as_of=None):
     document_type = provenance.get("document_type")
     if not isinstance(document_type, str) or not document_type.strip():
         return STATUS_REVIEW
-    if document_type in {"secondary", "commentary", "guide", "summary"} or source.get("source_type") == "secondary_copy":
+    if document_type.strip().casefold() in {"secondary", "commentary", "guide", "summary"} or source.get("source_type") == "secondary_copy":
         return STATUS_SECONDARY
     if provenance.get("status") != "registry_linked":
         return STATUS_REVIEW
