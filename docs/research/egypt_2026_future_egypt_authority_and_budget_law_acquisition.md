@@ -89,3 +89,114 @@ Acquire the full Ministry detail and signed Gazette decision before describing i
 - Decision80/2026: official Ministry listing with truncated title only.
 - Lawyer review: false.
 - Rights clearance: false.
+
+
+## 7. Text acquisition update — Decisions 2034/2026 and 80/2026
+
+### 7.1 Prime Minister Decision 2034/2026 — complete Arabic text
+
+**Decision date:** 30 June 2026.  
+**Official Ministry locator:** https://mof.gov.eg/ar/legislation/legislation-17  
+**Secondary full text:** https://mksegypt.org/public/ar/decisions/34896  
+**Gazette locator to verify:** reported in Official Gazette issue26 bis (ج), 30 June 2026. Original Gazette PDF/hash not acquired.
+
+**Arabic text:**
+
+قــرار رئيـس مجلس الــوزراء  
+رقم ٢٠٣٤ لسنة ٢٠٢٦
+
+رئيس مجلس الوزراء
+
+بعد الاطلاع على الدستور؛  
+وعلى قانون الهيئات العامة الصادر بالقانون رقم ٦١ لسنة ١٩٦٣؛  
+وعلى قانون المالية العامة الموحد الصادر بالقانون رقم ٩ لسنة ٢٠٢٢؛  
+وعلى قرار رئيس الجمهورية العربية المتحدة رقم ١١٠٥ لسنة ١٩٦٥ بشأن إعادة تنظيم الهيئات العامة في قطاع القطن؛  
+وعلى قرار رئيس الجمهورية رقم ٣٠٤ لسنة ٢٠٢٤ بالتفويض في بعض الاختصاصات؛  
+وعلى قرار رئيس مجلس الوزراء رقم ٢٦٧٨ لسنة ٢٠٢٤ بتنظيم وزارة الاستثمار والتجارة الخارجية؛  
+وبناءً على ما عرضه كل من نائب رئيس مجلس الوزراء للشئون الاقتصادية ووزير الاستثمار والتجارة الخارجية؛  
+وبعد موافقة مجلس الوزراء؛
+
+قـــــرر:
+
+**المادة الأولى**
+
+تعد الهيئة العامة للتحكيم واختبارات القطن من الهيئات العامة الخدمية اعتبارًا من موازنة العام المالي ٢٠٢٧/٢٠٢٨.
+
+**المادة الثانية**
+
+يُنشر هذا القرار في الجريدة الرسمية.
+
+صدر برئاسة مجلس الوزراء في ١٥ المحرم سنة ١٤٤٨هـ  
+(الموافق ٣٠ يونية سنة ٢٠٢٦م).
+
+رئيس مجلس الوزراء  
+دكتور/ مصطفى كمال مدبولي
+
+**Source status:** full text from secondary legal publisher; official Ministry of Finance listing confirms the subject. Obtain and compare the Gazette original before treating as authenticated. The effective budget classification is prospective from FY2027/2028, not an immediate reclassification for FY2026/2027.
+
+### 7.2 Cabinet Decision 80/2026 — allocation of inspection/examination fees under Law168/2025
+
+**Official source:** Ministry of Finance legislation page https://mof.gov.eg/ar/legislation/legislation-23, linked PDF:  
+https://media.mof.gov.eg/mof-prd/qrar_mjls_alwzrae_rqm_80_lsnt_2026_bshan_aghrad_whdwd_srf_nsbt_50_mn_rswm_alfhs_walmeaynt_almhslt_wfq_a_lahkam_alqanwn_rqm_168_lsnt_202_90762391b4.pdf
+
+**Gazette metadata visible in the PDF:** Official Gazette issue41 bis (هـ), 12 October 2026. The PDF is hosted by the Ministry of Finance and contains the complete four-article decision. The Ministry's portal warns that its online legislative text is guidance and the Gazette is controlling.
+
+**Preamble and instrument heading (Arabic):**
+
+قرار مجلس الوزراء  
+رقم ٨٠ لسنة ٢٠٢٦  
+بشأن أغراض وحدود صرف نسبة (٥٠٪) من رسوم الفحص والمعاينة المحصلة وفقاً لأحكام القانون رقم ١٦٨ لسنة ٢٠٢٥
+
+مجلس الوزراء
+
+بعد الاطلاع على الدستور؛  
+وعلى قانون المالية العامة الموحد الصادر بالقانون رقم ٦ لسنة ٢٠٢٢؛  
+وعلى قانون بعض قواعد وإجراءات التصرف في أملاك الدولة الخاصة الصادر بالقانون رقم ١٦٨ لسنة ٢٠٢٥؛  
+وعلى اللائحة التنفيذية لقانون بعض قواعد وإجراءات التصرف في أملاك الدولة الخاصة الصادرة بقرار رئيس مجلس الوزراء رقم ٢٠٠ لسنة ٢٠٢٦؛  
+وبناءً على ما عرضه السيد رئيس مجلس الوزراء؛  
+وعلى ما وجه به السيد رئيس الجمهورية؛  
+وبعد موافقة مجلس الوزراء؛
+
+قرر:
+
+**المادة الأولى**
+
+تلتزم الخزانة العامة للدولة بتخصيص نسبة (٥٠٪) من إجمالي رسوم الفحص والمعاينة المحصلة وفقاً لأحكام قانون بعض قواعد وإجراءات التصرف في أملاك الدولة الخاصة الصادر بالقانون رقم ١٦٨ لسنة ٢٠٢٥ المشار إليه، للصرف منها في الأغراض المحددة في هذا القرار.
+
+**المادة الثانية**
+
+يكون توزيع النسبة (٥٠٪) المشار إليها في المادة الأولى على النحو التالي:
+
+- (١٠٪) من إجمالي رسوم الفحص والمعاينة تخصص لصالح إدارة المساحة العسكرية.
+- (٥٪) من إجمالي رسوم الفحص والمعاينة تخصص لصالح إدارة نظم معلومات القوات المسلحة.
+- (٥٪) من إجمالي رسوم الفحص والمعاينة تخصص لصالح لجنة استرداد أراضي الدولة واللجان المنبثقة عنها (لجان التسليم - لجان المتابعة - لجان المرور) وجهات الولاية بالمحافظات، مقابل لوجستيات وتنقلات هذه اللجان.
+- (٢٠٪) من إجمالي رسوم الفحص والمعاينة تخصص كحافز للعاملين باللجان المشكلة وفقاً لأحكام المادتين (٥ و٦) من قانون بعض قواعد وإجراءات التصرف في أملاك الدولة الخاصة الصادر بالقانون رقم ١٦٨ لسنة ٢٠٢٥ المشار إليه.
+- (١٠٪) من إجمالي رسوم المعاينة فقط تخصص لصالح الهيئة المصرية العامة للمساحة.
+- (٥٪) من إجمالي رسوم الفحص فقط تخصص للجان المشكلة بوزارة التنمية المحلية والبيئة المختصة بمتابعة تطبيق أحكام القانون رقم ١٦٨ لسنة ٢٠٢٥ المشار إليه بالمحافظات.
+- (٢٪) من إجمالي رسوم الفحص فقط تخصص للجان المشكلة بالمركز الوطني لاستخدامات أراضي الدولة المختصة بدراسة طلبات التقنين وتحديد جهة الولاية طبقاً لأحكام القانون رقم ١٦٨ لسنة ٢٠٢٥ المشار إليه.
+- (٣٪) من إجمالي رسوم الفحص فقط تخصص لتكلفة العقود المؤمنة، ونفقات اللوجستيات للجان المشكلة بالمحافظات وجهات الولاية (الانتقالات - الإنذارات - الإعلانات - الدعم الفني والإداري).
+
+**المادة الثالثة**
+
+تتولى لجنة استرداد أراضي الدولة حساب النسبة المشار إليها كل ثلاثة أشهر، طبقاً لمعدلات الأداء ونسب التنفيذ الخاصة بإجراءات التصرف في أراضي الدولة وفقاً لأحكام قانون بعض قواعد وإجراءات التصرف في أملاك الدولة الخاصة الصادر بالقانون رقم ١٦٨ لسنة ٢٠٢٥ المشار إليه، ويكون الصرف من هذه النسبة بناءً على مذكرة مقدمة من رئيس لجنة استرداد أراضي الدولة إلى وزير المالية، تتضمن بياناً بالمتطلبات والأوعية الواجب الصرف عليها والدراسة المالية اللازمة لمواجهة هذه المتطلبات، على أن تتم دراسة المذكرة بمعرفة المختصين بوزارة المالية وموافقتها على الصرف في الأغراض والحدود المبينة بالدراسة المالية، ووفقاً للقواعد المقررة في هذا الشأن.
+
+**المادة الرابعة**
+
+يُنشر هذا القرار في الجريدة الرسمية، ويعمل به من اليوم التالي لتاريخ نشره.
+
+صدر برئاسة مجلس الوزراء في غرة جمادى الأولى سنة ١٤٤٨هـ  
+(الموافق ١٢ أكتوبر سنة ٢٠٢٦م).
+
+رئيس مجلس الوزراء  
+دكتور/ مصطفى كمال مدبولي
+
+### Allocation caution
+
+Article2 uses different bases for different percentages: some are percentages of combined inspection and examination fees; one is based on examination fees only; and the remaining allocations are based on inspection fees only. Do not add the stated rates as though they were all percentages of one identical fee base. The exact fee-base arithmetic and whether the allocations collectively fit the Article1 50% ceiling should be verified against the original Gazette image and the accounting instructions before operational use.
+
+### Register and progress update
+
+- EG-0142 (Decision2034/2026) upgraded from a listing-only record to complete Arabic preamble and both operative articles.
+- Added EG-0417 (Cabinet Decision80/2026) with four operative articles from the official Ministry-hosted Gazette PDF.
+- Central register: **416 rows**.
+- Same keyword-based content proxy: **110/416 full-text indicators (26.4%)**, **48/416 partial-only indicators (11.5%)**, **157/416 with any text indicator (37.7%)**. This does not measure article-level authentication, amendment consolidation or lawyer review.
