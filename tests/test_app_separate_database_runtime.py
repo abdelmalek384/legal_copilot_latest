@@ -6483,6 +6483,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             (annotation_id,),
         ).fetchone()["note"]
         self.assertEqual(persisted_note, payload["note"])
+        tenant.close()
 
         stale = self._mutate(
             "post",
