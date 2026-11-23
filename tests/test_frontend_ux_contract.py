@@ -633,7 +633,7 @@ class FrontendUXContractTests(unittest.TestCase):
         ):
             self.assertIn(label, HTML)
         calendar_start = HTML.index("async function calendarPage(){")
-        calendar_end = HTML.index("\\nasync function ", calendar_start + 10)
+        calendar_end = HTML.index("\nasync function ", calendar_start + 10)
         calendar = HTML[calendar_start:calendar_end]
         self.assertIn("Today", calendar)
         self.assertIn("aria-current':key===todayKey?'date':null", calendar)
