@@ -3075,6 +3075,23 @@
       "terms_checked_on": "2026-11-23",
       "bulk_download_or_api": "Single instrument PDF; no bulk/API permission established",
       "required_next_action": "Acquire exact PDF bytes through an authorized route, record SHA-256, visually compare all 3 pages and operative text; retain official Gazette as controlling source and assess rights separately."
+    },
+    {
+      "source_id": "EG-MOF-DECISION28-2020-PROCUREMENT",
+      "authority": "Egyptian Ministry of Finance legislation portal; official Ministry-hosted reproduction of Egyptian Proceedings scan",
+      "source_page": "https://mof.gov.eg/ar/legislation/legislation-5fe868a97bfc600007cbeb77",
+      "file_url": "https://media.mof.gov.eg/mof-prd/2051_d69bcd5817.pdf",
+      "material_types": [
+        "Finance Minister Decision28/2020 amending Executive Regulation Decision692/2019; 2-page Gazette scan"
+      ],
+      "access_status": "Official Ministry record and direct two-page scan visually inspected 2026-11-23. Page headers confirm Egyptian Proceedings issue13 تابع (أ), 16 January 2020, printed pages2–3. Ministry page states online legal text is guidance and the Egyptian Proceedings is controlling. PDF bytes not downloaded locally or hashed.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://mof.gov.eg/ar/legislation/legislation-5fe868a97bfc600007cbeb77",
+      "permission_evidence": "Official Ministry-hosted Gazette page-image reproduction. Public access and official hosting do not by themselves establish permission for bulk extraction, commercial redistribution or model ingestion.",
+      "terms_checked_on": "2026-11-23",
+      "bulk_download_or_api": "Single instrument PDF; no bulk/API permission established",
+      "required_next_action": "Acquire exact PDF bytes through an authorized route, record SHA-256, compare the two amended clauses against the text, and check later amendments and rights."
     }
   ]
 }
