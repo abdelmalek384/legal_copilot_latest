@@ -49,6 +49,11 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("Holiday calendar saved and change recorded'));await loadHolidays()}\n   catch(error){toast(String(error?.message||err(error)))}", HTML)
         self.assertIn("await loadInvoices()}catch(error){toast(String(error?.message||err(error)))}}));", HTML)
 
+
+    def test_feedback_and_research_conversation_actions_surface_api_errors(self):
+        self.assertIn("feedbackPage()}catch(error){toast(String(error?.message||err(error)))}", HTML)
+        self.assertIn("await drawList()}catch(error){toast(String(error?.message||err(error)))}", HTML)
+
     def test_firm_mfa_policy_controls_are_visible_and_accessibly_named(self):
         self.assertIn("Firm MFA policy", HTML)
         self.assertIn("Require MFA for firm administrators", HTML)
