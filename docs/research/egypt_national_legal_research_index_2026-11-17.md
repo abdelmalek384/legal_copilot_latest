@@ -90,3 +90,8 @@ This is the cross-domain research entry point for the Legal Copilot national Egy
 ## 26. Historical Labour Law 12/2003 amendment chain — 21 November 2026
 
 - [Law90/2005, SCC Case26/27, Law180/2008 and Law125/2010 historical priority chain](../legal_evidence/labour_law12_amendment_chain_law90_2005_scc26_2008_law180_2008_2026-11-21.md) — adds Law90/2005 Arts70,71,72,248; official SCC reproduction of the 2008 invalidation; Law180/2008 replacement; full Law125/2010 text, PM Decision2736/2010's 11 clauses and Ministerial Decision290/2010's three articles. The Decision290 annexed instructions and original Law90 Gazette scan remain outstanding; post-repeal priority of worker claims is unresolved. Labour-domain estimate now 70% provisional; national legal-content baseline remains ~1.5%; lawyer-reviewed=0 and verified=0.
+
+
+## 28. Waste / hazardous-material export and fee decisions 120, 121 and 151/2025 — 23 November 2026
+
+- [Decisions 120, 121 and 151/2025 Arabic text acquisition supplement](../legal_evidence/waste_decisions_120_121_151_2025_arabic_text_acquisition_2026-11-23.md) — full operative Arabic text of Decision 120/2025 (amends Decision 113/2022 fee schedule) and Decision 121/2025 (hazardous-material and hazardous-waste export controls, required documents and Basel movement/notification process) captured from Amiri Press searchable text and cross-checked against secondary reproductions. Decision 151/2025 adoption articles captured; its attached unified hazardous-materials/waste list remains missing because the official SIS Gazette PDF is 92.21 MB and annex extraction was unsuccessful. Not lawyer-reviewed; page-image QA and currentness check pending.
