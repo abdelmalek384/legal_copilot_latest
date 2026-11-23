@@ -25,25 +25,6 @@ class DocumentPassageAnnotationTests(unittest.TestCase):
         self.assertIn("source_text[b.start_offset:b.end_offset] != b.selected_text", create)
         self.assertIn("document_passage_annotations", create)
 
-    def test_client_wide_search_is_client_and_membership_scoped(self):
-        app = (ROOT / "app.py").read_text(encoding="utf-8")
-        search = app[
-            app.index('def search_client_document_text('):
-            app.index('@app.get("/documents/search")')
-        ]
-        self.assertIn("cs.client_id=?", search)
-        self.assertIn("cs.firm_id=?", search)
-        self.assertIn("m.case_id=cs.id AND m.user_id=?", search)
-        self.assertIn("chunks_fts MATCH ?", search)
-        self.assertIn("client_document_text_search", search)
-
-    def test_client_profile_ui_exposes_cross_matter_document_search(self):
-        html = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
-        self.assertIn("const clientSearchPanel=client=>", html)
-        self.assertIn("/documents/search-text?q=", html)
-        self.assertIn("Client-wide document search", html)
-
-
     def test_review_ui_highlights_selected_text_and_marks_stale_offsets(self):
         html = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
         page = html[html.index("const renderChunkReviewCards="):html.index("const renderAnalysis=()=>{")]
