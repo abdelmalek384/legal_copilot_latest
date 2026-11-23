@@ -243,7 +243,14 @@ def source_status(source, as_of=None):
             return STATUS_REVIEW
         publication = _calendar_date(evidence.get("publication_date"))
         effective = _calendar_date(evidence.get("effective_date"))
-        if publication is None or effective is None or publication > as_of_date or effective > as_of_date:
+        # The machine-match packet must agree with the row's own bibliographic
+        # dates; otherwise a valid packet can be rebound to stale/altered dates.
+        row_publication = _calendar_date(provenance.get("publication_date"))
+        row_effective = _calendar_date(provenance.get("effective_date"))
+        if (publication is None or effective is None
+                or row_publication is None or row_effective is None
+                or publication != row_publication or effective != row_effective
+                or publication > as_of_date or effective > as_of_date):
             return STATUS_REVIEW
         if effective < publication:
             return STATUS_REVIEW
