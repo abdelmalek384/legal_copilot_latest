@@ -41,7 +41,7 @@ This is the document-management and review workspace for uploaded matter files. 
 - Client analysis is limited to the first 40 documents and 1,000,000 total extracted characters per load.
 - Server analysis is limited to 1,000,000 extracted characters and 250 candidates per document; the UI displays at most 120 candidates and 50 search hits. Truncation is reported.
 - Text comparison is limited to 100,000 characters per version.
-- Search, duplicate grouping and comparison are confined to the selected matter. There is no cross-firm aggregation.
+- Extracted-text search supports matter scope and a separate client-wide scope across that client's linked matters. Client-wide results are filtered by the active firm and the current user's per-matter membership (firm administrators can see all matters within their own firm). Neither scope aggregates across firms. Duplicate grouping and text comparison remain confined to the selected matter.
 
 ## Legal and provenance safeguards
 
