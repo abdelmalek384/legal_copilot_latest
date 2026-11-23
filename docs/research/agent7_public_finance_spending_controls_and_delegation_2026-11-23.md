@@ -131,3 +131,60 @@ The central acquisition register now contains **406 instrument rows**, up from 4
 
 **This pass's actual text acquisition:** 4 issuing articles and 12 exact numbered controls from Decision 3530 are represented in the new tranche, but the canonical dedicated Decision 3530 file is the controlling local acquisition record; Articles 1–2 opening extracts of Law 77/2026 are newly copied here; Presidential Decision 112/2026 has its preamble and both operative articles transcribed here. Law 147/2026's existing dedicated 112-article text record was corrected for the MoF catalogue's Law47/147 identifier error.
 
+
+
+## 5. Law 78/2026 — approval of the Economic and Social Development Plan, FY2026/2027
+
+**Arabic title:** قانون رقم 78 لسنة 2026 باعتماد خطة التنمية الاقتصادية والاجتماعية للعام المالي 2026/2027.
+
+- **Gazette date:** 7 July 2026 (Official Gazette, identified by the legal-memory index).
+- **Commencement:** 1 July 2026 (secondary legal record; verify against Gazette Article 9).
+- **Length:** 9 articles, with integral plan tables/lists.
+- **Official Gazette page image / GPO text:** not located in this acquisition pass.
+- **Secondary full-article reproduction consulted:** https://www.aleqaria.com.eg/post/details/342862/
+- **Independent corroboration of title and plan:** https://www.masrawy.com/news/news_egypt/details/2026/7/19/3020116/
+- **Status:** secondary source text only. This is an acquisition of verbatim reproduced provisions, not a substitute for official Gazette proof.
+
+### Article 1
+
+> تعتمد الأهداف العامة لإطار خطة التنمية الاقتصادية والاجتماعية لعام 2027/2026 بزيادة الموارد الكلية مقومة بأسعار السوق الجارية لتصل إلى 31225،4 مليار جنيه، وزيادة الناتج المحلي الإجمالي مقوماً بأسعار السوق الجارية ليصل إلى 24505،8 مليار جنيه، بمعدل نمو حقيقي مقوماً بالأسعار الثابتة يبلغ 5،4% ، وذلك على النحو الموضح بالقائمتين (1) و (2).
+
+### Article 2
+
+> يعتمد برنامج شراء الأصول غير المالية (الاستخدامات الاستثمارية) بخطة عام 2027/26 بمجموع 3783،8 مليار جنيه، منه 2223،8 مليار جنيه لقطاع الأعمال الخاص والتعاوني، و 1560 مليار جنيه للاستثمارات العامة، منها نحو 553،7 مليار جنيه استثمارات الحكومة (ويمول عجز الموازنة منها 450 مليار جنيه)، ونحو 743،4 مليار جنيه للهيئات الاقتصادية متضمنة الموازنات الخاصة ونحو 262،9 مليار جنيه للشركات العامة، وذلك على النحو الموضح بقائمة الاستثمارات (قائمة رقم 3).
+
+### Article 3
+
+> تتولى الخزانة العامة توفير التمويل اللازم لجهات الإسناد التابعة للجهاز الحكومي، كما يتولى بنك الاستثمار القومي إتاحة ومتابعة التمويل اللازم للمشروعات المدرجة بالخطة الاستثمارية للدولة وفقاً لأحكام قانون إنشائه رقم 119 لسنة 1980، مع مراعاة ما هو موضح بالقائمة (4) وتقوم جهات الإسناد المشار إليها بتنفيذ الاستثمارات المخصصة لها لعام 2027/2026.
+>
+> ضمانًا لحقوق بنك الاستثمار القومي فإن أصول الهيئات الاقتصادية والوحدات الاقتصادية وشركات القطاع العام والأعمال العام (القابضة والتابعة) ضامنة لحقوق بنك الاستثمار القومي لديها، ولا يجوز لتلك الجهات التصرف فيها بأي صورة من الصور إلا بموافقة وزارة المالية وبنك الاستثمار القومي.
+
+### Article 4
+
+> يجوز لبنك الاستثمار القومي - وبعد موافقة وزير التخطيط والتنمية الاقتصادية - إتاحة التمويل للدفعات المقدمة وتسوية المستحقات عن الأعمال التي تمت خلال سنوات سابقة ولم تواجه بتمويل خلال سنوات التنفيذ، وذلك لمشروعات الهيئات الاقتصادية والوحدات الاقتصادية للقطاع العام الخاضعة للقانون رقم 97 لسنة 1983، وذلك خصماً على الاعتمادات الإجمالية المخصصة لذلك بموازنة بنك الاستثمار القومي لعام 2027/2026.
+
+### Article 5
+
+> يحظر على أي من الجهات إجراء مقاصة عن مستحقاتها من الموارد التي تودع أو تضمن حساب بنك الاستثمار القومي وفقاً للمادة (5) من القانون رقم 119 لسنة 1980 بإنشاء بنك الاستثمار القومي والتي يأذن البنك بالصرف منها لتمويل الاستخدامات الاستثمارية العامة.
+
+### Article 6
+
+> تفصل أهداف الخطة وفقاً للإطار الوارد بمواد هذا القانون والبيانات الواردة عن خطة عام 2027/2026 ضمن قائمة المشروعات الواردة بخطة التنمية الاقتصادية والاجتماعية.
+
+### Article 7
+
+> تعتبر الاعتمادات الاستثمارية لموازنات الجهاز الإداري والإدارة المحلية والهيئات الخدمية وحدة واحدة، ولا يتطلب النقل من جهة إسناد إلى أخرى استصدار قانون, وإنما يتم ذلك بناءً على طلب الوزير المختص وموافقة وزير التخطيط والتنمية الاقتصادية إذا كان النقل من جهة إسناد إلى أخرى في نطاق اختصاص ومسئوليات الوزير.
+
+### Articles 8–9 and annexes
+
+Not transcribed in the consulted reproduction. The full statute is described as nine articles. The two remaining articles, all plan tables/lists (including lists 1–4 and project schedules), official commencement text and Gazette issue/page scan remain outstanding. The reproduced figures and wording should be checked against the Official Gazette before operational reliance.
+
+### Administrative/public-finance relevance
+
+- This is the annual development-plan approval law, distinct from the annual State Budget Law 77/2026.
+- Article 3 allocates financing functions between the General Treasury and the National Investment Bank.
+- Article 3 also makes assets of economic public authorities, economic units and public/business-sector companies security for the National Investment Bank's rights and restricts disposal absent Ministry of Finance and Bank approval.
+- Article 4 permits National Investment Bank financing for advances and older unpaid work, subject to Planning Minister approval and the relevant appropriation.
+- Article 5 prohibits set-off against resources held or guaranteed in the National Investment Bank account under Law 119/1980.
+- Article 7 treats investment appropriations of the administrative apparatus, local administration and service authorities as one unit, permitting transfers between implementing entities without a separate statute, subject to the Minister of Planning's approval and the ministerial competence condition in the reproduced text.
+
