@@ -177,6 +177,16 @@ class ResearchInspectorTests(unittest.TestCase):
         }]
         self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
 
+        source = self._source_matched_candidate()
+        source["provenance"]["review_evidence"] = [None]
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+
+        source = self._source_matched_candidate()
+        source["provenance"]["review_evidence"] = [{
+            "review_type": "extraction_quality", "outcome": "fail",
+        }]
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+
     def test_source_matched_scope_does_not_claim_currentness(self):
         source = self._source_matched_candidate()
         source["provenance"]["source_match_evidence"]["effective_date"] = "2027-01-01"
