@@ -196,6 +196,15 @@ def source_status(source, as_of=None):
             return STATUS_REVIEW
         if provenance.get("status") != "registry_linked":
             return STATUS_REVIEW
+        # The evidence must be bound to the exact corpus row/version being labelled.
+        # Matching evidence from another source or another version must never be reusable.
+        source_id = source.get("source_id")
+        version_id = source.get("document_version_id")
+        if (not isinstance(source_id, str) or not source_id.strip()
+                or provenance.get("source_id") != source_id
+                or version_id is None
+                or provenance.get("version_id") != version_id):
+            return STATUS_REVIEW
         document_type = provenance.get("document_type")
         if not isinstance(document_type, str) or not document_type.strip():
             return STATUS_REVIEW
@@ -238,10 +247,10 @@ def source_status(source, as_of=None):
         reviews = provenance.get("review_evidence", [])
         if not isinstance(reviews, list):
             return STATUS_REVIEW
+        # Any recorded lawyer decision means the source has left the pending
+        # machine-match state. A failed/rejected decision is not a source match.
         if any(
-            isinstance(event, Mapping)
-            and event.get("review_type") == "lawyer_approval"
-            and event.get("outcome") == "pass"
+            isinstance(event, Mapping) and event.get("review_type") == "lawyer_approval"
             for event in reviews
         ):
             return STATUS_REVIEW
