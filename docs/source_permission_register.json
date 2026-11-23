@@ -3092,6 +3092,23 @@
       "terms_checked_on": "2026-11-23",
       "bulk_download_or_api": "Single instrument PDF; no bulk/API permission established",
       "required_next_action": "Acquire exact PDF bytes through an authorized route, record SHA-256, compare the two amended clauses against the text, and check later amendments and rights."
+    },
+    {
+      "source_id": "EG-DSpace-DECISION289-2021",
+      "authority": "Middle East Library for Economic Services DSpace repository; issue metadata identifies Amiri Press as publisher",
+      "source_page": "https://dspace.id.com.eg/items/d8439473-f9d3-4396-9e50-a7f32ce49c6e",
+      "material_types": [
+        "Catalogue record for Finance Minister Decision289/2021; Arabic and English PDF attachments",
+        "Official Proceedings issue125 تابع, 6 June 2021, issue-level record https://dspace.id.com.eg/items/96d5f5e8-acf5-404a-9c1a-f37834aaab47"
+      ],
+      "access_status": "Catalogue metadata and attachment names inspected 2026-11-23. Arabic and English files are marked request-copy restricted; no file bytes downloaded or accessed.",
+      "collection_permission": "not_allowed_without_explicit_exception_or_license",
+      "commercial_reuse_permission": "not_allowed_without_explicit_exception_or_license",
+      "terms_url": "https://dspace.id.com.eg/items/d8439473-f9d3-4396-9e50-a7f32ce49c6e",
+      "permission_evidence": "The item page exposes request-a-copy form and identifies both attached PDFs as restricted. Do not bypass this access control. The issue-level record identifies Gazette issue125 تابع, 6 June 2021, and publisher Amiri Press.",
+      "terms_checked_on": "2026-11-23",
+      "bulk_download_or_api": "Request-copy restricted; no bulk/API permission",
+      "required_next_action": "Use ordinary request-a-copy route if access is needed; otherwise retain secondary transcription as discovery only and compare against authorized Gazette pages."
     }
   ]
 }
