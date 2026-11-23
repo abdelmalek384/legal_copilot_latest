@@ -1128,3 +1128,76 @@ The Gazette PDF is primary evidence, but the full text has not yet been transcri
 - Category A performance is assessed at least annually; records must be sent to the unit within ten days after year-end, the ordinary general assembly, or the unit's request (Article 9).
 - Category B appointees must submit a plan with measurable targets and a maximum three-year execution horizon; annual assessment occurs within one month after year-end or the annual general assembly (Article 10).
 - The decision is binding executive regulation in form and effect as a published Prime Minister decision. It supplements Law 170/2025 Article 9 and cannot be reduced to nonbinding State Ownership Policy guidance.
+
+
+## 14. Prime Minister Decision 3660/2026 — disclosure of prospective PPP infrastructure projects
+
+### Metadata and sources
+
+- **Instrument:** Prime Minister Decision 3660/2026 بشأن إتاحة وتنظيم اطلاع المستثمرين على بيانات مشروعات البنية الأساسية والخدمات والمرافق العامة المزمع التعاقد عليها بالمشاركة مع القطاع الخاص.
+- **Gazette:** Official Gazette issue 47 تابع, 19 November 2026.
+- **Decision date:** 19 November 2026.
+- **Commencement:** day after Gazette publication, 20 November 2026 according to Article 3. News reports on 23 November say it is effective “today”; the primary Gazette publication date and Article 3 control, so the calculated effective date is 20 November unless the issue metadata is corrected.
+- **Official Amiri Press searchable text:** https://www.alamiria.com/Sec/TashTxt?id=2Y5TZcEy30A%3D
+- **Official Gazette archive item:** https://dspace.id.com.eg/items/ee5ff252-a868-4b90-8200-fa36b0b72253
+- **Secondary text cross-check:** https://www.almasdar.com/176269
+- The decision expressly cites PPP Law 67/2010, Procurement Law 182/2018, Public Authorities Law 61/1963, Local Administration Law 43/1979, Public Business Sector Law 203/1991 and State Ownership Law 170/2025.
+
+### Article 1 — project disclosure and quarterly updates
+
+> تلتزم الجهات الإدارية من وزارات ومصالح وأجهزة ووحدات الإدارة المحلية، والهيئات العامة الخدمية والاقتصادية، وكذلك الشركات المملوكة بالكامل للدولة أو لأحد أشخاصها الاعتبارية العامة، التى لديها مشروعات للبنية الأساسية أو الخدمات والمرافق العامة، وترغب فى مشاركة القطاع الخاص فى تنفيذها، وفقًا للقوانين واللوائح والقواعد المعمول بها فى هذه الجهات والشركات، بحسب الأحوال، بأن ترسل إلى كل من الجهاز المركزى للتعبئة العامة والإحصاء والوحدة المركزية للمشاركة بوزارة المالية بيانًا بهذه المشروعات، فى موعد أقصاه الأول من يناير التالى لتاريخ بدء العمل بهذا القرار.
+>
+> ويجب أن يتضمن البيان، بالنسبة إلى كل مشروع، اسمه، وموقع تنفيذه، والقطاع الذى ينتمى إليه، وتكلفته الاستثمارية، ومدته، والتاريخ المزمع لطرحه، والتاريخ المزمع للتعاقد عليه، والقانون أو اللائحة أو القواعد التى يخضع لها، وطريق التعاقد ومبرراته.
+>
+> وعلى الجهات والشركات المشار إليها تحديث هذا البيان وإرساله إلى الجهتين المشار إليهما بالفقرة الأولى من هذه المادة بصفة ربع سنوية، وذلك فى نهاية كل ثلاثة أشهر تُحسب اعتبارًا من الأول من يناير المشار إليه.
+>
+> وتستثنى من أحكام هذه المادة المشروعات المزمع طرحها بمعرفة أى من الجهات أو الشركات المشار إليها، متى اقتضت اعتبارات الأمن القومى عدم إتاحة بياناتها أو النشر عنها.
+
+### Article 2 — central database and public access
+
+> تتولى الوحدة المركزية للمشاركة تبويب البيانات المرسلة إليها إعمالاً لحكم المادة الأولى من هذا القرار وتصنيفها وإدراجها فى قاعدة بيانات لديها.
+>
+> وعلى الوحدة تحديث هذه البيانات بصفة دورية، بحسب ما يرد إليها من بيانات ربع سنوية، بإضافة ما يستجد من مشروعات، وإثبات التعديلات التى تطرأ على البيانات السابق إرسالها إليها، وبيان المشروعات التى تم التعاقد عليها أو الاستغناء عنها.
+>
+> وتنشر الوحدة هذه البيانات على موقعها الإلكترونى، مع بيانات المشروعات المزمع التعاقد عليها وفقًا لأحكام قانون تنظيم مشاركة القطاع الخاص فى مشروعات البنية الأساسية والخدمات والمرافق العامة المشار إليه.
+>
+> كما تتيح الوحدة هذه البيانات للاطلاع عليها من قبل المستثمرين والجهات المعنية بتلك المشروعات.
+
+### Article 3 — publication and commencement
+
+> يُنشر هذا القرار بالجريدة الرسمية، ويُعمل به من اليوم التالى لتاريخ نشره.
+>
+> صدر برئاسة مجلس الوزراء فى ٩ جمادى الآخرة سنة ١٤٤٨هـ (الموافق ١٩ نوفمبر سنة ٢٠٢٦م).
+>
+> رئيس مجلس الوزراء
+> دكتور/ مصطفى كمال مدبولى
+
+### Legal effect, relationship and compliance points
+
+- This is a binding Prime Minister decision published in the Official Gazette, not a voluntary transparency guideline.
+- It imposes a mandatory project-reporting duty on ministries, departments, agencies, local administrative units, public service/economic authorities and wholly State-owned companies that intend to execute infrastructure, services or public-utility projects with private-sector participation.
+- The required dataset includes project name, location, sector, investment cost, term, planned tender date, planned contract date, applicable law/regulation/rules, procurement route and reasons for that route.
+- Reporting is quarterly; the first deadline is 1 January following commencement, then quarterly at each three-month end.
+- National-security projects may be excluded from disclosure where national-security considerations require withholding the data/publication.
+- The Ministry of Finance Central PPP Unit must maintain and update the database, record new/modified/contracted/cancelled projects, publish it online and permit investors/interested parties to inspect it.
+- This does not amend PPP Law 67/2010 or Procurement Law 182/2018 and does not independently authorize direct contracting. The selected contract route must still be supported by the applicable statute, regulation and approval requirements.
+- The decision adds a new transparency and planning layer before procurement/PPP tendering and creates an auditable record of intended projects and procurement route justifications.
+
+### Related PPP statutory chain
+
+- Law 67/2010: primary Official Gazette PDF (Ministry of Finance): https://media.mof.gov.eg/mof-prd/1490_c21c703414.pdf
+- Law 153/2021: amendment to Law 67/2010; Gazette issue 50 مكرر (أ), 18 December 2021.
+- Prime Minister Decision 238/2011: Executive Regulation; Gazette issue 3 مكرر (ب), 23 January 2011, effective 24 January 2011. Official investment portal PDF: https://www.investinegypt.gov.eg/PublishingImages/Lists/LawsAndRegulations/AllItems/اللائحة%20التنفيذية%20لقانون%20مشاركة%20القطاع%20الخاص%20في%20مشروعات%20البنية%20الأساسية%20والخدمات%20والمرافق%20العامة%20رقم%2067%20لسنة%202010.pdf
+- Decision 3660/2026 adds the forward-project disclosure database, but is not a replacement for the PPP contract approval/selection procedures in Law 67/2010 and Decision 238/2011.
+
+## 15. Acquisition additions and source quality update
+
+This pass now includes:
+- Law 168/2025 + complete 20-article Executive Regulation Decision 200/2026.
+- Law 170/2025 State Ownership Law and official State Ownership Policy 2026–2030.
+- Law 203/1991, Executive Regulation 1590/1991, Law 185/2020 and Decision 948/2021.
+- Law 172/2025 Drinking Water and Sanitation Utility Law (79 numbered substantive articles; full text located, selected provisions reproduced) and Health Decision 182/2025.
+- Decision 1315/2026: complete 11-article Gazette text transcribed.
+- Decision 3660/2026: complete 3-article text transcribed from the official Amiri Press searchable record and Gazette metadata.
+
+**Fresh primary acquisition:** Decision 3660/2026 is the most recent instrument in this tranche (19 November 2026) and is now effective. This is a new PPP/procurement-adjacent rule, not a duplicate of the 2010 PPP law or the 2021 amendment.
