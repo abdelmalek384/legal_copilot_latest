@@ -245,12 +245,13 @@ def source_status(source, as_of=None):
         if not isinstance(provenance.get("gazette_pages"), str) or not provenance["gazette_pages"].strip():
             return STATUS_REVIEW
         reviews = provenance.get("review_evidence", [])
-        if not isinstance(reviews, list):
+        if not isinstance(reviews, list) or any(not isinstance(event, Mapping) for event in reviews):
             return STATUS_REVIEW
         # Any recorded lawyer decision means the source has left the pending
         # machine-match state. A failed/rejected decision is not a source match.
         if any(
-            isinstance(event, Mapping) and event.get("review_type") == "lawyer_approval"
+            event.get("review_type") == "lawyer_approval"
+            or event.get("outcome") == "fail"
             for event in reviews
         ):
             return STATUS_REVIEW
