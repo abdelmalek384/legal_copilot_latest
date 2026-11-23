@@ -519,11 +519,11 @@ class BrowserAcceptanceTests(unittest.TestCase):
         for nav_name, heading_name in (
             ("المهام", "المهام"),
             ("المهام والجلسات", "المهام والجلسات"),
-            ("القضايا", "القضايا"),
+            ("العملاء والقضايا", "القضايا"),
             ("ملاحظات المنتج", "ملاحظات المنتج"),
             ("البحث القانوني", "البحث القانوني"),
         ):
-            if nav_name in {"المهام", "القضايا", "ملاحظات المنتج"}:
+            if nav_name in {"المهام", "ملاحظات المنتج"}:
                 self.click_more_nav(nav_name)
             else:
                 self.page.get_by_role("button", name=nav_name, exact=True).click()
@@ -860,8 +860,8 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.page.get_by_text("تغيير غير محفوظ؛ اضغط حفظ التصنيف لتسجيله في سجل التدقيق.", exact=False).wait_for(timeout=5000)
         # The app can keep another workspace panel mounted in the page shell;
         # bind version selectors to the active matter panel, not the first global match.
-        earlier_version = intelligencePanel.get_by_label("الإصدار السابق")
-        later_version = intelligencePanel.get_by_label("الإصدار اللاحق")
+        earlier_version = intelligence_panel.get_by_label("الإصدار السابق")
+        later_version = intelligence_panel.get_by_label("الإصدار اللاحق")
         available_versions = earlier_version.locator("option").evaluate_all(
             "(options) => Array.from(options).map(option => option.value)"
         )
