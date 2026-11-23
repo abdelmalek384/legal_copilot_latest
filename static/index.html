@@ -3503,7 +3503,7 @@ function documentIntelligencePanel(caseId,documents){
     h('pre',{className:'extraction-review-text',textContent:String(change.after||uiText('لا يوجد نص لاحق','No later text'))}),
     pill(uiText('يتطلب مراجعة قانونية','Requires lawyer review'),'soon')));
    compareResults.replaceChildren(header,metadata,provenance,...(cards.length?cards:[h('p',{className:'mut',textContent:uiText('لم تُسجل اختلافات نصية بين النسختين.','No text differences were reported between the two versions.')} )]),
-    h('p',{className:'mut',role:'note',textContent:String(result.warning||uiText('هذه مقارنة نصية حرفية فقط.','This is a literal text comparison only.'))}));
+    h('p',{className:'mut',role:'note',textContent:String(result.warning||uiText('هذه مقارنة نصية حرفية فقط ولا تثبت الأثر القانوني للاختلاف.','Literal text comparison only; differences do not establish legal significance.'))}));
    status.textContent=uiText('اكتملت المقارنة مع الاحتفاظ بمراجع المقاطع والصفحات المتاحة.','Comparison completed with available chunk and page references retained.');
   }catch(error){
    compareResults.replaceChildren(h('p',{className:'notice danger',role:'alert',textContent:String(error.message||uiText('تعذرت مقارنة المستندين. تحقق من الصلاحية وحالة الاستخراج.','Could not compare the documents. Check access and extraction status.'))}));
