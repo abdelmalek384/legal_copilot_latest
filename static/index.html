@@ -3747,8 +3747,8 @@ async function view(id){if(window.DOCUMENT_REVIEW_TARGET&&Number(window.DOCUMENT
    h('div',{className:'grid'},fields.map(([k,label])=>h('label',{style:'display:block'},h('span',{className:'mut',textContent:label}),inputs[k]))),
    lead&&h('div',{className:'row'},btn('حفظ بيانات القضية',async()=>{const data={};fields.forEach(([k])=>data[k]=inputs[k].value);await api('/cases/'+id,'PATCH',data);toast(uiText('تم حفظ بيانات القضية','Case details saved'));again()})),
    h('div',{className:'row'},h('span',{textContent:uiText('العميل: ','Client: ')+(c.client||'—')}),h('span',{textContent:uiText('الحالة: ','Status: ')+(c.status==='open'?uiText('مفتوحة','Open'):uiText('مغلقة','Closed'))})),
-   lead&&h('div',{className:'row'},btn(c.status==='open'?'إغلاق القضية':'إعادة فتح',async()=>{await api('/cases/'+id,'PATCH',{status:c.status==='open'?'closed':'open'});again()},'g'),
-    btn('حذف القضية',async()=>{if(confirm(uiText('حذف نهائي لكل بيانات القضية؟','Permanently delete all case data?'))){await api('/cases/'+id,'DELETE');PAGE='clients';clients()}},'d')))}
+   lead&&h('div',{className:'row'},btn(c.status==='open'?'إغلاق القضية':'إعادة فتح',async()=>{try{await api('/cases/'+id,'PATCH',{status:c.status==='open'?'closed':'open'});toast(uiText('تم تحديث حالة القضية','Matter status updated'));again()}catch(error){toast(String(error?.message||err(error)))}},'g'),
+    btn('حذف القضية',async()=>{if(!confirm(uiText('حذف نهائي لكل بيانات القضية؟','Permanently delete all case data?')))return;try{await api('/cases/'+id,'DELETE');PAGE='clients';clients()}catch(error){toast(String(error?.message||err(error)))}},'d')))}
 
   const timelineEvents=caseTimelineEvents(c);
   const timelineRows=timelineEvents.length
