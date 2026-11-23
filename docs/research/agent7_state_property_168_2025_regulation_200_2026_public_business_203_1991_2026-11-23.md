@@ -1201,3 +1201,41 @@ This pass now includes:
 - Decision 3660/2026: complete 3-article text transcribed from the official Amiri Press searchable record and Gazette metadata.
 
 **Fresh primary acquisition:** Decision 3660/2026 is the most recent instrument in this tranche (19 November 2026) and is now effective. This is a new PPP/procurement-adjacent rule, not a duplicate of the 2010 PPP law or the 2021 amendment.
+
+
+## 16. Updated project progress — register revised and de-duplicated
+
+The project register `data/research/egypt_initial_statute_acquisition_register_2026-11-17.csv` now contains **403 instrument records**, up from 394. Nine new non-duplicate records were appended for Laws 170/2025, 172/2025, 203/1991, 185/2020; Decisions 1590/1991, 948/2021, 182/2025, 1315/2026 and 3660/2026. Existing records EG-0173 (Law 168/2025) and EG-0174 (Decision 200/2026) were updated rather than duplicated.
+
+### Registry text-evidence proxy (unique-row method)
+
+A revised keyword scan of the `content_observed` field counts each register row once if it contains a full-text indicator or a partial/selected-text indicator. Full and partial categories are not added together where they overlap.
+
+| Metric | Earlier 394-row register | Current 403-row register |
+|---|---:|---:|
+| Rows with full-text indicators | 93 | 98 |
+| Rows with partial-only indicators | 42 | 46 |
+| **Unique rows with any text-evidence indicator** | **135/394 (34.3%)** | **144/403 (35.7%)** |
+| Rows without a matching text indicator | 259 | 259 |
+
+**Correction to prior progress statements:** the previously reported 31.2% (123/394) summed full and partial matches without deduplicating overlapping rows and used a narrower keyword test. It should not be used. The current 35.7% is a unique-row registry proxy using the expanded indicators documented in the scan; it is not a measure of article completeness, currentness, Gazette authentication or national-law coverage. Some records count a full-text source locator even where only selected articles have been copied into the research file. The source-grade and remaining-work fields must therefore be consulted before treating any instrument as complete.
+
+### Domain discovery
+
+- **13/13 requested domain buckets = 100% discovery coverage** (constitutional law, State Council/SCC, civil service/public office/discipline, administrative litigation, contracts/procurement, property/utilities, local administration, public finance/government entities, elections/participation, authorities/agencies and relevant case law, as mapped in the prior domain inventory).
+- This does not mean all instruments or articles within each domain have been collected. The 13 domains are a scope map, not a finite corpus denominator.
+
+### Whole Egyptian-law corpus
+
+**Still not calculable.** The 403-row register is an evolving acquisition inventory, not a complete list of every currently effective Egyptian law, decree-law, Prime Minister decision, ministerial regulation, local instrument, amendment, judgment and transitional provision. A defensible whole-corpus percentage requires a fixed inclusion rule, a complete Gazette-derived universe, repeal/currentness status and versioned article-level completion criteria.
+
+### New acquisition count in this pass
+
+- **2** new State-property instruments (Law 168/2025 and Decision 200/2026) were already represented in the register; their existing records were enriched.
+- **9** new register records appended.
+- **1** newly identified and fully transcribed 2026 Prime Minister decision (1315/2026).
+- **1** newly identified and fully transcribed 2026 PPP disclosure decision (3660/2026).
+- **1** new 2025 public-utility statute (Law 172/2025, 79 numbered substantive articles) and **1** related water-quality decision (182/2025).
+- **1** public-sector corporate-law cluster (203/1991, 1590/1991, 185/2020, 948/2021).
+
+All progress values are inventory indicators only. No lawyer verification, rights clearance or current-law certification is claimed.
