@@ -6,7 +6,7 @@
 
 **Publication metadata:** Official Gazette issue **36 مكرر (ب)**, 5 September 2020, printed pages 7–9; effective 6 September 2020. The Ministry of Finance page directly identifies Law 188/2020 and hosts a 3-page scan whose page headers visually confirm issue 36 مكرر (ب), dated 5 September 2020, pages 7, 8 and 9. Official MOF locator: https://mof.gov.eg/ar/legislation/legislation-5fe868ae7bfc600007cbec2b . Official MOF-hosted Gazette scan: https://media.mof.gov.eg/mof-prd/2123_64f01cffad.pdf . A secondary EastLaws result gives a conflicting issue number (26 مكرر (ب)); the official-hosted page images resolve the conflict in favour of issue 36. Secondary searchable transcription: https://www.aldhshan.com/2026/02/188-2020-182-2018.html .
 
-**Text below is a secondary transcription of the operative provisions; compare to Gazette original before staging.**
+**Text below was recovered from a secondary transcription and visually cross-checked against the three MOF-hosted Gazette page images. A full line-by-line text comparison and local PDF hash are still pending before staging.**
 
 > **مادة رقم 1**  
 > يستبدل بنص المادة (92) من قانون تنظيم التعاقدات التي تبرمها الجهات العامة الصادر بالقانون رقم 182 لسنة 2018، النص الآتي:  
