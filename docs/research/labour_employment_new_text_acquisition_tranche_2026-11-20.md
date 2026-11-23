@@ -288,7 +288,7 @@ Official SIS-hosted issue 291 scan: linked above; Decision 259 begins at printed
 
 #### Decision 260/2025 — competent administrative authorities
 Secondary full-text lead: https://lawhub.info/eg/?p=17020  
-Gazette: issue 291 supplement, 25-12-2025; signed 4-12-2025. Gazette page pending.
+Official SIS-hosted issue 291 scan: linked in the bundle section above; printed pages 7–11 (starts at page 7). The scan exposes the full Article 1 article-to-authority matrix (32 rows) and Articles 2–3. The table text layer is RTL-fragmented; the matrix must be manually transcribed and visually checked before treating it as a complete structured crosswalk. Evidence label: official SIS repository-hosted electronic scan with "not valid for circulation" watermark; not lawyer-reviewed or production-verified.
 
 Arabic opening:
 > قرار رقم 260 لسنة 2025  
@@ -301,7 +301,7 @@ The decision crosswalks statutory articles to the competent Ministry/Directorate
 #### Decision 264/2025 — training operations and training-centre licensing
 Secondary full text: https://lawhub.info/eg/?p=17018  
 Alternative reproduction: https://www.masrawy.com/news/news_egypt/details/2025/12/28/2915339/  
-Gazette: issue 291 supplement, 25-12-2025; signed 4-12-2025. The searchable LawHub text exposes 41 numbered articles.
+Official SIS-hosted issue 291 scan: printed start page 12; full scan link in the bundle section above. The searchable LawHub text exposes 41 numbered articles; official scan extraction and annex comparison remain pending. The scan carries the not-valid-for-circulation watermark.
 
 Exact Arabic excerpts:
 > مادة (3)  
@@ -327,7 +327,7 @@ The searchable text includes the licensing structure, legal-form restrictions an
 #### Decision 271/2025 — disability employment register/reporting
 Secondary full text: https://lawhub.info/eg/?p=17021  
 Alternative reproduction: https://ahmedazimelgamel.blogspot.com/2026/01/271-2025.html  
-Gazette: issue 291 supplement, 25-12-2025; signed 4-12-2025. Four articles plus a reporting form.
+Official SIS-hosted issue 291 scan: printed start page 31; full scan link in the bundle section above. Four articles plus a reporting form. The form and exact page range require extraction/visual QA; the scan carries the not-valid-for-circulation watermark.
 
 Exact Arabic text:
 > (المادة الأولى)  
@@ -340,7 +340,7 @@ The form annex must be captured as structured fields. Connect this decision to L
 
 #### Decision 272/2025 — recruitment operations inside/outside Egypt
 Secondary full text: https://lawhub.info/eg/?p=17017  
-Gazette: issue 291 supplement, 25-12-2025; signed 4-12-2025. Searchable text exposes 53 articles.
+Official SIS-hosted issue 291 scan: printed start page 43; full scan link in the bundle section above. Searchable text exposes 53 articles; scan-side comparison and annex capture remain pending. The scan carries the not-valid-for-circulation watermark.
 
 Exact Arabic excerpts:
 > قرار رقم 272 لسنة 2025  
@@ -363,8 +363,7 @@ This instrument includes licensing/recruitment agencies, registers, fees, data-p
 #### Decision 292/2025 — hours in preparatory/complementary/guarding/cleaning work
 Secondary full text: https://lawhub.info/eg/?p=17022  
 EastLaws record: https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/25-12-2025/no-292?id=5042304&type=1  
-Gazette: issue 291 supplement, 25-12-2025; signed 4-12-2025.
-
+Official SIS-hosted issue 291 scan: printed start page 67; full scan link in the bundle section above. Full scan-side text extraction/visual QA remains pending; the scan carries the not-valid-for-circulation watermark.\n
 Exact Arabic text:
 > مادة (5)  
 > يلتزم صاحب العمل بتحديد ساعات العمل في الأعمال المشار إليها في المواد السابقة على أن يكون الحد الأقصى لساعات العمل الفعلية هي ٤٨ ساعة في الأسبوع.
@@ -377,8 +376,7 @@ It defines preparatory and complementary work, guarding (including electronic/cy
 #### Decision 294/2025 — paid holidays
 Secondary full text: https://lawhub.info/eg/?p=17019  
 EastLaws record: https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/25-12-2025/no-294?id=5008509&type=1  
-Gazette: issue 291 supplement, 25-12-2025; signed 4-12-2025.
-
+Official SIS-hosted issue 291 scan: printed start page 70; full scan link in the bundle section above. Full scan-side text extraction/visual QA remains pending; the scan carries the not-valid-for-circulation watermark.\n
 The text starts:
 > قرار رقم 294 لسنة 2025  
 > بشأن تحديد العطلات والأعياد والمناسبات التي تعتبر إجازة بأجر كامل للعمال
@@ -414,8 +412,7 @@ Capture full signed text and any schedules; check relationship with Law 14/2025 
 #### Decision 320/2025 — night/out-of-hours inspection
 Full Arabic text: https://lawhub.info/eg/?p=17025  
 Official-catalogue record with separate Arabic PDF: https://dspace.id.com.eg/items/36c059d2-799d-422f-b37a-98d22a400188/full  
-Gazette: issue 291 supplement, 25-12-2025; seven articles.
-
+Official SIS-hosted issue 291 scan: printed start page 77; full scan link in the bundle section above. Full scan-side text extraction/visual QA remains pending; the scan carries the not-valid-for-circulation watermark.\n
 Exact Arabic text:
 > مادة (1)  
 > في تطبيق أحكام هذا القرار يُقصد بالكلمات والعبارات التالية المعني المُبين قرين كُلٌ منها: التفتيش الليلي: التفتيش الذي يتم في الفترة ما بين غروب الشمس وشروقها.
