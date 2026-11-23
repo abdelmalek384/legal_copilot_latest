@@ -358,7 +358,7 @@
     {
       "source_id": "EG-CUSTOMS-AUTHORITY-IMPORT-CIRCULARS",
       "authority": "Egyptian Customs Authority, Ministry of Finance, Egypt",
-      "source_page": "https://customs.gov.eg/Upload/ECAAdminace/ECAAdminace026153585.pdf",
+      "source_page": "https://customs.gov.eg/Upload/ECAAdminace/ECAAdminace026153585.pdf; https://www.customs.gov.eg/Upload/ECAAdminace/ECAAdminace429806784.pdf",
       "material_types": [
         "Ministerial Decision501/2026 reproduced Gazette issue225 supplement",
         "Egyptian Customs Import Circular30/2026",
@@ -366,16 +366,17 @@
         "Customs Tariff Circular45/2026 transmitting Law149/2026",
         "Customs Tariff Circular48/2026 transmitting official corrigendum to Law149/2026",
         "Official Gazette issue32 bis corrigendum dated 8 Aug 2026 correcting Laws149,150,151/2026",
-        "ETA official two-page Gazette PDF and Customs Circular48/2026 copy"
+        "ETA official two-page Gazette PDF and Customs Circular48/2026 copy",
+        "Finance Minister Decision639/2026 — five-page VAT Executive Regulation66/2017 amendment scan"
       ],
-      "access_status": "Official Customs Authority PDF Circular48/2026 opened; reproduces Cabinet Council of Advisers corrigendum published Official Gazette issue32 bis, 8 Aug 2026, correcting Art28 bis wording. Corrigendum PDF visually inspected page-by-page; Customs Circular48/2026 text layer parsed for corrections to Laws149 and150; Law151 page2 visually inspected.",
+      "access_status": "Official Customs Authority PDF Circular48/2026 opened; reproduces Cabinet Council of Advisers corrigendum published Official Gazette issue32 bis, 8 Aug 2026, correcting Art28 bis wording. Corrigendum PDF visually inspected page-by-page; Customs Circular48/2026 text layer parsed for corrections to Laws149 and150; Law151 page2 visually inspected. On 23 Nov 2026, Customs Authority legislation listing identified Finance Minister Decision639/2026 (listing dated 12 Nov 2026). The linked five-page government-hosted PDF contains the signed Ministry of Finance decision dated 5 Nov 2026; all five pages visually inspected. It amends VAT Executive Regulation66/2017. PDF is image-only; Gazette issue/page and exact publication date remain unverified.",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
       "permission_evidence": "Official government-hosted PDF at customs.gov.eg. Public access does not itself establish a licence for commercial reuse, bulk extraction or redistribution. No express licence found in this pass. Circular PDF is publicly accessible; no bulk or commercial reuse permission established. Public government-hosted PDF; no bulk/republication/commercial reuse permission established.",
       "terms_checked_on": "2026-11-18",
       "bulk_download_or_api": "Single PDF URL; no bulk/API permission established",
-      "required_next_action": "Archive/hash official corrigendum PDF; preserve corrected and first-print versions separately; complete image verification of Law151 Art6 final particle."
+      "required_next_action": "Archive/hash official corrigendum PDF; preserve corrected and first-print versions separately; complete image verification of Law151 Art6 final particle. Identify the Official Proceedings issue/page for Decision639/2026; transcribe all replacement provisions; verify commencement and archive/hash permitted PDF."
     },
     {
       "source_id": "EG-DATAFLARE-LEGAL-CORPUS",
@@ -911,7 +912,7 @@
     {
       "source_id": "EG-ETA-TAX-LAWS",
       "authority": "Egyptian Tax Authority / Income Tax Authority portals",
-      "source_page": "https://www.eta.gov.eg/sites/default/files/2026-08/law.no_.149.of_.2026.pdf",
+      "source_page": "https://www.eta.gov.eg/sites/default/files/2026-08/law.no_.149.of_.2026.pdf; https://eta.gov.eg/sites/default/files/2025-02/law_no.5.of_.2025.pdf; https://www.eta.gov.eg/sites/default/files/2025-02/law_no.6.of_.2025.pdf; https://portal.eta.gov.eg/sites/default/files/2025-07/vat-law_no.157.of_.2025.pdf; https://portal.eta.gov.eg/sites/default/files/2025-12/mof.decision.no_.418.of_.2025.pdf; https://portal.eta.gov.eg/sites/default/files/2025-12/mof.decision.no_.420.of_.2025.pdf",
       "material_types": [
         "VAT law index",
         "income tax law index",
@@ -921,16 +922,20 @@
         "Official Gazette issue32 bis corrigendum dated 8 Aug 2026 correcting Laws149,150,151/2026",
         "ETA official two-page Gazette PDF and Customs Circular48/2026 copy",
         "Finance Minister Decision450/2026 and two tax/customs dispute application forms, four-page PDF",
-        "Law153/2026 — Stamp Tax Law111/1980 amendment, official ETA PDF"
+        "Law153/2026 — Stamp Tax Law111/1980 amendment, official ETA PDF",
+        "Law5/2025 — taxpayer position settlement law, five-page Official Gazette PDF",
+        "Law6/2025 — small-project tax incentives and simplified tax regime, five-page Official Gazette PDF",
+        "Law157/2025 — VAT schedule amendment, five-page Gazette scan",
+        "Finance Minister Decision418/2025 and Decision420/2025 — two-page government-hosted scans"
       ],
-      "access_status": "Direct ETA-hosted four-page Official Gazette reproduction opened; issue30 bis (أ), 28 July 2026; text layer extracted. Ministry legislation portal labels Law149 in force but warns online legislation pages are guidance and Gazette is legal reference. Corrigendum PDF visually inspected page-by-page; Customs Circular48/2026 text layer parsed for corrections to Laws149 and150; Law151 page2 visually inspected. Official four-page ETA scan for Decision450/2026 visually inspected; full issuing provisions and forms transcribed locally; exact Egyptian Proceedings issue/date still to verify. ETA official page lists Law153/2026 PDF (law.no_.153.of_.2026.pdf); full text source and official Ministry of Finance record located; local PDF bytes/hash not archived.",
+      "access_status": "Direct ETA-hosted four-page Official Gazette reproduction opened; issue30 bis (أ), 28 July 2026; text layer extracted. Ministry legislation portal labels Law149 in force but warns online legislation pages are guidance and Gazette is legal reference. Corrigendum PDF visually inspected page-by-page; Customs Circular48/2026 text layer parsed for corrections to Laws149 and150; Law151 page2 visually inspected. Official four-page ETA scan for Decision450/2026 visually inspected; full issuing provisions and forms transcribed locally; exact Egyptian Proceedings issue/date still to verify. ETA official page lists Law153/2026 PDF (law.no_.153.of_.2026.pdf); full text source and official Ministry of Finance record located; local PDF bytes/hash not archived. On 23 Nov 2026, additional ETA-hosted Official Gazette sources inspected: Laws5/2025 and6/2025 (searchable text PDFs), Law157/2025 (five-page image-only Gazette scan, all page images inspected), and Decisions418/2025 and420/2025 (two-page scans each, all page images inspected). No local PDF bytes/hash acquired; Decision418/420 scans have no usable text layer.",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
       "permission_evidence": " Public government-hosted PDF; no explicit bulk/republication/commercial reuse permission located.  Public government-hosted PDF; no bulk/republication/commercial reuse permission established. Government-hosted PDF public access; no bulk or commercial reuse permission established. Government-hosted official PDF public access; no bulk/republication/commercial reuse permission established.",
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
-      "required_next_action": "Archive/hash PDF; verify Gazette issue30 bis (أ) page image; preserve official publication version and any subsequent corrections."
+      "required_next_action": "Archive/hash PDF; verify Gazette issue30 bis (أ) page image; preserve official publication version and any subsequent corrections. Acquire and hash permitted original PDF files; complete image-to-text transcription of Law157/2025 schedules and Decisions418/2025 and420/2025 forms/operative text; verify later amendments."
     },
     {
       "source_id": "EG-FAOLEX-LAW143-1981",
