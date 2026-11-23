@@ -206,6 +206,26 @@ class ResearchInspectorTests(unittest.TestCase):
         source["provenance"]["source_match_evidence"]["effective_date"] = "2027-01-01"
         self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
 
+    def test_source_matched_evidence_dates_must_match_row_dates(self):
+        for field, mismatched_value in (
+            ("publication_date", "2019-12-16"),
+            ("effective_date", "2020-01-02"),
+        ):
+            source = self._source_matched_candidate()
+            source["provenance"]["source_match_evidence"][field] = mismatched_value
+            self.assertEqual(
+                source_status(source, "2026-10-24"), STATUS_REVIEW, field
+            )
+        for field, mismatched_value in (
+            ("publication_date", "2019-12-16"),
+            ("effective_date", "2020-01-02"),
+        ):
+            source = self._source_matched_candidate()
+            source["provenance"][field] = mismatched_value
+            self.assertEqual(
+                source_status(source, "2026-10-24"), STATUS_REVIEW, field
+            )
+
     def test_malformed_review_type_and_document_type_fail_closed_without_crashing(self):
         for value in ([], {}, 7, None):
             source = valid_source()
