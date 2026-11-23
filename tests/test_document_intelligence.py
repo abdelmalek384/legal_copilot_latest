@@ -212,6 +212,27 @@ class DocumentIntelligenceTests(unittest.TestCase):
         self.assertTrue(result["truncated"])
         self.assertIn("first max_documents", " ".join(result["limitations"]))
 
+    def test_candidate_entity_grouping_caps_entities_per_document_and_marks_incomplete(self):
+        documents = [{
+            "firm_id": "firm-a", "matter_id": "matter-1", "document_id": "doc-1",
+            "entities": [
+                {"entity_type": "unrelated", "mention": "ignored"},
+                {"entity_type": "legal_reference", "mention": "Article 10"},
+                {"entity_type": "legal_reference", "mention": "Article 11"},
+            ],
+        }]
+        result = group_candidate_entity_mentions(
+            documents, max_entities_per_document=2
+        )
+        self.assertEqual(result["candidate_count"], 1)
+        self.assertTrue(result["truncated"])
+
+    def test_candidate_entity_grouping_rejects_invalid_per_document_entity_limits(self):
+        for value in (True, 0, -1, "10", 20001, None):
+            with self.subTest(max_entities_per_document=value):
+                with self.assertRaises(ValueError):
+                    group_candidate_entity_mentions([], max_entities_per_document=value)
+
     def test_candidate_entity_grouping_rejects_invalid_document_limits(self):
         for value in (True, 0, -1, "10", 5001, None):
             with self.subTest(max_documents=value):
