@@ -64,14 +64,27 @@ The Gazette page identifies the underlying regulation as Ministerial Decision **
 >
 > ألا تشتمل على قطع غيار السيارات المستعملة.
 
-**Additional release conditions — visible on page 3**
-> يشترط للإفراج عن الشحنة ما يأتى:
+**Replacement Annex 2 item 7 — exact Arabic text cross-checked against the Customs-hosted PDF text layer and Gazette page image**
+
+**الصنف**
+> خردة وفضلات المعادن بما في ذلك قضبان السكك الحديدية المستعملة.
+
+**الشروط المطلوبة**
+> الحصول على تصريح استيراد سارى المفعول لمخلفات غير خطرة (مفردة/مخلوطة) من جهاز تنظيم إدارة المخلفات.
 >
-> - تخريد قضبان السكك الحديدية قبل الإفراج.
-> - فحص الشحنة إشعاعيًا من قبل جهة الرقابة النووية والإشعاعية وفق النص الوارد بالصفحة المصورة.
-> - أن تكون الشحنة مصحوبة بالمستندات والشهادات الرقابية المبينة فى البند المستبدل، بما يثبت خلو الأصناف من المواد الخطرة/المحظورة وفق الشهادات المعتمدة.
+> قصر استيراد الخردة على المصانع المرخص لها من الهيئة العامة للتنمية الصناعية باستخدام الخردة كمستلزم إنتاج فى العملية الصناعية، أو على مصانع إعادة تدوير الخردة المرخصة.
 >
-> **Transcription qualification:** the last two release-condition subparagraphs are partially legible in the low-resolution page image. Their exact Arabic must be rechecked against a higher-resolution official scan before using as verbatim text. The first three eligibility conditions above are legible and transcribed.
+> ألا تشتمل على قطع غيار السيارات المستعملة.
+
+**Additional release conditions — full Arabic text from the official Customs-hosted PDF, Annex page 3**
+> ويشترط للإفراج عن الشحنة ما يأتى:
+>
+> 1. تخريد قضبان السكك الحديدية قبل الإفراج.
+> 2. فحص الشحنة إشعاعياً من قبل هيئة الطاقة الذرية فى تواجد ممثل عن إدارة الحرب الكيميائية.
+> 3. أن تكون مصحوبة بشهادة رسمية من دولة التصدير بخلوها من المواد المتفجرة أو الخطرة، صادرة من الجهات الحكومية أو المعامل المعتمدة دولياً لدى الهيئة العامة للرقابة على الصادرات والواردات.
+> 4. تقديم شهادة فحص وتحليل من أحد المعامل المعتمدة دولياً، أو من أحد المعامل التابعة للجهات الحكومية المصرية أو المراكز البحثية المصرية، تفيد أن الصنف الوارد لا يحتوى على أى من الملوثات أو المكونات المدرجة بالملحق الأول من اتفاقية بازل بمستوى يكسبه صفة من صفات الخطورة الواردة من الملحق الثالث من نفس الاتفاقية، وأن يجتاز الصنف اختبارات (الإشعاع - المعادن الثقيلة)، على أن تقوم الهيئة العامة للرقابة على الصادرات والواردات بإخضاع هذه الرسائل للفحص العشوائى.
+
+**Transcription/source note:** the Customs-hosted PDF is an official Egyptian Customs Authority / Ministry of Finance source. Its extracted text includes the Gazette masthead and the full replacement table plus page 3. The Gazette page image hosted by Al-Masdar was also visually inspected. The PDF's text extraction contains OCR variants (for example, a corrupted rendering of the scrap category/production-input phrase); the Arabic above follows the legible Gazette page image for those words and the Customs PDF text layer for the complete four release conditions.
 
 **المادة الثانية**
 > ينشر هذا القرار فى الوقائع المصرية، ويعمل به من اليوم التالى لتاريخ نشره.
