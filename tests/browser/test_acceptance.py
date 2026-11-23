@@ -531,6 +531,12 @@ class BrowserAcceptanceTests(unittest.TestCase):
 
     def test_primary_navigation_buttons_support_native_keyboard_activation(self) -> None:
         self.login(self.state["reviewer_email"])
+        more_menu = self.page.locator("#side .nav-more")
+        self.assertFalse(more_menu.evaluate("(el) => el.open"), "More navigation must not cover the workspace on first load")
+        more_menu.locator("summary").click()
+        self.assertTrue(more_menu.evaluate("(el) => el.open"))
+        more_menu.locator("summary").click()
+        self.assertFalse(more_menu.evaluate("(el) => el.open"))
         tasks = self.page.get_by_role("button", name="المهام", exact=True)
         tasks.focus()
         self.page.keyboard.press("Space")
