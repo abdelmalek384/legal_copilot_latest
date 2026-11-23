@@ -343,7 +343,7 @@ def group_candidate_entity_mentions(
             "common ownership, party equivalence, case linkage or legal relationship."
         ),
         "limitations": [
-            "Only the first max_documents caller-supplied documents are examined; truncated results are incomplete.",
+            "Only the first max_documents caller-supplied documents and first max_entities_per_document entities per document are examined; truncated results are incomplete.",
             "Only labelled-party, case-reference and legal-reference mentions are grouped.",
             "Normalization applies Unicode NFKC, case-folding and whitespace collapse only; no fuzzy or transliteration matching is performed.",
             "Common names and repeated reference strings may belong to different people, entities or matters.",
