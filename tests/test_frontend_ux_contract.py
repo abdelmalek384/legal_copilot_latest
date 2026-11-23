@@ -1917,5 +1917,19 @@ class FrontendUXContractTests(unittest.TestCase):
         ):
             self.assertIn(action, HTML)
 
+    def test_firm_settings_and_case_research_actions_preserve_api_error_details(self):
+        for fallback in (
+            "تعذر حفظ التفضيلات", "Could not save preferences",
+            "تعذر إرسال الدعوة. تحقق من إعداد البريد الإلكتروني.", "Invitation could not be sent. Check email delivery configuration.",
+            "تعذر تحديث الدور", "Could not update member role",
+            "تعذر تعطيل العضوية", "Could not suspend membership",
+            "تعذر إعادة التفعيل؛ تحقق من المقاعد والاشتراك", "Could not reactivate; check seat availability and subscription",
+            "تعذر إلغاء الدعوة", "Could not revoke invitation",
+            "تعذر إنشاء الهيكل", "Could not generate skeleton",
+            "تعذر حفظ مذكرة البحث.", "Could not save the research memo.",
+        ):
+            self.assertIn("error?.message||", HTML)
+            self.assertIn(fallback, HTML)
+
 if __name__ == "__main__":
     unittest.main()
