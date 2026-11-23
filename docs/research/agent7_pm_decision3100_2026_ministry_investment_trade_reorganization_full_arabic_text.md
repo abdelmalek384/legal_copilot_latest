@@ -222,4 +222,4 @@
 
 ## Register progress
 
-The central register is updated with EG-0422. After this addition it contains **421 rows**: **114/421 full-text indicators (27.1%)**, **49/421 partial-only indicators (11.6%)**, and **162/421 with any text indicator (38.5%)**. This remains a keyword-based text-acquisition proxy, not authenticated corpus coverage or lawyer review.
+The central register is updated with EG-0422. After this addition it contains **421 rows**: **114/421 full-text indicators (27.1%)**, **49/421 partial-only indicators (11.6%)**, and **163/421 with any text indicator (38.7%)**. This remains a keyword-based text-acquisition proxy, not authenticated corpus coverage or lawyer review.
