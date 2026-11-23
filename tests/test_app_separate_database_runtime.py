@@ -4487,11 +4487,11 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         case_id = created.json()["id"]
         before = self._mutate(
             "post", f"/cases/{case_id}/docs",
-            json={"name": "contract-before.txt", "text": "[[PDF_PAGE:2]]\nقيمة العقد ١٠٠٠ جنيه."},
+            json={"name": "contract-before.txt", "text": "[[PDF_PAGE:2]]\n\nقيمة العقد ١٠٠٠ جنيه."},
         )
         after = self._mutate(
             "post", f"/cases/{case_id}/docs",
-            json={"name": "contract-after.txt", "text": "[[PDF_PAGE:2]]\nقيمة العقد ٢٠٠٠ جنيه."},
+            json={"name": "contract-after.txt", "text": "[[PDF_PAGE:2]]\n\nقيمة العقد ٢٠٠٠ جنيه."},
         )
         self.assertEqual(before.status_code, 200, before.text)
         self.assertEqual(after.status_code, 200, after.text)
