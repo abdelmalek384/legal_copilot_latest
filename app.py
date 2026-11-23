@@ -3942,7 +3942,6 @@ def home(request: Request):
 
 
 @app.get("/static/app-icon.svg")
-@app.get("/app-icon.svg")
 def app_icon():
     """Serve the app mark at the URLs used by the workspace and PWA shell."""
     icon_path = Path(__file__).resolve().parent / "static" / "app-icon.svg"
