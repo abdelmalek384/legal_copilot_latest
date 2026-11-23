@@ -374,17 +374,49 @@ Exact Arabic text:
 It defines preparatory and complementary work, guarding (including electronic/cyber monitoring), and cleaning. Capture Articles 1–7 and compare against Law 14/2025 Arts 118–123 and relevant ILO hours-of-work instruments.
 
 #### Decision 294/2025 — paid holidays
-Secondary full text: https://lawhub.info/eg/?p=17019  
+
+**Additional Arabic text capture (23 November 2026):** the State Information Service digital repository exposes an individual Ministry of Labour PDF, dated 26-12-2025, containing the decision details and all four operative articles:
+- SIS repository item: https://mediadr.sis.gov.eg/handle/123456789/117216?locale-attribute=ar
+- SIS-hosted PDF: https://mediadr.sis.gov.eg/bitstream/handle/123456789/117216/MOM20251226_0805.pdf?isAllowed=y&sequence=4
+- SIS item record lists the PDF and public access; the PDF text gives Articles 1–4. This is a Ministry/SIS explanatory publication, not the Gazette issue itself and not a certified circulation copy.
+- Gazette anchor remains issue 291 supplement, 25-12-2025, printed page 70, from the SIS-hosted issue scan described above. That issue scan bears the warning “صورة إلكترونية لا يعتد بها عند التداول”.
+
+**Arabic operative text captured from the SIS Ministry publication (four articles; not lawyer-reviewed):**
+
+قرار رقم ٢٩٤ لسنة ٢٠٢٥  
+بشأن تحديد العطلات والأعياد والمناسبات التي تُعد إجازة بأجر كامل للعمال
+
+**المادة الأولى**
+تُعد إجازة بأجر كامل، وفقاً لأحكام قانون العمل، أيام العطلات والأعياد والمناسبات الآتية:
+- رأس السنة الهجرية.
+- المولد النبوي الشريف.
+- عيد الفطر المبارك (اليومان الأول والثاني من شهر شوال).
+- عيد الأضحى المبارك (يوم الوقوف بعرفات واليومان الأول والثاني من أيام العيد).
+- عيد الميلاد المجيد (٧ يناير).
+- عيد ثورة ٢٥ يناير وعيد الشرطة.
+- عيد شم النسيم.
+- عيد تحرير سيناء (٢٥ أبريل).
+- عيد العمال (أول مايو).
+- عيد ثورة ٣٠ يونيو.
+- عيد ثورة ٢٣ يوليو.
+- عيد القوات المسلحة (٦ أكتوبر).
+ويجوز لوزير العمل، في الأحوال التي يقدرها، وعلى الأخص توحيد أيام الإجازات على المستوى القومي، استبدال يوم آخر بداية أو نهاية الأسبوع أو بأي من أيام العطلات المشار إليها.
+
+**المادة الثانية**
+يستحق العامل إجازة بأجر كامل في أيام العطلات والأعياد والمناسبات المشار إليها، ولا يجوز احتسابها من الإجازات السنوية.
+ويجوز لصاحب العمل تشغيل العامل في أي من هذه الأيام إذا اقتضت ظروف العمل ذلك، وفي هذه الحالة يستحق العامل أجرة عن هذا اليوم مضاعفاً، أو يمنح يوم إجازة بدلاً عنه، بناءً على طلب كتابي يودع بملف العامل.
+
+**المادة الثالثة**
+يستحق العامل غير المسلمين، بالإضافة إلى الإجازات المنصوص عليها، إجازة في أعيادهم الدينية، وذلك وفقاً لأحكام قرار رئيس مجلس الوزراء الصادر في هذا الشأن.
+
+**المادة الرابعة**
+ينشر هذا القرار في الوقائع المصرية، ويعمل به اعتباراً من اليوم التالي لتاريخ نشره.
+
+**Source reconciliation note:** the SIS PDF's explanatory paragraph at PDF text lines 8–9 refers to Prime Minister Decision 1194/2018, while its detailed decision preamble at line 14 appears to render the number as 194/2018. This internal inconsistency is not silently normalized here; verify against the Gazette page before citing that cross-reference. The SIS publication supports the four-article text but does not replace the Gazette page check.
+
 EastLaws record: https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/25-12-2025/no-294?id=5008509&type=1  
-Official SIS-hosted issue 291 scan: printed start page 70; full scan link in the bundle section above. Full scan-side text extraction/visual QA remains pending; the scan carries the not-valid-for-circulation watermark.\n
-The text starts:
-> قرار رقم 294 لسنة 2025  
-> بشأن تحديد العطلات والأعياد والمناسبات التي تعتبر إجازة بأجر كامل للعمال
-
-> (المادة الأولى)  
-> تُعتبر إجازة، وفقًا لأحكام قانون العمل المشار إليه، أيام العطلات والأعياد والمناسبات الآتية...
-
-The source includes a list of national/religious holidays and special provisions for non-Muslim employees. Extract the complete list and Article 2/3 entitlement/working-on-holiday rules. Cross-link Decision 346/2025 on Christian holidays (already noted in the existing primary-source findings) as a related later instrument; verify whether it supplements or modifies the holiday list.
+Secondary full text: https://lawhub.info/eg/?p=17019  
+The issue 291 scan starts the decision at printed page 70. The full scan-side visual comparison remains pending. Cross-link Decision 346/2025 on Christian holidays as a later related instrument; verify whether it supplements or modifies the holiday rules before presenting a consolidated answer.
 
 #### Decision 299/2025 — individual amicable-settlement committees
 Secondary full text: https://ahmedazimelgamel.blogspot.com/2026/01/299-2025.html  
