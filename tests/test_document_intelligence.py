@@ -178,6 +178,12 @@ class DocumentIntelligenceTests(unittest.TestCase):
         self.assertIn("٢٠٠٠", changes[0]["after"])
         self.assertEqual(changes[0]["review_status"], "requires_lawyer_review")
 
+    def test_comparison_rejects_more_than_segment_limit_instead_of_silently_truncating(self):
+        before = "".join(chr(0x1000 + index) for index in range(205))
+        after = "!".join(before)
+        with self.assertRaisesRegex(ValueError, "change segments"):
+            compare_extracted_text(before, after, context_chars=0)
+
     def test_comparison_rejects_invalid_context(self):
         with self.assertRaises(ValueError):
             compare_extracted_text("a", "b", context_chars=-1)
