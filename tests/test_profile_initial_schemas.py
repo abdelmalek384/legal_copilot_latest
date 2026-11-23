@@ -70,6 +70,9 @@ class ProfileInitialSchemaTests(unittest.TestCase):
         self.assertIn("cases", names(firm)); self.assertIn("chunks_fts", names(firm))
         self.assertIn("document_classifications", names(firm))
         self.assertIn("document_classification_events", names(firm))
+        self.assertIn("document_passage_annotations", names(firm))
+        self.assertNotIn("document_passage_annotations", names(control))
+        self.assertNotIn("document_passage_annotations", names(corpus))
         self.assertNotIn("document_classifications", names(control)); self.assertNotIn("document_classifications", names(corpus))
         self.assertIn("clients", names(firm)); self.assertNotIn("clients", names(control)); self.assertNotIn("clients", names(corpus))
         self.assertNotIn("legal_sources", names(firm))
@@ -101,7 +104,7 @@ class ProfileInitialSchemaTests(unittest.TestCase):
         }
         matter_owned = {
             "cases", "clients", "members", "tasks", "events", "notes", "deadlines", "fees",
-            "sessions", "docs", "document_extraction_reviews", "research_conversations",
+            "sessions", "docs", "document_extraction_reviews", "document_passage_annotations", "research_conversations",
             "research_messages", "case_deletion_audit", "security_audit_events",
             "tenant_database_binding", "product_feedback", "product_feedback_events",
         }
