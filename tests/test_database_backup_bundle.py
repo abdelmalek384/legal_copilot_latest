@@ -52,6 +52,38 @@ class DatabaseBackupBundleTests(unittest.TestCase):
             pass
         self.temp.cleanup()
 
+    def _create_database(self, *, rows=None):
+        """Create the minimal tenant snapshot used by original-object backup race tests."""
+        self.firm_id = self.firm_a
+        self.object_id = "d" * 32
+        self.payload = b"backup race fixture original bytes"
+        self.db = self.root / "original-object-fixture.sqlite3"
+        connection = sqlite3.connect(self.db)
+        connection.execute(
+            """
+            CREATE TABLE original_file_objects (
+                object_id TEXT PRIMARY KEY,
+                firm_id INTEGER NOT NULL,
+                storage_backend TEXT NOT NULL,
+                sha256 TEXT NOT NULL,
+                byte_size INTEGER NOT NULL,
+                state TEXT NOT NULL,
+                purged_at TEXT
+            )
+            """
+        )
+        for object_id, payload, state in rows or []:
+            connection.execute(
+                """
+                INSERT INTO original_file_objects
+                    (object_id, firm_id, storage_backend, sha256, byte_size, state)
+                VALUES (?, ?, 'local', ?, ?, ?)
+                """,
+                (object_id, self.firm_id, hashlib.sha256(payload).hexdigest(), len(payload), state),
+            )
+        connection.commit()
+        connection.close()
+
     def test_backup_publication_never_overwrites_existing_timestamp_path(self):
         import database_backup
         from unittest.mock import patch
