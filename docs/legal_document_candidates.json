@@ -1063,7 +1063,26 @@
       "source_id": "EG-AMIRI-PRESS",
       "language": "ar",
       "candidate_status": "discovery_only",
-      "notes": "Secondary legal reference identifies this amendment. Locate original Gazette text, exact affected provisions, and any later amendments."
+      "notes": "Secondary legal reference identifies this amendment. Locate original Gazette text, exact affected provisions, and any later amendments.",
+      "text_acquisition_status": "official_mof_hosted_gazette_scan_located_secondary_full_text_located",
+      "text_verification_note": "Official MOF locator and 3-page Gazette scan located. Visually checked page headers: Official Gazette issue36 bis (b), 5 September 2020, printed pages7–9; effective next day under Article3. Secondary EastLaws metadata showing issue26 bis (b) is inconsistent and contradicted by the MOF-hosted scan. Complete page-by-page legal text comparison, original-byte SHA-256, later-currentness audit and counsel review remain outstanding.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/legislation-5fe868ae7bfc600007cbec2b",
+          "source_role": "official Ministry of Finance record",
+          "status": "located_2026-11-23"
+        },
+        {
+          "url": "https://media.mof.gov.eg/mof-prd/2123_64f01cffad.pdf",
+          "source_role": "MOF-hosted 3-page Gazette scan, visually checked pages7–9",
+          "status": "visually_checked_2026-11-23"
+        },
+        {
+          "url": "https://www.aldhshan.com/2026/02/188-2020-182-2018.html",
+          "source_role": "secondary full Arabic transcription",
+          "status": "located_2026-11-23"
+        }
+      ]
     },
     {
       "document_id": "EG-PUBLIC-CONTRACTS-EXEC-REG-692-2019",
@@ -6056,13 +6075,28 @@
       "source_id": "EG-MOF-LEGISLATION",
       "language": "ar",
       "candidate_status": "discovery_only",
-      "text_acquisition_status": "official_full_text_url_located",
-      "text_verification_note": "MoF official legislation page links related amendment; Gazette original still required. Official locator found; complete extraction, SHA-256, article segmentation, amendment audit and lawyer review remain outstanding.",
+      "text_acquisition_status": "official_mof_hosted_gazette_scan_located_secondary_full_text_located",
+      "text_verification_note": "Official MOF locator and 3-page Gazette scan located. Visually checked page headers: Official Gazette issue36 bis (b), 5 September 2020, printed pages7–9; effective next day under Article3. Secondary EastLaws metadata showing issue26 bis (b) is inconsistent and contradicted by the MOF-hosted scan. Complete page-by-page legal text comparison, original-byte SHA-256, later-currentness audit and counsel review remain outstanding.",
       "source_urls": [
         {
           "url": "https://mof.gov.eg/ar/legislation/legislation-5fe868cd7bfc600007cbed73",
           "source_role": "official legislation catalogue",
           "status": "located_2026-11-17"
+        },
+        {
+          "url": "https://mof.gov.eg/ar/legislation/legislation-5fe868ae7bfc600007cbec2b",
+          "source_role": "official Ministry of Finance record",
+          "status": "located_2026-11-23"
+        },
+        {
+          "url": "https://media.mof.gov.eg/mof-prd/2123_64f01cffad.pdf",
+          "source_role": "MOF-hosted 3-page Gazette scan, visually checked pages7–9",
+          "status": "visually_checked_2026-11-23"
+        },
+        {
+          "url": "https://www.aldhshan.com/2026/02/188-2020-182-2018.html",
+          "source_role": "secondary full Arabic transcription",
+          "status": "located_2026-11-23"
         }
       ]
     },
