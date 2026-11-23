@@ -174,3 +174,7 @@
 - Law 4/2026: three issuing articles plus four inserted statutory provision units.
 - Decision 271/2026: three issuing articles plus all 17 regulation articles; the 16-page PDF confirms Article 17 is final.
 - Count as two unique instruments and 27 captured numbered units provisionally (7 Law 4 provision/issuing units + 20 Decision 271 visible issuing/regulation units); do not count missing Articles 18–20.
+
+## 2026-11-23 source acquisition update — Decision 271/2026
+
+The complete 16-page secondary-hosted Gazette reproduction was opened and text-extracted at https://alhasswalawfirm.com/uploads/files/decree-271-2026-1790026504057-81263166.pdf. The PDF is attributed on the hosting page to the Court of Cassation Information Centre and matches the Amiri Press metadata for Egyptian Proceedings issue157 supplement dated 21 July 2026. The extracted PDF contains the three issuing articles and regulation Articles1–17; Article17 is the final numbered provision on page16. This resolves the earlier count uncertainty: the page's marketing description of 20 articles is inaccurate, and there are no Articles18–20 in the 16-page PDF. The regulation's 21 commodity groups appear in Article12. The official Amiri Press item remains request-copy restricted; the secondary-hosted PDF is not an official binary and has OCR defects. Do not mark the source as authenticated or lawyer-reviewed.
