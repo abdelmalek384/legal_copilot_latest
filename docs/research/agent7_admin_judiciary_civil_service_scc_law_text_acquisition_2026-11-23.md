@@ -403,3 +403,83 @@ This is a reproducible **registry-text-evidence proxy**, not a measure of legal 
 **Whole Egyptian-law corpus:** no defensible national-law completion percentage exists until a fixed universe of currently effective primary instruments and versioned amendments/regulations/judgments is defined. The 394-row register is a candidate inventory, not that universe. Keep the two numbers separate:
 - project-register text evidence: 123/394 = 31.2% full-or-partial text indicators;
 - all Egyptian law: completion percentage not yet calculable.
+
+
+## 16. Further SCC Law 48/1979 amendments — Gazette-page transcription
+
+### Law 168/1998 — temporal effect of constitutional invalidation
+
+**Gazette:** issue 28 مكرر, 11 July 1998.  
+**Issuance:** 10 July 1998.  
+**Commencement:** 12 July 1998, day after publication.  
+**Gazette reproduction:** Laweg transcription https://www.laweg.net/framePlain.aspx?NID=19251&action=viewactivepages&itemid=18973&type=6.
+
+**Article 1:**
+> يستبدل بنص الفقرة الثالثة من المادة (٤٩) من قانون المحكمة الدستورية العليا الصادر بالقانون رقم ٤٨ لسنة ١٩٧٩، النص الآتى:
+> ويترتب على الحكم بعدم دستورية نص فى قانون أو لائحته عدم جواز تطبيقه من اليوم التالى لنشر الحكم ما لم يحدد الحكم لذلك تاريخا آخر أسبق، على أن الحكم بعدم دستورية نص ضريبى لا يكون له فى جميع الأحوال إلا أثر مباشر، وذلك دون إخلال باستفادة المدعى من الحكم الصادر بعدم دستورية هذا النص.
+
+**Article 2:**
+> ينشر هذا القرار بقانون فى الجريدة الرسمية، وتكون له قوة القانون، ويعمل به من اليوم التالى لتاريخ نشره.
+
+**Versioning note:** Law 168/1998 is the source of the special direct-effect rule for tax provisions and the general day-after-publication non-application rule, unless the judgment sets an earlier date. It is not a general rule that all invalidation judgments operate only prospectively.
+
+### Law 48/2011 — court composition and terminology
+
+**Instrument:** Decree-Law 48/2011 modifying Law 48/1979.  
+**Gazette:** issue 24 مكرر, 19 June 2011.  
+**Issuance:** 18 June 2011.  
+**Commencement:** 20 June 2011, day after publication.  
+**Gazette scan:** Manshurat 2-page scan https://manshurat.org/file/5164/download?token=_GAdCVB2.
+
+**Article 1 — replacement Article 5 of Law 48/1979:**
+> يعين رئيس المحكمة بقرار من رئيس الجمهورية من بين أقدم ثلاثة نواب لرئيس المحكمة بعد موافقة الجمعية العامة للمحكمة.
+> ويعين نائب رئيس المحكمة بقرار من رئيس الجمهورية بعد موافقة الجمعية العامة للمحكمة.
+> ويجب أن يكون ثلث نواب رئيس المحكمة على الأقل من بين أعضاء الهيئات القضائية، على أن تكون الأولوية فى التعيين لأعضاء هيئة المفوضين بالمحكمة.
+> ويحدد قرار التعيين أقدمية نائب رئيس المحكمة.
+
+**Article 2:**
+> تستبدل عبارة «نائب رئيس المحكمة» بعبارة «عضو المحكمة» أينما وردت فى قانون المحكمة الدستورية العليا الصادر بالقانون رقم ٤٨ لسنة ١٩٧٩.
+
+**Article 3 (publication/commencement):**
+> ينشر هذا المرسوم بقانون فى الجريدة الرسمية، وتكون له قوة القانون، ويعمل به من اليوم التالى لتاريخ نشره.
+
+**Effect:** this amendment changed the appointment process and adjusted terminology across the SCC Law. The current consolidated text's Article 2/15 annotations should be read alongside this amendment and later amendments; do not infer the present appointment process solely from the historical 2011 wording without checking subsequent constitutional and statutory changes.
+
+### Law 184/2008 — preliminary review chamber
+
+**Instrument:** Law 184/2008 amending SCC Law 48/1979.  
+**Gazette:** issue 25 مكرر (أ), 22 June 2008 (metadata in official/legal references); the complete original Gazette page was not retrieved in this pass.  
+**Amendment effect:** adds Article 44 bis, providing a chamber-advice screening mechanism for referrals which the Commissioners' Authority considers outside jurisdiction, formally inadmissible, or already decided on the constitutional issue. Full operative text is reproduced in the secondary consolidated Law 48 record:
+> استثناء من حكم المادة (٤١) من هذا القانون تنعقد المحكمة في غرفة مشورة لنظر الدعاوى التي تحال إليها من رئيس المحكمة والتي ترى هيئة المفوضين أنها تخرج عن اختصاص المحكمة أو أنها غير مقبولة شكلا أو سبق للمحكمة أن صدرت حكماً في المسألة الدستورية المثارة فيها.
+> فإذا توافرت إحدى الحالات المتقدمة أصدرت المحكمة قراراً بذلك يثبت فى محضر الجلسة مع إشارة موجزة لسببه، وإلا أعادتها لهيئة المفوضين لإعداد تقرير فى موضوعها.
+
+**Status:** added-text located; Gazette binary and full issuance/commencement article not yet independently checked.
+
+### Law 91/2015 — repeal of election-case special procedure
+
+**Instrument:** Presidential Decision-Law 91/2015 amending SCC Law 48/1979.  
+**Gazette:** issue 30 تابع (أ), 25 July 2015.  
+**Issuance/publication:** 25 July 2015.  
+**Commencement:** 26 July 2015, day after publication.  
+**Primary reproduced scan:** https://manshurat.org/file/7504/download?token=nB8mnTPR.
+
+**Article 1:**
+> يلغى قرار رئيس الجمهورية بالقانون رقم ٢٦ لسنة ٢٠١٤ بتعديل بعض أحكام قانون المحكمة الدستورية العليا المشار إليه.
+
+**Article 2:**
+> ينشر هذا القرار بقانون فى الجريدة الرسمية، ويعمل به اعتباراً من اليوم التالى لتاريخ نشره.
+
+**Effect:** repeals the 2014 special accelerated constitutional-review procedure for presidential/parliamentary election laws (Article 44 bis 1). The current consolidated Law 48 text marks Article 44 bis 1 as repealed by Law 91/2015. This repeal must be distinguished from the continuing general referral/plea routes under Articles 29–32.
+
+### Consolidated amendment graph — Law 48/1979
+
+The source set now supports this minimum amendment graph:
+- Law 10/1986 — amendment to Article 34 (secondary consolidated annotation; Gazette scan not acquired).
+- Law 168/1998 — replaces Article 49(3), temporal effects and tax invalidation rule; Gazette text transcribed.
+- Law 184/2008 — adds Article 44 bis; Gazette text not independently retrieved.
+- Law 48/2011 — replaces Article 5 and changes terminology; Gazette scan visually transcribed.
+- Law 26/2014 — added special Article 44 bis 1 for election-law constitutional cases; later repealed by Law 91/2015.
+- Law 91/2015 — repeals Law 26/2014; Gazette scan visually transcribed.
+- Law 137/2021 — adds Articles 27 bis and 32 bis; official Gazette PDF text transcribed in Section 10 above.
+
+**Important amendment-history caution:** Law 48/1979 has a 73-article secondary consolidated text. The above graph is not yet a complete exhaustive amendment list. Confirm any additional amendments, corrigenda and transitional clauses against Gazette originals before declaring a fully consolidated version.
