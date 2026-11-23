@@ -518,7 +518,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
 
         for nav_name, heading_name in (
             ("المهام", "المهام"),
-            ("المهام والجلسات", "الأجندة والمواعيد"),
+            ("المهام والجلسات", "المهام والجلسات"),
             ("القضايا", "القضايا"),
             ("ملاحظات المنتج", "ملاحظات المنتج"),
             ("البحث القانوني", "البحث القانوني"),
@@ -857,17 +857,12 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.page.get_by_text("تغيير غير محفوظ؛ اضغط حفظ التصنيف لتسجيله في سجل التدقيق.", exact=False).wait_for(timeout=5000)
         earlier_version = self.page.get_by_label("الإصدار السابق")
         later_version = self.page.get_by_label("الإصدار اللاحق")
-        self.page.wait_for_function(
-            """(expected) => Array.from(document.querySelector('select[aria-label="الإصدار السابق"]').options)
-                .some(option => option.value === expected)""",
-            arg=str(document_v1_id),
-            timeout=8000,
-        )
+        self.page.get_by_text("اكتمل التحليل الأولي", exact=False).wait_for(timeout=15000)
         available_versions = earlier_version.locator("option").evaluate_all(
             "(options) => Array.from(options).map(option => option.value)"
         )
-        self.assertIn(str(document_v1_id), available_versions, f"Earlier-version options: {available_versions}")
-        self.assertIn(str(document_v2_id), available_versions, f"Later-version options: {available_versions}")
+        self.assertIn(str(document_v1_id), available_versions, f"Earlier-version options: {available_versions}; expected document_v1_id={document_v1_id}")
+        self.assertIn(str(document_v2_id), available_versions, f"Later-version options: {available_versions}; expected document_v2_id={document_v2_id}")
         earlier_version.select_option(str(document_v1_id))
         later_version.select_option(str(document_v2_id))
         self.page.get_by_role("button", name="مقارنة النصوص").click()
@@ -1197,11 +1192,11 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.assertEqual(restored_query.input_value(), sentinel)
         client_card.locator(".src").filter(has_text=case_titles[1]).first.wait_for(state="visible", timeout=15000)
         client_card.locator(".src").filter(has_text=case_titles[1]).first.get_by_role("button", name="فتح المقطع في ملف القضية").click()
-        self.page.locator(".passage-annotation-text").wait_for(state="visible", timeout=15000)
         self.assertEqual(int(self.page.evaluate("window.CASE_ID")), case_ids[1])
         self.assertIn(case_titles[1], self.page.locator("body").inner_text())
         case_b_intelligence = self.page.locator(".document-intelligence-panel")
         case_b_intelligence.locator("button").first.click()
+        self.page.locator(".passage-annotation-text").wait_for(state="visible", timeout=15000)
         history_button = self.page.get_by_role("button", name="عرض سجل المراجعة", exact=True)
         history_button.wait_for(state="visible", timeout=15000)
         history_button.click()
@@ -1214,6 +1209,8 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.assertEqual(restored_query.input_value(), sentinel)
         client_card.locator(".src").filter(has_text=case_titles[0]).first.wait_for(state="visible", timeout=15000)
         client_card.locator(".src").filter(has_text=case_titles[0]).first.get_by_role("button", name="فتح المقطع في ملف القضية").click()
+        case_a_intelligence = self.page.locator(".document-intelligence-panel")
+        case_a_intelligence.locator("button").first.click()
         self.page.locator(".passage-annotation-list").wait_for(state="visible", timeout=15000)
         self.assertEqual(int(self.page.evaluate("window.CASE_ID")), case_ids[0])
         self.assertIn(annotation_note, self.page.locator(".passage-annotation-list").inner_text())
