@@ -62,3 +62,52 @@ The new Article 232 requires the customs declaration to be accompanied by the fo
 - Article 232 replacement text transcribed.
 - Gazette issue 114 supplement (1), 24 May 2026; effective 25 May 2026.
 - Decision 328/2026 remains a separate later amendment and must be integrated independently.
+
+
+## 7. Full Arabic text transcription from the Ministry-hosted two-page PDF
+
+**Source:** Official Ministry of Finance PDF, linked from the Ministry's Decision262/2026 legislation page:  
+https://media.mof.gov.eg/mof-prd/qrar_wzyr_almalyt_rqm_262_lsnt_2026_btedyl_bed_ahkam_allayht_altnfydhyt_lqanwn_aljmark_alsadrt_bqrar_wzyr_almalyt_rqm_430_lsnt_2021_9ff726701a.pdf
+
+**Gazette header:** الوقائع المصرية — العدد ١١٤ (تابع) — ٢٤ مايو سنة ٢٠٢٦.
+
+وزارة المالية  
+قرار رقم ٢٦٢ لسنة ٢٠٢٦  
+بتعديل بعض أحكام اللائحة التنفيذية لقانون الجمارك الصادرة بقرار وزير المالية رقم ٤٣٠ لسنة ٢٠٢١
+
+وزير المالية
+
+بعد الاطلاع على قانون الجمارك الصادر بالقانون رقم ٢٠٧ لسنة ٢٠٢٠؛  
+وعلى اللائحة التنفيذية لقانون الجمارك الصادرة بقرار وزير المالية رقم ٤٣٠ لسنة ٢٠٢١؛
+
+قرر:
+
+**المادة الأولى**
+
+يستبدل بنص المادة (٢٣٢) من اللائحة التنفيذية لقانون الجمارك المشار إليها، النص الآتي:
+
+«مع مراعاة عدم تكرار ما تم تقديمه إلكترونياً، يجب أن يرفق بالبيان الجمركي المقدم عن البضائع المستندات الآتية:
+
+أ) نسخة من بوليصة الشحن، باستثناء التخليص المسبق الإلكتروني أو يدوياً.
+
+ب) إذن التسليم في حالة بوليصة الشحن الواردة "لأمر" (To Order).
+
+ج) تقديم إقرار في حالة بوليصة الشحن الاسمية وفقاً للنموذج الذي يصدر به قرار من رئيس المصلحة، يتعهد فيه المستورد أو وكيله بالالتزام بسداد كافة المستحقات المعنية ذات الصلة بالتعامل على مشمول بوليصة الشحن، وتقديم إذن التسليم أو ما يعادله إلكترونياً من تأكيد صادر من الناقل أو وكيله الملاحي قبل الإفراج النهائي.
+
+د) الفاتورة التجارية التفصيلية، وتغني عن كشف العبوة في حالة اشتمالها على بيانات العبوة التفصيلية للبضائع الواردة.
+
+هـ) مستند إثبات المنشأ في حالة المطالبة بتطبيق إعفاء أو تفضيل جمركي، وأية حالات أخرى وفقاً للائحة القواعد المنفذة لأحكام قانون الاستيراد والتصدير.»
+
+**المادة الثانية**
+
+يُنشر هذا القرار بالوقائع المصرية، ويعمل به من اليوم التالي لتاريخ نشره.
+
+صدر في ٢٤/٥/٢٠٢٦  
+وزير المالية  
+أحمد كجوك
+
+**Text and source note:** transcription is from the two-page Ministry-hosted PDF. The Gazette page indicates issue114 supplement dated 24 May 2026; the decision therefore commences 25 May 2026 under Article2. Original Gazette bundle should still be acquired and visually compared; no original binary/hash or lawyer review is claimed.
+
+## 8. Current register progress after this text upgrade
+
+Central register remains at **416 rows**. Decision262/2026 is an existing instrument whose text indicator is upgraded from partial-only to full. The current keyword-based proxy is **111/416 full-text indicators (26.7%)**, **47/416 partial-only indicators (11.3%)**, and **157/416 with any text indicator (37.7%)**. This is not a measure of authenticated, consolidated or lawyer-reviewed coverage.
