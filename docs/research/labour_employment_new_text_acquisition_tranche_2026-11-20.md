@@ -405,18 +405,61 @@ Exact Arabic excerpts:
 The searchable text includes the licensing structure, legal-form restrictions and exemptions, trainer licences, annual plans, approved curricula, assessment, and national graduate database. Capture all 41 articles and the annexes before calling the text complete.
 
 #### Decision 271/2025 — disability employment register/reporting
-Secondary full text: https://lawhub.info/eg/?p=17021  
-Alternative reproduction: https://ahmedazimelgamel.blogspot.com/2026/01/271-2025.html  
-Official SIS-hosted issue 291 scan: printed start page 31; full scan link in the bundle section above. Four articles plus a reporting form. The form and exact page range require extraction/visual QA; the scan carries the not-valid-for-circulation watermark.
 
-Exact Arabic text:
-> (المادة الأولى)  
-> تلتزم المنشآت التي يعمل بها أشخاص ذوو إعاقة أو أقزام، من الحاصلين على شهادات التأهيل أو بطاقة إثبات الإعاقة والخدمات المتكاملة، بحسب الأحوال، بإمساك سجل ورقى أو إلكتروني لقيد أسمائهم بهذا السجل، على أن يشتمل هذا السجل على البيانات الواردة في شهادات التأهيل أو بطاقة إثبات الإعاقة والخدمات المتكاملة بحسب الأحوال.
+**Full four-article text and form fields captured (23 November 2026).** Sources:
+- Secondary full text: https://lawhub.info/eg/?p=17021
+- Alternative reproduction: https://ahmedazimelgamel.blogspot.com/2026/01/271-2025.html
+- Government-hosted Ministry release (SIS), dated 25-12-2025, with four JPGs and a PDF attachment: https://mediadr.sis.gov.eg/handle/123456789/117215?locale-attribute=en
+- IDSC/MELES catalogue record for the Ministry-issued instrument: https://dspace.id.com.eg/items/3c860a10-14b2-4a0d-b050-86bd912c4369
+- Gazette anchor: issue 291 supplement, printed start page 31, within the SIS-hosted issue 291 bundle linked above. The bundle scan bears the warning “صورة إلكترونية لا يعتد بها عند التداول”.
 
-> (المادة الثانية)  
-> تلتزم المنشآت المشار إليها في المادة السابقة بأن ترسل إلى مديرية العمل المختصة خلال شهري يناير ويوليو من كل عام البيانات الآتية: بيان بالعدد الإجمالي للعاملين متضمنًا عدد العاملين من الأشخاص ذوي الإعاقة والأقزام؛ وعدد الوظائف التي يشغلها الأشخاص ذوو الإعاقة والأقزام وطبيعتها، والأجر الذي يتقاضاه كل منهم.
+**Arabic text captured:**
 
-The form annex must be captured as structured fields. Connect this decision to Law 10/2018, its executive regulation and Law 14/2025 quota/record provisions.
+وزارة العمل
+
+قرار رقم ٢٧١ لسنة ٢٠٢٥
+
+وزير العمل
+
+بعد الاطلاع على الدستور؛
+وعلى قانون حقوق الأشخاص ذوي الإعاقة الصادر بالقانون رقم ١٠ لسنة ٢٠١٨ ولائحته التنفيذية؛
+وعلى قانون العمل الصادر بالقانون رقم ١٤ لسنة ٢٠٢٥؛
+وعلى الاتفاقيات الدولية التي صدقت عليها جمهورية مصر العربية؛
+وبعد العرض على المجلس الأعلى للتشاور الاجتماعي.
+
+قرر:
+
+**(المادة الأولى)**
+تلتزم المنشآت التي يعمل بها أشخاص ذوو إعاقة أو أقزام، من الحاصلين على شهادات التأهيل أو بطاقة إثبات الإعاقة والخدمات المتكاملة، بحسب الأحوال، بإمساك سجل ورقي أو إلكتروني لقيد أسمائهم بهذا السجل، على أن يشتمل هذا السجل على البيانات الواردة في شهادات التأهيل أو بطاقة إثبات الإعاقة والخدمات المتكاملة بحسب الأحوال.
+ويجب أن تقدم المنشآت هذا السجل إلى الجهة الإدارية المختصة كلما طلب منها ذلك.
+
+**(المادة الثانية)**
+تلتزم المنشآت المشار إليها في المادة السابقة بأن ترسل إلى مديرية العمل المختصة خلال شهري يناير ويوليو من كل عام البيانات الآتية:
+١- بيان بالعدد الإجمالي للعاملين متضمناً عدد العاملين من الأشخاص ذوي الإعاقة والأقزام.
+٢- عدد الوظائف التي يشغلها الأشخاص ذوو الإعاقة والأقزام وطبيعتها، والأجر الذي يتقاضاه كل منهم.
+
+**(المادة الثالثة)**
+يعتمد نموذج البيانات المرافق لهذا القرار في شأن موافاة الجهة الإدارية المختصة بالبيانات المشار إليها في المادة السابقة.
+
+**(المادة الرابعة)**
+ينشر هذا القرار في الوقائع المصرية، ويعمل به من اليوم التالي لتاريخ نشره.
+
+صدر بتاريخ ٤/١٢/٢٠٢٥  
+وزير العمل  
+محمد جبران
+
+**Annex form — visible fields transcribed:**
+- اسم المنشأة
+- الرقم التأميني للمنشأة
+- عنوان المنشأة
+- النشاط الاقتصادي
+- المدير المسؤول بالمنشأة
+- إجمالي عدد العاملين بالمنشأة وفروعها
+- عدد العاملين من الأشخاص ذوي الإعاقة بالمنشأة وفروعها
+- المهن التي يشغلها الأشخاص ذوو الإعاقة
+- أجور العاملين من الأشخاص ذوي الإعاقة
+
+**Source/evaluation limits:** this is a working transcription based on secondary text plus the SIS Ministry release/catalogue lead; the attached Ministry PDF and Gazette pages have not yet been visually compared line by line. The SIS issue scan is not a certified circulation copy. The catalogue record corroborates issuer/date/title but does not independently prove all text or reuse rights. Check the annex image for any additional columns, especially separate dwarf/short-stature counts if present, before indexing. No lawyer review or production verification. Cross-link Law 10/2018 and its executive regulation, Law 14/2025 disability-employment provisions, and Decision 260/2025's administrative authority matrix without treating this as a legal conclusion.
 
 #### Decision 272/2025 — recruitment operations inside/outside Egypt
 Secondary full text: https://lawhub.info/eg/?p=17017  
