@@ -200,9 +200,16 @@ def source_status(source, as_of=None):
         # Matching evidence from another source or another version must never be reusable.
         source_id = source.get("source_id")
         version_id = source.get("document_version_id")
+        # Corpus document-version primary keys are positive integers. In Python,
+        # bool is an int subclass (True == 1), so reject booleans explicitly;
+        # otherwise malformed IDs can bind provenance to a different row.
         if (not isinstance(source_id, str) or not source_id.strip()
+                or source_id != source_id.strip()
+                or isinstance(version_id, bool) or not isinstance(version_id, int)
+                or version_id <= 0
                 or provenance.get("source_id") != source_id
-                or version_id is None
+                or isinstance(provenance.get("version_id"), bool)
+                or not isinstance(provenance.get("version_id"), int)
                 or provenance.get("version_id") != version_id):
             return STATUS_REVIEW
         document_type = provenance.get("document_type")
