@@ -91,9 +91,12 @@ class ResearchInspectorTests(unittest.TestCase):
         source = valid_source()
         source["scope"] = "firm_test_source_matched"
         source["verified"] = False
+        source["source_id"] = "primary-source-1"
+        source["document_version_id"] = 77
         provenance = source["provenance"]
         provenance.update({
             "source_id": "primary-source-1",
+            "version_id": 77,
             "review_status": "pending_source_review",
             "legal_status": "under_review",
             "authenticity_verified": False,
@@ -157,6 +160,21 @@ class ResearchInspectorTests(unittest.TestCase):
 
         source = self._source_matched_candidate()
         source["provenance"]["document_type"] = []
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+
+        # A complete package from another source/version cannot be rebound.
+        source = self._source_matched_candidate()
+        source["provenance"]["source_id"] = "different-source"
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+
+        source = self._source_matched_candidate()
+        source["provenance"]["version_id"] = 78
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+
+        source = self._source_matched_candidate()
+        source["provenance"]["review_evidence"] = [{
+            "review_type": "lawyer_approval", "outcome": "fail",
+        }]
         self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
 
     def test_source_matched_scope_does_not_claim_currentness(self):
