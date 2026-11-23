@@ -1129,7 +1129,20 @@
       "source_id": "EG-AMIRI-PRESS",
       "language": "ar",
       "candidate_status": "discovery_only",
-      "notes": "Secondary legal reference identifies a regulation amendment. Confirm exact official issue, affected provisions, and continuing effect."
+      "notes": "Secondary legal reference identifies a regulation amendment. Confirm exact official issue, affected provisions, and continuing effect.",
+      "source_urls": [
+        {
+          "url": "https://dspace.id.com.eg/items/6b86a4f6-7bd6-4741-a1b6-58b57d33e7a2/full",
+          "source_role": "MELES DSpace metadata and Arabic/English PDF catalogue; Arabic attachment request-copy restricted",
+          "status": "located_2026-11-23"
+        },
+        {
+          "url": "https://dspace.id.com.eg/items/6b86a4f6-7bd6-4741-a1b6-58b57d33e7a2/request-a-copy?bitstream=e3249792-e7ec-491e-88ac-8a11406a0a15",
+          "source_role": "request-copy access gate for Arabic PDF",
+          "status": "confirmed_2026-11-23"
+        }
+      ],
+      "text_verification_note": "Official Proceedings issue284 تابع (ب), 16 December 2020, confirmed by MELES DSpace catalogue metadata. Arabic and English PDF attachments listed, but Arabic PDF leads to request-a-copy form; attached license.txt is a generic placeholder, not a reuse grant. Full Article29bis(A)/(B) and amendment map recovered from secondary LAW HUB consolidation. No full standalone decision text or Gazette page images acquired; no hash or counsel verification."
     },
     {
       "document_id": "EG-STATE-RESOURCE-FEES-147-1984",
