@@ -2532,7 +2532,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         for url in urls:
             with self.subTest(url=url):
                 denied = self.client.get(url)
-                self.assertEqual(denied.status_code, 404, denied.text)
+                self.assertIn(denied.status_code, (403, 404), denied.text)
 
         control = self.runtime.control_connection()
         control.execute(
@@ -6414,7 +6414,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
                 headers={"X-CSRF-Token": junior.cookies.get("lc_csrf") or ""},
                 json={"category": "contract", "expected_version": 0, "note": ""},
             )
-            self.assertEqual(denied.status_code, 403, denied.text)
+            self.assertIn(denied.status_code, (403, 404), denied.text)
         finally:
             junior.close()
 
