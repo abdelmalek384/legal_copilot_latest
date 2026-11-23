@@ -248,6 +248,17 @@ class DocumentIntelligenceTests(unittest.TestCase):
             ["Article 5", "Section 3.2", "Law No. 10/2020", "Law 12 of 2021",
              "Act 3 dated 2022", "المادة 101"],
         )
+        extra = extract_review_candidates(
+            "Regulation No. 7 dated 2024. Decree 4 of 2023. Law 15/2022."
+        )
+        extra_refs = [
+            item["value"] for item in extra["candidates"]
+            if item["kind"] == "legal_reference"
+        ]
+        self.assertEqual(
+            extra_refs,
+            ["Regulation No. 7 dated 2024", "Decree 4 of 2023", "Law 15/2022"],
+        )
 
     def test_case_reference_extraction_supports_english_and_arabic_labels(self):
         text = (
