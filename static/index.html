@@ -4647,5 +4647,11 @@ body:has(.research-layout){background:#f3f5f8;color:#1d2c42;font-family:Inter,"N
 /* Explicit high-contrast states for the dark navigation rail, including nested More items. */
 #side .primary-nav button{background:#173657!important;color:#f5f8ff!important}
 #side .primary-nav button.on{background:#e8f0ff!important;color:#153b75!important}
+@media(max-width:800px){
+ #side .lang-switch{position:relative!important;z-index:30!important;flex:0 0 auto!important}
+ #side .firm-switch{flex:0 0 min(128px,34vw)!important;min-width:0!important}
+ #side .tenant-context{flex:0 1 auto!important;min-width:0!important;max-width:180px!important}
+ #side .primary-nav{position:relative!important;z-index:10!important;flex:1 1 0!important;width:0!important;min-width:0!important;max-width:100%!important;overflow-x:auto!important}
+}
 </style>
 </html>
