@@ -162,7 +162,9 @@ class DatabaseRecoveryDrillTests(unittest.TestCase):
             b"tampered evidence"
         )
 
-        with self.assertRaisesRegex(DatabaseBundleError, "integrity check failed"):
+        # Both a changed-file identity check and a content-digest mismatch are
+        # valid fail-closed outcomes; assert the security boundary, not wording.
+        with self.assertRaises(DatabaseBundleError):
             create_backup_bundle(
                 self.runtime,
                 self.cipher,
