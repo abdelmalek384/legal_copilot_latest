@@ -299,9 +299,16 @@ Arabic opening:
 The decision crosswalks statutory articles to the competent Ministry/Directorate/office. It expressly allocates, among others, functions connected with skills assessment, jobseeker registration, disability-worker records, overtime notices, working-time schedules, collective bargaining/conciliation, strike notices and OSH inspection. Capture its entire article-to-authority table; the HTML snippet is incomplete and should not be treated as the complete matrix.
 
 #### Decision 264/2025 — training operations and training-centre licensing
-Secondary full text: https://lawhub.info/eg/?p=17018  
-Alternative reproduction: https://www.masrawy.com/news/news_egypt/details/2025/12/28/2915339/  
-Official SIS-hosted issue 291 scan: printed start page 12; full scan link in the bundle section above. The searchable LawHub text exposes 41 numbered articles; official scan extraction and annex comparison remain pending. The scan carries the not-valid-for-circulation watermark.
+
+**New official-repository full-text lead (23 November 2026):** the State Information Service digital repository hosts an individual Ministry of Labour PDF dated 28-12-2025 that includes the complete Arabic text of the decision, including all 41 numbered articles:
+- SIS repository item: https://mediadr.sis.gov.eg/xmlui/handle/123456789/117451
+- SIS-hosted PDF: https://mediadr.sis.gov.eg/xmlui/bitstream/handle/123456789/117451/MOM20251228_0625.pdf?isAllowed=y&sequence=22
+- The PDF's extracted text runs from the preamble through Article 41 (PDF text lines 17–368). This is a Ministry/SIS explanatory publication, not the Gazette issue itself and not a certified circulation copy. Text-layer extraction contains likely transcription/OCR defects and variant spellings; compare the exact text against the Gazette pages before treating it as a source-matched capture.
+- Gazette anchor: issue 291 supplement, printed start page 12, from the SIS-hosted issue 291 scan described above. The Gazette scan itself carries the warning “صورة إلكترونية لا يعتد بها عند التداول”.
+- Secondary full text: https://lawhub.info/eg/?p=17018
+- Alternative reproduction: https://www.masrawy.com/news/news_egypt/details/2025/12/28/2915339/
+
+The complete text is now located in a public government-repository-hosted Ministry publication; article-by-article Gazette comparison, annex inspection, provenance/rights review, and lawyer review remain outstanding.
 
 Exact Arabic excerpts:
 > مادة (3)  
