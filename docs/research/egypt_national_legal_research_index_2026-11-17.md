@@ -90,3 +90,8 @@ This is the cross-domain research entry point for the Legal Copilot national Egy
 ## 26. Historical Labour Law 12/2003 amendment chain — 21 November 2026
 
 - [Law90/2005, SCC Case26/27, Law180/2008 and Law125/2010 historical priority chain](../legal_evidence/labour_law12_amendment_chain_law90_2005_scc26_2008_law180_2008_2026-11-21.md) — adds Law90/2005 Arts70,71,72,248; official SCC reproduction of the 2008 invalidation; Law180/2008 replacement; full Law125/2010 text, PM Decision2736/2010's 11 clauses and Ministerial Decision290/2010's three articles. The Decision290 annexed instructions and original Law90 Gazette scan remain outstanding; post-repeal priority of worker claims is unresolved. Labour-domain estimate now 70% provisional; national legal-content baseline remains ~1.5%; lawyer-reviewed=0 and verified=0.
+
+
+## 27. Health concession regulation text acquisition — 23 November 2026
+
+- [Decision 2856/2024 — full nine-provision Arabic transcription supplement](../legal_evidence/health_concession_executive_regulation_2856_2024_full_arabic_text_acquisition_2026-11-23.md) — expands existing EG-0272 from partial text to the full nine numbered provisions (issuing Arts. 1–2 plus Executive Regulation Arts. 1–7), transcribed from a secondary source attributed to the Official Gazette/Court of Cassation legislation portal. Official SIS Gazette issue 36 (مكرر), 8 Sep 2024 metadata/PDF locator found; Gazette page-image and SHA-256 QA still outstanding. No duplicate instrument ID created; lawyer review and reuse rights remain unset.
