@@ -219,12 +219,72 @@ The Gazette contents metadata lists:
 
 The catalogue abstract is an instrument inventory, not a substitute for the Gazette pages.
 
-#### Decision 259/2025 — workers' entitlements on closure/liquidation/bankruptcy
-Secondary full-text lead: https://lawhub.info/eg/?p=17016  
-Official Ministry announcement: https://mediadr.sis.gov.eg/handle/123456789/116920?locale-attribute=ar  
-Gazette: issue 291 supplement, 25-12-2025; decision signed 4-12-2025. Gazette page pending.
+#### Official SIS-hosted issue 291 bundle — new primary acquisition route
 
-Capture the full text and compare with Law 14/2025 rules on priority of workers' claims, insolvency, liquidation and closure. The official SIS item confirms the Ministry's subject description and identifies attached files, but the announcement is not the signed decision.
+The Egyptian State Information Service's official digital repository exposes the full Arabic issue 291 supplement PDF at a public bitstream URL: https://mediadr.sis.gov.eg/xmlui/bitstream/handle/123456789/117438/WQ291_20251225_7004.pdf?isAllowed=y&sequence=2. Repository item: https://mediadr.sis.gov.eg/xmlui/handle/123456789/117438?locale-attribute=en. It identifies the Amiri Press issue, dated 25-12-2025, with the ten Ministry of Labour decisions below. The PDF itself repeatedly carries the warning **"صورة إلكترونية لا يعتد بها عند التداول"** (electronic image not valid for circulation). Treat it as a government-repository-hosted research scan, not a court-ready certified copy or rights-clearance grant. It materially improves the source path compared with secondary HTML, but legal/currentness review and any licence/usage checks remain separate.
+
+| Decision | Gazette printed start page in issue contents | Text acquisition status from the SIS-hosted PDF |
+|---|---:|---|
+| 259/2025 | 3 | Full eight-article text extracted; printed pages 3–6 |
+| 260/2025 | 7 | Article-to-authority crosswalk and closing clauses visible; printed pages 7–11; table extraction/QA pending |
+| 264/2025 | 12 | PDF source now available; full 41-article extraction and annex audit pending |
+| 271/2025 | 31 | PDF source now available; four articles and reporting form extraction/QA pending |
+| 272/2025 | 43 | PDF source now available; full 53-article extraction and annex audit pending |
+| 292/2025 | 67 | PDF source now available; full text/annex audit pending |
+| 294/2025 | 70 | PDF source now available; full text/holiday list audit pending |
+| 299/2025 | 72 | PDF source now available; full text/committee procedure audit pending |
+| 319/2025 | 75 | PDF source now available; full text/inspection-plan audit pending |
+| 320/2025 | 77 | PDF source now available; full text/night-inspection procedure audit pending |
+
+The PDF's contents page is the locator source for the printed start pages. The PDF scan/text layer has not been visually audited page by page for every instrument. Do not count the other nine instruments as complete text extractions merely because the bundle is available.
+
+#### Decision 259/2025 — workers' entitlements on closure/liquidation/bankruptcy
+
+Secondary full-text lead: https://lawhub.info/eg/?p=17016  
+Official SIS-hosted issue 291 scan: linked above; Decision 259 begins at printed page 3 and ends at printed page 6. The decision is dated 4-12-2025 and published in issue 291 supplement, 25-12-2025.
+
+**Arabic text captured from the SIS-hosted scan (eight articles; text-layer extraction, not lawyer-reviewed):**
+
+قرار رقم ٢٥٩ لسنة ٢٠٢٥  
+بشأن تحديد ضوابط وإجراءات ومواعيد الوفاء بحقوق العمال
+
+**(المادة الأولى)**  
+في تطبيق أحكام هذا القرار، يقصد بالألفاظ والعبارات التالية، المعنى المبين قرين كل منها:  
+أولاً - الأجر: التعريف الوارد له في البند (٤) من المادة رقم (١) من قانون العمل المشار إليه.  
+ثانياً - المستحقات: المبالغ التي يحصل عليها العامل مقابل إجازاته، أو التعويض عن الإحالة إلى المعاش المبكر، أو التخارج، أو التسوية الودية، أو أية تعويضات أو مكافآت أخرى، ينص عليها قانون العمل، أو عقود العمل الفردية أو الجماعية، أو لوائح المنشأة الداخلية، أو يتم الاتفاق عليها بين طرفي علاقة العمل، أو صدر بها أحكام قضائية نهائية.
+
+**(المادة الثانية)**  
+يكون للمبالغ المستحقة للعامل، أو المستحقين عنه، والناشئة عن علاقة عمل، امتياز على جميع أموال المدين من منقول وعقار، وتستوفى هذه المبالغ قبل المصروفات القضائية، والمبالغ المستحقة للخزانة العامة، ومصروفات الحفظ والترميم، وأية مرتبة امتياز مقررة أو تقرر وفقاً لأي قانون آخر.  
+وتعتبر اشتراكات التأمين الاجتماعي جزءاً من حقوق العمال التي تستوفى وتؤدى للهيئة المختصة.
+
+**(المادة الثالثة)**  
+في حالات حل المنشأة أو تصفيتها، أو إغلاقها كلياً أو جزئياً أو تقليص حجم نشاطها، يجب أن يصدر بذلك حكماً قضائياً أو قراراً من الجهة المختصة بذلك قانوناً، ويجب أن يحدد الحكم أو القرار الصادر بذلك أجلاً مناسباً للوفاء بحقوق العاملين، بما لا يزيد عن سنة من تاريخ صدور القرار أو الحكم.
+
+**(المادة الرابعة)**  
+يجب على صاحب العمل أو المصفي أو أمين التفليسة - بحسب الأحوال - خلال ثلاثين يوماً على الأكثر من تاريخ صدور القرار أو الحكم المشار إليهما في المادة السابقة، أن يقوم بحصر كافة أجور ومستحقات العمال، والوفاء بها فوراً دفعة واحدة حال كفاية أموال المنشأة.  
+وفي حالة عدم كفاية أموال المنشأة، يلتزم صاحب العمل أو المصفي أو أمين التفليسة بحسب الأحوال، بسداد الجزء المتوفر من هذه الأموال، بمراعاة أقدمية العمال بالمنشأة، أو وفقاً للمعايير التي يتم التوافق عليها بين العمال، وعليه أن يقوم بجدولة باقي المستحقات للوفاء بها في موعد لا يجاوز الأجل المحدد في المادة السابقة من هذا القرار.
+
+**(المادة الخامسة)**  
+يلتزم صاحب العمل، أو من يفوضه، أو المصفي أو أمين التفليسة - بحسب الأحوال - بتقديم تقرير شهري لمديرية العمل المختصة مبيناً به الإجراءات التي تمت بشأن الوفاء بأجور ومستحقات العمال في المواعيد المحددة.  
+وتتولى مديرية العمل المختصة مراجعة هذا التقرير والتحقق مما ورد به من بيانات ومعلومات، واستمرار متابعة تمام الوفاء بتلك الأجور والمستحقات في الآجال المحددة لها، ولها في سبيل ذلك الحق في طلب أية سجلات أو مستندات من المنشأة، وعلى الأخص ما يفيد استلام العمال لأجورهم ومستحقاتهم.  
+وعلى مديرية العمل إعداد تقرير شهري وموافاة الإدارة المركزية لرعاية القوى العاملة بديوان عام الوزارة بهذا التقرير وما يطرأ عليه من مستجدات.
+
+**(المادة السادسة)**  
+يجوز في حالات الضرورة - وبناءً على طلب صاحب المنشأة أو المصفي أو أمين التفليسة أو المنظمة النقابية المعنية - الاستعانة بممثل عن مديرية العمل المختصة للمساعدة في تحديد طريقة حساب مستحقات العمال وآليات صرفها، وعلى المديرية ترشيح أحد الخبراء الفنيين أو الماليين من ذوي الخبرة والأمانة والكفاءة.
+
+**(المادة السابعة)**  
+يقع باطلاً كل إجراء أو تصرف يقوم به صاحب المنشأة أو المصفي أو أمين التفليسة، يكون من شأنه الإخلال بالتزامه بالوفاء بأجور ومستحقات العاملين وفقاً للقواعد القانونية المقررة.  
+وعلى مديرية العمل المختصة إنذاره ببطلان هذا الإجراء أو التصرف، ومنحه خمسة عشر يوماً على الأكثر لتصويب الأوضاع، فإذا انتهت تلك الفترة دون جدوى، على المديرية إحالة الموضوع إلى المحكمة العمالية المختصة لإعمال شئونها، وتكون الإحالة وفقاً للحدود والضوابط والإجراءات القانونية المقررة.  
+وفي جميع الأحوال للعمال أو ممثليهم إقامة دعوى قضائية للحكم ببطلان تلك التصرفات أو الإجراءات، كما للعمال أو لممثليهم المطالبة بعزل المصفي أو أمين التفليسة وإقامة دعاوى قضائية ضد أي منهم.
+
+**(المادة الثامنة)**  
+ينشر هذا القرار في الوقائع المصرية، ويعمل به من اليوم التالي لتاريخ نشره.
+
+صدر بتاريخ ٤/١٢/٢٠٢٥  
+وزير العمل  
+محمد جبران
+
+**Evidence label:** `official_SIS_repository_hosted_electronic_Gazette_scan; issue 291 / printed pages 3–6 identified; text-layer extracted; watermark says not valid for circulation; no independent certification, rights clearance, or lawyer review; not production-verified`. Check the original printed Gazette for court-ready proof and verify the scan's exact text against page images before corpus ingestion.
 
 #### Decision 260/2025 — competent administrative authorities
 Secondary full-text lead: https://lawhub.info/eg/?p=17020  
