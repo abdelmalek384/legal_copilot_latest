@@ -1374,3 +1374,6 @@ The previously recorded estimates remain unchanged pending exact-head automated 
 - Results expose documents/candidate records inspected and an explicit `truncated` flag. Truncated timelines are explicitly incomplete and must not be treated as exhaustive; dates remain mentions requiring human context, not inferred legal deadlines.
 - Regression tests cover each ceiling and invalid limits. Exact-head CI is pending; the preceding head's focused AI-1 source-trust job passed, while the repository-wide suite failed in the separate persistent document-classification contract test.
 - No corpus adapter, client-data, database, or UI ownership was changed. No legal source was promoted to verified.
+
+
+- Duplicate-document grouping now rejects oversized inputs rather than silently returning partial groups: defaults cap at 5,000 documents and 100,000 hash records, with validated hard ceilings of 20,000 and 500,000. The list-returning API intentionally fails closed on overflow because it has no truncation metadata envelope. Regression tests cover both ceilings and invalid limits; exact-head CI has not yet reported.
