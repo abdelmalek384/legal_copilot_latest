@@ -146,3 +146,6 @@ This folder contains free/public source discovery, metadata registers and extrac
 
 
 73. [Decision 288/2025 — rest-break exceptions and arduous work, complete secondary Arabic text](../legal_evidence/labour_decision_288_2025_complete_secondary_arabic_text_2026-11-23.md) — all six operative articles transcribed from LawHub and issue-level metadata corroborated by Amiria Press/SIS catalogue; Gazette page-image comparison, OCR review, rights and counsel review remain pending.
+
+
+74. [Decisions 267 and 270/2025 — complete secondary Arabic texts](../legal_evidence/labour_decisions_267_270_2025_complete_secondary_arabic_text_2026-11-23.md) — 23 articles on apprenticeship/gradation and 3 articles on establishment workforce reporting; issue-295 supplement-D metadata corroborates the bundle; Gazette visual comparison, currentness, privacy review and reuse rights remain pending.
