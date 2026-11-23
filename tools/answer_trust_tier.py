@@ -66,7 +66,12 @@ def source_match_evidence_ready(source: Mapping) -> bool:
         return False
     if not _valid_sha256(evidence.get("original_capture_sha256")):
         return False
-    if not _valid_sha256(evidence.get("independent_copy_sha256")):
+    independent_copy_sha256 = evidence.get("independent_copy_sha256")
+    if not _valid_sha256(independent_copy_sha256):
+        return False
+    # A byte-identical hash cannot establish an independent copy, even when
+    # the copy is attributed to a different source identifier.
+    if independent_copy_sha256.lower() == evidence.get("original_capture_sha256").lower():
         return False
     source_id = source.get("source_id")
     independent_source_id = evidence.get("independent_copy_source_id")
