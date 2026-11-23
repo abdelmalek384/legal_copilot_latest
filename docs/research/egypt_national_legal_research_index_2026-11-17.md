@@ -95,3 +95,8 @@ This is the cross-domain research entry point for the Legal Copilot national Egy
 ## 27. Health concession regulation text acquisition — 23 November 2026
 
 - [Decision 2856/2024 — full nine-provision Arabic transcription supplement](../legal_evidence/health_concession_executive_regulation_2856_2024_full_arabic_text_acquisition_2026-11-23.md) — expands existing EG-0272 from partial text to the full nine numbered provisions (issuing Arts. 1–2 plus Executive Regulation Arts. 1–7), transcribed from a secondary source attributed to the Official Gazette/Court of Cassation legislation portal. Official SIS Gazette issue 36 (مكرر), 8 Sep 2024 metadata/PDF locator found; Gazette page-image and SHA-256 QA still outstanding. No duplicate instrument ID created; lawyer review and reuse rights remain unset.
+
+
+## 28. University regulation text capture — 23 November 2026
+
+- [Presidential Decision 809/1975 and Universities Law 49/1972 selected Arabic text](../legal_evidence/universities_executive_regulation_809_1975_text_capture_2026-11-23.md) — verbatim issuing Articles 1–3 of Decision 809/1975 and selected Law 49/1972 excerpts; confirms Decision 809/1975 repealed Decision 1087/1969 and preserved college internal regulations insofar as consistent. The attached regulation itself is still missing. Law 152/2019 Article 196 amendment and Laws 179/2020 / 1/2022 amendment details are flagged for Gazette matching. This is supplemental text only; no new register IDs or trust changes.
