@@ -28,6 +28,12 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertEqual(HTML.count(guarded_logout), 3)
         self.assertNotIn("try{await api('/logout','POST')}catch(_){}sessionStorage.removeItem('me');", HTML)
 
+    def test_firm_setup_actions_surface_save_and_test_reminder_errors(self):
+        setup = HTML[HTML.index("async function firstRunPage()"):HTML.index("\nasync function ", HTML.index("async function firstRunPage()") + 10)]
+        self.assertIn("catch(error){toast(String(error?.message||err(error)))}", setup)
+        reminder = HTML[HTML.index("async function sendSetupTestReminder()"):HTML.index("\nasync function setupHealthPage()")]
+        self.assertIn("catch(error){toast(String(error?.message||err(error)))}", reminder)
+
     def test_firm_mfa_policy_controls_are_visible_and_accessibly_named(self):
         self.assertIn("Firm MFA policy", HTML)
         self.assertIn("Require MFA for firm administrators", HTML)
