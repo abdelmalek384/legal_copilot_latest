@@ -419,6 +419,7 @@ class DeploymentPreflightTests(unittest.TestCase):
             os.chmod(tenant_root, 0o700)
         env = {
             "ADMIN_TOKEN": "a" * 40,
+            "COPILOT_IDENTITY_RATE_LIMIT_KEY": "b" * 48,
             "MIN_SCORE": "0.3",
             "COPILOT_CONTROL_DB": str(root / "control" / "control.sqlite3"),
             "COPILOT_TENANT_DB_ROOT": str(tenant_root),
