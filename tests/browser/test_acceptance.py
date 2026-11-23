@@ -1078,13 +1078,15 @@ class BrowserAcceptanceTests(unittest.TestCase):
         query = client_card.get_by_label("البحث في مستندات العميل")
         query.fill(sentinel)
         client_card.get_by_role("button", name="بحث", exact=True).click()
+        client_card.locator(".src").nth(1).wait_for(state="visible", timeout=15000)
+        self.assertEqual(client_card.locator(".src").count(), 2)
         for title in case_titles:
-            client_card.get_by_text(title, exact=True).wait_for(timeout=10000)
-        self.assertIn(sentinel, client_card.inner_text())
+            client_card.locator(".src").filter(has_text=title).wait_for(state="visible", timeout=10000)
+        self.assertIn(sentinel, client_card.locator(".src").first.inner_text())
         self.assertIn("2 مقاطع مطابقة عبر القضايا المسموح بها", client_card.inner_text())
 
         # Open a returned passage and add a lawyer annotation without modifying the uploaded source.
-        client_card.get_by_role("button", name="فتح المقطع في ملف القضية").first.click()
+        client_card.locator(".src").first.get_by_role("button", name="فتح المقطع في ملف القضية").click()
         analyze_documents = self.page.get_by_role("button", name="تحليل المستندات", exact=True)
         analyze_documents.wait_for(state="visible", timeout=20000)
         analyze_documents.click()
@@ -1213,7 +1215,9 @@ class BrowserAcceptanceTests(unittest.TestCase):
             self.page.get_by_text(case_title, exact=True).wait_for(timeout=10000)
 
             self.page.locator(".matter-section-nav button").filter(has_text="العمل").click()
-            self.page.locator(".matter-subnav button").filter(has_text="المواعيد القانونية").click()
+            deadline_nav = self.page.locator(".matter-subnav button").filter(has_text="المواعيد القانونية")
+            deadline_nav.wait_for(state="visible", timeout=15000)
+            deadline_nav.click()
             deadline_title = self.page.get_by_placeholder("نوع الموعد (استئناف، طعن، تقديم مستند...)")
             deadline_title.fill(f"موعد تجريبي {width}")
             deadline_date = self.page.locator('input[type="date"]').nth(1)  # first date belongs to the draft calculator
