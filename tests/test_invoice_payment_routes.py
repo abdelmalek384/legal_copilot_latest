@@ -2,6 +2,8 @@
 import sqlite3
 import unittest
 
+from fastapi.testclient import TestClient
+
 import app
 
 from tests.invoice_test_support import InvoiceTestSupport
