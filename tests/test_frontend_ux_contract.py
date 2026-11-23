@@ -20,6 +20,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("new TextDecoder('utf-8',{fatal:true}).decode(await file.arrayBuffer())", clients_page)
         self.assertIn("The file must use valid UTF-8 encoding", clients_page)
         self.assertIn("api('/clients/import.csv','POST',{csv:csvText})", clients_page)
+        self.assertIn("catch(error){toast(err(error))}", clients_page)
         self.assertNotIn("csv:await file.text()", clients_page)
 
     def test_firm_mfa_policy_controls_are_visible_and_accessibly_named(self):
