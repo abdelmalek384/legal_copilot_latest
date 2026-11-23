@@ -1381,3 +1381,5 @@ The previously recorded estimates remain unchanged pending exact-head automated 
 - Structured entity/event/relationship extraction now independently caps sentence-like spans inspected (default 10,000; hard maximum 50,000), reports `sentences_inspected`, and marks output truncated when later spans are skipped. This prevents a highly fragmented extracted document from forcing unbounded per-sentence regex work. Regression tests cover truncation and invalid limits.
 
 - Text-diff generation now fails closed when a comparison would exceed the 200-segment output ceiling. Previously it stopped after 200 segments and silently omitted later differences, which could mislead a reviewer. The existing list return shape is preserved for ordinary comparisons; overflow raises a clear `ValueError`. A regression test exercises a deliberately fragmented diff.
+
+- Page-provenance indexing in both review-candidate and structured-candidate extraction now has a 20,000-marker ceiling. Inputs exceeding it fail closed instead of allocating an unbounded offset index or risking incomplete page attribution. Regression tests cover both public extraction paths.
