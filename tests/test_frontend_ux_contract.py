@@ -1577,7 +1577,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("openDocumentWorkspace.hidden=scopeSelect.value!=='firm_documents'", research)
         self.assertIn("documentWorkspace.hidden=true", research)
         self.assertIn("documentWorkspace.hidden=false", research)
-        self.assertIn("if(value!=='firm_documents'){documentWorkspace.replaceChildren();documentWorkspace.hidden=true}", research)
+        self.assertIn("if(value!=='firm_documents'){documentWorkspace.replaceChildren();documentWorkspace.hidden=true;uploadPanel.hidden=true;paperclipButton.setAttribute('aria-expanded','false')}", research)
 
 
     def test_research_upload_disclosure_exposes_and_resets_accessible_state(self):
@@ -1649,7 +1649,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("emptyState?[h('div',{className:'card'},emptyState)]:[]", clients)
 
     def test_global_search_has_a_single_registered_keyboard_shortcut(self):
-        shell = HTML[HTML.index("function shell(title"):HTML.index("\nfunction dash()")]
+        shell = HTML[HTML.index("function shell(title"):HTML.index("\nasync function dash()")]
         self.assertIn("'aria-keyshortcuts':'Control+K Meta+K'", shell)
         self.assertIn("window.__lcGlobalSearchShortcutInstalled", shell)
         self.assertIn("(event.ctrlKey||event.metaKey)", shell)
@@ -1659,14 +1659,14 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("PAGE==='law'", shell)
 
     def test_active_firm_context_is_visible_even_for_single_firm_users(self):
-        shell = HTML[HTML.index("function shell(title"):HTML.index("\nfunction dash()")]
+        shell = HTML[HTML.index("function shell(title"):HTML.index("\nasync function dash()")]
         self.assertIn("const activeFirm=firmOptions.find(f=>Number(f.firm_id)===Number(ME.firm_id))||(firmOptions.length===1?firmOptions[0]:null)", shell)
         self.assertIn("className:'tenant-context',role:'note'", shell)
         self.assertIn("textContent:activeFirm.firm_name", shell)
         self.assertIn(")),tenantContext,firmSwitch,", shell)
 
     def test_active_firm_context_displays_localized_membership_role(self):
-        shell = HTML[HTML.index("function shell(title"):HTML.index("\nfunction dash()")]
+        shell = HTML[HTML.index("function shell(title"):HTML.index("\nasync function dash()")]
         self.assertIn("admin:'مسؤول المكتب',lawyer:'محامٍ'", HTML)
         self.assertIn("const activeRole=activeFirm&&(activeFirm.role||ME.role)", shell)
         self.assertIn("textContent:RL[activeRole]||activeRole", shell)
@@ -1727,7 +1727,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("!uploadButton.disabled", renderer)
 
     def test_global_search_includes_permission_scoped_client_results(self):
-        shell = HTML[HTML.index("function shell(title"):HTML.index("\nfunction dash()")]
+        shell = HTML[HTML.index("function shell(title"):HTML.index("\nasync function dash()")]
         clients = HTML[HTML.index("async function clients(initialQuery='')"):HTML.index("\nasync function casesPage()")]
         self.assertIn("api('/cases/search?'+matterParams.toString())", shell)
         self.assertIn("api('/clients/search?'+clientParams.toString())", shell)
@@ -1737,7 +1737,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("workspace-search-group", shell)
 
     def test_global_search_includes_permission_scoped_document_results(self):
-        shell = HTML[HTML.index("function shell(title"):HTML.index("\nfunction dash()")]
+        shell = HTML[HTML.index("function shell(title"):HTML.index("\nasync function dash()")]
         self.assertIn("api('/documents/search?'+documentParams.toString())", shell)
         self.assertIn("documentsFound=Array.isArray(documentResult.items)?documentResult.items:[]", shell)
         self.assertIn("window.DOCUMENT_MATTER_ID=Number(item.case_id)", shell)
@@ -1820,7 +1820,8 @@ class FrontendUXContractTests(unittest.TestCase):
         search_start = HTML.index("async function runGlobalSearch()")
         search = HTML[search_start:start]
         self.assertIn("const renderCommandPalette=query=>", navigation)
-        self.assertIn("allNavItems.filter(([id,label])", navigation)
+        self.assertIn("allNavItems.filter(item=>primaryIds.has(item[0]))", navigation)
+        self.assertIn("allNavItems.filter(item=>!primaryIds.has(item[0]))", navigation)
         self.assertIn("role:'list'", navigation)
         self.assertIn("role:'listitem'", navigation)
         self.assertIn("globalSearchInput.oninput=()=>{const value=globalSearchInput.value.trim();if(value.startsWith('>'))", navigation)
