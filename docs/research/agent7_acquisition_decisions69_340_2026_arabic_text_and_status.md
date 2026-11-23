@@ -112,3 +112,8 @@ The Ministry's official legislation page provides the instrument identity, issue
 ## Progress revision after Decision 3561/2026 acquisition
 
 The central register remains at 414 rows. The newly completed transcription upgrades one existing row (EG-0321) from partial-only to full-text indicator: **107/414 full-text indicators (25.8%)**, **49/414 partial-only indicators (11.8%)**, and **156/414 with any text indicator (37.7%)**. Same keyword-based register proxy; not an authentication, consolidation or lawyer-review measure.
+
+
+## Progress revision after Decision 1729/2026
+
+Register: 415 rows; 108 full-text indicators (26.0%); 49 partial-only indicators (11.8%); 157 any-text indicators (37.8%).
