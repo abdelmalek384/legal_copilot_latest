@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "register_id": "EG-PHASE2-AMENDMENT-RELATIONSHIPS",
-  "updated_on": "2026-10-23",
+  "updated_on": "2026-11-23",
   "purpose": "Track explicit legal-instrument relationships separately from source discovery and operative-status decisions.",
   "rules": {
     "relationship_is_not_a_consolidated_text": true,
@@ -471,6 +471,73 @@
         "qualified Egyptian tax-lawyer sign-off"
       ],
       "notes": "Official index lists Decision 450/2026 regarding applications under Law 152/2026; verify exact issuing instrument and scope."
+    },
+    {
+      "relationship_id": "REL-PUBLIC-CONTRACTS-289-2021-AMENDS-692-2019",
+      "source_instrument_id": "EG-PUBLIC-CONTRACTS-EXEC-REG-AMENDMENT-289-2021",
+      "target_instrument_id": "EG-PUBLIC-CONTRACTS-EXEC-REG-692-2019",
+      "relationship_type": "amends_specified_provisions",
+      "status": "secondary_full_text_located_official_gazette_verification_pending",
+      "affected_provisions": [
+        "Article 1 (beneficial-owner definition)",
+        "Article 49(1)",
+        "Article 79(2)",
+        "Article 132 (final paragraph)",
+        "Article 133(2 bis)",
+        "Article 157(2)"
+      ],
+      "stated_effect": "Replaces five bidder-identity / beneficial-owner disclosure provisions and adds the beneficial-owner definition; supersedes the corresponding 614/2020 wording for the overlapping provisions, while leaving the real-estate appraisal additions intact.",
+      "instrument_effective_date": "2021-06-07_secondary_source_stated",
+      "source_url": "https://ahmedazimelgamel.blogspot.com/2021/06/289-2021-692-2019.html",
+      "required_evidence": [
+        "Official Proceedings issue125 (تابع), 6 June 2021, original pages",
+        "Full provision-by-provision comparison",
+        "Verify commencement and later amendments",
+        "Qualified Egyptian public-procurement counsel review"
+      ]
+    },
+    {
+      "relationship_id": "REL-PM-4498-2023-RELATED-TO-PUBLIC-CONTRACTS-182-2018",
+      "source_instrument_id": "EG-PM-DECISION-4498-2023-GOVERNMENT-SPENDING",
+      "target_instrument_id": "EG-PUBLIC-CONTRACTS-182-2018",
+      "relationship_type": "related_implementation_and_control",
+      "status": "official_gazette_locator_and_secondary_full_text_located",
+      "affected_provisions": [
+        "Annual needs planning",
+        "Direct agreement controls under Law182 Articles62–63",
+        "Procurement portal publication",
+        "Life-cycle cost and standard tender documents",
+        "Local-product preference and inventory controls"
+      ],
+      "instrument_effective_date": "2023-11-27",
+      "source_url": "https://mediadr.sis.gov.eg/bitstream/handle/123456789/46639/OG47_20231126_0952.pdf?isAllowed=y&sequence=1",
+      "required_evidence": [
+        "Original Gazette PDF and SHA-256",
+        "Full page-level transcription review",
+        "Later amendment/repeal search",
+        "Qualified Egyptian counsel currentness review"
+      ],
+      "notes": "Topical/implementation relationship only; Decision4498/2023 is not a textual amendment to Law182/2018 or Decision692/2019."
+    },
+    {
+      "relationship_id": "REL-PM-4499-2023-HISTORICAL-SPENDING-CONTROLS",
+      "source_instrument_id": "EG-PM-DECISION-4499-2023-EXPENDITURE-RATIONALIZATION",
+      "target_instrument_id": "EG-PUBLIC-CONTRACTS-182-2018",
+      "relationship_type": "related_temporary_financial_control",
+      "status": "secondary_full_text_located_official_locator_located_historical_expiry_stated",
+      "affected_provisions": [
+        "Public procurement expenditure and budget controls"
+      ],
+      "stated_effect": "Temporary spending-rationalization controls for budget entities and economic public authorities; not an amendment to Law182/2018.",
+      "instrument_effective_date": "2023-11-27",
+      "source_url": "https://mksegypt.org/ar/decisions/17077",
+      "required_evidence": [
+        "Original Gazette issue47 مكرر pages",
+        "Verify end-of-FY2023/2024 expiry clause",
+        "Search for extension or reenactment",
+        "Qualified Egyptian counsel review"
+      ],
+      "notes": "Issuing Article1 limits the attached controls until the end of FY2023/2024; classify as historical/expired for that period unless later extension or reenactment is found."
     }
   ],
   "next_actions": [
