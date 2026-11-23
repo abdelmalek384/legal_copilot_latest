@@ -3910,7 +3910,7 @@ async function view(id){if(window.DOCUMENT_REVIEW_TARGET&&Number(window.DOCUMENT
   const timelineRows=timelineEvents.length
    ?h('div',{className:'case-timeline-list',role:'list'},...timelineEvents.map(event=>h('div',{className:'case-timeline-row',role:'listitem',style:'display:flex;align-items:flex-start;gap:10px;flex-wrap:wrap;padding:9px 0;border-bottom:1px solid var(--line)'},h('time',{dateTime:event.date,className:'mut',textContent:fd(event.date)}),h('div',{style:'display:flex;flex-direction:column;gap:4px;min-width:0;flex:1'},h('div',{className:'row',style:'gap:6px'},pill(event.kind==='hearing'?uiText('جلسات','Hearings'):event.kind==='deadline'?uiText('المواعيد القانونية','Legal deadlines'):uiText('المهام','Tasks'),event.kind==='deadline'?'soon':'open'),event.kind==='task'?pill(event.done?uiText('منجزة','Completed'):uiText('مفتوحة','Open'),event.done?'done':'open'):null),h('b',{textContent:event.title}),event.detail?h('p',{className:'mut',textContent:event.detail}):null))))
    :h('p',{className:'mut',textContent:uiText('لا توجد أحداث مؤرخة في هذه القضية بعد.','No dated hearings, legal deadlines or tasks yet.')});
-  if(body)body.append(h('section',{className:'case-timeline-section',style:'border-top:1px solid var(--line);margin-top:16px;padding-top:14px'},h('h3',{textContent:uiText('الخط الزمني','Case timeline')}),timelineRows));
+  if(body instanceof Node)body.append(h('section',{className:'case-timeline-section',style:'border-top:1px solid var(--line);margin-top:16px;padding-top:14px'},h('h3',{textContent:uiText('الخط الزمني','Case timeline')}),timelineRows));
 
  if(TAB==='brief'){
   const result=h('div',{});
