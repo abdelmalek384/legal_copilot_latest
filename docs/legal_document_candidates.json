@@ -10062,6 +10062,63 @@
           "status": "located_2026-11-23"
         }
       ]
+    },
+    {
+      "document_id": "EG-SCC-JUDGMENT-47-44-2023-04-08",
+      "official_title": "حكم المحكمة الدستورية العليا في الدعوى رقم 47 لسنة 44 قضائية دستورية بجلسة 8 أبريل 2023",
+      "document_type": "constitutional_court_judgment",
+      "law_number": null,
+      "law_year": 2023,
+      "source_id": "EG-SCC",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_full_html_judgment_located",
+      "text_verification_note": "Official SCC portal full judgment text located. Declares Article40 bis-1 of Law117/1958 unconstitutional insofar as it confines specified Administrative Prosecution members' annulment, compensation, salary, pension and bonus disputes to one level of litigation. This is a judicial invalidation, not a legislative amendment. Record scope exactly as operative paragraph; check publication and subsequent legislative response.",
+      "source_urls": [
+        {
+          "url": "https://www.sccourt.gov.eg/DjangoPortalResources/Rules_Html/13349_44_47_1_2.html",
+          "source_role": "official Supreme Constitutional Court full Arabic judgment",
+          "status": "opened_2026-11-23"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-SAC-APPEAL-10639-54-2018-05-05",
+      "official_title": "حكم المحكمة الإدارية العليا دائرة توحيد المبادئ في الطعن رقم 10639 لسنة 54 قضائية عليا بجلسة 5 مايو 2018",
+      "document_type": "supreme_administrative_court_judgment",
+      "law_number": null,
+      "law_year": 2018,
+      "source_id": "EG-ELMODAWANA-714-2019",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "secondary_full_arabic_judgment_text_located",
+      "text_verification_note": "Full Arabic text is reproduced on El Modawana. Principle: extension of annulment action deadline under Article24 of State Council Law47/1972 where the administration takes a clear, serious and positive course toward granting the grievance; ordinary investigation of a grievance alone is insufficient. Secondary source rights not separately confirmed for this judgment; official judgment copy not yet located.",
+      "source_urls": [
+        {
+          "url": "https://www.elmodawanaeg.com/%D8%AA%D9%88%D8%AD%D9%8A%D8%AF-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%AF%D8%A6-%D8%A7%D9%84%D8%B7%D8%B9%D9%86-%D8%B1%D9%82%D9%85-10639-%D9%84%D8%B3%D9%86%D8%A9-54-%D8%A7%D9%84%D9%82%D8%B6%D8%A7%D8%A6/",
+          "source_role": "secondary full Arabic judgment text",
+          "status": "opened_2026-11-23"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-SAC-APPEAL-2417-45-2003-12-13",
+      "official_title": "حكم المحكمة الإدارية العليا في الطعن رقم 2417 لسنة 45 قضائية عليا بجلسة 13 ديسمبر 2003",
+      "document_type": "supreme_administrative_court_judgment",
+      "law_number": null,
+      "law_year": 2003,
+      "source_id": "EG-LAWHUB-STATUTE-TEXTS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "secondary_full_arabic_judgment_text_located",
+      "text_verification_note": "Full Arabic judgment text located on LAW HUB. Concerns land allocation for a secondary agricultural school and the 60-day annulment period under Article24; discusses notice, grievance, and implicit refusal. Treat as a secondary reproduction pending official judgment copy.",
+      "source_urls": [
+        {
+          "url": "https://lawhub.info/eg-j/?p=49879",
+          "source_role": "secondary full Arabic judgment text",
+          "status": "opened_2026-11-23"
+        }
+      ]
     }
   ]
 }
