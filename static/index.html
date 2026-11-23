@@ -2332,6 +2332,42 @@ async function clients(initialQuery=''){
   matches.length?matches.map(x=>h('div',{className:'row',style:'cursor:pointer',onclick:()=>{TAB='sum';view(x.id)}},h('div',{},h('b',{textContent:x.title}),h('div',{className:'mut',textContent:uiText('العميل: ','Client: ')+(x.client||'—')+' · '+uiText('الخصم: ','Opposing party: ')+(x.opposing_party||'—')})),pill(x.status==='open'?uiText('مفتوحة','Open'):uiText('مغلقة','Closed'),x.status==='open'?'open':'closed'))):empty(uiText('لم تظهر مطابقات في القضايا التي يمكنك الوصول إليها.','No matches were found in cases you can access.'))))};
  cq.oninput=()=>{if(cq.value.trim().length>=2){cq.removeAttribute('aria-invalid');cq.removeAttribute('aria-describedby');cqError.hidden=true}};cq.onkeydown=e=>e.key==='Enter'&&run();
  const search=h('input',{type:'search',placeholder:uiText('ابحث باسم العميل أو الهاتف أو البريد الإلكتروني','Search client name, phone or email'),'aria-label':uiText('بحث في ملفات العملاء','Search client profiles'),style:'width:min(100%,420px)'});if(initialQuery)search.value=String(initialQuery).slice(0,200);
+ const clientSearchPanel=client=>{
+  const query=h('input',{type:'search',placeholder:uiText('ابحث في مستندات جميع قضايا هذا العميل','Search documents across this client’s matters'),'aria-label':uiText('البحث في مستندات العميل','Search client documents'),style:'width:min(100%,420px)'});
+  const results=h('div',{className:'stack','aria-live':'polite'});
+  const run=async()=>{
+   const needle=query.value.trim();
+   if(!needle){results.replaceChildren(h('p',{className:'mut',textContent:uiText('أدخل كلمات للبحث.','Enter search terms.')}));query.focus();return}
+   results.replaceChildren(h('p',{className:'mut',textContent:uiText('جارٍ البحث في القضايا المسموح بها…','Searching accessible matters…')}));
+   try{
+    const data=await api('/clients/'+encodeURIComponent(client.id)+'/documents/search-text?q='+encodeURIComponent(needle)+'&limit=40');
+    const rows=Array.isArray(data.items)?data.items:[];
+    results.replaceChildren(
+     h('p',{className:'mut',textContent:String(data.total||0)+' '+uiText('مقاطع مطابقة عبر القضايا المسموح بها','matching passages across accessible matters')}),
+     ...(rows.length?rows.map(item=>h('article',{className:'src'},
+      h('b',{textContent:(item.document_name||uiText('مستند','Document'))+' · '+(item.case_title||uiText('قضية رقم ','Matter #')+item.case_id)}),
+      h('p',{className:'mut',textContent:(item.page?uiText('صفحة ','Page ')+item.page+' · ':'')+(item.ref||'')}),
+      h('p',{textContent:item.excerpt||''}),
+      btn(uiText('فتح المقطع في ملف القضية','Open passage in matter'),()=>{
+       window.DOCUMENT_REVIEW_TARGET={caseId:Number(item.case_id),documentId:Number(item.document_id),chunkId:String(item.chunk_id)};
+       PAGE='cases';TAB='docs';
+       view(Number(item.case_id)).catch(()=>{
+        window.DOCUMENT_REVIEW_TARGET=null;
+        toast(uiText('تعذر فتح المقطع المحدد.','Could not open the selected passage.'));
+       });
+      },'g')
+     )):[h('p',{className:'mut',textContent:uiText('لا توجد مقاطع مطابقة في القضايا المسموح بها.','No matching passages in accessible matters.')})]),
+     h('p',{className:'mut',textContent:data.warning||''})
+    );
+   }catch(error){results.replaceChildren(h('p',{className:'notice danger',role:'alert',textContent:String(error.message||error)}))}
+  };
+  query.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();run()}};
+  return h('div',{className:'stack',style:'margin-top:12px;padding-top:12px;border-top:1px solid var(--line)'},
+   h('b',{textContent:uiText('البحث في مستندات العميل عبر القضايا','Client-wide document search')}),
+   h('div',{className:'row'},query,btn(uiText('بحث','Search'),run,'g')),
+   results
+  );
+ };
  const cardContainer=h('div');
  const drawProfiles=()=>{
   const needle=search.value.trim().toLocaleLowerCase();
@@ -2340,7 +2376,7 @@ async function clients(initialQuery=''){
    h('div',{className:'row'},h('h3',{textContent:client.name}),h('span',{className:'mut'},client.matters.length+' '+uiText('قضايا','matters'))),
    ...([['الهاتف',client.phone],['البريد الإلكتروني',client.email],['العنوان',client.address],['ملاحظات',client.notes]].filter(([,value])=>value).map(([label,value])=>h('p',{className:'mut',textContent:uiText(label,label)+': '+value}))),
    h('div',{className:'row'},btn(uiText('+ قضية جديدة','+ New matter'),()=>newCase(client.name),'g'),...(client.can_edit?[btn(uiText('تعديل الملف','Edit profile'),()=>clientProfileForm(client),'g')]:[])),
-   client.matters.length?h('div',{className:'stack'},h('b',{textContent:uiText('المسائل المرتبطة','Linked matters')}),...client.matters.map(m=>h('div',{className:'row'},h('div',{},h('b',{textContent:m.title}),h('div',{className:'mut',textContent:(m.case_number||'—')+(m.case_year?' / '+m.case_year:'')})),btn(uiText('فتح','Open'),()=>{TAB='sum';view(m.id)},'g')))):h('p',{className:'mut',textContent:uiText('لا توجد قضايا مرتبطة بهذا العميل بعد.','No matters linked to this client yet.')})
+   client.matters.length?h('div',{className:'stack'},h('b',{textContent:uiText('المسائل المرتبطة','Linked matters')}),...client.matters.map(m=>h('div',{className:'row'},h('div',{},h('b',{textContent:m.title}),h('div',{className:'mut',textContent:(m.case_number||'—')+(m.case_year?' / '+m.case_year:'')})),btn(uiText('فتح','Open'),()=>{TAB='sum';view(m.id)},'g')))):h('p',{className:'mut',textContent:uiText('لا توجد قضايا مرتبطة بهذا العميل بعد.','No matters linked to this client yet.')}),clientSearchPanel(client)
   ));
   const noProfilesYet=!needle&&!profilesError&&!profiles.length;
   const emptyState=profilesError?null:noProfilesYet
