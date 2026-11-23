@@ -932,7 +932,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.assertEqual(saved_case.status, 200, saved_case.text())
         self.assertTrue(any(sentinel in note["text"] for note in saved_case.json()["notes"]))
 
-        scope.select_option("verified_corpus")
+        self.page.get_by_role("button", name="القانون المتحقق", exact=True).click()
         # Start a fresh conversation so prior firm-matter messages are not part of this UI assertion.
         self.page.locator(".research-list-head").get_by_role("button", name="محادثة جديدة").click()
         self.page.locator(".research-thread .research-empty").wait_for(timeout=10000)
@@ -942,7 +942,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
         latest_assistant = self.page.locator(".research-thread .research-message.assistant").last.inner_text()
         self.assertNotIn(sentinel, latest_assistant)
 
-        scope.select_option("verified_corpus")
+        self.page.get_by_role("button", name="القانون المتحقق", exact=True).click()
         composer.fill("synthetic verified fixture deadline example")
         self.page.locator(".research-composer button").click()
         self.page.get_by_text("CORPUS_ONLY_VERIFIED_SENTINEL_2C77").wait_for(timeout=12000)
@@ -987,6 +987,8 @@ class BrowserAcceptanceTests(unittest.TestCase):
         # matter selection, query entry, and submission; no pointer interaction.
         scope.focus()
         self.assertTrue(scope.evaluate("(el) => document.activeElement === el"))
+        self.page.keyboard.press("Space")
+        self.assertTrue(matter.is_visible(), "matter selector should appear after keyboard activation of Firm documents scope")
         focusable_count = self.page.locator(
             "button:not([disabled]), a[href], select:not([disabled]), "
             "textarea:not([disabled]), input:not([disabled]), "
@@ -1593,7 +1595,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
 
         assert_named_controls("#shell")
         self.page.get_by_role("button", name="البحث القانوني", exact=True).click()
-        self.page.locator(".research-controls select").first.wait_for(state="visible")
+        self.page.locator(".research-scope-tabs button").first.wait_for(state="visible")
         assert_named_controls("#main")
         self.page.get_by_role("button", name="نظرة عامة").click()
         opener = self.page.get_by_role("button", name="+ قضية جديدة")
