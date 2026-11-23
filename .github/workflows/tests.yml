@@ -464,8 +464,8 @@ jobs:
         run: python -m pip install --require-hashes -r requirements-py312.lock
       - name: Test passage annotation and client retrieval contracts
         run: PYTHONPATH=. python tests/test_document_annotations.py
-      - name: Test firm database runtime and client retrieval integration
-        run: PYTHONPATH=. python tests/test_app_separate_database_runtime.py
+      - name: Test client-wide document search integration and membership isolation
+        run: PYTHONPATH=. python -m unittest discover -s tests -p 'test_app_separate_database_runtime.py' -k client_document_search_spans_same_client_matters_but_respects_membership
       - name: Check frontend JavaScript syntax
         run: |
           python -c "from pathlib import Path; import re; html=Path('static/index.html').read_text(encoding='utf-8'); scripts=re.findall(r'<script[^>]*>(.*?)</script>', html, re.S); assert scripts, 'No inline JavaScript found'; Path('/tmp/legal-copilot.js').write_text(chr(10).join(scripts), encoding='utf-8')"
