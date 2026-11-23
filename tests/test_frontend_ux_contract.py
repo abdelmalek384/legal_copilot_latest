@@ -28,7 +28,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertEqual(HTML.count("const firmSwitcher=mfaFirmSwitcher();if(firmSwitcher)card.append(firmSwitcher)"), 2)
 
     def test_client_profile_required_name_has_associated_accessible_error(self):
-        profile_form = HTML[HTML.index("async function clientProfileForm("):HTML.index("\nasync function clients()")]
+        profile_form = HTML[HTML.index("async function clientProfileForm("):HTML.index("\nasync function clients(initialQuery='')")]
         self.assertIn("id:'client-profile-name-error'", profile_form)
         self.assertIn("inputs.name.setAttribute('aria-describedby',nameError.id)", profile_form)
         self.assertIn("inputs.name.setAttribute('aria-invalid','true')", profile_form)
@@ -196,7 +196,14 @@ class FrontendUXContractTests(unittest.TestCase):
             literal = "".join(value).strip()
             # This lightweight scanner is not a JavaScript lexer: regex literals
             # containing quote characters can otherwise be mistaken for UI copy.
-            if literal.startswith(").replace(/") or literal.startswith(").trim().replace(/[٠-٩۰-۹]"):
+            if (
+                literal.startswith(").replace(/")
+                or literal.startswith(").trim().replace(/[٠-٩۰-۹]")
+                or literal.startswith(";if(/billing|subscription|invoice|payment|")
+                or literal.startswith(";else if(/team|member|invitation|")
+                or literal.startswith(";else if(/export|data|privacy|")
+                or literal.startswith(";else if(/security|mfa|multi.factor|")
+            ):
                 continue
             if re.search(r"[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]", literal) and literal:
                 found.add(literal)
@@ -620,12 +627,16 @@ class FrontendUXContractTests(unittest.TestCase):
         for label in (
             "Filter tasks by status",
             "Filter calendar by type",
-            "Filter calendar by date",
             "Filter cases by status",
             "Feedback category",
             "Invited user role",
         ):
             self.assertIn(label, HTML)
+        calendar_start = HTML.index("async function calendarPage(){")
+        calendar_end = HTML.index("\\nasync function ", calendar_start + 10)
+        calendar = HTML[calendar_start:calendar_end]
+        self.assertIn("Today", calendar)
+        self.assertIn("aria-current':key===todayKey?'date':null", calendar)
 
 
     def test_dynamic_casework_billing_and_legal_review_selects_are_named(self):
@@ -1187,7 +1198,7 @@ class FrontendUXContractTests(unittest.TestCase):
         shell = HTML[HTML.index("function shell(title"):HTML.index("\nfunction mfaFirmSwitcher()")]
         self.assertIn("Global search across accessible matters", shell)
         self.assertIn("limit:'8',offset:'0'", shell)
-        self.assertIn("api('/cases/search?'+params.toString())", shell)
+        self.assertIn("api('/cases/search?'+matterParams.toString())", shell)
         self.assertIn("globalSearchInput.onkeydown", shell)
         self.assertIn("globalSearchInput.oninput=()=>globalSearchResults.replaceChildren()", shell)
         self.assertIn("view(item.id)", shell)
@@ -1443,7 +1454,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("Original file is unavailable or was purged under the retention policy.", page)
 
     def test_matter_extraction_review_discloses_ocr_and_partial_page_status(self):
-        start = HTML.index("const renderChunkReview=")
+        start = HTML.index("const renderChunkReviewCards=")
         end = HTML.index("const suggestCorrection=", start)
         page = HTML[start:end]
         self.assertIn("reviewDoc.ocr_used===true||reviewDoc.ocr_used===1", page)
@@ -1641,7 +1652,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("box.replaceChildren(summary,...(rows.length?rows.map(caseRow):[emptyState]))", cases)
 
     def test_client_list_first_run_empty_state_respects_permissions_and_load_errors(self):
-        clients = HTML[HTML.index("async function clients(){"):HTML.index("\nasync function casesPage(){")]
+        clients = HTML[HTML.index("async function clients(initialQuery=''){"):HTML.index("\nasync function casesPage(){")]
         self.assertIn("const noProfilesYet=!needle&&!profilesError&&!profiles.length", clients)
         self.assertIn("ME.role==='admin'?uiText('+ ملف عميل جديد','+ New client profile'):null", clients)
         self.assertIn("ME.role==='admin'?()=>clientProfileForm():null", clients)
@@ -1733,7 +1744,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("api('/clients/search?'+clientParams.toString())", shell)
         self.assertIn("openPage('clients',()=>clients(item.name||q))", shell)
         self.assertIn("if(initialQuery)search.value=String(initialQuery).slice(0,200)", clients)
-        self.assertIn("Global search across accessible matters and clients", shell)
+        self.assertIn("Global search across accessible matters, clients and documents", shell)
         self.assertIn("workspace-search-group", shell)
 
     def test_global_search_includes_permission_scoped_document_results(self):
@@ -1825,7 +1836,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("role:'list'", navigation)
         self.assertIn("role:'listitem'", navigation)
         self.assertIn("globalSearchInput.oninput=()=>{const value=globalSearchInput.value.trim();if(value.startsWith('>'))", navigation)
-        self.assertIn("globalSearchInput.onkeydown=e=>{if(e.key!=='Enter')return", navigation)
+        self.assertIn("globalSearchInput.onkeydown=e=>{const value=globalSearchInput.value.trim();if(value.startsWith('>')&&e.key==='ArrowDown')", navigation)
         self.assertIn("if(q.startsWith('>')){renderCommandPalette(q.slice(1));return}", search)
         self.assertIn("globalSearchInput.placeholder=uiText(", navigation)
 
