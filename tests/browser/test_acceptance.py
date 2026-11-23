@@ -1047,6 +1047,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
             "SYNTHETIC CLIENT SEARCH MATTER TWO",
         ]
         document_ids = []
+        case_ids = []
         for index, title in enumerate(case_titles, start=1):
             created = self.page.request.post(
                 self.base_url + "/cases",
@@ -1056,6 +1057,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
             )
             self.assertEqual(created.status, 200, created.text())
             case_id = created.json()["id"]
+            case_ids.append(case_id)
             document = self.page.request.post(
                 self.base_url + f"/cases/{case_id}/docs",
                 data={
@@ -1110,8 +1112,10 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.assertIn(annotation_note, self.page.locator(".passage-annotation-list").inner_text())
 
         # The source chunk remains unchanged; annotations are separate records.
+        opened_case_id = int(self.page.evaluate("window.CASE_ID"))
+        opened_index = case_ids.index(opened_case_id)
         chunks = self.page.request.get(
-            self.base_url + f"/cases/{self.page.evaluate('window.CASE_ID')}/docs/{document_ids[0]}/chunks",
+            self.base_url + f"/cases/{opened_case_id}/docs/{document_ids[opened_index]}/chunks",
             timeout=8000,
         )
         self.assertEqual(chunks.status, 200, chunks.text())
