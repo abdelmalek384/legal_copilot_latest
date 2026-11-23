@@ -1343,6 +1343,8 @@ class BrowserAcceptanceTests(unittest.TestCase):
             };
             const nav = document.querySelector('#side nav');
             const hint = nav && nav.querySelector('.nav-scroll-hint');
+            const primaryNavigationHeights = [...document.querySelectorAll('#side .primary-nav button')]
+                .filter(visible).map((el) => el.getBoundingClientRect().height);
             const targets = [...document.querySelectorAll(
                 'button, input, select, textarea, #side a[role="button"], .tabs a'
             )].filter(visible).map((el) => ({
@@ -1367,6 +1369,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
                 scrollHintCount: hint ? 1 : 0,
                 scrollHintVisible: !!hint && visible(hint),
                 navigationScrollable: !!nav && nav.scrollWidth > nav.clientWidth,
+                primaryNavigationHeights,
                 targets,
                 documentWidth: document.documentElement.scrollWidth,
                 viewportWidth: window.innerWidth
@@ -1379,6 +1382,11 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.assertEqual(ui_contract["scrollHintCount"], 1, ui_contract)
         self.assertTrue(ui_contract["scrollHintVisible"], ui_contract)
         self.assertTrue(ui_contract["navigationScrollable"], ui_contract)
+        self.assertTrue(ui_contract["primaryNavigationHeights"], ui_contract)
+        self.assertTrue(
+            all(height >= 46 for height in ui_contract["primaryNavigationHeights"]),
+            f"Mobile primary navigation targets must be at least 46px: {ui_contract['primaryNavigationHeights']}",
+        )
         self.assertLessEqual(ui_contract["documentWidth"], ui_contract["viewportWidth"], ui_contract)
         undersized = [target for target in ui_contract["targets"] if target["height"] < 44]
         self.assertEqual(undersized, [], f"Interactive targets below 44px: {undersized}")
