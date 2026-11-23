@@ -4703,11 +4703,11 @@ body:has(.research-layout){background:#f3f5f8;color:#1d2c42;font-family:Inter,"N
 /* Refine the two side rails: give evidence cards and session titles enough
    room, and use one consistent spacing rhythm across all three panes. */
 #main .research-layout{
- grid-template-columns:minmax(240px,260px) minmax(0,1fr) minmax(180px,200px)!important;
+ grid-template-columns:minmax(240px,260px) minmax(0,1fr) minmax(160px,180px)!important;
  gap:14px!important;
 }
 #main .research-layout:dir(ltr){
- grid-template-columns:minmax(180px,200px) minmax(0,1fr) minmax(240px,260px)!important;
+ grid-template-columns:minmax(160px,180px) minmax(0,1fr) minmax(240px,260px)!important;
 }
 #main .research-layout>.research-list,
 #main .research-layout>.research-evidence-panel{
@@ -4778,3 +4778,7 @@ body:has(.research-layout){background:#f3f5f8;color:#1d2c42;font-family:Inter,"N
 }
 </style>
 </html>
+
+/* Pilot accessibility fixes: preserve contrast and 44px touch targets. */
+#side .primary-nav button:not(.on){background:#173657!important;color:#f5f8ff!important}
+#main .matter-section-nav button,#main .matter-subnav button{min-height:44px!important}
