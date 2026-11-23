@@ -652,3 +652,129 @@ For this pass:
 Do not add these counts mechanically to prior project totals if they overlap with a prior source record. These are acquisition units within this new file, not a national-corpus denominator.
 
 **Whole-corpus completion:** not calculable. The 394-row register metric previously reported remains a registry text-evidence proxy only, not a percentage of all Egyptian legislation. No new whole-corpus denominator is asserted here.
+
+
+## 8. Law 170/2025 — State ownership of companies (new statutory acquisition)
+
+### Source metadata and legal status
+
+- **Instrument:** Law 170/2025 بإصدار قانون تنظيم بعض الأحكام الخاصة بملكية الدولة في الشركات المملوكة لها أو التي تساهم فيها.
+- **Official Gazette:** issue 33 مكرر (ج), 18 August 2025 (the SCC library legislative index confirms this issue/date).
+- **Commencement:** day after publication, 19 August 2025 (issuing Article 5).
+- **Official Amiri Press searchable text:** https://alamiria.com/Sec/TashTxt?id=Am+UrSpkqhI%3D
+- **Full Arabic text (secondary):** https://lawhub.info/eg/?p=15457
+- **Full Arabic text, 19 articles:** https://alhasswalawfirm.com/law-library/law-170-2025
+- **Official Gazette archive metadata:** https://dspace.id.com.eg/items/5a132574-79c3-4c34-8cc8-c1c761a894eb
+- **Official legislative index:** https://asa.gov.eg/Attach/1454_Legislative_Index.pdf
+- **Cabinet State Ownership Policy (2026–2030, official):** https://cabinet.gov.eg/UI/pdf/property-policy-document.pdf
+- **Cabinet policy portal:** https://www.cabinet.gov.eg/StaticContent/OwnershipDocument
+
+### Issuing Articles 1–5 (Arabic text)
+
+**Article 1 — scope:**
+> يعمل بأحكام هذا القانون والقانون المرافق في شأن تنظيم بعض الأحكام الخاصة بملكية الدولة فى الشركات المملوكة لها أو التي تساهم فيها.
+>
+> وتسرى أحكامهما على الشركات التي يكون رأسمالها مملوكًا بالكامل لوحدات الجهاز الإدارى للدولة من وزارات ومصالح وأجهزة، ووحدات الإدارة المحلية، والأجهزة التى لها موازنات خاصة، والهيئات العامة الخدمية والاقتصادية وغيرها من الأشخاص الاعتبارية العامة أيًا كان النظام القانونى الذى تخضع له، وكذلك الشركات المملوكة لتلك الشركات سواء بمفردها أو بالاشتراك مع وحدات الجهاز الإدارى للدولة أو الأشخاص الاعتبارية العامة.
+
+**Article 2 — preservation of other statutory regimes:**
+> لا تخل أحكام هذا القانون والقانون المرافق بأحكام قانون سوق رأس المال الصادر بالقانون رقم 95 لسنة 1992، وقانون تنظيم الرقابة على الأسواق والأدوات المالية غير المصرفية الصادر بالقانون رقم 10 لسنة 2009، والقانون رقم 14 لسنة 2012 بشأن التنمية المتكاملة في شبه جزيرة سيناء، والقانون رقم 127 لسنة 2015 بالترخيص لأشخاص القانون العام بتأسيس شركات مساهمة، والقانون رقم 177 لسنة 2018 بإنشاء صندوق مصر السيادي للاستثمار والتنمية، وقانون البنك المركزي والجهاز المصرفي الصادر بالقانون رقم 194 لسنة 2020.
+
+**Article 3 — implementing decisions and continuity:**
+> يُصدر رئيس مجلس الوزراء القرارات اللازمة لتنفيذ أحكام هذا القانون والقانون المرافق وعلى الأخص وثيقة سياسة ملكية الدولة، وإلى أن تصدر هذه القرارات يستمر العمل بالقرارات القائمة بما لا يتعارض مع أحكامه.
+
+**Article 4 — repeal:**
+> تلغى المادة (27) من قانون هيئات القطاع العام وشركاته الصادر بالقانون رقم 97 لسنة 1983، كما يُلغى كل حكم يخالف أحكام هذا القانون والقانون المرافق.
+
+**Article 5 — commencement:**
+> ينشر هذا القانون فى الجريدة الرسمية، ويُعمل به اعتبارًا من اليوم التالى لتاريخ نشره.
+>
+> يبصم هذا القانون بخاتم الدولة، ويُنفذ كقانون من قوانينها.
+
+### Substantive Article 1 — statutory definitions
+
+The official Amiri Press text and secondary full-text reproduction identify these defined terms:
+- **وثيقة سياسة ملكية الدولة:** a document issued pursuant to the law containing Cabinet-approved rules for an integrated policy governing the State's presence in economic activity, divestment and private-sector participation.
+- **الوحدة:** the central unit established under Article 2.
+- **الشركات المملوكة للدولة:** companies whose capital is wholly owned by State administrative units or public legal persons, regardless of legal regime, including companies owned by them individually or jointly.
+- **الشركات التي تساهم فيها الدولة:** companies in which State administrative units, public legal persons or State-owned companies hold shares alongside the private sector, regardless of the percentage or legal form.
+
+### Core substantive provisions (exact text excerpts)
+
+**Article 2 — central unit:**
+> تنشأ بمجلس الوزراء وحدة مركزية تسمى «وحدة الشركات المملوكة للدولة»، تتبع رئيس مجلس الوزراء، ويكون لها رئيس تنفيذى يصدر بتعيينه قرار من رئيس مجلس الوزراء، وتكون لها الشخصية الاعتبارية، وتتولى الاختصاصات المنصوص عليها فى هذا القانون.
+>
+> ويصدر رئيس مجلس الوزراء قرارًا بتنظيم الوحدة وتحديد اختصاصاتها ونظام العمل بها.
+
+**Article 3 — ownership-policy framework:** the law requires the State Ownership Policy document to classify sectors/activities in which the State maintains, reduces or exits its investment and to guide ownership-management and divestment. Preserve the exact article wording from the official searchable text; a direct Gazette binary/independent page proofread is still required.
+
+**Article 6 — permissible mechanisms:**
+> تكون آليات التنظيم وفق أحكام هذا القانون، بالنسبة للشركات المملوكة للدولة، التصرف بالبيع، بما فى ذلك كافة أساليب الطرح في الأسواق الأولية والثانوية، وزيادة رأس المال، وتوسيع قاعدة الملكية، والتقسيم، والاندماج.
+>
+> وبالنسبة للشركات التى تساهم فيها الدولة، تقتصر تلك الآليات على التصرف بالبيع فى الأسهم أو الحصص أو حقوق التصويت المملوكة لوحدات الجهاز الإدارى للدولة من وزارات ومصالح وأجهزة، ووحدات الإدارة المحلية والأجهزة التي لها موازنات خاصة، والهيئات العامة الخدمية والاقتصادية وغيرها من الأشخاص الاعتبارية العامة، وذلك كله بما لا يخل بعقود تأسيس تلك الشركات وأنظمتها الأساسية أو اتفاقات المساهمين أو اتفاقات الاستثمار التى أنشئت طبقًا لها.
+
+**Article 9 — State representative appointment:**
+> تلتزم السلطة المختصة قانونًا بإخطار الوحدة لدى اختيار أو تعيين ممثلى الدولة وشركاتها، وعلى الوحدة أن تبدى رأيها فى هذا الشأن مسببًا خلال مدة أقصاها سبعة أيام عمل من تاريخ إخطارها ببياناتهم مستوفاة.
+>
+> ويصدر بتحديد البيانات المشار إليها قرار من رئيس مجلس الوزراء بناءً على عرض الرئيس التنفيذى للوحدة، على أن يكون من بينها السيرة الذاتية للمرشح مبينًا فيها مؤهلاته وإنجازاته وخبراته السابقة، والشركات التي سبق له تمثيل الدولة فيها.
+
+**Article 10 — mandatory information and quarterly reporting:**
+> مع عدم الإخلال بالاختصاصات والسلطات المقررة لمجالس إدارات الشركات المملوكة للدولة أو التى تساهم فيها وجمعياتها العمومية طبقًا للقوانين واللوائح، ولأغراض جمع البيانات اللازمة لمباشرة الوحدة اختصاصاتها المنصوص عليها في هذا القانون، تلتزم السلطة المختصة فى الجهة المالكة بموافاة الوحدة أو مستشار الطرح العام أو المستشار المالي، بحسب الأحوال، بكافة المعلومات والبيانات التي يطلبونها بما في ذلك إحاطتهم علمًا بخطط وسياسات إعادة الهيكلة للشركات المملوكة للدولة وكافة البيانات ذات الصلة بالتدفقات النقدية المخططة والفعلية والأداء المالي لهذه الشركات.
+>
+> ويلتزم ممثلو الدولة وشركاتها بإخطار كل من السلطة المختصة في الجهة المالكة والوحدة فورًا بما قد يطرأ على حالة الشركات والمساهمات الخاضعة لأحكام هذا القانون من أحداث أو مستجدات جوهرية تؤثر على مسارها الاقتصادي أو أوضاعها المالية، كما يلتزمون برفع تقرير ربع سنوى إلى كل من السلطة المختصة فى الجهة المالكة والوحدة عن الأداء المالي للشركات التى يتولون تمثيل الدولة أو إحدى شركاتها فيها.
+
+**Article 11 — binding force of approved recommendations:**
+> تعرض التوصيات الصادرة عن الوحدة على اللجنة الوزارية الاقتصادية قبل عرضها على مجلس الوزراء وتكون توصيات الوحدة الصادرة طبقًا لاختصاصاتها المنصوص عليها في هذا القانون، بعد اعتمادها من مجلس الوزراء، واجبة النفاذ وملزمة للسلطة المختصة فى الجهة المالكة وممثلى الدولة وشركاتها.
+
+**Article 12 — prior approval / restrictions on new State companies:**
+> مع عدم الإخلال بأحكام المادة ١٢٩ مكرراً من قانون شركات المساهمة وشركات التوصية بالأسهم والشركات ذات المسئولية المحدودة وشركات الشخص الواحد الصادر بالقانون رقم ١٥٩ لسنة ١٩٨١، والقانون رقم ١٢٧ لسنة ٢٠١٥ بالترخيص لأشخاص القانون العام بتأسيس شركات مساهمة، تلتزم وحدات الجهاز الإدارى للدولة من وزارات ومصالح وأجهزة، ووحدات الإدارة المحلية والأجهزة التى لها موازنات خاصة، والهيئات العامة الخدمية والاقتصادية وغيرها من الأشخاص الاعتبارية العامة، والشركات المملوكة للدولة، بالحصول على موافقة كتابية مسبقة من الوحدة قبل السير في إجراءات تأسيس، أو المساهمة فى أى شركة يكون غرضها الرئيس نشاطًا أو أكثر من الأنشطة التى يتقرر تثبيت استثمارات الدولة فيها طبقًا لوثيقة سياسة ملكية الدولة.
+>
+> ويُحظر على الجهات والشركات المشار إليها تأسيس، أو المساهمة في أي شركة يكون غرضها الرئيس نشاطًا أو أكثر من الأنشطة التى يتقرر التخارج منها كلية أو خفض استثمارات الدولة فيها طبقًا لوثيقة سياسة ملكية الدولة.
+>
+> ويتعين على كل من الهيئة العامة للاستثمار والمناطق الحرة والهيئة العامة للرقابة المالية وغيرها من الجهات ذات الاختصاصات المماثلة متابعة التزام الجهات والشركات المشار إليها بالضوابط والقيود الواردة بهذه المادة، وإخطار الوحدة بأى مخالفة لها.
+
+**Article 13 — violation reporting:**
+> يتعين على الرئيس التنفيذى للوحدة حال مخالفة أى من نصوص المواد (٩، ١٠، ١١، ١٢) من هذا القانون أن يرفع تقريرًا مفصلاً، مشفوعًا بالتدابير والإجراءات المقترحة للعرض على مجلس الوزراء، وذلك للنظر واتخاذ ما يراه مناسبًا من قرارات بشأن المخالفة.
+
+**Article 14 — standardized disposal/valuation rules and workforce surplus:**
+> يُصدر رئيس مجلس الوزراء، بناء على عرض الرئيس التنفيذي للوحدة، وبعد موافقة مجلس الوزراء، قرارًا بالقواعد الاسترشادية الموحدة لأساليب التصرف والمعايير الإطارية لتصنيف الشركات والمساهمات الخاضعة لأحكام هذا القانون والتقييم والطرح.
+>
+> كما يصدر رئيس مجلس الوزراء بناء على عرض الرئيس التنفيذى للوحدة، وبعد موافقة مجلس الوزراء، قرارًا بآليات معالجة موقف الفائض من العمالة في الشركات المملوكة للدولة، على أن يراعى أن يكون تمويل التكلفة المالية المترتبة على هذه الآليات، دون تحميل الموازنة العامة للدولة أى أعباء في هذا الشأن.
+
+**Articles 15–19:** the complete 19-article Arabic text is available in the linked full-text sources. The final articles contain supplementary governance/implementation and publication provisions. Their full verbatim transcription remains outstanding in this pass; do not treat the excerpts above as the complete substantive law.
+
+### State Ownership Policy document — executive instrument / guidance classification
+
+The Cabinet's second edition of the State Ownership Policy document (2026–2030) is an official policy document implementing the framework in Law 170/2025:
+- https://cabinet.gov.eg/UI/pdf/property-policy-document.pdf
+- https://idsc.gov.eg/upload/DocumentLibrary/AttachmentA/11418/وثيقة%20سياسة%20ملكية%20الدولة%20-%20الإصدار%20الثاني.pdf
+- Cabinet portal: https://www.cabinet.gov.eg/StaticContent/OwnershipDocument
+
+**Legal effect distinction:** the policy document is not itself a statute or executive regulation. However, Law 170/2025 Article 11 gives binding force to recommendations of the central unit after approval by the Cabinet, and Article 12 makes the State Ownership Policy a statutory reference for prior approval and prohibited new investment categories. Do not label the entire policy document a binding executive regulation; record the specific statutory hooks and the operative Cabinet/unit decisions separately.
+
+### Relationship to Law 203/1991
+
+Law 170/2025 is a major additional framework for the governance and ownership of State-owned/State-participated companies. It should be cross-linked with:
+- Law 203/1991 and amendments 149/2001 and 185/2020;
+- Decision 1590/1991 and Decision 948/2021;
+- Law 127/2015 authorizing public-law persons to establish joint-stock companies;
+- Law 177/2018 establishing the Sovereign Fund of Egypt;
+- Law 159/1981 (Companies Law);
+- Cabinet State Ownership Policy (2026–2030).
+
+Do not infer that Law 170/2025 converts every public authority or every company with public shareholding into a private-law entity. It governs State ownership and corporate shareholding arrangements; legal personality, public-law status, employee regime and jurisdiction still require examination of the establishing statute and applicable special law.
+
+### Gaps
+
+- Direct official Gazette PDF for Law 170/2025 issue 33 مكرر (ج) not yet downloaded/visually inspected; Amiri Press searchable text is official source and the full secondary text is accessible.
+- Verbatim transcription of Articles 3–5 and 15–19 remains to be completed and independently proofread.
+- The Cabinet decision organizing the central unit and any implementing decisions under Articles 3, 9, 12 and 14 need to be collected individually.
+- The second-edition policy document's exact adoption decision, publication date and operative annexes should be captured separately.
+- No assumption is made that all provisions of Law 170/2025 are self-executing; implementing decisions are expressly contemplated.
+
+## 9. Current pass totals — additive, not a national denominator
+
+Additional acquisition in this pass:
+- Law 170/2025: issuing Articles 1–5 metadata/text and substantive excerpts for Articles 1, 2, 6, 9–14; full 19-article secondary text source located.
+- Law 170/2025 Article 11: binding force of central unit recommendations only after Cabinet approval captured verbatim.
+- Official State Ownership Policy 2026–2030: official document acquired as policy instrument, not legislation.
+- New linked government institution: central State-Owned Companies Unit (وحدة الشركات المملوكة للدولة), created under Law 170/2025 Article 2.
