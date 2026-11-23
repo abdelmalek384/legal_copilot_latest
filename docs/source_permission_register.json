@@ -179,22 +179,23 @@
     {
       "source_id": "EG-AMIRI-PRESS",
       "authority": "General Authority for Amiri Press",
-      "source_page": "https://www.alamiria.com/Sec/Home",
+      "source_page": "https://www.alamiria.com/Sec/Home; https://www.alamiria.com/Sec/TashTxt?id=wv1hjixGH4I%3D; https://www.alamiria.com/Sec/TashTxt?id=wSDExYcMZUw%3D",
       "material_types": [
         "Official Gazette",
         "Egyptian Proceedings",
         "legislation",
         "Law147/2026 full Arabic text",
-        "PM Decision3530/2026 and attached public expenditure rationalization rules"
+        "PM Decision3530/2026 and attached public expenditure rationalization rules",
+        "Law159/2023 — official searchable text locator; PM Decision242/2024 — official searchable text locator"
       ],
-      "access_status": "Official Amiri Press full text portal inspected 18 Nov 2026 for Decision3530/2026; full decision and attached expenditure rules searchable. No original Gazette PDF bytes/hash acquired.",
+      "access_status": "Official Amiri Press full text portal inspected 18 Nov 2026 for Decision3530/2026; full decision and attached expenditure rules searchable. No original Gazette PDF bytes/hash acquired. On 23 Nov 2026, official Amiri Press text locators were identified for Law159/2023 and PM Decision242/2024; direct Amiri Press open returned 400/502 timeouts, so official MOF Gazette PDF and secondary text used as fallback.",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
       "permission_evidence": " On 2026-11-18 the official text portal exposed Minister of Justice Decision 3866/2026 (URL recorded in checkpoint 93), postponing commencement of the real-property register in City of Mansha'a, Sohag, to 1 July 2027. The public text locator does not establish bulk retrieval, local archiving or commercial reuse permission. Law147/2026 public full text locator confirms issue30 bis (مكرر), 26 July 2026. Public portal access does not grant bulk extraction or commercial reuse permission. Decision3530/2026 text portal: https://alamiria.com/Sec/TashTxt?id=TXzT8vO0lfQ%3D. Public text access does not establish bulk retrieval, commercial reuse or redistribution rights.",
       "terms_checked_on": null,
       "bulk_download_or_api": "not established; Official Gazette access may be subscription-based",
-      "required_next_action": "Ask for licensed digital archive/API or bulk export and written scope covering storage, text extraction, indexing, user display, commercial use, and rate limits."
+      "required_next_action": "Ask for licensed digital archive/API or bulk export and written scope covering storage, text extraction, indexing, user display, commercial use, and rate limits. Retry Amiri Press locator and compare complete Gazette text; do not treat public locator as a reuse licence."
     },
     {
       "source_id": "EG-AMIRIA-DECISION-5207-2026",
@@ -216,18 +217,19 @@
     {
       "source_id": "EG-ASA-LEGISLATIVE-INDEX-2026",
       "authority": "Accountability State Authority (الجهاز المركزي للمحاسبات), Egypt",
-      "source_page": "https://www.asa.gov.eg/extras/news/47/2026111038.pdf",
+      "source_page": "https://www.asa.gov.eg/extras/news/47/2026111038.pdf; https://asa.gov.eg/attach/665_law_91-2005.pdf",
       "material_types": [
-        "Official legislative index for Laws, Presidential/Cabinet/ministerial decisions, SCC judgments and State Council opinions published 1 Jan–30 Jun 2026"
+        "Official legislative index for Laws, Presidential/Cabinet/ministerial decisions, SCC judgments and State Council opinions published 1 Jan–30 Jun 2026",
+        "Income Tax Law91/2005 — complete 967-line searchable Official Gazette PDF"
       ],
-      "access_status": "Official Authority PDF opened and extracted; confirms Law10/2026 Gazette issue20 مكرر, 16 May 2026, and other first-half 2026 legal publications.",
+      "access_status": "Official Authority PDF opened and extracted; confirms Law10/2026 Gazette issue20 مكرر, 16 May 2026, and other first-half 2026 legal publications. On 23 Nov 2026, the original Law91/2005 Official Gazette issue23 (تابع), 9 Jun 2005, was opened from the ASA-hosted PDF; 967-line searchable Arabic text located.",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
       "permission_evidence": "Publicly accessible official Authority PDF; no express licence for commercial reuse, bulk extraction or redistribution identified.",
       "terms_checked_on": "2026-11-18",
       "bulk_download_or_api": "Single public PDF; no bulk/API permission established",
-      "required_next_action": "Use as official discovery/index source; obtain underlying original Gazette issues for page-image and binary verification."
+      "required_next_action": "Use as official discovery/index source; obtain underlying original Gazette issues for page-image and binary verification. Compare the ASA-hosted PDF against original Gazette page images and acquire later Law91 amendments."
     },
     {
       "source_id": "EG-CAIRO-GOV-STATE-LAND-DEADLINE",
@@ -914,7 +916,7 @@
     {
       "source_id": "EG-ETA-TAX-LAWS",
       "authority": "Egyptian Tax Authority / Income Tax Authority portals",
-      "source_page": "https://www.eta.gov.eg/sites/default/files/2026-08/law.no_.149.of_.2026.pdf; https://eta.gov.eg/sites/default/files/2025-02/law_no.5.of_.2025.pdf; https://www.eta.gov.eg/sites/default/files/2025-02/law_no.6.of_.2025.pdf; https://portal.eta.gov.eg/sites/default/files/2025-07/vat-law_no.157.of_.2025.pdf; https://portal.eta.gov.eg/sites/default/files/2025-12/mof.decision.no_.418.of_.2025.pdf; https://portal.eta.gov.eg/sites/default/files/2025-12/mof.decision.no_.420.of_.2025.pdf; https://www.eta.gov.eg/sites/default/files/2024-03/vat-law_no.208-2017.pdf; https://www.eta.gov.eg/sites/default/files/2024-03/vat-law_no.329-2017.pdf; https://www.eta.gov.eg/sites/default/files/2024-03/vat-law_no.177-2023.pdf; https://www.eta.gov.eg/sites/default/files/2024-03/vat-law_no.24-2023.pdf",
+      "source_page": "https://www.eta.gov.eg/sites/default/files/2026-08/law.no_.149.of_.2026.pdf; https://eta.gov.eg/sites/default/files/2025-02/law_no.5.of_.2025.pdf; https://www.eta.gov.eg/sites/default/files/2025-02/law_no.6.of_.2025.pdf; https://portal.eta.gov.eg/sites/default/files/2025-07/vat-law_no.157.of_.2025.pdf; https://portal.eta.gov.eg/sites/default/files/2025-12/mof.decision.no_.418.of_.2025.pdf; https://portal.eta.gov.eg/sites/default/files/2025-12/mof.decision.no_.420.of_.2025.pdf; https://www.eta.gov.eg/sites/default/files/2024-03/vat-law_no.208-2017.pdf; https://www.eta.gov.eg/sites/default/files/2024-03/vat-law_no.329-2017.pdf; https://www.eta.gov.eg/sites/default/files/2024-03/vat-law_no.177-2023.pdf; https://www.eta.gov.eg/sites/default/files/2024-03/vat-law_no.24-2023.pdf; https://www.eta.gov.eg/sites/default/files/2024-03/law_no.991-2005.pdf; https://eta.gov.eg/sites/default/files/2024-03/law_no.175-2023.pdf; https://eta.gov.eg/sites/default/files/2024-03/law_no.7-2024.pdf; https://eta.gov.eg/sites/default/files/2024-12/law_no._159_for_2023.pdf",
       "material_types": [
         "VAT law index",
         "income tax law index",
@@ -932,16 +934,20 @@
         "Law208/2017 — tobacco schedule amendment, searchable Official Gazette PDF",
         "Decision329/2017 — Article16 VAT return filing amendment, searchable Proceedings PDF",
         "Law177/2023 — tobacco and cigarette schedule amendment, ETA Gazette PDF",
-        "Decision24/2023 — extensive VAT Executive Regulation amendment, 465-line searchable PDF"
+        "Decision24/2023 — extensive VAT Executive Regulation amendment, 465-line searchable PDF",
+        "Finance Minister Decision991/2005 — Income Tax Law91 executive regulation, complete 973-line searchable PDF",
+        "Law175/2023 — Article8 income-tax rate table amendment, two-page searchable PDF",
+        "Law7/2024 — Article8 rate table and Article13 personal exemption amendment, two-page searchable PDF",
+        "Law159/2023 — State-entity tax/fee exemption cancellation, ETA last-page Gazette scan"
       ],
-      "access_status": "Direct ETA-hosted four-page Official Gazette reproduction opened; issue30 bis (أ), 28 July 2026; text layer extracted. Ministry legislation portal labels Law149 in force but warns online legislation pages are guidance and Gazette is legal reference. Corrigendum PDF visually inspected page-by-page; Customs Circular48/2026 text layer parsed for corrections to Laws149 and150; Law151 page2 visually inspected. Official four-page ETA scan for Decision450/2026 visually inspected; full issuing provisions and forms transcribed locally; exact Egyptian Proceedings issue/date still to verify. ETA official page lists Law153/2026 PDF (law.no_.153.of_.2026.pdf); full text source and official Ministry of Finance record located; local PDF bytes/hash not archived. On 23 Nov 2026, additional ETA-hosted Official Gazette sources inspected: Laws5/2025 and6/2025 (searchable text PDFs), Law157/2025 (five-page image-only Gazette scan, all page images inspected), and Decisions418/2025 and420/2025 (two-page scans each, all page images inspected). No local PDF bytes/hash acquired; Decision418/420 scans have no usable text layer. On 23 Nov 2026, ETA-hosted official VAT archive sources were inspected for Law208/2017 (searchable 57-line PDF), Decision329/2017 (searchable 39-line PDF), Decision24/2023 (465-line searchable PDF), and Law177/2023 (ETA-hosted Gazette PDF plus indexed Amiri Press text).",
+      "access_status": "Direct ETA-hosted four-page Official Gazette reproduction opened; issue30 bis (أ), 28 July 2026; text layer extracted. Ministry legislation portal labels Law149 in force but warns online legislation pages are guidance and Gazette is legal reference. Corrigendum PDF visually inspected page-by-page; Customs Circular48/2026 text layer parsed for corrections to Laws149 and150; Law151 page2 visually inspected. Official four-page ETA scan for Decision450/2026 visually inspected; full issuing provisions and forms transcribed locally; exact Egyptian Proceedings issue/date still to verify. ETA official page lists Law153/2026 PDF (law.no_.153.of_.2026.pdf); full text source and official Ministry of Finance record located; local PDF bytes/hash not archived. On 23 Nov 2026, additional ETA-hosted Official Gazette sources inspected: Laws5/2025 and6/2025 (searchable text PDFs), Law157/2025 (five-page image-only Gazette scan, all page images inspected), and Decisions418/2025 and420/2025 (two-page scans each, all page images inspected). No local PDF bytes/hash acquired; Decision418/420 scans have no usable text layer. On 23 Nov 2026, ETA-hosted official VAT archive sources were inspected for Law208/2017 (searchable 57-line PDF), Decision329/2017 (searchable 39-line PDF), Decision24/2023 (465-line searchable PDF), and Law177/2023 (ETA-hosted Gazette PDF plus indexed Amiri Press text). On 23 Nov 2026, ETA-hosted official income-tax sources inspected: full Decision991/2005 (973 lines), Law175/2023 (138 lines), Law7/2024 (115 lines), and Law159/2023 (only page4 of the Gazette item; complete text obtained from Amiri Press locator/secondary full PDF).",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
       "permission_evidence": " Public government-hosted PDF; no explicit bulk/republication/commercial reuse permission located.  Public government-hosted PDF; no bulk/republication/commercial reuse permission established. Government-hosted PDF public access; no bulk or commercial reuse permission established. Government-hosted official PDF public access; no bulk/republication/commercial reuse permission established.",
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
-      "required_next_action": "Archive/hash PDF; verify Gazette issue30 bis (أ) page image; preserve official publication version and any subsequent corrections. Acquire and hash permitted original PDF files; complete image-to-text transcription of Law157/2025 schedules and Decisions418/2025 and420/2025 forms/operative text; verify later amendments. Complete image/page QA and verbatim schedule extraction for Law177/2023; preserve amendment history across 2017–2026."
+      "required_next_action": "Archive/hash PDF; verify Gazette issue30 bis (أ) page image; preserve official publication version and any subsequent corrections. Acquire and hash permitted original PDF files; complete image-to-text transcription of Law157/2025 schedules and Decisions418/2025 and420/2025 forms/operative text; verify later amendments. Complete image/page QA and verbatim schedule extraction for Law177/2023; preserve amendment history across 2017–2026. Complete current Law91 consolidation and structured Article8 rate tables; obtain full original Gazette item for Law159/2023."
     },
     {
       "source_id": "EG-FAOLEX-LAW143-1981",
@@ -2225,7 +2231,7 @@
     {
       "source_id": "EG-MOF-TAX-LEGISLATION-INDEX-2026",
       "authority": "Ministry of Finance, Arab Republic of Egypt",
-      "source_page": "https://mof-web-prd.apps.fslabs.net/ar/legislation/legislation-6a731e1163496600085dd856; https://mof.gov.eg/ar/legislation/legislation-29; https://mof.gov.eg/ar/legislation/legislation-5fe868ea7bfc600007cbee84; https://mof.gov.eg/ar/legislation/legislation-5fe868af7bfc600007cbec34; https://mof.gov.eg/ar/legislation/legislation-5fe868c77bfc600007cbecbf; https://mof.gov.eg/ar/legislation/legislation-5fe868ab7bfc600007cbebd3; https://mof.gov.eg/ar/legislation/legislation-63b153f2c20e810008ffe605; https://mof.gov.eg/ar/legislation/legislation-63b157e65e154a0008be3060; https://mof.gov.eg/ar/legislation/legislation-6549ebe5c845320009ac2789",
+      "source_page": "https://mof-web-prd.apps.fslabs.net/ar/legislation/legislation-6a731e1163496600085dd856; https://mof.gov.eg/ar/legislation/legislation-29; https://mof.gov.eg/ar/legislation/legislation-5fe868ea7bfc600007cbee84; https://mof.gov.eg/ar/legislation/legislation-5fe868af7bfc600007cbec34; https://mof.gov.eg/ar/legislation/legislation-5fe868c77bfc600007cbecbf; https://mof.gov.eg/ar/legislation/legislation-5fe868ab7bfc600007cbebd3; https://mof.gov.eg/ar/legislation/legislation-63b153f2c20e810008ffe605; https://mof.gov.eg/ar/legislation/legislation-63b157e65e154a0008be3060; https://mof.gov.eg/ar/legislation/legislation-6549ebe5c845320009ac2789; https://mof.gov.eg/ar/legislation/legislation-5fe869e57bfc600007cbf840; https://mof.gov.eg/ar/legislation/legislation-5fe868ad7bfc600007cbec04; https://mof.gov.eg/ar/legislation/legislation-5fe868a87bfc600007cbeb6d; https://mof.gov.eg/ar/legislation/legislation-5fe868aa7bfc600007cbeb9c; https://mof.gov.eg/ar/legislation/legislation-5fe868ab7bfc600007cbebd2; https://mof.gov.eg/ar/legislation/legislation-5fe868ab7bfc600007cbebbe; https://mof.gov.eg/ar/legislation/legislation-6522692e90919500080df0af; https://mof.gov.eg/ar/legislation/legislation-66a7477cfb247e0008920cd9",
       "material_types": [
         "tax laws",
         "financial legislation",
@@ -2234,16 +2240,20 @@
         "Law3/2017 — VAT portion of omnibus law, MOF two-page Gazette scan",
         "Decision337/2019, Decision780/2019, Decision197/2020, Decision160/2020 and Decision343/2020 — VAT Regulation66/2017 amendments",
         "Decision181/2022 and Decision426/2022 — VAT refund and consumer-incentive regulation amendments",
-        "Decision115/2023 — 5% machinery/production-line VAT treatment, four-page PDF"
+        "Decision115/2023 — 5% machinery/production-line VAT treatment, four-page PDF",
+        "Income Tax Law91/2005 executive regulation Decision991/2005, official record in force",
+        "Income Tax Executive Regulation amendments: Decisions335/2019,54/2020,217/2020,296/2020,344/2020 — official one-page Gazette scans",
+        "Income Tax Law30/2023, Law175/2023, Law7/2024 — official records/PDFs",
+        "Law159/2023 and Prime Minister Decision242/2024 — cancellation of State-entity tax exemptions and executive regulation"
       ],
-      "access_status": "official_index_located On 23 Nov 2026, additional MOF official records and Gazette PDFs were inspected for Law3/2017; Decisions337/2019, 780/2019, 197/2020, 160/2020, 343/2020, 181/2022, 426/2022 and115/2023. Some are image-only scans; Decision197/2020 text transcription remains incomplete.",
+      "access_status": "official_index_located On 23 Nov 2026, additional MOF official records and Gazette PDFs were inspected for Law3/2017; Decisions337/2019, 780/2019, 197/2020, 160/2020, 343/2020, 181/2022, 426/2022 and115/2023. Some are image-only scans; Decision197/2020 text transcription remains incomplete. On 23 Nov 2026, the MOF income-tax legislation index was checked; Decision991/2005 is listed in force with related amendments. Official one-page Gazette scans visually inspected for Decisions335/2019,54/2020,217/2020,296/2020 and344/2020. Full official MOF four-page Gazette PDF for PM Decision242/2024 acquired (92 lines).",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
       "permission_evidence": null,
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
-      "required_next_action": "Confirm the production portal domain and terms, request permission for intended uses, and verify every instrument against the Official Gazette before indexing. Obtain exact Decision197/2020 replacement wording; verify scanned Decisions337/2019 and780/2019 against page images; archive/hash only as permitted."
+      "required_next_action": "Confirm the production portal domain and terms, request permission for intended uses, and verify every instrument against the Official Gazette before indexing. Obtain exact Decision197/2020 replacement wording; verify scanned Decisions337/2019 and780/2019 against page images; archive/hash only as permitted. Check all additional pages of MOF Decision991 related-legislation index and acquire other amendments (including 2019–2020) before declaring the regulation chain complete."
     },
     {
       "source_id": "EG-MOHAMAH-SCC-REPRODUCTIONS",
