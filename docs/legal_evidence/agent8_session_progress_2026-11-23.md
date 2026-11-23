@@ -18,7 +18,7 @@ Four separate acquisition tranches and four separate CSV instrument registers we
    - [Research note](agent8_maritime_ports_inland_navigation_2026-11-23.md)
    - [Instrument register](agent8_maritime_ports_inland_navigation_instruments_2026-11-23.csv)
 
-The canonical national acquisition CSV was fetched from the default branch before deduplication. It contains 452 lines including header (451 data records) after the 23 November environment, waste, water-pollution and health updates; the earlier 422-record figure was the pre-update snapshot. The master index dashboard is dated 18 November 2026 and reports 388 confirmed + 1 provisional instruments; that dashboard/register count discrepancy remains unresolved. This session used exact instrument-number/title checks against the live CSV, updated existing instrument rows in place, and added new candidate rows for instruments not already registered. The master index dashboard was not altered.
+The canonical national acquisition CSV was fetched from the default branch before deduplication. It contains 452 lines including header (458 data records) after the 23 November environment, waste, water-pollution and health updates; the earlier 422-record figure was the pre-update snapshot. The master index dashboard is dated 18 November 2026 and reports 388 confirmed + 1 provisional instruments; that dashboard/register count discrepancy remains unresolved. This session used exact instrument-number/title checks against the live CSV, updated existing instrument rows in place, and added new candidate rows for instruments not already registered. The master index dashboard was not altered.
 
 ## 2. Instrument and article counts
 
@@ -193,7 +193,7 @@ Canonical register updated with 13 new candidate rows EG-0440–EG-0452 and exis
 - Watercourse/sewerage package remains **10/11 = 91%** source/PDF acquisition.
 - Environment Law4/1994 chain remains **6/12 = 50%** complete searchable sources located.
 - Waste Management Law202/2020 chain remains **3/3 = 100%** complete searchable sources located.
-- Canonical acquisition register now has **451 data records** (452 lines including header).
+- Canonical acquisition register now has **458 data records** (452 lines including header).
 - Whole-corpus percentage remains unavailable: no reliable denominator exists for all in-scope Egyptian legislation; register rows are not a corpus denominator.
 
 ### Next acquisition priorities
@@ -214,10 +214,43 @@ The source-permission register was updated to **189 source records**. Six source
 ## 13. Session-wide acquisition summary (23 November 2026)
 
 Across Agent8's four transport dossiers plus the environment, waste, Nile/watercourse and health dossiers:
-- **61 candidate unique instruments** identified/registered across the Agent8 tranche registers (31 transport; 2 new environment-regulation candidates; 1 new waste-regulation amendment; 14 water/sewerage instruments and amendment leads; 13 health-sector instruments).
+- **68 candidate unique instruments** identified/registered across the Agent8 tranche registers (31 transport; 2 new environment-regulation candidates; 1 new waste-regulation amendment; 14 water/sewerage instruments and amendment leads; 13 health-sector instruments; 7 tax-procedure instruments added in this follow-on pass).
 - **30 new candidate rows** added to the canonical national acquisition CSV in the environment/waste/water/health passes; **17 existing canonical rows** updated in place with actual text observations and improved provenance.
-- Canonical national register now has **451 data rows**. Its denominator is not the total in-scope Egyptian legislation; do not convert this count into a whole-corpus completion percentage.
+- Canonical national register now has **458 data rows**. Its denominator is not the total in-scope Egyptian legislation; do not convert this count into a whole-corpus completion percentage.
 - Four substantive new Arabic text dossiers were committed for environment, waste management, Nile/water pollution/sewerage, and health; the earlier four transport dossiers remain in the repository.
 - Source-permission register now has **189 source assessments**, with all new collection and commercial reuse permissions unknown.
 
 This summary counts candidate instruments, not fully authenticated or locally mirrored verbatim texts. Gazette page-image verification, complete amendment redlines, currentness review and lawyer review remain separate workstreams.
+
+
+## 14. Follow-on acquisition — Unified Tax Procedures Law and Executive Regulation
+
+New dossier: [Unified Tax Procedures Law 206/2020, Executive Regulation 286/2021 and amendments](unified_tax_procedures_law206_2020_executive_regulation_amendments_arabic_acquisition_2026-11-23.md).
+
+Canonical register updated: **7 new instrument rows EG-0453–EG-0459** added for Law211/2020, Decision286/2021, Law7/2025, and Finance Minister Decisions20/2023, 309/2023, 518/2023 and 538/2023. Existing EG-0008 (Law206/2020 and Law150/2026) updated in place; EG-0335 remains the cross-reference for the official 2026 corrigendum. No duplicate base-law or Law150 row was created.
+
+### Actual Arabic text / source acquisition
+- Law206/2020: full searchable Arabic Official Gazette PDF from ETA, 649 extracted lines.
+- Law211/2020: full operative amendment text from official ETA Gazette PDF; replaces Articles13, 44, 70 and73 (published replacement heading for one provision prints Art72) and adds Arts73 bis and74 bis. Article70/72 mismatch is recorded for page-image verification.
+- Decision286/2021: full searchable Arabic executive regulation source from ETA, 6,838 extracted lines; selected provisions on returns, e-invoicing, tax collection and seizure captured.
+- Decision20/2023: official MOF two-page PDF; changes wage-tax return/annual settlement rules in regulation Art31. OCR/RTL ordering needs visual page check.
+- Decision309/2023: official MOF one-page PDF; adds a visible electronic invoice/receipt compliance certificate paragraph to regulation Art34. Secondary source used to recover readable wording from the official PDF's poor text layer.
+- Decision518/2023: official Amiri Press Gazette metadata for Proceedings issue260 (تابع), 21 Nov 2023; original PDF request-a-copy restricted. Full Arabic Article52 bis text acquired from secondary legal sources; status labelled secondary.
+- Decision538/2023: official MOF legislation record confirms instrument and date; complete Gazette reproduction and full operative Arabic text located from secondary source. Repeals paragraph2 of Article52 bis inserted by Decision518/2023.
+- Law7/2025: official ETA two-page Arabic Gazette PDF; adds Arts45 bis, 75 bis and75 bis 1.
+- Law150/2026 remains under existing EG-0008, with the 8 Aug 2026 Gazette corrigendum separately cross-linked to EG-0335.
+
+### Scoped progress
+- Unified Tax Procedures package: **9/9 = 100%** have a located text source or complete PDF. This includes two instruments (Decision518/2023 and Decision538/2023) where the operative Arabic text is presently sourced from secondary reproductions and the official source status is metadata/catalogue or restricted Gazette access; it does not mean all nine originals have been visually checked or locally mirrored.
+- Canonical national acquisition register now has **458 data rows** (459 lines including header).
+- Agent8 candidate unique instrument count rises from 61 to **68** after adding the seven new tax-procedure instruments.
+- Whole-corpus percentage remains unavailable: there is no defensible denominator for all in-scope Egyptian legislation. Scoped source acquisition rates must not be represented as whole-corpus completion.
+
+### Next acquisition priorities
+1. Obtain the restricted original Amiri Press PDF for Decision518/2023 and original Gazette PDF for Decision538/2023.
+2. Inspect Law211/2020 Gazette page image to resolve Art70/Art72 mismatch.
+3. Build a provision-level consolidated Law206/2020 incorporating Laws211/2020, 7/2025 and150/2026 and the separate corrigendum event.
+4. Build a provision-level current Decision286/2021 text integrating Decisions20/2023, 309/2023, 518/2023 and538/2023, preserving repealed text as history.
+5. Search for any later decisions/circulars under the Unified Tax Procedures Law and verify no post-538/2023 amendment to Decision286/2021.
+
+No lawyer review, commercial reuse clearance, local Gazette binary hashing or complete page-image verification is claimed.
