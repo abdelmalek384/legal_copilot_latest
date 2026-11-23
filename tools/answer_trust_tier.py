@@ -57,7 +57,7 @@ def _valid_sha256(value: object) -> bool:
     return isinstance(value, str) and _SHA256_RE.fullmatch(value) is not None
 
 
-def _source_matched_evidence_ready(source: Mapping) -> bool:
+def source_match_evidence_ready(source: Mapping) -> bool:
     """Require the complete technical evidence package proposed for this tier."""
     evidence = source.get("source_match_evidence")
     if not isinstance(evidence, Mapping):
@@ -123,6 +123,10 @@ def _source_matched_evidence_ready(source: Mapping) -> bool:
     return all(evidence.get(key) is True for key in required)
 
 
+# Backward-compatible private alias for earlier internal callers.
+_source_matched_evidence_ready = source_match_evidence_ready
+
+
 def classify_answer_trust_tier(
     sources: object,
     *,
@@ -181,7 +185,7 @@ def classify_answer_trust_tier(
 
     if all(
         source.get("source_status") == "source_matched_unreviewed"
-        and _source_matched_evidence_ready(source)
+        and source_match_evidence_ready(source)
         for source in normalized
     ):
         return {"trust_tier": TIER_SOURCE_MATCHED, "reason_codes": ["not_lawyer_reviewed"]}
