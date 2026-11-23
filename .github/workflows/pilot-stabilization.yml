@@ -31,6 +31,9 @@ jobs:
       - name: Test subscription, invitation and read-only billing lifecycle
         if: ${{ !cancelled() && steps.install_locked_dependencies.outcome == 'success' }}
         run: PYTHONPATH=. python tests/test_subscription_billing_routes.py
+      - name: Test identity invitations, recovery, rate limits and session revocation
+        if: ${{ !cancelled() && steps.install_locked_dependencies.outcome == 'success' }}
+        run: PYTHONPATH=. python tests/test_identity_lifecycle.py
       - name: Test encrypted multi-database backup and restore
         if: ${{ !cancelled() && steps.install_locked_dependencies.outcome == 'success' }}
         run: PYTHONPATH=. python tests/test_database_backup_bundle.py
