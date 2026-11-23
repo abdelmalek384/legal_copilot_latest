@@ -53,6 +53,15 @@ class DocumentPassageAnnotationTests(unittest.TestCase):
         self.assertIn("role:'listitem'", page)
         self.assertIn("role:'group','aria-label':uiText('إعدادات التظليل والملاحظة'", page)
 
+    def test_review_history_disclosure_tracks_expanded_state(self):
+        html = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
+        page = html[html.index("const renderChunkReviewCards="):html.index("const renderAnalysis=()=>{")]
+        self.assertIn("role:'region','aria-label':uiText('سجل مراجعة النص المستخرج'", page)
+        self.assertIn("historyButton.setAttribute('aria-controls',historyResults.id)", page)
+        self.assertIn("historyButton.setAttribute('aria-expanded','false')", page)
+        self.assertIn("historyButton.setAttribute('aria-expanded','true')", page)
+        self.assertIn("uiText('إخفاء سجل المراجعة','Hide review history')", page)
+
     def test_review_ui_highlights_selected_text_and_marks_stale_offsets(self):
         html = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
         page = html[html.index("const renderChunkReviewCards="):html.index("const renderAnalysis=()=>{")]
