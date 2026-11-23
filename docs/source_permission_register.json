@@ -2945,6 +2945,23 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "Single public article; no bulk/API permission established",
       "required_next_action": "Acquire Gazette issue75 bis (ج) and compare; verify Decision number and Article14 bis OCR; review terms before redistribution."
+    },
+    {
+      "source_id": "EG-MKSEGYPT",
+      "authority": "MKS Egypt Legal Research",
+      "source_page": "https://mksegypt.org/ar/decisions",
+      "material_types": [
+        "Egyptian legislation and executive decisions",
+        "administrative and judicial legal texts"
+      ],
+      "access_status": "full Arabic decision transcriptions located for selected local-administration amendments",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Publicly accessible decision transcriptions and legal research pages were located. No evidence of permission for bulk extraction, local storage, OCR, indexing, display or commercial reuse has been established.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Review site terms and obtain written permission for intended corpus uses; verify all decision texts against original Gazette pages."
     }
   ]
 }
