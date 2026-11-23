@@ -3515,7 +3515,7 @@ function documentIntelligencePanel(caseId,documents){
     const reviewLabel=latest?({accepted:uiText('تمت المراجعة','Reviewed — accepted'),corrected:uiText('تم تصحيح النص','Text corrected'),needs_recheck:uiText('يتطلب إعادة الفحص','Needs recheck')}[latest.outcome]||uiText('له سجل مراجعة','Review recorded')):uiText('لم تتم المراجعة','Not yet reviewed');
     const note=h('input',{type:'text',maxLength:2000,placeholder:uiText('ملاحظة المراجع (اختيارية)','Reviewer note (optional)'),'aria-label':uiText('ملاحظة مراجعة المقطع ','Review note for chunk ')+chunk.id});
     const correction=h('textarea',{rows:4,maxLength:20000,placeholder:uiText('أدخل النص المصحح بعد الرجوع إلى المستند الأصلي.','Enter corrected text after checking the original document.'),'aria-label':uiText('النص المصحح للمقطع ','Corrected text for chunk ')+chunk.id,style:'display:none;width:100%'});
-    const currentText=String(chunk.text||''),annotations=Array.isArray(chunk.annotations)?chunk.annotations:[];
+    const currentText=String(latest&&latest.outcome==='corrected'?latest.reviewed_text:chunk.text||''),annotations=Array.isArray(chunk.annotations)?chunk.annotations:[];
     const passage=h('p',{className:'extraction-review-text passage-annotation-text','data-chunk-id':String(chunk.id)});
     const renderPassage=()=>{
      const chars=Array.from(currentText),parts=[];let cursor=0;
@@ -3613,8 +3613,8 @@ function documentIntelligencePanel(caseId,documents){
      h('div',{},h('b',{textContent:uiText('النص الحالي القابل للتحديد','Current selectable passage')}),passage),
      annotateButton,annotationEditor,
      annotations.length?h('div',{className:'passage-annotation-list'},h('b',{textContent:uiText('التظليلات والملاحظات','Highlights and annotations')}),...annotationRows):null,
-     h('div',{},h('b',{textContent:latest&&latest.outcome==='corrected'?uiText('النص المستخرج الأصلي','Original extracted passage'):uiText('النص المستخرج','Extracted passage')}),h('p',{className:'extraction-review-text',textContent:String(latest&&latest.outcome==='corrected'?latest.original_text:chunk.text||'')})),
-     latest&&latest.outcome==='corrected'?h('div',{className:'reviewed-correction'},h('b',{textContent:uiText('آخر نص مصحح مسجل','Latest recorded correction')}),h('p',{className:'extraction-review-text',textContent:String(latest.reviewed_text||'')})):null,
+     latest&&latest.outcome==='corrected'?h('div',{},h('b',{textContent:uiText('النص المستخرج الأصلي','Original extracted passage')}),h('p',{className:'extraction-review-text',textContent:String(latest.original_text||'')})):null,
+
      latest&&latest.outcome==='corrected'&&Array.isArray(latest.changes)?h('div',{className:'reviewed-change-list'},h('b',{textContent:uiText('التغييرات النصية الحرفية','Literal text changes')}),...latest.changes.map((change,index)=>h('div',{className:'reviewed-change'},h('p',{className:'mut',textContent:uiText('قبل التعديل','Before')}),h('p',{className:'extraction-review-text',textContent:String(change.before||'')}),h('p',{className:'mut',textContent:uiText('بعد التعديل','After')}),h('p',{className:'extraction-review-text',textContent:String(change.after||'')}),h('p',{className:'mut',textContent:uiText('هذا اختلاف نصي حرفي ويتطلب مراجعة قانونية.','Literal text difference; requires lawyer review.')})))):null,
      latest&&latest.comparison_warning?h('p',{className:'mut',textContent:latest.comparison_warning}):null,
      latest&&latest.note?h('p',{className:'mut',textContent:uiText('آخر ملاحظة: ','Latest note: ')+latest.note}):null,
