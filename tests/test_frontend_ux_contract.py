@@ -1136,8 +1136,9 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("const renderDocuments=docs=>{", page)
         self.assertIn("new Set(docs.map(doc=>String(doc.extraction_status", page)
         self.assertIn("doc.content_type", page)
-        self.assertIn("documentFilter.oninput=()=>renderDocuments(currentDocuments)", page)
-        self.assertIn("documentStatusFilter.onchange=()=>renderDocuments(currentDocuments)", page)
+        self.assertIn("documentFilter.oninput=()=>{if(!globalMode)renderDocuments(currentDocuments)}", page)
+        self.assertIn("documentFilter.onkeydown=e=>{if(globalMode&&e.key==='Enter'){globalOffset=0;loadAllAccessibleDocs()}}", page)
+        self.assertIn("documentStatusFilter.onchange=()=>{if(globalMode){globalOffset=0;loadAllAccessibleDocs()}else renderDocuments(currentDocuments)}", page)
 
     def test_firm_switch_clears_selected_document_matter_context(self):
         self.assertIn("window.DOCUMENT_MATTER_ID=null;window.DOCUMENT_REVIEW_TARGET=null;sessionStorage.me=JSON.stringify(ME)", HTML)
@@ -1179,8 +1180,8 @@ class FrontendUXContractTests(unittest.TestCase):
     def test_document_library_filters_saved_classification_state(self):
         page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\nasync function law(){")]
         self.assertIn("documentClassificationFilter", page)
-        self.assertIn("documentClassificationFilter.value==='saved'?!!doc.saved_classification:!doc.saved_classification", page)
-        self.assertIn("documentClassificationFilter.onchange=()=>renderDocuments(currentDocuments)", page)
+        self.assertIn("classificationValue==='saved'?!!doc.saved_classification:classificationValue==='unsaved'?!doc.saved_classification:doc.saved_classification===classificationValue", page)
+        self.assertIn("documentClassificationFilter.onchange=()=>{if(globalMode){globalOffset=0;loadAllAccessibleDocs()}else renderDocuments(currentDocuments)}", page)
 
     def test_workspace_global_search_uses_authorized_bounded_matter_search(self):
         shell = HTML[HTML.index("function shell(title"):HTML.index("\nfunction mfaFirmSwitcher()")]
