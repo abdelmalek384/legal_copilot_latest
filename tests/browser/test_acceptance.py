@@ -1138,6 +1138,16 @@ class BrowserAcceptanceTests(unittest.TestCase):
             "passage annotations must not alter the extracted source chunk",
         )
 
+        # Return to the client-wide results, then reopen the same passage.
+        # The query/page context and the saved lawyer annotation must survive.
+        self.page.get_by_role("button", name="العودة إلى نتائج بحث العميل", exact=True).click()
+        client_card = self.page.locator(".card").filter(has_text=client_name).last
+        restored_query = client_card.get_by_label("البحث في مستندات العميل")
+        self.assertEqual(restored_query.input_value(), sentinel)
+        client_card.locator(".src").first.wait_for(state="visible", timeout=15000)
+        client_card.locator(".src").first.get_by_role("button", name="فتح المقطع في ملف القضية").click()
+        self.page.locator(".passage-annotation-list").wait_for(state="visible", timeout=15000)
+        self.assertIn(annotation_note, self.page.locator(".passage-annotation-list").inner_text())
 
     def test_cross_firm_case_identifier_does_not_reveal_other_firm_sentinel(self) -> None:
         self.login(self.state["owner_a_email"])
