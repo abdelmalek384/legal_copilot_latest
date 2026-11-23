@@ -1204,10 +1204,15 @@ class BrowserAcceptanceTests(unittest.TestCase):
         case_b_intelligence = self.page.locator(".document-intelligence-panel")
         case_b_intelligence.locator("button").first.click()
         self.page.locator(".passage-annotation-text").wait_for(state="visible", timeout=15000)
-        history_button = self.page.get_by_role("button", name="عرض سجل المراجعة", exact=True)
+        # Record a review in Case B so its audit history is demonstrably distinct
+        # from Case A's saved annotation history.
+        case_b_intelligence.get_by_role("button", name="اعتماد النص", exact=True).first.click()
+        history_button = case_b_intelligence.get_by_role("button", name="عرض سجل المراجعة", exact=True)
         history_button.wait_for(state="visible", timeout=15000)
         history_button.click()
-        self.page.get_by_text("لا يوجد سجل مراجعة لهذا المستند.", exact=True).wait_for(timeout=10000)
+        case_b_history = case_b_intelligence.locator('[aria-label="سجل مراجعة النص المستخرج"]')
+        case_b_history.get_by_text("مقبول", exact=False).wait_for(timeout=10000)
+        self.assertIn(case_titles[other_index].replace("SYNTHETIC ", ""), case_b_history.inner_text())
 
         # Return again and reopen Case A: its saved annotation must still exist.
         self.page.get_by_role("button", name="العودة إلى نتائج بحث العميل", exact=True).click()
