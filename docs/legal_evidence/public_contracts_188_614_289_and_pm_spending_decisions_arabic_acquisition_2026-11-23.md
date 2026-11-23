@@ -108,3 +108,15 @@ This is a related government-wide administrative/financial control decision, not
 3. Retrieve Decision 241/2024 and its schedules; determine whether it extended, replaced or supplemented Decision 4499/2023 controls.
 4. Query the Government Services Authority procurement portal for all circulars/ministerial decisions since 2021 and link each to Law 182/2018 / Decision 692/2019.
 5. Keep all captured material in evidence/quarantine until source-specific rights, original Gazette comparison and lawyer-review gates pass.
+
+
+## 10. PM Decision 241/2024 — investment-spending rationalization
+
+**Publication metadata:** Official Gazette issue 5 مكرر, 4 February 2024; effective 5 February 2024. The official Ministry of Finance decision index identifies the number, date and Gazette issue: https://mof.gov.eg/ar/legislation/decisions/cat-5fe2a20d7bfc600007cbce3a?page=4 . Full Arabic secondary transcription: https://mksegypt.org/ar/decisions/21747 . MELES DSpace catalogue lists separate Arabic and English PDFs but no authorized downloadable bytes were captured: https://dspace.id.com.eg/items/42bc8d35-dc8d-487c-99b8-497d0cf063e1 .
+
+**Short Arabic operative excerpt (secondary transcription):**
+> **المادة الأولى:** يعمل في شأن ترشيد الإنفاق الاستثماري بخطة التنمية الاقتصادية للعام المالي 2023/2024 بالجهات الداخلة في الموازنة العامة للدولة والهيئات العامة الاقتصادية، في ظل الأزمة الاقتصادية الحالية، بالضوابط المرافقة لهذا القرار وذلك حتى نهاية السنة المالية 2023/2024.
+
+Article 2 makes exceptions subject to Prime Minister approval on a Ministry of Planning and Economic Development proposal; Article 3 provides publication and next-day commencement. The attached controls include a 15% reduction in treasury funding for the FY2023/2024 investment plan (with named exceptions), suspension of contracts for recently added projects until 30 June 2024, a temporary prohibition on purchasing passenger vehicles, priority for projects at least 70% complete, and restrictions on external financing/foreign-currency components. The decision expressly expires at the end of FY2023/2024; it is historical, not a current procurement restriction absent a later extension or reenactment.
+
+**Relationship:** Decision 241/2024 is a later investment-spending companion to PM Decision 4499/2023, not an amendment to Law 182/2018 or Finance Decision 692/2019. It was issued for the same FY2023/2024 crisis period and should be linked to Decision4499/2023 in the temporal-control graph.
