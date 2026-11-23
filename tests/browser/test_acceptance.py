@@ -1048,6 +1048,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
         ]
         document_ids = []
         case_ids = []
+        source_texts = []
         for index, title in enumerate(case_titles, start=1):
             created = self.page.request.post(
                 self.base_url + "/cases",
@@ -1058,17 +1059,19 @@ class BrowserAcceptanceTests(unittest.TestCase):
             self.assertEqual(created.status, 200, created.text())
             case_id = created.json()["id"]
             case_ids.append(case_id)
+            source_text = f"{sentinel} — synthetic evidence passage for matter {index}."
             document = self.page.request.post(
                 self.base_url + f"/cases/{case_id}/docs",
                 data={
                     "name": f"synthetic-client-search-{index}.txt",
-                    "text": f"{sentinel} — synthetic evidence passage for matter {index}.",
+                    "text": source_text,
                 },
                 headers=headers,
                 timeout=8000,
             )
             self.assertEqual(document.status, 200, document.text())
             document_ids.append(document.json()["document_id"])
+            source_texts.append(source_text)
 
         self.page.get_by_role("button", name="العملاء وتعارض المصالح", exact=True).click()
         client_card = self.page.locator(".card").filter(has_text=client_name).last
@@ -1119,7 +1122,11 @@ class BrowserAcceptanceTests(unittest.TestCase):
             timeout=8000,
         )
         self.assertEqual(chunks.status, 200, chunks.text())
-        self.assertTrue(any(row.get("text", "").startswith(sentinel) for row in chunks.json()["chunks"]))
+        self.assertEqual(
+            [row.get("text", "") for row in chunks.json()["chunks"]],
+            [source_texts[opened_index]],
+            "passage annotations must not alter the extracted source chunk",
+        )
 
 
     def test_cross_firm_case_identifier_does_not_reveal_other_firm_sentinel(self) -> None:
