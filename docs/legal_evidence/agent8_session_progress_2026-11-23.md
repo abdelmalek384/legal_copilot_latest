@@ -209,3 +209,15 @@ No commercial reuse rights, legal-currentness certification or lawyer review is 
 ## 12. Source-permission register reconciliation
 
 The source-permission register was updated to **189 source records**. Six source-family records were added for EEAA environment/waste legislation, IDA PM338/1995 PDF, MWRI Law48/1982 and PM92/2013 PDFs, SIS-hosted Gazette PDFs for health instruments, EDA blood/plasma legislation, and FAOLEX water/waste/environment Gazette reproductions. Every new record retains collection_permission = unknown and commercial_reuse_permission = unknown. Existing generic secondary-source records remain in place; no public-access or government-hosting status was treated as a reuse licence.
+
+
+## 13. Session-wide acquisition summary (23 November 2026)
+
+Across Agent8's four transport dossiers plus the environment, waste, Nile/watercourse and health dossiers:
+- **61 candidate unique instruments** identified/registered across the Agent8 tranche registers (31 transport; 2 new environment-regulation candidates; 1 new waste-regulation amendment; 14 water/sewerage instruments and amendment leads; 13 health-sector instruments).
+- **30 new candidate rows** added to the canonical national acquisition CSV in the environment/waste/water/health passes; **17 existing canonical rows** updated in place with actual text observations and improved provenance.
+- Canonical national register now has **451 data rows**. Its denominator is not the total in-scope Egyptian legislation; do not convert this count into a whole-corpus completion percentage.
+- Four substantive new Arabic text dossiers were committed for environment, waste management, Nile/water pollution/sewerage, and health; the earlier four transport dossiers remain in the repository.
+- Source-permission register now has **189 source assessments**, with all new collection and commercial reuse permissions unknown.
+
+This summary counts candidate instruments, not fully authenticated or locally mirrored verbatim texts. Gazette page-image verification, complete amendment redlines, currentness review and lawyer review remain separate workstreams.
