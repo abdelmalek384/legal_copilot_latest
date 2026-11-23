@@ -154,9 +154,10 @@ class ResearchInspectorTests(unittest.TestCase):
         source["case_id"] = 9
         self.assertEqual(source_status(source, "2026-10-24"), STATUS_USER_SUPPLIED)
 
-        source = self._source_matched_candidate()
-        source["provenance"]["document_type"] = "secondary"
-        self.assertEqual(source_status(source, "2026-10-24"), "secondary_copy")
+        for label in ("secondary", " Secondary ", "SECONDARY", "Commentary", " GUIDE ", "Summary"):
+            source = self._source_matched_candidate()
+            source["provenance"]["document_type"] = label
+            self.assertEqual(source_status(source, "2026-10-24"), "secondary_copy", label)
 
         source = self._source_matched_candidate()
         source["provenance"]["document_type"] = []
