@@ -1353,3 +1353,80 @@ All progress values are inventory indicators only. No lawyer verification, right
 ### Source/quality note
 
 The above text is from the complete secondary searchable text at LawHub, cross-checked with the Official Amiri Press searchable record. It is actual article wording, not an explanatory summary. A Gazette scan/page-image comparison remains outstanding. The official Gazette metadata identifies issue 33 مكرر (ج), 18 August 2025; effective 19 August 2025.
+
+
+## 18. Law 154/2026 — State-owned company net-profit remittance to Treasury
+
+### Metadata and primary source
+
+- **Instrument:** Law 154/2026 بشأن أيلولة نسبة من الأرباح الصافية للشركات المملوكة للدولة أو للأشخاص الاعتبارية العامة إلى الخزانة العامة للدولة.
+- **Official Gazette:** issue 30 مكرر (أ), 28 July 2026, pp. 23–24.
+- **Commencement:** day after publication, 29 July 2026 (Article 2).
+- **Official government-hosted Gazette PDF (Egyptian Tax Authority):** https://eta.gov.eg/sites/default/files/2026-08/law.no_.154.of_.2026.pdf
+- **Official PDF text opened:** 33 extracted lines, including all operative provisions.
+- **Legislative relation:** Law 170/2025 State Ownership Law; Law 203/1991; public business sector and public legal-person companies.
+
+### Article 1 — mandatory remittance rates
+
+> مع عدم الإخلال بالشركات المنشأة تنفيذاً لاتفاقيات دولية، تلتزم مجالس إدارات الشركات التي يكون رأسمالها مملوكاً بالكامل للدولة أو للأشخاص الاعتبارية العامة، وذلك أياً كان النظام القانوني الذي تخضع له هذه الشركات، بتجنيب نسبة (٥٪) من الأرباح الصافية القابلة للتوزيع، وذلك بعد تغطية الخسائر المرحلة وقبل تجنيب أية احتياطيات، وتعد هذه النسبة إيرادات ضريبية وتؤول حصيلتها خلال أربعة أشهر من تاريخ إقفال السنة المالية إلى الخزانة العامة للدولة لدعم مواردها.
+>
+> وبالنسبة للشركات التي تساهم فيها الدولة أو الأشخاص الاعتبارية العامة جزئياً بنسبة تجاوز (٥٠٪) من رأسمالها، فتلتزم مجالس إداراتها بتحصيل نسبة تعادل (٤٪) من الأرباح الصافية القابلة للتوزيع بعد اعتماد القوائم المالية من الجمعية العمومية للشركة وبما لا يجاوز حصة الدولة أو الأشخاص الاعتبارية العامة في هذه الأرباح، وذلك بعد تغطية الخسائر المرحلة وقبل تجنيب أية احتياطيات، على أن تخصم هذه النسبة كاملة من نصيب الدولة أو الأشخاص الاعتبارية العامة في الأرباح الصافية، وتعد هذه النسبة إيرادات ضريبية وتؤول حصيلتها إلى الخزانة العامة للدولة لدعم مواردها خلال أربعة أشهر من تاريخ إقفال السنة المالية.
+>
+> ويجوز لضرورات اجتماعية أو اقتصادية يقتضيها الصالح العام استثناء بعض الشركات لفترة مؤقتة من تطبيق أحكام هذا القانون، وذلك بقرار من مجلس الوزراء، بناء على عرض وزير المالية.
+
+### Article 2 — commencement
+
+> يُنشر هذا القانون في الجريدة الرسمية، ويُعمل به اعتباراً من اليوم التالي لتاريخ نشره.
+>
+> يُبصم هذا القانون بخاتم الدولة، وينفذ كقانون من قوانينها.
+>
+> صدر برئاسة الجمهورية في ١٤ صفر سنة ١٤٤٨ هـ (الموافق ٢٨ يوليو سنة ٢٠٢٦ م).
+
+### Legal and accounting implications
+
+- Wholly State-owned companies and companies wholly owned by public legal persons must set aside 5% of distributable net profits after covering accumulated losses and before allocating reserves.
+- Companies in which the State/public legal persons hold more than 50% must collect 4% of distributable net profits, subject to the ceiling of the State/public legal-person share in those profits; this amount is deducted wholly from the public shareholder's profit entitlement.
+- The amounts are expressly classified as tax revenues and must be remitted to the Treasury within four months after the close of the financial year.
+- The Cabinet may temporarily exempt a company for social/economic public-interest reasons on the Finance Minister's proposal.
+- The statutory text does not create a new general administrative authority or change company legal personality; it creates a mandatory statutory public-revenue allocation and a specific Cabinet exemption power.
+- The 5% and 4% rates must not be conflated: they apply to different ownership categories and have different calculation rules.
+
+## 19. Prime Minister Decision 652/2026 — competent Minister under Public Business Sector Law
+
+### Metadata and text
+
+- **Instrument:** Prime Minister Decision 652/2026.
+- **Official Gazette:** issue 9 مكرر, 28 February 2026, p. 2.
+- **Official Gazette scan reproduction:** https://gate.ahram.org.eg/media/News/2026/3/1/2026-639079622066115243-611.pdf
+- **Decision date:** 28 February 2026.
+- **Article 2 orders publication.** No express separate commencement clause is included; publication date is recorded, and effect should be treated in accordance with the decision's terms and applicable publication rules rather than inventing a delayed commencement date.
+
+### Preamble (statutory basis)
+
+The decision cites the Constitution, Public Business Sector Law 203/1991, and Presidential Decisions 258/2024 (Cabinet formation) and 304/2024 (delegation of powers), plus Presidential Decision 75/2026.
+
+### Article 1
+
+> يكون السيد الدكتور / حسين محمد أحمد عيسى – نائب رئيس مجلس الوزراء للشئون الاقتصادية الوزير المختص في تطبيق أحكام قانون شركات قطاع الأعمال العام المشار إليه، وذلك مع عدم الإخلال بالقرارات التي حددت وزراء مختصين ببعض شركات قطاع الأعمال العام.
+
+### Article 2
+
+> ينشر هذا القرار في الجريدة الرسمية.
+>
+> صدر برئاسة مجلس الوزراء في ١٠ رمضان سنة ١٤٤٧ هـ (الموافق ٢٨ فبراير سنة ٢٠٢٦ م).
+>
+> رئيس مجلس الوزراء
+> دكتور / مصطفى كمال مدبولي
+
+### Legal significance
+
+- This is an operative Prime Minister decision designating the Deputy Prime Minister for Economic Affairs as the competent Minister for purposes of Law 203/1991.
+- It preserves earlier decisions that designated different competent Ministers for particular Public Business Sector companies.
+- The decision matters when routing statutory approvals, supervision, board nominations, company employee-regulation approvals and requests under Law 203/1991.
+- It should be cross-linked to Law 203/1991 and the Executive Regulation 1590/1991, rather than treated as a general amendment to the law.
+
+## 20. New instruments and acquisition completeness correction
+
+- Law 154/2026: 2/2 issuing articles transcribed from the government-hosted Gazette PDF.
+- Decision 652/2026: 2 operative articles transcribed from the Gazette scan reproduction.
+- Law 170/2025: corrected to **5 issuing + 14 substantive = 19 article units**; all 14 substantive article texts are now represented in this file from the full secondary Arabic transcription cross-checked against the official Amiri Press searchable text. Original Gazette page-image comparison remains outstanding.
