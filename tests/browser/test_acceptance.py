@@ -1251,7 +1251,8 @@ class BrowserAcceptanceTests(unittest.TestCase):
             self.page.get_by_text("تم حفظ الموعد مع خطوات الحساب والتحذيرات", exact=False).wait_for(timeout=10000)
 
             self.assertEqual(self.browser_errors, [], f"browser errors before invoice at {width}px: {self.browser_errors}")
-            self.page.locator(".tabs a").filter(has_text="الفواتير").click()
+            self.page.locator(".matter-section-nav button").filter(has_text="المالية").click()
+            self.page.locator(".matter-subnav button").filter(has_text="الفواتير").click()
             self.page.get_by_placeholder("وصف الفاتورة أو نطاق العمل").fill(
                 f"فاتورة اختبار {width}"
             )
