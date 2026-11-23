@@ -54,6 +54,11 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("feedbackPage()}catch(error){toast(String(error?.message||err(error)))}", HTML)
         self.assertIn("await drawList()}catch(error){toast(String(error?.message||err(error)))}", HTML)
 
+
+    def test_answer_rating_and_research_delete_surface_api_errors(self):
+        self.assertIn("}catch(error){ratingStatus.textContent=String(error?.message||err(error));toast(String(error?.message||err(error)))}finally{saveRating.disabled=false}", HTML)
+        self.assertIn("await drawList();\n       }catch(error){toast(String(error?.message||err(error)))}", HTML)
+
     def test_firm_mfa_policy_controls_are_visible_and_accessibly_named(self):
         self.assertIn("Firm MFA policy", HTML)
         self.assertIn("Require MFA for firm administrators", HTML)
