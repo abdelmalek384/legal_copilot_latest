@@ -1517,6 +1517,13 @@ class BrowserAcceptanceTests(unittest.TestCase):
     def test_phone_ui_readability_navigation_targets_and_contrast(self) -> None:
         self.page.set_viewport_size({"width": 390, "height": 844})
         self.login(self.state["owner_a_email"])
+        more_menu = self.page.locator("#side .nav-more")
+        self.assertFalse(more_menu.evaluate("(el) => el.open"), "Mobile More navigation must start collapsed")
+        more_menu.locator("summary").click()
+        self.assertTrue(more_menu.evaluate("(el) => el.open"))
+        self.page.get_by_role("button", name="العملاء وتعارض المصالح", exact=True).click()
+        self.page.get_by_role("heading", name="العملاء").wait_for(timeout=10000)
+        self.assertFalse(more_menu.evaluate("(el) => el.open"), "Selecting a mobile More item must close the overlay")
 
         ui_contract = self.page.evaluate("""() => {
             const visible = (el) => {
