@@ -237,7 +237,7 @@ class DocumentIntelligenceTests(unittest.TestCase):
         ))
 
     def test_legal_reference_extraction_supports_english_sections_and_laws(self):
-        text = "Article 5. Section 3.2. Law No. 10/2020. المادة 101."
+        text = "Article 5. Section 3.2. Law No. 10/2020. Law 12 of 2021. Act 3 dated 2022. المادة 101."
         result = extract_review_candidates(text)
         references = [
             item["value"] for item in result["candidates"]
@@ -245,7 +245,8 @@ class DocumentIntelligenceTests(unittest.TestCase):
         ]
         self.assertEqual(
             references,
-            ["Article 5", "Section 3.2", "Law No. 10/2020", "المادة 101"],
+            ["Article 5", "Section 3.2", "Law No. 10/2020", "Law 12 of 2021",
+             "Act 3 dated 2022", "المادة 101"],
         )
 
     def test_case_reference_extraction_supports_english_and_arabic_labels(self):
