@@ -4653,5 +4653,10 @@ body:has(.research-layout){background:#f3f5f8;color:#1d2c42;font-family:Inter,"N
  #side .tenant-context{flex:0 1 auto!important;min-width:0!important;max-width:180px!important}
  #side .primary-nav{position:relative!important;z-index:10!important;flex:1 1 0!important;width:0!important;min-width:0!important;max-width:100%!important;overflow-x:auto!important}
 }
+/* Keep mobile primary navigation visible on its own full-width row. */
+@media(max-width:800px){
+ #side{flex-wrap:wrap!important;align-items:center!important}
+ #side .primary-nav{flex:0 0 100%!important;width:100%!important;max-width:100%!important;min-width:0!important;order:10!important;min-height:46px!important}
+}
 </style>
 </html>
