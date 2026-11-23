@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "assessment_date": "2026-11-23",
-  "note": "A register of source candidates and permission questions, not a claim that rights have been granted. Public accessibility and open access do not by themselves establish bulk collection, commercial reuse, or redistribution rights.",
+  "note": "A register of source candidates and permission questions, not a claim that rights have been granted. Public accessibility and open access do not by themselves establish bulk collection, commercial reuse, or redistribution rights. Agent 8 river-transport and railway acquisition tranche (2026-11-23): four source-family records added; all collection and commercial reuse permissions remain unknown pending terms review or written authorization.",
   "sources": [
     {
       "source_id": "EG-ADNANLAWYER-LEGAL-TEXTS",
@@ -3191,6 +3191,70 @@
       "terms_checked_on": "2026-11-23",
       "bulk_download_or_api": "Not established",
       "required_next_action": "Obtain original Gazette issue and compare the Article1 amendment to Law47/1972 Article123; review site terms and written reuse permissions."
+    },
+    {
+      "source_id": "EG-GAFI-RIVER-TRANSPORT-LICENSING-GUIDE",
+      "authority": "General Authority for Investment and Free Zones (GAFI) / Ministry of Transport / River Transport Authority",
+      "source_page": "https://www.gafi.gov.eg/Arabic/StartaBusiness/InvestmentZones/SiteAssets/Pages/Inland/النقل%20النهرى.pdf",
+      "material_types": [
+        "Government-hosted River Transport Authority navigation-licensing service guide; references Minister of Transport Decisions 340/2024, 341/2024 and 342/2024 and contains service requirements."
+      ],
+      "access_status": "Public government-hosted PDF opened and text layer inspected 23 November 2026. It is an administrative service guide, not the signed ministerial decisions or Official Gazette originals.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://www.gafi.gov.eg/",
+      "permission_evidence": "No explicit licence authorizing bulk extraction, local mirroring, commercial indexing, redistribution or republication was identified. Government hosting/public access does not establish commercial reuse rights.",
+      "terms_checked_on": "2026-11-23",
+      "bulk_download_or_api": "Single public PDF; no bulk/API permission established",
+      "required_next_action": "Review GAFI terms and request written authorization before bulk/local mirroring or commercial display; obtain the signed decisions and Gazette issue separately."
+    },
+    {
+      "source_id": "EG-COURT-CASSATION-GAZETTE-LAW167-2022",
+      "authority": "Egyptian Court of Cassation / Supreme Judicial Council — Gazette publication download portal",
+      "source_page": "https://register.cc.gov.eg/publications/86/download",
+      "material_types": [
+        "Official Gazette issue 46 bis (أ), 19 November 2022, containing Law 167/2022 on reorganisation of the River Transport Authority."
+      ],
+      "access_status": "Official Gazette download locator identified by search; direct PDF retrieval timed out during this session. No binary downloaded or hash recorded.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://cc.gov.eg/",
+      "permission_evidence": "Official judicial/Gazette publication access does not itself establish permission for bulk extraction, commercial reuse or redistribution. No explicit licence reviewed.",
+      "terms_checked_on": "2026-11-23",
+      "bulk_download_or_api": "Single publication download route; no bulk/API permission established",
+      "required_next_action": "Retry PDF acquisition through permitted official route; review portal terms and obtain written permission if commercial redistribution or bulk mirroring is planned."
+    },
+    {
+      "source_id": "EG-CAIRO24-RAILWAYS-DECISION342-2023-SCAN",
+      "authority": "Cairo24 news publisher (third-party host of Egyptian Proceedings scan reproduction)",
+      "source_page": "https://www.cairo24.com/Upload/libfiles/107/3/341.pdf",
+      "material_types": [
+        "Secondary-hosted scan reproduction of Egyptian Proceedings issue 151, 12 July 2023, containing Minister of Transport Decision 342/2023 amending ENR contracting regulation Decision 191/2021."
+      ],
+      "access_status": "Public PDF search result and text layer observed; host is not the Amiri Press publisher and original Gazette binary/hash was not acquired.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://www.cairo24.com/",
+      "permission_evidence": "No affirmative licence for bulk download, local mirroring, commercial indexing or redistribution was identified. Public scan access is not reuse permission.",
+      "terms_checked_on": "2026-11-23",
+      "bulk_download_or_api": "Single public PDF route; no bulk/API permission established",
+      "required_next_action": "Acquire original issue from Amiri Press or authorized Gazette archive; review Cairo24 terms before retaining or republishing its scan."
+    },
+    {
+      "source_id": "EG-ALMAL-RAILWAYS-CONTRACTING-DECISION577-2022",
+      "authority": "Al-Mal financial news publisher",
+      "source_page": "https://almalnews.com/1408321/النقل-إجراء-تعديل-على-لائحة-تنظيم-التعاقدات/",
+      "material_types": [
+        "Secondary report identifying Minister of Transport Decision 577/2022 as an amendment to Articles 88 and 96 of ENR contracting regulation Decision 191/2021."
+      ],
+      "access_status": "Public secondary news report inspected; full decision text and Gazette reference not located.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://almalnews.com/",
+      "permission_evidence": "No affirmative licence for collection, commercial reuse or redistribution was identified. Used as a discovery lead only.",
+      "terms_checked_on": "2026-11-23",
+      "bulk_download_or_api": "Single public news page; no bulk/API permission established",
+      "required_next_action": "Obtain the signed decision/Gazette page; review publisher terms and preserve secondary-source status."
     }
   ]
 }
