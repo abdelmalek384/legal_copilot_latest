@@ -54,7 +54,7 @@ This folder contains free/public source discovery, metadata registers and extrac
 - **Primary-source comparison:** article-level comparison has begun for three ministerial decisions against the public SIS Gazette facsimile for issue 291 (259, 264 and 299). The SIS PDF expressly says the electronic image is not valid for dealings.
 - **Official Gazette scan locators:** issue 291 facsimile covers Decisions 259, 260, 264, 271, 272, 292, 294, 299, 319 and 320; issue 290(B) metadata/facsimile covers 266, 279, 300 and 301; issue 295(D) metadata identifies 267, 270, 288, 289, 290 and 291.
 - **Court of Cassation:** nine case records in the current structured register. Most apply predecessor legislation; no full judgment corpus acquired.
-- All 50 formal instruments and seven circulars remain lawyer_reviewed=false and rights_cleared=false. No production database import performed.
+- All 51 formal instruments and seven circulars remain lawyer_reviewed=false and rights_cleared=false. No production database import performed.
 - No original-Gazette SHA-256 hash captured for the Labour Law 14/2025 candidate; no legal data promoted to verified.
 - CSV structural validation passed locally: 59 data rows, 11 columns each, no duplicate document keys. This does not validate source authenticity or legal currentness.
 
