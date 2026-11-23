@@ -186,3 +186,118 @@
 5. Original Gazette pages and any later amendments, corrections, stays or judgments.
 
 **Machine trust flags:** `source_matched`; `lawyer_reviewed=false`; `verified=false`; `rights_cleared=false`. Do not promote these entries to verified law without qualified Egyptian lawyer review and original-source checks.
+
+
+---
+
+## 4. Ministry of Housing Decision 1179/2026 — update of Maghagha strategic general plan
+
+**Issuer:** Minister of Housing, Utilities and Urban Communities  
+**Date signed:** 10 August 2026  
+**Publication listing:** Legal Memory bulletin, 4 October 2026; exact Gazette issue/page and page image not yet matched.  
+**Official searchable Amiri Press text:** https://www.alamiria.com/Sec/TashTxt?id=EmQJ28p%2FEI8%3D  
+**Index corroboration:** https://mksegypt.org/ar/nashras/50
+
+### Arabic operative text (official searchable Amiri Press)
+
+وزارة الإسكان والمرافق والمجتمعات العمرانية  
+قرار رقم 1179 لسنة 2026
+
+وزير الإسكان والمرافق والمجتمعات العمرانية
+
+بعد الاطلاع على القانون رقم 2 لسنة 1973 بإشراف وزارة السياحة على المناطق السياحية واستغلالها؛  
+وعلى قانون نظام الإدارة المحلية الصادر بالقانون رقم 43 لسنة 1979 ولائحته التنفيذية وتعديلاتهما؛  
+وعلى القانون رقم 143 لسنة 1981 فى شأن الأراضى الصحراوية وتعديلاته؛  
+وعلى قانون حماية الآثار الصادر بالقانون رقم 117 لسنة 1983 وتعديلاته؛  
+وعلى القانون رقم 7 لسنة 1991 فى شأن بعض الأحكام المتعلقة بأملاك الدولة الخاصة وتعديلاته؛  
+وعلى القانون رقم 4 لسنة 1994 بإصدار قانون فى شأن البيئة وتعديلاته؛  
+وعلى قانون البناء الصادر بالقانون رقم 119 لسنة 2008 ولائحته التنفيذية وتعديلاتهما؛  
+وعلى قرار رئيس الجمهورية رقم 1982 لسنة 1969 بتعديل نطاق بعض محافظات الجمهورية؛  
+وعلى قرار رئيس الجمهورية رقم 1093 لسنة 1973 بإنشاء الهيئة العامة للتخطيط العمرانى وتعديلاته؛  
+وعلى قرارى رئيس الجمهورية رقمى 258 لسنة 2024، 75 لسنة 2026 بتشكيل مجلس الوزراء؛  
+وعلى موافقة هيئة عمليات القوات المسلحة بوزارة الدفاع رقم 1285 لسنة 2009 بتاريخ 1/4/2009 على المخطط الاستراتيجى العام لمدينة ملوى - محافظة المنيا بالضوابط والاشتراطات وقيود الارتفاعات الواردة بها؛  
+وعلى قرار وزارة الإسكان والمرافق والمجتمعات العمرانية رقم 411 لسنة 2009 باعتماد المخطط الاستراتيجى لمدينة ملوى - محافظة المنيا؛  
+وعلى موافقة اللجنة الدائمة لاعتماد الأحوزة العمرانية على تحديث الحيز العمرانى لمدينة ملوى محافظة المنيا بجلستها بتاريخ 20/10/2025؛  
+وعلى موافقة السيد الدكتور رئيس مجلس الوزراء على اعتماد تحديث المخطط الاستراتيجى العام لمدينة ملوى - محافظة المنيا بكتاب هيئة مستشارى مجلس الوزراء برقم (3-18419) بتاريخ 14/7/2026؛  
+وعلى مذكرة الدكتور مهندس رئيس مجلس إدارة الهيئة العامة للتخطيط العمرانى بشأن طلب تحديث المخطط الاستراتيجى العام لمدينة ملوى - محافظة المنيا؛
+
+قــــرر:
+
+**(المادة الأولى)**  
+يعتمد تحديث المخطط الاستراتيجى العام لمدينة ملوى - محافظة المنيا طبقًا للمذكرة والخريطة المرفقين بهذا القرار.
+
+**(المادة الثانية)**  
+ينشر هذا القرار فى الوقائع المصرية، ويعمل به من اليوم التالى لتاريخ نشره.
+
+صدر فى 10/8/2026  
+وزير الإسكان والمرافق والمجتمعات العمرانية  
+مهندسة/ راندة المنشاوى
+
+### Material inconsistency requiring source recheck
+
+The Amiri Press searchable record for Decision 1179/2026 identifies **ملوى (Mallawi)** in the title and operative article, but the preamble text returned in the search extract contains a chain of military approval 1285/2009 and Housing Decision 411/2009 also describing **مدينة ملوى**. This appears internally consistent, while the separate Decision 1180/2026 concerns Maghagha. The Gazette image and attached memorandum/map are still required before spatial reliance.
+
+**Critical missing attachments:** approved strategic-plan map and explanatory memorandum. The operative article does not establish parcel boundaries, zoning, density, building heights or land-use permissions.
+
+---
+
+## 5. Ministry of Housing Decision 1180/2026 — update of Maghagha strategic general plan
+
+**Issuer:** Minister of Housing, Utilities and Urban Communities  
+**Date signed:** 10 August 2026  
+**Publication listing:** Legal Memory bulletin, 4 October 2026; exact Gazette issue/page and page image not yet matched.  
+**Official searchable Amiri Press text:** https://alamiria.com/Sec/TashTxt?id=dMCkR0wiyJg%3D  
+**Index corroboration:** https://mksegypt.org/ar/nashras/50
+
+### Arabic operative text (official searchable Amiri Press)
+
+وزارة الإسكان والمرافق والمجتمعات العمرانية  
+قرار رقم 1180 لسنة 2026
+
+وزير الإسكان والمرافق والمجتمعات العمرانية
+
+بعد الاطلاع على القانون رقم 2 لسنة 1973 بإشراف وزارة السياحة على المناطق السياحية واستغلالها؛  
+وعلى قانون نظام الإدارة المحلية الصادر بالقانون رقم 43 لسنة 1979 ولائحته التنفيذية وتعديلاتهما؛  
+وعلى القانون رقم 143 لسنة 1981 فى شأن الأراضى الصحراوية وتعديلاته؛  
+وعلى قانون حماية الآثار الصادر بالقانون رقم 117 لسنة 1983 وتعديلاته؛  
+وعلى القانون رقم 7 لسنة 1991 فى شأن بعض الأحكام المتعلقة بأملاك الدولة الخاصة وتعديلاته؛  
+وعلى القانون رقم 4 لسنة 1994 بإصدار قانون فى شأن البيئة وتعديلاته؛  
+وعلى قانون البناء الصادر بالقانون رقم 119 لسنة 2008 ولائحته التنفيذية وتعديلاتهما؛  
+وعلى قرار رئيس الجمهورية رقم 1982 لسنة 1969 بتعديل نطاق بعض محافظات الجمهورية؛  
+وعلى قرار رئيس الجمهورية رقم 1093 لسنة 1973 بإنشاء الهيئة العامة للتخطيط العمرانى وتعديلاته؛  
+وعلى قرارى رئيس الجمهورية رقمى 258 لسنة 2024، 75 لسنة 2026 بتشكيل مجلس الوزراء؛  
+وعلى موافقة هيئة عمليات القوات المسلحة بوزارة الدفاع رقم 383 لسنة 2010 بتاريخ 11/2/2010 على المخطط الاستراتيجى العام لمدينة مغاغة - محافظة المنيا بالضوابط والاشتراطات وقيود الارتفاعات الواردة بها؛  
+وعلى قرار وزارة الإسكان والمرافق والمجتمعات العمرانية رقم 326 لسنة 2011 باعتماد المخطط الاستراتيجى لمدينة مغاغة - محافظة المنيا؛  
+وعلى موافقة اللجنة الدائمة لاعتماد الأحوزة العمرانية على تحديث الحيز العمرانى لمدينة مغاغة محافظة المنيا بجلستها بتاريخ 5/1/2026؛  
+وعلى موافقة السيد الدكتور رئيس مجلس الوزراء على اعتماد تحديث المخطط الاستراتيجى العام لمدينة مغاغة - محافظة المنيا بكتاب هيئة مستشارى مجلس الوزراء برقم (3-18419) بتاريخ 14/7/2026؛  
+وعلى مذكرة الدكتور مهندس رئيس مجلس إدارة الهيئة العامة للتخطيط العمرانى بشأن طلب تحديث المخطط الاستراتيجى العام لمدينة مغاغة - محافظة المنيا؛
+
+قــــرر:
+
+**(المادة الأولى)**  
+يعتمد تحديث المخطط الاستراتيجى العام لمدينة مغاغة - محافظة المنيا طبقًا للمذكرة والخريطة المرفقين بهذا القرار.
+
+**(المادة الثانية)**  
+ينشر هذا القرار فى الوقائع المصرية، ويعمل به من اليوم التالى لتاريخ نشره.
+
+صدر فى 10/8/2026  
+وزير الإسكان والمرافق والمجتمعات العمرانية  
+مهندسة/ راندة المنشاوى
+
+### Critical missing attachments and legal effect
+
+- The decision approves the updated strategic general plan only by reference to the attached memorandum and map. Neither is acquired in this text tranche.
+- The preamble identifies military approval 383/2010 and Housing Decision 326/2011 as the earlier planning chain. Acquire both instruments and the underlying approved plan/map, including the military conditions and height restrictions.
+- Do not derive parcel-level zoning, permitted uses, building heights or construction entitlements from the two issuing articles alone.
+- Obtain the Gazette image, exact issue/page, memorandum, signed map, updated urban-boundary approval and any later plan amendments.
+
+---
+
+## Added acquisition ledger
+
+| Instrument | Arabic operative text | Gazette image | Essential missing material |
+|---|---|---|---|
+| Housing Decision 1179/2026 — Mallawi | Official searchable Amiri Press text captured | Not acquired | Map, memorandum, Gazette issue/page, military approval 1285/2009, earlier plan 411/2009 |
+| Housing Decision 1180/2026 — Maghagha | Official searchable Amiri Press text captured | Not acquired | Map, memorandum, Gazette issue/page, military approval 383/2010, earlier plan 326/2011 |
+
+**Trust flags remain:** `source_matched` for the searchable issuing text only; `lawyer_reviewed=false`; `verified=false`; `rights_cleared=false`.
