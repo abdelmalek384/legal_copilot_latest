@@ -196,7 +196,10 @@ def source_status(source, as_of=None):
             return STATUS_REVIEW
         if provenance.get("status") != "registry_linked":
             return STATUS_REVIEW
-        if provenance.get("document_type") in {"secondary", "commentary", "guide", "summary"}:
+        document_type = provenance.get("document_type")
+        if not isinstance(document_type, str) or not document_type.strip():
+            return STATUS_REVIEW
+        if document_type in {"secondary", "commentary", "guide", "summary"}:
             return STATUS_SECONDARY
         if not isinstance(provenance.get("official_title"), str) or not provenance["official_title"].strip():
             return STATUS_REVIEW
