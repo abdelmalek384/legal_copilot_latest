@@ -7,7 +7,9 @@ HTML = (Path(__file__).resolve().parents[1] / "static" / "index.html").read_text
 
 class WorkspaceUIFixTests(unittest.TestCase):
     def test_navigation_awaits_page_and_renders_visible_failure(self):
-        self.assertIn("onclick:async()=>{PAGE=id;window.CASE_ID=null;window.DOCUMENT_REVIEW_TARGET=null;const main=$('main');try{await f()}catch(error)", HTML)
+        self.assertIn("onclick:async e=>{", HTML)
+        self.assertIn("PAGE=id;window.CASE_ID=null;window.DOCUMENT_REVIEW_TARGET=null;const main=$('main');try{await f()}catch(error)", HTML)
+        self.assertIn("if(more&&window.innerWidth<=800){window.__lcMoreOpen=false;more.open=false}", HTML)
         self.assertIn("className:'card page-load-error',role:'alert'", HTML)
         self.assertIn("Try again", HTML)
 
