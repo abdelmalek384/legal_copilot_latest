@@ -636,6 +636,7 @@ class ProfileInitialSchemaTests(unittest.TestCase):
             "(document_id,case_id,firm_id,actor_user_id,previous_category,new_category,version,note) "
             "VALUES(2,1,7,10,NULL,'contract',1,'approved')"
         )
+        db.commit()
         with self.assertRaisesRegex(sqlite3.IntegrityError, "immutable"):
             db.execute(
                 "UPDATE document_classification_events SET note='tampered' WHERE document_id=2"
