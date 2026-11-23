@@ -1081,7 +1081,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
         for title in case_titles:
             client_card.get_by_text(title, exact=True).wait_for(timeout=10000)
         self.assertIn(sentinel, client_card.inner_text())
-        self.assertIn("مقاطع مطابقة عبر القضايا المسموح بها", client_card.inner_text())
+        self.assertIn("2 مقاطع مطابقة عبر القضايا المسموح بها", client_card.inner_text())
 
         # Open a returned passage and add a lawyer annotation without modifying the uploaded source.
         client_card.get_by_role("button", name="فتح المقطع في ملف القضية").first.click()
