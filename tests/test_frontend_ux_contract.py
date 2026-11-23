@@ -59,6 +59,10 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("}catch(error){ratingStatus.textContent=String(error?.message||err(error));toast(String(error?.message||err(error)))}finally{saveRating.disabled=false}", HTML)
         self.assertIn("await drawList();\n       }catch(error){toast(String(error?.message||err(error)))}", HTML)
 
+
+    def test_local_reminder_activation_reports_initial_dashboard_failure(self):
+        self.assertIn("sendLocalReminderSummary(await api('/dashboard'));toast(LANG==='ar'?'تم تفعيل التذكيرات المحلية':'Local reminders enabled')}catch(error){toast((LANG==='ar'?'تم تفعيل التذكيرات، لكن تعذر تحميل ملخص المواعيد: ':'Reminders enabled, but the initial schedule check failed: ')+String(error?.message||err(error)))}settingsPage()", HTML)
+
     def test_firm_mfa_policy_controls_are_visible_and_accessibly_named(self):
         self.assertIn("Firm MFA policy", HTML)
         self.assertIn("Require MFA for firm administrators", HTML)
