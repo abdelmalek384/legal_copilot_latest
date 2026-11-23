@@ -171,6 +171,20 @@ class ResearchInspectorTests(unittest.TestCase):
         source["provenance"]["version_id"] = 78
         self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
 
+        # bool compares equal to integer 1 in Python; malformed IDs must not
+        # pass exact source/version binding through that coercion.
+        for outer_id, provenance_id in (
+            (True, True), (1, True), (True, 1),
+            (0, 0), (-1, -1), ("77", "77"),
+        ):
+            source = self._source_matched_candidate()
+            source["document_version_id"] = outer_id
+            source["provenance"]["version_id"] = provenance_id
+            self.assertEqual(
+                source_status(source, "2026-10-24"), STATUS_REVIEW,
+                (outer_id, provenance_id),
+            )
+
         source = self._source_matched_candidate()
         source["provenance"]["review_evidence"] = [{
             "review_type": "lawyer_approval", "outcome": "fail",
