@@ -33,6 +33,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_database_backup_bundle.py
       - name: Test encrypted S3 recovery archive transport
         run: PYTHONPATH=. python tests/test_database_backup_archive.py
+      - name: Test isolated database recovery drill
+        run: PYTHONPATH=. python tests/test_database_recovery_drill.py
       - name: Test S3 original-file storage adapter
         run: PYTHONPATH=. python tests/test_s3_original_file_storage.py
       - name: Test separate-database deployment preflight
