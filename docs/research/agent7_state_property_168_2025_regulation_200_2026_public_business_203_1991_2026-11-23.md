@@ -1471,3 +1471,10 @@ A conservative count of complete article/issuing-provision units reproduced in t
 This count deliberately excludes the selected replacement/new provisions from Law 185/2020 and Decision 948/2021 because their amendment-unit boundaries have not yet been normalized into a non-overlapping count. It also excludes complete text available only in linked source PDFs but not copied article-by-article into this file (notably the full 75-article Law 203/1991 and the 880-line Decision 1590/1991 regulation). Forms, annex tables and schedules are not counted as articles.
 
 **Completeness distinction:** 122 reproduced units does not mean 122 current consolidated articles. Some are issuing clauses, some are selected provisions, some are historical versions, and some require Gazette image proofing or amendment reconciliation.
+
+
+## 23. Superseding progress correction — 23 November 2026
+
+Section 21's 405-row snapshot is superseded by the later register update in `agent7_public_finance_spending_controls_and_delegation_2026-11-23.md`. The central register now contains **406 rows** after adding Presidential Decision 112/2026 and enriching existing Law 77/2026, Decision 3530/2026 and Law 147/2026 entries. Law 78/2026 was also enriched with seven reproduced article bodies.
+
+Current revised unique-row keyword proxy: **99/406 full-text indicators (24.4%)**, **49/406 partial-only indicators (12.1%)**, **148/406 rows with any indicator (36.5%)**. This proxy is not corpus completion or text completeness. Domain discovery remains 13/13 (100%); whole-national-corpus completion remains not calculable.
