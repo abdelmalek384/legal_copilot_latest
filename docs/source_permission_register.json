@@ -2993,6 +2993,55 @@
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
       "required_next_action": "Review site terms and request permission for intended corpus uses; authenticate the transcription against the Egyptian Gazette."
+    },
+    {
+      "source_id": "EG-ALDHAHSAN-188-2020-PROCUREMENT",
+      "authority": "Al-Dahshan Law Firm website (secondary legal transcription)",
+      "source_page": "https://www.aldhshan.com/2026/02/188-2020-182-2018.html",
+      "material_types": [
+        "Full Arabic secondary transcription of Law188/2020 amending Public Contracts Law182/2018"
+      ],
+      "access_status": "Public searchable full text inspected 2026-11-23; original Gazette PDF not acquired in this pass. Secondary metadata states Official Gazette issue36 bis (b), 5 September 2020; competing secondary metadata gives issue26 bis (b).",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Used for manual text recovery of the amending statute. No source-specific licence or written permission was established. Public visibility does not establish bulk extraction, storage, commercial reuse or redistribution permission.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "Single public page; no bulk/API permission established",
+      "required_next_action": "Compare complete transcription to the Official Gazette original and resolve issue-number discrepancy; review terms before redistribution or commercial reuse."
+    },
+    {
+      "source_id": "EG-RIWAQ-ALJAMAL-289-2021-PROCUREMENT",
+      "authority": "Riwaq al-Jamal / Ahmed Azim El-Gamal legal blog (secondary transcription)",
+      "source_page": "https://ahmedazimelgamel.blogspot.com/2021/06/289-2021-692-2019.html",
+      "material_types": [
+        "Full Arabic secondary transcription of Finance Minister Decision289/2021 amending Executive Regulation Decision692/2019"
+      ],
+      "access_status": "Public full Arabic transcription inspected 2026-11-23; states Egyptian Proceedings issue125 تابع, 6 June 2021, and effective the following day. Original Gazette PDF not acquired.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://www.blogger.com/",
+      "permission_evidence": "Used to capture the five amended regulatory provisions and beneficial-owner definition. No licence or written reuse permission was established. Public visibility does not establish commercial redistribution or bulk collection rights.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "Single public blog page; no bulk/API permission established",
+      "required_next_action": "Obtain original issue125 Gazette pages, compare all operative wording and effective date; review reuse terms before commercial redistribution."
+    },
+    {
+      "source_id": "EG-SIS-GAZETTE-2023-11-26-ISSUE47",
+      "authority": "Egyptian State Information Service Digital Repository; item metadata identifies Amiri Press as Gazette publisher",
+      "source_page": "https://mediadr.sis.gov.eg/handle/123456789/46639",
+      "file_url": "https://mediadr.sis.gov.eg/bitstream/handle/123456789/46639/OG47_20231126_0952.pdf?isAllowed=y&sequence=1",
+      "material_types": [
+        "Official Gazette issue47 مكرر, 26 November 2023; PM Decisions4497,4498,4499/2023"
+      ],
+      "access_status": "Official item and direct PDF located; search index exposes Arabic text for Decision4498. Repository marks issue viewing restricted on item page; direct PDF is indexed but no local bytes/hash captured in this pass.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Official Gazette issue locator identifies issue47 مكرر, 26 November 2023, and the direct PDF is accessible through the SIS digital repository index. No item-specific reuse licence or permission was established.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "No bulk/API permission established; single item locator only",
+      "required_next_action": "Obtain original PDF through authorized route, hash it, visually compare Decision4498/4499 pages, and assess reuse rights separately."
     }
   ]
 }
