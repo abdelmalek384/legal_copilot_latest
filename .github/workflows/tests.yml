@@ -462,14 +462,14 @@ jobs:
           python-version: '3.12'
       - name: Install hash-locked application dependencies
         run: python -m pip install --require-hashes -r requirements-py312.lock
-      - name: Test conservative document intelligence extraction helpers
-        run: PYTHONPATH=. python tests/test_document_intelligence.py
       - name: Test passage annotation and client retrieval contracts
         run: PYTHONPATH=. python tests/test_document_annotations.py
       - name: Test persisted passage annotations and case scoping
         run: PYTHONPATH=. python -m unittest discover -s tests -p 'test_app_separate_database_runtime.py' -k document_passage_annotations_are_persisted_and_case_scoped
       - name: Test client-wide document search integration and membership isolation
         run: PYTHONPATH=. python -m unittest discover -s tests -p 'test_app_separate_database_runtime.py' -k client_document_search_spans_same_client_matters_but_respects_membership
+      - name: Test conservative document intelligence extraction helpers
+        run: PYTHONPATH=. python tests/test_document_intelligence.py
       - name: Check frontend JavaScript syntax
         run: |
           python -c "from pathlib import Path; import re; html=Path('static/index.html').read_text(encoding='utf-8'); scripts=re.findall(r'<script[^>]*>(.*?)</script>', html, re.S); assert scripts, 'No inline JavaScript found'; Path('/tmp/legal-copilot.js').write_text(chr(10).join(scripts), encoding='utf-8')"
