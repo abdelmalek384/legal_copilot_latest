@@ -852,12 +852,14 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.assertIn("المدعي: طرف تجريبي", self.page.locator("body").inner_text())
         self.assertIn("المادة ١٠١", self.page.locator("body").inner_text())
         self.assertIn("رقم الصفحة غير مسجل", self.page.locator("body").inner_text())
+        # Assert the analysis completion state before the classification edit
+        # intentionally replaces the shared status message with its unsaved-state notice.
+        self.page.get_by_text("اكتمل التحليل الأولي", exact=False).wait_for(timeout=15000)
         classification = self.page.get_by_label("تصنيف المستند synthetic-matter-fixture-v2.docx")
         classification.select_option("contract")
         self.page.get_by_text("تغيير غير محفوظ؛ اضغط حفظ التصنيف لتسجيله في سجل التدقيق.", exact=False).wait_for(timeout=5000)
         earlier_version = self.page.get_by_label("الإصدار السابق")
         later_version = self.page.get_by_label("الإصدار اللاحق")
-        self.page.get_by_text("اكتمل التحليل الأولي", exact=False).wait_for(timeout=15000)
         available_versions = earlier_version.locator("option").evaluate_all(
             "(options) => Array.from(options).map(option => option.value)"
         )
