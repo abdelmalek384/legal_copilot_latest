@@ -45,6 +45,9 @@ The two-page official scan is a strong page-image source match, but its bytes we
 
 **Publication metadata:** Egyptian Proceedings issue 284 تابع (ب), 16 December 2020. The official DSpace item lists an Arabic PDF but the file is restricted to request-a-copy; do not bypass the restriction: https://dspace.id.com.eg/items/6b86a4f6-7bd6-4741-a1b6-58b57d33e7a2 . A government agency library lists the Gazette facsimile attachment, but its download endpoint returned 404: https://kenanaonline.com/users/lfrpdalibrary/posts/1116958 . Secondary consolidated Arabic text: https://lawhub.info/eg/?p=12694 .
 
+
+**Official DSpace metadata / access result:** the MELES DSpace item lists Arabic and English PDFs (Arabic 163.09 KB), date 16 December 2020, and an abstract describing the amendments to Articles 49, 79, 132, 133 and 157 plus the new real-estate appraisal section. The Arabic PDF link leads to a request-a-copy form; no file was downloaded. Its attached `license.txt` is a generic placeholder reading “NOTE: PLACE YOUR OWN LICENSE HERE”, not an item-specific grant to users. Item and metadata: https://dspace.id.com.eg/items/6b86a4f6-7bd6-4741-a1b6-58b57d33e7a2/full . Request-copy gate: https://dspace.id.com.eg/items/6b86a4f6-7bd6-4741-a1b6-58b57d33e7a2/request-a-copy?bitstream=e3249792-e7ec-491e-88ac-8a11406a0a15 .
+
 **Operative changes confirmed from the annotated consolidated text:**
 - Adds Regulation Article 29 bis (A): a ministerial/governorate committee defines the appraisal framework, criteria, timetable and confidentiality/conflict controls; selects three registered/approved real-estate appraisers and a ranked reserve appraiser; receives and analyses sealed reports; and applies the statutory 20% dispersion procedure.
 - Adds Article 29 bis (B): the administrative entity pays accepted appraisers' fees within 30 days after the committee report is submitted, according to fee bands set and updated by the Minister of Finance.
