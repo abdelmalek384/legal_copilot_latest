@@ -58,6 +58,9 @@ The two-page official scan is a strong page-image source match, but its bytes we
 
 **Publication metadata:** Egyptian Proceedings issue 125 (تابع), 6 June 2021; signed 6 June 2021; effective the day after publication (7 June 2021) according to the secondary transcription. Full Arabic text: https://ahmedazimelgamel.blogspot.com/2021/06/289-2021-692-2019.html .
 
+
+**Official publication catalogue match:** MELES DSpace records the Arabic and English Decision 289/2021 PDFs and identifies issue 125 تابع dated 6 June 2021; the file is request-copy restricted, so no access control was bypassed and no PDF bytes were acquired: https://dspace.id.com.eg/items/d8439473-f9d3-4396-9e50-a7f32ce49c6e . The separate issue-level catalogue item also attributes Decision 289/2021 to the Amiri Press Gazette supplement: https://dspace.id.com.eg/items/96d5f5e8-acf5-404a-9c1a-f37834aaab47 .
+
 **Arabic operative provisions (secondary transcription):**
 > **مادة رقم 1:** يُستبدل بنص البند (1) من المادة (49)، والفقرة الثانية من المادة (79)، والفقرة الأخيرة من المادة (132)، والبند (2 مكررًا) من المادة (133)، والبند (2) من المادة (157) من اللائحة التنفيذية لقانون تنظيم التعاقدات التي تبرمها الجهات العامة المشار إليها النصوص الآتية:
 >
