@@ -403,11 +403,16 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
             def __init__(self, value):
                 super().__init__(value)
                 self.bytes_read = 0
+                self.close_calls = 0
 
             def read(self, size=-1):
                 block = super().read(size)
                 self.bytes_read += len(block)
                 return block
+
+            def close(self):
+                self.close_calls += 1
+                super().close()
 
         body = TrackingBody(b"x" * (self.store.max_bytes * 5))
         with patch.object(
