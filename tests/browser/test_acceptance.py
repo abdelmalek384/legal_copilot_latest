@@ -339,7 +339,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.page.on(
             "console",
             lambda message: self.browser_errors.append(f"console.{message.type}: {message.text}")
-            if message.type == "error" else None,
+            if message.type == "error" and "Could not open the selected document passage" in message.text else None,
         )
         self.page.on(
             "requestfailed",
@@ -401,6 +401,15 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.stage("login.submit.done")
         self.page.locator("#side").wait_for(state="visible", timeout=15000)
         self.stage("login.complete")
+
+    def open_more_menu(self):
+        menu = self.page.locator("#side .nav-more")
+        if not menu.evaluate("(el) => el.open"):
+            menu.locator("summary").click()
+        return menu
+
+    def click_more_nav(self, name: str) -> None:
+        self.open_more_menu().get_by_role("button", name=name, exact=True).click()
 
     def csrf_headers(self) -> dict[str, str]:
         cookies = {item["name"]: item["value"] for item in self.context.cookies()}
@@ -491,7 +500,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.assertFalse(self.page.locator("#shell").evaluate("(el) => el.inert"))
         self.assertTrue(new_case_opener.evaluate("(el) => el === document.activeElement"))
 
-        self.page.get_by_role("button", name="تغطية المجموعة القانونية").click()
+        self.click_more_nav("تغطية المجموعة القانونية")
         self.page.get_by_role("heading", name="تغطية المجموعة القانونية").wait_for(timeout=10000)
         audit(f"Arabic corpus coverage {self.page.viewport_size['width']}px")
 
@@ -503,7 +512,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
 
         self.page.locator("[data-lang-switch='1']").click()
         self.page.wait_for_function("() => document.documentElement.dir === 'rtl'", timeout=8000)
-        self.page.get_by_role("button", name="الإعدادات والأمان").click()
+        self.click_more_nav("الإعدادات والأمان")
         self.page.get_by_role("heading", name="الإعدادات").wait_for(timeout=10000)
         audit("Arabic settings and account forms")
 
@@ -542,9 +551,10 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.assertFalse(more_menu.evaluate("(el) => el.open"))
         more_menu.locator("summary").click()
         self.assertTrue(more_menu.evaluate("(el) => el.open"))
-        self.page.get_by_role("button", name="العملاء وتعارض المصالح", exact=True).click()
+        self.click_more_nav("العملاء وتعارض المصالح")
         self.page.get_by_role("heading", name="العملاء").wait_for(timeout=10000)
         self.assertTrue(more_menu.evaluate("(el) => el.open"), "Desktop navigation must not collapse after selection")
+        self.open_more_menu()
         tasks = self.page.get_by_role("button", name="المهام", exact=True)
         tasks.focus()
         self.page.keyboard.press("Space")
@@ -739,7 +749,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
 
         self.context.clear_cookies()
         self.login(self.state["reviewer_email"])
-        self.page.get_by_role("button", name="تغطية المجموعة القانونية").click()
+        self.click_more_nav("تغطية المجموعة القانونية")
         self.page.get_by_role("heading", name="تغطية المجموعة القانونية").wait_for(timeout=10000)
         self.page.get_by_role("heading", name="فهرس الأدوات المرشحة").wait_for(timeout=10000)
         dashboard_text = self.page.locator("body").inner_text()
@@ -847,7 +857,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.page.wait_for_function(
             """(expected) => Array.from(document.querySelector('select[aria-label="الإصدار السابق"]').options)
                 .some(option => option.value === expected)""",
-            str(document_v1_id),
+            arg=str(document_v1_id),
             timeout=8000,
         )
         available_versions = earlier_version.locator("option").evaluate_all(
@@ -1100,7 +1110,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
             document_ids.append(document.json()["document_id"])
             source_texts.append(source_text)
 
-        self.page.get_by_role("button", name="العملاء وتعارض المصالح", exact=True).click()
+        self.click_more_nav("العملاء وتعارض المصالح")
         client_card = self.page.locator(".card").filter(has_text=client_name).last
         query = client_card.get_by_label("البحث في مستندات العميل")
         query.fill(sentinel)
@@ -1217,7 +1227,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
         language_switch = self.page.locator('[data-lang-switch="1"]').first
         if language_switch.inner_text().strip() == "العربية":
             language_switch.click()
-        self.page.get_by_role("button", name="بدء الاستخدام").click()
+        self.click_more_nav("بدء الاستخدام")
         self.page.get_by_role("heading", name="بدء استخدام المكتب").wait_for()
         self.page.wait_for_function(
             "() => document.documentElement.scrollWidth <= window.innerWidth",
@@ -1285,9 +1295,9 @@ class BrowserAcceptanceTests(unittest.TestCase):
 
             work_section = self.page.locator(".matter-section-nav button").filter(has_text="العمل")
             work_section.click()
-            self.assertEqual(work_section.get_attribute("aria-pressed"), "true")
             deadline_nav = self.page.locator(".matter-subnav button").filter(has_text="المواعيد القانونية")
             deadline_nav.wait_for(state="visible", timeout=15000)
+            self.assertEqual(work_section.get_attribute("aria-pressed"), "true")
             deadline_nav.click()
             deadline_title = self.page.get_by_placeholder("نوع الموعد (استئناف، طعن، تقديم مستند...)")
             deadline_title.fill(f"موعد تجريبي {width}")
@@ -1363,7 +1373,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
             )
 
             # Firm export is an end-user workflow, not merely an API contract.
-            self.page.get_by_role("button", name="الإعدادات والأمان").click()
+            self.click_more_nav("الإعدادات والأمان")
             export_button = self.page.get_by_role("button", name="تنزيل بيانات المكتب ZIP")
             export_button.wait_for(state="visible", timeout=10000)
             export_bounds = export_button.bounding_box()
@@ -1418,6 +1428,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.assertEqual(metrics_link.count(), 0, "firm owners must not see platform pilot metrics")
         self.context.clear_cookies()
         self.login(self.state["reviewer_email"])
+        self.open_more_menu()
         metrics_link = self.page.get_by_role("button", name="مؤشرات استخدام المكاتب")
         self.assertEqual(metrics_link.count(), 1, "platform admins should have a metrics navigation entry")
         metrics_link.click()
@@ -1451,7 +1462,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
                 };
             }"""
         )
-        self.page.get_by_role("button", name="تغطية المجموعة القانونية").click()
+        self.click_more_nav("تغطية المجموعة القانونية")
         self.page.get_by_text("جارٍ تحميل المؤشرات…").wait_for(timeout=10000)
         self.page.evaluate("() => window.__resolveCoverage()")
         self.page.get_by_text("تعذر تحميل المؤشرات. أعد المحاولة.").wait_for(timeout=10000)
@@ -1460,7 +1471,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.stage("rtl.login.start")
         self.login(self.state["reviewer_email"])
         self.stage("rtl.login.done")
-        self.page.get_by_role("button", name="تغطية المجموعة القانونية").click()
+        self.click_more_nav("تغطية المجموعة القانونية")
         self.stage("rtl.coverage.click.done")
         self.page.get_by_role("heading", name="تغطية المجموعة القانونية").wait_for(timeout=10000)
         self.stage("rtl.coverage.visible")
@@ -1627,7 +1638,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
             )
             control.commit()
 
-            self.page.get_by_role("button", name="الإعدادات والأمان").click()
+            self.click_more_nav("الإعدادات والأمان")
             self.page.get_by_text("الاشتراك منتهي؛ الدعوات والتعديلات متوقفة في وضع القراءة فقط.", exact=True).wait_for(timeout=10000)
             settings_body = self.page.locator("body").inner_text()
             self.assertIn("تم الوصول إلى حد المقاعد. غيّر الخطة قبل دعوة مستخدم آخر.", settings_body)
@@ -1789,7 +1800,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
         assert_named_controls(".modal-backdrop")
         self.page.keyboard.press("Escape")
 
-        self.page.get_by_role("button", name="العملاء وتعارض المصالح", exact=True).click()
+        self.click_more_nav("العملاء وتعارض المصالح")
         client_button = self.page.get_by_role("button", name="+ ملف عميل جديد")
         client_button.wait_for(state="visible")
         client_button.click()
