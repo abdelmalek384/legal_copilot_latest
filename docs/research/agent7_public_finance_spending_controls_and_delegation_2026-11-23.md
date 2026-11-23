@@ -53,7 +53,7 @@ The existing tranche is more complete than the brief searchable-result extracts 
 - **Official GPO searchable text:** https://alamiria.com/Sec/TashTxt?id=KtERwc9KrtE%3D
 - **Secondary complete Arabic reproduction:** https://mksegypt.org/ar/decisions/34314
 - **Decision date:** 26 February 2026.
-- **Official publication:** Official Gazette; exact issue/page not captured in this pass.
+- **Official publication:** Official Gazette issue 9 تابع, 26 February 2026 (corroborated by the 2026 legal-memory index and contemporaneous publication report); original page image not yet preserved.
 - **Relation:** Presidential Decision 304/2024 delegates specified presidential powers to the Prime Minister; Decision 112/2026 replaces item (5) of paragraph (Fourth) of Article 1 of Decision 304/2024.
 - **Effect:** expressly adds Articles 8 and 9 of Public Business Sector Law 203/1991 to the delegated powers list.
 
@@ -138,7 +138,7 @@ The central acquisition register now contains **406 instrument rows**, up from 4
 **Arabic title:** قانون رقم 78 لسنة 2026 باعتماد خطة التنمية الاقتصادية والاجتماعية للعام المالي 2026/2027.
 
 - **Gazette date:** 7 July 2026 (Official Gazette, identified by the legal-memory index).
-- **Commencement:** 1 July 2026 (secondary legal record; verify against Gazette Article 9).
+- **Commencement:** reported as 1 July 2026; confirm the exact rule in Gazette Article 9.
 - **Length:** 9 articles, with integral plan tables/lists.
 - **Official Gazette page image / GPO text:** not located in this acquisition pass.
 - **Secondary full-article reproduction consulted:** https://www.aleqaria.com.eg/post/details/342862/
@@ -188,3 +188,13 @@ Not transcribed in the consulted reproduction. The full statute is described as 
 - Article 5 prohibits set-off against resources held or guaranteed in the National Investment Bank account under Law 119/1980.
 - Article 7 treats investment appropriations of the administrative apparatus, local administration and service authorities as one unit, permitting transfers between implementing entities without a separate statute, subject to the Minister of Planning's approval and the ministerial competence condition in the reproduced text.
 
+
+
+## 6. Revised acquisition count — 23 November 2026
+
+- New local text units copied in this file: **11** (Law 77/2026: Articles 1 and opening of 2; Presidential Decision 112/2026: preamble and Articles 1–2; Law 78/2026: Articles 1–7).
+- Decision 3530/2026 is cross-referenced to its existing canonical acquisition file and is not counted twice.
+- The acquisition register remains **406 instruments**. Revised keyword-based unique-row proxy: **99/406 full-text indicators (24.4%)**, **49/406 partial-only indicators (12.1%)**, **148/406 any indicator (36.5%)**. These are inventory flags, not verified corpus completion.
+- Requested domain discovery remains **13/13 (100%)**; this is not article-level completeness.
+- Whole Egyptian-law corpus completion remains **not calculable** because there is no closed, Gazette-derived denominator.
+- The new Law 78/2026 text is secondary-only and incomplete (Articles 1–7 of 9); Law 77/2026 is official-source text but only Articles 1–2 opening passages have been copied. The two source gaps are explicitly open.
