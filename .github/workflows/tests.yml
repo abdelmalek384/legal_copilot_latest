@@ -693,7 +693,7 @@ jobs:
         run: PYTHONPATH=. python tests/test_profile_initial_schemas.py
       - name: Test application routing across firm and corpus databases
         if: ${{ !cancelled() && steps.install_locked_dependencies.outcome == 'success' }}
-        run: PYTHONPATH=. python -m pytest -q tests/test_app_separate_database_runtime.py -k "not uploaded_matter_prompt_injection_reaches_model_only_as_untrusted_json"
+        run: PYTHONPATH=. python tests/run_ai2_runtime_tests.py
       - name: Check frontend JavaScript syntax
         if: ${{ !cancelled() && steps.install_locked_dependencies.outcome == 'success' }}
         run: |
