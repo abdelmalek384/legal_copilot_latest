@@ -287,16 +287,89 @@ Official SIS-hosted issue 291 scan: linked above; Decision 259 begins at printed
 **Evidence label:** `official_SIS_repository_hosted_electronic_Gazette_scan; issue 291 / printed pages 3–6 identified; text-layer extracted; watermark says not valid for circulation; no independent certification, rights clearance, or lawyer review; not production-verified`. Check the original printed Gazette for court-ready proof and verify the scan's exact text against page images before corpus ingestion.
 
 #### Decision 260/2025 — competent administrative authorities
-Secondary full-text lead: https://lawhub.info/eg/?p=17020  
-Official SIS-hosted issue 291 scan: linked in the bundle section above; printed pages 7–11 (starts at page 7). The scan exposes the full Article 1 article-to-authority matrix (32 rows) and Articles 2–3. The table text layer is RTL-fragmented; the matrix must be manually transcribed and visually checked before treating it as a complete structured crosswalk. Evidence label: official SIS repository-hosted electronic scan with "not valid for circulation" watermark; not lawyer-reviewed or production-verified.
 
-Arabic opening:
-> قرار رقم 260 لسنة 2025  
-> بشأن تحديد الجهة الإدارية المختصة في تطبيق أحكام قانون العمل رقم 14 لسنة 2025
+**Correction and acquisition update (23 November 2026):** the earlier 32-row estimate was incorrect. The complete secondary transcription on LawHub displays **36 numbered entries** in Article 1 (not 32), followed by Articles 2 and 3. This correction supersedes the earlier count in this document. The exact matrix is still not ready for machine indexing: several authority cells are blank in the LawHub text layer, likely due to RTL/table extraction loss, and must be resolved against the Gazette page images.
 
-> يقصد بالجهة الإدارية المختصة في تطبيق أحكام قانون العمل المشار إليه، الجهات المبينة قرين كل مادة على النحو التالي...
+Sources:
+- Secondary full text (36 numbered rows): https://lawhub.info/eg/?p=17020
+- SIS repository item for the Ministry's Decision 260 explanatory release, including six JPG images and one PDF attachment: https://mediadr.sis.gov.eg/xmlui/handle/123456789/116796
+- SIS-hosted issue 291 Gazette bundle (printed pages 7–11 for Decision 260): https://mediadr.sis.gov.eg/xmlui/bitstream/handle/123456789/117438/WQ291_20251225_7004.pdf?isAllowed=y&sequence=2
+- IDSC/MELES catalogue item for issue 291 supplement, dated 25-12-2025, whose abstract lists Decision 260 among the included instruments: https://dspace.id.com.eg/items/37add437-802d-4848-8a24-8e064db22fcc
 
-The decision crosswalks statutory articles to the competent Ministry/Directorate/office. It expressly allocates, among others, functions connected with skills assessment, jobseeker registration, disability-worker records, overtime notices, working-time schedules, collective bargaining/conciliation, strike notices and OSH inspection. Capture its entire article-to-authority table; the HTML snippet is incomplete and should not be treated as the complete matrix.
+**Arabic text captured:**
+
+وزارة العمل
+
+قرار رقم ٢٦٠ لسنة ٢٠٢٥
+
+بشأن تحديد الجهة الإدارية المختصة في تطبيق أحكام قانون العمل رقم ١٤ لسنة ٢٠٢٥
+
+وزير العمل
+
+بعد الاطلاع على الدستور؛
+وعلى قانون نظام الإدارة المحلية الصادر بقرار رئيس الجمهورية بالقانون رقم ٤٣ لسنة ١٩٧٩ بإصدار قانون نظام الإدارة المحلية؛
+وعلى قانون الخدمة المدنية الصادر بالقانون رقم ٨١ لسنة ٢٠١٦؛
+وعلى قانون العمل الصادر بالقانون رقم ١٤ لسنة ٢٠٢٥؛
+وبعد العرض على المجلس الأعلى للتشاور الاجتماعي.
+
+قرر:
+
+**(المادة الأولى)**
+
+يقصد بالجهة الإدارية المختصة في تطبيق أحكام قانون العمل المشار إليه، الجهات المبينة قرين كل مادة على النحو التالي:
+
+| م | مادة القانون | الجهة الإدارية في النص المتاح |
+|---:|---|---|
+| 1 | مادة 17 — التوجيه المهني | غير ظاهرة في النص الثانوي المستخرج |
+| 2 | مادة 26 — اعتماد شهادة اجتياز التدريب | مديرية العمل؛ ويجوز للمديرية تحديد المختص داخلياً وفق هيكلها الإداري |
+| 3 | مادة 27 — شهادة قياس مستوى المهارة وترخيص مزاولة الحرفة | غير ظاهرة في النص الثانوي المستخرج |
+| 4 | مادة 33 — شهادة قيد راغبي العمل وترشيحهم لأصحاب الأعمال | غير ظاهرة في النص الثانوي المستخرج |
+| 5 | مادة 35 — إعادة شهادة قيد العامل بعد استلام العمل | غير ظاهرة في النص الثانوي المستخرج |
+| 6 | مادة 36 — بيانات العمالة بالمنشآت خلال يناير | مكاتب التشغيل التابعة لمديريات العمل |
+| 7 | مادة 37 — سجل قيد الأشخاص ذوي الإعاقة وبيانات العاملين والوظائف والأجور | غير ظاهرة في النص الثانوي المستخرج |
+| 8 | مادة 47 — إخطار الوظائف الشاغرة والوظائف التي تم شغلها | غير ظاهرة في النص الثانوي المستخرج |
+| 9 | مادة 62 — اعتماد بطاقة تدريب الطفل دون 15 سنة | غير ظاهرة في النص الثانوي المستخرج |
+| 10 | مادة 66 — اعتماد كشف ساعات العمل والراحة للأطفال العاملين | مكاتب التشغيل التابعة لمديرية العمل |
+| 11 | مادة 67 — إخطار تأهيل الأطفال ذوي الإعاقة وقيدهم ومعاونتهم في الالتحاق بالأعمال | غير ظاهرة في النص الثانوي المستخرج |
+| 12 | مادة 71 — إخطار الأجانب المعفيين من ترخيص العمل | الإدارة المختصة بتراخيص عمل الأجانب بمديرية العمل |
+| 13 | مادة 72 — إخطار غياب الأجنبي عن العمل | غير ظاهرة في النص الثانوي المستخرج |
+| 14 | مادة 77 — حصر وقيد العمالة غير المنتظمة | الإدارة المركزية لشئون العمالة غير المنتظمة بديوان عام وزارة العمل |
+| 15 | مادة 89 — إيداع النسخة الرابعة من عقد العمل | مكاتب علاقات العمل التابعة لمديريات العمل؛ مع جواز الإيداع الإلكتروني |
+| 16 | مادة 92 — تقديم ملف العامل عند طلبه | مكاتب علاقات العمل ومكاتب تفتيش العمل التابعة لمديريات العمل |
+| 17 | مادة 93 — طلبات إعادة العامل إلى الجهة المتعاقد معها | مكاتب علاقات العمل التابعة لمديريات العمل |
+| 18 | مادة 121 — إخطار مبررات التشغيل الإضافي | يقدم الطلب لمكاتب التشغيل ويعتمد من مديرية العمل |
+| 19 | مادة 122 — إخطار جدول الراحة وساعات العمل وتعديلاته | مكاتب تفتيش العمل التابعة لمديريات العمل |
+| 20 | مادة 137 — مراجعة لائحة النظام الأساسي والتصديق عليها | مكاتب علاقات العمل التابعة لمديريات العمل |
+| 21 | مادة 167 — اعتماد استقالة العامل والعدول عنها | غير ظاهرة في النص الثانوي المستخرج |
+| 22 | مادة 196 — تحريك إجراءات التفاوض | الإدارة العامة لفض منازعات العمل الجماعية بديوان عام وزارة العمل |
+| 23 | مادة 202 — إجراءات الوساطة عند عدم الاتفاق | غير ظاهرة في النص الثانوي المستخرج |
+| 24 | مادة 203 — إيداع اتفاقية العمل الجماعية | غير ظاهرة في النص الثانوي المستخرج |
+| 25 | مادة 204 — قيد اتفاقية العمل الجماعية أو رفض قيدها | غير ظاهرة في النص الثانوي المستخرج |
+| 26 | مادة 206 — طلب الانضمام إلى اتفاقية جماعية سارية | غير ظاهرة في النص الثانوي المستخرج |
+| 27 | مادة 207 — التأشير على هامش سجل قيد الاتفاقيات الجماعية | غير ظاهرة في النص الثانوي المستخرج |
+| 28 | مادة 209 — التوفيق أو الوساطة أو التحكيم عند تعذر استمرار تنفيذ الاتفاقية | غير ظاهرة في النص الثانوي المستخرج |
+| 29 | مادة 215 — تحديد موعد جلسة التوفيق في النزاع | غير ظاهرة في النص الثانوي المستخرج |
+| 30 | مادة 217 — إحالة النزاع إلى مركز الوساطة والتحكيم | غير ظاهرة في النص الثانوي المستخرج |
+| 31 | مادة 232 — الإخطار بتاريخ الإضراب قبل عشرة أيام | مديرية العمل المختصة |
+| 32 | مادة 253 — خطط الطوارئ وإغلاق المنشأة حتى زوال الخطر | مكاتب السلامة والصحة المهنية التابعة لمديريات العمل |
+| 33 | مادة 256 — تشكيل جهاز تفتيش السلامة والصحة المهنية | الإدارة المركزية للسلامة والصحة المهنية بديوان عام الوزارة |
+| 34 | مادة 257 — إغلاق المنشأة كلياً أو جزئياً عند الخطر الداهم | مديرية العمل المختصة |
+| 35 | مادة 260 — الإحصائية نصف السنوية للأمراض والحوادث والإصابات | مكاتب السلامة والصحة المهنية التابعة لمديريات العمل |
+| 36 | مادة 271 — اعتماد نظام الوجبات الغذائية | مكاتب السلامة والصحة المهنية التابعة لمديريات العمل |
+
+**(المادة الثانية)**
+
+يجوز لطالب الخدمة المنصوص عليها في المواد (٢٧، ٣٣، ١٦٧) المشار إليها في المادة السابقة أن يحصل على الخدمة من أية مديرية عمل على مستوى الجمهورية، دون التقيد بقواعد الاختصاص المكاني.
+
+**(المادة الثالثة)**
+
+ينشر هذا القرار في الوقائع المصرية، ويعمل به من اليوم التالي لتاريخ نشره.
+
+صدر بتاريخ ٤/١٢/٢٠٢٥  
+وزير العمل  
+محمد جبران
+
+**Evidence limitations:** the 36-row transcription above is a faithful working capture of the secondary HTML's visible text, not a completed source-matched matrix. The missing authority cells are deliberately marked as missing rather than inferred from surrounding entries or press summaries. The SIS explanatory release provides a separate primary-government-hosted lead with six JPGs and one PDF, but it is not the Gazette page itself. The SIS issue 291 PDF is an electronic research scan carrying the warning “صورة إلكترونية لا يعتد بها عند التداول”. Manually compare all 36 rows with Gazette pp. 7–11 and the SIS explanatory images/PDF; reconcile the blank cells, then obtain lawyer review. No verified flag is warranted.
 
 #### Decision 264/2025 — training operations and training-centre licensing
 
