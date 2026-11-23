@@ -55,6 +55,9 @@ Run `python tools/deployment_preflight.py` and review the sanitized development-
 - Invoice issue, payment evidence/review, subscription read-only recovery, exports and audit records.
 - Confirm every assistant answer shows a trust-tier badge, then save and update lawyer ratings, list firm ratings as an administrator, and export the CSV. Distinguish **source-matched** from **verified**; source matching is not lawyer verification.
 - Cross-firm denial using a second synthetic firm and unique sentinel values. Do not rely on UI hiding; test direct IDs and API routes as well.
+- **Client File Intelligence acceptance:** create two fictional matters linked to one client, upload a distinct synthetic document to each, and confirm a firm administrator can find both through that client's extracted-text search. Sign in as a user who is a member of only one matter and confirm the same search returns only that matter's passages; direct requests for an unrelated client or another firm's data must fail closed or return no matches without disclosing client/document metadata.
+- **Annotation/evidence integrity:** select an exact passage from each synthetic document, save a colored highlight and a note, reload the matter and verify the offsets, selected text, author and note persist. Confirm stale text digests are rejected, another user cannot remove an annotation unless authorized as a matter lead/firm administrator, and the original uploaded-file checksum/bytes remain unchanged after annotations and extraction corrections.
+- Verify annotations and client-wide search in Arabic and English, on desktop and phone widths; test keyboard selection/actions and direct navigation from a client search result to the correct matter/document/passage.
 - Repeat critical flows in Arabic (ar-EG) and English (en-US).
 
 ## 4. Record results
