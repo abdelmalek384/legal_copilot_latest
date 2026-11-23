@@ -2364,6 +2364,7 @@ async function clients(initialQuery=''){
        PAGE='cases';TAB='docs';
        view(Number(item.case_id)).catch(()=>{
         window.DOCUMENT_REVIEW_TARGET=null;
+        window.DOCUMENT_CLIENT_SEARCH_RETURN=null;
         toast(uiText('تعذر فتح المقطع المحدد.','Could not open the selected passage.'));
        });
       },'g')
