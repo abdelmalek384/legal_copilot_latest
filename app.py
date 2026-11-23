@@ -7269,7 +7269,7 @@ def search_accessible_document_text(
     ).fetchone()[0])
     rows = c.execute(
         "SELECT chunks.id AS chunk_id,chunks.case_id,chunks.document_id,chunks.ref,"
-        "chunks.page,substr(chunks.text,max(1,instr(chunks.norm,?)-450),1200) AS excerpt,"
+        "chunks.page,substr(chunks.text,1,1200) AS excerpt,"
         "d.name AS document_name,cs.title AS case_title,cs.case_number,cs.case_year,"
         "bm25(chunks_fts) AS rank"
         + joins + where + " ORDER BY rank LIMIT ? OFFSET ?",
@@ -7343,7 +7343,7 @@ def search_client_document_text(
         "d.name AS document_name,cs.title AS case_title,cs.case_number,cs.case_year,"
         "bm25(chunks_fts) AS rank"
         + joins + access + " ORDER BY rank LIMIT ? OFFSET ?",
-        (query_tokens[0],) + params + (limit, offset),
+        params + (limit, offset),
     ).fetchall()
     c.execute(
         "INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
