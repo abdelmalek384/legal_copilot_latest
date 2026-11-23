@@ -1107,10 +1107,14 @@ class BrowserAcceptanceTests(unittest.TestCase):
             return false;
         }""", sentinel)
         self.assertTrue(selected, "synthetic passage should be selectable for annotation")
-        self.page.get_by_role("button", name="تظليل المقطع المحدد وإضافة ملاحظة").click()
+        highlight_action = self.page.get_by_role("button", name="تظليل المقطع المحدد وإضافة ملاحظة")
+        highlight_action.focus()
+        self.page.keyboard.press("Enter")
         annotation_note = "SYNTHETIC LAWYER REVIEW NOTE"
         self.page.get_by_label("ملاحظة التحديد").fill(annotation_note)
-        self.page.get_by_role("button", name="حفظ التظليل والملاحظة").click()
+        save_annotation = self.page.get_by_role("button", name="حفظ التظليل والملاحظة")
+        save_annotation.focus()
+        self.page.keyboard.press("Enter")
         self.page.locator(".passage-annotation-highlight").wait_for(state="visible", timeout=10000)
         self.assertIn(annotation_note, self.page.locator(".passage-annotation-list").inner_text())
 
