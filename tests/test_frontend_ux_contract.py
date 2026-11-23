@@ -531,7 +531,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("api('/answers/corrections','POST'", HTML)
         self.assertIn("api('/admin/corrections')", HTML)
         self.assertIn("trustTierBadge", HTML)
-        self.assertIn("Source-matched — not verified", HTML)
+        self.assertIn("Source-matched, not reviewed", HTML)
         self.assertIn("Unreviewed", HTML)
         self.assertIn("Verified", HTML)
 
@@ -1417,7 +1417,7 @@ class FrontendUXContractTests(unittest.TestCase):
 
     def test_matter_workspace_groups_all_tabs_and_keeps_matter_context_visible(self):
         start = HTML.index("async function view(id){")
-        end = HTML.index("\\n// Bilingual UI:", start)
+        end = HTML.index("\n// Bilingual UI:", start)
         page = HTML[start:end]
         for group in ("overview", "work", "records", "finance", "team"):
             self.assertIn("id:'" + group + "'", page)
