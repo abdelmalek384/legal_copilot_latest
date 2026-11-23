@@ -463,7 +463,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
             audit(f"Arabic dashboard {width}px")
 
         self.page.set_viewport_size({"width": 390, "height": 844})
-        self.page.get_by_role("button", name="القضايا", exact=True).click()
+        self.page.get_by_role("button", name="العملاء والقضايا", exact=True).click()
         new_case_opener = self.page.get_by_role("button", name="+ قضية جديدة")
         new_case_opener.click()
         dialog = self.page.get_by_role("dialog", name="قضية جديدة")
@@ -536,7 +536,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.page.keyboard.press("Space")
         self.page.get_by_role("heading", name="المهام").wait_for(timeout=10000)
 
-        cases = self.page.get_by_role("button", name="القضايا", exact=True)
+        cases = self.page.get_by_role("button", name="العملاء والقضايا", exact=True)
         cases.focus()
         self.page.keyboard.press("Enter")
         self.page.get_by_role("heading", name="القضايا").wait_for(timeout=10000)
@@ -808,11 +808,11 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.assertEqual(history_toggle.get_attribute("aria-expanded"), "true")
         self.assertTrue(history_filter.is_visible())
 
-        scope = self.page.locator(".research-controls select").nth(0)
+        scope = self.page.get_by_role("button", name="مستندات المكتب", exact=True)
         matter = self.page.locator(".research-controls select").nth(1)
         composer = self.page.locator(".research-composer textarea")
 
-        scope.select_option("firm_documents")
+        scope.click()
         self.page.locator(".research-composer button").click()
         self.assertIn("اختر ملف قضية", self.page.locator("body").inner_text())
 
@@ -963,7 +963,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
         copied_answer_id = self.read_clipboard()
         self.assertRegex(copied_answer_id, r"^ans_[A-Za-z0-9_-]{32}$")
 
-        scope.select_option("metadata_only")
+        self.page.get_by_role("button", name="فهرس المصادر", exact=True).click()
         composer.fill("SYNTHETIC METADATA ONLY INSTRUMENT 2026")
         self.page.locator(".research-composer button").click()
         self.page.get_by_text("SYNTHETIC METADATA ONLY INSTRUMENT 2026").wait_for(timeout=10000)
@@ -976,9 +976,9 @@ class BrowserAcceptanceTests(unittest.TestCase):
         research_nav = self.page.locator("#side").get_by_role("button", name="البحث القانوني")
         research_nav.focus()
         research_nav.press("Enter")
-        self.page.locator(".research-controls select").nth(0).wait_for(state="visible", timeout=10000)
+        self.page.locator(".research-scope-tabs button").first.wait_for(state="visible", timeout=10000)
 
-        scope = self.page.locator(".research-controls select").nth(0)
+        scope = self.page.get_by_role("button", name="مستندات المكتب", exact=True)
         matter = self.page.locator(".research-controls select").nth(1)
         composer = self.page.locator(".research-composer textarea")
         send = self.page.locator(".research-composer button")
@@ -1015,7 +1015,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.page.keyboard.press("Tab")
         self.assertTrue(send.evaluate("(el) => document.activeElement === el"))
 
-        scope.select_option("metadata_only")
+        self.page.get_by_role("button", name="فهرس المصادر", exact=True).click()
         composer.focus()
         self.page.keyboard.type("keyboard-only-no-source-query-xyz-2026")
         self.page.keyboard.press("Tab")
@@ -1104,7 +1104,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
             dialog.get_by_role("button", name="حفظ القضية").click()
             self.page.get_by_text(case_title, exact=True).wait_for(timeout=10000)
 
-            self.page.locator(".tabs a").filter(has_text="المواعيد القانونية").click()
+            self.page.locator(".matter-subnav button").filter(has_text="المواعيد القانونية").click()
             deadline_title = self.page.get_by_placeholder("نوع الموعد (استئناف، طعن، تقديم مستند...)")
             deadline_title.fill(f"موعد تجريبي {width}")
             deadline_date = self.page.locator('input[type="date"]').nth(1)  # first date belongs to the draft calculator
@@ -1208,7 +1208,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
 
     def test_invalid_utf8_matter_csv_is_rejected_before_network_submission(self) -> None:
         self.login(self.state["owner_a_email"])
-        self.page.get_by_role("button", name="القضايا", exact=True).click()
+        self.page.get_by_role("button", name="العملاء والقضايا", exact=True).click()
         submitted = []
         self.page.on(
             "request",
