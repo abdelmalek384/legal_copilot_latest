@@ -1447,3 +1447,27 @@ Using the same revised unique-row keyword proxy described in Section 16, the upd
 - **259/405 (64.0%)** rows without a matching indicator.
 
 This is a revised inventory evidence proxy, not a completeness percentage. It counts source text indicators and does not certify that every article is transcribed, current, authenticated or amendment-consolidated. The 13/13 domain discovery map remains 100%; whole-national-corpus completion remains not calculable.
+
+
+## 22. Actual article-text acquisition count for this tranche
+
+A conservative count of complete article/issuing-provision units reproduced in this file (not source-only references) is **122 units**, broken down as follows:
+
+| Instrument | Reproduced article/issuing units |
+|---|---:|
+| Law 168/2025 | 18 (4 issuing + 14 substantive) |
+| Decision 200/2026 | 24 (4 issuing + 20 regulation articles) |
+| Law 170/2025 | 19 (5 issuing + 14 substantive) |
+| Law 172/2025 | 22 (6 issuing + 16 selected substantive) |
+| Health Decision 182/2025 | 4 |
+| Decision 1315/2026 | 11 |
+| Decision 3660/2026 | 3 |
+| Law 154/2026 | 2 |
+| Decision 652/2026 | 2 |
+| Law 203/1991 | 10 (8 issuing + 2 substantive) |
+| Decision 1590/1991 | 7 (4 issuing + 3 substantive) |
+| **Total** | **122** |
+
+This count deliberately excludes the selected replacement/new provisions from Law 185/2020 and Decision 948/2021 because their amendment-unit boundaries have not yet been normalized into a non-overlapping count. It also excludes complete text available only in linked source PDFs but not copied article-by-article into this file (notably the full 75-article Law 203/1991 and the 880-line Decision 1590/1991 regulation). Forms, annex tables and schedules are not counted as articles.
+
+**Completeness distinction:** 122 reproduced units does not mean 122 current consolidated articles. Some are issuing clauses, some are selected provisions, some are historical versions, and some require Gazette image proofing or amendment reconciliation.
