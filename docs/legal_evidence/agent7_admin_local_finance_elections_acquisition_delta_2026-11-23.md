@@ -173,3 +173,20 @@ Additional amendments found in the consolidated transcription include Law 145/19
 - SCC Case 2/16 has an official SCC-hosted HTML judgment. SCC Case 36/18 is fully transcribed on MKS Egypt; an official SCC-hosted copy was not found in this pass. MKS Egypt pages display CC BY 4.0; the repository source register now records the license as applying to site text as displayed only, not embedded third-party scans.
 - Legal Reform and LAW HUB judgments are secondary full-text reproductions; MKS Egypt texts are licensed transcriptions, not Gazette originals. None of these entries is marked lawyer-reviewed.
 - These judgments affect the operative status of Law 43/1979 and its fee provisions. The consolidated statute must carry judgment-driven invalidity annotations, not only statutory amendment notes.
+
+
+## I. Two further official SCC judgments on local executive powers and local taxation
+### SCC Case 21/11 (6 April 1991) — governor's regulatory and penal authority
+- Official SCC full text: https://www.sccourt.gov.eg/DjangoPortalResources/Rules_Html/416_11_21_1_2.html (54 extracted lines).
+- The case concerned Suez Governor Decision 108/1987, which regulated fresh-fish transport and imposed criminal penalties and confiscation.
+- The SCC invalidated Art.9(b) of the governor's decision. It expressly construed Art.27(1) of Law 43/1979: the governor's powers are executive/administrative powers over local facilities and do not extend to making executive regulations or issuing regulatory decisions that define crimes or penalties where the statute assigns that competence to a minister. Such delegated criminalization is a legislative-type competence and must be exercised by the authority designated by law.
+- Exact Arabic excerpt: «ودون أن يتعدى ذلك إلى الاختصاص بإصدار اللوائح التنفيذية».
+- This is a controlling constitutional boundary for the interpretation of Law 43/1979 Art.27 and governorate decision-making.
+
+### SCC Case 221/26 (5 October 2024) — local taxes must be created by law
+- Official SCC full text: https://www.sccourt.gov.eg/DjangoPortalResources/Rules_Html/15188_26_221_1_2.html (76 extracted lines).
+- **Calendar-date clarification:** the case number is 221/26 (judicial year 26), but the judgment was delivered on **5 October 2024**; it is not a 2026 judgment.
+- The Court invalidated Fayoum Governor Decision 328/2002 insofar as it imposed an annual charge on warehouses for iron, wood, building materials and sanitary ware. Since no specific service was provided in return, the charge was a local tax, regardless of the label used by the governorate.
+- The judgment interprets Constitution Arts.38, 101 and 178: the law must state the essential elements of a local tax; the local council's Art.43/1979 Art.12(6) competence is only to propose local taxes, not impose them by governor's decree. The tax's base, amount, liable persons and collection structure require a legislative basis.
+- Exact Arabic excerpt: «قاصرًا اختصاصه في هذا الشأن على الاقتراح بفرضها».
+- This judgment complements SCC Case 36/18: Case 36/18 addresses an unpublished ministerial local-fee decision and its inseverable enabling provisions; Case 221/26 addresses the constitutional reservation of local-tax creation to legislation and the limits of a governor's decree.
