@@ -3560,7 +3560,8 @@ function documentIntelligencePanel(caseId,documents){
     const note=h('input',{type:'text',maxLength:2000,placeholder:uiText('ملاحظة المراجع (اختيارية)','Reviewer note (optional)'),'aria-label':uiText('ملاحظة مراجعة المقطع ','Review note for chunk ')+chunk.id});
     const correction=h('textarea',{rows:4,maxLength:20000,placeholder:uiText('أدخل النص المصحح بعد الرجوع إلى المستند الأصلي.','Enter corrected text after checking the original document.'),'aria-label':uiText('النص المصحح للمقطع ','Corrected text for chunk ')+chunk.id,style:'display:none;width:100%'});
     const currentText=String(latest&&latest.outcome==='corrected'?latest.reviewed_text:chunk.text||''),annotations=Array.isArray(chunk.annotations)?chunk.annotations:[];
-    const passage=h('p',{className:'extraction-review-text passage-annotation-text','data-chunk-id':String(chunk.id)});
+    const passageHelpId='passage-annotation-help-'+caseId+'-'+item.doc.document_id+'-'+chunk.id;
+    const passage=h('p',{className:'extraction-review-text passage-annotation-text','data-chunk-id':String(chunk.id),tabIndex:0,'aria-label':uiText('النص المستخرج للمقطع ','Extracted passage for chunk ')+chunk.id});
     const renderPassage=()=>{
      const chars=Array.from(currentText),parts=[];let cursor=0;
      const valid=annotations.filter(annotation=>{
@@ -3584,7 +3585,7 @@ function documentIntelligencePanel(caseId,documents){
     const annotationColor=h('select',{'aria-label':uiText('لون التظليل','Highlight color')},
      new Option(uiText('أصفر','Yellow'),'yellow'),new Option(uiText('أزرق','Blue'),'blue'),
      new Option(uiText('أخضر','Green'),'green'),new Option(uiText('وردي','Pink'),'pink'));
-    const annotationEditor=h('div',{className:'passage-annotation-editor',style:'display:none'},annotationNote,annotationColor);
+    const annotationEditor=h('div',{className:'passage-annotation-editor',role:'group','aria-label':uiText('إعدادات التظليل والملاحظة','Highlight and note settings'),style:'display:none'},annotationNote,annotationColor);
     const annotationSave=btn(uiText('حفظ التظليل والملاحظة','Save highlight and note'),async()=>{
      if(!pendingAnnotation){status.textContent=uiText('حدد مقطعاً من النص أولاً.','Select a passage first.');return}
      const annotationText=annotationNote.value.trim();
@@ -3611,6 +3612,7 @@ function documentIntelligencePanel(caseId,documents){
      if(window.getSelection)window.getSelection().removeAllRanges();
     },'g');
     annotationEditor.append(annotationSave,annotationCancel);
+    const annotationHelp=h('p',{id:passageHelpId,className:'mut',role:'note',textContent:uiText('حدد النص داخل هذا المقطع ثم اختر التظليل.','Select text within this passage, then choose the highlight action.')});
     const annotateButton=btn(uiText('تظليل المقطع المحدد وإضافة ملاحظة','Highlight selection and add note'),()=>{
      const selection=window.getSelection();
      if(!selection||selection.isCollapsed||!selection.rangeCount){status.textContent=uiText('حدد جزءاً من النص داخل المقطع أولاً.','Select text inside this passage first.');return}
@@ -3624,6 +3626,7 @@ function documentIntelligencePanel(caseId,documents){
      pendingAnnotation={start_offset:startOffset,end_offset:startOffset+Array.from(selectedText).length,selected_text:selectedText};
      annotationNote.removeAttribute('aria-invalid');annotationEditor.style.display='grid';annotationNote.focus();
     },'g');
+    annotateButton.setAttribute('aria-describedby',passageHelpId);
     annotateButton.addEventListener('mousedown',event=>event.preventDefault());
     const annotationRows=annotations.map(annotation=>{
      const stale=annotation.source_text_sha256!==chunk.text_sha256;
@@ -3638,7 +3641,7 @@ function documentIntelligencePanel(caseId,documents){
        renderAnalysis();
       }catch(error){remove.disabled=false;status.textContent=String(error.message||uiText('تعذر حذف التظليل.','Could not remove the highlight.'))}
      },'g');
-     return h('div',{className:'passage-annotation-row'},
+     return h('div',{className:'passage-annotation-row',role:'listitem'},
       h('div',{},h('b',{textContent:'“'+String(annotation.selected_text||'')+'”'}),h('p',{textContent:String(annotation.note||'')}),h('small',{className:'mut',textContent:(annotation.created_by_name||uiText('مستخدم','User'))+' · '+String(annotation.created_at||'')})),
       stale?h('p',{className:'mut',textContent:uiText('تغير النص بعد إنشاء هذا التظليل؛ لم نعد نحدد موضعه تلقائياً.','The passage changed after this annotation; its location is no longer highlighted automatically.')}):null,
       remove
@@ -3656,7 +3659,7 @@ function documentIntelligencePanel(caseId,documents){
      latest&&latest.page_reference?h('p',{className:'mut',textContent:uiText('مرجع أدخله المراجع ولم يتم التحقق منه مقابل الملف الأصلي.','Reviewer-entered reference; not verified against the original file.')}):null,
      h('div',{},h('b',{textContent:uiText('النص الحالي القابل للتحديد','Current selectable passage')}),passage),
      annotateButton,annotationEditor,
-     annotations.length?h('div',{className:'passage-annotation-list'},h('b',{textContent:uiText('التظليلات والملاحظات','Highlights and annotations')}),...annotationRows):null,
+     annotationHelp,annotations.length?h('div',{className:'passage-annotation-list',role:'list','aria-label':uiText('قائمة التظليلات والملاحظات','List of highlights and annotations')},h('b',{textContent:uiText('التظليلات والملاحظات','Highlights and annotations')}),...annotationRows):null,
      latest&&latest.outcome==='corrected'?h('div',{},h('b',{textContent:uiText('النص المستخرج الأصلي','Original extracted passage')}),h('p',{className:'extraction-review-text',textContent:String(latest.original_text||'')})):null,
 
      latest&&latest.outcome==='corrected'&&Array.isArray(latest.changes)?h('div',{className:'reviewed-change-list'},h('b',{textContent:uiText('التغييرات النصية الحرفية','Literal text changes')}),...latest.changes.map((change,index)=>h('div',{className:'reviewed-change'},h('p',{className:'mut',textContent:uiText('قبل التعديل','Before')}),h('p',{className:'extraction-review-text',textContent:String(change.before||'')}),h('p',{className:'mut',textContent:uiText('بعد التعديل','After')}),h('p',{className:'extraction-review-text',textContent:String(change.after||'')}),h('p',{className:'mut',textContent:uiText('هذا اختلاف نصي حرفي ويتطلب مراجعة قانونية.','Literal text difference; requires lawyer review.')})))):null,
