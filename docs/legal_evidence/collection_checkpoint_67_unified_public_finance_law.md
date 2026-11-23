@@ -75,3 +75,47 @@
 - Executive Regulation: conflicting Minister of Finance Decision numbers 13/2024 and 73/2024 found in official Ministry-related publications; original Gazette confirmation required.
 - Current 2026 fiscal instruments are linked to checkpoints 50 and 53.
 - Full Gazette consolidation and lawyer review remain outstanding.
+
+
+## 8. Primary-source text acquisition — 23 November 2026 (new)
+
+### Law 6/2022 — original Gazette wording now extracted
+- Official Gazette scan hosted by the Egyptian Tax Authority: https://www.eta.gov.eg/sites/default/files/2024-03/law_no.6-2022.pdf
+- Official Gazette issue 5 bis (D), 8 February 2022; 431 extracted lines.
+- Promulgating Article 6: «ينشر هذا القانون في الجريدة الرسمية، ويعمل به من اليوم التالي لتاريخ نشره.» Effective 9 February 2022.
+- Promulgating Article 3 repeals Law 53/1973 (State General Budget) and Law 127/1981 (Government Accounting), plus conflicting provisions.
+- Promulgating Article 4 requires the Minister of Finance to issue the executive regulation within one year and preserves the former regulations meanwhile insofar as nonconflicting.
+- Article 7: «لا يجوز بعد العمل بهذا القانون إنشاء صناديق وحسابات خاصة إلا بقانون.»
+- Article 8 requires programme/performance budgeting and alignment with national development and strategic objectives.
+- Article 10 distinguishes cash-basis State general budget from accrual-basis economic public authority budgets.
+- Article 11 requires a three-year medium-term budget framework.
+- Article 32 requires implementation of binding General Assembly of Fatwa and Legislation opinions and other legally binding inter-administrative dispute decisions; other opinions/decisions that create financial burdens require Ministry of Finance approval.
+- Article 35 requires a valid budget commitment/appropriation before incurring expenditure or concluding a financial contract/agreement.
+- Articles 58–61 cover Ministry financial inspection, technical support to Public/Administrative Prosecution, disciplinary responsibility and notification of financial crimes/property incidents.
+
+### Law 18/2024 — amendment text now retrieved from official Gazette PDF
+- Official Gazette PDF: https://www.eta.gov.eg/sites/default/files/2024-09/law_no.18-2024.pdf
+- Official Gazette issue 13 bis (A), 30 March 2024; 5 pages / 126 extracted lines.
+- Article 5 provides commencement the day after publication: 31 March 2024.
+- Article 1 substitutes the first paragraph of Law 6/2022 promulgating Article 2: programme/performance budgeting is to be fully applied within no more than six years (replacing the original four-year period), with implementation-capacity and control-system development language.
+- Article 1 also substitutes definitions in Article 1; changes Article 23(2), Article 30(1)-(2), Article 35 and Article 74.
+- Article 2 adds definitions for “General Government Budget”, “General Government Debt” and “Administrative Classification”, and adds Articles 25 bis and 31 bis.
+- New Article 31 bis requires the Cabinet, annually on the Minister's proposal, to set a maximum general-government debt value/ratio, with exceptional exceedance only after the approvals specified in the law.
+- Article 3 phases in inclusion of economic public authorities' resources and uses into the general-government budget over no more than five fiscal years, according to an approved timetable.
+- This is a substantial fiscal-scope expansion; link it to the annual budget, economic public authorities and debt-control framework.
+
+### Executive Regulation Decision 73/2024 — conflict resolved; full official PDF located
+- Full 126-page Ministry of Finance PDF: https://media.mof.gov.eg/mof-prd/qrar_wzyr_almalyt_73_lsnt2024_7207e41665.pdf
+- Gazette supplement issue 45 (تابع), 24 February 2024; 1,987 extracted lines.
+- Issuing Article 4: «ينشر هذا القرار فى الوقائع المصرية، ويعمل به من اليوم التالى لتاريخ نشره.» Effective 25 February 2024.
+- Issuing Article 2 specifies coverage: central administrative units; local administration units (governorates, centres, cities, districts, villages and service directorates); service public authorities; independent entities, oversight bodies, national councils and both Houses of Parliament subject to their constitutional/legal budget guarantees; related special units/funds/accounts/projects; and economic public authorities. Exclusions include subscription-funded funds/accounts and accounts expressly excluded by international agreements.
+- Issuing Article 3 repeals the former executive regulations under Laws 53/1973 and 127/1981.
+- **Decision-number conflict resolved:** the operative regulation is Minister of Finance Decision **73/2024**. Prior Ministry material mentioning Decision 13/2024 was not supported by the original Gazette supplement; retain the old discrepancy note only as a superseded lead, not as an unresolved alternative.
+- The regulation text itself is now available for full extraction and provision-level indexing; do not treat this acquisition note as a substitute for the 126-page original.
+
+### Required integration
+1. Replace the unresolved Decision 13/2024 vs 73/2024 issue in earlier research with the verified Decision 73/2024.
+2. Integrate Law 18/2024 article deltas into the Law 6/2022 base-text representation.
+3. Extract Decision 73/2024 all 126 pages into article-level structured records, preserving chapter/article boundaries.
+4. Confirm Law 6/2022 corrigendum No. 6/2022 against its Gazette image.
+5. Do not conflate the six-year programme-budget transition with the five-year phase-in of economic public authorities into the general-government budget.
