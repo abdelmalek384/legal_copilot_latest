@@ -4786,6 +4786,12 @@ body:has(.research-layout){background:#f3f5f8;color:#1d2c42;font-family:Inter,"N
 /* Explicit high-contrast states and 46px touch targets for primary and nested navigation. */
 #side .primary-nav button{background:#173657!important;color:#f5f8ff!important;min-height:46px!important}
 #side .primary-nav button.on{background:#e8f0ff!important;color:#153b75!important}
+@media(max-width:800px){
+ #side .lang-switch{position:relative!important;z-index:30!important;flex:0 0 auto!important}
+ #side .firm-switch{flex:0 0 min(128px,34vw)!important;min-width:0!important}
+ #side .tenant-context{flex:0 1 auto!important;min-width:0!important;max-width:180px!important}
+ #side .primary-nav{position:relative!important;z-index:10!important;flex:1 1 0!important;width:0!important;min-width:0!important;max-width:100%!important;overflow-x:auto!important}
+}
 @media(max-width:760px){#side .primary-nav button{height:auto!important;min-height:46px!important;padding-block:11px!important}}
 #main .matter-section-nav button,#main .matter-subnav button{height:46px!important;min-height:46px!important}
 
