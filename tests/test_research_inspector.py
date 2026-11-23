@@ -93,6 +93,7 @@ class ResearchInspectorTests(unittest.TestCase):
         source["verified"] = False
         provenance = source["provenance"]
         provenance.update({
+            "source_id": "primary-source-1",
             "review_status": "pending_source_review",
             "legal_status": "under_review",
             "authenticity_verified": False,
@@ -153,6 +154,10 @@ class ResearchInspectorTests(unittest.TestCase):
         source = self._source_matched_candidate()
         source["provenance"]["document_type"] = "secondary"
         self.assertEqual(source_status(source, "2026-10-24"), "secondary_copy")
+
+        source = self._source_matched_candidate()
+        source["provenance"]["document_type"] = []
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
 
     def test_source_matched_scope_does_not_claim_currentness(self):
         source = self._source_matched_candidate()
