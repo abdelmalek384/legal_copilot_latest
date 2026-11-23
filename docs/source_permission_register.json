@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "assessment_date": "2026-11-23",
-  "note": "A register of source candidates and permission questions, not a claim that rights have been granted. Public accessibility and open access do not by themselves establish bulk collection, commercial reuse, or redistribution rights. Agent 8 river-transport and railway acquisition tranche (2026-11-23): four source-family records added; all collection and commercial reuse permissions remain unknown pending terms review or written authorization. Agent 8 metro/tunnels tranche (2026-11-23): Lawyer Egypt secondary source family added; collection and commercial reuse permissions unknown.",
+  "note": "A register of source candidates and permission questions, not a claim that rights have been granted. Public accessibility and open access do not by themselves establish bulk collection, commercial reuse, or redistribution rights. Agent 8 river-transport and railway acquisition tranche (2026-11-23): four source-family records added; all collection and commercial reuse permissions remain unknown pending terms review or written authorization. Agent 8 metro/tunnels tranche (2026-11-23): Lawyer Egypt secondary source family added; collection and commercial reuse permissions unknown. Agent 8 maritime/ports/inland-navigation tranche (2026-11-23): three official authority-source records added; all reuse permissions remain unknown.",
   "sources": [
     {
       "source_id": "EG-ADNANLAWYER-LEGAL-TEXTS",
@@ -3271,6 +3271,54 @@
       "terms_checked_on": "2026-11-23",
       "bulk_download_or_api": "Individual public pages; no bulk/API permission established",
       "required_next_action": "Review site terms and seek written authorization before local mirroring or commercial reuse; compare all reproduced articles with original Gazette page images."
+    },
+    {
+      "source_id": "EG-SUEZ-CANAL-AUTHORITY-LEGAL-PAGES-1975-1998-2014",
+      "authority": "Suez Canal Authority (Egypt) — official authority website",
+      "source_page": "https://www.suezcanal.gov.eg/Arabic/About/CanalTreatiesAndDecrees/Pages/ARepublicanDecreeLawNo.30of1975.aspx; https://www.suezcanal.gov.eg/Arabic/About/CanalTreatiesAndDecrees/Pages/LawNo4.aspx; https://www.suezcanal.gov.eg/Arabic/About/CanalTreatiesAndDecrees/Pages/Law_No_34_2014.aspx",
+      "material_types": [
+        "Official authority-hosted Arabic legal reproductions of Law 30/1975, Law 4/1998 and Law 34/2014 governing the Suez Canal Authority."
+      ],
+      "access_status": "Public official authority pages opened and read 23 November 2026. These are SCA legal-information pages, not original Gazette page images or authenticated Gazette binaries.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://www.suezcanal.gov.eg/",
+      "permission_evidence": "No explicit licence permitting bulk extraction, local mirroring, commercial indexing, republication or redistribution was identified. Official authority publication does not establish commercial reuse rights.",
+      "terms_checked_on": "2026-11-23",
+      "bulk_download_or_api": "Public web pages; no bulk/API permission established",
+      "required_next_action": "Review SCA site terms and request written authorization before bulk/local mirroring or commercial redistribution; obtain corresponding Gazette originals."
+    },
+    {
+      "source_id": "EG-MTS-MARITIME-TRANSPORT-SECTOR-PORT-LICENSING",
+      "authority": "Maritime Transport and Logistics Sector, Ministry of Transport, Egypt",
+      "source_page": "https://www.mts.gov.eg/ar/الخدمات-المقدمة-من-خلال-قطاع-النقل-البحري/ترخيص-ميناء-تخصصى/",
+      "material_types": [
+        "Official government service description for specialised-port establishment/licensing; identifies Minister of Transport Decision 81/1999 and Decision 190/2021."
+      ],
+      "access_status": "Public Ministry of Transport sector page inspected 23 November 2026; it is service guidance and bibliographic confirmation, not a substitute for the signed decisions or Gazette originals.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://www.mts.gov.eg/",
+      "permission_evidence": "No explicit licence for bulk acquisition, local mirroring, commercial indexing, republication or redistribution identified.",
+      "terms_checked_on": "2026-11-23",
+      "bulk_download_or_api": "Public service page; no bulk/API permission established",
+      "required_next_action": "Review ministry website terms; acquire the Gazette decisions separately; seek written permission for commercial reuse or bulk mirroring."
+    },
+    {
+      "source_id": "EG-APA-ALEXANDRIA-PORT-AUTHORITY-LEGAL-HISTORY",
+      "authority": "Alexandria Port Authority (Egypt) — official authority website",
+      "source_page": "https://apa.gov.eg/ar/page/port-information/alex-port-information/",
+      "material_types": [
+        "Official authority history/management page confirming Law 6/1967 as the founding law and Presidential Decree 494/1986 for Dekheila Port."
+      ],
+      "access_status": "Public official authority page inspected 23 November 2026; not a Gazette reproduction.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://apa.gov.eg/",
+      "permission_evidence": "No explicit licence for bulk extraction, local mirroring, commercial indexing, republication or redistribution identified.",
+      "terms_checked_on": "2026-11-23",
+      "bulk_download_or_api": "Public web page; no bulk/API permission established",
+      "required_next_action": "Review APA website terms and obtain Gazette originals for Law 6/1967 and Decree 494/1986 before legal-text ingestion."
     }
   ]
 }
