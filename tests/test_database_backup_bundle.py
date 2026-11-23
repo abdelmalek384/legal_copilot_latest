@@ -30,6 +30,10 @@ class DatabaseBackupBundleTests(unittest.TestCase):
         self.runtime.initialize()
         self.firm_a, _ = self.runtime.provision_firm("Backup Firm A")
         self.firm_b, _ = self.runtime.provision_firm("Backup Firm B")
+        # Defaults are read by the race-test call site before its fixture helper runs.
+        self.firm_id = self.firm_a
+        self.object_id = "d" * 32
+        self.payload = b"backup race fixture original bytes"
         self.user_id = self.runtime.create_initial_firm_owner(
             self.firm_a, "Backup Owner", "backup-owner@example.test", "test-password-hash"
         )
