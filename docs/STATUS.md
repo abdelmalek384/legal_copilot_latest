@@ -1377,3 +1377,5 @@ The previously recorded estimates remain unchanged pending exact-head automated 
 
 
 - Duplicate-document grouping now rejects oversized inputs rather than silently returning partial groups: defaults cap at 5,000 documents and 100,000 hash records, with validated hard ceilings of 20,000 and 500,000. The list-returning API intentionally fails closed on overflow because it has no truncation metadata envelope. Regression tests cover both ceilings and invalid limits; exact-head CI has not yet reported.
+
+- Structured entity/event/relationship extraction now independently caps sentence-like spans inspected (default 10,000; hard maximum 50,000), reports `sentences_inspected`, and marks output truncated when later spans are skipped. This prevents a highly fragmented extracted document from forcing unbounded per-sentence regex work. Regression tests cover truncation and invalid limits.
