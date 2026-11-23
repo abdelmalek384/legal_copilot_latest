@@ -5,7 +5,7 @@
 **Instrument:** Justice Minister Decision 1729/2026 establishing the Governance, Management and Investment Unit for Ministry of Justice Assets, Resources and Project Revenues.  
 **Official metadata and government catalogue:**
 - Ministry of Finance legislation record: https://mof.gov.eg/ar/legislation/legislation-25
-- Amiri Press DSpace issue metadata: https://dspace.id.com.eg/items/ac966eda-3472-40bb-9fbc-8d4c9a1c9f8d/full (see item record; canonical item URI https://dspace.id.com.eg/items/ac966eda-3472-40bb-9f8c-d4f9-8f9cd666853d/full?).
+- Amiri Press DSpace issue metadata: https://dspace.id.com.eg/items/ac966eda-3472-40bb-9fbc-9f8cd666853d/full
 - Secondary full page and images: https://www.almasdar.com/169459; Gazette page images https://www.almasdar.com/WebP/libfiles/43/2/775.webp through https://www.almasdar.com/WebP/libfiles/43/2/778.webp.
 
 **Source status:** Complete seven-article operative text visually transcribed from four Gazette page images reproduced by Al-Masdar. The Amiri Press DSpace item lists the official Gazette supplement but its PDF is request-copy restricted. Original PDF bytes/hash not acquired. The preamble is normalized from the page image. Not lawyer-reviewed.
@@ -96,3 +96,8 @@
 3. The text above is normalized from images; verify punctuation and exact wording in Articles3–5 against the original official Gazette PDF when available.
 4. Obtain the ministerial follow-on decision appointing the unit head and members; locate internal rules, asset register, valuation criteria, and specific approvals for investment/partnerships.
 5. Do not treat this instrument as an independent transfer of state-asset ownership or as a waiver of public-contracting rules; Article2 expressly preserves applicable laws and regulations.
+
+
+## Register progress after this acquisition
+
+The register now contains 415 rows. Current proxy: 108/415 full-text indicators (26.0%), 49/415 partial-only indicators (11.8%), and 157/415 with any text indicator (37.8%).
