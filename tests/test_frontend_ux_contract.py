@@ -23,6 +23,11 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("catch(error){toast(err(error))}", clients_page)
         self.assertNotIn("csv:await file.text()", clients_page)
 
+    def test_logout_failure_does_not_clear_local_authenticated_session(self):
+        guarded_logout = "try{await api('/logout','POST')}catch(error){toast(err(error));return}sessionStorage.removeItem('me');"
+        self.assertEqual(HTML.count(guarded_logout), 3)
+        self.assertNotIn("try{await api('/logout','POST')}catch(_){}sessionStorage.removeItem('me');", HTML)
+
     def test_firm_mfa_policy_controls_are_visible_and_accessibly_named(self):
         self.assertIn("Firm MFA policy", HTML)
         self.assertIn("Require MFA for firm administrators", HTML)
