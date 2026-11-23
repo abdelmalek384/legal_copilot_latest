@@ -2011,7 +2011,7 @@ async function feedbackPage(){
     item.status==='pending'?h('div',{className:'row'},
      ...[['acknowledged',ar?'تمت المراجعة':'Acknowledge'],['planned',ar?'إضافة للخطة':'Plan'],['declined',ar?'رفض':'Decline']].map(([status,label])=>btn(label,async()=>{
       const response=window.prompt(ar?'رد اختياري للموظف':'Optional response to the submitter')||'';
-      try{await api('/admin/feedback/'+item.id+'/review','POST',{status,response});toast(ar?'تم تحديث الملاحظة':'Feedback updated');feedbackPage()}catch(_){}
+      try{await api('/admin/feedback/'+item.id+'/review','POST',{status,response});toast(ar?'تم تحديث الملاحظة':'Feedback updated');feedbackPage()}catch(error){toast(String(error?.message||err(error)))}
      },'g'))
     ):item.response?h('p',{className:'mut',textContent:item.response}):null
    )):[h('p',{className:'mut',textContent:ar?'لا توجد ملاحظات':'No feedback submitted'})])
@@ -3277,7 +3277,7 @@ async function law(){
        const title=window.prompt(LANG==='ar'?'اكتب عنواناً جديداً للمحادثة':'Enter a new conversation title',c.title);
        if(title===null)return;
        if(!title.trim()){toast(LANG==='ar'?'لا يمكن أن يكون العنوان فارغاً':'Conversation title cannot be blank');return}
-       try{await api('/research/conversations/'+c.id,'PATCH',{title:title.trim()});await drawList()}catch(_){}
+       try{await api('/research/conversations/'+c.id,'PATCH',{title:title.trim()});await drawList()}catch(error){toast(String(error?.message||err(error)))}
      }});
      const deleteButton=h('button',{className:'research-delete',type:'button',textContent:'×',title:copy('حذف المحادثة'), 'aria-label':(LANG==='ar'?'حذف المحادثة: ':'Delete conversation: ')+c.title,onclick:async()=>{
        const promptText=LANG==='ar'?'هل تريد حذف هذه المحادثة وكل رسائلها؟':'Delete this conversation and all its messages?';
