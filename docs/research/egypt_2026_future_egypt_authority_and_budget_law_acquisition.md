@@ -199,4 +199,4 @@ Article2 uses different bases for different percentages: some are percentages of
 - EG-0142 (Decision2034/2026) upgraded from a listing-only record to complete Arabic preamble and both operative articles.
 - Added EG-0417 (Cabinet Decision80/2026) with four operative articles from the official Ministry-hosted Gazette PDF.
 - Central register: **416 rows**.
-- Same keyword-based content proxy: **110/416 full-text indicators (26.4%)**, **48/416 partial-only indicators (11.5%)**, **157/416 with any text indicator (37.7%)**. This does not measure article-level authentication, amendment consolidation or lawyer review.
+- Same keyword-based content proxy: **110/416 full-text indicators (26.4%)**, **48/416 partial-only indicators (11.5%)**, **158/416 with any text indicator (38.0%)**. This does not measure article-level authentication, amendment consolidation or lawyer review.
