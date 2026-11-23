@@ -94,3 +94,25 @@ This is a later and distinct extension instrument. It should be linked to, but n
 ## 6. Register progress snapshot (23 November 2026)
 
 The central acquisition register now contains **411 instrument rows**. Applying the same keyword-based content_observed proxy used in the prior project update yields **103/411 full-text indicators (25.1%)**, **50/411 partial-only indicators (12.2%)**, and **153/411 rows with any text indicator (37.2%)**. This is a register-level acquisition signal only; it does not measure article-by-article completeness, source authentication, amendment currentness or lawyer review. A national-corpus completion percentage remains uncalculable without a closed Gazette-derived denominator.
+
+
+## 7. Earlier extension — Finance Minister Decision 188/2026
+
+- **Publication:** Egyptian Proceedings issue 86 supplement (ب), 19 April 2026.
+- **Operative effect:** extends the Article14(a) real-estate-tax declaration period to 30 June 2026.
+- **Sources:** https://www.almasdar.com/169706 ; https://blog.iqrar.ai/news/gnews_gaz_69a1247b28b0_0000/
+- **Source quality:** secondary reproduction of operative Articles1–2 and Gazette metadata. Original Amiri Press binary/hash not acquired.
+
+**Verbatim operative text as reproduced by Al-Masdar:**
+
+> قرار وزير المالية رقم 188 لسنة 2026
+>
+> **المادة الأولى**
+>
+> تمد فترة تقديم الإقرارات الضريبية المنصوص عليها في البند (أ) من المادة (14) من قانون الضريبة على العقارات المبنية المشار إليه حتى 30-6-2026.
+>
+> **المادة الثانية**
+>
+> يُنشر هذا القرار في الوقائع المصرية.
+
+Reported preamble cites Law196/2008 and its executive regulation, Finance Minister Decision69/2026, and Real Estate Tax Authority memorandum No.216 dated 6 April 2026. Decision69/2026 is a predecessor instrument whose complete scope and exact text remain to be acquired. Decision550/2026 later cites Decisions69,188 and 340/2026; Decision340/2026's subject and operative text remain unverified. Do not infer the content of Decision340 solely from the later citation.
