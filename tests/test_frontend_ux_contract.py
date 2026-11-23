@@ -1896,5 +1896,15 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("commandItems.filter(([id,label])", navigation)
         self.assertIn("commandItems.find(([id,label])", navigation)
 
+    def test_case_status_and_delete_actions_surface_api_failures(self):
+        start = HTML.index("lead&&h('div',{className:'row'},btn(c.status==='open'")
+        actions = HTML[start:HTML.index("\n\n  const timelineEvents", start)]
+        self.assertIn("try{await api('/cases/'+id,'PATCH'", actions)
+        self.assertIn("catch(error){toast(String(error?.message||err(error)))}", actions)
+        self.assertIn("try{await api('/cases/'+id,'DELETE')", actions)
+        self.assertIn("if(!confirm(uiText(", actions)
+        self.assertIn("catch(error){toast(String(error?.message||err(error)))}", actions)
+        self.assertIn("PAGE='clients';clients()", actions)
+
 if __name__ == "__main__":
     unittest.main()
