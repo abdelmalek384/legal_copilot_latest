@@ -170,6 +170,16 @@ class DocumentIntelligenceTests(unittest.TestCase):
         self.assertLessEqual(len(result["events"]), 3)
         self.assertLessEqual(len(result["relationships"]), 3)
 
+    def test_review_candidate_extraction_rejects_excessive_page_markers(self):
+        text = "[[PDF_PAGE:1]]" * 20001 + " القضية رقم ١٢٣/٢٠٢٥"
+        with self.assertRaisesRegex(ValueError, "page markers"):
+            extract_review_candidates(text)
+
+    def test_structured_extraction_rejects_excessive_page_markers(self):
+        text = "[[PDF_PAGE:1]]" * 20001 + " القضية رقم ١٢٣/٢٠٢٥"
+        with self.assertRaisesRegex(ValueError, "page markers"):
+            extract_structured_candidates(text)
+
     def test_comparison_reports_literal_changes_for_review(self):
         changes = compare_extracted_text("قيمة العقد ١٠٠٠ جنيه", "قيمة العقد ٢٠٠٠ جنيه")
         self.assertEqual(len(changes), 1)
