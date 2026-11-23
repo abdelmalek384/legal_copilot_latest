@@ -523,7 +523,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
             ("ملاحظات المنتج", "ملاحظات المنتج"),
             ("البحث القانوني", "البحث القانوني"),
         ):
-            if nav_name in {"المهام", "ملاحظات المنتج"}:
+            if nav_name in {"المهام", "القضايا", "ملاحظات المنتج"}:
                 self.click_more_nav(nav_name)
             else:
                 self.page.get_by_role("button", name=nav_name, exact=True).click()
