@@ -1,7 +1,7 @@
 # Research Agent 8 — National Railways acquisition tranche
 **Session date:** 2026-11-23  
 **Scope:** Egyptian National Railways Authority, statutory amendments, contracting regulation and freight concession.  
-**Dedupe:** fetched live canonical CSV `data/research/egypt_initial_statute_acquisition_register_2026-11-17.csv` (422 lines including header at check). No exact matches for Law 152/1980, Laws 149/2006, 20/2018, 144/2020, Minister Decision 191/2021, Decisions 577/2022 or 342/2023, or PM Decision 3452/2023. No national-register records were added in this tranche; separate Agent 8 rows are proposed.
+**Dedupe:** fetched live canonical CSV `data/research/egypt_initial_statute_acquisition_register_2026-11-17.csv` (423 lines including header; 422 data records at check). No exact matches for Law 152/1980, Laws 149/2006, 20/2018, 144/2020, Minister Decision 191/2021, Decisions 577/2022 or 342/2023, or PM Decision 3452/2023. No national-register records were added in this tranche; separate Agent 8 rows are proposed.
 
 ## 1. Base law and amendment chain
 
