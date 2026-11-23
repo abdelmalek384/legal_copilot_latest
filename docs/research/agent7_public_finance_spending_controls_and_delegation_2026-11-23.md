@@ -28,9 +28,9 @@ The existing tranche is more complete than the brief searchable-result extracts 
 
 ### Article 1 — aggregate appropriations and revenues
 
-> قُدرت استخدامات الموازنة العامة للدولة للسنة المالية ٢٠٢٦/٢٠٢٧ بمبلغ 8,186,183,184,000 جنيه (فقط وقدره ثمانية تريليونات ومائة وستة وثمانون ملياراً ومائة وثلاثة وثمانون مليوناً ومائة وأربعة وثمانون ألف جنيه).
+> قُدرت استخدامات الموازنة العامة للدولة للسنة المالية ٢٠٢٦/٢٠٢٧ بمبلغ 8,186,183,840,000 جنيه (فقط وقدره ثمانية تريليونات ومائة وستة وثمانون ملياراً ومائة وثلاثة وثمانون مليوناً وثمانمائة وأربعون ألف جنيه).
 >
-> كما قُدرت إيرادات الموازنة العامة للدولة ومتحصلاتها من الإقراض ومبيعات الأصول المالية وغيرها من الأصول بمبلغ 4,175,607,988,000 جنيه (فقط وقدره أربعة تريليونات ومائة وخمسة وسبعون ملياراً وستمائة وسبعة ملايين وتسعمائة وثمانية وسبعون ألف جنيه).
+> كما قُدرت إيرادات الموازنة العامة للدولة ومتحصلاتها من الإقراض ومبيعات الأصول المالية وغيرها من الأصول بمبلغ 4,175,607,998,000 جنيه (فقط وقدره أربعة تريليونات ومائة وخمسة وسبعون ملياراً وستمائة وسبعة ملايين وتسعمائة وثمانية وتسعون ألف جنيه).
 
 ### Article 2 — expenditure distribution (opening text and Chapter I)
 
@@ -198,3 +198,10 @@ Not transcribed in the consulted reproduction. The full statute is described as 
 - Requested domain discovery remains **13/13 (100%)**; this is not article-level completeness.
 - Whole Egyptian-law corpus completion remains **not calculable** because there is no closed, Gazette-derived denominator.
 - The new Law 78/2026 text is secondary-only and incomplete (Articles 1–7 of 9); Law 77/2026 is official-source text but only Articles 1–2 opening passages have been copied. The two source gaps are explicitly open.
+
+
+## 7. Source correction and new acquisition — Law 76/2026 and Law 77/2026 (23 November 2026)
+
+The Article 1 figures above have been corrected against the government-hosted Ministry of Finance Gazette PDF. The controlling values are **EGP 8,186,183,840,000** (budget uses) and **EGP 4,175,607,998,000** (revenues and receipts). Earlier digit strings in the first version of this file were transcription errors and must not be reused. The same official PDF contains the complete 17-article law and integral budget tables; Articles 3–17 and table/annotation extraction are mapped in the new file [Agent 7 biosafety and 2026 amendment acquisition](agent7_biosafety_law76_2026_and_2026_amendment_acquisition.md).
+
+A new non-duplicate record for **Law 76/2026** has been added to the central register as EG-0408. Its complete 37-page Gazette reproduction, 55 substantive articles and five schedules were located through the Court of Cassation Information Centre reproduction; official Amiri Press DSpace metadata identifies the original Gazette issue27 مكرر (ب). Issuing Articles 1–4 and substantial substantive provisions have been transcribed in the new acquisition file. The original Amiri Press bundle, executive regulation and board implementation decisions remain outstanding.
