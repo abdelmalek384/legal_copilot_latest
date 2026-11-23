@@ -41,6 +41,19 @@ class DocumentIntelligenceTests(unittest.TestCase):
         self.assertTrue(result["candidates"])
         self.assertTrue(all(item["page"] is None for item in result["candidates"]))
 
+    def test_invalid_candidate_limits_fail_closed(self):
+        for value in (True, 0, -1, "10", 1001, None):
+            with self.subTest(max_candidates=value):
+                with self.assertRaises(ValueError):
+                    extract_review_candidates("text", max_candidates=value)
+
+    def test_candidate_limit_retains_early_occurrences_and_marks_truncation(self):
+        result = extract_review_candidates("01/01/2025 " * 30, max_candidates=5)
+        self.assertEqual(result["candidate_count"], 5)
+        self.assertTrue(result["truncated"])
+        self.assertEqual([item["start"] for item in result["candidates"]],
+                         sorted(item["start"] for item in result["candidates"]))
+
     def test_text_size_is_bounded(self):
         with self.assertRaises(ValueError):
             extract_review_candidates("x" * 1_000_001)
