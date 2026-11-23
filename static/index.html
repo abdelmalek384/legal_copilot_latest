@@ -2362,7 +2362,8 @@ async function clients(initialQuery=''){
        window.DOCUMENT_REVIEW_TARGET={caseId:Number(item.case_id),documentId:Number(item.document_id),chunkId:String(item.chunk_id)};
        window.DOCUMENT_CLIENT_SEARCH_RETURN={clientId:Number(client.id),clientName:String(client.name||''),query:query.value.trim(),offset};
        PAGE='cases';TAB='docs';
-       view(Number(item.case_id)).catch(()=>{
+       view(Number(item.case_id)).catch(error=>{
+        console.error('Could not open the selected document passage',error);
         window.DOCUMENT_REVIEW_TARGET=null;
         window.DOCUMENT_CLIENT_SEARCH_RETURN=null;
         toast(uiText('تعذر فتح المقطع المحدد.','Could not open the selected passage.'));
