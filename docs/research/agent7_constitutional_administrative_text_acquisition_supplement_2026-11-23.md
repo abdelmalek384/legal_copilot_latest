@@ -180,3 +180,159 @@ The Ministry of Finance legislation catalogue exposes three distinct State-prope
 - Therefore whole-corpus progress is reported as **not calculable / denominator not yet defensible**, not 100% and not a guessed percentage.
 
 **This supplement's measurable output:** 21 constitutional article units (some expressly partial); 6 issuing-article provisions source-verified in two election statutes but not duplicated; 3 additional public-property official catalogue records, 0 full article bodies from those three PDFs; 1 new research file. No lawyer verification is claimed.
+
+
+## 9. New public-property and public-utility acquisition — additional instruments
+
+### A. Law 100/1964 — State private-domain real estate
+
+**Instrument:** Law 100/1964, بتنظيم تأجير العقارات المملوكة للدولة ملكية خاصة والتصرف فيها.  
+**Issuance/publication/commencement:** signed 21 March 1964; published 23 March 1964; effective 23 June 1964 (three months after publication). Official Gazette issue 68, as indexed by EastLaws.  
+**Primary-source catalogue:** Ministry of Finance labels the law «سارٍ» and provides a 14-page PDF:
+https://mof.gov.eg/ar/legislation/legislation-5fe86afa7bfc600007cc02fb  
+PDF: https://media.mof.gov.eg/mof-prd/1301_3e9347a0bf.pdf  
+**Searchable full-text recovery:** LAW HUB, secondary transcription, 795 lines:
+https://lawhub.info/eg/?p=11580  
+**Gazette scan metadata:** Manshurat identifies the instrument and its 475.54 KB PDF:
+https://manshurat.org/node/246  
+The Ministry-hosted PDF link was opened but did not yield a searchable text layer in this pass. The article text below is therefore a secondary transcription, not a Gazette-authenticated transcription.
+
+**Article 1 — scope and exclusions (secondary transcription):**
+> تسرى أحكام هذا القانون على العقارات الداخلة فى ملكية الدولة الخاصة عدا ما يأتى:
+> (1) العقارات المستولى عليها تنفيذا لأحكام المرسوم بقانون رقم 178 لسنة 1952 المشار إليه، والعقارات التى تسلم إلى الهيئة العامة للإصلاح الزراعى لتوزيعها على صغار الفلاحين وفقا للقوانين السارية.
+> (2) العقارات التى تشرف عليها وزارة الإسكان والمرافق وفقا لحكم المادة (3) من قرار رئيس الجمهورية الصادر فى 15 مارس سنة 1958 المشار إليه والعقارات المبنية والأراضي المخصصة للبناء التى تسلم إلى هذه الوزارة وفقا للقانون رقم 71 لسنة 1962 المشار إليه.
+> (3) المبانى الاستغلالية والأراضي الفضاء والأراضي الزراعية التى تقع داخل نطاق المدن والتى تتولى المجالس المحلية إداراتها واستغلالها والتصرف فيها واستثمار أموال البدل الخاصة بها وفقا لحكم القانون رقم 44 لسنة 1962 المشار إليه.
+> (4) العقارات التى تديرها أو تشرف عليها الوزارات والمصالح والمؤسسات والهيئات العامة أو تدخل فى ملكية أى منها – وذلك فيما عدا المؤسسات والهيئات العامة التابعة لوزارة الإصلاح الزراعى واستصلاح الأراضي.
+> (5) الأراضى الفضاء المملوكة للدولة الواقعة فى نطاق (كردون) المدن والقرى عدا ما يكون لازما منها لتنفيذ مشروعات الاستصلاح والتعمير والتى يصدر بتحديدها قرار من وزير الإصلاح الزراعى واستصلاح الأراضى بالاتفاق مع وزير الإسكان والمرافق بعد أخذ رأى مجلس المحافظة المختص.
+
+The transcription annotates item (4) as substituted and item (5) as added by Law 36/1967 (Official Gazette issue 77, 31 August 1967).
+
+**Article 2 — land classification (secondary transcription):**
+> تنقسم الأراضي المملوكة للدولة ملكية خاصة – إلى ما يأتى:
+> (أ) الأراضي الزراعية – وهى الأراضى الواقعة داخل الزمام والأراضي المتاخمة الممتدة خارج حد الزمام إلى مسافة كيلو مترين التى تكون مزروعة بالفعل وكذلك أراضي طرح النهر وهى الأراضي الواقعة بين جسرى نهر النيل وفرعيه التى يحولها النهر من مكانها أو ينكشف عنها والجزائر التى تتكون فى مجراه.
+> (ب) الأراضي البور – وهى الأراضي غير المزروعة الواقعة داخل الزمام والأراضى المتاخمة الممتدة خارج حد الزمام إلى مسافة كيلو مترين.
+> (ج) الأراضي الصحراوية – وهى الأراضي الواقعة فى المناطق المعتبرة خارج الزمام بعد مسافة الكيلو مترين المشار إليها فى البندين السابقين سواء أكانت مزروعة بالفعل أو غير مزروعة أو كانت مشغولة بمبان أو منشآت ثابتة أو غير ثابتة.
+
+**Articles 45–48 — disposition, validity, collection (selected exact secondary transcription):**
+> المادة 45: يجوز التصرف فى الأراضي المبنية أو المشغولة بمنشآت ثابتة أو غير ثابتة إلى شاغليها وذلك بطريق الممارسة وفقا للقواعد والشروط التى تحددها اللائحة التنفيذية.
+>
+> المادة 46: يكون تأجير الأراضي الفضاء والتصرف فيها بطريق الممارسة أو المزاد العلنى وفقا للقواعد والإجراءات والشروط التى تحددها اللائحة التنفيذية.
+>
+> المادة 47: لا يجوز لأى شخص طبيعى أو معنوى أن يحوز أو يضع اليد بأية صفة كانت على العقارات الداخلة فى ملكية الدولة الخاصة التى تسرى عليها أحكام هذا القانون إلا وفقا لهذه الأحكام. ومع مراعاة ما تقضي به المادة 970 من القانون المدنى يقع باطلا كل تصرف أو تقرير لأى حق عينى أو تأجير يتم بالمخالفة لأحكام هذا القانون ولا يجوز شهره ويجوز لكل ذى شأن طلب الحكم بهذا البطلان وعلى المحكمة أن تقضي به من تلقاء نفسها.
+>
+> المادة 48: يجوز أن يحصل ما يستحق للدولة من أجرة أو ثمن وملحقاتهما عن العقارات الخاضعة لأحكام هذا القانون – بطريق الحجز الإدارى، ويكون لهذه المبالغ امتياز عام على أموال المدين فى مرتبة المبالغ المستحقة للخزانة العامة المنصوص عليها فى المادة 1139 من القانون المدنى وسابقة على أى امتياز آخر عدا المصروفات القضائية والضرائب والرسوم.
+
+**Articles 53–54 and 57–59 — documentation, registration and aggregation (selected exact secondary transcription):**
+> المادة 53: تحرر عقود إيجار العقارات التى تسرى عليها أحكام هذا القانون والعقود المتضمنة التصرف فيها بالتوزيع أو البيع وشهادات الملكية التى تصدرها المؤسسة المصرية العامة لتعمير الصحارى وفقا لأحكام الباب الأخير من هذا القانون – على النماذج التى تعد لذلك ويصدر بها قرار من وزير الإصلاح الزراعى وإصلاح الأراضي. وتودع المحررات المشار إليها الواجبة الشهر فى مكتب الشهر العقاري المختص ويترتب على هذا الإيداع الآثار المترتبة على شهر التصرفات العقارية وتسلم صور تلك المحررات إلى ذوى الشأن بعد أدائهم الرسوم المقررة عليها.
+>
+> المادة 54: تقدر رسوم الشهر المستحقة على المحررات المتضمنة التصرف فى العقارات الداخلة فى ملكية الدولة الخاصة – على أساس الثمن المحدد فيها ويسرى هذا الحكم على التصرفات التى تمت قبل العمل بهذا القانون ولم يتم شهرها بعد.
+>
+> المادة 57: يجوز لوزير الإصلاح الزراعى وإصلاح الأراضي عند الضرورة القصوى أن يقرر تجميع الأراضي الداخلة فى ملكية الدولة الخاصة قبل التصرف فيها وفقا لأحكام هذا القانون مع تعويض الغير من أصحاب الأراضي التى تتخللها أو تتداخل فيها على وجه يقلل من إنتاجها أو من تمام الانتفاع بها إما عينا أو نقدا حسب اختيار صاحب الشأن، فإذا لم يبد صاحب الشأن خياره كان التعويض عينا. وتحدد اللائحة التنفيذية إجراءات التجنيب وقواعد التعويض العينى والنقدى وشروطه.
+>
+> المادة 58: تؤول ملكية العقارات التى يتم التصرف فيها وفقا لأحكام هذا القانون إلى المتصرف إليهم محملة بما عليها من حقوق الارتفاق، دون أن يترتب على ذلك أى حق فى المطالبة بتعويض مقابل هذه الحقوق. وفى جميع الأحوال لا يجوز أخذ العقارات المشار إليها بالشفعة.
+>
+> المادة 59: إذا استحق العقار المتصرف فيه وفقا لأحكام هذا القانون كله أو بعضه للغير بناء على حكم قضائي نهائي، قبل شهر عقد البيع، فلا تلزم الحكومة إلا برد ما أداه المتصرف إليه من الثمن والفوائد القانونية عن الجزء الذي قضى باستحقاقه للغير وذلك مع عدم الإخلال بحكم الفقرة الأولى من المادة 446 من القانون المدنى.
+
+**Amendment/repeal map identified:**
+- Law 36/1967 (Gazette issue 77, 31 August 1967): amends Article 1 (substitutes item 4 and adds item 5), and other provisions. Full amending-law Gazette page not yet transcribed.
+- Law 17/1969 (Gazette issue 4, 23 January 1969): repeals Article 3 and Articles 60–61; changes Article 4 and Article 7 (per secondary article footnotes). A Supreme Court of Cassation decision transcription explains the repeal of the no-disposal-until-full-payment restriction formerly in Articles 60–61.
+- Law 143/1981, Article 27: repeals the desert-land provisions in Articles 22–42 of Law 100/1964. The provisions are historical text only and must not be presented as current rules.
+- This is not yet a consolidated current text. Other amendment instruments and subordinate rules remain to be checked.
+
+### B. Minister of Agriculture Decision 63/1965 — Executive Regulation of Law 100/1964
+
+**Instrument:** قرار وزير الزراعة واستصلاح الأراضي رقم 63 لسنة 1965 بشأن إصدار اللائحة التنفيذية للقانون رقم 100 لسنة 1964.  
+**Date/official publication metadata:** issued 8 August 1965; published in الوقائع المصرية issue 81 ملحق, 18 October 1965. The EastLaws metadata states it applies from the effective date of Law 100/1964 (23 June 1964).  
+**Secondary full-text source:** EastLaws instrument page:
+https://www.eastlaws.com/legislation-full-text/ar/egypt/agriculture/18-10-1965/no-63?id=46580&type=1  
+The page exposes the issuance clauses and article tabs but did not render the full regulation text during this pass. The regulation's existence and metadata are established; the complete annex text is **not** yet acquired. Obtain Gazette issue 81 ملحق and all later amendments before relying on its rules.
+
+### C. Law 29/1958 — gratuitous disposition of State property and movable assets
+
+**Instrument:** Law 29/1958 بشأن قواعد التصرف بالمجان فى العقارات المملوكة للدولة والنزول عن أموالها المنقولة فى الإقليم المصرى.  
+**Metadata:** issued 13 May 1958; published and effective 22 May 1958, Official Gazette issue 11 (EastLaws metadata). The Ministry of Finance catalogue marks it «سارٍ» but expressly says its online text is guidance and the Gazette is controlling.
+**Sources:**
+- Ministry catalogue: https://mof.gov.eg/ar/legislation/legislation-5fe86afc7bfc600007cc0330
+- Official Ministry PDF: https://media.mof.gov.eg/mof-prd/31_1137e4bd2b.pdf (one-page link; no text layer in this pass)
+- Secondary text and amendment history: https://www.eastlaws.com/legislation-full-text/ar/egypt/law/22-05-1958/no-29?id=41535&type=1
+- Gazette scan catalogue: https://manshurat.org/node/68956
+
+**Article 1 — core enabling rule (secondary transcription):**
+> يجوز التصرف بالمجان في مال من أموال الدولة الثابتة أو المنقولة أو تأجيره بإيجار اسمي أو بأقل من أجرة المثل، إلى أي شخص طبيعي أو معنوي، بقصد تحقيق غرض ذي نفع عام، ويكون التصرف أو التأجير بناءً على اقتراح الوزير المختص بعد موافقة اللجنة المالية بوزارة الخزانة.
+
+The secondary source flags Article 1 مكرراً and a replacement effect by Law 25/1962. A full amendment matrix, complete article text and executive rules remain outstanding. Presidential Decision 279/2018 delegates specified presidential powers under Law 29/1958 to the Prime Minister; the scope and later amendments to that delegation should be captured as a distinct delegation instrument, not treated as an amendment to Law 29/1958.
+
+### D. Public utility concessions — Law 129/1947 and related PPP framework
+
+**Law 129/1947:** قانون التزامات المرافق العامة. Manshurat metadata records issue date 21 July 1947, publication/effect 24 July 1947, and status «معدل»:
+https://manshurat.org/node/13782  
+Its relation register identifies amendments including Law 497/1954 (Article 7), Law 185/1958 (Article 7) and an additional 1955 instrument adding a provision:
+https://manshurat.org/node/13782/relations  
+The original PDF is only 65.07 KB on the secondary portal; a complete searchable authenticated current text was not recovered.
+
+A 2021 General Assembly of the State Council opinion reproduced selected provisions of Law 129/1947. This is a secondary publication of an advisory opinion and statutory quotations, not the Gazette:
+- https://www.elmodawanaeg.com/الفتوى-رقم-960-،-ملف-رقم-5324-2-32-،-بتاريخ-جلسة-2021-5-26/
+- https://egyls.com/ (news report)
+
+Selected quoted statutory provisions (transcribed as reproduced in that opinion):
+> المادة (1): لا يجوز منح التزامات المرافق العامة لمدة تزيد على ثلاثين سنة.
+>
+> المادة (5): لمانح الالتزام دائمًا متى اقتضت ذلك المنفعة العامة أن يعدل من تلقاء نفسه أركان تنظيم المرفق العام موضوع الالتزام أو قواعد استغلاله.
+>
+> المادة (7) — as amended by Law 185/1958: لمانح الالتزام أن يراقب إنشاء المرفق العام موضوع الالتزام وسيره من النواحي الفنية والإدارية والمالية.
+
+The quoted text is a limited extract, not a complete text or a reliable statement that every concession must always use this law. The PPP statute below expressly excludes its own PPP contracts from Law 129/1947.
+
+### E. Law 67/2010 — private-sector participation in infrastructure, services and public utilities
+
+**Primary official Gazette PDF:** Ministry of Finance-hosted Official Gazette issue 19 مكرر (أ), 18 May 2010:
+https://media.mof.gov.eg/mof-prd/1490_c21c703414.pdf  
+The search-indexed official PDF exposes all three issuing provisions. The statute became effective 1 July 2010 (EastLaws publication/commencement metadata).
+
+**Issuing Article 1 (official Gazette PDF):**
+> تسري أحكام القانون المرافق على عقود المشاركة مع القطاع الخاص وعقود الاستشارات الخاصة المتعلقة بها والتي تبرمها الجهات الإدارية، لتنفيذ مشروعات البنية الأساسية والخدمات والمرافق العامة وإتاحة خدماتها.
+>
+> ولا تسري على هذه العقود أحكام القانون رقم 129 لسنة 1947 بالتزامات المرافق العامة، والقرار بالقانون رقم 61 لسنة 1958 في شأن منح الامتيازات المتعلقة باستثمار موارد الثروة الطبيعية والمرافق العامة وتعديل شروط الامتياز، وقانون تنظيم المناقصات والمزايدات الصادر بالقانون رقم 89 لسنة 1998، وغيرها من القوانين الخاصة بمنح التزامات المرافق العامة.
+
+**Issuing Article 2:**
+> يصدر رئيس مجلس الوزراء اللائحة التنفيذية للقانون المرافق، بناءً على عرض الوزير المختص بالشئون المالية، وموافقة مجلس الوزراء وذلك خلال ثلاثة أشهر من تاريخ العمل به.
+
+**Issuing Article 3:**
+> ينشر هذا القانون في الجريدة الرسمية، ويعمل به من أول الشهر التالي لمرور ثلاثين يوماً على تاريخ نشره.
+
+**Current-amendment source:** Law 153/2021, Official Gazette issue 50 مكرر (أ), 18 December 2021, official government-hosted PDF:
+https://www.investinegypt.gov.eg/PublishingImages/Lists/LawsAndRegulations/AllItems/تعديل%20بعض%20أحكام%20قانون%20مشاركة%20القطاع%20الخاص%20في%20مشروعات%20البنية%20الأساسية%20والخدمات%20والمرافق%20العامة%20بالقانون%20رقم%20153%20لسنة%202021.pdf  
+It substitutes specified provisions: Articles 3 (second paragraph), 4, 14 (third paragraph), 15 (first paragraph, item b), 17, 18, 19, 20, 21, 23, 26, 28 (first paragraph), 32 (first paragraph, item c and final paragraph), and 39. The official PDF search extract exposes the replacement text for Article 3 and the beginning of Article 4; a full page-by-page comparison remains needed.
+
+**Executive Regulation:** Prime Minister Decision 238/2011 issuing the Executive Regulation of Law 67/2010. The government investment portal hosts the Gazette text:
+https://www.investinegypt.gov.eg/PublishingImages/Lists/LawsAndRegulations/AllItems/اللائحة%20التنفيذية%20لقانون%20مشاركة%20القطاع%20الخاص%20في%20مشروعات%20البنية%20الأساسية%20والخدمات%20والمرافق%20العامة%20رقم%2067%20لسنة%202010.pdf  
+Official Gazette issue 3 مكرر (ب), 23 January 2011; Decision 238/2011 issuing Article 2 makes it effective the day after publication (24 January 2011). Manshurat provides metadata and a 489.6 KB scan:
+https://manshurat.org/node/7637  
+The regulation is located, but the full annex was not yet extracted and reconciled with the 2021 statutory amendments.
+
+**Selected operative PPP provisions (secondary consolidated text updated through Law 153/2021):**
+> المادة 2: للجهات الإدارية أن تبرم عقود مشاركة تعهد بمقتضاها إلى شركة المشروع تمويل وإنشاء وتجهيز مشروعات البنية الأساسية والمرافق العامة وإتاحة خدماتها أو تمويل وتطوير هذه المرافق، مع الالتزام بصيانة ما يتم إنشاؤه أو تطويره، وتقديم الخدمات والتسهيلات اللازمة لكي يصبح المشروع صالحًا للاستخدام فى الإنتاج أو تقديم الخدمة بانتظام واضطراد طوال فترة التعاقد.
+>
+> ولا يجوز أن تقل مدة العقد عن خمس سنوات ولا تزيد على ثلاثين سنة من تاريخ اكتمال أعمال البناء والتجهيز أو إتمام أعمال التطوير، وألا تقل قيمة العقد الإجمالية عن مائة مليون جنيه.
+>
+> ومع ذلك يجوز لمجلس الوزراء بناء على توصية اللجنة العليا لشئون المشاركة المنصوص عليها فى المادة (14) من هذا القانون، الموافقة على إبرام عقد المشاركة لمدة تزيد على ثلاثين سنة إذا اقتضت ذلك مصلحة عامة جوهرية.
+
+**Article 19 (secondary consolidated text):**
+> يخضع التعاقد على المشروعات التى تنفذ بنظام المشاركة مع القطاع الخاص لمبادئ التوازن الاقتصادى والمالى لأحكامه، والمكاسب المشتركة لأطرافه، وشفافية طرق التعاقد، وتكافؤ الفرص والمساواة بين المتماثلين فى المراكز فى أحوال التنافس على التعاقد على هذه المشروعات، وذلك كله وفقا للأحكام التى ينظمها العقد والقواعد والإجراءات المنصوص عليها فى هذا القانون، ولائحته التنفيذية.
+
+**Article 20 (secondary consolidated text, opening):**
+> يكون التعاقد على المشروعات التى تنفذ بنظام المشاركة مع القطاع الخاص المنصوص عليها فى المادة (2) من هذا القانون بطريق المناقصة أو المزايدة العامة، وفقا للقواعد والإجراءات الواردة بهذا القانون، ولائحته التنفيذية.
+
+The secondary consolidation also sets out limited exceptional procedures (limited tender/auction and direct contracting subject to approvals), anti-assignment restrictions except financing with prior written consent, and a pre-contract challenge committee in Article 39. Do not use those as final current wording until the full 153/2021 Gazette replacement text and Executive Regulation are compared.
+
+**Legal classification:** Law 67/2010 and Decision 238/2011 are binding statute/subordinate regulation within their scope, subject to later amendments. The Ministry/Invest in Egypt-hosted Gazette reproductions are public-authority copies; the original Amiri Press binary has not been hashed/archived here. Secondary consolidations are research aids.
+
+## 10. New text acquisition and unresolved items in this extension
+
+- Law 100/1964: secondary full-text transcription located; selected exact Arabic text from Articles 1, 2, 45–48 and 53–59 transcribed; original Ministry PDF is 14 pages but not text-extractable in this pass.
+- Decision 63/1965 (Law 100 Executive Regulation): instrument and Gazette metadata located; full annex text not retrieved.
+- Law 29/1958: Article 1 enabling clause recovered from secondary text; complete text and amendment matrix not recovered.
+- Law 129/1947: three selected statutory provisions reproduced in a 2021 advisory-opinion publication; full base text and amendment instruments remain outstanding.
+- Law 67/2010: issuing Articles 1–3 recovered from official Ministry of Finance-hosted Gazette PDF; selected current statutory provisions recovered from secondary consolidation; amendment Law 153/2021 and Executive Regulation Decision 238/2011 official government-hosted PDFs located.
+- Decision 238/2011: full Gazette PDF located; article-by-article extraction outstanding.
+- No duplicate base statute file was created. These are additive source/text units in this research supplement.
