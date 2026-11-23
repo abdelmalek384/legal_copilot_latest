@@ -152,3 +152,6 @@ This folder contains free/public source discovery, metadata registers and extrac
 
 
 75. [Decision 279/2025 — foreign-worker work permits, Arabic extracts](../legal_evidence/labour_decision_279_2025_foreign_worker_permits_arabic_extracts_2026-11-23.md) — 40-article instrument; selected text on permits, exemptions, 10% ratio, exception committee, foreign-worker registers, regularisation, renewal, absence reporting, rights and data duties; official SIS issue-290(B) public catalogue lead found, but original attachment retrieval timed out; full transcription and visual QA remain pending.
+
+
+76. [Decision 266/2025 — skill measurement and occupational licensing, complete 25 articles](../legal_evidence/labour_decision_266_2025_skill_measurement_licensing_complete_articles_2026-11-23.md) — full operative Arabic text captured; secondary annex lists 421 occupation/code pairs, of which full row-by-row extraction and Gazette image QA remain outstanding; official SIS issue-290(B) public catalogue lead recorded.
