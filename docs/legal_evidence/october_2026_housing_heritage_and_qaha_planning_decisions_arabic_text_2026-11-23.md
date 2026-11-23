@@ -190,7 +190,7 @@
 
 ---
 
-## 4. Ministry of Housing Decision 1179/2026 — update of Maghagha strategic general plan
+## 4. Ministry of Housing Decision 1179/2026 — update of Mallawi strategic general plan
 
 **Issuer:** Minister of Housing, Utilities and Urban Communities  
 **Date signed:** 10 August 2026  
