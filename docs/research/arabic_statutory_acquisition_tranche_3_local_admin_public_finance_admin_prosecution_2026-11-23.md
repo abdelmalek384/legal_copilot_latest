@@ -161,3 +161,94 @@ This official instrument is a cross-statute amendment: it modifies Administrativ
 5. Cross-index Law 77/2019 under both Law 117/1958 and Law 47/1972; do not create a duplicate copy of the same amending instrument.
 
 **Status:** no lawyer verification claimed. The public-finance law and Law 77/2019 extracts are from government-hosted Gazette PDFs. The local-administration regulation and Law 117/1958 text are acquired from secondary/hosted reproductions and remain subject to Gazette comparison.
+
+
+## 6. Additional amendment texts acquired after initial commit
+
+### State Council Law 47/1972 — Law 136/1984, official Gazette text
+
+**Official government-hosted Gazette PDF:** https://sis.gov.eg/media/647517/%D9%82%D8%A7%D9%86%D9%88%D9%86-%D8%B1%D9%82%D9%85-163%D9%84%D8%B3%D9%86%D8%A9-1984-%D8%A8%D8%B4%D8%A3%D9%86-%D8%AA%D8%B9%D8%AF%D9%8A%D9%84-%D8%A8%D8%B9%D8%B6-%D8%A7%D8%AD%D9%83%D8%A7%D9%85-%D9%82%D8%A7%D9%86%D9%88%D9%86-%D9%85%D8%AC%D9%84%D8%B3-%D8%A7%D9%84%D8%AF%D9%88%D9%84%D8%A9-47-%D9%84%D8%B3%D9%86%D8%A9-1972.pdf  
+**Correct identity:** Law No. 136 of 1984, Official Gazette issue 31, 2 August 1984. The URL filename contains a “163” typo, but the Gazette PDF heading itself clearly says **136**.  
+**Commencement:** Article 5 says next day after publication, 3 August 1984.
+
+**المادة الأولى:** adds Articles 54 bis and 68 bis to State Council Law 47/1972.
+
+**مادة ٥٤ مكرراً:** where a Supreme Administrative Court circuit finds conflicting prior judgments or proposes departure from a legal principle previously established by the Court, it must refer the appeal to a panel of eleven counsellors constituted annually by the Court's General Assembly and chaired by the Court President or senior Vice-President. The panel decides by at least seven votes.
+
+**مادة ٦٨ مكرراً:** creates a special administrative affairs council chaired by the State Council President and including the six most senior Vice-Presidents; it handles appointments, seniority, promotions, transfers, secondments, loans and related member affairs.
+
+**المادة الثانية:** substitutes Articles 1, Article 73(7), Article 83 and Article 91. Article 1 text: «مجلس الدولة هيئة قضائية مستقلة». The substituted Article 83 establishes then-applicable appointment arrangements for the President, Vice-Presidents, agents and other members; this wording was later changed by subsequent laws, including Law 77/2019. Article 91 states non-removability and judicial guarantees for members from delegate rank upward, with the stated disciplinary safeguards.
+
+**المادة الثالثة:** replaces references to the Supreme Council of Judicial Bodies in specified provisions with “المجلس الخاص للشئون الإدارية”.
+
+**المادة الرابعة:** repeals Article 2(2) of Law 82/1969 on the Supreme Council of Judicial Bodies and any conflicting provision.
+
+**Source-quality note:** primary government-hosted Gazette PDF and extracted Arabic text. The filename/heading mismatch must be preserved as a metadata warning; use the document's internal Gazette heading and article text as the controlling identity.
+
+### Local Administration Law 43/1979 — Law 50/1981, official Ministry of Finance Gazette PDF
+
+**Official Ministry of Finance PDF:** https://media.mof.gov.eg/mof-prd/217_3d873503c3.pdf  
+**Gazette:** issue 26, 25 June 1981.  
+**Commencement:** Article 3 states Article 1 takes effect the day after publication, while Article 2 takes effect from 1 September 1980. The retroactive date for Article 2 must be preserved; do not flatten commencement into one date.
+
+**المادة الأولى:** replaces a large set of provisions in Law 43/1979, including Articles 1, 2, 3, 6(2), 10, 12–15, 18–20, 23–24, 26–30, 35–36, 39, 42–44, 47, 50–51, 53, 59, 66, 69, 75–76, 79, 83, 85–86, 91, 96–97, 99–101, 106–107, 109–110, 114–115, 118, 120–123, 128, 132–133, 138–139 and 144–145.
+
+**مادة (١) (1981 replacement):** «وحدات الحكم المحلي هي المحافظات والمراكز والمدن والأحياء والقرى، ويكون لكل منها الشخصية الاعتبارية...» It allocates creation decisions among the President, Prime Minister and governor as specified for governorates, centres/cities/districts and villages.
+
+**مادة (٢) (1981 replacement):** «تتولى وحدات الحكم المحلي في حدود السياسة العامة والخطة العامة للدولة إنشاء وإدارة جميع المرافق العامة الواقعة في دائرتها.» It excludes national or special-nature utilities designated by presidential decision and delegates allocation of utilities/powers to the executive regulation.
+
+**مادة (٣) (1981 replacement):** creates an elected local popular council for each local unit, with direct election and membership requirements as set out in the historical text. **This is historical original wording and must not be treated as current local-council law without checking later constitutional and legislative developments.**
+
+The 1981 amendment contains extensive local council oversight and approval powers, local budget/development-plan roles, governor powers, local fees and property transactions. It is a major source for reconstructing the historical architecture behind PM Decision 707/1979.
+
+### Local Administration Law 43/1979 — Law 145/1988
+
+- Ministry of Finance official catalogue confirms Law 145/1988 as an in-force amendment to Law 43/1979: https://mof.gov.eg/ar/legislation/legislation-5fe86a857bfc600007cbfe54
+- Secondary Gazette metadata: issued/published 9 June 1988; effective 10 June 1988.
+- Secondary Eastlaws transcription says Article 1 replaces “نظام الحكم المحلي” with “نظام الإدارة المحلية” in the issuance provision. Full amendment text and Gazette scan still needed.
+- Other Ministry-listed amendments now identified include Laws 50/1981, 168/1981, 106/1987, 145/1988, 84/1996, 96/2003 and 178/2005. These need exact article-level delta acquisition; do not assume this is the complete amendment list.
+
+### Administrative Prosecution internal regulation — Presidential Decision 1489/1958
+
+**Secondary full text:** https://lawhub.info/eg/?p=12122  
+**Manshurat metadata and PDF locator:** https://manshurat.org/node/61396  
+**Metadata:** issued 23 November 1958, published/effective 27 November 1958. The Manshurat page identifies a 125.49 KB PDF.  
+**Source status:** secondary full transcription and PDF locator; Gazette image verification outstanding.
+
+**Issuing Article 1:** «يعمل باللائحة الداخلية للنيابة الإدارية والمحاكم التأديبية المرافقة لهذا القرار.»
+
+**Issuing Article 2:** «ينشر هذا القرار فى الجريدة الرسمية، ويعمل به من تاريخ نشره.»
+
+**اللائحة، مادة (٣):** the Inspection Section acts on its own initiative or on request from ministries, public bodies or the Investigation Section.
+
+**مادة (٤):** «تجرى الرقابة فى سرية.»
+
+**مادة (٥):** written authorization for individual monitoring must state the employee's name and purpose.
+
+**مادة (٨):** investigation is written and recorded in sequential minutes, each recording date, place and opening/completion time, and signed by the investigating member and clerk on each page.
+
+**مادة (١٣):** contains conditions for an administrative-prosecution member to issue an order to arrest and bring a witness who fails to attend after proper notice; the order must include identity and case particulars, and may not be executed after six months unless renewed by the Administrative Prosecution.
+
+**مادة (١٤):** employee/home search requires strong grounds and written authorization from the designated senior official; search safeguards include presence of the person concerned where possible or witnesses in the specified order; sealed papers are secured and only the investigating member may open them under the prescribed safeguards.
+
+**مادة (١٦):** «لا يجوز لأصحاب الشأن الاطلاع على أوراق التحقيق إلا بعد الانتهاء منه.»
+
+**مادة (١٨):** where the matter is referred to Public Prosecution for a criminal offense, the administrative and financial responsibility should still be determined without waiting for final criminal disposition where possible.
+
+**مادة (٢٢):** where an investigation reveals both administrative responsibility and a criminal offense, papers are referred to Public Prosecution after preserving a certified copy for administrative responsibility.
+
+**مادة (٣٢):** disciplinary proceedings against an Administrative Prosecution member are initiated by a reasoned report; the member is placed on compulsory leave with full pay until the disciplinary trial concludes.
+
+**مادة (٤٠):** disciplinary court hearings are private, but may be public if the court president so decides.
+
+**Caution:** Decision 1489/1958 is an old internal regulation. Confirm amendments, institutional renaming, later internal instructions and consistency with the Constitution, Law 117/1958 as amended, State Council Law and modern criminal/procedural safeguards before treating any article as operative.
+
+## 7. New primary-text coverage added
+
+This follow-up adds actual Arabic text from:
+- Law 136/1984 (State Council) — official Gazette PDF.
+- Law 50/1981 (Local Administration) — official Ministry of Finance Gazette PDF.
+- Decision 1489/1958 (Administrative Prosecution internal regulation) — secondary full text with Gazette/PDF locator.
+- Law 145/1988 (Local Administration) — official catalogue locator and secondary commencement/subject metadata; full text remains pending.
+
+The amendment graph for State Council and local administration is now materially better, but neither parent statute is yet a fully verified consolidated current text.
