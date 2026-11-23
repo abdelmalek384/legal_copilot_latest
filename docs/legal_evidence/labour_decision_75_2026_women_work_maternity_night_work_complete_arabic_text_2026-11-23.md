@@ -174,3 +174,35 @@
 - Official Amiri Printing Houses text page is discoverable in search results but could not be fetched directly in this session; word-level verification against it remains pending.
 - IDSC/MELES catalogue record identifies Ministry of Labour and the 17 May 2026 publication, with Arabic and English PDF attachments.
 - No reuse/commercial rights clearance or lawyer sign-off; keep production `verified=0`.
+
+
+## Primary indexed-text comparison update — 23 November 2026
+
+A fresh retrieval of the official General Authority for Amiri Printing Houses indexed result now returns substantial verbatim text from Decision 75/2026, including the preamble, Articles 1–10, and Articles 12–15. This is stronger than the earlier discovery-only status: the secondary full text can now be compared against an official publisher's indexed transcription. Direct page opening still fails, and no Gazette page images have been inspected, so this is **official indexed-text corroboration, not image-authenticated Gazette comparison**.
+
+Official indexed page: https://alamiria.com/Sec/TashTxt?id=82Iv%2FEE2jDk%3D
+
+The retrieved official text confirms the same key provisions and most wording in the captured secondary text:
+- Article 1 equal application of labour rules and equal pay for work of equal value, including cash/in-kind benefits, bonuses, incentives and allowances.
+- Article 2 purpose: maternity/childhood protection and occupational safety and health.
+- Article 3 pregnancy/breastfeeding restrictions across chemical, physical, biological and engineering hazards; official search output includes the listed industrial activities and manual-load activities.
+- Articles 4–5 administrative/supervisory work during protected periods and conditional work outside those periods subject to OSH precautions; the official index itself returns the unusual phrase «المخاطر ... السلبية» in Article 5. Preserve it as a source-text anomaly pending page-image proofing; do not silently “correct” it.
+- Articles 6–10 night-work permission, alternative daytime work, the 10 pm–7 am industrial night period, industrial-establishment definition and exceptions.
+- Articles 12–15 written Labour Directorate approval, night-inspection/database duties, preservation of better benefits, impact studies and commencement/repeal of conflicting earlier provisions.
+
+The official indexed result does not expose the full text of Article 11 in the retrieved snippet. Keep Article 11 in the existing transcription as secondary-only until the Gazette image or another primary copy confirms it.
+
+### Correction/erratum lead
+
+A secondary legal-news result reports that a separate official notice corrected a material error in the minister's job title as printed in Decision 75/2026 in issue 108. The issue-108 SIS catalogue record lists a separate file named «تنويه 108.pdf», which is a promising primary route, but the file has not yet been acquired or inspected. Treat the notice as an unverified correction lead; do not change the signature block or decision text until the notice itself is read.
+
+- Issue 108 SIS catalogue record and files: https://mediadr.sis.gov.eg/handle/123456789/127233
+- Secondary correction lead: https://blog.iqrar.ai/news/gnews_gaz_456d23c27d61_0000/
+
+### Updated disposition
+
+- 15 articles captured in Arabic from a secondary full-text transcription.
+- Official Amiri Printing Houses indexed text independently corroborates substantial portions (Articles 1–10 and 12–15 in the retrieved result); Article 11 remains without primary indexed corroboration in this pass.
+- No Gazette page-image review, original-PDF hash, reuse-rights clearance, full correction-notice review or qualified Egyptian lawyer sign-off.
+- Article 15's conflict-based repeal clause remains a lead for instrument-by-instrument conflict analysis; it does not justify treating all prior decisions as wholly repealed.
+- Keep production verified status false.
