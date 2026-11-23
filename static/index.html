@@ -3671,9 +3671,9 @@ function documentIntelligencePanel(caseId,documents){
    if(remaining<=0)break;
   }
   if(!cards.length)cards.push(h('p',{className:'mut',textContent:needsAttentionOnly?uiText('لا توجد مقاطع تحتاج مراجعة حالياً.','No passages currently need attention.'):uiText('لا توجد مقاطع نصية متاحة للمراجعة.','No extracted text chunks are available for review.')}));
-  const historyResults=h('div',{});
+  const historyResults=h('div',{id:'document-review-history-'+caseId,role:'region','aria-label':uiText('سجل مراجعة النص المستخرج','Extracted text review history')});
   const historyButton=btn(uiText('عرض سجل المراجعة','View review history'),async()=>{
-   historyButton.disabled=true;historyResults.replaceChildren(h('p',{className:'mut',textContent:uiText('جارٍ تحميل سجل المراجعة...','Loading review history...')}));
+   if(historyButton.getAttribute('aria-expanded')==='true'){historyResults.replaceChildren();historyButton.setAttribute('aria-expanded','false');historyButton.textContent=uiText('عرض سجل المراجعة','View review history');return}\n   historyButton.disabled=true;historyButton.setAttribute('aria-expanded','true');historyButton.textContent=uiText('إخفاء سجل المراجعة','Hide review history');historyResults.replaceChildren(h('p',{className:'mut',role:'status','aria-live':'polite',textContent:uiText('جارٍ تحميل سجل المراجعة...','Loading review history...')}));
    try{
     const records=[];
     for(const item of cache.values()){
@@ -3687,6 +3687,7 @@ function documentIntelligencePanel(caseId,documents){
    }catch(_){historyResults.replaceChildren(h('p',{className:'mut',role:'status',textContent:uiText('تعذر تحميل سجل المراجعة. تحقق من صلاحية الوصول وحاول مجدداً.','Could not load review history. Check access and try again.')}))}
    finally{historyButton.disabled=false}
   },'g');
+  historyButton.setAttribute('aria-controls',historyResults.id);historyButton.setAttribute('aria-expanded','false');
   const pendingCount=[...cache.values()].reduce((sum,item)=>sum+item.chunks.filter(chunk=>!chunk.latest_review||chunk.latest_review.outcome==='needs_recheck').length,0);
   const filterButton=btn(needsAttentionOnly?uiText('عرض جميع المقاطع','Show all passages'):uiText('عرض المقاطع التي تحتاج مراجعة','Show passages needing attention'),()=>{needsAttentionOnly=!needsAttentionOnly;renderAnalysis()},'g');
   filterButton.setAttribute('aria-pressed',String(needsAttentionOnly));
