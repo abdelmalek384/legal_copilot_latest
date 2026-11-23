@@ -1366,3 +1366,11 @@ The previously recorded estimates remain unchanged pending exact-head automated 
 
 
 - PR #1759 extends the global-search `>` command palette with ArrowDown entry, wrapped ArrowUp/ArrowDown focus movement and Escape-to-close/focus-return. Command results continue to come only from the current role/permission-filtered navigation collection. Inline JavaScript syntax parsing passed; the browser keyboard interaction remains unexecuted because Actions runners are unavailable.
+
+
+## Bounded legal-document timeline processing — 2026-11-23
+
+- The date-mention timeline now applies independent document, per-document candidate, and global candidate-record scan ceilings. Defaults are 1,000 documents, 5,000 candidates per document, and 100,000 candidate records; each has a validated hard maximum.
+- Results expose documents/candidate records inspected and an explicit `truncated` flag. Truncated timelines are explicitly incomplete and must not be treated as exhaustive; dates remain mentions requiring human context, not inferred legal deadlines.
+- Regression tests cover each ceiling and invalid limits. Exact-head CI is pending; the preceding head's focused AI-1 source-trust job passed, while the repository-wide suite failed in the separate persistent document-classification contract test.
+- No corpus adapter, client-data, database, or UI ownership was changed. No legal source was promoted to verified.
