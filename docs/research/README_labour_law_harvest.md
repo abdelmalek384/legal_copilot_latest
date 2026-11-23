@@ -149,3 +149,6 @@ This folder contains free/public source discovery, metadata registers and extrac
 
 
 74. [Decisions 267 and 270/2025 — complete secondary Arabic texts](../legal_evidence/labour_decisions_267_270_2025_complete_secondary_arabic_text_2026-11-23.md) — 23 articles on apprenticeship/gradation and 3 articles on establishment workforce reporting; issue-295 supplement-D metadata corroborates the bundle; Gazette visual comparison, currentness, privacy review and reuse rights remain pending.
+
+
+75. [Decision 279/2025 — foreign-worker work permits, Arabic extracts](../legal_evidence/labour_decision_279_2025_foreign_worker_permits_arabic_extracts_2026-11-23.md) — 40-article instrument; selected text on permits, exemptions, 10% ratio, exception committee, foreign-worker registers, regularisation, renewal, absence reporting, rights and data duties; official SIS issue-290(B) public catalogue lead found, but original attachment retrieval timed out; full transcription and visual QA remain pending.
