@@ -86,13 +86,14 @@ class ContainerDeploymentContractTests(unittest.TestCase):
 
     def test_local_release_check_audits_lock_drift_and_dependency_vulnerabilities(self):
         checker = (ROOT / "scripts" / "local_release_check.sh").read_text(encoding="utf-8")
-        self.assertIn("pip-compile --resolver=backtracking --generate-hashes", checker)
+        self.assertIn("python -m piptools compile --resolver=backtracking --generate-hashes --strip-extras --allow-unsafe", checker)
+        self.assertIn('--output-file="$tmpdir/requirements-py312.lock" requirements.txt', checker)
         self.assertIn('requirements-py312.lock > "$tmpdir/current-lock.body"', checker)
         self.assertIn('"$tmpdir/requirements-py312.lock" > "$tmpdir/regenerated-lock.body"', checker)
         self.assertIn('diff -u "$tmpdir/current-lock.body" "$tmpdir/regenerated-lock.body"', checker)
-        self.assertIn("pip-audit --strict --progress-spinner off -r requirements-py312.lock", checker)
-        self.assertIn('details+=("pip-compile is not installed")', checker)
-        self.assertIn('details+=("pip-audit is not installed")', checker)
+        self.assertIn("python -m pip_audit --require-hashes --strict --progress-spinner off -r requirements-py312.lock", checker)
+        self.assertIn('details+=("pip==26.2.2 and pip-tools==7.6.2 are required in the active Python 3.12 environment")', checker)
+        self.assertIn('details+=("pip==26.2.2 and pip-audit==2.10.1 are required in the active Python 3.12 environment")', checker)
 
     def test_focused_security_matrix_includes_backup_restore_and_recovery(self):
         matrix = (ROOT / "scripts" / "security_regression_check.sh").read_text(encoding="utf-8")
