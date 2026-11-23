@@ -4774,6 +4774,9 @@ body:has(.research-layout){background:#f3f5f8;color:#1d2c42;font-family:Inter,"N
 }
 #main .research-thread .research-answer-tabs [role=tab].active::after{display:none!important}
 #main .research-thread .research-answer-tab-panel{width:100%!important;min-width:0!important}
+/* Keep the session-history rail within the narrow reference width without shrinking the answer pane. */
+#main .research-layout>.research-list{width:180px!important;max-width:180px!important;min-width:0!important}
+@media(max-width:800px){#main .research-layout>.research-list{width:100%!important;max-width:none!important}}
 @media(max-width:480px){
  #main .research-thread .research-answer-tabs{gap:4px!important;padding:3px!important}
  #main .research-thread .research-answer-tabs [role=tab]{min-height:40px!important;padding:7px 4px!important;font-size:11px!important}
