@@ -9865,6 +9865,107 @@
           "status": "located_2026-11-23"
         }
       ]
+    },
+    {
+      "document_id": "EG-STATE-COUNCIL-AMENDMENT-136-1984",
+      "official_title": "قانون رقم 136 لسنة 1984 بتعديل بعض أحكام القرار بقانون رقم 47 لسنة 1972 بشأن مجلس الدولة",
+      "document_type": "law_amending_administrative_judiciary",
+      "law_number": "136",
+      "law_year": 1984,
+      "source_id": "EG-SIS-GAZETTE-ADMIN-JUDICIARY-1984-2019",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_gazette_pdf_and_full_machine_readable_arabic_text_located",
+      "text_verification_note": "Official SIS-hosted Gazette PDF for issue31 dated 2 August 1984 opened and text extracted. It adds Articles54 bis and68 bis and replaces Articles1, 73(7), 83 and91; complete source is linked. Local PDF bytes/hash and counsel review remain outstanding.",
+      "source_urls": [
+        {
+          "url": "https://sis.gov.eg/media/647517/%D9%82%D8%A7%D9%86%D9%88%D9%86-%D8%B1%D9%82%D9%85-163%D9%84%D8%B3%D9%86%D8%A9-1984-%D8%A8%D8%B4%D8%A3%D9%86-%D8%AA%D8%B9%D8%AF%D9%8A%D9%84-%D8%A8%D8%B9%D8%B6-%D8%A7%D8%AD%D9%83%D8%A7%D9%85-%D9%82%D8%A7%D9%86%D9%88%D9%86-%D9%85%D8%AC%D9%84%D8%B3-%D8%A7%D9%84%D8%AF%D9%88%D9%84%D8%A9-47-%D9%84%D8%B3%D9%86%D8%A9-1972.pdf",
+          "source_role": "official SIS-hosted Official Gazette PDF; full Arabic text",
+          "status": "opened_and_text_extracted_2026-11-23"
+        },
+        {
+          "url": "https://mof.gov.eg/ar/legislation/legislation-5fe86a917bfc600007cbff01",
+          "source_role": "official Ministry of Finance legislation locator; guidance only",
+          "status": "located_2026-11-23"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-STATE-COUNCIL-AMENDMENT-77-2019",
+      "official_title": "قانون رقم 77 لسنة 2019 بتعديل بعض أحكام قوانين الهيئات القضائية ومنها قانون مجلس الدولة وقانون النيابة الإدارية",
+      "document_type": "multi_statute_judicial_amendment_law",
+      "law_number": "77",
+      "law_year": 2019,
+      "source_id": "EG-SIS-GAZETTE-ADMIN-JUDICIARY-1984-2019",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "official_gazette_pdf_located_secondary_full_arabic_text_located",
+      "text_verification_note": "Official SIS-hosted PDF of Official Gazette issue25 مكرر (ب), 26 June 2019, contains the amending law. Secondary Lawyer Egypt transcription gives full operative clauses. It changes Law117/1958 Article35 and Law47/1972 Article83, as well as State Cases Authority, Judicial Authority and Military Judiciary statutes. Local PDF hash and line-by-line comparison outstanding.",
+      "source_urls": [
+        {
+          "url": "https://sis.gov.eg/media/647533/%D9%82%D8%A7%D9%86%D9%88%D9%86-%D8%B1%D9%82%D9%85-77-%D9%84%D8%B3%D9%86%D8%A9-2019-%D8%A8%D8%B4%D8%A3%D9%86-%D8%AA%D8%B9%D8%AF%D9%8A%D9%84-%D8%A8%D8%B9%D8%B6-%D8%A7%D8%AD%D9%83%D8%A7%D9%85-%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86-%D8%B1%D9%82%D9%8575-%D9%84%D8%B3%D9%86%D8%A9-1963.pdf",
+          "source_role": "official SIS-hosted Official Gazette PDF",
+          "status": "located_2026-11-23"
+        },
+        {
+          "url": "https://lawyeregypt.net/%D9%82%D8%A7%D9%86%D9%88%D9%86-%D8%B1%D9%82%D9%85-77-%D9%84%D8%B3%D9%86%D8%A9-2019-%D9%81%D9%89-%D8%B4%D8%A3%D9%86-%D8%AA%D8%B9%D8%AF%D9%8A%D9%84-%D8%A8%D8%B9%D8%B6-%D8%A3%D8%AD%D9%83%D8%A7%D9%85/",
+          "source_role": "secondary full Arabic transcription",
+          "status": "opened_2026-11-23"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CIVIL-SERVICE-EXEC-REG-AMENDMENT-714-2019",
+      "official_title": "قرار رئيس مجلس الوزراء رقم 714 لسنة 2019 بتعديل بعض أحكام اللائحة التنفيذية لقانون الخدمة المدنية الصادرة بقرار 1216 لسنة 2017",
+      "document_type": "prime_minister_decision_amending_executive_regulation",
+      "law_number": "714",
+      "law_year": 2019,
+      "source_id": "EG-ELMODAWANA-714-2019",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "secondary_full_arabic_text_located_official_gazette_issue_metadata_located",
+      "text_verification_note": "Full Arabic operative text of the replacement Article189 was recovered from El Modawana; EastLaws confirms issue11 مكرر (أ), publication 20 March 2019, effective 21 March 2019. It is a time-limited transition rule ending 1 November 2019, so preserve as historical. Official Gazette image/PDF still not recovered.",
+      "source_urls": [
+        {
+          "url": "https://www.elmodawanaeg.com/%D9%82%D8%B1%D8%A7%D8%B1-%D8%B1%D8%A6%D9%8A%D8%B3-%D9%85%D8%AC%D9%84%D8%B3-%D8%A7%D9%84%D9%88%D8%B2%D8%B1%D8%A7%D8%A1-%D8%B1%D9%82%D9%85-714-%D9%84%D8%B3%D9%86%D8%A9-2019-%D8%A8%D8%AA%D8%B9%D8%AF/",
+          "source_role": "secondary full Arabic text; original image link exposed",
+          "status": "opened_2026-11-23"
+        },
+        {
+          "url": "https://www.eastlaws.com/legislation-full-text/ar/egypt/prime-minister-decision/20-03-2019/no-714?id=1936875&sub=9594563&type=1",
+          "source_role": "secondary Gazette issue/date/effective-date metadata",
+          "status": "located_2026-11-23"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-CIVIL-SERVICE-EXEC-REG-AMENDMENT-1509-2026",
+      "official_title": "قرار رئيس مجلس الوزراء رقم 1509 لسنة 2026 بشأن تعديل بعض أحكام اللائحة التنفيذية لقانون الخدمة المدنية الصادرة بقرار 1216 لسنة 2017",
+      "document_type": "prime_minister_decision_amending_executive_regulation",
+      "law_number": "1509",
+      "law_year": 2026,
+      "source_id": "EG-MKSEGYPT-2026",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "text_acquisition_status": "full_secondary_arabic_text_located_official_gazette_issue_metadata_and_pdf_locator_located",
+      "text_verification_note": "Full Arabic text is available on an attributed CC BY 4.0 secondary legal site. Official Gazette issue20 مكرر (أ), 18 May 2026, is independently identified in MELES DSpace catalogue; another Gazette PDF mirror located. Replaces Regulation Articles52-59 and62 and adds Articles51 bis, 51 bis 1, 52 bis and57 bis. Effective 19 May 2026. Need local PDF hash and article-by-article Gazette comparison.",
+      "source_urls": [
+        {
+          "url": "https://mksegypt.org/ar/decisions/34436",
+          "source_role": "full Arabic text; site displays CC BY 4.0 attribution license",
+          "status": "opened_2026-11-23"
+        },
+        {
+          "url": "https://dspace.id.com.eg/items/a636667f-d1cd-4ba1-b535-c38a243f41cb",
+          "source_role": "MELES DSpace Gazette issue metadata and PDF attachment listing",
+          "status": "located_2026-11-23"
+        },
+        {
+          "url": "https://cdn.vetogate.com/UploadCache/libfiles/583/9/0x0o/385.pdf",
+          "source_role": "Official Gazette PDF mirror, issue20 مكرر (أ), 18 May 2026",
+          "status": "located_2026-11-23"
+        }
+      ]
     }
   ]
 }
