@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_on": "2026-11-17",
+  "generated_on": "2026-11-23",
   "purpose": "Seed discovery candidates into the local registry. These are metadata leads, not downloaded legal texts, verified current law, or permission to collect/reuse content.",
   "sources": [
     {
@@ -235,12 +235,12 @@
       "source_id": "EG-MOF-LEGISLATION",
       "authority": "Ministry of Finance, Arab Republic of Egypt",
       "source_page": "https://mof.gov.eg/ar/legislation/legislation-1",
-      "access_status": "Official Ministry of Finance legislation portal lists 936 laws and 2,037 decisions; categories include taxes, customs, budgets, finance, economic laws, judicial/constitutional opinions and international agreements. Updated through 2026. Portal warns electronic texts are guidance and Official Gazette is controlling.",
+      "access_status": "official legislation portal and linked official-hosted PDFs located",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
       "terms_checked_on": null,
-      "permission_evidence": "The Ministry's own notice states electronically published texts are for guidance and that the sole legal reference is publication in the Official Gazette (الوقائع المصرية). Use this portal to discover and cross-reference tax/financial laws and ministerial decisions, not as a substitute for Gazette originals or as evidence of collection/reuse permission.",
+      "permission_evidence": "The portal itself warns that online texts are for guidance and that the controlling legal reference is the Official Gazette (الوقائع المصرية). Public access and official hosting do not establish bulk extraction, local storage, indexing, display, or commercial reuse permission.",
       "rights_notice_checked_on": "2026-11-17",
       "coverage_observation_2026_11_17": {
         "laws_index": "936 laws listed across financial, budget/accounts, treasury assets, taxes/fees, customs, economic, public service and miscellaneous categories",
@@ -260,7 +260,15 @@
         "laws_index_url": "https://mof.gov.eg/ar/legislation/laws",
         "finance_minister_decisions_url": "https://mof.gov.eg/ar/legislation/decisions/cat-5fe2a21f7bfc600007cbce3c",
         "prime_minister_decisions_url": "https://mof.gov.eg/ar/legislation/decisions/cat-5fe2a20d7bfc600007cbce3a"
-      }
+      },
+      "material_types": [
+        "laws",
+        "ministerial decisions",
+        "prime minister decisions",
+        "public finance and procurement legislation"
+      ],
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Review the current portal and media-host terms; request written permission for local storage, OCR, indexing, end-user display and commercial use; verify every instrument against the Gazette."
     },
     {
       "source_id": "EG-FRA-REGULATIONS",
@@ -492,6 +500,57 @@
       "terms_url": null,
       "terms_checked_on": null,
       "permission_evidence": "Official court platform and technical-office publications; no affirmative bulk extraction or commercial reuse permission established."
+    },
+    {
+      "source_id": "EG-ETA-GAZETTE",
+      "authority": "Egyptian Tax Authority, Arab Republic of Egypt",
+      "source_page": "https://www.eta.gov.eg/sites/default/files/2024-09/law_no.18-2024.pdf",
+      "material_types": [
+        "Official Gazette PDFs hosted by the Egyptian Tax Authority"
+      ],
+      "access_status": "official-hosted Gazette PDF located",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Official Gazette issue PDF is publicly accessible from an Egyptian government domain. No evidence of bulk collection, local archiving, indexing, display, or commercial reuse permission has been established.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Review applicable ETA site and file-host terms and request written permission for the intended corpus uses; retain Gazette issue/page provenance and visually inspect pages."
+    },
+    {
+      "source_id": "EG-MANSHURAT",
+      "authority": "Manshurat Legal Publications",
+      "source_page": "https://manshurat.org/",
+      "material_types": [
+        "legal document metadata",
+        "Gazette scans",
+        "Arabic legal text transcriptions"
+      ],
+      "access_status": "full-text and Gazette-scan locators located",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Public pages expose legal document metadata and downloadable PDF scans/transcriptions. No permission evidence for bulk retrieval, local storage, OCR, indexing, user display or commercial reuse has been identified.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Review platform terms and obtain written permission for the intended uses; verify scan provenance against official Gazette copies and do not treat platform transcriptions as authoritative."
+    },
+    {
+      "source_id": "EG-LAWHUB-LOCAL-ADMIN",
+      "authority": "LAW HUB Egyptian Legal Encyclopedia",
+      "source_page": "https://lawhub.info/eg/?p=11568",
+      "material_types": [
+        "consolidated Egyptian legal text",
+        "article-level amendment annotations"
+      ],
+      "access_status": "full Arabic consolidated text located",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "A complete Arabic transcription with amendment and constitutional-judgment annotations is publicly accessible. Public visibility does not establish permission for bulk extraction, local storage, indexing, redistribution or commercial use.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Review terms and request written reuse permission; compare each provision and amendment annotation to the Gazette and constitutional judgments."
     }
   ],
   "documents": [
@@ -8800,6 +8859,223 @@
           "url": "https://mof.gov.eg/ar/legislation/laws",
           "source_role": "official Ministry of Finance legislation portal",
           "status": "located_2026-11-17"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LOCAL-ADMIN-LAW-43-1979",
+      "official_title": "القانون رقم 43 لسنة 1979 بإصدار قانون نظام الإدارة المحلية",
+      "document_type": "law",
+      "law_number": "43",
+      "law_year": 1979,
+      "source_id": "EG-LAWHUB-LOCAL-ADMIN",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Full Arabic consolidated transcription located at LAW HUB (1,442 extracted lines) with article-level amendment and SCC annotations; original Gazette scan located at Manshurat (24 pages). Official Ministry of Finance locator labels Law 43/1979 in force and cross-lists amendments including Laws 84/1996, 96/2003 and 178/2005. Gazette metadata: Official Gazette issue 25 (تابع), published 21 June 1979; source metadata states effective 21 June 1979. Consolidated text is secondary and must be reconciled against every amending Gazette and constitutional judgment. No local full-text copy ingested: source reuse permissions remain unknown. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/legislation-5fe86ab47bfc600007cc005c",
+          "source_role": "official Ministry of Finance legislation locator",
+          "status": "listed_2026-11-23"
+        },
+        {
+          "url": "https://lawhub.info/eg/?p=11568",
+          "source_role": "secondary consolidated Arabic transcription",
+          "status": "full_text_located_2026-11-23"
+        },
+        {
+          "url": "https://manshurat.org/node/13261",
+          "source_role": "secondary host of 24-page Gazette scan and amendment relations",
+          "status": "Gazette_scan_metadata_located_2026-11-23"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-LOCAL-ADMIN-EXEC-REG-707-1979",
+      "official_title": "قرار رئيس مجلس الوزراء رقم 707 لسنة 1979 بإصدار اللائحة التنفيذية لقانون نظام الحكم المحلي",
+      "document_type": "executive_regulation",
+      "law_number": "707",
+      "law_year": 1979,
+      "source_id": "EG-MANSHURAT",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official Ministry of Finance portal lists Decision 707/1979 as in force. Gazette metadata: Official Gazette issue 29 مكرر, 25 July 1979; issuing Art.2 makes it effective on publication. Full Arabic transcription/scan located via Manshurat (20-page PDF; OCR text extraction 793 lines). Separate Laweg page exposes issuing Arts.1–2. OCR/transcription has page-number/date and article-number anomalies; do not use as current consolidated regulation until visually checked and amendments identified. No local full-text copy ingested: source reuse permissions remain unknown. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://mof.gov.eg/ar/legislation/legislation-5fe86ab67bfc600007cc0063",
+          "source_role": "official Ministry of Finance decision locator",
+          "status": "listed_2026-11-23"
+        },
+        {
+          "url": "https://manshurat.org/node/13282",
+          "source_role": "secondary host of Gazette scan and document metadata",
+          "status": "20_page_scan_located_2026-11-23"
+        },
+        {
+          "url": "https://www.laweg.net/framePlain.aspx?NID=50671&action=viewactivepages&itemid=39803&type=6",
+          "source_role": "secondary transcription of issuing clauses",
+          "status": "issuing_arts_1_2_located_2026-11-23"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-NEA-POLITICAL-RIGHTS-LAW-45-2014",
+      "official_title": "قرار رئيس جمهورية مصر العربية بالقانون رقم 45 لسنة 2014 بتنظيم مباشرة الحقوق السياسية",
+      "document_type": "law",
+      "law_number": "45",
+      "law_year": 2014,
+      "source_id": "EG-NEA-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official NEA digital library links the 23-page Arabic PDF (749 extracted lines). Gazette issue 23 (تابع), 5 June 2014; issuing Art.3 effective the day after publication. Official NEA copy includes amendment annotations for Decree-Law 92/2015, Law 198/2017 and Law 140/2020; the 2017 law repealed Chapter II, and 2020 amendments are also annotated. Treat as an official NEA-hosted text, not a substitute for a complete article-by-article Gazette amendment chain. No local full-text copy ingested: source reuse permissions remain unknown. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://www.elections.eg/images/pdfs/laws/PoliRights-2014-45.pdf.pdf",
+          "source_role": "official National Election Authority Arabic PDF",
+          "status": "23_page_text_extracted_2026-11-23"
+        },
+        {
+          "url": "https://www.elections.eg/digital-library-laws",
+          "source_role": "official NEA digital legislation index",
+          "status": "listed_2026-11-23"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-NEA-POLITICAL-RIGHTS-AMEND-92-2015",
+      "official_title": "القرار بقانون رقم 92 لسنة 2015 بتعديل بعض أحكام القرار بقانون رقم 45 لسنة 2014 والقرار بقانون رقم 46 لسنة 2014",
+      "document_type": "law_amendment",
+      "law_number": "92",
+      "law_year": 2015,
+      "source_id": "EG-NEA-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official NEA library links a 4-page PDF. OCR extraction is poor/garbled, so page-image transcription is required. Official NEA consolidated Law 45/2014 annotates changes to Arts.2, 12, 25 and 33; secondary full-text transcription also located. Gazette metadata and exact commencement should be verified from the original Gazette. No local full-text copy ingested: source reuse permissions remain unknown. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://www.elections.eg/images/pdfs/laws/HouseOfRepresentativesAmendments2015-92.pdf",
+          "source_role": "official NEA-hosted amendment PDF",
+          "status": "4_page_scan_located_2026-11-23"
+        },
+        {
+          "url": "https://www.elections.eg/digital-library-laws",
+          "source_role": "official NEA index",
+          "status": "listed_2026-11-23"
+        },
+        {
+          "url": "https://temp.manshurat.org/node/4310",
+          "source_role": "secondary amendment metadata/PDF locator",
+          "status": "metadata_located_2026-11-23"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-NEA-LAW-198-2017",
+      "official_title": "القانون رقم 198 لسنة 2017 في شأن الهيئة الوطنية للانتخابات",
+      "document_type": "law",
+      "law_number": "198",
+      "law_year": 2017,
+      "source_id": "EG-NEA-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official NEA digital library links the 15-page Arabic PDF; text extraction is sparse (82 lines) but the searchable NEA result exposes the article structure. Gazette issue 30 مكرر (ب), 1 August 2017. Art.37 provides commencement on the day after publication. Art.36 repeals Chapter II of Law 45/2014 and conflicting provisions. Article-level OCR and full Gazette comparison still required. No local full-text copy ingested: source reuse permissions remain unknown. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://www.elections.eg/images/pdfs/laws/NEAlaw-2017-198.pdf.pdf",
+          "source_role": "official NEA-hosted Arabic PDF",
+          "status": "15_page_pdf_located_2026-11-23"
+        },
+        {
+          "url": "https://www.elections.eg/digital-library-laws",
+          "source_role": "official NEA digital legislation index",
+          "status": "listed_2026-11-23"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-NEA-POLITICAL-RIGHTS-AMEND-140-2020",
+      "official_title": "القانون رقم 140 لسنة 2020 بتعديل بعض أحكام قانون تنظيم مباشرة الحقوق السياسية وقانون مجلس النواب والقانون رقم 198 لسنة 2017",
+      "document_type": "law_amendment",
+      "law_number": "140",
+      "law_year": 2020,
+      "source_id": "EG-NEA-LAWS",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official NEA digital library links a 9-page Arabic PDF (363 extracted lines). Gazette issue 26 مكرر (ك), 1 July 2020; EastLaws metadata states effective 2 July 2020. Amendments reach Law 45/2014, Law 46/2014 and Law 198/2017. Article-by-article consolidation map still required. No local full-text copy ingested: source reuse permissions remain unknown. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://www.elections.eg/images/pdfs/laws/PoliRightsAmendments2020-140.pdf",
+          "source_role": "official NEA-hosted Arabic PDF",
+          "status": "9_page_text_extracted_2026-11-23"
+        },
+        {
+          "url": "https://www.elections.eg/digital-library-laws",
+          "source_role": "official NEA digital legislation index",
+          "status": "listed_2026-11-23"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-PUBLIC-FINANCE-AMEND-18-2024",
+      "official_title": "القانون رقم 18 لسنة 2024 بتعديل بعض أحكام القانون رقم 6 لسنة 2022 بإصدار قانون المالية العامة الموحد والقانون المرافق له",
+      "document_type": "law_amendment",
+      "law_number": "18",
+      "law_year": 2024,
+      "source_id": "EG-ETA-GAZETTE",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official Gazette PDF hosted by the Egyptian Tax Authority, issue 13 مكرر (أ), 30 March 2024 (79 extracted lines). Art.5 provides commencement the day after publication. Amends Law 6/2022: transition to full program/performance budgeting within no more than six years; modifies definitions and provisions including Arts.23, 30, 35, 74; adds definitions and Arts.25 bis and 31 bis; phases economic public authority inclusion over up to five fiscal years. Page image visually checked to correct OCR misread of Art.30. No local full-text copy ingested: source reuse permissions remain unknown. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://www.eta.gov.eg/sites/default/files/2024-09/law_no.18-2024.pdf",
+          "source_role": "official-hosted Official Gazette PDF",
+          "status": "79_line_text_extracted_and_page_image_checked_2026-11-23"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-MOF-PUBLIC-FINANCE-EXEC-REG-73-2024",
+      "official_title": "قرار وزير المالية رقم 73 لسنة 2024 بإصدار اللائحة التنفيذية لقانون المالية العامة الموحد الصادر بالقانون رقم 6 لسنة 2022",
+      "document_type": "executive_regulation",
+      "law_number": "73",
+      "law_year": 2024,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official Ministry of Finance Gazette PDF: 126 pages and 1,988 extracted lines; Gazette issue 45 (تابع), 24 February 2024. Issuing Art.4 makes it effective the day after publication. Issuing Art.2 covers central government, local administration, service public authorities, independent bodies, special funds/accounts and economic public authorities, subject to stated exclusions. Issuing Art.3 repeals the executive regulations to Laws 53/1973 and 127/1981. Decision 94/2025 later amends Art.80(18). Full text acquired in research context but not ingested locally because reuse permissions remain unknown. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://media.mof.gov.eg/mof-prd/qrar_wzyr_almalyt_73_lsnt2024_7207e41665.pdf",
+          "source_role": "official-hosted Official Gazette PDF",
+          "status": "126_page_pdf_and_1988_lines_extracted_2026-11-23"
+        },
+        {
+          "url": "https://mof.gov.eg/ar/legislation/legislation-66a757e5fb247e0008920cef",
+          "source_role": "official Ministry of Finance decision locator",
+          "status": "listed_2026-11-23"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-MOF-PUBLIC-FINANCE-REG-AMEND-94-2025",
+      "official_title": "قرار وزير المالية رقم 94 لسنة 2025 بتعديل بعض أحكام اللائحة التنفيذية لقانون المالية العامة الموحد الصادرة بقرار وزير المالية رقم 73 لسنة 2024",
+      "document_type": "amending_ministerial_decision",
+      "law_number": "94",
+      "law_year": 2025,
+      "source_id": "EG-MOF-LEGISLATION",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official Ministry of Finance 1-page Gazette PDF; Gazette issue 69 (تابع), 24 March 2025. Art.1 replaces item 18 of Art.80 of Decision 73/2024, increasing the annual limit for deductions/settlements on an authorized declaration from EGP 3,000 to EGP 6,000; Art.2 effective the day after publication. Official PDF directly confirms the amendment is to Decision 73/2024; some secondary reporting has inconsistent recital text. Full one-page text extracted. No local copy ingested because reuse permissions remain unknown. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://media.mof.gov.eg/mof-prd/qrar_wzyr_almalyt_rqm_94_lsnt_2025_btedyl_bed_ahkam_allayht_altnfydhyt_lqanwn_almalyt_aleamt_almwhd_alsadrt_bqrar_wzyr_almalyt_rqm_73_lsnt_2024_7202f97b5d.pdf",
+          "source_role": "official-hosted Official Gazette PDF",
+          "status": "1_page_text_extracted_2026-11-23"
+        },
+        {
+          "url": "https://mof.gov.eg/ar/legislation/legislation-28",
+          "source_role": "official Ministry of Finance decision locator",
+          "status": "listed_2026-11-23"
         }
       ]
     }
