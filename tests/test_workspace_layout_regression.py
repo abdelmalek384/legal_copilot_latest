@@ -14,7 +14,7 @@ class WorkspaceLayoutRegressionTests(unittest.TestCase):
         self.assertIn("background:#14284b!important", HTML)
 
     def test_research_workspace_has_three_column_desktop_layout(self):
-        self.assertIn('grid-template-columns:minmax(240px,260px) minmax(0,1fr) minmax(180px,200px)!important;', HTML)
+        self.assertIn('grid-template-columns:minmax(225px,245px) minmax(0,1fr) minmax(160px,180px)!important;', HTML)
         self.assertIn('#main .research-layout>.research-main>.research-composer', HTML)
         self.assertIn('#main .research-composer textarea{grid-column:1/-1!important;width:100%', HTML)
 
@@ -59,7 +59,7 @@ class WorkspaceLayoutRegressionTests(unittest.TestCase):
         self.assertNotIn('#main:has(.research-layout)>.demo-banner{display:none', HTML)
 
     def test_ltr_research_reverses_rail_track_widths_with_semantic_panes(self):
-        self.assertIn('#main .research-layout:dir(ltr){grid-template-columns:minmax(180px,200px) minmax(0,1fr) minmax(240px,260px)!important}', HTML)
+        self.assertIn('#main .research-layout:dir(ltr){grid-template-columns:minmax(160px,180px) minmax(0,1fr) minmax(225px,245px)!important}', HTML)
 
     def test_research_page_actions_have_separation_and_do_not_compress_labels(self):
         self.assertIn('#main:has(.research-layout)>.research-page-actions{', HTML)
@@ -86,8 +86,8 @@ class WorkspaceLayoutRegressionTests(unittest.TestCase):
         self.assertIn('@media(max-width:800px){\n #main .research-layout:dir(ltr){grid-template-columns:minmax(0,1fr)!important;grid-template-areas:"main" "history" "inspector"!important}', HTML)
 
     def test_side_rails_have_more_balanced_widths_and_consistent_spacing(self):
-        self.assertIn('grid-template-columns:minmax(240px,260px) minmax(0,1fr) minmax(180px,200px)!important;', HTML)
-        self.assertIn('grid-template-columns:minmax(180px,200px) minmax(0,1fr) minmax(240px,260px)!important;', HTML)
+        self.assertIn('grid-template-columns:minmax(225px,245px) minmax(0,1fr) minmax(160px,180px)!important;', HTML)
+        self.assertIn('grid-template-columns:minmax(160px,180px) minmax(0,1fr) minmax(225px,245px)!important;', HTML)
         self.assertIn('gap:14px!important;', HTML)
         self.assertIn('#main .research-layout>.research-list{\n display:flex!important;flex-direction:column!important;gap:12px!important;', HTML)
         self.assertIn('#main .research-layout>.research-evidence-panel{\n padding:15px!important;gap:11px!important;', HTML)
