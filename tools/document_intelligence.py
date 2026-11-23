@@ -256,7 +256,8 @@ def group_candidate_entity_mentions(
 
     buckets: dict[tuple[str, str, str, str], list[dict[str, Any]]] = {}
     candidate_count = 0
-    truncated = len(documents) > max_documents
+    truncated = False
+    documents_truncated = len(documents) > max_documents
     allowed_types = {"labelled_party", "case_reference", "legal_reference"}
     for document in documents[:max_documents]:
         if not isinstance(document, dict):
@@ -302,6 +303,9 @@ def group_candidate_entity_mentions(
         if truncated:
             break
 
+    # Document truncation is independent of candidate truncation: still inspect
+    # every document within the configured bound before reporting partial results.
+    truncated = truncated or documents_truncated
     groups = []
     for (firm_id, matter_id, entity_type, normalized), members in buckets.items():
         unique_documents = {member["document_id"] for member in members}
