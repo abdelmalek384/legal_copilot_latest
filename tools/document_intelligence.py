@@ -134,7 +134,7 @@ _LEGAL_REFERENCE_PATTERN = re.compile(
 )
 _ENGLISH_LEGAL_REFERENCE_PATTERN = re.compile(
     rf"(?:Section|Subsection|Paragraph|Clause|Chapter|Act|Law|Regulation|Decree|Code|Rule)\s*"
-    rf"(?:No\.?|Number)?\s*[:：#]?\s*([{_DIGITS}A-Za-z]+(?:\s*[./-]\s*[{_DIGITS}A-Za-z]+){{0,2}})",
+    rf"(?:No\.?|Number)?\s*[:：#]?\s*([{_DIGITS}A-Za-z]+(?:[./-][{_DIGITS}A-Za-z]+){{0,2}})",
     re.IGNORECASE,
 )
 _EVENT_MENTION_PATTERN = re.compile(
