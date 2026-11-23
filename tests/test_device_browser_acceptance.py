@@ -288,7 +288,7 @@ class DeviceBrowserAcceptanceTests(unittest.TestCase):
     def test_evidence_loader_rejects_invalid_utf8(self):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "invalid.json"
-            path.write_bytes(b'{"record_version":1,"label":"\\xff"}')
+            path.write_bytes(b'{"record_version":1,"label":"' + bytes([0xFF]) + b'"}')
             with self.assertRaisesRegex(EvidenceError, "valid UTF-8"):
                 load_records(path)
 
