@@ -93,7 +93,7 @@ This is a later and distinct extension instrument. It should be linked to, but n
 
 ## 6. Register progress snapshot (23 November 2026)
 
-The central acquisition register now contains **412 instrument rows**. Applying the same keyword-based content_observed proxy used in the prior project update yields **104/412 full-text indicators (25.2%)**, **49/414 partial-only indicators (11.8%)**, and **154/412 rows with any text indicator (37.4%)**. This is a register-level acquisition signal only; it does not measure article-by-article completeness, source authentication, amendment currentness or lawyer review. A national-corpus completion percentage remains uncalculable without a closed Gazette-derived denominator.
+The central acquisition register now contains **412 instrument rows**. Applying the same keyword-based content_observed proxy used in the prior project update yields **104/412 full-text indicators (25.2%)**, **49/415 partial-only indicators (11.8%)**, and **154/412 rows with any text indicator (37.4%)**. This is a register-level acquisition signal only; it does not measure article-by-article completeness, source authentication, amendment currentness or lawyer review. A national-corpus completion percentage remains uncalculable without a closed Gazette-derived denominator.
 
 
 ## 7. Earlier extension — Finance Minister Decision 188/2026
@@ -141,7 +141,10 @@ This is the first located instrument in the 2026 extension chain. It was superse
 
 ## 9. Progress snapshot after this pass (23 November 2026)
 
-Central register: **414 instrument rows**. Using the same keyword-based `content_observed` proxy as the prior snapshot: **107/414 full-text indicators (25.8%)**, **49/414 partial-only indicators (11.8%)**, **156/414 with any text indicator (37.7%)**. This is a register-content proxy, not a measurement of authenticated, consolidated or lawyer-reviewed law. The nationwide denominator remains open.
+Central register: **414 instrument rows**. Using the same keyword-based `content_observed` proxy as the prior snapshot: **108/415 full-text indicators (26.0%)**, **49/414 partial-only indicators (11.8%)**, **157/415 with any text indicator (37.8%)**. This is a register-content proxy, not a measurement of authenticated, consolidated or lawyer-reviewed law. The nationwide denominator remains open.
 
 
-**Later revision (23 November 2026):** after the complete visual transcription of PM Decision3561/2026 (EG-0321), the register now shows 107/414 full-text indicators (25.8%), 49/414 partial-only indicators (11.8%), and 156/414 with any text indicator (37.7%).
+**Later revision (23 November 2026):** after the complete visual transcription of PM Decision3561/2026 (EG-0321), the register now shows 108/415 full-text indicators (26.0%), 49/414 partial-only indicators (11.8%), and 156/414 with any text indicator (37.7%).
+
+
+**Later revision (23 November 2026):** after adding Justice Minister Decision1729/2026, the register contains 415 rows: 108 full-text indicators (26.0%), 49 partial-only indicators (11.8%), and 157 with any text indicator (37.8%).
