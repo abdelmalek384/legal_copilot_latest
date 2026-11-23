@@ -6,10 +6,10 @@
 
 ## 1. New acquisition summary
 
-This file adds two new instrument clusters not found by the repository's prior targeted search:
+This file consolidates and extends existing State-property records EG-0173 and EG-0174 rather than duplicating them, and adds new text acquisition across public business companies, State ownership, public utilities, water quality, PPP disclosure and Treasury revenue.
 
-1. **State private property:** Law 168/2025 and its complete Executive Regulation, Prime Minister Decision 200/2026. Law 168/2025 repeals Law 144/2017; the new regulation contains 20 articles and application forms.
-2. **Public Business Sector:** Law 203/1991, its Executive Regulation Decision 1590/1991, statutory amendment Law 185/2020 and regulatory amendment Decision 948/2021. The original 203/1991 and 1590/1991 texts are available in full from government-hosted PDFs; 185/2020 is in the Official Gazette PDF at the National Investment Bank; Decision 948/2021 is presently transcribed from a secondary full-text source, with official Gazette binary still sought.
+1. **State private property:** existing Law 168/2025 and Executive Regulation Decision 200/2026 records are enriched with additional Arabic text, article-level controls and source-quality notes. Law 168/2025 repeals Law 144/2017; Decision 200/2026 contains 20 regulation articles and application forms.
+2. **Public Business Sector:** new acquisition of Law 203/1991, Executive Regulation Decision 1590/1991, statutory amendment Law 185/2020 and regulatory amendment Decision 948/2021. The original 203/1991 and 1590/1991 texts are available in full from government-hosted PDFs; 185/2020 is in the Official Gazette PDF at the National Investment Bank; Decision 948/2021 is presently transcribed from a secondary full-text source, with official Gazette binary still sought.
 
 The public business sector is relevant to public authorities/government institutions and administrative jurisdiction because the 1991 law converted public-sector authorities/companies into joint-stock companies treated as private-law persons, with specific transitional employee and litigation rules.
 
