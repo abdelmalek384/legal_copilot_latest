@@ -1284,7 +1284,9 @@ class BrowserAcceptanceTests(unittest.TestCase):
             case_result.click()
             self.page.locator(".matter-section-nav").wait_for(state="visible", timeout=10000)
 
-            self.page.locator(".matter-section-nav button").filter(has_text="العمل").click()
+            work_section = self.page.locator(".matter-section-nav button").filter(has_text="العمل")
+            work_section.click()
+            self.assertEqual(work_section.get_attribute("aria-pressed"), "true")
             deadline_nav = self.page.locator(".matter-subnav button").filter(has_text="المواعيد القانونية")
             deadline_nav.wait_for(state="visible", timeout=15000)
             deadline_nav.click()
