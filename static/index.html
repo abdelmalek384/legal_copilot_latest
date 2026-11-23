@@ -3393,7 +3393,7 @@ async function law(){
    const coverage=await api('/legal-review/coverage');
    const rows=Array.isArray(coverage.coverage_by_practice_area)?coverage.coverage_by_practice_area:[];
    const count=rows.reduce((total,row)=>total+Math.max(0,Number(row.documents_with_verified_operational_text)||0),0);
-   if(count===0)researchCorpusStatus.replaceChildren(h('p',{className:'research-empty-corpus',textContent:LANG==='ar'?'لا توجد مستندات قانونية متحققة متاحة؛ سيمتنع المساعد عن التخمين حتى تتوفر مصادر مستوفية للمراجعة.':'No verified legal documents are available; the assistant will abstain rather than guess until qualifying sources are available.'}));
+   if(count===0)researchCorpusStatus.replaceChildren(h('p',{className:'research-empty-corpus',textContent:LANG==='ar'?'لا توجد مستندات قانونية متحققة متاحة؛ سيمتنع المساعد عن التخمين. أضف مصادر مستوفية للمراجعة لبدء البحث.':'No verified legal documents are available; the assistant will abstain rather than guess. Add qualifying sources to begin research.'}));
    else researchCorpusStatus.replaceChildren(pill((LANG==='ar'?'مستندات ذات نص قانوني متحقق: ':'Verified legal documents: ')+count,'done'));
   }catch(_){researchCorpusStatus.textContent=LANG==='ar'?'تعذر تحميل عدد المستندات المتحقق منها.':'Verified-document count is unavailable.'}
  };
