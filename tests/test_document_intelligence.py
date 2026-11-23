@@ -202,7 +202,7 @@ class DocumentIntelligenceTests(unittest.TestCase):
             {"firm_id": "firm-a", "matter_id": "matter-1", "document_id": "doc-1",
              "entities": [{"entity_type": "legal_reference", "mention": "Article 10"}]},
             {"firm_id": "firm-a", "matter_id": "matter-1", "document_id": "doc-2",
-             "entities": [{"entity_type": "legal_reference", "mention": "Article 10"}]},
+             "entities": [{"entity_type": "legal_reference", "mention": "Article 11"}]},
             {"firm_id": "firm-a", "matter_id": "matter-1", "document_id": "doc-3",
              "entities": [{"entity_type": "legal_reference", "mention": "Article 10"}]},
         ]
