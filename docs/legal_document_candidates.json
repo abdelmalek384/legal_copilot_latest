@@ -9594,6 +9594,42 @@
           "status": "full_text_located_2026-11-23"
         }
       ]
+    },
+    {
+      "document_id": "EG-SCC-JUDGMENT-21-11-1991-LOCAL-REGULATORY-COMPETENCE",
+      "official_title": "حكم المحكمة الدستورية العليا في القضية رقم 21 لسنة 11 قضائية دستورية",
+      "document_type": "constitutional_judgment",
+      "law_number": "21",
+      "law_year": 1991,
+      "source_id": "EG-SCC",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official SCC full HTML judgment: https://www.sccourt.gov.eg/DjangoPortalResources/Rules_Html/416_11_21_1_2.html. Judgment dated 6 April 1991. Invalidates Art.9(b) of Suez Governor Decision 108/1987 imposing criminal penalties/confiscation for unlicensed fish transport. It expressly construes Law 43/1979 Art.27: governor's executive powers over local facilities do not include legislative/regulatory powers or criminalization where statute assigns those powers to a minister. The decision's ratio is directly relevant to limits on governor delegated authority and the legality principle. Official SCC text; Gazette publication metadata still to be checked. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://www.sccourt.gov.eg/DjangoPortalResources/Rules_Html/416_11_21_1_2.html",
+          "source_role": "official Supreme Constitutional Court full judgment",
+          "status": "full_text_opened_2026-11-23"
+        }
+      ]
+    },
+    {
+      "document_id": "EG-SCC-JUDGMENT-221-26-2024-LOCAL-TAX",
+      "official_title": "حكم المحكمة الدستورية العليا في الدعوى رقم 221 لسنة 26 قضائية دستورية",
+      "document_type": "constitutional_judgment",
+      "law_number": "221",
+      "law_year": 2024,
+      "source_id": "EG-SCC",
+      "language": "ar",
+      "candidate_status": "discovery_only",
+      "notes": "Official SCC full HTML judgment: https://www.sccourt.gov.eg/DjangoPortalResources/Rules_Html/15188_26_221_1_2.html. Do not misread case-year 26 as calendar year 2026: the judgment was delivered 5 October 2024. It invalidates Fayoum Governor Decision 328/2002 insofar as it imposes an annual charge on iron, wood, building-material and sanitary-ware warehouses. The Court characterizes the charge as a local tax (no specific service), explains the constitutional requirements under Arts.38,101,178 of the 2014 Constitution, and holds Law 43/1979 Art.12(6) authorizes the local popular council only to propose local taxes; the tax must be created by legislation, not a governor's decree. Official SCC text; Gazette publication date not yet captured. Not lawyer-reviewed.",
+      "source_urls": [
+        {
+          "url": "https://www.sccourt.gov.eg/DjangoPortalResources/Rules_Html/15188_26_221_1_2.html",
+          "source_role": "official Supreme Constitutional Court full judgment",
+          "status": "full_text_opened_2026-11-23"
+        }
+      ]
     }
   ]
 }
