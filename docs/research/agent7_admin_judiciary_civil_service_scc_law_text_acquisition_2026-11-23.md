@@ -386,3 +386,20 @@ The judgment's reasoning invokes equality, equal opportunity and access to the n
 - SCC judgment 2/16 (Constitutional): official court portal full-text URL acquired; operative ruling and transitional preservation paragraph captured.
 - The Law 84/1996 and judgment records are additive to existing Local Administration Law 43/1979 files; no duplicate base-law file created.
 - Local Administration Law 43/1979 amendment list to continue mapping: Laws 50/1981, 168/1981, 26/1982, 106/1987, 145/1988, 9/1989, 84/1996 and 96/2003. Law 50/1981 has official MoF Gazette text; Law 84/1996 has full Gazette reproduction; the others remain at mixed primary/secondary acquisition stages.
+
+
+## 15. Whole-project progress — provisional register-derived metric
+
+The repository register `data/research/egypt_initial_statute_acquisition_register_2026-11-17.csv` was fetched and counted: **394 instrument rows** (not 394 articles and not a complete universe of Egyptian law). Its `content_observed` field was scanned using explicit text-status phrases:
+- **92/394 (23.4%)** rows contain a full-text/full-extraction indicator (e.g. “full text”, “full searchable”, “complete text”).
+- **31/394 (7.9%)** rows contain a partial-text/selected-extract indicator.
+- **123/394 (31.2%)** rows therefore contain an explicit full-or-partial text-acquisition indicator.
+- **271/394 (68.8%)** rows do not match those indicators; many may still contain metadata, source leads or unclassified excerpts.
+
+This is a reproducible **registry-text-evidence proxy**, not a measure of legal corpus completeness. It does not establish that a row's text is current, complete, authenticated, amendment-consolidated or legally valid. The scan is keyword-based and may undercount entries whose descriptions use different wording. It also inherits the register's domain coverage and inclusion limitations. Therefore it is suitable as a visible operational progress gauge only, not as a claim that 31.2% of all Egyptian law has been collected.
+
+**Domain coverage:** 13/13 requested domain buckets have repository source maps or research records (100% discovery coverage). This remains distinct from article-level completion within each domain.
+
+**Whole Egyptian-law corpus:** no defensible national-law completion percentage exists until a fixed universe of currently effective primary instruments and versioned amendments/regulations/judgments is defined. The 394-row register is a candidate inventory, not that universe. Keep the two numbers separate:
+- project-register text evidence: 123/394 = 31.2% full-or-partial text indicators;
+- all Egyptian law: completion percentage not yet calculable.
