@@ -73,6 +73,16 @@ class ProfileInitialSchemaTests(unittest.TestCase):
         self.assertIn("document_passage_annotations", names(firm))
         self.assertNotIn("document_passage_annotations", names(control))
         self.assertNotIn("document_passage_annotations", names(corpus))
+        annotation_triggers = {
+            row[0] for row in firm.execute(
+                "SELECT name FROM sqlite_master WHERE type='trigger' AND name LIKE 'document_passage_annotations_%'"
+            )
+        }
+        self.assertTrue({
+            "document_passage_annotations_scope_insert",
+            "document_passage_annotations_scope_update",
+            "document_passage_annotations_immutable",
+        } <= annotation_triggers)
         self.assertNotIn("document_classifications", names(control)); self.assertNotIn("document_classifications", names(corpus))
         self.assertIn("clients", names(firm)); self.assertNotIn("clients", names(control)); self.assertNotIn("clients", names(corpus))
         self.assertNotIn("legal_sources", names(firm))
