@@ -227,6 +227,27 @@ class DocumentIntelligenceTests(unittest.TestCase):
         self.assertEqual(result["candidate_count"], 1)
         self.assertTrue(result["truncated"])
 
+    def test_candidate_entity_grouping_enforces_global_scan_budget_even_for_ignored_entities(self):
+        documents = [{
+            "firm_id": "firm-a", "matter_id": "matter-1", "document_id": "doc-1",
+            "entities": [
+                {"entity_type": "ignored", "mention": "x"},
+                {"entity_type": "ignored", "mention": "y"},
+                {"entity_type": "legal_reference", "mention": "Article 10"},
+            ],
+        }]
+        result = group_candidate_entity_mentions(
+            documents, max_entity_records=2
+        )
+        self.assertEqual(result["candidate_count"], 0)
+        self.assertTrue(result["truncated"])
+
+    def test_candidate_entity_grouping_rejects_invalid_global_scan_budgets(self):
+        for value in (True, 0, -1, "10", 500001, None):
+            with self.subTest(max_entity_records=value):
+                with self.assertRaises(ValueError):
+                    group_candidate_entity_mentions([], max_entity_records=value)
+
     def test_candidate_entity_grouping_rejects_invalid_per_document_entity_limits(self):
         for value in (True, 0, -1, "10", 20001, None):
             with self.subTest(max_entities_per_document=value):
