@@ -1149,6 +1149,12 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.page.locator(".passage-annotation-text").wait_for(state="visible", timeout=15000)
         self.assertEqual(int(self.page.evaluate("window.CASE_ID")), case_ids[1])
         self.assertIn(case_titles[1], self.page.locator("body").inner_text())
+        case_b_intelligence = self.page.locator(".document-intelligence-panel")
+        case_b_intelligence.locator("button").first.click()
+        history_button = self.page.get_by_role("button", name="عرض سجل المراجعة", exact=True)
+        history_button.wait_for(state="visible", timeout=15000)
+        history_button.click()
+        self.page.get_by_text("لا يوجد سجل مراجعة لهذا المستند.", exact=True).wait_for(timeout=10000)
 
         # Return again and reopen Case A: its saved annotation must still exist.
         self.page.get_by_role("button", name="العودة إلى نتائج بحث العميل", exact=True).click()
