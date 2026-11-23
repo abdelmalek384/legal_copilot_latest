@@ -194,7 +194,7 @@ Additional amendments found in the consolidated transcription include Law 145/19
 
 ## J. Updated progress after the complete 23 November pass
 - **New candidate records added in this pass:** 33 (9 initial instruments, 15 local-law/local-regulation amendments, 7 SCC/SAC/implementing decisions, 2 further official SCC judgments).
-- **Current repository candidate catalogue:** 517 document records across 40 candidate-source entries. This is a discovery inventory, not a count of unique laws or full texts.
+- **Current repository candidate catalogue:** 517 document records across 43 candidate-source entries. This is a discovery inventory, not a count of unique laws or full texts.
 - **Current central source-permission register:** 163 source records. New entries preserve unknown permission where no license/terms evidence was found; MKS Egypt site text is recorded as CC BY 4.0 with the scope limited to page text as displayed.
 - **Arabic text recovery:** more than 20 legal text/scan artifacts were opened in this pass, including full searchable or near-full texts for Law 43/1979, Decision 707/1979, Law 45/2014, Law 18/2024, Decision 73/2024, Decision 94/2025, SCC Cases 2/16 and 36/18, SCC Cases 21/11 and 221/26, and several Supreme Administrative Court decisions. Other items are image-only scans or have OCR limitations; those are explicitly marked.
 - **New complete full-text documents ingested into the authorized production corpus:** 0. This is intentional: most source reuse permissions remain unknown, and candidate/research notes must not be counted as corpus ingestion. The MKS page-level CC BY 4.0 notice is recorded, but no long-form reproduction has been committed in this research note.
