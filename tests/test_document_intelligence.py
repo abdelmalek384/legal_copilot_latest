@@ -53,6 +53,7 @@ class DocumentIntelligenceTests(unittest.TestCase):
         self.assertTrue(result["truncated"])
         self.assertEqual([item["start"] for item in result["candidates"]],
                          sorted(item["start"] for item in result["candidates"]))
+        self.assertTrue(all(item["value"] == "01/01/2025" for item in result["candidates"]))
 
     def test_text_size_is_bounded(self):
         with self.assertRaises(ValueError):
