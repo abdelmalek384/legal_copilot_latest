@@ -2360,7 +2360,7 @@ async function clients(initialQuery=''){
    const result=await api('/clients/import.csv','POST',{csv:csvText});
    toast(uiText('تم استيراد ','Imported ')+result.created+' · '+uiText('تم تخطي ','skipped ')+result.skipped);
    clients();
-  }catch(_){}
+  }catch(error){toast(err(error))}
   importInput.value='';
  };
  const toolbar=h('div',{className:'row'},
