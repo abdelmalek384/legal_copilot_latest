@@ -136,6 +136,11 @@ class ResearchInspectorTests(unittest.TestCase):
         source["provenance"]["source_match_evidence"]["original_capture_sha256"] = "c" * 64
         self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
 
+        # A different source label does not make a byte-identical copy independent.
+        source = self._source_matched_candidate()
+        source["provenance"]["source_match_evidence"]["independent_copy_sha256"] = "a" * 64
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+
         source = self._source_matched_candidate()
         source["provenance"]["commercial_reuse_permission"] = "unknown"
         self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
