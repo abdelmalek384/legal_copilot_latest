@@ -55,6 +55,9 @@ jobs:
       - name: Test MFA enrollment, login, recovery and session security
         if: ${{ !cancelled() && steps.install_locked_dependencies.outcome == 'success' }}
         run: PYTHONPATH=. python tests/test_mfa_account_security.py
+      - name: Test password-reset session revocation and platform audit
+        if: ${{ !cancelled() && steps.install_locked_dependencies.outcome == 'success' }}
+        run: PYTHONPATH=. python tests/test_platform_security_audit.py
       - name: Test persistent document classification contract
         if: ${{ !cancelled() && steps.install_locked_dependencies.outcome == 'success' }}
         run: PYTHONPATH=. python tests/test_document_classifications.py
