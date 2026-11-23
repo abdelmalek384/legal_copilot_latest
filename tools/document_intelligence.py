@@ -735,7 +735,7 @@ def extract_structured_candidates(text: str, max_items: int = 250, max_sentences
 
 
 def compare_extracted_text(before: str, after: str, context_chars: int = 100) -> list[dict[str, str]]:
-    """Return reviewable text changes; never labels a change as legally significant."""
+    """Return reviewable text changes; reject overflow rather than hide later changes."""
     if not isinstance(before, str) or not isinstance(after, str):
         raise TypeError("before and after must be strings")
     if len(before) > MAX_COMPARE_CHARS or len(after) > MAX_COMPARE_CHARS:
@@ -743,14 +743,18 @@ def compare_extracted_text(before: str, after: str, context_chars: int = 100) ->
     if isinstance(context_chars, bool) or not isinstance(context_chars, int) or not 0 <= context_chars <= 1000:
         raise ValueError("context_chars must be an integer between 0 and 1000")
     matcher = difflib.SequenceMatcher(a=before, b=after, autojunk=True)
+    changed_opcodes = [
+        opcode for opcode in matcher.get_opcodes() if opcode[0] != "equal"
+    ]
+    if len(changed_opcodes) > MAX_DIFF_SEGMENTS:
+        raise ValueError(
+            f"text comparison exceeds {MAX_DIFF_SEGMENTS} change segments; "
+            "narrow the comparison before reviewing"
+        )
     changes = []
-    for tag, i1, i2, j1, j2 in matcher.get_opcodes():
-        if tag == "equal":
-            continue
+    for tag, i1, i2, j1, j2 in changed_opcodes:
         changes.append({"change_type": tag,
                         "before": before[max(0, i1-context_chars):min(len(before), i2+context_chars)],
                         "after": after[max(0, j1-context_chars):min(len(after), j2+context_chars)],
                         "review_status": "requires_lawyer_review"})
-        if len(changes) >= MAX_DIFF_SEGMENTS:
-            break
     return changes
