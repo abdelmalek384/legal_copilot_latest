@@ -152,7 +152,7 @@ The Ministry of Finance legislation catalogue exposes three distinct State-prope
 
 ## 6. Exact-text collection ledger for this supplement
 
-- Constitution 2014/2019: 15 constitutional article units reproduced or partially reproduced above: Articles 14, 175–183 (9), 190, 191, 192, 208, 210 (selected paragraphs), 224, 225 (first paragraph), 226 (selected text), 242 and 247. **Counting rule:** 14 + 175–183 (9) + 190–192 (3) + 208 + 210 + 224 + 225 + 226 + 242 + 247 = 21 units; Article 210 and Articles 225–226 are expressly partial extracts.
+- Constitution 2014/2019: 20 constitutional article units reproduced or partially reproduced above: Articles 14, 175–183 (9), 190, 191, 192, 208, 210 (selected paragraphs), 224, 225 (first paragraph), 226 (selected text), 242 and 247. **Counting rule:** 14 + 175–183 (9) + 190–192 (3) + 208 + 210 + 224 + 225 + 226 + 242 + 247 = 20 units; Article 210 and Articles 225–226 are expressly partial extracts.
 - Election statute issuing provisions: 6 issuing-article units across Law 45/2014 and Law 46/2014, source-verified in the official NEA PDFs; the repository already has the canonical election record, so no duplicate statute file was created.
 - Public-property additional statutes: 3 official Ministry catalogue records found; 0 full Arabic article bodies extracted in this pass from those three PDF links due to inaccessible/non-searchable PDF text.
 - New standalone full statute/regulation acquisition created by this supplement: 0; the new work is a constitutional article-level extraction and source verification, deliberately separated from duplicate statute records.
