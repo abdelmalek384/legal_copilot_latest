@@ -48,7 +48,7 @@ class DocumentPassageAnnotationTests(unittest.TestCase):
         html = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
         page = html[html.index("const renderChunkReviewCards="):html.index("const renderAnalysis=()=>{")]
         self.assertIn("tabIndex:0,'aria-label':uiText('النص المستخرج للمقطع '", page)
-        self.assertIn("'aria-describedby':passageHelpId", page)
+        self.assertIn("setAttribute('aria-describedby',passageHelpId)", page)
         self.assertIn("role:'list','aria-label':uiText('قائمة التظليلات والملاحظات'", page)
         self.assertIn("role:'listitem'", page)
         self.assertIn("role:'group','aria-label':uiText('إعدادات التظليل والملاحظة'", page)
