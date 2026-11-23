@@ -7315,7 +7315,7 @@ def search_client_document_text(
         raise HTTPException(404, "client profile not found")
 
     needle = norm(q.strip())
-    tokens = re.findall(r"[\\w]+", needle, flags=re.UNICODE)
+    tokens = re.findall(r"[\w]+", needle, flags=re.UNICODE)
     tokens = [token for token in tokens if token][:20]
     if not tokens:
         raise HTTPException(422, "enter at least one searchable word")
