@@ -1940,5 +1940,10 @@ class FrontendUXContractTests(unittest.TestCase):
         ):
             self.assertIn(action, HTML)
 
+    def test_finance_load_failure_shows_actionable_api_error(self):
+        start = HTML.index("async function financePage()")
+        finance = HTML[start:HTML.index("\n async function ", start + 10)]
+        self.assertIn("catch(error){shell(uiText('الفواتير والتحصيل','Invoices & Finance'),h('div',{className:'notice danger',role:'alert',textContent:String(error?.message||uiText('تعذر تحميل بيانات التحصيل.','Could not load receivables.'))}));return}", finance)
+
 if __name__ == "__main__":
     unittest.main()
