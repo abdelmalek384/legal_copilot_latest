@@ -1584,3 +1584,5 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Added frontend UX contract assertions for the navigation guard, draft restoration, per-passage clearing, and save-handler arguments.
 - The inline frontend JavaScript was parsed successfully with the available V8 runtime. Python frontend-contract tests and real browser/keyboard/RTL acceptance were not executed. This is implementation evidence only, not pilot acceptance.
 - Scope is AI-2 frontend workflow protection; no legal retrieval, corpus, or trust-label changes.
+
+- Follow-up source review also fixed draft-control initialization order, ensured every review outcome passes the correct passage key, and distinguishes a committed review from a failed post-save refresh; these cases are covered by static frontend assertions but remain unexecuted.
