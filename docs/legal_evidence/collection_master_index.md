@@ -2652,3 +2652,10 @@ Added Law75/2026 (annual raises/special allowance/EGP750 incentive), Law77/2026 
 - Acquisition EG-0556 / inventory FT-0232; LAWEG reproduces the two-article amendment and identifies Official Gazette issue 21, 31 Jul 1958.
 - Article 1 replaces Article 21(1) and Article 22; Article 2 makes it effective in the Egyptian region on publication. Provisional event EV-0367 records the version from 31 Jul 1958; Law 33/1992 later replaces both provisions.
 - Original Gazette scan and lawyer review remain outstanding.
+
+### SCC judgment 5/8 (constitutional), 6 January 1996 — partial invalidation of Law 25/1929 Article 18 bis 3
+
+- Acquisition EG-0557 / inventory FT-0233; full judgment text is available on the official Supreme Constitutional Court website.
+- The Court invalidated only two specified portions of Article 18 bis 3: the absolute housing obligation despite sufficient child funds/existing custodian dwelling, and the deadline tied to the former wife's idda for a rented marital home. **The entire article was not invalidated.**
+- Official SCC judgment text: https://www.sccourt.gov.eg/DjangoPortalResources/Rules_Html/592_8_5_1_2.html. A later official SCC decision (Case 95/36, 2016) quotes the disposition and identifies Gazette issue 3, 18 Jan 1996.
+- Provisional event EV-0368 records non-application from 19 Jan 1996 under Law 48/1979 Art. 49; original Gazette issue 3 scan and lawyer review remain outstanding.
