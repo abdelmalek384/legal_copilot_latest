@@ -9409,9 +9409,18 @@ def list_document_chunks(cid: int, document_id: int, u: dict = Depends(user)):
         "SELECT id,ref,page,text FROM chunks WHERE document_id=? AND case_id=? ORDER BY id",
         (document_id, cid),
     ).fetchall()
+    # The chunk response needs only the newest review for each chunk. Fetching
+    # the full review log here made every document open slower as audit history
+    # accumulated and unnecessarily loaded historical full-text copies.
     review_rows = c.execute(
-        "SELECT chunk_id,outcome,reviewer_user_id,original_text,reviewed_text,page_reference,note,created_at "
-        "FROM document_extraction_reviews WHERE document_id=? AND case_id=? AND firm_id=? ORDER BY id DESC",
+        "SELECT r.chunk_id,r.outcome,r.reviewer_user_id,r.original_text,r.reviewed_text,"
+        "r.page_reference,r.note,r.created_at "
+        "FROM document_extraction_reviews r "
+        "JOIN ("
+        " SELECT chunk_id,MAX(id) AS latest_id FROM document_extraction_reviews "
+        " WHERE document_id=? AND case_id=? AND firm_id=? GROUP BY chunk_id"
+        ") latest ON latest.latest_id=r.id "
+        "ORDER BY r.id DESC",
         (document_id, cid, u["firm_id"]),
     ).fetchall()
     latest = {}
