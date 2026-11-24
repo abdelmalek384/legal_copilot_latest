@@ -955,7 +955,7 @@ def delete_case(c, u, cid):
             "SELECT who,at,text FROM events WHERE case_id=? ORDER BY id", (cid,)
         ).fetchall()]
         related_counts = {}
-        for table in ("chunks", "sessions", "tasks", "docs", "members", "notes", "deadlines", "fees"):
+        for table in ("chunks", "sessions", "tasks", "docs", "document_annotations", "document_annotation_events", "members", "notes", "deadlines", "fees"):
             related_counts[table] = c.execute(
                 "SELECT COUNT(*) FROM %s WHERE case_id=?" % table, (cid,)
             ).fetchone()[0]
