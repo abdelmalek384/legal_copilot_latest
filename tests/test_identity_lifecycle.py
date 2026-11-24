@@ -375,6 +375,52 @@ class IdentityLifecycleTests(unittest.TestCase):
         ).fetchone()
         self.assertIn('"sessions_revoked":true', event["detail_json"])
 
+    def test_new_recovery_request_revokes_the_previous_sent_token(self):
+        user_id = self.runtime.create_global_identity(
+            "Recovery Rotation User", "recovery-rotation@example.test",
+            app.hash_pw("RecoveryRotationOldPassphrase-2026!"),
+        )
+        self.runtime.create_firm_membership(user_id, self.firm_a, "lawyer")
+        target = TestClient(app.app)
+        try:
+            with patch.object(app, "send_identity_email") as send:
+                first_request = target.post(
+                    "/account/recovery/request",
+                    json={"email": "recovery-rotation@example.test"},
+                )
+                self.assertEqual(first_request.status_code, 200, first_request.text)
+                first_token = self._token_from_email(send)
+
+                second_request = target.post(
+                    "/account/recovery/request",
+                    json={"email": "recovery-rotation@example.test"},
+                )
+                self.assertEqual(second_request.status_code, 200, second_request.text)
+                second_token = self._token_from_email(send)
+
+            self.assertNotEqual(first_token, second_token)
+            stale = target.post("/account/recovery/consume", json={
+                "token": first_token,
+                "new_password": "RecoveryRotationNewPassphrase-2026!",
+            })
+            self.assertEqual(stale.status_code, 400, stale.text)
+
+            current = target.post("/account/recovery/consume", json={
+                "token": second_token,
+                "new_password": "RecoveryRotationNewPassphrase-2026!",
+            })
+            self.assertEqual(current.status_code, 200, current.text)
+        finally:
+            target.close()
+
+        statuses = {
+            row["status"] for row in self.runtime.control_connection().execute(
+                "SELECT status FROM password_recovery_tokens WHERE user_id=?",
+                (user_id,),
+            ).fetchall()
+        }
+        self.assertEqual(statuses, {"revoked", "consumed"})
+
     def test_recovery_middleware_rate_limits_store_hmac_ip_keys_not_raw_addresses(self):
         control = self.runtime.control_connection()
         for endpoint in ("/account/recovery/request", "/account/recovery/consume"):
