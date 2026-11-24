@@ -30,7 +30,7 @@
 
 - Decision 270/2024 expressly cites Decision 269/2022 on reduced sampling for white-list manufacturers, Decisions 6/2020 and 7/2020, Decision 11/2020, Decision 9/2021 on temporary release, and Decision 10/2021 on recognition of exporting-country competent authorities.
 - The 2024 fast-release scheme is limited to production inputs for own use by qualifying white-list food-manufacturing establishments; it is not a general exemption from NFSA import controls.
-- The decision requires prior notification, sampling, final-product controls and records; the three release paths are documentary check, visual inspection, or visual inspection plus sampling.
+- The decision requires prior notification, sampling, final-product controls and records; the three release paths are documentary check, visual inspection, or visual inspection plus sampling. Its cited Decisions 9/2021 (temporary release) and 10/2021 (recognition of exporting-country control performance) now have separate full-text evidence records in the repository.
 - The Ministry of Finance repository currently labels the decision "in force". Still check later NFSA Board decisions, implementation circulars, white-list criteria, risk schedules, and any amendments before operational advice.
 
 ## 4. Limitations and trust flags
