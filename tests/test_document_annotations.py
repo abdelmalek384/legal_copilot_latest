@@ -162,6 +162,7 @@ class PassageAnnotationApiContractTests(unittest.TestCase):
         review = html[start:end]
         for required in (
             "window.getSelection()",
+            "const annotationNote=h('textarea',{rows:3,maxLength:2000",
             "Array.from(prefix.toString()).length",
             "Array.from(selectedText).length",
             "source_text_sha256:chunk.text_sha256",
