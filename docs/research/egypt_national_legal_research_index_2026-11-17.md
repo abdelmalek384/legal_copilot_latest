@@ -181,3 +181,7 @@ All newly recovered entries remain provisional. Preserve `lawyer_reviewed=false`
 ## 44. Waste Management Executive Regulation Article 56 — unified-list transition crosswalk
 
 - [PM Decision 722/2022 Articles 47 and 56 transition crosswalk](../legal_evidence/waste_exec_reg_722_2022_article56_unified_list_transition_crosswalk_2026-11-24.md) — captures official Amiri Press searchable text assigning unified-list functions to the technical committee and the Article 56 interim continuation of legacy lists until the unified list is issued. Crosswalks that transition clause with Decision 151/2025's 27 July 2025 publication/effective date. This marks the transition milestone, not blanket repeal of every legacy list; Decision 151 annex and Gazette page-image QA remain outstanding.
+
+## 45. Single-use plastic bags — statutory framework and 2026 implementation delta
+
+- [Law 202/2020 Article 27 / Executive Regulation Articles 18–19 / Decision 662/2025 crosswalk](../legal_evidence/plastic_bags_law_202_2020_articles_27_18_19_and_2026_currentness_delta_2026-11-24.md) — captures Article 18 from the EEAA-hosted Gazette PDF for Decision 722/2022 and crosswalks it with Law 202/2020 Article 27 and Decision 662/2025. Adds a later official SIS implementation statement that cites Decision 559/2022 / Standard 3040 and describes a 50-micron requirement. The 50-micron item is an official implementation lead, not the standard itself; Decision 559/2022, Standard 3040 and complete Article 19 remain unacquired. No compliance checklist or current verified rule is asserted.
