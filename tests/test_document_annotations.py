@@ -275,6 +275,13 @@ class DocumentAnnotationAPIRuntimeTests(InvoiceTestSupport, unittest.TestCase):
             ).status_code,
             404,
         )
+        self.assertEqual(
+            self.mutate(
+                self.client_nonmember, "get",
+                f"/cases/{self.case_id}/docs/{document_id}/annotations",
+            ).status_code,
+            404,
+        )
 
         corrected_text = chunk["text"].replace("source passage", "revised source passage")
         reviewed = self.mutate(
