@@ -1,6 +1,6 @@
 # Delivery blockers and closure register
 
-Last reviewed: 2026-11-16
+Last reviewed: 2026-11-24
 Scope: Legal Copilot release work. This register separates work that can be closed by repository changes from work that requires external execution, licensed/legal review, operational access, or real users.
 
 ## Closure policy
@@ -562,3 +562,12 @@ The owner has explicitly requested a non-production firm-test implementation. Th
 - Draft AI-2 PRs #1911 and #1912 are closed unmerged. They are intentionally not considered complete: exact-head Python tests, migration rehearsal, browser acceptance, and two-firm/two-matter authorization acceptance are still missing.
 - Direct-main dependency consistency is preserved: `requirements.txt` remains at the versions corresponding to the checked-in lock. No tests, deployment checks, accessibility acceptance, or legal validation are claimed as executed.
 - Next unblocked work: audit and improve source-register metadata/validators, small static test contracts, and release documentation without adding legal text to the production retrieval corpus or marking any sources lawyer-verified.
+
+
+## Manual checkpoint — 2026-11-24 (billing-blocked CI)
+
+- GitHub Actions execution is unavailable because of the billing issue. No CI/test results are inferred or claimed; validation must be performed locally or through another authorized runtime before merge/release decisions.
+- Re-read `docs/source_permission_register.json` and counted 199 records. Source IDs are non-empty and unique (199/199). Collection permission states: unknown 186, not_allowed_without_explicit_exception_or_license 9, allowed_limited 4. Commercial reuse states: unknown 185, prior_written_permission_required_per_published_terms 7, not_allowed_without_explicit_exception_or_license 3, allowed_limited 4.
+- The 4 limited-permission records are not promoted to unrestricted permissions. No legal content or source rights were upgraded. This is a static inventory count only; the existing validator and regression suite were not executed in this environment.
+- Dependency PRs remain deferred until the hash-locked Python 3.12 requirements file can be regenerated and a clean install/test/audit can run. Do not merge based on version-only edits.
+- Next available in-repository work: document actionable, non-CI release checks and maintain accurate owner/evidence status; avoid retrying blocked GitHub Actions or the closed AI-2 draft PRs.
