@@ -1497,3 +1497,13 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Checked every relative Markdown target linked from `docs/research/egypt_national_legal_research_index_2026-11-17.md`; all 68 unique local targets resolve on `main`. One in-page anchor was excluded from file-existence checks.
 - Checked all 94 unique relative targets in `docs/research/README_labour_law_harvest.md`; found one broken filename for Decision 269/2025, corrected it to the existing `decision_269_2025_labour_market_central_databases.md`, and confirmed all 94 targets now resolve.
 - This was a repository navigation/documentation fix only; no legal status or source-trust flags changed.
+
+
+## 2026-11-24 — isolated passage-annotation implementation (draft PR #1910)
+
+- Recovered only the passage-annotation slice from closed PR #1905 and replayed it onto the newer mainline in branch `ai2/passage-annotations-mainline-20261124`.
+- Draft PR: https://github.com/abdelmalek384/legal_copilot_latest/pull/1910
+- Implementation: firm migration 0025; firm/matter/document/chunk-scoped create/list/soft-delete routes; exact source-text digest and selected-text/offset validation; database ownership and immutability triggers; audit events; active annotation inclusion in authorized chunk responses; bilingual text-selection/highlight/note UI; stale-offset warning; focused regression tests and workflow registration.
+- Original extracted text remains the annotation anchor. Corrections remain working copies; annotations do not alter the uploaded original or extracted chunk. AI-1 corpus/retrieval and existing client-wide search are unchanged.
+- **Validation:** static source wiring checked. Python test execution, exact-head workflow, migration rehearsal, browser/device acceptance and lawyer acceptance are not verified. No test pass is claimed. Keep PR #1910 draft until exact-head checks and the two-case/two-firm acceptance pass.
+- Main remains unchanged; passage annotations are implemented on the draft branch, not yet integrated into main.
