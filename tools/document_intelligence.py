@@ -127,7 +127,10 @@ def _collect_page_markers(text: str) -> list[tuple[int, int]]:
                 f"document exceeds {MAX_PAGE_MARKERS} page markers; "
                 "page provenance was not partially extracted"
             )
-        markers.append((match.start(), int(match.group(1))))
+        page_number = int(match.group(1))
+        if page_number < 1:
+            raise ValueError("PDF page markers must use positive, one-based page numbers")
+        markers.append((match.start(), page_number))
     return markers
 
 
