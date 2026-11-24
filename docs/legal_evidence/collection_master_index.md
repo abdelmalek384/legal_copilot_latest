@@ -2631,3 +2631,10 @@ Added Law75/2026 (annual raises/special allowance/EGP750 incentive), Law77/2026 
 - Acquisition EG-0551 / inventory FT-0226; [four-article Arabic text capture](text_captures/law_33_1992_personal_status_amendment_ar.md), transcribed from MKSEgypt under CC BY 4.0.
 - Replaces Articles 21 and 22 of Law 25/1929; also amends Article 38 of Armed Forces Pension Law 90/1975. Secondary consolidated annotation identifies Official Gazette issue 22 bis (B), 1 Jun 1992. Provisional article-version event EV-0359 effective 2 Jun 1992.
 - This is a historical version superseded in part by Law 140/2017; no primary Gazette page image, lawyer review or currentness certification yet.
+
+### 1979–1985 Personal Status transition — Decree-Law 44/1979, Law 100/1985 and corrigendum
+
+- **EG-0552 / FT-0227:** Decree-Law 44/1979 (Official Gazette issue 25 supplement A, 21 Jun 1979), historical-only. SCC case 28/2 declared the entire decree-law unconstitutional; judgment dated 4 May 1985, published issue 20 on 16 May 1985. Event EV-0361 records non-application from 17 May under Law 48/1979 Art. 49.
+- **EG-0553 / FT-0228:** Law 100/1985 (Official Gazette issue 27 supplement, 4 Jul 1985). Events EV-0362/0363 record its insertions/replacements from 16 May 1985 as stated in Article 7; EV-0364 records the separate 5 Jul 1985 commencement for Article 23 bis.
+- **EG-0554 / FT-0229:** Official Gazette erratum, issue 33, 15 Aug 1985. Eastlaws exposes corrected final texts for Articles 1–3 and LAWEG footnotes correction markers, but the erratum itself has not been acquired. EV-0365 is provisional; exact correction scope is unknown.
+- [Evidence note](law_44_1979_law_100_1985_and_1985_erratum_transition_2026-11-25.md).
