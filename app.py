@@ -8730,7 +8730,7 @@ def download_original_document(cid: int, document_id: int, u: dict = Depends(use
     c = conn()
     need(c, u, cid)
     row = c.execute(
-        "SELECT d.id,o.object_id,o.sha256,o.byte_size,o.legal_hold "
+        "SELECT d.id,d.name,o.object_id,o.sha256,o.byte_size,o.legal_hold "
         "FROM docs d JOIN original_file_objects o ON o.document_id=d.id "
         "WHERE d.id=? AND d.case_id=? AND d.firm_id=? AND o.firm_id=? "
         "AND o.state='ready' AND o.purged_at IS NULL",
@@ -8763,10 +8763,26 @@ def download_original_document(cid: int, document_id: int, u: dict = Depends(use
             type(exc).__name__,
         )
         raise HTTPException(503, "download was not released because audit logging failed") from exc
-    return Response(
+    # Preserve the uploaded filename for the authorized user while preventing
+    # header injection and path disclosure. RFC 5987 carries Arabic/Unicode names;
+    # the ASCII fallback is deliberately generic for older clients.
+    original_name = str(row["name"] or "original-document").replace("\\\\", "/").rsplit("/", 1)[-1]
+    original_name = "".join(
+        ch for ch in original_name
+        if ord(ch) >= 32 and ord(ch) != 127 and ch not in "\\r\\n"
+    ).strip().strip(".")[:180] or "original-document"
+    encoded_name = quote(original_name, safe="!#    return Response(
         content=data,
         media_type="application/octet-stream",
         headers={"Content-Disposition": 'attachment; filename="original-document"',
+                 "Cache-Control": "no-store", "Pragma": "no-cache"},
+    )
++-.^_`|~")
+    return Response(
+        content=data,
+        media_type="application/octet-stream",
+        headers={"Content-Disposition": "attachment; filename=\"original-document\"; "
+                 f"filename*=UTF-8''{encoded_name}",
                  "Cache-Control": "no-store", "Pragma": "no-cache"},
     )
 
