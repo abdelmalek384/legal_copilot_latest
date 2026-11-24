@@ -1729,3 +1729,10 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - PR #1935's non-conflicting changes were applied directly to `main` at `df28eeb003a420fd17975337e089cdf04da6bd28`: lazy cursor iteration for document comparison, matter timeline and entity mentions. Regression test added at `3dbf8b6680cbb1284ab403a17af02f0cf192c651`; branch test newline escaping was repaired before transplant.
 - PR #1936's non-conflicting changes were applied directly to `main` at the same app commit: lazy firm-wide conflict scan continues after the first 100 visible matches so hidden possible conflicts are still detected; test added at `041c95901e7ff1edcf73596e8113f319597567a0`.
 - PRs #1935 and #1936 were closed unmerged after manual transplant; no pending PR is intended. Static source-contract checks and isolated SQLite fixtures passed for all three behaviors. Full repository tests, API integration and browser/two-firm acceptance remain unrun. No Actions/CI pass is claimed.
+
+## Manual legal-corpus inventory CLI fix — 2026-11-24
+
+- Fixed the documented direct invocation of `tools/report_legal_corpus_inventory.py`: the repository root is now inserted into `sys.path` before importing the repository-local permission-register reader. Previously, the first `tools.*` import occurred before that path setup, so the documented command could fail when launched without `PYTHONPATH=.` and from outside the repository working directory.
+- Added a subprocess regression that runs the documented CLI from a temporary working directory with `PYTHONPATH` removed and validates the JSON report contract.
+- Commits: `5b1c98a970f790495499d332cea3412993baa868` (CLI fix), `a846334e3b875eecaf85e735e9912a95897c1d12` (regression).
+- The regression is committed but **not executed** here. No corpus counts, source permissions, legal status, authenticity, currentness, or lawyer-review percentages changed.
