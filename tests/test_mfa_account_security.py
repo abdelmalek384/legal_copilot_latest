@@ -174,6 +174,35 @@ class MFAAccountSecurityTests(unittest.TestCase):
         ).fetchone()
         self.assertIsNotNone(row["used_at"])
 
+    def test_wrong_recovery_attempt_does_not_consume_valid_backup_factor(self):
+        secret = self.enroll()
+        codes = self.confirm(secret)
+        login = self.login()
+        self.assertEqual(login.status_code, 200, login.text)
+        self.assertTrue(login.json()["mfa_verification_required"])
+        control = self.runtime.control_connection()
+        row = control.execute(
+            "SELECT used_at FROM mfa_recovery_codes WHERE user_id=? ORDER BY id LIMIT 1",
+            (self.user_id,),
+        ).fetchone()
+        self.assertIsNone(row["used_at"])
+        rejected = self.mutate("post", "/account/mfa/verify", json={"recovery_code": "invalid-sentinel"})
+        self.assertEqual(rejected.status_code, 401, rejected.text)
+        self.assertEqual(self.client.get("/cases").status_code, 403)
+        row = control.execute(
+            "SELECT used_at FROM mfa_recovery_codes WHERE user_id=? ORDER BY id LIMIT 1",
+            (self.user_id,),
+        ).fetchone()
+        self.assertIsNone(row["used_at"])
+        accepted = self.mutate("post", "/account/mfa/verify", json={"recovery_code": codes[0]})
+        self.assertEqual(accepted.status_code, 200, accepted.text)
+        self.assertEqual(accepted.json()["factor"], "recovery")
+        self.assertEqual(self.client.get("/cases").status_code, 200)
+        row = control.execute(
+            "SELECT used_at FROM mfa_recovery_codes WHERE user_id=? ORDER BY id LIMIT 1",
+            (self.user_id,),
+        ).fetchone()
+        self.assertIsNotNone(row["used_at"])
     def test_five_invalid_mfa_attempts_are_throttled(self):
         secret = self.enroll()
         self.confirm(secret)
