@@ -161,6 +161,10 @@ def validate(data: object) -> list[str]:
             errors.append(f"{label}.authority must be a non-empty string")
         if not _https_url(source.get("source_page")):
             errors.append(f"{label}.source_page must be an HTTPS URL without credentials")
+        if "related_source_pages" in source:
+            related_pages = source.get("related_source_pages")
+            if not isinstance(related_pages, list) or any(not _https_url(item) for item in related_pages):
+                errors.append(f"{label}.related_source_pages must be a list of clean HTTPS URLs")
         if "terms_url" in source and source["terms_url"] is not None and not _https_url(source["terms_url"]):
             errors.append(f"{label}.terms_url must be an HTTPS URL or null")
         for field in ("permission_evidence_url", "commercial_reuse_evidence_url"):
