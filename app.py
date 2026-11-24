@@ -9383,7 +9383,10 @@ def create_document_annotation(
     body = b.body.strip()
     if b.annotation_type == "note" and not body:
         raise HTTPException(422, "a note requires annotation text")
-    page_reference = b.page_reference.strip() or str(chunk["page"] or "")
+    page_reference = str(chunk["page"] or "")
+    requested_page_reference = b.page_reference.strip()
+    if requested_page_reference and requested_page_reference != page_reference:
+        raise HTTPException(409, "page reference does not match the current extracted passage")
     cursor = c.execute(
         "INSERT INTO document_annotations("
         "document_id,case_id,firm_id,chunk_id,author_user_id,annotation_type,"
