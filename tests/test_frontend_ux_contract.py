@@ -1858,5 +1858,18 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("commandItems.filter(([id,label])", navigation)
         self.assertIn("commandItems.find(([id,label])", navigation)
 
+    def test_document_analysis_keeps_successful_documents_when_another_document_fails(self):
+        start = HTML.index(" const loadButton=btn(uiText('تحليل المستندات'")
+        loader = HTML[start:HTML.index(" const searchButton=", start)]
+        self.assertIn("for(let index=0;index<boundedDocs.length;index++)", loader)
+        self.assertIn("skipped++;failedNames.push", loader)
+        self.assertIn("if(loaded)renderAnalysis()", loader)
+        self.assertIn("else analysisResults.replaceChildren", loader)
+        self.assertIn("Loaded ", loader)
+        self.assertIn("Could not load: ", loader)
+        self.assertIn("The one-million-character limit was reached", loader)
+        self.assertIn("Analysis is limited to the first 40 documents", loader)
+        self.assertNotIn("catch(error){status.textContent=uiText('تعذر تحميل بعض المستندات", loader)
+
 if __name__ == "__main__":
     unittest.main()
