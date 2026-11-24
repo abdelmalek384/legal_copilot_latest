@@ -9555,10 +9555,21 @@ def list_document_chunks(cid: int, document_id: int, u: dict = Depends(user)):
     latest = {}
     for review in review_rows:
         latest.setdefault(review["chunk_id"], dict(review))
+    annotation_rows = c.execute(
+        "SELECT id,chunk_id,start_offset,end_offset,selected_text,source_text_sha256,note,color,"
+        "created_by_user_id,created_at FROM document_passage_annotations "
+        "WHERE firm_id=? AND case_id=? AND document_id=? AND deleted_at IS NULL "
+        "ORDER BY chunk_id,start_offset,id",
+        (int(u["firm_id"]), cid, document_id),
+    ).fetchall()
+    annotations_by_chunk = {}
+    for annotation in annotation_rows:
+        annotations_by_chunk.setdefault(int(annotation["chunk_id"]), []).append(dict(annotation))
     chunks = []
     for row in rows:
         item = dict(row)
         item["text_sha256"] = hashlib.sha256(item["text"].encode("utf-8")).hexdigest()
+        item["annotations"] = annotations_by_chunk.get(int(item["id"]), [])
         item["latest_review"] = latest.get(item["id"])
         if item["latest_review"] and item["latest_review"].get("outcome") == "corrected":
             try:
