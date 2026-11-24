@@ -69,3 +69,6 @@ Database triggers independently reject inconsistent firm/matter/document/chunk c
 The document review interface provides Arabic/English text selection, four highlight colors, a required note, annotation listing and removal, and an explicit warning when a previously annotated passage no longer matches the current source digest. This work is in draft PR #1910 and is not yet on `main`.
 
 **Acceptance still required:** run the focused test and full migration/profile suites on the exact PR head; verify author/admin/matter-lead deletion permissions and cross-firm/cross-matter denial; exercise the two-case client workflow; inspect Arabic RTL and English LTR behavior on desktop and mobile; verify the original uploaded file checksum and source chunk remain unchanged.
+
+
+Additional database guard: direct SQL `DELETE` of an annotation is rejected while its owning document, matter and chunk still exist. Parent-driven retention cascades remain available when an owning record is removed, so the immutability guard does not prevent normal data-retention cleanup. The authorized API's one-way soft-delete remains the ordinary removal path.
