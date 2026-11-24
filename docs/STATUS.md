@@ -1611,3 +1611,11 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Register structural recheck after adding the instrument: statute register **513 data rows / 12 columns / 0 ragged rows**; priority full-text inventory **188 data rows / 11 columns / 0 ragged rows**.
 - **Newly surfaced data-integrity issue:** the statute register currently has 15 duplicated instrument IDs (15 ID values duplicated; 15 excess duplicate rows), and the priority full-text inventory has 4 duplicated inventory IDs (4 ID values duplicated; 4 excess duplicate rows). The collisions predate the new EG-0514/FT-0204 entries. No automatic re-key was attempted because existing evidence notes and crosswalks may reference the colliding IDs. Treat ID-based joins as unsafe until a controlled remapping updates every reference.
 - The three new NFSA records EG-0060, EG-0513 and EG-0514 are distinct and each maps to its intended full-text record. No source trust flag or lawyer-review status was upgraded.
+
+### 2026-11-24 manual merge — PR #1932 bounded document review query
+
+- Reviewed PR #1932's app.py diff: the prior endpoint loaded every review event for a document/case/firm and reduced them in Python; the replacement groups by chunk and joins to MAX(id) under the same document, case and firm predicates, returning only the latest event per chunk.
+- Independently executed the proposed SQL against an in-memory SQLite fixture containing two versions for one chunk, a second chunk, another document and another firm. Result was exactly [(101, 'needs_recheck'), (100, 'corrected')]; tenant/document scoping held.
+- Marked the draft ready and manually squash-merged after the head was refreshed; merge commit ce017aee4e66adfdbe35d470958b95f6c1688687. Fetched main afterward and confirmed the aggregate query and regression test file are present.
+- Full repository tests and app integration/browser tests remain unexecuted; GitHub Actions billing remains unavailable. This is a targeted SQL fixture validation only, not a full application test pass.
+- This is AI-2-owned app.py work; no legal retrieval, corpus, DB schema or migration change was made.
