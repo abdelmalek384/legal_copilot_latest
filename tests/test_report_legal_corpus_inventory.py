@@ -101,6 +101,31 @@ class LegalCorpusInventoryTests(unittest.TestCase):
             self.assertEqual(issue["count"], 1)
             self.assertEqual(issue["ids"], [candidates["documents"][0]["document_id"]])
 
+    def test_missing_registry_ids_and_malformed_queue_document_ids_are_reported(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            paths = {}
+            for name, original in MODULE.DEFAULTS.items():
+                target = root / original.name
+                target.write_bytes(original.read_bytes())
+                paths[name] = target
+            permissions = json.loads(paths["permissions"].read_text(encoding="utf-8"))
+            permissions["sources"][0]["source_id"] = " "
+            paths["permissions"].write_text(
+                json.dumps(permissions, ensure_ascii=False), encoding="utf-8"
+            )
+            queue = json.loads(paths["queue"].read_text(encoding="utf-8"))
+            queue["queue"][0]["document_ids"] = "EG-CONSTITUTION-2014"
+            paths["queue"].write_text(
+                json.dumps(queue, ensure_ascii=False), encoding="utf-8"
+            )
+            report = MODULE.build_report(paths)
+            issues = {item["code"]: item for item in report["cross_registry_issues"]}
+            self.assertEqual(issues["permission_sources_invalid_id_rows"]["ids"], ["1"])
+            self.assertEqual(
+                issues["acquisition_queue_items_malformed_document_ids"]["ids"], ["1"]
+            )
+
     def test_cross_register_mismatch_is_reported(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
