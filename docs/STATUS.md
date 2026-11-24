@@ -1574,3 +1574,11 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Source permission register static count: **199 sources**; **199/199** have unique non-empty IDs. Collection permission: **186 unknown (93.5%)**, **9 explicitly not allowed absent exception/license (4.5%)**, **4 limited (2.0%)**. Commercial reuse: **185 unknown (93.0%)**, **7 require prior written permission per published terms (3.5%)**, **3 not allowed absent exception/license (1.5%)**, **4 limited (2.0%)**. These percentages are status distribution only, not source availability or clearance.
 - No permission values, legal-review labels, or trust flags were upgraded. Validator/test execution remains unverified because no runtime was available and Actions billing remains blocked.
 - Release readiness remains **NOT READY**. The practical next gate is an authorized local Python 3.12 environment to run locked install, security checks, targeted/full tests, and browser acceptance; real lawyer review and pilot-user acceptance remain separate external gates.
+
+
+## AI-2 source-permission URL delimiter hardening — 2026-11-24
+
+- A literal trailing `#` was accepted because URL parsing returns an empty fragment string; the validator now rejects the delimiter itself.
+- Added and registered focused regressions for empty fragments and combined empty user-info/fragment inputs.
+- Source permissions and legal trust labels are unchanged. No legal corpus or retrieval code was modified.
+- Validation status: source-level change and workflow/security-matrix registration inspected; tests not executed. Actions billing remains unavailable, so no CI pass is claimed.
