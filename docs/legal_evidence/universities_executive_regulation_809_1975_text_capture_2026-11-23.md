@@ -63,3 +63,10 @@
 - Law 49/1972 selected articles: 3 article units (issuing Arts. 1–2 and Law Art. 1) plus an excerpt from Art. 196.
 - Full Law 49/1972: not acquired in this pass (a full secondary page and an official PDF locator exist in source inventory).
 - Full Decision 809/1975 attached regulation: not acquired.
+
+## Explicit machine trust flags
+
+- `lawyer_reviewed: false`
+- `verified: false`
+- `rights_cleared: false`
+- This capture is research-only. It is not a current consolidated text or legal opinion; preserve the missing-text, source and commencement limitations above until primary-source comparison, rights review and qualified Egyptian lawyer approval are complete.
