@@ -1671,3 +1671,17 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Decision 6 publication issue/date conflict is explicitly quarantined: USDA report metadata says issue161 (تابع), 16 July 2020, while the Arabic appendix text layer reads issue111 (تابع), 16 June 2020. Do not cite the date as verified until the original Gazette page is checked.
 - Decision 7 Article 21 says six months after publication; USDA report gives 13 March 2021 as planned commencement. The discrepancy and any Board renewal require primary-source/currentness review.
 - Neither decision is lawyer-reviewed, currentness-consolidated, rights-cleared or marked verified.
+
+### 2026-11-24 progress delta after NFSA import-control acquisition
+
+| Workstream | Previous | Current | Delta | Evidence / remaining gate |
+|---|---:|---:|---:|---|
+| Legal Research engineering | 65% | 65% | 0 pp | No retrieval-engine code change or full Python suite |
+| Legal-source acquisition/evidence | 33% | **34%** | **+1 pp** | Two additional full Arabic instrument texts acquired: NFSA Decisions 6/2020 and 7/2020; still not currentness- or lawyer-reviewed |
+| Retrieval evaluation | 5% | 5% | 0 pp | No approved ground truth or actual retrieval metrics |
+| Integration/regression validation | 27% | 27% | 0 pp | Register/inventory/classification/event-ledger structural and key-join checks remain clean; no new app suite/browser test |
+| National legal-content coverage | ~1.5% | ~1.5% | 0 pp | Denominator remains unknown; no defensible national coverage change |
+| Legal evidence readiness | ~7% | ~7% | 0 pp | Source text acquisition does not satisfy currentness, rights or lawyer sign-off |
+| Small-firm pilot readiness | ~35% | ~35% | 0 pp | No live firm acceptance or pilot gate |
+
+**Current structural validation:** register 518 rows / 12 columns; full-text inventory 190 / 11; classification 414 / 5; historical event ledger 350 / 12. All four have zero ragged rows and zero duplicate IDs. Inventory, classification and historical-event joins have zero orphan national instrument keys (seven intentional EG-CASE fixture keys excluded from national-key checking). Open PRs: zero.
