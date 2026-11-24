@@ -1878,6 +1878,14 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("quantityField:invoiceField(", invoices)
         self.assertIn("priceField:invoiceField(", invoices)
         self.assertIn("line.descriptionField,line.quantityField,line.priceField", invoices)
+        for label in (
+            "مبلغ الدفعة (جنيه مصري)", "Payment amount (EGP)",
+            "طريقة الدفع", "Payment method",
+            "مرجع التحويل (اختياري)", "Transfer reference (optional)",
+        ):
+            self.assertIn(label, invoices)
+        self.assertIn("const paymentFields=[invoiceField(", invoices)
+        self.assertIn("actions.append(...paymentFields", invoices)
 
 
 if __name__ == "__main__":
