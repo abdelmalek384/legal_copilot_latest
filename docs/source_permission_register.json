@@ -3706,7 +3706,8 @@
       "required_next_action": "Retry only through the public Ministry URL when available; obtain the full text and page images, compare with Gazette publication, identify amendments/currentness under Law14/2025 Article272, and verify reuse terms before ingestion.",
       "related_source_pages": [
         "https://www.labour.gov.eg/ar/القوانين-والتشريعات/",
-        "https://www.mohamedabdelfattah.com/library/d/decree-2003-215"
+        "https://www.mohamedabdelfattah.com/library/d/decree-2003-215",
+        "https://hrdiscussion.com/hr69832.html"
       ]
     },
     {
@@ -3751,6 +3752,26 @@
         "https://hrdiscussion.com/hr69856.html",
         "https://hrdiscussion.com/hr69856-print.html",
         "https://www.labour.gov.eg/ar/القوانين-والتشريعات/"
+      ]
+    },
+    {
+      "source_id": "EG-HRDISCUSSION-DECISION215-2003",
+      "authority": "HRDiscussion; secondary transcription of Ministerial Decision 215/2003",
+      "source_page": "https://hrdiscussion.com/hr69832.html",
+      "material_types": [
+        "Secondary transcription of Decision 215/2003 Articles 1–3",
+        "Secondary Gazette publication metadata"
+      ],
+      "access_status": "Search-indexed text reproduces the three operative articles and identifies Official Gazette issue 277 supplement (A), 5 October 2003. The same result includes a preamble fragment apparently unrelated to Decision 215; this anomaly is isolated and flagged in the evidence note. No official Gazette page image or original PDF bytes were obtained.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "No page-specific licence or permission for bulk collection, redistribution or commercial reuse was verified. The text is retained as a manual research lead with secondary-source labeling only.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Use for manual comparison only. Verify the preamble and all three articles against the official Ministry PDF/Gazette page images, check amendments and Law14/2025 Article272 transition, and confirm reuse terms before any corpus ingestion.",
+      "related_source_pages": [
+        "https://www.mohamedabdelfattah.com/library/d/decree-2003-215"
       ]
     }
   ]
