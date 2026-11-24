@@ -1858,6 +1858,15 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("commandItems.filter(([id,label])", navigation)
         self.assertIn("commandItems.find(([id,label])", navigation)
 
+    def test_matter_document_search_discloses_global_result_cap(self):
+        start = HTML.index(" const renderSearch=()=>{", HTML.index("function documentIntelligencePanel("))
+        search = HTML[start:HTML.index(" const renderComparison=", start)]
+        self.assertIn("const hits=[];let truncated=false", search)
+        self.assertIn("if(hits.length>=50){truncated=true;break}", search)
+        self.assertIn("if(truncated)break", search)
+        self.assertIn("Only the first 50 matches are shown", search)
+        self.assertIn("(display limit reached)", search)
+
     def test_document_analysis_keeps_successful_documents_when_another_document_fails(self):
         start = HTML.index(" const loadButton=btn(uiText('تحليل المستندات'")
         loader = HTML[start:HTML.index(" const searchButton=", start)]
