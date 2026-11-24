@@ -1464,7 +1464,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         with patch.object(app, "_mfa_required_for_user", return_value=False):
             uploaded = self._mutate(
                 "post", f"/cases/{case_id}/upload",
-                files={"file": ("original-contract.docx", original,
+                files={"file": ("عقد-الأصل.docx", original,
                                 "application/vnd.openxmlformats-officedocument.wordprocessingml.document")},
             )
         self.assertEqual(uploaded.status_code, 200, uploaded.text)
@@ -1493,7 +1493,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(downloaded.status_code, 200, downloaded.text)
         self.assertEqual(downloaded.content, original)
         self.assertEqual(downloaded.headers["content-type"], "application/octet-stream")
-        self.assertIn("filename*=UTF-8''original-contract.docx", downloaded.headers["content-disposition"])
+        self.assertIn("filename*=UTF-8''%D8%B9%D9%82%D8%AF-%D8%A7%D9%84%D8%A3%D8%B5%D9%84.docx", downloaded.headers["content-disposition"])
         self.assertEqual(downloaded.headers["cache-control"], "no-store")
         # End the older snapshot before checking the newly committed audit row.
         firm_db.commit()
