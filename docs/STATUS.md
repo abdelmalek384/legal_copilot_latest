@@ -1729,3 +1729,20 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - PR #1935's non-conflicting changes were applied directly to `main` at `df28eeb003a420fd17975337e089cdf04da6bd28`: lazy cursor iteration for document comparison, matter timeline and entity mentions. Regression test added at `3dbf8b6680cbb1284ab403a17af02f0cf192c651`; branch test newline escaping was repaired before transplant.
 - PR #1936's non-conflicting changes were applied directly to `main` at the same app commit: lazy firm-wide conflict scan continues after the first 100 visible matches so hidden possible conflicts are still detected; test added at `041c95901e7ff1edcf73596e8113f319597567a0`.
 - PRs #1935 and #1936 were closed unmerged after manual transplant; no pending PR is intended. Static source-contract checks and isolated SQLite fixtures passed for all three behaviors. Full repository tests, API integration and browser/two-firm acceptance remain unrun. No Actions/CI pass is claimed.
+
+### 2026-11-24 AI-2 implementation delta — persistent document annotations
+
+- Added firm-profile migration `migrations/firm/0006_document_annotations.sql`: persistent highlight/note rows and append-only creation events, scoped to tenant binding, case, document and extracted chunk. Annotation and event rows are immutable; their deletion follows parent document/chunk lifecycle so existing retention/deletion flows are not blocked.
+- Added authenticated `GET`/`POST /cases/{cid}/docs/{document_id}/annotations` endpoints. Creation validates current chunk identity, exact quoted text, code-point offsets and SHA-256 source version; stale writes return 409. Reads mark annotations stale when the extracted text has since changed.
+- Added bilingual browser selection capture and save controls, saved-annotation display, and stale-anchor indicators. Browser UTF-16 selection offsets are converted to Unicode code-point offsets before submission.
+- Added firm ZIP export of annotation rows and creation events, read-only ownership-preflight checks, tenant-route inventory coverage and focused regression modules.
+- Added tests for firm migration scope, immutable rows, parent deletion cascade, API source binding, UI selection contract, export content and orphan ownership findings. These tests are committed but have **not** been executed in the supported Python 3.12 environment.
+
+| Annotation workstream | Previous | Current | Delta | Evidence / remaining gate |
+|---|---:|---:|---:|---|
+| Persistent annotation schema/API | 0% | **100% authored** | **+100 pp** | Migration and authenticated endpoints committed; migration/runtime/API tests not run |
+| Bilingual annotation interaction | 0% | **100% authored** | **+100 pp** | Text selection capture, exact source offsets, note/highlight save and stale-anchor UI committed; browser/keyboard/RTL acceptance not run |
+| Export, ownership preflight and route inventory | 0% | **100% authored** | **+100 pp** | Export tables, preflight checks and route inventory tests committed; tests not run |
+| Annotation end-to-end acceptance | 0% | **0%** | **0 pp** | Requires Python 3.12 runtime, migration execution, authenticated API tests and browser validation |
+
+**Validation boundary:** GitHub file/commit operations and static source inspection succeeded. No application test, migration execution, endpoint request, or browser interaction was run. No test pass or pilot-readiness increase is claimed. Annotation implementation is authored, not yet runtime-verified.
