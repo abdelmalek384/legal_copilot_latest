@@ -3537,7 +3537,7 @@ function documentIntelligencePanel(caseId,documents){
     const correction=h('textarea',{rows:4,maxLength:20000,placeholder:uiText('أدخل النص المصحح بعد الرجوع إلى المستند الأصلي.','Enter corrected text after checking the original document.'),'aria-label':uiText('النص المصحح للمقطع ','Corrected text for chunk ')+chunk.id,style:'display:none;width:100%'});
     const passage=h('p',{className:'extraction-review-text',textContent:String(latest&&latest.outcome==='corrected'?latest.reviewed_text:chunk.text||''),tabIndex:0});
     const annotationStatus=h('p',{className:'mut',role:'status','aria-live':'polite',textContent:uiText('حدد نصاً من المقطع ثم التقط التحديد لإضافة تعليق محفوظ.','Select text in this passage, then capture the selection to save an annotation.')});
-    const annotationBody=h('input',{type:'text',maxLength:5000,placeholder:uiText('ملاحظة مرتبطة بالتحديد (اختيارية للتظليل)','Note attached to the selection (optional for highlights)'),'aria-label':uiText('نص التعليق على المقطع ','Annotation note for chunk ')+chunk.id});
+    const annotationBody=h('textarea',{rows:2,maxLength:5000,placeholder:uiText('ملاحظة مرتبطة بالتحديد (اختيارية للتظليل)','Note attached to the selection (optional for highlights)'),'aria-label':uiText('نص التعليق على المقطع ','Annotation note for chunk ')+chunk.id,style:'width:100%'});
     let selectedAnchor=null;
     const captureSelection=btn(uiText('التقاط التحديد','Capture selection'),()=>{
      const selection=window.getSelection();
