@@ -256,6 +256,21 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("uiText('جارٍ تحميل المقاطع…','Loading text chunks…')", HTML)
         self.assertIn("uiText('PDF وDOCX فقط · 15 ميجابايت كحد أقصى لكل ملف','PDF and DOCX only · 15 MB maximum per file')", HTML)
 
+    def test_document_review_drafts_warn_before_case_or_tab_navigation(self):
+        self.assertIn("function confirmDocumentReviewDraftLeave()", HTML)
+        self.assertIn("window.DOCUMENT_REVIEW_DRAFT_DIRTY&&Number(window.CASE_ID)!==Number(id)&&!confirmDocumentReviewDraftLeave()", HTML)
+        self.assertIn("if(!confirmDocumentReviewDraftLeave())return;window.DOCUMENT_REVIEW_TARGET=null;TAB=group.items[0][0];again()", HTML)
+        self.assertIn("if(!confirmDocumentReviewDraftLeave())return;window.DOCUMENT_REVIEW_TARGET=null;TAB=key;again()", HTML)
+        self.assertIn("window.addEventListener('beforeunload'", HTML)
+
+    def test_document_review_note_and_correction_drafts_clear_only_after_save(self):
+        panel = HTML[HTML.index("function documentIntelligencePanel(caseId,documents)"):HTML.index("\\nasync function view(id)")]
+        self.assertIn("note.setAttribute('data-review-draft','1')", panel)
+        self.assertIn("correction.setAttribute('data-review-draft','1')", panel)
+        self.assertIn("window.DOCUMENT_REVIEW_DRAFT_DIRTY=true", panel)
+        self.assertIn("noteClearReviewDrafts()", panel)
+        self.assertIn("await api('/cases/'+caseId+'/docs/'+item.doc.document_id+'/chunks/'+chunk.id+'/review','POST',payload);\\n   noteClearReviewDrafts();", panel)
+
     def test_case_detail_inputs_and_validation_follow_selected_language(self):
         self.assertIn("uiText('رقم القضية','Case number')", HTML)
         self.assertIn("uiText('مهمة جديدة','New task')", HTML)
