@@ -19,6 +19,7 @@ def invitation_accept_page(request: Request):
 <button id="existing-account" type="button">Accept with my existing signed-in account</button>
 <p id="result" role="status" aria-live="polite"></p></main><script nonce="__CSP_NONCE__">
 const token=new URLSearchParams(location.hash.slice(1)).get("token")||"";
+history.replaceState(null,"",location.pathname+location.search);
 const result=document.getElementById("result");
 function csrf(){const m=document.cookie.match(/(?:^|; )lc_csrf=([^;]+)/);return m?decodeURIComponent(m[1]):"";}
 async function send(path,data,needsCsrf){const headers={"Content-Type":"application/json"};if(needsCsrf)headers["X-CSRF-Token"]=csrf();
@@ -43,6 +44,7 @@ def password_recovery_page(request: Request):
 <form id="recovery"><label>New password <input id="password" type="password" autocomplete="new-password" minlength="12" maxlength="200" required></label>
 <button type="submit">Reset password</button></form><p id="result" role="status" aria-live="polite"></p></main><script nonce="__CSP_NONCE__">
 const token=new URLSearchParams(location.hash.slice(1)).get("token")||"";
+history.replaceState(null,"",location.pathname+location.search);
 const form=document.getElementById("recovery"),result=document.getElementById("result");
 form.addEventListener("submit",async e=>{e.preventDefault();try{const r=await fetch("/account/recovery/consume",{
 method:"POST",headers:{"Content-Type":"application/json"},
