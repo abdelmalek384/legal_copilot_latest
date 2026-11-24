@@ -1662,3 +1662,12 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Inventory/classification cross-reference repair: 0% → **100% for the audited key joins**; zero orphan inventory or classification IDs.
 - PR #1933 stale-review race guard: open draft → **merged on main** at `e3c1d13abd9dd0e590fef7d1d7a5095e24b890e9`; targeted SQLite fixture confirmed stale source rowcount 0 and current source update rowcount 1. Full app suite/browser acceptance remains outstanding.
 - Pending PR count: 1 → **0**. No open PRs at final check.
+
+### 2026-11-24 follow-up — NFSA food-import instrument acquisition
+
+- Acquired full Arabic text of NFSA Board Decision 6/2020 (11 articles) from Appendix II of USDA FAS GAIN report EG2020-0044; WTO TBT notification G/TBT/N/EGY/276 also identifies the NFSA-hosted Arabic PDF.
+- Acquired full Arabic 21-article text of NFSA Board Decision 7/2020 from FAOLEX's Gazette-text PDF reproduction, with USDA FAS explanatory/translation support and official Customs catalogue metadata.
+- Added evidence notes, index sections 58–59, register IDs EG-0534/EG-0535, full-text records FT-0209/FT-0210 and classification rows.
+- Decision 6 publication issue/date conflict is explicitly quarantined: USDA report metadata says issue161 (تابع), 16 July 2020, while the Arabic appendix text layer reads issue111 (تابع), 16 June 2020. Do not cite the date as verified until the original Gazette page is checked.
+- Decision 7 Article 21 says six months after publication; USDA report gives 13 March 2021 as planned commencement. The discrepancy and any Board renewal require primary-source/currentness review.
+- Neither decision is lawyer-reviewed, currentness-consolidated, rights-cleared or marked verified.
