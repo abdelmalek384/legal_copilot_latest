@@ -1849,6 +1849,18 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("commandItems.find(([id,label])", navigation)
 
     def test_fee_and_invoice_entry_fields_have_visible_bilingual_labels(self):
+        billing_start = HTML.index("async function billingPage()")
+        platform_billing_start = HTML.index("async function platformBillingPage()", billing_start)
+        billing = HTML[billing_start:platform_billing_start]
+        self.assertIn("const paymentField=(label,control)=>h('label'", billing)
+        for label in (
+            "المبلغ بالجنيه المصري", "Amount (EGP)",
+            "طريقة الدفع", "Payment method",
+            "رقم مرجع التحويل", "Transfer reference",
+        ):
+            self.assertIn(label, billing)
+        self.assertIn("paymentField(uiText(", billing)
+
         fees_start = HTML.index("if(TAB==='fees'){")
         invoices_start = HTML.index("if(TAB==='invoices'){", fees_start)
         fees = HTML[fees_start:invoices_start]
