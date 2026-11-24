@@ -2869,7 +2869,18 @@ class CasePatch(BaseModel):
     case_number: str | None = Field(None, max_length=100); case_year: str | None = Field(None, max_length=20)
     court: str | None = Field(None, max_length=200); circuit: str | None = Field(None, max_length=200)
     opposing_party: str | None = Field(None, max_length=200)
-class NoteIn(BaseModel): text: str = Field(min_length=1, max_length=10000)
+class NoteIn(BaseModel):
+    text: str = Field(min_length=1, max_length=10000)
+
+    @field_validator("text")
+    @classmethod
+    def trim_note_text(cls, value):
+        value = value.strip()
+        if not value:
+            raise ValueError("note text cannot be blank")
+        return value
+
+
 class CommunicationIn(BaseModel):
     channel: str = Field(pattern=r"^(call|email|meeting|other)$")
     subject: str = Field(min_length=1, max_length=200)
@@ -2901,6 +2912,19 @@ class CommunicationIn(BaseModel):
 class DeadlineIn(BaseModel):
     title: str = Field(min_length=1, max_length=200); due: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$"); note: str = Field("", max_length=1000)
     _valid_due = field_validator("due")(validate_operational_deadline)
+
+    @field_validator("title")
+    @classmethod
+    def trim_deadline_title(cls, value):
+        value = value.strip()
+        if not value:
+            raise ValueError("deadline title cannot be blank")
+        return value
+
+    @field_validator("note")
+    @classmethod
+    def trim_deadline_note(cls, value):
+        return value.strip()
 class DeadlineHolidayEntry(BaseModel):
     date: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$")
     name_ar: str = Field(min_length=1, max_length=120)
@@ -3033,9 +3057,24 @@ class DocIn(BaseModel): name: str = Field(min_length=1, max_length=200); text: s
 class SessIn(BaseModel):
     date: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$"); note: str = Field("", max_length=500)
     _valid_date = field_validator("date")(validate_calendar_date)
+
+    @field_validator("note")
+    @classmethod
+    def trim_session_note(cls, value):
+        return value.strip()
+
+
 class TaskIn(BaseModel):
     title: str = Field(min_length=1, max_length=300); assignee: int | None = None; due: str | None = Field(None, pattern=r"^\d{4}-\d{2}-\d{2}$")
     _valid_due = field_validator("due")(validate_calendar_date)
+
+    @field_validator("title")
+    @classmethod
+    def trim_task_title(cls, value):
+        value = value.strip()
+        if not value:
+            raise ValueError("task title cannot be blank")
+        return value
 class MemberIn(BaseModel): user_id: int; role: str = Field(pattern=ROLES)
 class LegalReviewEventIn(BaseModel):
     review_type: str = Field(pattern=r"^(source_authenticity|extraction_quality|legal_status|amendment_history|licensing|lawyer_approval)$")
