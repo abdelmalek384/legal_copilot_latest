@@ -64,3 +64,10 @@ IDSC's release identifies Decision 346/2025 and reproduces the operative text. T
 - Currentness and cross-reference review: pending.
 - Reuse/commercial rights: not established by public web access.
 - Lawyer review: pending; keep production `verified=0`.
+
+## Explicit machine trust flags
+
+- `lawyer_reviewed: false`
+- `verified: false`
+- `rights_cleared: false`
+- This capture is research material only. It must not be treated as a lawyer-approved operative text or imported into production legal answering until the stated primary-source comparison, rights review and qualified Egyptian lawyer review are completed.
