@@ -150,3 +150,10 @@
 | Authority Decision 2900/2026 | Both operative articles and substituted Articles 52/54/55 | Full operative text indexed by Amiri Press; page-image check pending |
 
 This adds **2 previously unindexed social-insurance instruments** to the acquisition set. It does not change the prior 3/4 social-insurance follow-on rate, which measured a different four-instrument batch. Do not merge these denominators. No item is marked verified or lawyer-reviewed.
+
+## Explicit machine trust flags
+
+- `lawyer_reviewed: false`
+- `verified: false`
+- `rights_cleared: false`
+- This acquisition note is research-only. Preserve source distinctions and missing-text limitations; do not use as a verified/current consolidated legal instrument or production answer source until primary-source comparison, rights review and qualified Egyptian lawyer approval are complete.
