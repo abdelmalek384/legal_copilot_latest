@@ -3479,6 +3479,7 @@ function documentIntelligencePanel(caseId,documents){
   }finally{compareButton.disabled=false}
  };
 
+ const noteClearReviewDrafts=()=>{document.querySelectorAll('[data-review-draft="1"]').forEach(field=>{field.value=''});window.DOCUMENT_REVIEW_DRAFT_DIRTY=false};
  const submitChunkReview=async(item,chunk,outcome,correctedText,note,controls)=>{
   controls.forEach(control=>control.disabled=true);
   try{
@@ -3491,6 +3492,7 @@ function documentIntelligencePanel(caseId,documents){
     payload.expected_text_sha256=chunk.text_sha256;
    }
    await api('/cases/'+caseId+'/docs/'+item.doc.document_id+'/chunks/'+chunk.id+'/review','POST',payload);
+   noteClearReviewDrafts();
    const refreshed=await api('/cases/'+caseId+'/docs/'+item.doc.document_id+'/chunks');
    item.chunks=Array.isArray(refreshed.chunks)?refreshed.chunks:[];
    item.text=item.chunks.map(part=>String(part.text||'')).join('\n');
@@ -3527,7 +3529,9 @@ function documentIntelligencePanel(caseId,documents){
     remaining--;
     const reviewLabel=latest?({accepted:uiText('تمت المراجعة','Reviewed — accepted'),corrected:uiText('تم تصحيح النص','Text corrected'),needs_recheck:uiText('يتطلب إعادة الفحص','Needs recheck')}[latest.outcome]||uiText('له سجل مراجعة','Review recorded')):uiText('لم تتم المراجعة','Not yet reviewed');
     const note=h('input',{type:'text',maxLength:2000,placeholder:uiText('ملاحظة المراجع (اختيارية)','Reviewer note (optional)'),'aria-label':uiText('ملاحظة مراجعة المقطع ','Review note for chunk ')+chunk.id});
+    note.setAttribute('data-review-draft','1');note.addEventListener('input',()=>{window.DOCUMENT_REVIEW_DRAFT_DIRTY=true});
     const correction=h('textarea',{rows:4,maxLength:20000,placeholder:uiText('أدخل النص المصحح بعد الرجوع إلى المستند الأصلي.','Enter corrected text after checking the original document.'),'aria-label':uiText('النص المصحح للمقطع ','Corrected text for chunk ')+chunk.id,style:'display:none;width:100%'});
+    correction.setAttribute('data-review-draft','1');correction.addEventListener('input',()=>{window.DOCUMENT_REVIEW_DRAFT_DIRTY=true});
     const accepted=btn(uiText('اعتماد النص','Accept text'),()=>submitChunkReview(item,chunk,'accepted','',note.value,[accepted,recheck,edit]),'g');
     const recheck=btn(uiText('يحتاج إعادة فحص','Needs recheck'),()=>submitChunkReview(item,chunk,'needs_recheck','',note.value,[accepted,recheck,edit]),'g');
     const edit=btn(uiText('تصحيح النص','Correct text'),()=>{correction.style.display=correction.style.display==='none'?'block':'none';if(correction.style.display==='block')correction.focus()},'g');
@@ -3736,7 +3740,18 @@ function documentIntelligencePanel(caseId,documents){
  return panel;
 }
 
-async function view(id){if(window.DOCUMENT_REVIEW_TARGET&&Number(window.DOCUMENT_REVIEW_TARGET.caseId)!==Number(id))window.DOCUMENT_REVIEW_TARGET=null;window.CASE_ID=id;const c=await api('/cases/'+id),us=await api('/users'),again=()=>view(id);
+function confirmDocumentReviewDraftLeave(){
+ if(!window.DOCUMENT_REVIEW_DRAFT_DIRTY)return true;
+ if(!confirm(uiText('توجد ملاحظات أو تصحيحات مراجعة غير محفوظة. هل تريد مغادرة مساحة المراجعة وفقد هذه المسودات؟','You have unsaved review notes or corrections. Leave the review workspace and discard these drafts?')))return false;
+ window.DOCUMENT_REVIEW_DRAFT_DIRTY=false;
+ return true;
+}
+window.addEventListener('beforeunload',event=>{
+ if(!window.DOCUMENT_REVIEW_DRAFT_DIRTY)return;
+ event.preventDefault();
+ event.returnValue='';
+});
+async function view(id){if(window.DOCUMENT_REVIEW_DRAFT_DIRTY&&Number(window.CASE_ID)!==Number(id)&&!confirmDocumentReviewDraftLeave())return;if(window.DOCUMENT_REVIEW_TARGET&&Number(window.DOCUMENT_REVIEW_TARGET.caseId)!==Number(id))window.DOCUMENT_REVIEW_TARGET=null;window.CASE_ID=id;const c=await api('/cases/'+id),us=await api('/users'),again=()=>view(id);
  const lead=ME.role==='admin'||c.members.some(m=>m.role==='lead'&&m.user_id===ME.id),dn=c.tasks.filter(t=>t.status==='done').length,tot=c.tasks.length;
  if(!lead&&['fees','invoices'].includes(TAB))TAB='sum';
  const tabGroups=[
@@ -3747,8 +3762,8 @@ async function view(id){if(window.DOCUMENT_REVIEW_TARGET&&Number(window.DOCUMENT
   {id:'team',label:uiText('الفريق والسجل','Team & activity'),items:[['team',uiText('الفريق','Team')],['log',uiText('السجل','Activity log')]]}
  ];
  const selectedTabGroup=tabGroups.find(group=>group.items.some(([key])=>key===TAB))||tabGroups[0];
- const tabGroupNav=h('div',{className:'matter-section-nav','aria-label':uiText('أقسام ملف القضية','Matter sections')},...tabGroups.map(group=>h('button',{type:'button',className:selectedTabGroup.id===group.id?'on':'','aria-pressed':String(selectedTabGroup.id===group.id),textContent:group.label,onclick:()=>{window.DOCUMENT_REVIEW_TARGET=null;TAB=group.items[0][0];again()}})));
- const tabDetailNav=h('div',{className:'matter-subnav','aria-label':uiText('صفحات القسم الحالي','Pages in current section')},...selectedTabGroup.items.map(([key,label])=>h('button',{type:'button',className:TAB===key?'on':'','aria-current':TAB===key?'page':null,textContent:label,onclick:()=>{window.DOCUMENT_REVIEW_TARGET=null;TAB=key;again()}})));
+ const tabGroupNav=h('div',{className:'matter-section-nav','aria-label':uiText('أقسام ملف القضية','Matter sections')},...tabGroups.map(group=>h('button',{type:'button',className:selectedTabGroup.id===group.id?'on':'','aria-pressed':String(selectedTabGroup.id===group.id),textContent:group.label,onclick:()=>{if(!confirmDocumentReviewDraftLeave())return;window.DOCUMENT_REVIEW_TARGET=null;TAB=group.items[0][0];again()}})));
+ const tabDetailNav=h('div',{className:'matter-subnav','aria-label':uiText('صفحات القسم الحالي','Pages in current section')},...selectedTabGroup.items.map(([key,label])=>h('button',{type:'button',className:TAB===key?'on':'','aria-current':TAB===key?'page':null,textContent:label,onclick:()=>{if(!confirmDocumentReviewDraftLeave())return;window.DOCUMENT_REVIEW_TARGET=null;TAB=key;again()}})));
  let body;
  if(TAB==='sum'){
   const fields=[['case_number',uiText('رقم القضية','Case number')],['case_year',uiText('السنة','Year')],['court',uiText('المحكمة','Court')],['circuit',uiText('الدائرة','Circuit')],['opposing_party',uiText('الخصم','Opposing party')],['stage',uiText('المرحلة','Stage')]];
