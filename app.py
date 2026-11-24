@@ -9410,13 +9410,17 @@ def list_document_chunks(cid: int, document_id: int, u: dict = Depends(user)):
         (document_id, cid),
     ).fetchall()
     review_rows = c.execute(
-        "SELECT chunk_id,outcome,reviewer_user_id,original_text,reviewed_text,page_reference,note,created_at "
-        "FROM document_extraction_reviews WHERE document_id=? AND case_id=? AND firm_id=? ORDER BY id DESC",
-        (document_id, cid, u["firm_id"]),
+        "SELECT r.chunk_id,r.outcome,r.reviewer_user_id,r.original_text,r.reviewed_text,"
+        "r.page_reference,r.note,r.created_at "
+        "FROM document_extraction_reviews r "
+        "JOIN ("
+        "SELECT chunk_id,MAX(id) AS latest_id FROM document_extraction_reviews "
+        "WHERE document_id=? AND case_id=? AND firm_id=? GROUP BY chunk_id"
+        ") latest ON latest.latest_id=r.id "
+        "WHERE r.document_id=? AND r.case_id=? AND r.firm_id=? ORDER BY r.id DESC",
+        (document_id, cid, u["firm_id"], document_id, cid, u["firm_id"]),
     ).fetchall()
-    latest = {}
-    for review in review_rows:
-        latest.setdefault(review["chunk_id"], dict(review))
+    latest = {int(review["chunk_id"]): dict(review) for review in review_rows}
     chunks = []
     for row in rows:
         item = dict(row)
