@@ -6442,7 +6442,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         alpha_case, beta_case, private_case = first.json()["id"], second.json()["id"], private.json()["id"]
 
         for case_id, filename, body in (
-            (alpha_case, "alpha-accessible-contract.txt", ("قَ" * 2000) + " Alpha source. التزام قانوني. رقم ١٢٣"),
+            (alpha_case, "alpha-accessible-contract.txt", ("قَ" * 4000) + " Alpha source. التزام قانوني. رقم ١٢٣"),
             (beta_case, "beta-accessible-contract.txt", "Beta source. التزام قانوني. رقم ٤٥٦"),
             (private_case, "gamma-private-contract.txt", "Private source. التزام سري."),
         ):
