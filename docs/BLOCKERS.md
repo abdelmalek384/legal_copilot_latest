@@ -571,3 +571,10 @@ The owner has explicitly requested a non-production firm-test implementation. Th
 - The 4 limited-permission records are not promoted to unrestricted permissions. No legal content or source rights were upgraded. This is a static inventory count only; the existing validator and regression suite were not executed in this environment.
 - Dependency PRs remain deferred until the hash-locked Python 3.12 requirements file can be regenerated and a clean install/test/audit can run. Do not merge based on version-only edits.
 - Next available in-repository work: document actionable, non-CI release checks and maintain accurate owner/evidence status; avoid retrying blocked GitHub Actions or the closed AI-2 draft PRs.
+
+
+## AI-2 document-review history scope and truncation disclosure — 2026-11-24
+
+- The document review-history view now discloses its actual scope and both API/UI limits. It raises a visible warning if loaded-document coverage is partial or either event cap may have hidden older/additional entries.
+- Added frontend contract assertions. Inline JavaScript syntax check passed; Python tests and browser acceptance were not executed. No test pass is claimed.
+- Bounded implementation status: **100% source implementation**. End-to-end review-history acceptance remains pending.
