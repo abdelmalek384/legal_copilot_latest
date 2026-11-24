@@ -84,6 +84,7 @@ tests=(
   test_legal_candidate_catalog.py
   test_legal_corpus_audit.py
   test_source_permission_register.py
+  test_source_permission_empty_fragment.py
   test_legal_versioned_registry.py
   test_amendment_relationship_validator.py
   test_first_official_batch_manifest.py
