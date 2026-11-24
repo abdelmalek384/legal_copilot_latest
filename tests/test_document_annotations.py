@@ -317,6 +317,13 @@ class DocumentAnnotationAPIRuntimeTests(InvoiceTestSupport, unittest.TestCase):
         )
         self.assertEqual(old_anchor_write.status_code, 409, old_anchor_write.text)
 
+        deleted = self.mutate(self.client_a, "delete", f"/cases/{self.case_id}")
+        self.assertEqual(deleted.status_code, 200, deleted.text)
+        self.assertEqual(
+            self.mutate(self.client_a, "get", f"/cases/{self.case_id}").status_code,
+            404,
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
