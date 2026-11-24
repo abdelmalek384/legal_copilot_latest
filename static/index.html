@@ -4648,9 +4648,28 @@ body:has(.research-layout){background:#f3f5f8;color:#1d2c42;font-family:Inter,"N
 }
 #main .research-thread .research-answer-tabs [role=tab].active::after{display:none!important}
 #main .research-thread .research-answer-tab-panel{width:100%!important;min-width:0!important}
+/* Keep the history rail inside the 180px reference bound on desktop; expand on mobile. */
+#main .research-layout>.research-list{width:180px!important;max-width:180px!important;min-width:0!important}
+@media(max-width:800px){#main .research-layout>.research-list{width:100%!important;max-width:none!important}}
 @media(max-width:480px){
  #main .research-thread .research-answer-tabs{gap:4px!important;padding:3px!important}
  #main .research-thread .research-answer-tabs [role=tab]{min-height:40px!important;padding:7px 4px!important;font-size:11px!important}
+}
+/* Primary navigation must remain at least 44px high on compact phone layouts. */
+@media(max-width:760px){#side .primary-nav button{height:auto!important;min-height:46px!important;padding-block:11px!important}}
+/* Explicit high-contrast states for the dark navigation rail, including nested More items. */
+#side .primary-nav button{background:#173657!important;color:#f5f8ff!important}
+#side .primary-nav button.on{background:#e8f0ff!important;color:#153b75!important}
+@media(max-width:800px){
+ #side .lang-switch{position:relative!important;z-index:30!important;flex:0 0 auto!important}
+ #side .firm-switch{flex:0 0 min(128px,34vw)!important;min-width:0!important}
+ #side .tenant-context{flex:0 1 auto!important;min-width:0!important;max-width:180px!important}
+ #side .primary-nav{position:relative!important;z-index:10!important;flex:1 1 0!important;width:0!important;min-width:0!important;max-width:100%!important;overflow-x:auto!important}
+}
+/* Keep mobile primary navigation visible on its own full-width row. */
+@media(max-width:800px){
+ #side{flex-wrap:wrap!important;align-items:center!important}
+ #side .primary-nav{flex:0 0 100%!important;width:100%!important;max-width:100%!important;min-width:0!important;order:10!important;min-height:46px!important}
 }
 </style>
 </html>
