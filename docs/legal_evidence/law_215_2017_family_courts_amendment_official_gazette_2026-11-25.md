@@ -28,10 +28,10 @@ This is a discrete amendment to Article 11, not a consolidated re-publication of
 - PDF downloaded and retained in repository: no.
 - Page image visually inspected: no (request failed with HTTP 502).
 - Text source-matched against Gazette page image: no.
-- Article-version event recorded in structured event register: no.
+- Article-version event recorded in structured event register: EV-0352 (provisional, based on PDF text layer; image comparison outstanding).
 - Currentness reviewed: no.
 - Lawyer reviewed: no.
 - Rights assessed/cleared: no.
 - Production/search eligibility: not established.
 
-Next work: obtain a stable copy of the SIS PDF, visually compare its one-page image with the text layer, add an Article 11 version event with exact source locators, and have a qualified Egyptian lawyer review the amendment and its interaction with the current law.
+Next work: obtain a stable copy of the SIS PDF, visually compare its one-page image with the text layer, visually verify the Article 11 version event against the Gazette page, and have a qualified Egyptian lawyer review the amendment and its interaction with the current law.
