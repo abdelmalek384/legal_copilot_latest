@@ -152,6 +152,34 @@ class LegalCorpusInventoryTests(unittest.TestCase):
         self.assertIn("not a verified legal corpus", output.lower())
         self.assertIn("no database or legal-text files were scanned", output.lower())
 
+    def test_strict_cli_exits_nonzero_when_registry_integrity_issue_exists(self):
+        import subprocess
+        import sys
+
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            queue_path = root / "queue.json"
+            queue = json.loads(MODULE.DEFAULTS["queue"].read_text(encoding="utf-8"))
+            queue["queue"][0]["queue_item_id"] = ""
+            queue_path.write_text(json.dumps(queue), encoding="utf-8")
+            output = root / "report.json"
+            command = [
+                sys.executable,
+                str(ROOT / "tools" / "report_legal_corpus_inventory.py"),
+                "--queue", str(queue_path),
+                "--out", str(output),
+                "--strict",
+            ]
+            result = subprocess.run(
+                command, cwd=root, capture_output=True, text=True, timeout=30, check=False
+            )
+            self.assertEqual(result.returncode, 1, msg=result.stderr)
+            report = json.loads(output.read_text(encoding="utf-8"))
+            self.assertIn(
+                "acquisition_queue_items_invalid_id_rows",
+                {item["code"] for item in report["cross_registry_issues"]},
+            )
+
     def test_documented_cli_runs_without_pythonpath_from_outside_repo(self):
         import subprocess
         import sys
