@@ -1464,3 +1464,12 @@ The main research index now extends through items 27–41; the Labour harvest in
 **Validation:** The auth-cookie middleware fix, its regression file, and workflow registration were re-fetched from main and statically confirmed. Hosted workflow lookup returned no PR-triggered run for the exact commit; tests remain unexecuted. The new legal evidence files were re-fetched and checked for explicit trust flags where applicable; no lawyer-review or verified status was promoted.
 
 **Next unblocked work:** continue recovering standalone source-text artifacts from closed research branches, deduplicate instrument IDs against the current legal-evidence corpus, and improve per-instrument provenance metadata. Do not spend cycles retrying unavailable CI, request-copy-gated Gazette PDFs, or lawyer sign-off.
+
+
+### Remaining closed branches deliberately not integrated
+
+- **#1905:** the client-wide search portion is redundant with merged #1904. Passage-annotation migration/API/UI changes remain absent from main; the branch mixes those with a broad app/UI/test/workflow delta. Do not copy wholesale without an isolated review and executable migration/API/UI regression.
+- **#1908:** broad pilot-stabilization branch overlaps app, static UI, backup/restore, billing, route-auth and browser acceptance. It had conflicts and no exact-head runtime evidence; do not force-integrate it.
+- **#1906:** mobile navigation work is superseded by the already-merged #1907 correction; do not duplicate.
+- **#1837:** Law 14/2025 Gazette comparison remains a quantitative/provisional exercise, not lawyer verification. Do not change trust flags or import the comparison as operative law.
+- Other recent closed unmerged PRs were inspected for standalone legal-evidence artifacts. Their recoverable documents were copied selectively; unrelated app/UI/tests and duplicate files were left untouched.
