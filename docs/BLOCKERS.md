@@ -553,3 +553,12 @@ The owner has explicitly requested a non-production firm-test implementation. Th
 - **Still blocked:** `app.search(..., scope="firm_test_source_matched")` intentionally returns no candidates; the corpus schema/adapter does not yet expose a version-bound `source_match_evidence` package to the search path. AI-2 integration is tracked in [issue #1903](https://github.com/abdelmalek384/legal_copilot_latest/issues/1903). Law 14/2025 remains ineligible while reuse rights are unknown.
 - The tests are registered in the existing Python 3.12 workflow but have not been executed in this session. No test pass, lawyer review, verified status, or pilot acceptance is claimed.
 
+
+
+## Manual checkpoint — 24 Nov 2026 (GitHub billing unavailable)
+
+- GitHub Actions results are not available for validation in this checkpoint; the repository commit queried returned no workflow runs. Do not treat that as a pass.
+- The dependency-update PRs #1873 (FastAPI), #1874 (python-multipart), #1876 (boto3), and #1877 (pypdf) remain open. Each proposes a direct requirement change only. The checked-in Python 3.12 hash lock was not regenerated and the README explicitly records the current Boto3/Botocore pin. These upgrades are **not applied to main** to avoid breaking hash-lock consistency or claiming untested dependency resolution.
+- Draft AI-2 PRs #1911 and #1912 are closed unmerged. They are intentionally not considered complete: exact-head Python tests, migration rehearsal, browser acceptance, and two-firm/two-matter authorization acceptance are still missing.
+- Direct-main dependency consistency is preserved: `requirements.txt` remains at the versions corresponding to the checked-in lock. No tests, deployment checks, accessibility acceptance, or legal validation are claimed as executed.
+- Next unblocked work: audit and improve source-register metadata/validators, small static test contracts, and release documentation without adding legal text to the production retrieval corpus or marking any sources lawyer-verified.
