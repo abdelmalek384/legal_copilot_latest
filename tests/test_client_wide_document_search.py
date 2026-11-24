@@ -32,4 +32,4 @@ class ClientWideDocumentSearchTests(unittest.TestCase):
             app.index("def search_accessible_document_text("):
             app.index('@app.get("/documents/search")')
         ]
-        self.assertIn('" ORDER BY rank,chunks.id ASC LIMIT ? OFFSET ?" ', endpoint)
+        self.assertIn('" ORDER BY rank,chunks.id ASC LIMIT ? OFFSET ?"', endpoint)
