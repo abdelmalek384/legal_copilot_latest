@@ -44,3 +44,12 @@ if __name__ == "__main__":
         html = (ROOT / "static/index.html").read_text(encoding="utf-8")
         self.assertIn("value:chunk.latest_review&&chunk.latest_review.page_reference?chunk.latest_review.page_reference:''", html)
         self.assertIn("const extractedPage=chunk.page", html)
+
+    def test_compact_review_queue_submits_the_current_reviewer_page_reference(self):
+        html = (ROOT / "static/index.html").read_text(encoding="utf-8")
+        self.assertIn("const submitChunkReview=async(item,chunk,outcome,correctedText,note,pageReference,controls)=>", html)
+        self.assertIn("page_reference:String(pageReference||'').trim()", html)
+        self.assertIn("value:latest&&latest.page_reference?String(latest.page_reference):''", html)
+        self.assertIn("note,pageReference,correction,h('div'", html)
+        self.assertIn("correction.value,note.value,pageReference.value", html)
+        self.assertIn("note.value,pageReference.value,[accepted,recheck,edit]", html)
