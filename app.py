@@ -872,7 +872,7 @@ def add_session(c, u, cid, date, note=""):
 def upcoming(c, u, days=14):
     today = _invoice_today().isoformat()
     return [dict(r) for r in c.execute(
-        "SELECT s.*, c.title FROM sessions s JOIN cases c ON c.id=s.case_id WHERE s.done=0 AND c.status='open' "
+        "SELECT s.*, c.title AS case_title FROM sessions s JOIN cases c ON c.id=s.case_id WHERE s.done=0 AND c.status='open' "
         "AND s.date BETWEEN date(?) AND date(?, ?) AND c.firm_id=? AND (?='admin' OR s.case_id IN (SELECT case_id FROM members WHERE user_id=?)) "
         "ORDER BY s.date", (today, today, "+%d days" % days, u["firm_id"], u["role"], u["id"]))]
 
@@ -6757,7 +6757,7 @@ def export_calendar(u: dict = Depends(user)):
             case_id = case_row["case_id"] if case_row else 0
         events.extend(_ics_event("hearing", item["id"], u["firm_id"], case_id, item["date"],
                                  "Hearing: " + (item.get("title") or item.get("note") or "Court hearing"),
-                                 "Case: " + (item.get("title") or "")))
+                                 "Case: " + (item.get("case_title") or "")))
 
     lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Legal Copilot//Case Calendar//EN",
              "CALSCALE:GREGORIAN", "METHOD:PUBLISH"] + events + ["END:VCALENDAR"]
