@@ -1,5 +1,6 @@
 """Firm-scoped, audited ZIP export of CSV data."""
 import csv
+import hashlib
 import io
 import unittest
 import zipfile
@@ -136,6 +137,18 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
             "previous_category,new_category,version,note) VALUES(?,?,?, ?,NULL,'pleading',1,?)",
             (doc.lastrowid, self.case_id, self.firm_a, owner_id, "Reviewed pleading"),
         )
+        passage_text = "Original evidence passage"
+        chunk = tenant.execute(
+            "INSERT INTO chunks(case_id,document_id,text,norm) VALUES(?,?,?,?)",
+            (self.case_id, doc.lastrowid, passage_text, "original evidence passage"),
+        )
+        tenant.execute(
+            "INSERT INTO document_passage_annotations(document_id,case_id,firm_id,chunk_id,created_by_user_id,"
+            "start_offset,end_offset,selected_text,source_text_sha256,note,color) "
+            "VALUES(?,?,?,?,?,?,?,?,?,?,?)",
+            (doc.lastrowid, self.case_id, self.firm_a, chunk.lastrowid, owner_id, 0, 8, "Original",
+             hashlib.sha256(passage_text.encode("utf-8")).hexdigest(), "Check this clause", "yellow"),
+        )
         tenant.commit()
 
         draft = self.create_draft().json()
@@ -158,7 +171,7 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
             "case_activity.csv", "invoices.csv", "invoice_lines.csv",
             "invoice_payments.csv", "invoice_events.csv",
             "case_deletion_audit.csv", "security_audit_events.csv", "documents.csv",
-            "document_extraction_reviews.csv", "document_classifications.csv", "document_classification_events.csv", "matter_chunks.csv", "research_conversations.csv",
+            "document_extraction_reviews.csv", "document_passage_annotations.csv", "document_classifications.csv", "document_classification_events.csv", "matter_chunks.csv", "research_conversations.csv",
             "research_messages.csv", "original_file_hold_events.csv", "product_feedback.csv",
             "product_feedback_events.csv", "original_files_manifest.csv",
             "firm_memberships.csv", "firm_invitations.csv", "identity_lifecycle_events.csv",
@@ -207,6 +220,11 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
         classification_events = self._zip_csv(response, "document_classification_events.csv")
         self.assertEqual(classification_events[0]["new_category"], "pleading")
         self.assertEqual(classification_events[0]["note"], "Reviewed pleading")
+        annotations = self._zip_csv(response, "document_passage_annotations.csv")
+        self.assertEqual(len(annotations), 1)
+        self.assertEqual(annotations[0]["selected_text"], "Original")
+        self.assertEqual(annotations[0]["note"], "Check this clause")
+        self.assertEqual(int(annotations[0]["firm_id"]), self.firm_a)
         documents = self._zip_csv(response, "documents.csv")
         self.assertEqual(documents[0]["name"], "pleading.pdf")
         manifest = self._zip_csv(response, "original_files_manifest.csv")
