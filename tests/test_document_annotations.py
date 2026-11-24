@@ -150,7 +150,7 @@ class PassageAnnotationApiContractTests(unittest.TestCase):
     def test_document_chunk_response_includes_only_active_scoped_annotations(self):
         app = (ROOT / "app.py").read_text(encoding="utf-8")
         start = app.index("def list_document_chunks(")
-        end = app.index("\\n@app.", start)
+        end = app.index("\n@app.", start)
         route = app[start:end]
         self.assertIn("WHERE firm_id=? AND case_id=? AND document_id=? AND deleted_at IS NULL", route)
         self.assertIn('item["annotations"] = annotations_by_chunk.get(int(item["id"]), [])', route)
