@@ -161,7 +161,19 @@
       "permission_evidence_url": "https://www.almasdar.com/175150",
       "terms_checked_on": null,
       "bulk_download_or_api": "No API or bulk-export permission established; individual secondary articles and watermarked image links only",
-      "required_next_action": "Use only for manual discovery and link-out. Do not bulk-copy or redistribute articles or images; preserve attribution and site rights. Verify all instrument text against the original Official Gazette through an authorized route; keep legal status, reuse and retrieval eligibility unresolved."
+      "required_next_action": "Use only for manual discovery and link-out. Do not bulk-copy or redistribute articles or images; preserve attribution and site rights. Verify all instrument text against the original Official Gazette through an authorized route; keep legal status, reuse and retrieval eligibility unresolved.",
+      "related_source_pages": [
+        "https://www.almasdar.com/176172",
+        "https://www.almasdar.com/WebP/libfiles/46/9/533.webp",
+        "https://www.almasdar.com/WebP/libfiles/46/9/534.webp",
+        "https://www.almasdar.com/WebP/libfiles/46/9/535.webp",
+        "https://www.almasdar.com/WebP/libfiles/46/9/536.webp",
+        "https://www.almasdar.com/WebP/libfiles/46/9/537.webp",
+        "https://www.almasdar.com/WebP/libfiles/46/9/538.webp",
+        "https://www.almasdar.com/WebP/libfiles/46/9/539.webp",
+        "https://lawhub.info/eg/wp-content/uploads/2026/11/lawhub.info-eg-dec-3356-2026-.pdf",
+        "https://lawhub.info/eg/?p=20271"
+      ]
     },
     {
       "source_id": "EG-ALMASRYALYOUM-DECISION480",
@@ -1190,7 +1202,11 @@
       "publisher_metadata": "المطابع الاميرية",
       "original_file_access_status": "request-copy restricted in prior click-through inspection; no bytes downloaded",
       "license_file_access_status": "request-copy restricted in prior click-through inspection; 55-byte license text not obtained",
-      "source_checked_on": "2026-10-31"
+      "source_checked_on": "2026-10-31",
+      "related_source_pages": [
+        "https://dspace.id.com.eg/items/cb156f2d-a809-4480-ada2-48df74251c68",
+        "https://dspace.id.com.eg/collections/bb4a4122-9215-48e2-a8a5-b622ffa5eeb6"
+      ]
     },
     {
       "source_id": "EG-IDSC-GAZETTE-2025-291-SUPPLEMENT-LABOUR",
@@ -3616,6 +3632,24 @@
         "https://faolex.fao.org/docs/pdf/egy179418.pdf",
         "https://faolex.fao.org/docs/pdf/egy195608.pdf"
       ]
+    },
+    {
+      "source_id": "EG-IDSC-GAZETTE-2026-46BIS-C-PM-DECISION3561",
+      "authority": "Ibrachy & Dermarkar Repository; item metadata identifies Amiri Press as publisher",
+      "source_page": "https://dspace.id.com.eg/items/cb156f2d-a809-4480-ada2-48df74251c68",
+      "material_types": [
+        "Official Gazette issue metadata",
+        "PM Decision 3561/2026 metadata",
+        "Official Gazette PDF listing"
+      ],
+      "access_status": "Public item metadata identifies Official Gazette issue 46 bis (ج), dated 2026-11-15, and the PM Decision 3561/2026 item. The original 274.86 KB PDF is request-copy restricted or returns an access failure; no original bytes or SHA-256 were obtained.",
+      "collection_permission": "not_allowed_without_explicit_exception_or_license",
+      "commercial_reuse_permission": "prior_written_permission_required_per_published_terms",
+      "terms_url": "https://dspace.id.com.eg/info/end-user-agreement",
+      "permission_evidence": "Reviewed against the repository End User Agreement previously checked 2026-10-31. The agreement limits content to personal, non-commercial use; copying, reproducing, aggregating, republishing, distributing, selling, licensing or commercial exploitation requires express prior written permission; systematic retrieval to compile a collection/database requires written permission; and bypassing access/copy restrictions is prohibited. The specific issue 46 bis (ج) item is request-copy restricted or returned an access failure. No PDF bytes or item-specific license bytes were obtained; no permission is inferred from publisher metadata.",
+      "terms_checked_on": "2026-10-31",
+      "bulk_download_or_api": "not authorized; systematic retrieval to compile a collection/database requires written permission under the published End User Agreement",
+      "required_next_action": "Use public catalogue metadata only. Do not request or bypass the restricted original PDF under the current acquisition constraint. Keep collection blocked absent explicit written permission and commercial reuse blocked absent prior written permission. Do not mark the secondary-hosted page images as official-source bytes or lawyer-verified text."
     }
   ]
 }
