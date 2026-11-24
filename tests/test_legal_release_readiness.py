@@ -288,6 +288,28 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         self.assertFalse(report["coverage_semantics"]["percentage_claims"])
         self.assertEqual(report["candidates"][0]["gazette_pages"], "1-10")
 
+    def test_coverage_matrix_rejects_duplicate_headers_and_ragged_rows(self):
+        coverage_path = self.root / "coverage.csv"
+        coverage_path.write_text("practice_area,priority,status,status\\nLabour,P0,not_started,extra\\n", encoding="utf-8")
+        report = MODULE.summarize_coverage_matrix(coverage_path)
+        self.assertFalse(report["available"])
+        coverage_path.write_text("practice_area,priority,status\\nLabour,P0\\n", encoding="utf-8")
+        report = MODULE.summarize_coverage_matrix(coverage_path)
+        self.assertFalse(report["available"])
+
+    def test_coverage_matrix_rejects_symlink_and_oversized_file(self):
+        coverage_path = self.root / "coverage.csv"
+        target = self.root / "outside.csv"
+        target.write_text("practice_area,priority,status\\nLabour,P0,not_started\\n", encoding="utf-8")
+        coverage_path.symlink_to(target)
+        report = MODULE.summarize_coverage_matrix(coverage_path)
+        self.assertFalse(report["available"])
+        coverage_path.unlink()
+        coverage_path.write_bytes(b"x" * (2 * 1024 * 1024 + 1))
+        report = MODULE.summarize_coverage_matrix(coverage_path)
+        self.assertFalse(report["available"])
+        self.assertIn("2 MiB", report["error"])
+
     def test_report_output_cannot_overwrite_candidate_input(self):
         candidate_path = self.root / "candidate.json"
         register_path = self.root / "register.json"
