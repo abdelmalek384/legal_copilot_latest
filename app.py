@@ -7297,7 +7297,7 @@ def search_accessible_document_text(
         "chunks.page,substr(chunks.text,max(1,instr(chunks.norm,?)-450),1200) AS excerpt,"
         "d.name AS document_name,cs.title AS case_title,cs.case_number,cs.case_year,"
         "bm25(chunks_fts) AS rank"
-        + joins + where + " ORDER BY rank LIMIT ? OFFSET ?",
+        + joins + where + " ORDER BY rank,chunks.id ASC LIMIT ? OFFSET ?",
         (tokens[0], int(u["firm_id"]), fts_query, int(u["firm_id"]), u["role"], int(u["id"]), client_id, client_id, limit, offset),
     ).fetchall()
     items = [dict(row) for row in rows]
