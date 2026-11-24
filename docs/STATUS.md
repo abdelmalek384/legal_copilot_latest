@@ -1499,6 +1499,21 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - This was a repository navigation/documentation fix only; no legal status or source-trust flags changed.
 
 
+### 2026-11-24 trust-label consistency pass
+
+- Added explicit `lawyer_reviewed: false`, `verified: false`, and `rights_cleared: false` fields to the recovered Decision 269/2025 note, the PPP Decision 3660/2026 capture, the six November 2026 housing/planning/state-ownership captures, eight October 2026 health/housing/tourism captures, and four environment/waste acquisition notes.
+- This closes a metadata-consistency gap: several documents already described themselves as provisional in prose but did not expose all three machine-readable flags together.
+- No source was promoted to verified, no rights clearance was inferred, and no production importer was enabled.
+- The affected records were committed directly to `main`; no PRs were opened. GitHub reports zero open PRs.
+
+
+### 2026-11-24 acquisition-register structural QA
+
+- Parsed the national and labour acquisition CSV registers using quote-aware CSV checks. The 12-column initial statute register had five historical rows (EG-0401–EG-0405) missing the two trust columns; added explicit `lawyer_reviewed=false` and `rights_cleared=false` to each.
+- The 11-column full-text inventory had nine malformed rows: FT-0142 lacked its full-text-status cell, and FT-0181–FT-0188 lacked the annex/forms-status cell. Restored the missing field(s) without changing their source or validation-gap statements.
+- Rechecked both repaired files: all nonblank rows now match their header widths (initial statute register: 12 columns; full-text inventory: 11 columns). Other checked acquisition CSVs had consistent row widths.
+- These are schema/metadata repairs only. They do not validate legal substance, currentness, Gazette authenticity or reuse rights.
+
 ## 2026-11-24 — isolated passage-annotation implementation (draft PR #1910)
 
 - Recovered only the passage-annotation slice from closed PR #1905 and replayed it onto the newer mainline in branch `ai2/passage-annotations-mainline-20261124`.
