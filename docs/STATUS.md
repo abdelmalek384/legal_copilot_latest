@@ -1769,3 +1769,9 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - These tests are committed but **not executed**. The inventory is still metadata-only and makes no legal corpus, authenticity, permission, currentness, or lawyer-review certification.
 
 - Final wording correction: the clean Markdown inventory now explicitly says it found no missing, malformed, or duplicate identifiers, rather than referring only to missing identifiers. Commit: `bc6b2b69351188afaa56e0a7959b3a039a8e1215`.
+
+## Manual answer-rating CSV formula-injection regression — 2026-11-25
+
+- Expanded the answer-rating export regression to cover all four spreadsheet formula prefixes (`=`, `+`, `-`, `@`) both directly and in exported question, answer, and reviewer-note fields.
+- Added leading ordinary whitespace, tab, CR/LF, and Unicode BOM cases, plus safe Arabic/ordinary text and numeric/empty values to ensure neutralization is selective and does not rewrite benign cells.
+- The production `_csv_safe_cell` implementation is unchanged. Test/documentation-only; Python execution and browser acceptance remain unverified. GitHub Actions remain unavailable due to billing.
