@@ -5783,12 +5783,21 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             json={"title": "Cairo next-day deadline", "due": "2026-11-25"},
         )
         self.assertEqual(deadline.status_code, 200, deadline.text)
+        fee = self._mutate(
+            "post", f"/cases/{case_id}/fees",
+            json={"title": "Cairo overdue fee", "amount": 1250, "paid": 0, "due": "2026-11-23"},
+        )
+        self.assertEqual(fee.status_code, 200, fee.text)
 
         with patch.object(app, "_invoice_today", return_value=date(2026, 11, 24)):
             dashboard = self.client.get("/dashboard")
             self.assertEqual(dashboard.status_code, 200, dashboard.text)
             self.assertTrue(any(x["note"] == "Cairo next-day hearing" and x["case_title"] == "Cairo local date boundary" for x in dashboard.json()["sessions"]))
             self.assertTrue(any(x["title"] == "Cairo next-day deadline" for x in dashboard.json()["deadlines"]))
+            finance = self.client.get("/finance/overview")
+            self.assertEqual(finance.status_code, 200, finance.text)
+            self.assertEqual(finance.json()["overdue_count"], 1)
+            self.assertEqual(finance.json()["overdue_amount"], 1250)
             calendar = self.client.get("/calendar.ics")
             self.assertEqual(calendar.status_code, 200, calendar.text)
             self.assertIn("DTSTART;VALUE=DATE:20261125", calendar.text)
