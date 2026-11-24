@@ -16,7 +16,7 @@ class StreamingConflictCheckTests(unittest.TestCase):
         self.assertIn("rows = c.execute(", endpoint)
         self.assertIn("for r in rows:", endpoint)
         self.assertNotIn(".fetchall()", endpoint)
-        self.assertIn("found[:100]", endpoint)
+        self.assertIn("len(found) < 100", endpoint)
         self.assertIn("hidden_match = True", endpoint)
         self.assertIn('"FROM cases WHERE firm_id=? ORDER BY id DESC"', endpoint)
 
