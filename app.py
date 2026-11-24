@@ -870,10 +870,11 @@ def add_session(c, u, cid, date, note=""):
 
 
 def upcoming(c, u, days=14):
+    today = _invoice_today().isoformat()
     return [dict(r) for r in c.execute(
         "SELECT s.*, c.title FROM sessions s JOIN cases c ON c.id=s.case_id WHERE s.done=0 AND c.status='open' "
-        "AND s.date BETWEEN date('now') AND date('now', ?) AND c.firm_id=? AND (?='admin' OR s.case_id IN (SELECT case_id FROM members WHERE user_id=?)) "
-        "ORDER BY s.date", ("+%d days" % days, u["firm_id"], u["role"], u["id"]))]
+        "AND s.date BETWEEN date(?) AND date(?, ?) AND c.firm_id=? AND (?='admin' OR s.case_id IN (SELECT case_id FROM members WHERE user_id=?)) "
+        "ORDER BY s.date", (today, today, "+%d days" % days, u["firm_id"], u["role"], u["id"]))]
 
 
 def delete_case(c, u, cid):
@@ -6679,10 +6680,11 @@ def dashboard(u: dict = Depends(user)):
         "ORDER BY t.due IS NULL, t.due, t.id",
         (u["id"], u["firm_id"], u["role"], u["id"]),
     )
+    today = _invoice_today().isoformat()
     d = c.execute("SELECT d.id,d.title,d.due,d.status,cs.title AS case_title FROM deadlines d JOIN cases cs ON cs.id=d.case_id "
-                  "WHERE cs.firm_id=? AND cs.status='open' AND d.status='open' AND d.due<=date('now','+30 day') "
+                  "WHERE cs.firm_id=? AND cs.status='open' AND d.status='open' AND d.due<=date(?,'+30 day') "
                   "AND (?='admin' OR d.case_id IN (SELECT case_id FROM members WHERE user_id=?)) ORDER BY d.due",
-                  (u["firm_id"], u["role"], u["id"]))
+                  (u["firm_id"], today, u["role"], u["id"]))
     unassigned = c.execute(
         "SELECT t.id,t.title,t.due,cs.title AS case_title FROM tasks t "
         "JOIN cases cs ON cs.id=t.case_id "
@@ -6718,8 +6720,9 @@ def _ics_event(kind, item_id, firm_id, case_id, day, summary, description):
 def export_calendar(u: dict = Depends(user)):
     """Export accessible tasks, hearings, and open deadlines as all-day calendar events."""
     c = conn()
-    today = date.today().isoformat()
-    horizon = (date.today() + timedelta(days=90)).isoformat()
+    cairo_today = _invoice_today()
+    today = cairo_today.isoformat()
+    horizon = (cairo_today + timedelta(days=90)).isoformat()
     events = []
 
     tasks = c.execute(
