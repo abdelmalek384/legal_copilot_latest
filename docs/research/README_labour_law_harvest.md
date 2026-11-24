@@ -92,6 +92,10 @@ This folder contains free/public source discovery, metadata registers and extrac
 
 44. [Law 14/2025 supplied-corpus / Gazette issue 18 alignment audit](law14_2025_user_archive_gazette_alignment_audit_2026-11-17.md) — 311-row structural coverage and Arabic fuzzy alignment against the user's supplied 112-page Gazette copy; numeric values, authenticity certification, rights and lawyer sign-off remain outstanding.
 
+102. [Ministerial Decision 214/2003 — Fund Board composition and functions](../legal_evidence/decision_214_2003_fund_board_composition_and_functions_text.md) — four-article secondary transcription; expressly repealed by Decision 16/2012 Article14. Gazette supplement letter conflicts between the secondary sources and needs original-page verification.
+
+103. [Ministerial Decision 216/2003 — Fund financial and administrative bylaw](../legal_evidence/decision_216_2003_fund_financial_administrative_regulations_text.md) — thirteen-article secondary transcription; expressly repealed by Decision 16/2012 Article14. The 2014 Constitutional Court ruling invalidated its old EGP8 contribution floor and quarterly-payment provision. Do not use as current authority.
+
 
 ## National Egyptian legal knowledge acquisition
 
