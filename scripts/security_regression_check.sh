@@ -44,6 +44,7 @@ tests=(
   test_s3_storage_preflight.py
   test_s3_recovery_archive_preflight.py
   test_document_classifications.py
+  test_document_annotations.py
   test_document_intelligence.py
   test_document_review_workflow.py
   test_invoice_schema_migration.py
