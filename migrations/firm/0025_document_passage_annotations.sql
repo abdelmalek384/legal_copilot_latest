@@ -27,7 +27,7 @@ WHEN NOT EXISTS (
   JOIN cases c ON c.id=d.case_id
   JOIN chunks ch ON ch.document_id=d.id AND ch.case_id=d.case_id
   WHERE d.id=NEW.document_id AND d.case_id=NEW.case_id
-    AND c.firm_id=NEW.firm_id AND ch.id=NEW.chunk_id
+    AND c.firm_id=NEW.firm_id AND d.firm_id=NEW.firm_id AND ch.id=NEW.chunk_id
 )
 BEGIN
   SELECT RAISE(ABORT, 'document passage annotation scope mismatch');
