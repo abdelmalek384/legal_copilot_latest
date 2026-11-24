@@ -3480,7 +3480,7 @@ function documentIntelligencePanel(caseId,documents){
   }finally{compareButton.disabled=false}
  };
 
- const noteClearReviewDrafts=()=>{document.querySelectorAll('[data-review-draft="1"]').forEach(field=>{field.value=''});window.DOCUMENT_REVIEW_DRAFT_DIRTY=false};
+ const noteClearReviewDrafts=(note,correction)=>{note.value='';correction.value='';window.DOCUMENT_REVIEW_DRAFT_DIRTY=Array.from(document.querySelectorAll('[data-review-draft="1"]')).some(field=>String(field.value||'').trim().length>0)};
  const submitChunkReview=async(item,chunk,outcome,correctedText,note,controls)=>{
   controls.forEach(control=>control.disabled=true);
   try{
@@ -3493,7 +3493,7 @@ function documentIntelligencePanel(caseId,documents){
     payload.expected_text_sha256=chunk.text_sha256;
    }
    await api('/cases/'+caseId+'/docs/'+item.doc.document_id+'/chunks/'+chunk.id+'/review','POST',payload);
-   noteClearReviewDrafts();
+   noteClearReviewDrafts(note,correction);
    const refreshed=await api('/cases/'+caseId+'/docs/'+item.doc.document_id+'/chunks');
    item.chunks=Array.isArray(refreshed.chunks)?refreshed.chunks:[];
    item.text=item.chunks.map(part=>String(part.text||'')).join('\n');
