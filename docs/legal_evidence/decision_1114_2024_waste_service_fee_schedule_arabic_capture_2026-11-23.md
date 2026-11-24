@@ -154,3 +154,10 @@ Vacant land used for commercial activities:
 - Validate table category labels, room-count boundary conditions, unit type, and amount with the original image.
 - Keep this schedule separate from Decision 1113/2024's amended Article 29 collection rules; they are related but distinct legal instruments.
 - Do not answer legal fee questions from this capture until source QA/currentness and human review are completed.
+
+## Explicit machine trust flags
+
+- `lawyer_reviewed: false`
+- `verified: false`
+- `rights_cleared: false`
+- This acquisition note is research-only. Preserve source distinctions and missing-text limitations; do not use as a verified/current consolidated legal instrument or production answer source until primary-source comparison, rights review and qualified Egyptian lawyer approval are complete.
