@@ -329,8 +329,13 @@ class IdentityLifecycleTests(unittest.TestCase):
         )
         self.runtime.create_firm_membership(user_id, self.firm_a, "lawyer")
         target = TestClient(app.app)
+        second_device = TestClient(app.app)
         try:
             self.assertEqual(self._login(target, "recovery@example.test", "RecoveryOldPassphrase-2026!").status_code, 200)
+            self.assertEqual(
+                self._login(second_device, "recovery@example.test", "RecoveryOldPassphrase-2026!").status_code,
+                200,
+            )
             with patch.object(app, "send_identity_email") as send:
                 known = target.post("/account/recovery/request", json={"email": "recovery@example.test"})
             self.assertEqual(known.status_code, 200, known.text)
@@ -346,6 +351,10 @@ class IdentityLifecycleTests(unittest.TestCase):
             self.assertEqual(reset.status_code, 200, reset.text)
             old_session = target.get("/session")
             self.assertEqual(old_session.status_code, 401)
+            # Password recovery must revoke every device session, not only the
+            # browser that submitted the recovery token.
+            second_device_session = second_device.get("/session")
+            self.assertEqual(second_device_session.status_code, 401)
             self.assertEqual(self._login(target, "recovery@example.test", "RecoveryOldPassphrase-2026!").status_code, 401)
             self.assertEqual(self._login(target, "recovery@example.test", "RecoveryNewPassphrase-2026!").status_code, 200)
             replay = target.post("/account/recovery/consume", json={
@@ -354,6 +363,7 @@ class IdentityLifecycleTests(unittest.TestCase):
             self.assertEqual(replay.status_code, 400)
         finally:
             target.close()
+            second_device.close()
         control = self.runtime.control_connection()
         self.assertEqual(control.execute(
             "SELECT status FROM password_recovery_tokens ORDER BY id DESC LIMIT 1"
