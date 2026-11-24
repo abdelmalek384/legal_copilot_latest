@@ -9381,13 +9381,21 @@ def create_document_annotation(
         "INSERT INTO document_annotations("
         "document_id,case_id,firm_id,chunk_id,author_user_id,annotation_type,"
         "start_offset,end_offset,quoted_text,body,page_reference,text_sha256"
-        ") VALUES(?,?,?,?,?,?,?,?,?,?,?,?)",
+        ") SELECT ?,?,?,ch.id,?,?,?,?,?,?,?,? "
+        "FROM chunks ch JOIN docs d ON d.id=ch.document_id AND d.case_id=ch.case_id "
+        "JOIN cases cs ON cs.id=d.case_id "
+        "WHERE ch.id=? AND ch.document_id=? AND ch.case_id=? AND ch.text=? "
+        "AND d.firm_id=? AND cs.firm_id=?",
         (
-            document_id, cid, int(u["firm_id"]), int(chunk["id"]), int(u["id"]),
-            b.annotation_type, b.start_offset, b.end_offset, b.quoted_text,
-            body, page_reference, current_digest,
+            document_id, cid, int(u["firm_id"]), int(u["id"]), b.annotation_type,
+            b.start_offset, b.end_offset, b.quoted_text, body, page_reference,
+            current_digest, b.chunk_id, document_id, cid, source_text,
+            int(u["firm_id"]), int(u["firm_id"]),
         ),
     )
+    if cursor.rowcount != 1:
+        c.rollback()
+        raise HTTPException(409, "document text changed while the annotation was being saved; reload the passage")
     annotation_id = int(cursor.lastrowid)
     c.execute(
         "INSERT INTO document_annotation_events("
