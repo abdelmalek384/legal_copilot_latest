@@ -109,6 +109,7 @@ class DocumentAnnotationAPITests(unittest.TestCase):
         self.assertIn('@app.post("/cases/{cid}/docs/{document_id}/annotations", status_code=201)', app)
         endpoint = app[app.index("def create_document_annotation("):app.index('@app.get("/cases/{cid}/documents/timeline")')]
         self.assertIn("need(c, u, cid)", endpoint)
+        self.assertIn("@rollback_tenant_transaction_on_error", app[app.index('@app.get("/cases/{cid}/docs/{document_id}/annotations")'):app.index("def list_document_annotations(")])
         self.assertIn("SELECT id FROM docs WHERE id=? AND case_id=? AND firm_id=?", endpoint)
         self.assertIn("WHERE ch.id=? AND ch.document_id=? AND ch.case_id=?", endpoint)
         self.assertIn("AND d.firm_id=? AND cs.firm_id=?", endpoint)
