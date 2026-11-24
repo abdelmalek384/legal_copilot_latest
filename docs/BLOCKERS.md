@@ -571,3 +571,11 @@ The owner has explicitly requested a non-production firm-test implementation. Th
 - The 4 limited-permission records are not promoted to unrestricted permissions. No legal content or source rights were upgraded. This is a static inventory count only; the existing validator and regression suite were not executed in this environment.
 - Dependency PRs remain deferred until the hash-locked Python 3.12 requirements file can be regenerated and a clean install/test/audit can run. Do not merge based on version-only edits.
 - Next available in-repository work: document actionable, non-CI release checks and maintain accurate owner/evidence status; avoid retrying blocked GitHub Actions or the closed AI-2 draft PRs.
+
+## Draft PR cleanup — 2026-11-24
+
+- Closed draft PRs #1913, #1918, #1921 and #1929 unmerged after manual patch review.
+- #1913's validator change is narrow but its focused Python regression and validator were not executed.
+- #1918, #1921 and #1929 modify the AI-2 matter-document frontend. Their branches were not mergeable in all cases and their frontend Python/browser acceptance was not run; V8 parsing/static assertions are insufficient to establish safe behavior.
+- Branches are preserved. None of these changes is present on `main`; no feature/security claim should be made as if integrated.
+- Open PRs should remain at zero. Re-open only after exact-head tests and the relevant browser/two-firm acceptance can be run.
