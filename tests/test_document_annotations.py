@@ -319,6 +319,14 @@ class DocumentAnnotationAPIRuntimeTests(InvoiceTestSupport, unittest.TestCase):
 
         deleted = self.mutate(self.client_a, "delete", f"/cases/{self.case_id}")
         self.assertEqual(deleted.status_code, 200, deleted.text)
+        deletion_audit = self.mutate(self.client_a, "get", "/audit/case-deletions")
+        self.assertEqual(deletion_audit.status_code, 200, deletion_audit.text)
+        deleted_case = next(
+            item for item in deletion_audit.json()["items"]
+            if item["case_id"] == self.case_id
+        )
+        self.assertEqual(deleted_case["related_counts"]["document_annotations"], 2)
+        self.assertEqual(deleted_case["related_counts"]["document_annotation_events"], 2)
         self.assertEqual(
             self.mutate(self.client_a, "get", f"/cases/{self.case_id}").status_code,
             404,
