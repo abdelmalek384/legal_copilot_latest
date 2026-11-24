@@ -149,7 +149,7 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
         data["sources"][2]["terms_checked_on"] = "2099-01-01"
         errors = MODULE.validate(data)
-        self.assertTrue(any("valid terms_checked_on date" in error for error in errors))
+        self.assertTrue(any(".terms_checked_on must be a valid ISO date or null" in error for error in errors))
 
     def test_empty_material_types_and_invalid_assessment_date_are_rejected(self):
         import json
@@ -493,7 +493,7 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         self.assertIsNone(source["local_pdf_sha256"])
         self.assertEqual(
             [item["printed_page"] for item in source["visual_page_checks"]],
-            [5, 105, 106, 107, 108, 109, 110, 111],
+            [5, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111],
         )
         self.assertEqual(source["collection_permission"], "unknown")
         self.assertEqual(source["commercial_reuse_permission"], "unknown")
