@@ -15,6 +15,7 @@ def test_empty_fragment_delimiter_is_rejected():
     assert not MODULE._https_url("https://example.gov/law.pdf#")
     assert not MODULE._https_url("https://example.gov/law.pdf#page=")
     assert MODULE._https_url("https://example.gov/law.pdf")
+    assert MODULE._https_url("https://example.gov/law.pdf?reference=%23")
 
 
 def test_empty_userinfo_and_fragment_delimiter_are_rejected_together():
