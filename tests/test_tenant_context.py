@@ -166,6 +166,16 @@ class ResolveFirmContextTests(unittest.TestCase):
         with self.assertRaises(TypeError):
             sqlite_membership_lookup("/client/supplied/database.sqlite3")
 
+    def test_rejects_noncanonical_membership_status_values(self):
+        for status in ("ACTIVE", "active ", " Active", True, 1, None):
+            with self.subTest(status=status), self.assertRaises(FirmContextError):
+                resolve_firm_context(
+                    self.user, 101,
+                    lambda user_id, firm_id, status=status: {
+                        "status": status, "role": "lawyer"
+                    },
+                )
+
     def test_fails_closed_on_malformed_membership(self):
         for membership in (None, {"status": "active"}, {"status": "active", "role": ""}):
             with self.subTest(membership=membership), self.assertRaises(FirmContextError):
