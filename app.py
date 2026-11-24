@@ -9226,6 +9226,21 @@ class ExtractionReviewIn(BaseModel):
     note: str = Field(default="", max_length=2000)
 
 
+class DocumentAnnotationIn(BaseModel):
+    annotation_type: str = Field(pattern=r"^(highlight|note)$")
+    start_offset: int = Field(ge=0, le=2_000_000)
+    end_offset: int = Field(ge=1, le=2_000_000)
+    quoted_text: str = Field(min_length=1, max_length=2000)
+    body: str = Field(default="", max_length=5000)
+    page_reference: str = Field(default="", max_length=100)
+    text_sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
+
+    @field_validator("quoted_text", "body", "page_reference")
+    @classmethod
+    def trim_annotation_text(cls, value):
+        return value.strip()
+
+
 @app.get("/cases/{cid}/docs/{document_id}/reviews")
 def list_document_reviews(cid: int, document_id: int, u: dict = Depends(user)):
     c = conn(); need(c, u, cid)
@@ -9252,6 +9267,121 @@ def list_document_reviews(cid: int, document_id: int, u: dict = Depends(user)):
         item["reviewer_name"] = names.get(int(item["reviewer_user_id"]), "")
         reviews.append(item)
     return {"document_id": document_id, "reviews": reviews}
+
+
+@app.get("/cases/{cid}/docs/{document_id}/annotations")
+def list_document_annotations(cid: int, document_id: int, u: dict = Depends(user)):
+    c = conn()
+    need(c, u, cid)
+    doc = c.execute(
+        "SELECT id FROM docs WHERE id=? AND case_id=? AND firm_id=?",
+        (document_id, cid, int(u["firm_id"])),
+    ).fetchone()
+    if not doc:
+        raise HTTPException(404, "document not found")
+    rows = c.execute(
+        "SELECT a.id,a.document_id,a.case_id,a.chunk_id,a.author_user_id,"
+        "a.annotation_type,a.start_offset,a.end_offset,a.quoted_text,a.body,"
+        "a.page_reference,a.text_sha256,a.created_at,ch.text AS current_text "
+        "FROM document_annotations a "
+        "JOIN chunks ch ON ch.id=a.chunk_id "
+        "WHERE a.firm_id=? AND a.case_id=? AND a.document_id=? "
+        "ORDER BY a.id DESC LIMIT 200",
+        (int(u["firm_id"]), cid, document_id),
+    ).fetchall()
+    author_ids = sorted({int(row["author_user_id"]) for row in rows})
+    author_names = {}
+    if author_ids:
+        placeholders = ",".join("?" for _ in author_ids)
+        author_names = {
+            int(row["id"]): row["name"]
+            for row in control_conn().execute(
+                f"SELECT id,name FROM users WHERE id IN ({placeholders})",
+                author_ids,
+            ).fetchall()
+        }
+    annotations = []
+    for row in rows:
+        item = dict(row)
+        current_text = item.pop("current_text", "")
+        item["stale_anchor"] = (
+            hashlib.sha256(current_text.encode("utf-8")).hexdigest()
+            != item["text_sha256"]
+        )
+        item["author_name"] = author_names.get(int(item["author_user_id"]), "")
+        annotations.append(item)
+    c.execute(
+        "INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
+        (int(u["firm_id"]), int(u["id"]), "document_annotations_view"),
+    )
+    c.commit()
+    return {"document_id": document_id, "annotations": annotations, "limit": 200}
+
+
+@app.post("/cases/{cid}/docs/{document_id}/annotations", status_code=201)
+@rollback_tenant_transaction_on_error
+def create_document_annotation(
+    cid: int, document_id: int, b: DocumentAnnotationIn, u: dict = Depends(user)
+):
+    c = conn()
+    need(c, u, cid)
+    doc = c.execute(
+        "SELECT id FROM docs WHERE id=? AND case_id=? AND firm_id=?",
+        (document_id, cid, int(u["firm_id"])),
+    ).fetchone()
+    chunk = c.execute(
+        "SELECT id,text,page FROM chunks "
+        "WHERE id=? AND document_id=? AND case_id=?",
+        (b.chunk_id if hasattr(b, "chunk_id") else -1, document_id, cid),
+    ).fetchone()
+    if not doc or not chunk:
+        raise HTTPException(404, "document chunk not found")
+    source_text = str(chunk["text"] or "")
+    current_digest = hashlib.sha256(source_text.encode("utf-8")).hexdigest()
+    if not hmac.compare_digest(current_digest, b.text_sha256):
+        raise HTTPException(409, "document text changed; reload the passage before annotating")
+    if b.end_offset <= b.start_offset:
+        raise HTTPException(422, "annotation end_offset must be greater than start_offset")
+    if b.end_offset > len(source_text):
+        raise HTTPException(422, "annotation offsets exceed the current extracted text")
+    if source_text[b.start_offset:b.end_offset] != b.quoted_text:
+        raise HTTPException(409, "selected text no longer matches the source passage")
+    body = b.body.strip()
+    if b.annotation_type == "note" and not body:
+        raise HTTPException(422, "a note requires annotation text")
+    page_reference = b.page_reference.strip() or str(chunk["page"] or "")
+    cursor = c.execute(
+        "INSERT INTO document_annotations("
+        "document_id,case_id,firm_id,chunk_id,author_user_id,annotation_type,"
+        "start_offset,end_offset,quoted_text,body,page_reference,text_sha256"
+        ") VALUES(?,?,?,?,?,?,?,?,?,?,?,?)",
+        (
+            document_id, cid, int(u["firm_id"]), int(chunk["id"]), int(u["id"]),
+            b.annotation_type, b.start_offset, b.end_offset, b.quoted_text,
+            body, page_reference, current_digest,
+        ),
+    )
+    annotation_id = int(cursor.lastrowid)
+    c.execute(
+        "INSERT INTO document_annotation_events("
+        "annotation_id,firm_id,case_id,document_id,actor_user_id,action"
+        ") VALUES(?,?,?,?,?,'created')",
+        (annotation_id, int(u["firm_id"]), cid, document_id, int(u["id"])),
+    )
+    c.execute(
+        "INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
+        (int(u["firm_id"]), int(u["id"]), "document_annotation_created"),
+    )
+    c.commit()
+    return {
+        "id": annotation_id,
+        "document_id": document_id,
+        "chunk_id": int(chunk["id"]),
+        "annotation_type": b.annotation_type,
+        "text_sha256": current_digest,
+        "page_reference": page_reference or None,
+        "created": True,
+    }
 
 
 @app.get("/cases/{cid}/documents/timeline")
