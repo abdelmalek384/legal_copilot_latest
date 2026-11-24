@@ -3498,6 +3498,18 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         )
         self.assertEqual(created.status_code, 201, created.text)
         annotation_id = created.json()["id"]
+        overlapping = self._mutate(
+            "post", create_path,
+            json={
+                "start_offset": start + 3,
+                "end_offset": start + len(selected),
+                "selected_text": selected[3:],
+                "source_text_sha256": digest,
+                "note": "Overlapping highlight must be rejected",
+                "color": "blue",
+            },
+        )
+        self.assertEqual(overlapping.status_code, 409, overlapping.text)
 
         listed = self.client.get(
             f"/cases/{case_id}/docs/{document_id}/chunks/{chunk_id}/annotations"
