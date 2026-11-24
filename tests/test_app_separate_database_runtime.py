@@ -5787,7 +5787,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         with patch.object(app, "_invoice_today", return_value=date(2026, 11, 24)):
             dashboard = self.client.get("/dashboard")
             self.assertEqual(dashboard.status_code, 200, dashboard.text)
-            self.assertTrue(any(x["title"] == "Cairo next-day hearing" for x in dashboard.json()["sessions"]))
+            self.assertTrue(any(x["note"] == "Cairo next-day hearing" and x["case_title"] == "Cairo local date boundary" for x in dashboard.json()["sessions"]))
             self.assertTrue(any(x["title"] == "Cairo next-day deadline" for x in dashboard.json()["deadlines"]))
             calendar = self.client.get("/calendar.ics")
             self.assertEqual(calendar.status_code, 200, calendar.text)
