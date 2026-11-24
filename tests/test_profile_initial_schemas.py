@@ -101,7 +101,7 @@ class ProfileInitialSchemaTests(unittest.TestCase):
         }
         matter_owned = {
             "cases", "clients", "members", "tasks", "events", "notes", "deadlines", "fees",
-            "sessions", "docs", "document_extraction_reviews", "research_conversations",
+            "sessions", "docs", "document_extraction_reviews", "document_passage_annotations", "research_conversations",
             "research_messages", "case_deletion_audit", "security_audit_events",
             "tenant_database_binding", "product_feedback", "product_feedback_events",
         }
@@ -126,6 +126,13 @@ class ProfileInitialSchemaTests(unittest.TestCase):
             "cases": {"cases_tenant_firm_insert", "cases_tenant_firm_update"},
             "docs": {"docs_tenant_firm_insert", "docs_tenant_firm_update"},
             "document_extraction_reviews": {"reviews_tenant_firm_insert", "reviews_tenant_firm_update"},
+            "document_passage_annotations": {
+                "document_passage_annotations_scope_insert",
+                "document_passage_annotations_scope_update",
+                "document_passage_annotations_immutable",
+                "document_passage_annotations_no_physical_delete",
+                "document_passage_annotations_no_overlap_insert",
+            },
             "research_conversations": {
                 "research_conversations_tenant_firm_insert",
                 "research_conversations_tenant_firm_update",
