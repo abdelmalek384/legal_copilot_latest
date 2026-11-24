@@ -6757,7 +6757,11 @@ def add_existing_user_membership(b: ExistingMembershipIn, u: dict = Depends(user
 
 
 @app.get("/dashboard")
-def dashboard(u: dict = Depends(user)):
+def dashboard(
+    calendar_days: int = Query(default=14, ge=1, le=365),
+    deadline_days: int = Query(default=30, ge=1, le=365),
+    u: dict = Depends(user),
+):
     c = conn()
     t = c.execute(
         "SELECT t.id,t.title,t.due,cs.title AS case_title FROM tasks t "
@@ -6769,9 +6773,9 @@ def dashboard(u: dict = Depends(user)):
     )
     today = _cairo_today().isoformat()
     d = c.execute("SELECT d.id,d.title,d.due,d.status,cs.title AS case_title FROM deadlines d JOIN cases cs ON cs.id=d.case_id "
-                  "WHERE cs.firm_id=? AND cs.status='open' AND d.status='open' AND d.due<=date(?,'+30 day') "
+                  "WHERE cs.firm_id=? AND cs.status='open' AND d.status='open' AND d.due<=date(?, ?) "
                   "AND (?='admin' OR d.case_id IN (SELECT case_id FROM members WHERE user_id=?)) ORDER BY d.due",
-                  (u["firm_id"], today, u["role"], u["id"]))
+                  (u["firm_id"], today, "+%d days" % deadline_days, u["role"], u["id"]))
     unassigned = c.execute(
         "SELECT t.id,t.title,t.due,cs.title AS case_title FROM tasks t "
         "JOIN cases cs ON cs.id=t.case_id "
@@ -6781,7 +6785,7 @@ def dashboard(u: dict = Depends(user)):
         (u["firm_id"], u["role"], u["id"]),
     )
     return {"tasks": [dict(r) for r in t], "unassigned_tasks": [dict(r) for r in unassigned],
-            "sessions": upcoming(c, u), "deadlines": [dict(r) for r in d]}
+            "sessions": upcoming(c, u, days=calendar_days), "deadlines": [dict(r) for r in d]}
 
 
 def _ics_escape(value):
