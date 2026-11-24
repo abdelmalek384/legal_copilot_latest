@@ -82,6 +82,7 @@ class ProfileInitialSchemaTests(unittest.TestCase):
             "document_passage_annotations_scope_insert",
             "document_passage_annotations_scope_update",
             "document_passage_annotations_immutable",
+            "document_passage_annotations_no_physical_delete",
         } <= annotation_triggers)
         self.assertNotIn("document_classifications", names(control)); self.assertNotIn("document_classifications", names(corpus))
         self.assertIn("clients", names(firm)); self.assertNotIn("clients", names(control)); self.assertNotIn("clients", names(corpus))
