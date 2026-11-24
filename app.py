@@ -9304,7 +9304,7 @@ def list_document_annotations(cid: int, document_id: int, u: dict = Depends(user
     rows = c.execute(
         "SELECT a.id,a.document_id,a.case_id,a.chunk_id,a.author_user_id,"
         "a.annotation_type,a.start_offset,a.end_offset,a.quoted_text,a.body,"
-        "a.page_reference,a.text_sha256,a.created_at,ch.text AS current_text "
+        "a.page_reference,a.text_sha256,a.created_at,ch.text AS current_text,ch.page AS current_page "
         "FROM document_annotations a "
         "JOIN docs d ON d.id=a.document_id AND d.case_id=a.case_id AND d.firm_id=a.firm_id "
         "JOIN cases c ON c.id=a.case_id AND c.firm_id=a.firm_id "
@@ -9328,9 +9328,15 @@ def list_document_annotations(cid: int, document_id: int, u: dict = Depends(user
     for row in rows:
         item = dict(row)
         current_text = item.pop("current_text", "")
+        current_page = item.pop("current_page", None)
         item["stale_anchor"] = (
             hashlib.sha256(current_text.encode("utf-8")).hexdigest()
             != item["text_sha256"]
+            or (
+                bool(item["page_reference"])
+                and current_page not in (None, "")
+                and str(current_page) != str(item["page_reference"])
+            )
         )
         item["author_name"] = author_names.get(int(item["author_user_id"]), "")
         annotations.append(item)
