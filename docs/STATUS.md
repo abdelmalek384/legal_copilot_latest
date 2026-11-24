@@ -1432,3 +1432,35 @@ Recovered and committed the document-only portions of closed acquisition PRs dir
 - PR #1901's unrelated classification/UI/test changes were not copied; only its standalone legal-evidence document was recovered. No open PR was created.
 
 The next unblocked acquisition step is to add provenance metadata and deduplication checks for these evidence files, then move only rights-cleared, source-backed text through the existing importer. Primary Gazette page acquisition and lawyer review remain external evidence gates, not tasks to simulate.
+
+
+## 2026-11-24 continuation — legal acquisition recovery and safe mainline fixes
+
+This continuation expanded the earlier recovered tranche. Across closed, unmerged research branches, 38 new evidence/research Markdown files were recovered or created directly on `main`; existing acquisition/index files were also updated. This is a file-recovery count, **not** a count of complete laws or verified instruments. The recovered material spans labour/employment, OSH, social insurance/pensions, waste/environment, traffic, health, housing/planning, tourism and university regulation. Three research entry points were updated so the material is discoverable.
+
+The recovered material includes:
+- Labour Decisions 48–50, 74–75/2026 and Decisions 266, 272, 279, 288, 346/2025, plus the broader issue-290/291 acquisition tranche.
+- OSH Decisions 249–252/2026 source and text supplements; social-insurance/pension instruments including 5218/2026, Presidential Decree 271/2026 and NOSI Decision 2900/2026.
+- Waste/environment Decisions 1113–1114/2024, 120/121/151/2025 and 342/346/2025; PM Decision 2466/2024 and its Article 13 bis.
+- Health instruments including Decisions 149/2026, 444/2025, 272/2025, 280/2026, PM Decision 2603/2021, and PM Decision 2856/2024.
+- Traffic Law 17/2024 amendment extracts, Presidential Decision 809/1975 issuing text, and additional housing/state-ownership/planning decisions from 2026.
+
+The main research index now extends through items 27–41; the Labour harvest index now extends through items 97–98. Source quality remains per-instrument: official searchable text, official-hosted PDF text layer, official catalogue metadata, secondary transcription, partial excerpt, and missing annex are kept distinct. Duplicate/overlapping source notes are not counted as separate verified instruments.
+
+### Updated completion view
+
+| Work package | Completion now | Remaining boundary |
+|---|---:|---|
+| Recover accessible closed-PR acquisition artifacts | 100% of the reviewed/recoverable tranche | Other closed branches still require individual review; no blanket merge |
+| Add recovered evidence to main and index it | 100% for the 38-file tranche above | These files are not yet imported into the searchable legal corpus |
+| Legal source trust controls | 100% for the newly recovered labour files; explicit flags added | Other domain files retain their own source-specific limitations; no rights clearance inferred |
+| National Egyptian legal-content coverage | Existing estimate remains about 1.5% (denominator unknown) | National inventory is incomplete; no defensible total-universe denominator |
+| Labour-domain coverage | Existing provisional estimate remains about 70% | Coverage is not proof of completeness, currentness, source rights or lawyer approval |
+| Legal evidence readiness | Existing estimate remains about 7% | No verified production-ready Egyptian law is claimed |
+| Authentication-cookie hardening | 100% implementation | Regression test committed/registered, execution pending |
+| Client-wide document search | 100% implementation (PR #1904 merged) | Runtime tenant/membership and browser acceptance pending |
+| Passage annotations | 0% integrated on main | Broad unvalidated branch work intentionally not copied wholesale |
+
+**Validation:** The auth-cookie middleware fix, its regression file, and workflow registration were re-fetched from main and statically confirmed. Hosted workflow lookup returned no PR-triggered run for the exact commit; tests remain unexecuted. The new legal evidence files were re-fetched and checked for explicit trust flags where applicable; no lawyer-review or verified status was promoted.
+
+**Next unblocked work:** continue recovering standalone source-text artifacts from closed research branches, deduplicate instrument IDs against the current legal-evidence corpus, and improve per-instrument provenance metadata. Do not spend cycles retrying unavailable CI, request-copy-gated Gazette PDFs, or lawyer sign-off.
