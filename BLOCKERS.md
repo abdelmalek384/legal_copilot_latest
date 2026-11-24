@@ -141,3 +141,10 @@ Treat the risks below as **one combined release gate**, not separate optional ta
 
 ### Evidence rule / release decision
 Each gate requires an owner, exact candidate commit, reproducible command/config, positive control, adversarial negative control, observed result, and retained evidence. **“Implemented”, static inspection, test files present, isolated primitive harnesses, or Actions blocked/failing are not PASS.** Record only PASS, FAIL, BLOCKED, or NOT RUN. Do not start a confidential client-data pilot, and do not release to production, until all P0 gates are PASS and the remaining launch gates are approved. For a first pilot, use synthetic or explicitly authorized/redacted data only while any P0 gate is unresolved.
+
+## Manual security review checkpoint — SQL and tenant routing (2026-11-24)
+
+- Source inspection confirms the trusted firm-context primitive queries active membership using bound values for user and firm IDs, and rejects missing/inactive membership, identity, or firm. Tenant catalog documentation says client-provided database paths/catalog filenames are not accepted and routing is through the trusted catalog. This is source inspection only; it does **not** prove all HTTP routes use these helpers correctly.
+- The route-to-SQL inventory tool is an AST-based review aid. It explicitly describes itself as incomplete for indirect framework dependencies and dynamic SQL. It tracks SQL templates, connection-boundary helper names, unresolved/dynamic SQL, and direct SQLite opens, but is not a runtime SQL-injection test and cannot prove parameter binding for every query.
+- Therefore, SQL injection and authorization remain P0 **BLOCKED/NOT RUN**, not PASS. No safe claim of a fully audited query surface is made from keyword searching or the existing static tool.
+- Next manual-review slices should use exact source files and synthetic payloads: (1) route handler -> helper -> connection boundary and firm/case predicate, (2) user-controlled query values bound as parameters, (3) dynamic identifiers constrained to literals/allowlists, (4) no side effects or sentinel leakage in negative cross-firm controls. Do not use production data.
