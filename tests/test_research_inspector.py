@@ -168,6 +168,12 @@ class ResearchInspectorTests(unittest.TestCase):
         source["provenance"]["document_type"] = []
         self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
 
+        # The explicit source type must also block the source-matched tier,
+        # even when the provenance document_type claims a primary statute.
+        source = self._source_matched_candidate()
+        source["source_type"] = "secondary_copy"
+        self.assertEqual(source_status(source, "2026-10-24"), "secondary_copy")
+
         # A complete package from another source/version cannot be rebound.
         source = self._source_matched_candidate()
         source["provenance"]["source_id"] = "different-source"
