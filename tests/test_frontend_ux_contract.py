@@ -269,7 +269,8 @@ class FrontendUXContractTests(unittest.TestCase):
         panel = HTML[HTML.index("function documentIntelligencePanel(caseId,documents)"):HTML.index("\nasync function view(id)")]
         self.assertIn("note.setAttribute('data-review-draft','1')", panel)
         self.assertIn("correction.setAttribute('data-review-draft','1')", panel)
-        self.assertIn("window.DOCUMENT_REVIEW_DRAFT_DIRTY=true", panel)
+        self.assertIn("note.addEventListener('input',rememberReviewDraft)", panel)
+        self.assertIn("correction.addEventListener('input',rememberReviewDraft)", panel)
         self.assertIn("noteClearReviewDrafts(note,correction,draftKey)", panel)
         self.assertIn("const submitChunkReview=async(item,chunk,outcome,correctedText,note,correction,draftKey,controls)=>", panel)
         self.assertIn("submitChunkReview(item,chunk,'accepted','',note.value,correction,draftKey,[accepted,recheck,edit])", panel)
