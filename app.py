@@ -359,6 +359,37 @@ def _legacy_conn():
 def norm(t):
     return re.sub("[\u064b-\u0652\u0670\u0640]", "", unicodedata.normalize("NFKC", t or "")).translate(_TR).lower()
 
+def document_search_excerpt(text, query, context_before=450, max_chars=1200):
+    """Return a match-centered excerpt with offsets mapped to original text."""
+    if not isinstance(text, str) or not isinstance(query, str):
+        raise TypeError("text and query must be strings")
+    if max_chars < 1 or context_before < 0:
+        raise ValueError("excerpt limits must be positive")
+    needle = norm(query)
+    if not text or not needle:
+        return text[:max_chars]
+    normalized_parts = []
+    source_offsets = []
+    for source_index, character in enumerate(text):
+        part = norm(character)
+        if part:
+            normalized_parts.append(part)
+            source_offsets.extend([source_index] * len(part))
+    normalized = "".join(normalized_parts)
+    match_start = normalized.find(needle)
+    if match_start < 0 or match_start >= len(source_offsets):
+        return text[:max_chars]
+    original_start = source_offsets[match_start]
+    last_index = min(len(source_offsets) - 1, match_start + len(needle) - 1)
+    original_end = source_offsets[last_index] + 1
+    start = max(0, original_start - context_before)
+    end = min(len(text), start + max_chars)
+    if original_end > end:
+        end = min(len(text), original_end)
+        start = max(0, end - max_chars)
+    return text[start:end]
+
+
 
 # Arabic light stemming: strip common prefixes/suffixes (applied identically at index and query time).
 # Negations (لا، لم) are deliberately NOT stopwords. Does not handle broken plurals or dialect.
@@ -7282,13 +7313,16 @@ def search_accessible_document_text(
     ).fetchone()[0])
     rows = c.execute(
         "SELECT chunks.id AS chunk_id,chunks.case_id,chunks.document_id,chunks.ref,"
-        "chunks.page,substr(chunks.text,max(1,instr(chunks.norm,?)-450),1200) AS excerpt,"
+        "chunks.page,chunks.text AS _source_text,"
         "d.name AS document_name,cs.title AS case_title,cs.case_number,cs.case_year,"
         "bm25(chunks_fts) AS rank"
         + joins + where + " ORDER BY rank LIMIT ? OFFSET ?",
-        (tokens[0], int(u["firm_id"]), fts_query, int(u["firm_id"]), u["role"], int(u["id"]), client_id, client_id, limit, offset),
+        (int(u["firm_id"]), fts_query, int(u["firm_id"]), u["role"], int(u["id"]), client_id, client_id, limit, offset),
     ).fetchall()
     items = [dict(row) for row in rows]
+    for item in items:
+        source_text = item.pop("_source_text", "")
+        item["excerpt"] = document_search_excerpt(source_text, tokens[0])
     c.execute(
         "INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
         (u["firm_id"], u["id"], "document_text_search"),
