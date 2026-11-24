@@ -65,3 +65,6 @@ Lawyer-selected highlights and notes are stored in the owning firm's database an
 The database enforces document/matter/firm/chunk consistency, immutable annotation content, a one-way soft-delete transition, no direct physical deletion while the owning records exist, and non-overlapping active ranges. Adjacent ranges are allowed; a deleted range can be reused. The API rejects overlap with HTTP 409. Original uploaded files and extracted text are not rewritten; corrected text remains a separate working copy. Stale annotations are not automatically repositioned.
 
 The bilingual review UI supports text selection, colored highlights, notes, stale-source warnings and removal. Focused migration/API/UI tests and a two-firm runtime regression test are registered in the test workflow. The implementation remains on branch `ai2/passage-annotations-refresh-20261124` pending runtime, migration, browser and lawyer acceptance. AI-1 corpus/retrieval code is unchanged.
+
+
+The annotation ledger also requires new records to be inserted active, and the deleted timestamp/actor fields must transition together. A pre-deleted insert or partial deletion marker is rejected at the database boundary; only the normal authorized soft-delete update can change the active state.
