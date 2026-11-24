@@ -2592,3 +2592,7 @@ Added Law75/2026 (annual raises/special allowance/EGP750 incentive), Law77/2026 
 - Expanded [selected Arabic amendment text](agent3_ppp_pm_decision3217_2022_selected_amendment_text_secondary_capture.md) with verbatim consolidated wording for Articles 27, 31, 33, 34, 36, 38, 39 and 74, in addition to the previously captured Articles 32, 42, 55, 62 bis 2, 62 bis 5, 63, 64, 75 and 89; also records repeals of Articles 40–41.
 - Opened the complete 95-article secondary consolidated Decision 238/2011 page and inspected its amendment footnotes. It lists a wider Decision 3217 amendment chain (including Articles 2–4, 27, 31–34, 36, 38–39, 42–56, 62/62 bis series, 63–64, 72, 74, 77–78, 81 and 89). Full exact text of all remaining amended clauses remains outstanding.
 - DSpace confirms the Arabic 256.1 KB PDF is request-only; Amiri Press indexed text endpoint returned HTTP 502. Secondary consolidated text remains explicitly non-primary pending retrieval of the original.
+
+### Coordinator research-agent intake — 24 November 2026
+
+- [Research Agent 5–8 intake and prioritized acquisition leads](coordinator_research_agent_intake_2026-11-24.md) — 144 candidate/enrichment rows across tax/customs/public finance, personal status, constitutional/administrative, and specialised fields. All agent rows remain unverified; primary texts, amendment chains, source rights and lawyer review are outstanding. The companion ZIP's 807-key union and dashboard are historical snapshots at commit `558c43a`, not current-main totals. Superseded Agent 2 criminal material was excluded.
