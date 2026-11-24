@@ -284,6 +284,8 @@ jobs:
         run: python -c "import json; d=json.load(open('docs/collection_manifest.example.json', encoding='utf-8')); assert isinstance(d.get('documents'), list); assert len(d['documents']) == 4"
       - name: Test secure cookie transport configuration
         run: PYTHONPATH=. python tests/test_security_transport_config.py
+      - name: Test auth cookie expiry on middleware errors
+        run: PYTHONPATH=. python tests/test_auth_cookie_expiry_middleware.py
       - name: Test deployment preflight
         run: python tests/test_deployment_preflight.py
       - name: Test production database-mode startup gate
