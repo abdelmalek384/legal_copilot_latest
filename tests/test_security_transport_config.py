@@ -302,6 +302,18 @@ class SecureCookieTransportTests(unittest.TestCase):
         with patch.dict(os.environ, {"COPILOT_SECURE_COOKIES": "1"}):
             self.assertTrue(app._secure_cookie_transport(request))
 
+    def test_untrusted_forwarded_proto_header_does_not_enable_secure_cookies(self):
+        # TLS termination is enabled only by the explicit deployment setting.
+        # An arbitrary request header must not make the app believe transport is HTTPS.
+        for forwarded in ("https", "https,http", "http"):
+            request = SimpleNamespace(
+                url=SimpleNamespace(scheme="http", netloc="internal:8000"),
+                headers={"x-forwarded-proto": forwarded},
+            )
+            with self.subTest(forwarded=forwarded), patch.dict(os.environ, {}, clear=False):
+                os.environ.pop("COPILOT_SECURE_COOKIES", None)
+                self.assertFalse(app._secure_cookie_transport(request))
+
     def test_proxy_mode_is_not_enabled_by_truthy_guess_or_missing_value(self):
         request = SimpleNamespace(url=SimpleNamespace(scheme="http", netloc="internal:8000"))
         for value in ("", "true", "yes", "0"):
