@@ -149,7 +149,7 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
         data["sources"][2]["terms_checked_on"] = "2099-01-01"
         errors = MODULE.validate(data)
-        self.assertTrue(any("valid terms_checked_on date" in error for error in errors))
+        self.assertTrue(any(".terms_checked_on must be a valid ISO date or null" in error for error in errors))
 
     def test_empty_material_types_and_invalid_assessment_date_are_rejected(self):
         import json
@@ -302,7 +302,7 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         self.assertIn("license.txt", source["permission_evidence"])
         self.assertIn("request-a-copy", source["permission_evidence"])
         self.assertIn("no bytes or license text", source["permission_evidence"])
-        self.assertIn("Do not bypass", source["required_next_action"])
+        self.assertIn("Do not bypass request-copy restrictions", source["required_next_action"])
         self.assertEqual(MODULE.validate(data), [])
 
 
@@ -476,9 +476,6 @@ class SourcePermissionRegisterTests(unittest.TestCase):
             with self.assertRaises((OSError, ValueError)):
                 MODULE.load_register(oversized)
 
-if __name__ == "__main__":
-    unittest.main()
-
     def test_eta_official_gazette_pdf_provenance_does_not_imply_reuse_permission(self):
         import json
         data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
@@ -496,10 +493,23 @@ if __name__ == "__main__":
         self.assertIsNone(source["local_pdf_sha256"])
         self.assertEqual(
             [item["printed_page"] for item in source["visual_page_checks"]],
-            [5, 105, 106, 107, 108, 109, 110, 111],
+            [5, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111],
         )
         self.assertEqual(source["collection_permission"], "unknown")
         self.assertEqual(source["commercial_reuse_permission"], "unknown")
         self.assertIsNone(source["terms_checked_on"])
         self.assertIn("download attempt failed", source["permission_evidence"])
         self.assertEqual(MODULE.validate(data), [])
+    def test_related_source_pages_are_validated_as_clean_https_locators(self):
+        import json
+        data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        source = data["sources"][0]
+        source["related_source_pages"] = ["https://example.gov/related"]
+        self.assertEqual(MODULE.validate(data), [])
+        source["related_source_pages"] = ["https://user:secret@example.gov/related"]
+        self.assertTrue(any("related_source_pages must be a list of clean HTTPS URLs" in error for error in MODULE.validate(data)))
+        source["related_source_pages"] = "https://example.gov/related"
+        self.assertTrue(any("related_source_pages must be a list of clean HTTPS URLs" in error for error in MODULE.validate(data)))
+
+if __name__ == "__main__":
+    unittest.main()
