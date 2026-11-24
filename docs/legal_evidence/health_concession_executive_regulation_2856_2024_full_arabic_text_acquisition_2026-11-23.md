@@ -87,3 +87,10 @@
 - Full Gazette PDF remains available as an official issue repository locator but needs page-image review, SHA-256, and word-for-word comparison against this secondary transcription.
 - Missing from this file: later amendments, subsequent decisions implementing Article 7, currentness/legal status check, and lawyer review.
 - The existing instrument inventory row EG-0272 must be updated only after a separate register reconciliation; this tranche is supplementary article-text evidence and does not change trust flags.
+
+## Explicit machine trust flags
+
+- `lawyer_reviewed: false`
+- `verified: false`
+- `rights_cleared: false`
+- This capture is research-only. It is not a current consolidated text or legal opinion; preserve the missing-text, source and commencement limitations above until primary-source comparison, rights review and qualified Egyptian lawyer approval are complete.
