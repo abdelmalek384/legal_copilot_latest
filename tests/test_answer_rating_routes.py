@@ -174,9 +174,9 @@ class AnswerRatingRouteTests(unittest.TestCase):
             "-1+1",
             "@SUM(1,1)",
             "  =1+1",
-            "\\t+1+1",
-            "\\r\\n-1+1",
-            "\\ufeff@SUM(1,1)",
+            "\t+1+1",
+            "\r\n-1+1",
+            "\ufeff@SUM(1,1)",
         ]
         for value in dangerous_values:
             with self.subTest(value=repr(value)):
@@ -190,24 +190,25 @@ class AnswerRatingRouteTests(unittest.TestCase):
 
         self.db.execute(
             "UPDATE research_messages SET content=? WHERE id=1",
-            ("\\ufeff=SUM(1,1)",),
+            ("\ufeff=SUM(1,1)",),
         )
         self.db.execute(
             "UPDATE research_messages SET content=? WHERE id=2",
-            ("\\t+HYPERLINK(\\\"x\\\")",),
+            ("\t+HYPERLINK(\"x\")",),
         )
         self.db.commit()
         app.save_answer_rating(
             self.answer_id,
-            self.rating(notes="\\r\\n@SUM(1,1)"),
+            self.rating(notes="\r\n@SUM(1,1)"),
             self.user,
         )
         response = app.export_firm_answer_ratings_csv(self.user)
         rows = list(csv.DictReader(io.StringIO(response.body.decode("utf-8-sig"))))
         self.assertEqual(len(rows), 1)
-        self.assertEqual(rows[0]["question"], "'\\ufeff=SUM(1,1)")
-        self.assertEqual(rows[0]["answer"], "'\\t+HYPERLINK(\\\"x\\\")")
-        self.assertEqual(rows[0]["notes"], "'\\r\\n@SUM(1,1)")
+        self.assertEqual(rows[0]["question"], "'\ufeff=SUM(1,1)")
+        self.assertEqual(rows[0]["answer"], "'\t+HYPERLINK(\"x\")")
+        self.assertEqual(rows[0]["notes"], "'\r\n@SUM(1,1)")
+
 
 if __name__ == "__main__":
     unittest.main()
