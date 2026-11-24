@@ -89,6 +89,30 @@ class PassageAnnotationApiContractTests(unittest.TestCase):
         ):
             self.assertIn(required, route)
 
+    def test_document_chunk_response_includes_only_active_scoped_annotations(self):
+        app = (ROOT / "app.py").read_text(encoding="utf-8")
+        start = app.index("def list_document_chunks(")
+        end = app.index('@app.get("/cases/{cid}/docs/{document_id}/reviews")', start)
+        route = app[start:end]
+        self.assertIn("WHERE firm_id=? AND case_id=? AND document_id=? AND deleted_at IS NULL", route)
+        self.assertIn('item["annotations"] = annotations_by_chunk.get(int(item["id"]), [])', route)
+
+    def test_frontend_anchors_offsets_to_original_chunk_and_marks_stale_text(self):
+        html = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
+        start = html.index("const renderChunkReviewCards=()=>{")
+        end = html.index("const renderAnalysis=()=>{", start)
+        review = html[start:end]
+        for required in (
+            "window.getSelection()",
+            "Array.from(prefix.toString()).length",
+            "source_text_sha256:chunk.text_sha256",
+            "passage-annotation-highlight",
+            "The passage changed after this annotation",
+            "Original extracted passage for highlighting",
+            "Latest recorded correction (working copy)",
+        ):
+            self.assertIn(required, review)
+
     def test_list_and_delete_routes_are_matter_and_firm_scoped(self):
         app = (ROOT / "app.py").read_text(encoding="utf-8")
         start = app.index('@app.get("/cases/{cid}/docs/{document_id}/chunks/{chunk_id}/annotations")')
