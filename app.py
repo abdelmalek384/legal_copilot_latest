@@ -4983,7 +4983,7 @@ def conflict_check(b: Q, u: dict = Depends(user)):
         "SELECT id,title,client,case_number,case_year,court,circuit,opposing_party,status,"
         "CASE WHEN id IN (SELECT case_id FROM members WHERE user_id=?) OR ?='admin' THEN 1 ELSE 0 END AS visible "
         "FROM cases WHERE firm_id=? ORDER BY id DESC",
-        (u["id"], u["role"], u["firm_id"])).fetchall()
+        (u["id"], u["role"], u["firm_id"]))
     found, hidden_match = [], False
     for r in rows:
         d = dict(r)
@@ -4991,11 +4991,11 @@ def conflict_check(b: Q, u: dict = Depends(user)):
         matches = [k for k in fields if conflict_name_matches(b.q, d.get(k) or "")]
         if matches and not d["visible"]:
             hidden_match = True
-        elif matches:
+        elif matches and len(found) < 100:
             d["matched_fields"] = matches
             d.pop("visible", None)
             found.append(d)
-    return {"query": b.q, "matches": found[:100], "possible_conflict": hidden_match,
+    return {"query": b.q, "matches": found, "possible_conflict": hidden_match,
             "admin_review_required": hidden_match,
             "warning": "فحص أولي بالبحث النصي فقط؛ لا يثبت وجود تعارض ولا ينفيه. إذا ظهرت إشارة عامة، اطلب مراجعة مسؤول المكتب. لا تعرض هذه النتيجة تفاصيل القضايا غير المصرح لك بها."}
 
@@ -7189,7 +7189,7 @@ def compare_accessible_document_versions(
             "SELECT id,ref,page,text FROM chunks "
             "WHERE case_id=? AND document_id=? ORDER BY id",
             (case_id, document_id),
-        ).fetchall()
+        )
         pieces = []
         provenance = []
         total_chars = 0
@@ -9242,7 +9242,7 @@ def matter_document_timeline(
         rows = c.execute(
             "SELECT id,ref,page,text FROM chunks WHERE case_id=? AND document_id=? ORDER BY id",
             (cid, document_id),
-        ).fetchall()
+        )
         for row in rows:
             chunk_text = row["text"] if isinstance(row["text"], str) else ""
             if not chunk_text:
@@ -9351,7 +9351,7 @@ def matter_document_entity_mentions(
         rows = c.execute(
             "SELECT id,ref,page,text FROM chunks WHERE case_id=? AND document_id=? ORDER BY id",
             (cid, document_id),
-        ).fetchall()
+        )
         for row in rows:
             chunk_text = row["text"] if isinstance(row["text"], str) else ""
             if not chunk_text:
