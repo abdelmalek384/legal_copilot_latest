@@ -304,7 +304,7 @@ def markdown(report: dict[str, Any]) -> str:
         for issue in report["cross_registry_issues"]:
             lines.append(f"- **{issue['code']}** ({issue['count']}): {', '.join(issue['ids'])}")
     else:
-        lines.append("No missing cross-register identifiers were detected by these checks.")
+        lines.append("No missing, malformed, or duplicate identifiers were detected by the implemented cross-register checks.")
     lines += [
         "",
         "## Important limits",
