@@ -76,6 +76,27 @@ class LegalCorpusInventoryTests(unittest.TestCase):
         self.assertIn("not a verified legal corpus", output.lower())
         self.assertIn("no database or legal-text files were scanned", output.lower())
 
+    def test_documented_cli_runs_without_pythonpath_from_outside_repo(self):
+        import subprocess
+        import sys
+
+        env = os.environ.copy()
+        env.pop("PYTHONPATH", None)
+        with tempfile.TemporaryDirectory() as temp:
+            result = subprocess.run(
+                [sys.executable, str(ROOT / "tools" / "report_legal_corpus_inventory.py")],
+                cwd=temp,
+                env=env,
+                capture_output=True,
+                text=True,
+                timeout=30,
+                check=False,
+            )
+        self.assertEqual(result.returncode, 0, msg=result.stderr)
+        report = json.loads(result.stdout)
+        self.assertEqual(report["report_type"], "legal_corpus_artifact_inventory")
+        self.assertTrue(report["read_only"])
+
 
     def test_read_json_rejects_symlink_swap_and_fifo(self):
         with tempfile.TemporaryDirectory() as directory:
