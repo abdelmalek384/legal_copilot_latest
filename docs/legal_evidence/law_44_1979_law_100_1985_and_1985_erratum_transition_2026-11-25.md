@@ -62,3 +62,10 @@ A scanned reproduction of Official Gazette issue 27 supplement, hosted by Manshu
 | 11 | Articles 4–7, including transitional, repeal, implementation and commencement provisions |
 
 This is page-image inspection, not yet a word-by-word source match of a normalized text transcription. The original issue 27 text and the corrected final text shown by Eastlaws must remain distinct until the issue 33 erratum is acquired and inspected. Events EV-0362, EV-0363 and EV-0364 now point to the 8/8 page coverage, but remain provisional.
+
+
+## 1996 partial constitutional invalidation of Article 18 bis 3
+
+The original Supreme Constitutional Court judgment in **Case 5/8 (constitutional), 6 January 1996** is available on the official Court website: https://www.sccourt.gov.eg/DjangoPortalResources/Rules_Html/592_8_5_1_2.html. The Court did **not** invalidate all of Article 18 bis 3. It invalidated only two portions: (1) the absolute obligation to provide suitable housing for the children and custodian even where the children had sufficient funds or the custodian already had a dwelling, whether rented or owned; and (2) the restriction requiring a divorced father whose marital home was rented to prepare suitable alternative housing within a period ending with the former wife's idda. The remainder of Article 18 bis 3 was not declared unconstitutional by this judgment.
+
+The judgment is reported as published in Official Gazette issue 3 on 18 January 1996; a later official SCC decision in Case 95/36 (2016) quotes this exact disposition. Under Article 49 of Law 48/1979, the non-application date is provisionally recorded as 19 January 1996 (the day after publication), subject to checking the Gazette page and confirming no different date was specified in the original judgment. See EG-0557 / FT-0233 / EV-0368.
