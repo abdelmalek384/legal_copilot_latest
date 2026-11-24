@@ -2611,3 +2611,7 @@ Added Law75/2026 (annual raises/special allowance/EGP750 incentive), Law77/2026 
 - Law 140/2017: acquisition EG-0546, inventory FT-0221, provisional replacement event EV-0354 for Article 21(2)-(3) and Article 22. Secondary sources identify Official Gazette issue 29 bis, 22 Jul 2017; original Gazette scan remains outstanding.
 - These entries do not complete the Law 25/1929 amendment chain. Law 44/1979, Law 100/1985, Law 33/1992, Law 2/2006 and other cited changes still need source-level reconciliation.
 - [Amendment-chain evidence note](law_25_1929_amendment_chain_leads_2005_2017_2026-11-25.md).
+
+### Law 48/1979 — Supreme Constitutional Court Law (25 November 2026)
+
+- [Evidence record](law_48_1979_supreme_constitutional_court_source_2026-11-25.md) — official Court of Cassation portal locator plus secondary full-text reproduction reporting 73 articles and amendment notes through Law 137/2021. Original official portal fetch was unavailable; no Gazette PDF was locally acquired. Acquisition EG-0547 / inventory FT-0222; not source-matched, not lawyer-reviewed, rights not assessed.
