@@ -1736,3 +1736,11 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Added a subprocess regression that runs the documented CLI from a temporary working directory with `PYTHONPATH` removed and validates the JSON report contract.
 - Commits: `5b1c98a970f790495499d332cea3412993baa868` (CLI fix), `a846334e3b875eecaf85e735e9912a95897c1d12` (regression).
 - The regression is committed but **not executed** here. No corpus counts, source permissions, legal status, authenticity, currentness, or lawyer-review percentages changed.
+
+## Manual legal-corpus inventory CSV hardening — 2026-11-24
+
+- The inventory report's coverage-matrix reader now uses the same bounded, stable regular-file reader as the JSON permission register (2 MiB cap; symlinks and path swaps rejected), instead of opening the CSV directly.
+- Added strict UTF-8/CSV parsing, required-column checks, duplicate-header rejection, ragged-row rejection, non-empty required-field checks, and case-insensitive duplicate practice-area detection.
+- Added regressions for duplicate headers, malformed row widths, duplicate practice areas, symlink rejection, and the current 21-row coverage matrix shape. The direct-CLI regression from the preceding slice remains in the same test module.
+- Commits: `36ed2e215ff9b67bb5cbae6b1f8a50f55701a118` (reader hardening), `0156661c85aad0ab5b1b21b1eb4c8bc1353acc8c` (regressions), `42c3fdeba7f1f76ea2278e384e929814777f05d9` (fixture newline correction).
+- All new tests are committed but **not executed**. The report's legal corpus, permission, authenticity, currentness and lawyer-review claims remain unchanged.
