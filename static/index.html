@@ -3481,7 +3481,7 @@ function documentIntelligencePanel(caseId,documents){
  };
 
  const noteClearReviewDrafts=(note,correction)=>{note.value='';correction.value='';window.DOCUMENT_REVIEW_DRAFT_DIRTY=Array.from(document.querySelectorAll('[data-review-draft="1"]')).some(field=>String(field.value||'').trim().length>0)};
- const submitChunkReview=async(item,chunk,outcome,correctedText,note,controls)=>{
+ const submitChunkReview=async(item,chunk,outcome,correctedText,note,correction,controls)=>{
   controls.forEach(control=>control.disabled=true);
   try{
    const payload={outcome,page_reference:chunk.page==null?'':String(chunk.page),note:String(note||'').trim()};
@@ -3533,10 +3533,10 @@ function documentIntelligencePanel(caseId,documents){
     note.setAttribute('data-review-draft','1');note.addEventListener('input',()=>{window.DOCUMENT_REVIEW_DRAFT_DIRTY=true});
     const correction=h('textarea',{rows:4,maxLength:20000,placeholder:uiText('أدخل النص المصحح بعد الرجوع إلى المستند الأصلي.','Enter corrected text after checking the original document.'),'aria-label':uiText('النص المصحح للمقطع ','Corrected text for chunk ')+chunk.id,style:'display:none;width:100%'});
     correction.setAttribute('data-review-draft','1');correction.addEventListener('input',()=>{window.DOCUMENT_REVIEW_DRAFT_DIRTY=true});
-    const accepted=btn(uiText('اعتماد النص','Accept text'),()=>submitChunkReview(item,chunk,'accepted','',note.value,[accepted,recheck,edit]),'g');
-    const recheck=btn(uiText('يحتاج إعادة فحص','Needs recheck'),()=>submitChunkReview(item,chunk,'needs_recheck','',note.value,[accepted,recheck,edit]),'g');
+    const accepted=btn(uiText('اعتماد النص','Accept text'),()=>submitChunkReview(item,chunk,'accepted','',note.value,correction,[accepted,recheck,edit]),'g');
+    const recheck=btn(uiText('يحتاج إعادة فحص','Needs recheck'),()=>submitChunkReview(item,chunk,'needs_recheck','',note.value,correction,[accepted,recheck,edit]),'g');
     const edit=btn(uiText('تصحيح النص','Correct text'),()=>{correction.style.display=correction.style.display==='none'?'block':'none';if(correction.style.display==='block')correction.focus()},'g');
-    const save=btn(uiText('حفظ التصحيح','Save correction'),()=>submitChunkReview(item,chunk,'corrected',correction.value,note.value,[accepted,recheck,edit,save]),'primary');
+    const save=btn(uiText('حفظ التصحيح','Save correction'),()=>submitChunkReview(item,chunk,'corrected',correction.value,note.value,correction,[accepted,recheck,edit,save]),'primary');
     save.style.display='none';
     edit.onclick=()=>{const show=correction.style.display==='none';correction.style.display=show?'block':'none';save.style.display=show?'inline-flex':'none';if(show)correction.focus()};
     cards.push(h('article',{className:'card extraction-review-card'},
