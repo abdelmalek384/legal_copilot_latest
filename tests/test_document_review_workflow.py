@@ -24,5 +24,18 @@ class DocumentReviewWorkflowTests(unittest.TestCase):
         self.assertIn("لا تحفظه إلا بعد مقارنته بالملف الأصلي", html)
 
 
+    def test_reviewer_page_reference_does_not_overwrite_extraction_page(self):
+        app = (ROOT / "app.py").read_text(encoding="utf-8")
+        endpoint = app[
+            app.index("def review_document_chunk("):
+            app.index("@app.delete(\"/cases/{cid}\")")
+        ]
+        self.assertIn('"UPDATE chunks SET text=?,norm=? "', endpoint)
+        self.assertIn('"UPDATE chunks SET text=text "', endpoint)
+        self.assertNotIn("SET page=", endpoint)
+        self.assertIn("b.note.strip(), b.page_reference.strip()", endpoint)
+        self.assertIn('"page_reference": b.page_reference.strip() or None', endpoint)
+
+
 if __name__ == "__main__":
     unittest.main()
