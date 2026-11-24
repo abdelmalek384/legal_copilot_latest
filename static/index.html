@@ -3713,22 +3713,33 @@ function documentIntelligencePanel(caseId,documents){
  const loadButton=btn(uiText('تحليل المستندات','Analyze documents'),async()=>{
   if(!docs.length){status.textContent=uiText('لا توجد مستندات لتحليلها.','There are no documents to analyze.');return}
   loadButton.disabled=true;cache.clear();analysisResults.replaceChildren();searchResults.replaceChildren();compareResults.replaceChildren();
-  let totalChars=0,loaded=0,skipped=0;
+  let totalChars=0,loaded=0,skipped=0,limitReached=false;
+  const failedNames=[];
   try{
-   for(const doc of docs.slice(0,40)){
-    status.textContent=uiText('جارٍ تحميل النصوص: ','Loading extracted text: ')+loaded+'/'+Math.min(docs.length,40);
-    const [data,classification]=await Promise.all([api('/cases/'+caseId+'/docs/'+doc.document_id+'/chunks'),api('/cases/'+caseId+'/docs/'+doc.document_id+'/classification').catch(()=>null)]);
-    const chunks=Array.isArray(data.chunks)?data.chunks:[];
-    if(!data.intelligence||!data.intelligence.classification||!Array.isArray(data.intelligence.candidates))throw new Error('server_document_intelligence_unavailable');
-    const text=chunks.map(chunk=>String(chunk.text||'')).join('\n');
-    if(totalChars+text.length>1000000){skipped++;break}
-    totalChars+=text.length;cache.set(String(doc.document_id),{doc,chunks,text,intelligence:data.intelligence,classification});loaded++;
+   const boundedDocs=docs.slice(0,40);
+   for(let index=0;index<boundedDocs.length;index++){
+    const doc=boundedDocs[index];
+    status.textContent=uiText('جارٍ تحميل النصوص: ','Loading extracted text: ')+loaded+'/'+boundedDocs.length;
+    try{
+     const [data,classification]=await Promise.all([api('/cases/'+caseId+'/docs/'+doc.document_id+'/chunks'),api('/cases/'+caseId+'/docs/'+doc.document_id+'/classification').catch(()=>null)]);
+     const chunks=Array.isArray(data.chunks)?data.chunks:[];
+     if(!data.intelligence||!data.intelligence.classification||!Array.isArray(data.intelligence.candidates))throw new Error('server_document_intelligence_unavailable');
+     const text=chunks.map(chunk=>String(chunk.text||'')).join('\\n');
+     if(totalChars+text.length>1000000){skipped+=boundedDocs.length-index;limitReached=true;break}
+     totalChars+=text.length;cache.set(String(doc.document_id),{doc,chunks,text,intelligence:data.intelligence,classification});loaded++;
+    }catch(_){
+     skipped++;failedNames.push(String(doc.name||uiText('مستند رقم ','Document #')+doc.document_id));
+    }
    }
    if(docs.length>40)skipped+=docs.length-40;
-   renderAnalysis();
-   if(skipped)status.textContent+=uiText(' تم تجاوز بعض المستندات/النصوص بسبب حدود التحليل.',' Some documents/text were skipped due to analysis limits.');
-  }catch(error){status.textContent=uiText('تعذر تحميل بعض المستندات؛ راجع صلاحية الوصول وحاول مجدداً.','Some documents could not be loaded; check access and try again.')}
-  finally{loadButton.disabled=false}
+   if(loaded)renderAnalysis();
+   else analysisResults.replaceChildren(h('p',{className:'notice danger',role:'alert',textContent:uiText('لم يمكن تحميل أي مستند للتحليل. تحقق من صلاحيات الوصول وحالة الاستخراج ثم أعد المحاولة.','No documents could be loaded for analysis. Check access and extraction status, then retry.')}));
+   status.textContent=uiText('تم تحميل ','Loaded ')+loaded+uiText(' من ',' of ')+Math.min(docs.length,40)+uiText(' مستندات ضمن التحليل.',' documents for analysis.');
+   if(skipped)status.textContent+=' '+uiText('تم تخطي ','Skipped ')+skipped+uiText(' مستندات/ملفات بسبب أخطاء التحميل أو حدود التحليل.',' documents/files due to loading errors or analysis limits.');
+   if(failedNames.length)status.textContent+=' '+uiText('تعذر تحميل: ','Could not load: ')+failedNames.slice(0,5).join('، ')+(failedNames.length>5?' …':'')+'.';
+   if(limitReached)status.textContent+=' '+uiText('تم بلوغ حد مليون حرف؛ قد توجد مستندات إضافية لم تُحمّل.','The one-million-character limit was reached; additional documents may not have loaded.');
+   if(docs.length>40)status.textContent+=' '+uiText('يقتصر التحليل على أول 40 مستنداً.','Analysis is limited to the first 40 documents.');
+  }finally{loadButton.disabled=false}
  });
  const searchButton=btn(uiText('بحث','Search'),renderSearch,'g');
  const compareButton=btn(uiText('مقارنة النصوص','Compare text versions'),renderComparison,'g');
