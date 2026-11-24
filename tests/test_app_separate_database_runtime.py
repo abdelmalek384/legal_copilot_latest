@@ -3613,6 +3613,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         chunk_response = self.client.get(f"/cases/{case_id}/docs/{document_id}/chunks")
         self.assertEqual(chunk_response.status_code, 200, chunk_response.text)
         self.assertEqual(chunk_response.json()["chunks"][0]["annotations"][0]["id"], annotation_id)
+        self.assertEqual(chunk_response.json()["chunks"][0]["annotations"][0]["created_by_name"], "First Owner")
 
         # A document/chunk pair cannot be replayed under another authorized case URL.
         wrong_case = self.client.get(
