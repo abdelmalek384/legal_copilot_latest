@@ -571,3 +571,11 @@ The owner has explicitly requested a non-production firm-test implementation. Th
 - The 4 limited-permission records are not promoted to unrestricted permissions. No legal content or source rights were upgraded. This is a static inventory count only; the existing validator and regression suite were not executed in this environment.
 - Dependency PRs remain deferred until the hash-locked Python 3.12 requirements file can be regenerated and a clean install/test/audit can run. Do not merge based on version-only edits.
 - Next available in-repository work: document actionable, non-CI release checks and maintain accurate owner/evidence status; avoid retrying blocked GitHub Actions or the closed AI-2 draft PRs.
+
+
+## AI-2 document-review draft navigation guard — 2026-11-24
+
+- Addressed a document-workspace usability risk: unsaved reviewer notes/corrections could disappear when changing matter tabs or navigating between cases. The workspace now tracks draft state by document/chunk, restores it after panel refresh, and clears only the successfully saved passage.
+- Added confirmation before navigation that would discard drafts, including same-matter rerenders and global navigation paths, plus browser-unload protection.
+- Added static frontend contract coverage. Inline JavaScript syntax was checked with V8; Python tests and browser acceptance remain unexecuted. No CI or test pass is claimed.
+- Bounded implementation status: **100% source implementation**. Acceptance remains pending because the frontend test module, keyboard navigation, Arabic RTL/LTR, responsive layout, and two-case lawyer workflow have not been run.
