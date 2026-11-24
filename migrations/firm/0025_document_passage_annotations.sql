@@ -14,7 +14,9 @@ CREATE TABLE document_passage_annotations (
   color TEXT NOT NULL DEFAULT 'yellow' CHECK(color IN ('yellow','blue','green','pink')),
   created_at TEXT NOT NULL DEFAULT (datetime('now')),
   deleted_at TEXT,
-  deleted_by_user_id INTEGER
+  deleted_by_user_id INTEGER,
+  CHECK ((deleted_at IS NULL AND deleted_by_user_id IS NULL) OR
+         (deleted_at IS NOT NULL AND deleted_by_user_id IS NOT NULL))
 );
 
 CREATE INDEX idx_document_passage_annotations_scope
@@ -99,4 +101,13 @@ WHEN NEW.deleted_at IS NULL
  )
 BEGIN
   SELECT RAISE(ABORT, 'overlaps an active passage annotation');
+END;
+
+-- New annotations must enter the ledger active; only the audited update route
+-- may perform the initial soft-delete transition.
+CREATE TRIGGER document_passage_annotations_initially_active
+BEFORE INSERT ON document_passage_annotations
+WHEN NEW.deleted_at IS NOT NULL OR NEW.deleted_by_user_id IS NOT NULL
+BEGIN
+  SELECT RAISE(ABORT, 'new passage annotations must be active');
 END;
