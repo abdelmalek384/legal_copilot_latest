@@ -3573,6 +3573,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         )
         self.assertEqual(listed.status_code, 200, listed.text)
         self.assertEqual([row["id"] for row in listed.json()["items"]], [annotation_id])
+        self.assertTrue(listed.json()["items"][0]["created_by_name"])
 
         # Client-wide extracted-text search spans both linked matters but does
         # not cross the client boundary.
