@@ -228,3 +228,10 @@ The secondary full-text page for Decision 74 was opened and inspected through th
 - Article 7 contains confidentiality and data-sharing requirements. Do not ingest or expose personal or commercially sensitive observatory data without a separate lawful-basis, purpose-limitation, access-control and retention review.
 - Article 11's fund financing is subject to approval by the Fund's board and required legal procedures; do not treat the decree as a standing unconditional budget appropriation.
 - The title says “partial” in the file name because the primary-source comparison is incomplete; the secondary 17-article transcription itself is now complete.
+
+## Explicit machine trust flags
+
+- `lawyer_reviewed: false`
+- `verified: false`
+- `rights_cleared: false`
+- This capture is research material only. It must not be treated as a lawyer-approved operative text or imported into production legal answering until the stated primary-source comparison, rights review and qualified Egyptian lawyer review are completed.
