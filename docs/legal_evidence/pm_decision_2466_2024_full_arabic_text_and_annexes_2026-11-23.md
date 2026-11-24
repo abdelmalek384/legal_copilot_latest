@@ -327,3 +327,10 @@
 6. لا توجد مصادقة محامٍ أو تأكيد لعدم وجود تعديلات لاحقة أو أحكام قضائية مؤثرة حتى تاريخ البحث.
 
 **قواعد المنتج:** هذا مصدر نصي مساعد للبحث والاسترجاع؛ لا يعرضه النظام كقانون موحد حالي أو كنصيحة امتثال نهائية دون التحقق من سلسلة التعديلات والملاحق والقرارات التنفيذية اللاحقة ومراجعة محامٍ مصري مؤهل.
+
+## Explicit machine trust flags
+
+- `lawyer_reviewed: false`
+- `verified: false`
+- `rights_cleared: false`
+- This acquisition is research-only. Preserve the instrument-specific source and completeness caveats above; do not treat it as a verified/current consolidated legal text or use it for production legal answers until primary-source comparison, reuse-rights review and qualified Egyptian lawyer approval are complete.
