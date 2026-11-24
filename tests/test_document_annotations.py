@@ -17,8 +17,8 @@ class PassageAnnotationMigrationTests(unittest.TestCase):
         self.db.executescript("""
             CREATE TABLE cases(id INTEGER PRIMARY KEY, firm_id INTEGER NOT NULL);
             CREATE TABLE docs(id INTEGER PRIMARY KEY, case_id INTEGER NOT NULL REFERENCES cases(id), firm_id INTEGER NOT NULL);
-            CREATE TABLE chunks(id INTEGER PRIMARY KEY, document_id INTEGER NOT NULL REFERENCES docs(id),
-                                case_id INTEGER NOT NULL REFERENCES cases(id), text TEXT NOT NULL);
+            CREATE TABLE chunks(id INTEGER PRIMARY KEY, document_id INTEGER NOT NULL REFERENCES docs(id) ON DELETE CASCADE,
+                                case_id INTEGER NOT NULL REFERENCES cases(id) ON DELETE CASCADE, text TEXT NOT NULL);
             INSERT INTO cases(id,firm_id) VALUES(10,7),(20,8);
             INSERT INTO docs(id,case_id,firm_id) VALUES(100,10,7),(200,20,8);
             INSERT INTO chunks(id,document_id,case_id,text) VALUES
