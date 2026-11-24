@@ -1769,3 +1769,9 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - These tests are committed but **not executed**. The inventory is still metadata-only and makes no legal corpus, authenticity, permission, currentness, or lawyer-review certification.
 
 - Final wording correction: the clean Markdown inventory now explicitly says it found no missing, malformed, or duplicate identifiers, rather than referring only to missing identifiers. Commit: `bc6b2b69351188afaa56e0a7959b3a039a8e1215`.
+
+## Manual MFA recovery-code failure-state regression — 2026-11-25
+
+- Added a separate-runtime API regression for a failed recovery-factor attempt followed by use of a valid recovery code.
+- The test asserts the invalid attempt returns 401, leaves the selected recovery-code row unused, and does not grant access to protected case routes. The valid code then succeeds, grants the verified session access, and is marked consumed.
+- Test/documentation-only; no MFA runtime logic changed. Static read-back only; Python execution and full suite remain unverified. GitHub Actions unavailable due to billing.
