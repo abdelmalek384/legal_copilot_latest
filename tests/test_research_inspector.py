@@ -174,6 +174,23 @@ class ResearchInspectorTests(unittest.TestCase):
         source["source_type"] = "secondary_copy"
         self.assertEqual(source_status(source, "2026-10-24"), "secondary_copy")
 
+        # Registry source_type is descriptive text in older records, not a
+        # closed enum. Reject common secondary-copy descriptions, not only one
+        # exact machine token, even when document_type claims primary legislation.
+        for label in (
+            "secondary legal text copy",
+            "public secondary transcription",
+            "Official Gazette PDF + secondary transcription",
+            "COMMENTARY source",
+        ):
+            source = self._source_matched_candidate()
+            source["source_type"] = label
+            self.assertEqual(source_status(source, "2026-10-24"), "secondary_copy", label)
+
+        source = self._source_matched_candidate()
+        source["source_type"] = {"kind": "secondary_copy"}
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+
         # A complete package from another source/version cannot be rebound.
         source = self._source_matched_candidate()
         source["provenance"]["source_id"] = "different-source"
