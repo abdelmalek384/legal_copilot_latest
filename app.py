@@ -9306,10 +9306,12 @@ def list_document_annotations(cid: int, document_id: int, u: dict = Depends(user
         "a.annotation_type,a.start_offset,a.end_offset,a.quoted_text,a.body,"
         "a.page_reference,a.text_sha256,a.created_at,ch.text AS current_text "
         "FROM document_annotations a "
-        "JOIN chunks ch ON ch.id=a.chunk_id "
-        "WHERE a.firm_id=? AND a.case_id=? AND a.document_id=? "
+        "JOIN docs d ON d.id=a.document_id AND d.case_id=a.case_id AND d.firm_id=a.firm_id "
+        "JOIN cases c ON c.id=a.case_id AND c.firm_id=a.firm_id "
+        "JOIN chunks ch ON ch.id=a.chunk_id AND ch.document_id=a.document_id AND ch.case_id=a.case_id "
+        "WHERE a.firm_id=? AND c.firm_id=? AND a.case_id=? AND a.document_id=? "
         "ORDER BY a.id DESC LIMIT 200",
-        (int(u["firm_id"]), cid, document_id),
+        (int(u["firm_id"]), int(u["firm_id"]), cid, document_id),
     ).fetchall()
     author_ids = sorted({int(row["author_user_id"]) for row in rows})
     author_names = {}
@@ -9352,9 +9354,12 @@ def create_document_annotation(
         (document_id, cid, int(u["firm_id"])),
     ).fetchone()
     chunk = c.execute(
-        "SELECT id,text,page FROM chunks "
-        "WHERE id=? AND document_id=? AND case_id=?",
-        (b.chunk_id, document_id, cid),
+        "SELECT ch.id,ch.text,ch.page FROM chunks ch "
+        "JOIN docs d ON d.id=ch.document_id AND d.case_id=ch.case_id "
+        "JOIN cases cs ON cs.id=d.case_id "
+        "WHERE ch.id=? AND ch.document_id=? AND ch.case_id=? "
+        "AND d.firm_id=? AND cs.firm_id=?",
+        (b.chunk_id, document_id, cid, int(u["firm_id"]), int(u["firm_id"])),
     ).fetchone()
     if not doc or not chunk:
         raise HTTPException(404, "document chunk not found")
