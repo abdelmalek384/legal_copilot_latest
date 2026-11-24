@@ -3444,6 +3444,223 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertIn("FIRM_B_SECURITY_SENTINEL", csv_b.text)
         self.assertNotIn("FIRM_A_SECURITY_SENTINEL", csv_b.text)
 
+    def test_passage_annotations_preserve_original_evidence_and_enforce_scope_and_roles(self):
+        import hashlib
+        import io
+        from docx import Document
+
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        case_a = self._mutate("post", "/cases", json={"title": "Annotation source matter"})
+        case_b = self._mutate("post", "/cases", json={"title": "Unrelated annotation matter"})
+        self.assertEqual(case_a.status_code, 200, case_a.text)
+        self.assertEqual(case_b.status_code, 200, case_b.text)
+        case_id, other_case_id = case_a.json()["id"], case_b.json()["id"]
+
+        original_text = "ORIGINAL-PASSAGE-SENTINEL This is immutable extracted evidence."
+        source = Document()
+        source.add_paragraph(original_text)
+        buffer = io.BytesIO()
+        source.save(buffer)
+        original_bytes = buffer.getvalue()
+        with patch.object(app, "_mfa_required_for_user", return_value=False):
+            uploaded = self._mutate(
+                "post", f"/cases/{case_id}/upload",
+                files={"file": ("annotation-source.docx", original_bytes,
+                                "application/vnd.openxmlformats-officedocument.wordprocessingml.document")},
+            )
+        self.assertEqual(uploaded.status_code, 200, uploaded.text)
+        document_id = uploaded.json()["document_id"]
+
+        tenant = self.runtime.firm_connection(self.runtime.resolve_context(self.user_id, self.firm_a))
+        chunk = tenant.execute(
+            "SELECT id,text FROM chunks WHERE document_id=? AND case_id=? ORDER BY id LIMIT 1",
+            (document_id, case_id),
+        ).fetchone()
+        self.assertIsNotNone(chunk)
+        chunk_id, extracted_text = int(chunk["id"]), str(chunk["text"])
+        selected = "ORIGINAL-PASSAGE-SENTINEL"
+        start = extracted_text.index(selected)
+        digest = hashlib.sha256(extracted_text.encode("utf-8")).hexdigest()
+        create_path = f"/cases/{case_id}/docs/{document_id}/chunks/{chunk_id}/annotations"
+        created = self._mutate(
+            "post", create_path,
+            json={
+                "start_offset": start,
+                "end_offset": start + len(selected),
+                "selected_text": selected,
+                "source_text_sha256": digest,
+                "note": "Check this source clause",
+                "color": "yellow",
+            },
+        )
+        self.assertEqual(created.status_code, 201, created.text)
+        annotation_id = created.json()["id"]
+        overlapping = self._mutate(
+            "post", create_path,
+            json={
+                "start_offset": start + 3,
+                "end_offset": start + len(selected),
+                "selected_text": selected[3:],
+                "source_text_sha256": digest,
+                "note": "Overlapping highlight must be rejected",
+                "color": "blue",
+            },
+        )
+        self.assertEqual(overlapping.status_code, 409, overlapping.text)
+
+        listed = self.client.get(
+            f"/cases/{case_id}/docs/{document_id}/chunks/{chunk_id}/annotations"
+        )
+        self.assertEqual(listed.status_code, 200, listed.text)
+        self.assertEqual([row["id"] for row in listed.json()["items"]], [annotation_id])
+        chunk_response = self.client.get(f"/cases/{case_id}/docs/{document_id}/chunks")
+        self.assertEqual(chunk_response.status_code, 200, chunk_response.text)
+        self.assertEqual(chunk_response.json()["chunks"][0]["annotations"][0]["id"], annotation_id)
+
+        # A document/chunk pair cannot be replayed under another authorized case URL.
+        wrong_case = self.client.get(
+            f"/cases/{other_case_id}/docs/{document_id}/chunks/{chunk_id}/annotations"
+        )
+        self.assertEqual(wrong_case.status_code, 404, wrong_case.text)
+        wrong_case_create = self._mutate(
+            "post", f"/cases/{other_case_id}/docs/{document_id}/chunks/{chunk_id}/annotations",
+            json={
+                "start_offset": start, "end_offset": start + len(selected),
+                "selected_text": selected, "source_text_sha256": digest,
+                "note": "wrong matter", "color": "yellow",
+            },
+        )
+        self.assertEqual(wrong_case_create.status_code, 404, wrong_case_create.text)
+
+        # A same-firm user without matter membership cannot read or annotate this document.
+        outsider_id = self.runtime.create_global_identity(
+            "Annotation Nonmember", "annotation-nonmember@example.test", app.hash_pw(self.password)
+        )
+        self.runtime.create_firm_membership(outsider_id, self.firm_a, "lawyer")
+        outsider = TestClient(app.app)
+        try:
+            outsider_login = outsider.post(
+                "/login",
+                json={"email": "annotation-nonmember@example.test", "password": self.password},
+            )
+            self.assertEqual(outsider_login.status_code, 200, outsider_login.text)
+            outsider_headers = {"X-CSRF-Token": outsider.cookies.get("lc_csrf") or ""}
+            outsider_firm = outsider.post(
+                "/session/firm", json={"firm_id": self.firm_a}, headers=outsider_headers
+            )
+            self.assertEqual(outsider_firm.status_code, 200, outsider_firm.text)
+            outsider_headers = {"X-CSRF-Token": outsider.cookies.get("lc_csrf") or ""}
+            denied = outsider.get(
+                f"/cases/{case_id}/docs/{document_id}/chunks/{chunk_id}/annotations"
+            )
+            self.assertEqual(denied.status_code, 404, denied.text)
+            denied_create = outsider.post(
+                create_path,
+                json={
+                    "start_offset": start, "end_offset": start + len(selected),
+                    "selected_text": selected, "source_text_sha256": digest,
+                    "note": "unauthorized", "color": "yellow",
+                },
+                headers=outsider_headers,
+            )
+            self.assertEqual(denied_create.status_code, 404, denied_create.text)
+        finally:
+            outsider.close()
+
+        # A matter member who did not create the annotation cannot remove it unless
+        # they are an admin or matter lead.
+        member_id = self.runtime.create_global_identity(
+            "Annotation Ordinary Member", "annotation-member@example.test", app.hash_pw(self.password)
+        )
+        self.runtime.create_firm_membership(member_id, self.firm_a, "lawyer")
+        tenant.execute(
+            "INSERT INTO members(case_id,user_id,role) VALUES(?,?,?)",
+            (case_id, member_id, "lawyer"),
+        )
+        tenant.commit()
+        member_client = TestClient(app.app)
+        try:
+            member_login = member_client.post(
+                "/login", json={"email": "annotation-member@example.test", "password": self.password}
+            )
+            self.assertEqual(member_login.status_code, 200, member_login.text)
+            member_headers = {"X-CSRF-Token": member_client.cookies.get("lc_csrf") or ""}
+            member_select = member_client.post(
+                "/session/firm", json={"firm_id": self.firm_a}, headers=member_headers
+            )
+            self.assertEqual(member_select.status_code, 200, member_select.text)
+            member_headers = {"X-CSRF-Token": member_client.cookies.get("lc_csrf") or ""}
+            denied_delete = member_client.delete(
+                f"/cases/{case_id}/docs/{document_id}/annotations/{annotation_id}",
+                headers=member_headers,
+            )
+            self.assertEqual(denied_delete.status_code, 403, denied_delete.text)
+        finally:
+            member_client.close()
+
+        # Direct SQL cannot rewrite or physically delete the annotation.
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "immutable"):
+            tenant.execute(
+                "UPDATE document_passage_annotations SET note='tampered' WHERE id=?",
+                (annotation_id,),
+            )
+        tenant.rollback()
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "require soft deletion"):
+            tenant.execute(
+                "DELETE FROM document_passage_annotations WHERE id=?",
+                (annotation_id,),
+            )
+        tenant.rollback()
+
+        # Switching firms makes every annotation route fail closed.
+        switched = self._mutate("post", "/session/firm", json={"firm_id": self.firm_b})
+        self.assertEqual(switched.status_code, 200, switched.text)
+        for method, path in (
+            ("get", f"/cases/{case_id}/docs/{document_id}/chunks/{chunk_id}/annotations"),
+            ("delete", f"/cases/{case_id}/docs/{document_id}/annotations/{annotation_id}"),
+        ):
+            response = self._mutate(method, path) if method == "delete" else self.client.get(path)
+            self.assertEqual(response.status_code, 404, response.text)
+        switched_back = self._mutate("post", "/session/firm", json={"firm_id": self.firm_a})
+        self.assertEqual(switched_back.status_code, 200, switched_back.text)
+
+        # The author can soft-delete once; the original extracted text and original
+        # uploaded bytes remain exactly as received.
+        removed = self._mutate(
+            "delete", f"/cases/{case_id}/docs/{document_id}/annotations/{annotation_id}"
+        )
+        self.assertEqual(removed.status_code, 200, removed.text)
+        stored_annotation = tenant.execute(
+            "SELECT deleted_at,deleted_by_user_id FROM document_passage_annotations WHERE id=?",
+            (annotation_id,),
+        ).fetchone()
+        self.assertIsNotNone(stored_annotation["deleted_at"])
+        self.assertEqual(stored_annotation["deleted_by_user_id"], self.user_id)
+        unchanged = tenant.execute("SELECT text FROM chunks WHERE id=?", (chunk_id,)).fetchone()
+        self.assertEqual(unchanged["text"], extracted_text)
+        self.assertEqual(
+            tenant.execute(
+                "SELECT COUNT(*) FROM document_passage_annotations WHERE id=? AND deleted_at IS NULL",
+                (annotation_id,),
+            ).fetchone()[0],
+            0,
+        )
+        original_after = self.client.get(f"/cases/{case_id}/docs/{document_id}/original")
+        self.assertEqual(original_after.status_code, 200, original_after.text)
+        self.assertEqual(original_after.content, original_bytes)
+
+        audit_events = [
+            row["event"] for row in tenant.execute(
+                "SELECT event FROM security_audit_events WHERE user_id=? ORDER BY id",
+                (self.user_id,),
+            ).fetchall()
+        ]
+        self.assertTrue(any(event.startswith("document_passage_annotation_created:") for event in audit_events))
+        self.assertTrue(any(event.startswith("document_passage_annotation_deleted:") for event in audit_events))
+
     def test_document_extraction_review_routes_are_isolated_across_firms(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
