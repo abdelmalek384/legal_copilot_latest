@@ -166,3 +166,10 @@ The extracted final provisions state that prior decisions/texts inconsistent wit
 - **Collection/reuse permission:** pending. Public accessibility and catalogue metadata do not establish commercial corpus-reuse permission.
 - **Lawyer review/currentness:** pending. Check subsequent amendments, circulars and licence-condition changes.
 - **Production ingestion:** do not import as verified legal text; preserve as a research candidate with source URL, page locators and unresolved status.
+
+## Explicit machine trust flags
+
+- `lawyer_reviewed: false`
+- `verified: false`
+- `rights_cleared: false`
+- This capture is research material only. It must not be treated as a lawyer-approved operative text or imported into production legal answering until the stated primary-source comparison, rights review and qualified Egyptian lawyer review are completed.
