@@ -1769,3 +1769,9 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - These tests are committed but **not executed**. The inventory is still metadata-only and makes no legal corpus, authenticity, permission, currentness, or lawyer-review certification.
 
 - Final wording correction: the clean Markdown inventory now explicitly says it found no missing, malformed, or duplicate identifiers, rather than referring only to missing identifiers. Commit: `bc6b2b69351188afaa56e0a7959b3a039a8e1215`.
+## AI-2 untrusted forwarded-protocol cookie regression — 2026-11-25
+
+- Added a transport-security regression proving that an HTTP backend request carrying caller-controlled `X-Forwarded-Proto: https` (including a comma-separated value) does not enable Secure cookies.
+- Secure-cookie behavior remains tied to the actual ASGI request scheme or the explicit `COPILOT_SECURE_COOKIES=1` deployment setting; no runtime behavior changed.
+- Static read-back confirms the three untrusted header variants are covered. The Python test was not executed; runtime validation remains outstanding.
+- **Bounded implementation task: 100%. Runtime validation: 0%.**
