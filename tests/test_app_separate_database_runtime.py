@@ -3657,6 +3657,47 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         ).fetchone()
         self.assertIsNotNone(stored_annotation["deleted_at"])
         self.assertEqual(stored_annotation["deleted_by_user_id"], self.user_id)
+
+        # The author may reuse a range after soft deletion. A matter lead may
+        # remove another member's annotation, with the lead recorded as actor.
+        second = self._mutate(
+            "post", create_path,
+            json={
+                "start_offset": start, "end_offset": start + len(selected),
+                "selected_text": selected, "source_text_sha256": digest,
+                "note": "Lead-removable note", "color": "green",
+            },
+        )
+        self.assertEqual(second.status_code, 201, second.text)
+        lead_id = self.runtime.create_global_identity(
+            "Annotation Matter Lead", "annotation-lead@example.test", app.hash_pw(self.password)
+        )
+        self.runtime.create_firm_membership(lead_id, self.firm_a, "lawyer")
+        tenant.execute(
+            "INSERT INTO members(case_id,user_id,role) VALUES(?,?,?)",
+            (case_id, lead_id, "lead"),
+        )
+        tenant.commit()
+        lead_client = TestClient(app.app)
+        try:
+            lead_login = lead_client.post(
+                "/login", json={"email": "annotation-lead@example.test", "password": self.password}
+            )
+            self.assertEqual(lead_login.status_code, 200, lead_login.text)
+            lead_headers = {"X-CSRF-Token": lead_client.cookies.get("lc_csrf") or ""}
+            lead_select = lead_client.post(
+                "/session/firm", json={"firm_id": self.firm_a}, headers=lead_headers
+            )
+            self.assertEqual(lead_select.status_code, 200, lead_select.text)
+            lead_headers = {"X-CSRF-Token": lead_client.cookies.get("lc_csrf") or ""}
+            lead_removed = lead_client.delete(
+                f"/cases/{case_id}/docs/{document_id}/annotations/{second.json()['id']}",
+                headers=lead_headers,
+            )
+            self.assertEqual(lead_removed.status_code, 200, lead_removed.text)
+        finally:
+            lead_client.close()
+
         unchanged = tenant.execute("SELECT text FROM chunks WHERE id=?", (chunk_id,)).fetchone()
         self.assertEqual(unchanged["text"], extracted_text)
         self.assertEqual(
@@ -3678,6 +3719,13 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         ]
         self.assertTrue(any(event.startswith("document_passage_annotation_created:") for event in audit_events))
         self.assertTrue(any(event.startswith("document_passage_annotation_deleted:") for event in audit_events))
+        lead_audit = [
+            row["event"] for row in tenant.execute(
+                "SELECT event FROM security_audit_events WHERE user_id=? ORDER BY id",
+                (lead_id,),
+            ).fetchall()
+        ]
+        self.assertTrue(any(event.startswith("document_passage_annotation_deleted:") for event in lead_audit))
 
     def test_document_extraction_review_routes_are_isolated_across_firms(self):
         login = self.client.post(
