@@ -145,6 +145,7 @@ class PassageAnnotationApiContractTests(unittest.TestCase):
         for required in (
             "window.getSelection()",
             "Array.from(prefix.toString()).length",
+            "Array.from(selectedText).length",
             "source_text_sha256:chunk.text_sha256",
             "passage-annotation-highlight",
             "The passage changed after this annotation",
