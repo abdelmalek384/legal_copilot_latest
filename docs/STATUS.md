@@ -1769,3 +1769,11 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - These tests are committed but **not executed**. The inventory is still metadata-only and makes no legal corpus, authenticity, permission, currentness, or lawyer-review certification.
 
 - Final wording correction: the clean Markdown inventory now explicitly says it found no missing, malformed, or duplicate identifiers, rather than referring only to missing identifiers. Commit: `bc6b2b69351188afaa56e0a7959b3a039a8e1215`.
+
+## Manual firm-switch CSRF and Origin regression — 2026-11-25
+
+- Added an isolated separate-database API regression for a multi-firm identity switching from Firm A to Firm B.
+- The test verifies a missing CSRF token is rejected with 403 and does not alter the HttpOnly firm-selection cookie or the effective /session firm.
+- It then verifies a valid CSRF token paired with an untrusted cross-origin Origin is rejected with 403 and likewise leaves the selected firm unchanged.
+- Finally, a request with the valid CSRF token and no Origin header succeeds and subsequent session resolution reports Firm B.
+- This is test/documentation-only; no application authorization behavior changed. Static read-back only; the Python test and full runtime suite have not been executed. GitHub Actions remain unavailable due to billing.
