@@ -44,3 +44,21 @@ All events remain provisional until the relevant Gazette pages and the official 
 - Lawyer review: no.
 - Rights assessment: no.
 - Production/search eligibility: not established.
+
+
+## Additional Gazette page-image inspection — Law 100/1985
+
+A scanned reproduction of Official Gazette issue 27 supplement, hosted by Manshurat at https://manshurat.org/node/12372, has now been inspected visually across all **8 PDF pages**, corresponding to Gazette pages **4–11**. This confirms the full seven-article Law 100/1985 publication is present in the scan and establishes page-level coverage. The scan is a reproduction hosted by a secondary legal publisher, not an authenticated original Amiri Press binary/hash.
+
+| Gazette page | Content observed |
+|---:|---|
+| 4 | Law heading; Article 1 additions begin (Arts 5 bis, 11 bis) |
+| 5 | Article 11 bis continuation; Article 11 bis 2; Article 18 bis |
+| 6 | Articles 18 bis 2 and 18 bis 3 |
+| 7 | Article 23 bis; Article 2 begins (Law 25/1920 Art. 1) |
+| 8 | Article 2 continuation; Article 3 replacements begin (Arts 7 and 8) |
+| 9 | Articles 9, 10 and 11 |
+| 10 | Articles 16 and 20 |
+| 11 | Articles 4–7, including transitional, repeal, implementation and commencement provisions |
+
+This is page-image inspection, not yet a word-by-word source match of a normalized text transcription. The original issue 27 text and the corrected final text shown by Eastlaws must remain distinct until the issue 33 erratum is acquired and inspected. Events EV-0362, EV-0363 and EV-0364 now point to the 8/8 page coverage, but remain provisional.
