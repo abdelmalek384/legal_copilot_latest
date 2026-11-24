@@ -1640,7 +1640,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("box.replaceChildren(summary,...(rows.length?rows.map(caseRow):[emptyState]))", cases)
 
     def test_client_list_first_run_empty_state_respects_permissions_and_load_errors(self):
-        clients = HTML[HTML.index("async function clients(){"):HTML.index("\nasync function casesPage(){")]
+        clients = HTML[HTML.index("async function clients(initialQuery='')"):HTML.index("\nasync function casesPage(){")]
         self.assertIn("const noProfilesYet=!needle&&!profilesError&&!profiles.length", clients)
         self.assertIn("ME.role==='admin'?uiText('+ ملف عميل جديد','+ New client profile'):null", clients)
         self.assertIn("ME.role==='admin'?()=>clientProfileForm():null", clients)
@@ -1648,7 +1648,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("emptyState?[h('div',{className:'card'},emptyState)]:[]", clients)
 
     def test_global_search_has_a_single_registered_keyboard_shortcut(self):
-        shell = HTML[HTML.index("function shell(title"):HTML.index("\nfunction dash()")]
+        shell = HTML[HTML.index("function shell(title"):HTML.index("\nasync function dash()")]
         self.assertIn("'aria-keyshortcuts':'Control+K Meta+K'", shell)
         self.assertIn("window.__lcGlobalSearchShortcutInstalled", shell)
         self.assertIn("(event.ctrlKey||event.metaKey)", shell)
@@ -1658,14 +1658,14 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("PAGE==='law'", shell)
 
     def test_active_firm_context_is_visible_even_for_single_firm_users(self):
-        shell = HTML[HTML.index("function shell(title"):HTML.index("\nfunction dash()")]
+        shell = HTML[HTML.index("function shell(title"):HTML.index("\nasync function dash()")]
         self.assertIn("const activeFirm=firmOptions.find(f=>Number(f.firm_id)===Number(ME.firm_id))||(firmOptions.length===1?firmOptions[0]:null)", shell)
         self.assertIn("className:'tenant-context',role:'note'", shell)
         self.assertIn("textContent:activeFirm.firm_name", shell)
         self.assertIn(")),tenantContext,firmSwitch,", shell)
 
     def test_active_firm_context_displays_localized_membership_role(self):
-        shell = HTML[HTML.index("function shell(title"):HTML.index("\nfunction dash()")]
+        shell = HTML[HTML.index("function shell(title"):HTML.index("\nasync function dash()")]
         self.assertIn("admin:'مسؤول المكتب',lawyer:'محامٍ'", HTML)
         self.assertIn("const activeRole=activeFirm&&(activeFirm.role||ME.role)", shell)
         self.assertIn("textContent:RL[activeRole]||activeRole", shell)
@@ -1726,7 +1726,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("!uploadButton.disabled", renderer)
 
     def test_global_search_includes_permission_scoped_client_results(self):
-        shell = HTML[HTML.index("function shell(title"):HTML.index("\nfunction dash()")]
+        shell = HTML[HTML.index("function shell(title"):HTML.index("\nasync function dash()")]
         clients = HTML[HTML.index("async function clients(initialQuery='')"):HTML.index("\nasync function casesPage()")]
         self.assertIn("api('/cases/search?'+matterParams.toString())", shell)
         self.assertIn("api('/clients/search?'+clientParams.toString())", shell)
@@ -1736,7 +1736,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("workspace-search-group", shell)
 
     def test_global_search_includes_permission_scoped_document_results(self):
-        shell = HTML[HTML.index("function shell(title"):HTML.index("\nfunction dash()")]
+        shell = HTML[HTML.index("function shell(title"):HTML.index("\nasync function dash()")]
         self.assertIn("api('/documents/search?'+documentParams.toString())", shell)
         self.assertIn("documentsFound=Array.isArray(documentResult.items)?documentResult.items:[]", shell)
         self.assertIn("window.DOCUMENT_MATTER_ID=Number(item.case_id)", shell)
