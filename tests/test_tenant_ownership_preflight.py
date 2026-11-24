@@ -136,9 +136,11 @@ class TenantOwnershipPreflightTests(unittest.TestCase):
                 INSERT INTO docs VALUES (10,1,1);
                 INSERT INTO chunks VALUES (20,1,10);
                 INSERT INTO document_annotations VALUES
-                    (1,999,999,2,999,999);
+                    (1,999,999,2,999,999),
+                    (2,10,1,2,20,1);
                 INSERT INTO document_annotation_events VALUES
-                    (1,999,2,999,999);
+                    (1,999,2,999,999,999),
+                    (2,2,2,1,10,1);
             """)
             report = audit(db)
             codes = {item["code"]: item["count"] for item in report["findings"]}
@@ -146,7 +148,12 @@ class TenantOwnershipPreflightTests(unittest.TestCase):
             self.assertEqual(codes["document_annotation_case_missing"], 1)
             self.assertEqual(codes["document_annotation_chunk_missing"], 1)
             self.assertEqual(codes["document_annotation_author_missing"], 1)
+            self.assertEqual(codes["document_annotation_author_firm_mismatch"], 1)
+            self.assertEqual(codes["document_annotation_document_firm_mismatch"], 1)
+            self.assertEqual(codes["document_annotation_case_firm_mismatch"], 1)
             self.assertEqual(codes["document_annotation_event_parent_missing"], 1)
+            self.assertEqual(codes["document_annotation_event_actor_missing"], 1)
+            self.assertEqual(codes["document_annotation_event_actor_firm_mismatch"], 1)
             self.assertEqual(report["status"], "review_required")
         finally:
             db.close()
