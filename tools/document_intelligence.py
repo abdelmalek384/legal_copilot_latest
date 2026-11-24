@@ -578,10 +578,7 @@ def extract_structured_candidates(text: str, max_items: int = 250, max_sentences
     if isinstance(max_sentences, bool) or not isinstance(max_sentences, int) or not 1 <= max_sentences <= 50000:
         raise ValueError("max_sentences must be an integer between 1 and 50000")
 
-    page_marker_matches = list(_PAGE_MARKER.finditer(text))
-    if len(page_marker_matches) > 20000:
-        raise ValueError("document contains too many page markers for structured extraction")
-    page_markers = [(match.start(), int(match.group(1))) for match in page_marker_matches]
+    page_markers = _collect_page_markers(text)
     # Collect each signal family independently, then interleave families before
     # applying the shared cap. A dense date list must not starve party/legal IDs.
     entity_patterns = (
