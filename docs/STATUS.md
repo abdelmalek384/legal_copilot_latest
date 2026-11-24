@@ -1644,3 +1644,21 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Repaired four historical-event rows EV-0110–EV-0113 that had each been wrapped as one quoted CSV field. Normalized 203 additional event rows that lacked the `text_status` field by inserting the explicit placeholder `not separately recorded in source row` while preserving the existing notes.
 - Post-write structural checks: register **516 rows / 12 columns / 0 ragged / 0 duplicate IDs**; full-text inventory **188 / 11 / 0 / 0**; classification **412 / 5 / 0 / 0**; historical-event ledger **350 / 12 / 0 ragged**. Inventory and classification have zero orphan keys; historical events have zero orphan national IDs after excluding seven intentional `EG-CASE-*` fixtures.
 - These are data-integrity improvements only. No legal verification, currentness, rights clearance, lawyer sign-off or retrieval-quality improvement is claimed.
+
+### 2026-11-24 progress delta after identifier and review-race work
+
+| Workstream / task | Previous | Current | Delta | Basis |
+|---|---:|---:|---:|---|
+| Legal Research engineering | 65% | 65% | 0 pp | No new retrieval-engine code or full Python validation in this pass |
+| Legal-source acquisition/evidence | 33% | 33% | 0 pp | This pass repaired identity and evidence-index integrity; it did not add a new complete legal source |
+| Retrieval evaluation | 5% | 5% | 0 pp | No lawyer-approved expected answers or measured retrieval metrics added |
+| Integration/regression validation | 25% | **27%** | **+2 pp** | Targeted SQLite stale-review compare-and-swap behavior checked; four CSV datasets reparsed and cross-linked after repairs; no full suite/browser acceptance |
+| National legal-content coverage | ~1.5% | ~1.5% | 0 pp | No defensible national denominator; no coverage increase claimed |
+| Legal evidence readiness | ~7% | ~7% | 0 pp | No lawyer sign-off/currentness/rights clearance gained |
+| Small-firm pilot readiness | ~35% | ~35% | 0 pp | No live firm acceptance or pilot gate completed |
+
+**Completed task deltas**
+- Identifier collision remediation: 0% → **100% for the four targeted datasets** (register, inventory, classification, historical-event ledger); duplicate keys and ragged rows are now zero in all four.
+- Inventory/classification cross-reference repair: 0% → **100% for the audited key joins**; zero orphan inventory or classification IDs.
+- PR #1933 stale-review race guard: open draft → **merged on main** at `e3c1d13abd9dd0e590fef7d1d7a5095e24b890e9`; targeted SQLite fixture confirmed stale source rowcount 0 and current source update rowcount 1. Full app suite/browser acceptance remains outstanding.
+- Pending PR count: 1 → **0**. No open PRs at final check.
