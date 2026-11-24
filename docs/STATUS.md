@@ -1490,3 +1490,10 @@ These are open because they require external acceptance evidence, not because th
 | #1903 Source-match evidence persistence | 0% integration | 0% | Shared-corpus/DB adapter ownership and source permission prerequisites; keep fail-closed and do not enable |
 
 Percentages are scoped to the described implementation or acceptance phase. They do not mean the overall product or legal corpus is ready. Do not close these issues until their listed evidence is attached.
+
+
+### 2026-11-24 repository navigation audit
+
+- Checked every relative Markdown target linked from `docs/research/egypt_national_legal_research_index_2026-11-17.md`; all 68 unique local targets resolve on `main`. One in-page anchor was excluded from file-existence checks.
+- Checked the local targets in `docs/research/README_labour_law_harvest.md`; found one broken filename for Decision 269/2025. Corrected it to the existing `decision_269_2025_labour_market_central_databases.md` and confirmed the corrected target exists. The other checked local targets resolve.
+- This was a repository navigation/documentation fix only; no legal status or source-trust flags changed.
