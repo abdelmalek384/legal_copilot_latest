@@ -6,6 +6,7 @@
 ## Manual checkpoint — 2026-11-24
 
 - Static JSON audit of `docs/source_permission_register.json` (199 source records): all records have non-empty unique `source_id` values; all inspected `source_page`, `terms_url`, and `related_source_pages` entries passed a simple HTTPS/whitespace check. This was a content-level audit only; no repository test was executed.
+- Legal Research UI trust-boundary correction: the workspace names Egyptian law; the compact source inspector now says `Verified operative text` / `نص ساري متحقق منه`; the `Lawyer-verified` badge now requires a `verified_operative_text` source status and the qualified-counsel attestation marker, while legacy generic `verified` tiers fail closed to `Unverified`. Frontend regression tests were added. Static source assertions passed, but the Python tests and browser acceptance remain unexecuted.
 - No GitHub Actions runs were returned for the direct requirements rollback commit. Dependency upgrade PRs remain pending and are not merged because the Python 3.12 hash lock was not regenerated or tested. Billing-related CI unavailable is not treated as pass.
 - Two AI-2 drafts (#1911, #1912) are closed unmerged; runtime, migration and browser acceptance remain outstanding.
 
