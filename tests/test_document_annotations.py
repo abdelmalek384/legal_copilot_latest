@@ -161,6 +161,8 @@ class DocumentAnnotationAPITests(unittest.TestCase):
         self.assertIn("حفظ الملاحظة", html)
         self.assertIn("Save note", html)
         self.assertIn("Array.from(fullText.slice(0,range.startOffset)).length", html)
+        self.assertIn("pendingSelectionRange", html)
+        self.assertIn("getRangeAt(0).cloneRange()", html)
         self.assertIn("text_sha256:chunk.text_sha256", html)
         self.assertIn("stale_anchor", html)
         self.assertIn("item.annotations=Array.isArray(annotationData.annotations)?annotationData.annotations:[]", html)
