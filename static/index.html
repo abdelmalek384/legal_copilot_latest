@@ -2207,9 +2207,9 @@ async function tasksPage(){PAGE='tasks';const d=await api('/dashboard'),q=h('inp
 async function calendarPage(){
  PAGE='calendar';
  const d=await api('/dashboard?calendar_days=365&deadline_days=365'),items=[];
- (d.tasks||[]).filter(x=>x.due).forEach(x=>items.push({kind:'task',title:x.title,date:x.due,meta:x.case_title||'',caseTitle:x.case_title||'',id:x.id,assignee:x.assignee_name||x.assignee||x.owner_name||''}));
- (d.deadlines||[]).forEach(x=>items.push({kind:'deadline',title:x.title,date:x.due,meta:x.case_title||'',caseTitle:x.case_title||'',id:x.id,assignee:x.assignee_name||x.assignee||x.owner_name||''}));
- (d.sessions||[]).forEach(x=>items.push({kind:'session',title:x.title||x.note||uiText('جلسة','Hearing'),date:x.date,meta:x.case_title||x.note||'',caseTitle:x.case_title||'',id:x.id,assignee:x.assignee_name||x.assignee||x.owner_name||''}));
+ (d.tasks||[]).filter(x=>x.due).forEach(x=>items.push({kind:'task',title:x.title,date:x.due,meta:x.case_title||'',caseTitle:x.case_title||'',caseId:x.case_id,id:x.id,assignee:x.assignee_name||x.assignee||x.owner_name||''}));
+ (d.deadlines||[]).forEach(x=>items.push({kind:'deadline',title:x.title,date:x.due,meta:x.case_title||'',caseTitle:x.case_title||'',caseId:x.case_id,id:x.id,assignee:x.assignee_name||x.assignee||x.owner_name||''}));
+ (d.sessions||[]).forEach(x=>items.push({kind:'session',title:x.title||x.note||uiText('جلسة','Hearing'),date:x.date,meta:x.case_title||x.note||'',caseTitle:x.case_title||'',caseId:x.case_id,id:x.id,assignee:x.assignee_name||x.assignee||x.owner_name||''}));
  items.sort((a,b)=>(a.date||'').localeCompare(b.date||''));
  const q=h('input',{placeholder:uiText('ابحث بالعنوان أو اسم القضية','Search title or case name')});
  const kind=h('select',{'aria-label':uiText('تصفية الأجندة حسب النوع','Filter calendar by type')},new Option(uiText('كل العناصر','All items'),''),new Option(uiText('الجلسات','Hearings'),'session'),new Option(uiText('المواعيد القانونية','Legal deadlines'),'deadline'),new Option(uiText('المهام','Tasks'),'task'));const matterFilter=h('select',{'aria-label':uiText('تصفية حسب ملف القضية','Filter by matter')},new Option(uiText('كل ملفات القضايا','All matters'),''),...[...new Set(items.map(x=>x.caseTitle).filter(Boolean))].sort().map(name=>new Option(name,name)));
@@ -2231,7 +2231,7 @@ async function calendarPage(){
   list.replaceChildren(h('div',{className:'calendar-agenda-heading'},h('b',{textContent:dateText}),h('span',{className:'mut',textContent:rows.length+' '+uiText('عنصر','items')})),info,...(rows.length?rows.map(x=>{
    const label=x.kind==='session'?uiText('جلسة','Hearing'):x.kind==='deadline'?uiText('موعد قانوني','Legal deadline'):uiText('مهمة','Task');
    const action=x.kind==='task'?btn(uiText('إنجاز','Complete'),async()=>{await api('/tasks/'+x.id+'/done','POST');calendarPage()},'g'):x.kind==='deadline'?btn(uiText('إنجاز','Complete'),async()=>{await api('/deadlines/'+x.id+'/done','POST');calendarPage()},'g'):null;
-   return h('div',{className:'workspace-list-item calendar-agenda-item'},h('div',{className:'item-main'},h('b',{textContent:x.title}),h('div',{className:'item-meta',textContent:label+' · '+(x.meta||'')}),x.assignee?h('div',{className:'item-meta',textContent:uiText('المسند إليه: ','Assigned to: ')+x.assignee}):null),h('div',{className:'calendar-agenda-actions'},h('b',{textContent:fd(x.date)}),action));
+   return h('div',{className:'workspace-list-item calendar-agenda-item'},h('div',{className:'item-main'},h('b',{textContent:x.title}),h('div',{className:'item-meta',textContent:label+' · '+(x.meta||'')}),x.assignee?h('div',{className:'item-meta',textContent:uiText('المسند إليه: ','Assigned to: ')+x.assignee}):null),h('div',{className:'calendar-agenda-actions'},h('b',{textContent:fd(x.date)}),x.caseId?btn(uiText('فتح ملف القضية','Open case'),()=>view(x.caseId),'g'):null,action));
   }):[empty(uiText('لا توجد عناصر لهذا اليوم. اختر يوماً آخر أو غيّر عوامل التصفية.','No items on this day. Choose another date or adjust the filters.'))]));
  };
  const drawMonth=()=>{
