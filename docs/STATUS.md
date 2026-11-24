@@ -1383,3 +1383,11 @@ The previously recorded estimates remain unchanged pending exact-head automated 
 - Text-diff generation now fails closed when a comparison would exceed the 200-segment output ceiling. Previously it stopped after 200 segments and silently omitted later differences, which could mislead a reviewer. The existing list return shape is preserved for ordinary comparisons; overflow raises a clear `ValueError`. A regression test exercises a deliberately fragmented diff.
 
 - Page-provenance indexing in both review-candidate and structured-candidate extraction now has a 20,000-marker ceiling. Inputs exceeding it fail closed instead of allocating an unbounded offset index or risking incomplete page attribution. Regression tests cover both public extraction paths.
+
+
+## 2026-11-24 maintenance checkpoint
+
+- Open pull-request queue checked: zero open PRs. Work in closed PR branches is not represented as merged and must be recovered deliberately before reuse.
+- Fixed the OCR importer test double in `tests/test_import_laws_bundle.py`: its mocked page now supplies finite positive page geometry required by the production pre-render pixel-limit guard. Commit: `cdc415d6bf5c4d267f854ba64129d6b3076f5f44`.
+- Exact-head workflow lookup for that direct-main commit returned no PR-triggered workflow runs. The fixture correction is committed, but its test is **not yet runtime-verified**.
+- Release decision remains **NOT READY**. Do not infer legal verification, operational readiness, or test success from a zero-PR queue. Lawyer review, source rights/currentness, clean Python 3.12 locked-environment test execution, browser/device acceptance, and witnessed backup/restore remain separate release gates.
