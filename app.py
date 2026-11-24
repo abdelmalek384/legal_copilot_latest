@@ -7869,9 +7869,32 @@ def claim_task(tid: int, u: dict = Depends(user)):
 @app.post("/tasks/{tid}/done")
 @rollback_tenant_transaction_on_error
 def finish(tid: int, u: dict = Depends(user)):
-    c = conn(); t = c.execute("SELECT * FROM tasks WHERE id=?", (tid,)).fetchone()
-    if not t: raise HTTPException(404, "task not found")
-    need(c, u, t["case_id"]); c.execute("UPDATE tasks SET status='done' WHERE id=?", (tid,)); log(c, t["case_id"], u["name"], "تم إنجاز: " + t["title"]); c.commit(); return {"ok": True}
+    c = conn()
+    task = c.execute(
+        "SELECT t.id,t.case_id,t.title,t.status FROM tasks t "
+        "JOIN cases cs ON cs.id=t.case_id WHERE t.id=? AND cs.firm_id=?",
+        (tid, u["firm_id"]),
+    ).fetchone()
+    if task is None:
+        raise HTTPException(404, "task not found")
+    need(c, u, task["case_id"])
+    if task["status"] == "done":
+        return {"ok": True, "already_done": True}
+    changed = c.execute(
+        "UPDATE tasks SET status='done' WHERE id=? AND status='open'",
+        (tid,),
+    ).rowcount
+    if not changed:
+        current = c.execute(
+            "SELECT status FROM tasks WHERE id=? AND case_id=?",
+            (tid, task["case_id"]),
+        ).fetchone()
+        if current is not None and current["status"] == "done":
+            return {"ok": True, "already_done": True}
+        raise HTTPException(404, "task not found")
+    log(c, task["case_id"], u["name"], "تم إنجاز: " + task["title"])
+    c.commit()
+    return {"ok": True}
 
 
 @app.post("/cases/{cid}/sessions")
@@ -8213,12 +8236,30 @@ def new_deadline(cid: int, b: DeadlineIn, u: dict = Depends(user)):
 @rollback_tenant_transaction_on_error
 def deadline_done(did: int, u: dict = Depends(user)):
     c = conn()
-    row = c.execute("SELECT d.case_id FROM deadlines d JOIN cases cs ON cs.id=d.case_id WHERE d.id=? AND cs.firm_id=?",
-                    (did, u["firm_id"])).fetchone()
-    if not row: raise HTTPException(404, "deadline not found")
+    row = c.execute(
+        "SELECT d.case_id,d.status FROM deadlines d JOIN cases cs ON cs.id=d.case_id "
+        "WHERE d.id=? AND cs.firm_id=?",
+        (did, u["firm_id"]),
+    ).fetchone()
+    if row is None:
+        raise HTTPException(404, "deadline not found")
     need(c, u, row["case_id"], lead=True)
-    c.execute("UPDATE deadlines SET status='done' WHERE id=?", (did,))
-    log(c, row["case_id"], u["name"], "إكمال موعد قانوني"); c.commit()
+    if row["status"] == "done":
+        return {"ok": True, "already_done": True}
+    changed = c.execute(
+        "UPDATE deadlines SET status='done' WHERE id=? AND status='open'",
+        (did,),
+    ).rowcount
+    if not changed:
+        current = c.execute(
+            "SELECT status FROM deadlines WHERE id=? AND case_id=?",
+            (did, row["case_id"]),
+        ).fetchone()
+        if current is not None and current["status"] == "done":
+            return {"ok": True, "already_done": True}
+        raise HTTPException(404, "deadline not found")
+    log(c, row["case_id"], u["name"], "إكمال موعد قانوني")
+    c.commit()
     return {"ok": True}
 
 
