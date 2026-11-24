@@ -2,7 +2,7 @@
 
 **Instrument:** Minister of Manpower and Migration Decision No. 214 of 2003  
 **Arabic title:** قرار وزير القوى العاملة والهجرة رقم ٢١٤ لسنة ٢٠٠٣ بتشكيل واختصاصات مجلس إدارة صندوق الخدمات الاجتماعية والصحية والثقافية  
-**Publication identified in the secondary reproduction:** الوقائع المصرية، العدد ٢٢٧ تابع (أ)، ٥ أكتوبر ٢٠٠٣، printed pages 54–56.  
+**Publication metadata conflict:** HRDiscussion's listing identifies Decision 214/2003 in الوقائع المصرية، العدد ٢٢٧ تابع (ب)، ٥ أكتوبر ٢٠٠٣. The RaaftAlshaer compiled PDF's page header immediately before the transcription appears to show العدد ٢٢٧ تابع (أ). The issue supplement must be confirmed against the original Gazette page image; printed reproduction pages 54–56 are retained only as location hints.  
 **Acquisition status:** Four-article Arabic transcription captured from a secondary-hosted compiled PDF. No original official Gazette PDF bytes or SHA-256 were obtained.  
 **Historical status:** Decision 16/2012 Article 14 repealed Decision 214/2003. It is historical, not a current Fund Board composition rule.
 
@@ -60,7 +60,7 @@
 
 ## Provenance
 
-1. **Secondary compiled PDF:** https://raafatelshaer.com/wp-content/uploads/2018/12/ملف-كامل-بالصناديق-الخاصه-بقانون-العمل-12-لسنه-2003.pdf — printed pages 54–56 reproduce Decision 214/2003 and identify Official Gazette issue 227 supplement (B) / supplement (A) page sequence. The compilation is not an official Gazette binary and its reuse terms are not verified.
+1. **Secondary compiled PDF:** https://raafatelshaer.com/wp-content/uploads/2018/12/ملف-كامل-بالصناديق-الخاصه-بقانون-العمل-12-لسنه-2003.pdf — printed pages 54–56 reproduce Decision 214/2003, but the supplement letter conflicts with the HRDiscussion listing (B) and the PDF page header (A). Confirm against the original Gazette page image. The compilation is not an official Gazette binary and its reuse terms are not verified.
 2. **Official Ministry legislation index:** https://www.labour.gov.eg/ar/القوانين-والتشريعات/ — Ministry index route; item-specific official PDF locator was not found in this pass.
 3. **Source-rights status:** secondary compilation rights are unknown; no bulk extraction or redistribution permission is inferred. See source permission register entry EG-RAAFATELSHAER-LEGACY-LABOUR-FUNDS-PDF-2018.
 
