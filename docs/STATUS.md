@@ -1769,3 +1769,10 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - These tests are committed but **not executed**. The inventory is still metadata-only and makes no legal corpus, authenticity, permission, currentness, or lawyer-review certification.
 
 - Final wording correction: the clean Markdown inventory now explicitly says it found no missing, malformed, or duplicate identifiers, rather than referring only to missing identifiers. Commit: `bc6b2b69351188afaa56e0a7959b3a039a8e1215`.
+
+## AI-2 login session-fixation regression — 2026-11-25
+
+- Added a focused separate-runtime MFA-account test that seeds attacker-chosen pre-authentication session and CSRF cookies, performs a real test-client login, and asserts both values are replaced by independently issued secrets.
+- The regression verifies that only the new session hash is persisted, the attacker-controlled session value is not accepted, the authenticated session cookie is HttpOnly, the CSRF cookie remains script-readable for the double-submit pattern, and both cookies use SameSite=Lax.
+- Test source was read back and all eight static contract checks passed. The repository test module and browser flow were not executed; GitHub Actions are not used because runner billing is blocked, and local checkout/runtime remains unavailable.
+- **Bounded implementation task: 100%.** **Runtime validation: 0%** until the exact-head test is run in a supported local environment. No authentication implementation changed and no pilot/security acceptance is implied.
