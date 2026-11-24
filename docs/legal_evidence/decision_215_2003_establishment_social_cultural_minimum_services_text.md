@@ -2,7 +2,7 @@
 
 **Instrument:** Minister of Manpower and Migration Decision No. 215 of 2003  
 **Arabic title:** قرار وزير القوى العاملة والهجرة رقم ٢١٥ لسنة ٢٠٠٣ بتحديد الحد الأدنى للخدمات الاجتماعية والثقافية على مستوى المنشأة  
-**Publication identified by the secondary text page:** الوقائع المصرية، العدد ٢٢٧ تابع (أ)، ٥ أكتوبر ٢٠٠٣.  
+**Publication identified by the secondary text page:** الوقائع المصرية، العدد ٢٧٧ تابع (أ)، ٥ أكتوبر ٢٠٠٣. The issue number is secondary-source metadata and still requires confirmation against the Gazette page image.  
 **Acquisition status:** Three operative articles captured from a secondary transcription. The Ministry of Labour's official index lists the decision and an official Ministry PDF locator is available, but the official PDF download timed out in this pass. No official PDF bytes or SHA-256 were obtained.  
 **Trust:** secondary text captured; official locator identified; not primary-byte matched; not lawyer-reviewed; currentness unverified.
 
@@ -29,7 +29,7 @@
 
 ## Source anomaly — do not silently normalize
 
-The secondary HRDiscussion transcription also includes a preamble fragment about nominations by several ministries for a central committee setting licensing standards for shops and industrial establishments. That fragment appears unrelated to the subject of Decision 215/2003 and may be contamination from an adjacent instrument or a transcription error. It is **not** included in the operative transcription above. The preamble and the Gazette page image must be checked against the official Ministry PDF before treating the captured text as complete.
+The secondary HRDiscussion transcription also includes a preamble fragment about nominations by several ministries for a central committee setting licensing standards for shops and industrial establishments. That fragment appears unrelated to the subject of Decision 215/2003 and may be contamination from an adjacent instrument or a transcription error. It is **not** included in the operative transcription above. The preamble and the Gazette page image must be checked against the official Ministry PDF before treating the captured text as complete. The 217/2003 reproduction in the separate compilation identifies issue 227 (A) on the same date; that does not establish the issue number for Decision 215, so retain the 277 label only as the HRDiscussion transcription's metadata until the official page is checked.
 
 ## Provenance
 
