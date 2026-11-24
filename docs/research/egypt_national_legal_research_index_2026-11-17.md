@@ -143,3 +143,28 @@ All newly recovered entries remain provisional. Preserve `lawyer_reviewed=false`
 - New standalone captures include Decision 266/2025 (25 articles; 435 occupation rows identified but not transcribed/verified), Decision 272/2025 (selected extracts), Decision 279/2025 (selected extracts/topic map), Decision 288/2025 (six articles), Decisions 267/270/2025 (complete secondary texts), Decision 346/2025 (two articles), and Decisions 48–50/2026 (with both Decision 50 annex text layers captured).
 - Later 2026 captures include Decision 74/2026 (17-article secondary text), Decision 75/2026 (15 articles; official indexed text corroborates most but not all), and the full Decision 50 annex extraction. See [labour harvest index](README_labour_law_harvest.md) items 87–96 for per-instrument source and gap notes.
 - All recovered texts remain research-only: no lawyer approval, no production verification, and no source-reuse clearance.
+
+
+## 37. Waste Management Decisions 1113 and 1114/2024 — Law 202/2020 implementation
+
+- [PM Decisions 1113/2024 and 1114/2024 Arabic text acquisition](../legal_evidence/waste_management_pm_decisions_1113_1114_2024_arabic_text_acquisition_2026-11-23.md) — Decision 1113/2024 text and fee amendments with Ministry of Finance / Gazette catalogue evidence; Decision 1114/2024 fee schedules captured from Amiri Press searchable text. Page-image matching and current consolidated fee validation remain open.
+- [Decision 1114/2024 fee schedule capture](../legal_evidence/decision_1114_2024_waste_service_fee_schedule_arabic_capture_2026-11-23.md) — structured monthly EGP schedules by residential/commercial/industrial unit and area category; partial capture, not a final billing rule.
+
+## 38. Traffic Law 66/1973 — Law 17/2024 amendment supplement
+
+- [Traffic Law amendment-text acquisition supplement](../legal_evidence/traffic_law_66_1973_amendment_text_acquisition_supplement_2026-11-23.md) — partial Arabic extracts and article crosswalk for Law 17/2024, with Gazette reproduction and official catalogue/SIS metadata. This supplements the existing base-law checkpoint; verify the full amendment text and later changes before consolidation.
+
+## 39. Health-facility concessions and university regulation source captures
+
+- [PM Decision 2856/2024 — Health Law 87/2024 executive regulation](../legal_evidence/health_concession_executive_regulation_2856_2024_full_arabic_text_acquisition_2026-11-23.md) — nine numbered provisions transcribed from a secondary full-text source, with Gazette issue 36 (مكرر) locator; official issue PDF was not visually checked.
+- [Presidential Decision 809/1975 — Universities Law executive regulation text capture](../legal_evidence/universities_executive_regulation_809_1975_text_capture_2026-11-23.md) — issuing Articles 1–3 and selected base-law excerpts only; the attached regulation body was not acquired. Do not treat it as a complete executive regulation.
+
+## 40. Occupational safety, social insurance and pension 2026 acquisition supplements
+
+- [OSH Decisions 249–252/2026 incremental text acquisition](../legal_evidence/osh_decisions_249_250_251_252_incremental_text_acquisition_2026-11-20.md) — official Gazette bundle metadata and Ministry announcement locate five decisions 248–252; new Arabic excerpts and alternate-source leads are captured, but the issue PDF remains request-copy restricted and these texts are not complete Gazette transcriptions.
+- [Social-insurance follow-on acquisition](../legal_evidence/social_insurance_follow_on_acquisition_2026-11-20.md) — includes new National Social Insurance Authority Decision 5218/2026 text, additional instrument leads and a partial secondary item; the 3/4 rate is limited to this acquisition pass, not the whole social-insurance corpus.
+- [Presidential Decree 271/2026 and NOSI Decision 2900/2026 Arabic text acquisition](../legal_evidence/social_insurance_pension_increase_271_2026_and_canal_bank_decision_2900_2026_arabic_text_2026-11-20.md) — Amiri Press indexed-text and Gazette metadata leads with issue-letter discrepancy explicitly retained for Decree 271/2026.
+
+## 41. Human-resource skills council — PM Decision 3561/2026
+
+- [Decision 3561/2026 incremental Arabic clauses](../legal_evidence/acquisition_tranche_finance634_and_hr_skills3561_2026-11-18.md) — Articles 5, 8 and 10 captured from secondary sources, including committee formation and quarterly reporting; full 10-article text and Gazette scan remain outstanding.
