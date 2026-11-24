@@ -37,7 +37,7 @@ The following values were read from the Gazette-layout page images, not copied f
 
 These five are source discrepancies between the Gazette-layout page images and the LAW HUB HTML transcription, not editorial corrections. The 2023 Gazette reproduction independently corroborates the Gazette-layout readings for these sampled entries. Do not silently overwrite the LAW HUB values; preserve both source values and page locators until the Amiri Press original or an independently authenticated copy is obtained and a qualified reviewer resolves them.
 
-All 19 schedule page images, printed pages 12–30, have now been visually inspected and show serial entries 1–435. This is full page-image coverage, not a complete row-by-row comparison of every occupation code against the secondary HTML text; only the nine discrepancies above have been individually recorded so far.
+All 19 schedule page images, printed pages 12–30, have now been visually inspected and show serial entries 1–435. This is full page-image coverage, not a complete row-by-row comparison of every occupation code against the secondary HTML text; only the five discrepancies above have been individually recorded so far.
 
 ## Schedule count reconciliation
 
