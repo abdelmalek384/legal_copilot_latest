@@ -8872,7 +8872,9 @@ def release_original_document_legal_hold(
 
 @app.get("/cases/{cid}/docs/{document_id}/original/legal-hold/events")
 def list_original_document_legal_hold_events(
-    cid: int, document_id: int, u: dict = Depends(user)
+    cid: int, limit: int = Query(default=100, ge=1, le=200),
+    offset: int = Query(default=0, ge=0, le=100000),
+    document_id: int = 0, u: dict = Depends(user)
 ):
     """Return immutable hold history to firm admins for the authorized matter."""
     if not _separate_runtime_enabled():
@@ -8888,13 +8890,20 @@ def list_original_document_legal_hold_events(
     ).fetchone()
     if row is None:
         raise HTTPException(404, "original document not found")
+    total = int(c.execute(
+        "SELECT COUNT(*) FROM original_file_hold_events WHERE object_id=? AND document_id=? AND firm_id=?",
+        (row["object_id"], document_id, u["firm_id"]),
+    ).fetchone()[0])
     events = c.execute(
         "SELECT action,reason,actor_user_id,occurred_at "
         "FROM original_file_hold_events "
-        "WHERE object_id=? AND document_id=? AND firm_id=? ORDER BY id",
-        (row["object_id"], document_id, u["firm_id"]),
+        "WHERE object_id=? AND document_id=? AND firm_id=? ORDER BY id DESC LIMIT ? OFFSET ?",
+        (row["object_id"], document_id, u["firm_id"], limit, offset),
     ).fetchall()
-    return {"document_id": document_id, "events": [dict(event) for event in events]}
+    return {
+        "document_id": document_id, "events": [dict(event) for event in events],
+        "total": total, "limit": limit, "offset": offset, "truncated": offset + len(events) < total,
+    }
 
 
 class OriginalFileDeletionRequestIn(BaseModel):
@@ -9007,7 +9016,8 @@ def approve_original_document_deletion(
 
 @app.get("/cases/{cid}/docs/{document_id}/original/deletion-requests")
 def list_original_document_deletion_requests(
-    cid: int, document_id: int, u: dict = Depends(user)
+    cid: int, document_id: int, limit: int = Query(default=50, ge=1, le=200),
+    offset: int = Query(default=0, ge=0, le=100000), u: dict = Depends(user)
 ):
     """Expose the firm-scoped deletion decision and immutable audit history to firm admins."""
     if not _separate_runtime_enabled():
@@ -9022,24 +9032,38 @@ def list_original_document_deletion_requests(
     ).fetchone()
     if row is None:
         raise HTTPException(404, "original document not found")
+    total = int(c.execute(
+        "SELECT COUNT(*) FROM original_file_deletion_requests WHERE object_id=? AND firm_id=?",
+        (row["object_id"], u["firm_id"]),
+    ).fetchone()[0])
     requests = c.execute(
         "SELECT id,status,request_reason,requested_by_user_id,requested_at,"
         "approved_by_user_id,approved_at,approval_reason,purge_started_by_user_id,"
         "purge_started_at,completed_by_user_id,completed_at,cancelled_by_user_id,"
         "cancelled_at,cancellation_reason "
-        "FROM original_file_deletion_requests WHERE object_id=? AND firm_id=? ORDER BY id DESC",
-        (row["object_id"], u["firm_id"]),
+        "FROM original_file_deletion_requests WHERE object_id=? AND firm_id=? ORDER BY id DESC LIMIT ? OFFSET ?",
+        (row["object_id"], u["firm_id"], limit, offset),
     ).fetchall()
     result = []
     for request_row in requests:
         item = dict(request_row)
-        item["events"] = [dict(event) for event in c.execute(
-            "SELECT action,reason,actor_user_id,occurred_at FROM original_file_deletion_events "
-            "WHERE request_id=? AND firm_id=? ORDER BY id",
+        event_total = int(c.execute(
+            "SELECT COUNT(*) FROM original_file_deletion_events WHERE request_id=? AND firm_id=?",
             (request_row["id"], u["firm_id"]),
-        ).fetchall()]
+        ).fetchone()[0])
+        events = c.execute(
+            "SELECT action,reason,actor_user_id,occurred_at FROM original_file_deletion_events "
+            "WHERE request_id=? AND firm_id=? ORDER BY id DESC LIMIT 100",
+            (request_row["id"], u["firm_id"]),
+        ).fetchall()
+        item["events"] = [dict(event) for event in events]
+        item["events_total"] = event_total
+        item["events_truncated"] = len(events) < event_total
         result.append(item)
-    return {"document_id": document_id, "requests": result}
+    return {
+        "document_id": document_id, "requests": result, "total": total,
+        "limit": limit, "offset": offset, "truncated": offset + len(requests) < total,
+    }
 
 
 class DocumentClassificationIn(BaseModel):
