@@ -238,3 +238,10 @@ The full 435-row annex is not transcribed here. Preserve the occupation codes as
 ## Material correction — annex row count (23 November 2026)
 
 A subsequent inspection of the complete LawHub page through its final numbered rows (lines 875–889 of the extracted page) shows that the annex runs through **entry 435**, not 421. The earlier 421 count was based on an incomplete preview/snippet and was incorrect. The actual tail includes entries 422–435 (ship mooring, lubricating equipment, food preparation, drinks service, waiter, kitchen assistants, door-to-door sales, recycling, sorting, collection, safe disposal and porter occupations). This corrects every earlier 421 reference in this file. The secondary transcription remains unverified against Gazette page images; 435 is the observed secondary-page row count, not an independently authenticated Gazette count. Do not use this schedule for production eligibility decisions until all 435 rows are checked against the primary scan.
+
+## Explicit machine trust flags
+
+- `lawyer_reviewed: false`
+- `verified: false`
+- `rights_cleared: false`
+- This capture is research material only. It must not be treated as a lawyer-approved operative text or imported into production legal answering until the stated primary-source comparison, rights review and qualified Egyptian lawyer review are completed.
