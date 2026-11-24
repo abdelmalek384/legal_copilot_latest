@@ -41,6 +41,36 @@ class LegalCorpusInventoryTests(unittest.TestCase):
             with self.subTest(value=value):
                 self.assertIsNone(MODULE.hostname(value))
 
+    def test_coverage_matrix_rejects_duplicate_headers_ragged_rows_and_duplicate_areas(self):
+        headers = "practice_area,priority,core_materials,judgment_sources,temporal_checks,evaluation_owner,status"
+        valid = "Civil law,P0,Civil Code,Cassation,amendments,lawyer,not_started"
+        with tempfile.TemporaryDirectory() as temp:
+            path = Path(temp) / "coverage.csv"
+            cases = (
+                (headers + ",status\\n" + valid + ",not_started\\n", "duplicate column headers"),
+                (headers + "\\n" + valid + ",extra\\n", "has 8 fields; expected 7"),
+                (headers + "\\n" + valid + "\\n" + valid + "\\n", "duplicate practice_area"),
+            )
+            for raw, message in cases:
+                path.write_text(raw, encoding="utf-8")
+                with self.subTest(message=message), self.assertRaisesRegex(ValueError, message):
+                    MODULE.read_coverage_matrix(path)
+
+    def test_coverage_matrix_rejects_symlinks_and_accepts_current_register(self):
+        self.assertEqual(len(MODULE.read_coverage_matrix(MODULE.DEFAULTS["coverage"])), 21)
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            target = root / "real.csv"
+            target.write_text(
+                "practice_area,priority,core_materials,judgment_sources,temporal_checks,evaluation_owner,status\\n"
+                "Civil law,P0,Civil Code,Cassation,amendments,lawyer,not_started\\n",
+                encoding="utf-8",
+            )
+            link = root / "link.csv"
+            link.symlink_to(target)
+            with self.assertRaises(OSError):
+                MODULE.read_coverage_matrix(link)
+
     def test_repository_inventory_does_not_claim_corpus_verification(self):
         report = MODULE.build_report(MODULE.DEFAULTS)
         self.assertTrue(report["read_only"])
