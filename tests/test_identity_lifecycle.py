@@ -90,10 +90,15 @@ class IdentityLifecycleTests(unittest.TestCase):
 
     def test_identity_pages_remove_one_time_tokens_from_browser_history(self):
         router_source = (ROOT / "routers" / "identity.py").read_text(encoding="utf-8")
-        self.assertEqual(
-            router_source.count('history.replaceState(null,"",location.pathname+location.search);'),
-            2,
-        )
+        clear_history = 'history.replaceState(null,"",location.pathname+location.search);'
+        self.assertEqual(router_source.count(clear_history), 2)
+        for page_marker in ('@router.get("/invite/accept"', '@router.get("/account/recovery"'):
+            page = router_source.split(page_marker, 1)[1].split("</script>", 1)[0]
+            capture = 'new URLSearchParams(location.hash.slice(1)).get("token")||"";'
+            self.assertIn(capture, page)
+            self.assertLess(page.index(capture), page.index(clear_history))
+        self.assertIn('JSON.stringify({token,name:', router_source)
+        self.assertIn('JSON.stringify({token,new_password:', router_source)
 
     def test_public_identity_pages_are_registered_from_identity_router(self):
         app_source = (ROOT / "app.py").read_text(encoding="utf-8")
