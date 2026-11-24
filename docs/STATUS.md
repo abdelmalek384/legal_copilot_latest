@@ -1520,3 +1520,25 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Draft PR #1910 was discovered after the earlier zero-open-PR check. It contained firm-scoped passage annotations, immutable notes, migration 0025, API/UI changes and tests, but GitHub reported `mergeable=false`; exact-head Python tests, migration rehearsal and browser acceptance had not run.
 - Closed #1910 unmerged to honor the zero-pending-PR requirement and avoid force-merging an unvalidated migration/API/UI change. No part of this branch was copied into `main`.
 - This is an intentionally deferred implementation, not a completed feature. It should only be reconsidered when the branch can be rebased cleanly and its exact-head two-firm/two-case tests and browser acceptance can actually be executed.
+
+
+### 2026-11-24 end-of-pass completion snapshot
+
+| Workstream | Completion / state | Next non-blocked work |
+|---|---:|---|
+| Open pull requests | **0 open** | Keep direct-main changes small; no unvalidated PRs left open |
+| Recovered legal evidence files and index links | 100% of reviewed tranche | Continue only with distinct, accessible source text; deduplicate before adding |
+| National research-index links | 68/68 unique local targets resolve | Keep new links checked at commit time |
+| Labour research-index links | 94/94 unique local targets resolve after repairing Decision 269/2025 | Keep new links checked at commit time |
+| Recovered evidence trust-label consistency | 20 cross-domain notes updated in this pass; labour and other earlier recovered notes carry explicit flags where added | Do not promote any record without primary-source and rights/counsel evidence |
+| Initial statute register structure | 511 data rows; 0 ragged rows; 12 columns | Continue source acquisition and row-level deduplication |
+| Full-text priority inventory structure | 185 data rows; 0 ragged rows; 11 columns | Fill genuine acquisition gaps, not placeholder legal text |
+| Other checked acquisition CSVs | No column-width defects found | Expand QA only when new CSV data is added |
+| National legal-content coverage | Existing estimate ~1.5% (denominator unknown) | Broaden source-backed full-text collection; the national universe remains unenumerated |
+| Labour-domain coverage | Existing provisional estimate ~70% | Obtain missing implementing instruments/annexes and primary Gazette comparisons |
+| Legal evidence readiness | Existing estimate ~7% | No verified production-ready law is claimed |
+| Client-wide document search | 100% implementation; runtime acceptance pending | Needs real two-firm/two-case runtime test |
+| Passage annotations | Not integrated; PR #1910 closed unmerged (mergeable=false) | Reconsider only when exact-head migration/API/UI tests and browser acceptance can run |
+| Security, reminders, source-release and AWS acceptance | Implementation reported complete in earlier checkpoints; external acceptance remains 0% | Do not repeat blocked deployment/credential-dependent tasks in this pass |
+
+**Test status:** repository-level source and data-shape checks were performed through GitHub file reads. Python suites, migration rehearsal, browser acceptance and production deployment tests were not run; no test pass is claimed. The exact #1910 head was explicitly not mergeable and remained unvalidated, so it was closed unmerged. Current open-PR count was rechecked as zero.
