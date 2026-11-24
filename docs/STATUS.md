@@ -1497,3 +1497,11 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Checked every relative Markdown target linked from `docs/research/egypt_national_legal_research_index_2026-11-17.md`; all 68 unique local targets resolve on `main`. One in-page anchor was excluded from file-existence checks.
 - Checked all 94 unique relative targets in `docs/research/README_labour_law_harvest.md`; found one broken filename for Decision 269/2025, corrected it to the existing `decision_269_2025_labour_market_central_databases.md`, and confirmed all 94 targets now resolve.
 - This was a repository navigation/documentation fix only; no legal status or source-trust flags changed.
+
+
+### 2026-11-24 trust-label consistency pass
+
+- Added explicit `lawyer_reviewed: false`, `verified: false`, and `rights_cleared: false` fields to the recovered Decision 269/2025 note, the PPP Decision 3660/2026 capture, the six November 2026 housing/planning/state-ownership captures, eight October 2026 health/housing/tourism captures, and four environment/waste acquisition notes.
+- This closes a metadata-consistency gap: several documents already described themselves as provisional in prose but did not expose all three machine-readable flags together.
+- No source was promoted to verified, no rights clearance was inferred, and no production importer was enabled.
+- The affected records were committed directly to `main`; no PRs were opened. GitHub reports zero open PRs.
