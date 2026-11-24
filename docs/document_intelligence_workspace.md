@@ -56,3 +56,16 @@ This is the document-management and review workspace for uploaded matter files. 
 - Document retention/legal-hold workflow controls in this panel.
 
 These gaps must remain explicit. Do not describe this UI layer as a complete firm-wide document-management system or verified legal extraction. Saved categories are lawyer workflow metadata, not proof of authenticity, accuracy or legal effect.
+
+
+## Passage annotations — draft implementation (PR #1910)
+
+The isolated implementation stores lawyer-selected highlights and notes in the owning firm's database. Each annotation is bound to a firm, matter, document and extracted chunk, with character offsets, selected source text, a SHA-256 digest of the original extracted chunk, note, highlight color, creator and timestamp.
+
+Creation requires current matter access and resolves the chunk through the requested document and matter within the active firm. It rejects stale source digests, invalid offsets, or selected text that does not exactly match the source at the supplied offsets. Listing returns only active annotations in the same scope. Deletion requires current matter access and permits the author, firm administrator or matter lead to perform a one-way soft delete; creation and deletion are audited.
+
+Database triggers independently reject inconsistent firm/matter/document/chunk combinations and prevent ordinary updates to annotation content. The only permitted update is the initial soft-delete transition. The uploaded original file and extracted source text are not rewritten. If an extraction correction exists, it remains a separate working copy; highlights stay anchored to the original extracted text and are not silently moved when the source digest changes.
+
+The document review interface provides Arabic/English text selection, four highlight colors, a required note, annotation listing and removal, and an explicit warning when a previously annotated passage no longer matches the current source digest. This work is in draft PR #1910 and is not yet on `main`.
+
+**Acceptance still required:** run the focused test and full migration/profile suites on the exact PR head; verify author/admin/matter-lead deletion permissions and cross-firm/cross-matter denial; exercise the two-case client workflow; inspect Arabic RTL and English LTR behavior on desktop and mobile; verify the original uploaded file checksum and source chunk remain unchanged.
