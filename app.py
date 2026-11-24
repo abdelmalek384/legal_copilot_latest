@@ -9242,13 +9242,26 @@ def create_document_passage_annotation(
         raise HTTPException(422, "annotation offsets are outside the current passage")
     if source_text[b.start_offset:b.end_offset] != b.selected_text:
         raise HTTPException(422, "selected_text does not match the source passage at the supplied offsets")
-    cursor = c.execute(
+    overlap = c.execute(
+        "SELECT id FROM document_passage_annotations "
+        "WHERE firm_id=? AND case_id=? AND document_id=? AND chunk_id=? AND deleted_at IS NULL "
+        "AND start_offset < ? AND end_offset > ? LIMIT 1",
+        (int(u["firm_id"]), cid, document_id, chunk_id, b.end_offset, b.start_offset),
+    ).fetchone()
+    if overlap is not None:
+        raise HTTPException(409, "this passage overlaps an existing active highlight")
+    try:
+        cursor = c.execute(
         "INSERT INTO document_passage_annotations("
         "document_id,case_id,firm_id,chunk_id,created_by_user_id,start_offset,end_offset,"
         "selected_text,source_text_sha256,note,color) VALUES(?,?,?,?,?,?,?,?,?,?,?)",
         (document_id, cid, int(u["firm_id"]), chunk_id, int(u["id"]),
          b.start_offset, b.end_offset, b.selected_text, actual_digest, b.note, b.color),
-    )
+        )
+    except sqlite3.IntegrityError as exc:
+        if "overlaps an active passage annotation" in str(exc):
+            raise HTTPException(409, "this passage overlaps an existing active highlight") from exc
+        raise
     annotation_id = int(cursor.lastrowid)
     c.execute(
         "INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
