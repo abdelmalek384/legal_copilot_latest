@@ -206,3 +206,10 @@ A secondary legal-news result reports that a separate official notice corrected 
 - No Gazette page-image review, original-PDF hash, reuse-rights clearance, full correction-notice review or qualified Egyptian lawyer sign-off.
 - Article 15's conflict-based repeal clause remains a lead for instrument-by-instrument conflict analysis; it does not justify treating all prior decisions as wholly repealed.
 - Keep production verified status false.
+
+## Explicit machine trust flags
+
+- `lawyer_reviewed: false`
+- `verified: false`
+- `rights_cleared: false`
+- This capture is research material only. It must not be treated as a lawyer-approved operative text or imported into production legal answering until the stated primary-source comparison, rights review and qualified Egyptian lawyer review are completed.
