@@ -1823,6 +1823,13 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("citationAccuracy.onchange=()=>clearRatingError(citationAccuracy)", rating)
         self.assertIn("expected.oninput=()=>clearRatingError(expected)", rating)
 
+    def test_calendar_agenda_links_events_to_their_authorized_case_file(self):
+        start = HTML.index("async function calendarPage()")
+        calendar = HTML[start:HTML.index("async function", start + 20)]
+        self.assertIn("caseId:x.case_id", calendar)
+        self.assertIn("view(x.caseId)", calendar)
+        self.assertIn("Open case", calendar)
+
     def test_global_search_command_palette_filters_permission_scoped_navigation(self):
         start = HTML.index("const allNavItems=")
         navigation = HTML[start:HTML.index("function mfaFirmSwitcher()", start)]
