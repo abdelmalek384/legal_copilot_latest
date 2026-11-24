@@ -3553,18 +3553,15 @@ function documentIntelligencePanel(caseId,documents){
   const historyButton=btn(uiText('عرض سجل المراجعة','View review history'),async()=>{
    historyButton.disabled=true;historyResults.replaceChildren(h('p',{className:'mut',textContent:uiText('جارٍ تحميل سجل المراجعة...','Loading review history...')}));
    try{
-    const records=[];let combinedCapReached=false,documentCapReached=false;
+    const records=[];let documentCapReached=false;
     for(const item of cache.values()){
      const result=await api('/cases/'+caseId+'/docs/'+item.doc.document_id+'/reviews');
      const reviews=Array.isArray(result.reviews)?result.reviews:[];
      if(reviews.length>=200)documentCapReached=true;
-     for(const review of reviews){
-      if(records.length>=100){combinedCapReached=true;break}
-      records.push({...review,filename:item.doc.name});
-     }
-     if(combinedCapReached)break;
+     for(const review of reviews)records.push({...review,filename:item.doc.name});
     }
     records.sort((a,b)=>String(b.created_at||'').localeCompare(String(a.created_at||'')));
+    const combinedCapReached=records.length>100;
     const rows=records.slice(0,100).map((review,index)=>h('article',{className:'card'},h('div',{className:'row'},h('b',{textContent:(index+1)+'. '+review.filename+' · '+uiText('المقطع ','Chunk ')+review.chunk_id}),pill(({accepted:uiText('مقبول','Accepted'),corrected:uiText('تم التصحيح','Corrected'),needs_recheck:uiText('إعادة فحص','Needs recheck')}[review.outcome]||review.outcome),review.outcome==='needs_recheck'?'soon':'done')),h('p',{className:'mut',textContent:[review.created_at,review.page_reference?uiText('صفحة ','Page ')+review.page_reference:'',uiText('المراجع: ','Reviewer: ')+(review.reviewer_name||uiText('مستخدم رقم ','User ID ')+review.reviewer_user_id)].filter(Boolean).join(' · ')}),review.note?h('p',{textContent:uiText('ملاحظة: ','Note: ')+review.note}):null,review.outcome==='corrected'?h('div',{},h('p',{className:'mut',textContent:uiText('النص قبل التصحيح','Text before correction')}),h('p',{textContent:String(review.original_text||'').slice(0,800)}),h('p',{className:'mut',textContent:uiText('النص بعد التصحيح','Corrected text')}),h('p',{textContent:String(review.reviewed_text||'').slice(0,800)})):null));
     const historyWarnings=[];
     if(docs.length>cache.size)historyWarnings.push(h('p',{className:'notice',role:'note',textContent:uiText('سجل المراجعة هنا يقتصر على المستندات التي تم تحميلها في التحليل الحالي؛ توجد مستندات أخرى لم يشملها هذا العرض.','This history view covers only documents loaded in the current analysis; other matter documents are not included in this view.')}));
