@@ -4991,11 +4991,11 @@ def conflict_check(b: Q, u: dict = Depends(user)):
         matches = [k for k in fields if conflict_name_matches(b.q, d.get(k) or "")]
         if matches and not d["visible"]:
             hidden_match = True
-        elif matches:
+        elif matches and len(found) < 100:
             d["matched_fields"] = matches
             d.pop("visible", None)
             found.append(d)
-    return {"query": b.q, "matches": found[:100], "possible_conflict": hidden_match,
+    return {"query": b.q, "matches": found, "possible_conflict": hidden_match,
             "admin_review_required": hidden_match,
             "warning": "فحص أولي بالبحث النصي فقط؛ لا يثبت وجود تعارض ولا ينفيه. إذا ظهرت إشارة عامة، اطلب مراجعة مسؤول المكتب. لا تعرض هذه النتيجة تفاصيل القضايا غير المصرح لك بها."}
 
