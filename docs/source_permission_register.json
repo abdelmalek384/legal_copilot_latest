@@ -3650,6 +3650,44 @@
       "terms_checked_on": "2026-10-31",
       "bulk_download_or_api": "not authorized; systematic retrieval to compile a collection/database requires written permission under the published End User Agreement",
       "required_next_action": "Use public catalogue metadata only. Do not request or bypass the restricted original PDF under the current acquisition constraint. Keep collection blocked absent explicit written permission and commercial reuse blocked absent prior written permission. Do not mark the secondary-hosted page images as official-source bytes or lawyer-verified text."
+    },
+    {
+      "source_id": "EG-IDSC-GAZETTE-2026-44BIS-A-PM-DECISION3356",
+      "authority": "Ibrachy & Dermarkar Repository; item metadata identifies Amiri Press as publisher",
+      "source_page": "https://dspace.id.com.eg/items/8eb0d1fe-3ec4-425a-9bcf-2965230e9b42/full",
+      "material_types": [
+        "Official Gazette issue metadata",
+        "PM Decision 3356/2026 metadata",
+        "Official Gazette PDF listing"
+      ],
+      "access_status": "Public item metadata identifies Official Gazette issue 44 bis (A), dated 2026-11-01, and PM Decision 3356/2026. The listed 2.7 MB original PDF opens a request-a-copy form stating all files of the item are in restricted access. No PDF bytes or SHA-256 were obtained.",
+      "collection_permission": "not_allowed_without_explicit_exception_or_license",
+      "commercial_reuse_permission": "prior_written_permission_required_per_published_terms",
+      "terms_url": "https://dspace.id.com.eg/info/end-user-agreement",
+      "permission_evidence": "The item page lists the original 2.7 MB Gazette PDF; its Download link opens a request-a-copy form explicitly stating all files of the item are in restricted access. The repository End User Agreement limits content to personal, non-commercial use; copying, aggregating, republishing, distributing, selling, licensing or commercial exploitation requires express prior written permission; systematic retrieval to compile a collection/database requires written permission; and bypassing access/copy restrictions is prohibited. No original bytes or item-specific license text were obtained. Public catalogue metadata and the publisher field do not grant collection or reuse rights.",
+      "terms_checked_on": "2026-10-31",
+      "bulk_download_or_api": "not authorized; systematic retrieval to compile a collection/database requires written permission under the published End User Agreement",
+      "required_next_action": "Use public catalogue metadata only. Do not request or bypass the restricted original PDF under the current acquisition constraint. Keep collection blocked absent explicit written permission and commercial reuse blocked absent prior written permission. The full text captured from LAW HUB is secondary and must not be labeled an official-source byte match."
+    },
+    {
+      "source_id": "EG-LAWHUB-PM-DECISION3356-2026",
+      "authority": "LAW HUB; secondary reproduction of Prime Minister Decision 3356/2026",
+      "source_page": "https://lawhub.info/eg/?p=20271",
+      "material_types": [
+        "Secondary full-text transcription of PM Decision 3356/2026",
+        "Secondary-hosted Gazette PDF facsimile"
+      ],
+      "access_status": "Public secondary page and linked PDF reproduce the 18-article decision and identify Gazette issue 44 bis (A), dated 2026-11-01. The PDF is not an official Amiri Press-hosted byte source; no primary-source hash match or lawyer review is claimed.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "The page and linked PDF expose the secondary transcription/facsimile. No page-specific licence or permission for bulk extraction, redistribution or commercial reuse was verified for this specific decision. Do not infer that a CC BY notice on other LAW HUB pages covers this PDF or embedded Gazette material.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established for this specific PDF or its embedded Gazette material",
+      "required_next_action": "Use for manual research and comparison only. Keep the full-text transcription labeled secondary and unverified; verify against the restricted official Gazette original through a lawful source route and check item-specific reuse terms before ingestion or redistribution.",
+      "related_source_pages": [
+        "https://lawhub.info/eg/wp-content/uploads/2026/11/lawhub.info-eg-dec-3356-2026-.pdf"
+      ]
     }
   ]
 }
