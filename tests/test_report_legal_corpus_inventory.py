@@ -47,9 +47,9 @@ class LegalCorpusInventoryTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp:
             path = Path(temp) / "coverage.csv"
             cases = (
-                (headers + ",status\\n" + valid + ",not_started\\n", "duplicate column headers"),
-                (headers + "\\n" + valid + ",extra\\n", "has 8 fields; expected 7"),
-                (headers + "\\n" + valid + "\\n" + valid + "\\n", "duplicate practice_area"),
+                (headers + ",status\n" + valid + ",not_started\n", "duplicate column headers"),
+                (headers + "\n" + valid + ",extra\n", "has 8 fields; expected 7"),
+                (headers + "\n" + valid + "\n" + valid + "\n", "duplicate practice_area"),
             )
             for raw, message in cases:
                 path.write_text(raw, encoding="utf-8")
@@ -62,8 +62,8 @@ class LegalCorpusInventoryTests(unittest.TestCase):
             root = Path(temp)
             target = root / "real.csv"
             target.write_text(
-                "practice_area,priority,core_materials,judgment_sources,temporal_checks,evaluation_owner,status\\n"
-                "Civil law,P0,Civil Code,Cassation,amendments,lawyer,not_started\\n",
+                "practice_area,priority,core_materials,judgment_sources,temporal_checks,evaluation_owner,status\n"
+                "Civil law,P0,Civil Code,Cassation,amendments,lawyer,not_started\n",
                 encoding="utf-8",
             )
             link = root / "link.csv"
