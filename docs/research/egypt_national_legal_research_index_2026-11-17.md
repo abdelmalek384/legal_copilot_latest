@@ -241,3 +241,11 @@ All newly recovered entries remain provisional. Preserve `lawyer_reviewed=false`
 ## 59. NFSA Board Decision 7/2020 — risk-based food-import control
 
 - [Decision 7/2020 Arabic text capture](../legal_evidence/nfsa_board_decision_7_2020_risk_based_food_import_control_gazette_capture_2026-11-24.md) — complete 21-article Arabic Gazette-text reproduction located in FAOLEX, issue 180 (تابع), 13 August 2020. Covers risk assessment, pre-arrival notice, green/yellow/orange/red channels, sampling, release and post-release action. Article 21 commencement must be checked against the USDA report's differing date and any Board renewal.
+
+## 60. NFSA Board Decision 8/2020 — temporary 25% import inspection rates
+
+- [Decision 8/2020 official Customs scan capture](../legal_evidence/nfsa_board_decision_8_2020_temporary_25_percent_import_inspection_rules_gazette_capture_2026-11-24.md) — two-page official Customs-hosted Gazette reproduction, both pages inspected. Articles 1–4 set temporary 25% inspection for specified white-list raw materials and finished goods under Decision 2/2020, permit the Chair to change the rate and expressly expire on 31 October 2020. Do not use as a current inspection rate; Decision 14/2020 and later instruments require reconciliation.
+
+## 61. NFSA Board Decision 9/2020 — service and laboratory fees
+
+- [Decision 9/2020 official Customs scan capture](../legal_evidence/nfsa_board_decision_9_2020_import_export_service_fees_official_scan_capture_2026-11-24.md) — signed three-page Arabic decision scan hosted by Customs, all pages inspected. Records administrative request fees, expedited/after-hours inspections, second inspection, processing/destruction supervision, transport, treatment extensions, sample coding/transport and laboratory charges. Treat as historical only until compared with Decisions 4/2021, 11/2021 and later fee instruments.
