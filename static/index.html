@@ -3562,7 +3562,7 @@ function documentIntelligencePanel(caseId,documents){
     };
     renderPassage();
     let pendingAnnotation=null;
-    const annotationNote=h('input',{type:'text',maxLength:2000,placeholder:uiText('اكتب ملاحظة مرتبطة بالمقطع المحدد','Add a note for the selected passage'),'aria-label':uiText('ملاحظة التحديد','Selected passage note')});
+    const annotationNote=h('textarea',{rows:3,maxLength:2000,placeholder:uiText('اكتب ملاحظة مرتبطة بالمقطع المحدد','Add a note for the selected passage'),'aria-label':uiText('ملاحظة التحديد','Selected passage note')});
     const annotationColor=h('select',{'aria-label':uiText('لون التظليل','Highlight color')},
      new Option(uiText('أصفر','Yellow'),'yellow'),new Option(uiText('أزرق','Blue'),'blue'),
      new Option(uiText('أخضر','Green'),'green'),new Option(uiText('وردي','Pink'),'pink'));
