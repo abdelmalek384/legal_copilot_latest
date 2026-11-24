@@ -71,3 +71,10 @@ This is a supplemental acquisition to the existing Environment Law 4/1994 / PM D
 - The Gazette PDF for Decision 2466/2024, its exact issue/page, promulgation wording, commencement clause and any additional amended provisions still require retrieval and visual comparison.
 - Compare the webpage wording against the Gazette scan before changing any ingestion status to `source_matched`.
 - Do not infer repeal, amendment or currentness beyond the source reviewed here.
+
+## Explicit machine trust flags
+
+- `lawyer_reviewed: false`
+- `verified: false`
+- `rights_cleared: false`
+- This acquisition is research-only. Preserve source-specific completeness, Gazette-image and amendment/currentness limitations; do not use as a verified/current consolidated legal source until primary-source comparison, reuse-rights review and qualified Egyptian lawyer approval are complete.
