@@ -9559,9 +9559,17 @@ def review_document_chunk(cid: int, document_id: int, chunk_id: int, b: Extracti
         if not _separate_runtime_enabled():
             c.execute("DELETE FROM chunks_fts WHERE rowid=?", (chunk_id,))
             c.execute("INSERT INTO chunks_fts(rowid,norm) VALUES(?,?)", (chunk_id, " ".join(tokens(corrected))))
-    elif b.page_reference.strip():
-        c.execute("UPDATE chunks SET page=? WHERE id=? AND document_id=? AND case_id=? AND text=?",
-                  (b.page_reference.strip(), chunk_id, document_id, cid, old_text))
+    else:
+        # Every review outcome performs a conditional write before its audit row is inserted.
+        # This closes the race where a non-correction review could be recorded against text
+        # that changed after the initial SELECT.
+        updated = c.execute(
+            "UPDATE chunks SET page=CASE WHEN ?<>'' THEN ? ELSE page END "
+            "WHERE id=? AND document_id=? AND case_id=? AND text=?",
+            (b.page_reference.strip(), b.page_reference.strip(), chunk_id, document_id, cid, old_text))
+        if updated.rowcount != 1:
+            c.rollback()
+            raise HTTPException(409, "extracted text changed during review; reload the latest text and retry")
     cur = c.execute(
         "INSERT INTO document_extraction_reviews(document_id,case_id,firm_id,chunk_id,reviewer_user_id,outcome,original_text,reviewed_text,note,page_reference) "
         "VALUES(?,?,?,?,?,?,?,?,?,?)",
