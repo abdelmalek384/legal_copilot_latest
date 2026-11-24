@@ -7189,7 +7189,7 @@ def compare_accessible_document_versions(
             "SELECT id,ref,page,text FROM chunks "
             "WHERE case_id=? AND document_id=? ORDER BY id",
             (case_id, document_id),
-        ).fetchall()
+        )
         pieces = []
         provenance = []
         total_chars = 0
@@ -9219,7 +9219,7 @@ def matter_document_timeline(
         rows = c.execute(
             "SELECT id,ref,page,text FROM chunks WHERE case_id=? AND document_id=? ORDER BY id",
             (cid, document_id),
-        ).fetchall()
+        )
         for row in rows:
             chunk_text = row["text"] if isinstance(row["text"], str) else ""
             if not chunk_text:
@@ -9328,7 +9328,7 @@ def matter_document_entity_mentions(
         rows = c.execute(
             "SELECT id,ref,page,text FROM chunks WHERE case_id=? AND document_id=? ORDER BY id",
             (cid, document_id),
-        ).fetchall()
+        )
         for row in rows:
             chunk_text = row["text"] if isinstance(row["text"], str) else ""
             if not chunk_text:
