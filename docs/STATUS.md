@@ -1710,3 +1710,21 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Decision 9/2021 adds the detailed legal basis for temporary release, storage/custody, sampling, re-export/destruction and importer-licence enforcement; Article9's delayed Article3(c) commencement and possible Board renewals remain to be checked.
 - Decision 10/2021 supplies the recognition/equivalence framework and integral exporting-authority evaluation criteria. Country/product-specific memoranda and current recognition lists remain unacquired.
 - Updated the Decision 270/2024 crosswalk to reflect that Decisions 9/2021 and 10/2021 now have separate evidence records. Neither new record is lawyer-reviewed, currentness-certified, rights-cleared or verified.
+
+### 2026-11-24 progress delta — six more NFSA instruments and bounded-workflow integrations
+
+| Workstream | Previous | Current | Delta | Basis / remaining gate |
+|---|---:|---:|---:|---|
+| Legal Research engineering | 65% | 65% | 0 pp | No new retrieval-engine work or full Python test run |
+| Legal-source acquisition/evidence | 34% | **36%** | **+2 pp** | Six further NFSA instruments captured: Decisions 8/2020, 9/2020, 269/2022, 270/2024, 9/2021 and 10/2021; currentness/lawyer/rights gates remain |
+| Retrieval evaluation | 5% | 5% | 0 pp | No lawyer-approved benchmark or measured retrieval metrics |
+| Integration/regression validation | 27% | **29%** | **+2 pp** | Bounded audit-history, lazy document-analysis cursors and lazy conflict-check scan integrated; targeted source checks and SQLite fixtures run; no full suite/browser acceptance |
+| National legal-content coverage | ~1.5% | ~1.5% | 0 pp | National denominator remains unknown |
+| Legal evidence readiness | ~7% | ~7% | 0 pp | No new lawyer sign-off/currentness certification/rights clearance |
+| Small-firm pilot readiness | ~35% | ~35% | 0 pp | No live firm acceptance or pilot gate |
+
+**Manual AI-2 integration details**
+- PR #1934 merged at `14ea87e44a09ab8ca754f415ed5ea580e7b60a08`: paginated legal-hold/deletion history with totals and truncation indicators; nested deletion events capped at 100 and scoped to request/firm.
+- PR #1935's non-conflicting changes were applied directly to `main` at `df28eeb003a420fd17975337e089cdf04da6bd28`: lazy cursor iteration for document comparison, matter timeline and entity mentions. Regression test added at `3dbf8b6680cbb1284ab403a17af02f0cf192c651`; branch test newline escaping was repaired before transplant.
+- PR #1936's non-conflicting changes were applied directly to `main` at the same app commit: lazy firm-wide conflict scan continues after the first 100 visible matches so hidden possible conflicts are still detected; test added at `041c95901e7ff1edcf73596e8113f319597567a0`.
+- PRs #1935 and #1936 were closed unmerged after manual transplant; no pending PR is intended. Static source-contract checks and isolated SQLite fixtures passed for all three behaviors. Full repository tests, API integration and browser/two-firm acceptance remain unrun. No Actions/CI pass is claimed.
