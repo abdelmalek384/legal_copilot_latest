@@ -4,7 +4,7 @@ CREATE TABLE document_annotations(
  document_id INTEGER NOT NULL REFERENCES docs(id) ON DELETE CASCADE,
  case_id INTEGER NOT NULL REFERENCES cases(id) ON DELETE CASCADE,
  firm_id INTEGER NOT NULL,
- chunk_id INTEGER NOT NULL,
+ chunk_id INTEGER NOT NULL REFERENCES chunks(id) ON DELETE CASCADE,
  author_user_id INTEGER NOT NULL,
  annotation_type TEXT NOT NULL CHECK(annotation_type IN ('highlight','note')),
  start_offset INTEGER NOT NULL CHECK(start_offset >= 0),
