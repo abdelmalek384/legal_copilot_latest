@@ -11,6 +11,7 @@ import argparse
 import csv
 import datetime as dt
 import hashlib
+import io
 import os
 import stat
 import json
@@ -533,16 +534,21 @@ def audit_candidate(candidate: object, permission_register: object, root: Path =
 def summarize_coverage_matrix(path: Path) -> dict:
     """Summarize planning status separately from evidence-backed candidate readiness."""
     try:
-        with path.open("r", encoding="utf-8-sig", newline="") as handle:
-            reader = csv.DictReader(handle)
-            required = {"practice_area", "priority", "status"}
-            if not reader.fieldnames or not required.issubset(set(reader.fieldnames)):
-                return {
-                    "available": False,
-                    "path": str(path),
-                    "error": "Coverage matrix must include practice_area, priority, and status columns.",
-                }
-            rows = list(reader)
+        raw = read_regular_file(path)
+        if len(raw) > 2 * 1024 * 1024:
+            return {"available": False, "path": str(path), "error": "Coverage matrix exceeds 2 MiB safety limit."}
+        decoded = raw.decode("utf-8-sig")
+        reader = csv.DictReader(io.StringIO(decoded, newline=""))
+        required = {"practice_area", "priority", "status"}
+        if not reader.fieldnames or len(reader.fieldnames) != len(set(reader.fieldnames)) or not required.issubset(set(reader.fieldnames)):
+            return {
+                "available": False,
+                "path": str(path),
+                "error": "Coverage matrix must have unique headers and include practice_area, priority, and status columns.",
+            }
+        rows = list(reader)
+        if any(None in row or any(value is None for value in row.values()) for row in rows):
+            return {"available": False, "path": str(path), "error": "Coverage matrix contains malformed/ragged CSV rows."}
     except (OSError, csv.Error, UnicodeError) as exc:
         return {"available": False, "path": str(path), "error": f"Cannot read coverage matrix: {exc}"}
 
