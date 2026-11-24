@@ -44,6 +44,8 @@ jobs:
           python-version: '3.12'
       - name: Test document extraction review workflow contract
         run: PYTHONPATH=. python tests/test_document_review_workflow.py
+      - name: Test persistent document annotations
+        run: PYTHONPATH=. python tests/test_document_annotations.py
       - name: Test conservative document intelligence helpers
         run: PYTHONPATH=. python tests/test_document_intelligence.py
       - name: Test persistent document classification contract
