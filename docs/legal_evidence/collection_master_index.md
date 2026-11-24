@@ -2646,3 +2646,9 @@ Added Law75/2026 (annual raises/special allowance/EGP750 incentive), Law77/2026 
 - **Law 2/2006:** EG-0555 / FT-0230; Article 1 replaces Article 21(2), effective 16 Feb 2006 (Official Gazette issue 6 bis, 15 Feb 2006). Provisional event EV-0366 records the 2006 version between Law 33/1992 and Law 140/2017.
 - **Base Law 25/1929 text:** FT-0231 records the complete consolidated text available at LAWEG and two secondary portal versions. Their displayed article counts differ (32 vs 34); this is unresolved and no original 1929 publication image has been acquired.
 - [Evidence note](law_25_1929_base_text_and_law2_2006_amendment_evidence_2026-11-25.md).
+
+### Decree-Law 103/1958 — historical amendment to Law 25/1929 (25 November 2026)
+
+- Acquisition EG-0556 / inventory FT-0232; LAWEG reproduces the two-article amendment and identifies Official Gazette issue 21, 31 Jul 1958.
+- Article 1 replaces Article 21(1) and Article 22; Article 2 makes it effective in the Egyptian region on publication. Provisional event EV-0367 records the version from 31 Jul 1958; Law 33/1992 later replaces both provisions.
+- Original Gazette scan and lawyer review remain outstanding.
