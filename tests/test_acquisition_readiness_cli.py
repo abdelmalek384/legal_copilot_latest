@@ -158,7 +158,7 @@ class AcquisitionReadinessCliTests(unittest.TestCase):
             outside.write_text('{"documents":[]}', encoding="utf-8")
             register = root / "register.json"
             register.write_text('{"sources":[]}', encoding="utf-8")
-            real_open = MODULE.os.open
+            real_open = os.open
             swapped = False
 
             def replace_before_open(path, flags, *args, **kwargs):
