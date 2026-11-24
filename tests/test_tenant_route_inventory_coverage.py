@@ -10,6 +10,8 @@ TEST_COVERED_ROUTES = {
     "GET /admin/security-policy": "tests/test_firm_security_policy.py",
     "PUT /admin/security-policy": "tests/test_firm_security_policy.py",
     "GET /cases/search": "tests/test_case_search_pagination.py",
+    "GET /cases/{cid}/docs/{document_id}/annotations": "tests/test_document_annotations.py",
+    "POST /cases/{cid}/docs/{document_id}/annotations": "tests/test_document_annotations.py",
     "POST /cases/import.csv": "tests/test_case_csv_import.py",
     "GET /cases/{cid}/communications": "tests/test_case_communications.py",
     "POST /cases/{cid}/communications": "tests/test_case_communications.py",
