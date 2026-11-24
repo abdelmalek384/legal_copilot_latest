@@ -700,7 +700,7 @@ class FrontendUXContractTests(unittest.TestCase):
 
 
     def test_live_toast_is_mobile_safe_and_does_not_clip_long_messages(self):
-        toast = HTML[HTML.index("#toast{"):HTML.index("\\n", HTML.index("#toast{"))]
+        toast = HTML[HTML.index("#toast{"):HTML.index("\n", HTML.index("#toast{"))]
         self.assertIn("z-index:10000", toast)
         self.assertIn("env(safe-area-inset-bottom,0px)", toast)
         self.assertIn("max-width:min(32rem,calc(100vw - 32px))", toast)
@@ -1235,7 +1235,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("URL.createObjectURL(blob)", page)
 
     def test_document_library_filters_saved_categories_and_normalizes_arabic_search(self):
-        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\\nasync function law(){")]
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\nasync function law(){")]
         self.assertIn("clearDocumentFilters=btn", page)
         self.assertIn("normalizeLibrarySearch", page)
         self.assertIn("replace(/[أإآٱ]/g,'ا')", page)
@@ -1251,7 +1251,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("@media(max-width:700px){#main .document-library-filter>.row{grid-template-columns:minmax(0,1fr)}}", HTML)
 
     def test_accessible_documents_global_view_uses_permission_filtered_api_and_paging(self):
-        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\\nasync function law(){")]
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\nasync function law(){")]
         self.assertIn("All documents I can access", page)
         self.assertIn("api('/documents/search?'+params.toString())", page)
         self.assertIn("globalOffset", page)
@@ -1260,13 +1260,13 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("Metadata results only", page)
 
     def test_global_document_open_matter_adds_paged_case_to_selector(self):
-        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\\nasync function law(){")]
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\nasync function law(){")]
         self.assertIn("Array.from(matterSelect.options).some(option=>option.value===value)", page)
         self.assertIn("matterSelect.add(new Option", page)
         self.assertIn("list.hidden=true", page)
 
     def test_cross_matter_text_search_ui_is_bilingual_and_warns_about_unverified_excerpts(self):
-        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\\nasync function law(){")]
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\nasync function law(){")]
         self.assertIn("api('/documents/search-text?'", page)
         self.assertIn("Search extracted text across accessible matters", page)
         self.assertIn("results are extracted-text matches, not verified facts or legal conclusions", page)
@@ -1274,7 +1274,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("item.excerpt", page)
 
     def test_cross_matter_text_search_results_are_paginated(self):
-        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\\nasync function law(){")]
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\nasync function law(){")]
         self.assertIn("textSearchOffset", page)
         self.assertIn("textSearchTotal", page)
         self.assertIn("offset:String(textSearchOffset)", page)
@@ -1282,7 +1282,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("nextTextSearch", page)
 
     def test_document_file_icons_do_not_mislabel_non_docx_files_as_word(self):
-        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\\nasync function law(){")]
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\nasync function law(){")]
         self.assertIn("endsWith('.docx')?'DOCX':'FILE'", page)
 
     def test_figma_theme_keeps_destructive_actions_red_and_disabled_states_visible(self):
@@ -1290,7 +1290,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("#main button:disabled{opacity:.55;cursor:not-allowed}", HTML)
 
     def test_documents_workspace_defaults_to_authorized_library_when_no_matter_is_selected(self):
-        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\\nasync function law(){")]
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\nasync function law(){")]
         self.assertIn("await loadMatters();", page)
         self.assertIn("if(!matterSelect.value)await loadAllAccessibleDocs();", page)
         self.assertIn("list.hidden=!list.children.length", page)
@@ -1384,7 +1384,7 @@ class FrontendUXContractTests(unittest.TestCase):
 
     def test_dashboard_prioritizes_overdue_work_and_keeps_finance_in_navigation(self):
         start = HTML.index("async function dash(){")
-        end = HTML.index("\\nasync function ", start + 1)
+        end = HTML.index("\nasync function ", start + 1)
         dashboard = HTML[start:end]
         self.assertIn("dashboard-attention", dashboard)
         self.assertIn("Needs your attention", dashboard)
@@ -1400,7 +1400,7 @@ class FrontendUXContractTests(unittest.TestCase):
 
     def test_document_filters_use_progressive_disclosure(self):
         start = HTML.index("async function documentsPage(){")
-        end = HTML.index("\\nasync function ", start + 1)
+        end = HTML.index("\nasync function ", start + 1)
         page = HTML[start:end]
         self.assertIn("className:'document-primary-filter'", page)
         self.assertIn("className:'document-advanced-filters'", page)
@@ -1417,7 +1417,7 @@ class FrontendUXContractTests(unittest.TestCase):
 
     def test_matter_workspace_groups_all_tabs_and_keeps_matter_context_visible(self):
         start = HTML.index("async function view(id){")
-        end = HTML.index("\\n// Bilingual UI:", start)
+        end = HTML.index("\n// Bilingual UI:", start)
         page = HTML[start:end]
         for group in ("overview", "work", "records", "finance", "team"):
             self.assertIn("id:'" + group + "'", page)
@@ -1435,7 +1435,7 @@ class FrontendUXContractTests(unittest.TestCase):
 
     def test_matter_document_download_requires_retention_confirmation(self):
         start = HTML.index("async function view(id){")
-        end = HTML.index("\\n// Bilingual UI:", start)
+        end = HTML.index("\n// Bilingual UI:", start)
         page = HTML[start:end]
         self.assertIn("d.original_available===true||d.original_available===1?btn", page)
         self.assertIn("downloadOriginal||originalStatus", page)
@@ -1474,7 +1474,7 @@ class FrontendUXContractTests(unittest.TestCase):
         research = HTML[HTML.index("async function law(){"):HTML.index("\nfunction documentIntelligencePanel(")]
         self.assertIn("sourceInspector.hidden=true;", research)
         self.assertIn("const resetInspector=(returnFocus=false)=>{sourceInspector.hidden=true;", research)
-        self.assertIn("const inspectSource=(source,status,pin,provenance,trigger)=>{\\n  sourceInspector.hidden=false;", research)
+        self.assertIn("const inspectSource=(source,status,pin,provenance,trigger)=>{\n  sourceInspector.hidden=false;", research)
         self.assertIn("#main .research-layout:has(.research-inspector:not([hidden]))", HTML)
 
 
