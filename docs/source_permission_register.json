@@ -3773,6 +3773,46 @@
       "related_source_pages": [
         "https://www.mohamedabdelfattah.com/library/d/decree-2003-215"
       ]
+    },
+    {
+      "source_id": "EG-LABOUR-MINISTRY-DECISION214-2003",
+      "authority": "Egyptian Ministry of Labour",
+      "source_page": "https://www.labour.gov.eg/ar/القوانين-والتشريعات/",
+      "material_types": [
+        "Official Ministry index entry for Ministerial Decision 214/2003"
+      ],
+      "access_status": "The official Ministry legislation index identifies Decision 214/2003. No item-specific Ministry PDF URL was identified in this pass. A full 214/2003 text transcription is available only through a secondary-hosted compilation; no official Gazette bytes or SHA-256 were obtained.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "The official index page does not provide a page-specific licence or reuse permission. No bulk collection, redistribution or commercial reuse permission was verified.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Locate the exact official Ministry PDF or Gazette issue page for Decision 214/2003, compare the secondary transcription against the original page images, preserve its historical repeal status, and verify reuse terms before ingestion.",
+      "related_source_pages": [
+        "https://raafatelshaer.com/wp-content/uploads/2018/12/ملف-كامل-بالصناديق-الخاصه-بقانون-العمل-12-لسنه-2003.pdf",
+        "https://hrdiscussion.com/hrdiscussion21-28.html"
+      ]
+    },
+    {
+      "source_id": "EG-LABOUR-MINISTRY-DECISION216-2003",
+      "authority": "Egyptian Ministry of Labour",
+      "source_page": "https://www.labour.gov.eg/ar/القوانين-والتشريعات/",
+      "material_types": [
+        "Official Ministry index entry for Ministerial Decision 216/2003"
+      ],
+      "access_status": "The official Ministry legislation index identifies Decision 216/2003. No item-specific Ministry PDF URL was identified in this pass. A full 216/2003 text transcription is available only through a secondary-hosted compilation; no official Gazette bytes or SHA-256 were obtained.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "The official index page does not provide a page-specific licence or reuse permission. No bulk collection, redistribution or commercial reuse permission was verified.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Locate the exact official Ministry PDF or Gazette issue page for Decision 216/2003, compare the secondary transcription against the original page images, preserve its historical repeal status, and verify reuse terms before ingestion.",
+      "related_source_pages": [
+        "https://raafatelshaer.com/wp-content/uploads/2018/12/ملف-كامل-بالصناديق-الخاصه-بقانون-العمل-12-لسنه-2003.pdf",
+        "https://hrdiscussion.com/hrdiscussion21-28.html"
+      ]
     }
   ]
 }
