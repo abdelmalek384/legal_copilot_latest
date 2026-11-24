@@ -86,7 +86,7 @@
     {
       "source_id": "EG-ALHASSWA-COURT-CASSATION-TEXTS",
       "authority": "Alhasswa Law Firm legal library (secondary host; pages attribute source text to the Egyptian Court of Cassation legal portal)",
-      "source_page": "https://alhasswalawfirm.com/law-library/; https://alhasswalawfirm.com/law-library/law-114-1946; https://alhasswalawfirm.com/uploads/files/law-114-1946-1789186916244-431326360.pdf",
+      "source_page": "https://alhasswalawfirm.com/law-library/",
       "material_types": [
         "full-text statutory reproductions attributed to Court of Cassation portal",
         "Law 114/1946 consolidated text through 6 March 2022",
@@ -102,7 +102,11 @@
       "permission_evidence": "The Law114 HTML page states 70 articles and consolidation through 6 March 2022; six additional article bodies (25,31,32,33,40,50) were transcribed in the latest Law114 text supplement. The PDF mirror has earlier selected article captures. These are secondary reproductions, not original Amiri Press binaries. Public access does not grant commercial reuse permission. Additional 18 Nov 2026: full searchable Arabic reproduction of Law 15/2017 at https://alhasswalawfirm.com/law-library/law-15-2017 advertises 55 articles and updates through 2025. Public access and attribution to Court of Cassation legislation portal do not establish bulk extraction or commercial reuse permission.",
       "terms_checked_on": null,
       "bulk_download_or_api": "Individual pages/PDF attachments; no bulk/API permission established",
-      "required_next_action": "Acquire original Gazette PDFs and verify the full 70-article consolidation against each amendment; obtain written permission for bulk extraction and commercial reuse; preserve repealed and inserted bis article versions separately."
+      "required_next_action": "Acquire original Gazette PDFs and verify the full 70-article consolidation against each amendment; obtain written permission for bulk extraction and commercial reuse; preserve repealed and inserted bis article versions separately.",
+      "related_source_pages": [
+        "https://alhasswalawfirm.com/law-library/law-114-1946",
+        "https://alhasswalawfirm.com/uploads/files/law-114-1946-1789186916244-431326360.pdf"
+      ]
     },
     {
       "source_id": "EG-ALHASSWA-DECISION200-2026",
@@ -179,7 +183,7 @@
     {
       "source_id": "EG-AMIRI-PRESS",
       "authority": "General Authority for Amiri Press",
-      "source_page": "https://www.alamiria.com/Sec/Home; https://www.alamiria.com/Sec/TashTxt?id=wv1hjixGH4I%3D; https://www.alamiria.com/Sec/TashTxt?id=wSDExYcMZUw%3D",
+      "source_page": "https://www.alamiria.com/Sec/Home",
       "material_types": [
         "Official Gazette",
         "Egyptian Proceedings",
@@ -195,7 +199,11 @@
       "permission_evidence": " On 2026-11-18 the official text portal exposed Minister of Justice Decision 3866/2026 (URL recorded in checkpoint 93), postponing commencement of the real-property register in City of Mansha'a, Sohag, to 1 July 2027. The public text locator does not establish bulk retrieval, local archiving or commercial reuse permission. Law147/2026 public full text locator confirms issue30 bis (مكرر), 26 July 2026. Public portal access does not grant bulk extraction or commercial reuse permission. Decision3530/2026 text portal: https://alamiria.com/Sec/TashTxt?id=TXzT8vO0lfQ%3D. Public text access does not establish bulk retrieval, commercial reuse or redistribution rights.",
       "terms_checked_on": null,
       "bulk_download_or_api": "not established; Official Gazette access may be subscription-based",
-      "required_next_action": "Ask for licensed digital archive/API or bulk export and written scope covering storage, text extraction, indexing, user display, commercial use, and rate limits. Retry Amiri Press locator and compare complete Gazette text; do not treat public locator as a reuse licence."
+      "required_next_action": "Ask for licensed digital archive/API or bulk export and written scope covering storage, text extraction, indexing, user display, commercial use, and rate limits. Retry Amiri Press locator and compare complete Gazette text; do not treat public locator as a reuse licence.",
+      "related_source_pages": [
+        "https://www.alamiria.com/Sec/TashTxt?id=wv1hjixGH4I%3D",
+        "https://www.alamiria.com/Sec/TashTxt?id=wSDExYcMZUw%3D"
+      ]
     },
     {
       "source_id": "EG-AMIRIA-DECISION-5207-2026",
@@ -217,7 +225,7 @@
     {
       "source_id": "EG-ASA-LEGISLATIVE-INDEX-2026",
       "authority": "Accountability State Authority (الجهاز المركزي للمحاسبات), Egypt",
-      "source_page": "https://www.asa.gov.eg/extras/news/47/2026111038.pdf; https://asa.gov.eg/attach/665_law_91-2005.pdf",
+      "source_page": "https://www.asa.gov.eg/extras/news/47/2026111038.pdf",
       "material_types": [
         "Official legislative index for Laws, Presidential/Cabinet/ministerial decisions, SCC judgments and State Council opinions published 1 Jan–30 Jun 2026",
         "Income Tax Law91/2005 — complete 967-line searchable Official Gazette PDF"
@@ -229,7 +237,10 @@
       "permission_evidence": "Publicly accessible official Authority PDF; no express licence for commercial reuse, bulk extraction or redistribution identified.",
       "terms_checked_on": "2026-11-18",
       "bulk_download_or_api": "Single public PDF; no bulk/API permission established",
-      "required_next_action": "Use as official discovery/index source; obtain underlying original Gazette issues for page-image and binary verification. Compare the ASA-hosted PDF against original Gazette page images and acquire later Law91 amendments."
+      "required_next_action": "Use as official discovery/index source; obtain underlying original Gazette issues for page-image and binary verification. Compare the ASA-hosted PDF against original Gazette page images and acquire later Law91 amendments.",
+      "related_source_pages": [
+        "https://asa.gov.eg/attach/665_law_91-2005.pdf"
+      ]
     },
     {
       "source_id": "EG-CAIRO-GOV-STATE-LAND-DEADLINE",
@@ -360,7 +371,7 @@
     {
       "source_id": "EG-CUSTOMS-AUTHORITY-IMPORT-CIRCULARS",
       "authority": "Egyptian Customs Authority, Ministry of Finance, Egypt",
-      "source_page": "https://customs.gov.eg/Upload/ECAAdminace/ECAAdminace026153585.pdf; https://www.customs.gov.eg/Upload/ECAAdminace/ECAAdminace429806784.pdf; https://customs.gov.eg/Upload/ECAAdminace/2e25fddf-a7cf-44fa-b667-22117d2b9514.pdf; https://www.customs.gov.eg/Upload/ECAAdminace/07a717ba-77ae-4cfb-a269-8dafe9db1068.pdf",
+      "source_page": "https://customs.gov.eg/Upload/ECAAdminace/ECAAdminace026153585.pdf",
       "material_types": [
         "Ministerial Decision501/2026 reproduced Gazette issue225 supplement",
         "Egyptian Customs Import Circular30/2026",
@@ -380,7 +391,12 @@
       "permission_evidence": "Official government-hosted PDF at customs.gov.eg. Public access does not itself establish a licence for commercial reuse, bulk extraction or redistribution. No express licence found in this pass. Circular PDF is publicly accessible; no bulk or commercial reuse permission established. Public government-hosted PDF; no bulk/republication/commercial reuse permission established.",
       "terms_checked_on": "2026-11-18",
       "bulk_download_or_api": "Single PDF URL; no bulk/API permission established",
-      "required_next_action": "Archive/hash official corrigendum PDF; preserve corrected and first-print versions separately; complete image verification of Law151 Art6 final particle. Identify the Official Proceedings issue/page for Decision639/2026; transcribe all replacement provisions; verify commencement and archive/hash permitted PDF. Verify Decision249 numbering/preamble against the original Gazette page image; integrate Law3/2022 and Decision249 into VAT version history."
+      "required_next_action": "Archive/hash official corrigendum PDF; preserve corrected and first-print versions separately; complete image verification of Law151 Art6 final particle. Identify the Official Proceedings issue/page for Decision639/2026; transcribe all replacement provisions; verify commencement and archive/hash permitted PDF. Verify Decision249 numbering/preamble against the original Gazette page image; integrate Law3/2022 and Decision249 into VAT version history.",
+      "related_source_pages": [
+        "https://www.customs.gov.eg/Upload/ECAAdminace/ECAAdminace429806784.pdf",
+        "https://customs.gov.eg/Upload/ECAAdminace/2e25fddf-a7cf-44fa-b667-22117d2b9514.pdf",
+        "https://www.customs.gov.eg/Upload/ECAAdminace/07a717ba-77ae-4cfb-a269-8dafe9db1068.pdf"
+      ]
     },
     {
       "source_id": "EG-DATAFLARE-LEGAL-CORPUS",
@@ -420,7 +436,7 @@
     {
       "source_id": "EG-DIWAN-ALOMRAN-LEGAL-DB",
       "authority": "Diwan Al-Omran (ديوان العمران) legal database",
-      "source_page": "https://diwanalomran.com/fr/legal/2025-168/; https://diwanalomran.com/legal/2026-200/; https://drive.google.com/file/d/1zXxR0YWpJN_UcncUcO2Y8bmea-yQJF7p/view; https://drive.google.com/file/d/10F3Jyb_I-QPFe3JZiqI1dm6tyviwagFo/view",
+      "source_page": "https://diwanalomran.com/fr/legal/2025-168/",
       "material_types": [
         "statutory text",
         "executive regulations",
@@ -433,7 +449,12 @@
       "permission_evidence": "The public Law 168/2025 page exposes a searchable full text; the Decision 200/2026 page inspected here exposes metadata, issuing provisions and a PDF locator, not the full 20-article Executive Regulation. Selected Law 168 provisions were transcribed. The full Decision 200 regulation text is sourced separately from the official SIS PDF, LAW HUB, MKSEgypt and Al-Hasswa. Public access does not establish bulk collection or commercial reuse permission. Full searchable text was used to capture all 18 Law168 and 24 Decision200 provisions. Original-PDF Google Drive file IDs were identified, but preview/download did not expose the file bytes. No commercial reuse permission or redistribution permission is inferred.",
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
-      "required_next_action": "Review terms and seek written permission for local archiving, Arabic text extraction, indexing, commercial product use, excerpt display and redistribution."
+      "required_next_action": "Review terms and seek written permission for local archiving, Arabic text extraction, indexing, commercial product use, excerpt display and redistribution.",
+      "related_source_pages": [
+        "https://diwanalomran.com/legal/2026-200/",
+        "https://drive.google.com/file/d/1zXxR0YWpJN_UcncUcO2Y8bmea-yQJF7p/view",
+        "https://drive.google.com/file/d/10F3Jyb_I-QPFe3JZiqI1dm6tyviwagFo/view"
+      ]
     },
     {
       "source_id": "EG-DRHISHAM-LAW154-2026",
@@ -916,7 +937,7 @@
     {
       "source_id": "EG-ETA-TAX-LAWS",
       "authority": "Egyptian Tax Authority / Income Tax Authority portals",
-      "source_page": "https://www.eta.gov.eg/sites/default/files/2026-08/law.no_.149.of_.2026.pdf; https://eta.gov.eg/sites/default/files/2025-02/law_no.5.of_.2025.pdf; https://www.eta.gov.eg/sites/default/files/2025-02/law_no.6.of_.2025.pdf; https://portal.eta.gov.eg/sites/default/files/2025-07/vat-law_no.157.of_.2025.pdf; https://portal.eta.gov.eg/sites/default/files/2025-12/mof.decision.no_.418.of_.2025.pdf; https://portal.eta.gov.eg/sites/default/files/2025-12/mof.decision.no_.420.of_.2025.pdf; https://www.eta.gov.eg/sites/default/files/2024-03/vat-law_no.208-2017.pdf; https://www.eta.gov.eg/sites/default/files/2024-03/vat-law_no.329-2017.pdf; https://www.eta.gov.eg/sites/default/files/2024-03/vat-law_no.177-2023.pdf; https://www.eta.gov.eg/sites/default/files/2024-03/vat-law_no.24-2023.pdf; https://www.eta.gov.eg/sites/default/files/2024-03/law_no.991-2005.pdf; https://eta.gov.eg/sites/default/files/2024-03/law_no.175-2023.pdf; https://eta.gov.eg/sites/default/files/2024-03/law_no.7-2024.pdf; https://eta.gov.eg/sites/default/files/2024-12/law_no._159_for_2023.pdf; https://eta.gov.eg/sites/default/files/2024-03/law_no.76-2017.pdf; https://eta.gov.eg/sites/default/files/2024-03/law_no.82-2017.pdf; https://eta.gov.eg/sites/default/files/2024-03/law_no.29-2018.pdf; https://eta.gov.eg/sites/default/files/2024-03/law_no.97-2018.pdf; https://eta.gov.eg/sites/default/files/2024-03/law_no.10-2019.pdf; https://eta.gov.eg/sites/default/files/2024-03/law_no.16-2020.pdf; https://eta.gov.eg/sites/default/files/2024-03/law_no.26-2020.pdf; https://eta.gov.eg/sites/default/files/2024-03/law_no.199-2020.pdf; https://eta.gov.eg/sites/default/files/2024-03/law_no.181-2005.pdf; https://eta.gov.eg/sites/default/files/2024-03/law_no.1-2007.pdf; https://eta.gov.eg/sites/default/files/2026-03/law.no_.778.of_.2010.pdf; https://eta.gov.eg/sites/default/files/2024-03/law_no.101-2012.pdf; https://eta.gov.eg/sites/default/files/2024-03/law_no.11-2013.pdf; https://eta.gov.eg/sites/default/files/2024-03/law_no.164-2013.pdf; https://eta.gov.eg/sites/default/files/2024-03/law_no.53-2014.pdf; https://eta.gov.eg/sites/default/files/2024-03/law_no.201-2014.pdf; https://eta.gov.eg/sites/default/files/2024-03/law_no.96-2015.pdf; https://eta.gov.eg/sites/default/files/2024-03/law_no.172-2015.pdf",
+      "source_page": "https://www.eta.gov.eg/sites/default/files/2026-08/law.no_.149.of_.2026.pdf",
       "material_types": [
         "VAT law index",
         "income tax law index",
@@ -949,7 +970,40 @@
       "permission_evidence": " Public government-hosted PDF; no explicit bulk/republication/commercial reuse permission located.  Public government-hosted PDF; no bulk/republication/commercial reuse permission established. Government-hosted PDF public access; no bulk or commercial reuse permission established. Government-hosted official PDF public access; no bulk/republication/commercial reuse permission established.",
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
-      "required_next_action": "Archive/hash PDF; verify Gazette issue30 bis (أ) page image; preserve official publication version and any subsequent corrections. Acquire and hash permitted original PDF files; complete image-to-text transcription of Law157/2025 schedules and Decisions418/2025 and420/2025 forms/operative text; verify later amendments. Complete image/page QA and verbatim schedule extraction for Law177/2023; preserve amendment history across 2017–2026. Complete current Law91 consolidation and structured Article8 rate tables; obtain full original Gazette item for Law159/2023. Complete high-resolution page-image transcription for the image-only 2017–2019 amendments; cross-check Law199/2020 against the later Law153/2026 repeal. Complete full-page transcription for Laws101/2012,11/2013,53/2014 and Decision172/2015; inspect second page of Decision778/2010; integrate the early amendment chain."
+      "required_next_action": "Archive/hash PDF; verify Gazette issue30 bis (أ) page image; preserve official publication version and any subsequent corrections. Acquire and hash permitted original PDF files; complete image-to-text transcription of Law157/2025 schedules and Decisions418/2025 and420/2025 forms/operative text; verify later amendments. Complete image/page QA and verbatim schedule extraction for Law177/2023; preserve amendment history across 2017–2026. Complete current Law91 consolidation and structured Article8 rate tables; obtain full original Gazette item for Law159/2023. Complete high-resolution page-image transcription for the image-only 2017–2019 amendments; cross-check Law199/2020 against the later Law153/2026 repeal. Complete full-page transcription for Laws101/2012,11/2013,53/2014 and Decision172/2015; inspect second page of Decision778/2010; integrate the early amendment chain.",
+      "related_source_pages": [
+        "https://eta.gov.eg/sites/default/files/2025-02/law_no.5.of_.2025.pdf",
+        "https://www.eta.gov.eg/sites/default/files/2025-02/law_no.6.of_.2025.pdf",
+        "https://portal.eta.gov.eg/sites/default/files/2025-07/vat-law_no.157.of_.2025.pdf",
+        "https://portal.eta.gov.eg/sites/default/files/2025-12/mof.decision.no_.418.of_.2025.pdf",
+        "https://portal.eta.gov.eg/sites/default/files/2025-12/mof.decision.no_.420.of_.2025.pdf",
+        "https://www.eta.gov.eg/sites/default/files/2024-03/vat-law_no.208-2017.pdf",
+        "https://www.eta.gov.eg/sites/default/files/2024-03/vat-law_no.329-2017.pdf",
+        "https://www.eta.gov.eg/sites/default/files/2024-03/vat-law_no.177-2023.pdf",
+        "https://www.eta.gov.eg/sites/default/files/2024-03/vat-law_no.24-2023.pdf",
+        "https://www.eta.gov.eg/sites/default/files/2024-03/law_no.991-2005.pdf",
+        "https://eta.gov.eg/sites/default/files/2024-03/law_no.175-2023.pdf",
+        "https://eta.gov.eg/sites/default/files/2024-03/law_no.7-2024.pdf",
+        "https://eta.gov.eg/sites/default/files/2024-12/law_no._159_for_2023.pdf",
+        "https://eta.gov.eg/sites/default/files/2024-03/law_no.76-2017.pdf",
+        "https://eta.gov.eg/sites/default/files/2024-03/law_no.82-2017.pdf",
+        "https://eta.gov.eg/sites/default/files/2024-03/law_no.29-2018.pdf",
+        "https://eta.gov.eg/sites/default/files/2024-03/law_no.97-2018.pdf",
+        "https://eta.gov.eg/sites/default/files/2024-03/law_no.10-2019.pdf",
+        "https://eta.gov.eg/sites/default/files/2024-03/law_no.16-2020.pdf",
+        "https://eta.gov.eg/sites/default/files/2024-03/law_no.26-2020.pdf",
+        "https://eta.gov.eg/sites/default/files/2024-03/law_no.199-2020.pdf",
+        "https://eta.gov.eg/sites/default/files/2024-03/law_no.181-2005.pdf",
+        "https://eta.gov.eg/sites/default/files/2024-03/law_no.1-2007.pdf",
+        "https://eta.gov.eg/sites/default/files/2026-03/law.no_.778.of_.2010.pdf",
+        "https://eta.gov.eg/sites/default/files/2024-03/law_no.101-2012.pdf",
+        "https://eta.gov.eg/sites/default/files/2024-03/law_no.11-2013.pdf",
+        "https://eta.gov.eg/sites/default/files/2024-03/law_no.164-2013.pdf",
+        "https://eta.gov.eg/sites/default/files/2024-03/law_no.53-2014.pdf",
+        "https://eta.gov.eg/sites/default/files/2024-03/law_no.201-2014.pdf",
+        "https://eta.gov.eg/sites/default/files/2024-03/law_no.96-2015.pdf",
+        "https://eta.gov.eg/sites/default/files/2024-03/law_no.172-2015.pdf"
+      ]
     },
     {
       "source_id": "EG-FAOLEX-LAW143-1981",
@@ -1196,7 +1250,7 @@
     {
       "source_id": "EG-INVESTINEGYPT-LAW186-2020",
       "authority": "Invest in Egypt government portal / GAFI",
-      "source_page": "https://www.investinegypt.gov.eg/PublishingImages/Lists/LawsAndRegulations/AllItems/تعديل%20بعض%20أحكام%20قانون%20الشهر%20العقاري%20بالقانون%20186%20لسنة%202020.pdf; https://www.investinegypt.gov.eg/PublishingImages/Lists/LawsAndRegulations/AllItems/تعديل بعض أحكام قانون الضريبة على القيمة المضافة بالقانون 13 لسنة 2020.pdf",
+      "source_page": "https://www.investinegypt.gov.eg/PublishingImages/Lists/LawsAndRegulations/AllItems/تعديل%20بعض%20أحكام%20قانون%20الشهر%20العقاري%20بالقانون%20186%20لسنة%202020.pdf",
       "material_types": [
         "Government-hosted Official Gazette PDF reproduction of Law186/2020, issue36 bis (ب), 5 September 2020",
         "Law13/2020 — VAT tobacco/heated tobacco/e-liquid schedule amendment, Official Gazette PDF reproduction"
@@ -1208,7 +1262,10 @@
       "permission_evidence": "Used for statutory text acquisition. No source-specific licence or written permission for bulk ingestion, commercial display or redistribution was established.",
       "terms_checked_on": null,
       "bulk_download_or_api": "Single public PDF endpoint; no bulk/API permission established",
-      "required_next_action": "Review portal terms and obtain written permission if needed for commercial ingestion/display; archive original bytes/hash if authorized. Verify the hosted PDF against the original Amiri Press page images and review portal terms for reuse."
+      "required_next_action": "Review portal terms and obtain written permission if needed for commercial ingestion/display; archive original bytes/hash if authorized. Verify the hosted PDF against the original Amiri Press page images and review portal terms for reuse.",
+      "related_source_pages": [
+        "https://www.investinegypt.gov.eg/PublishingImages/Lists/LawsAndRegulations/AllItems/تعديل%20بعض%20أحكام%20قانون%20الضريبة%20على%20القيمة%20المضافة%20بالقانون%2013%20لسنة%202020.pdf"
+      ]
     },
     {
       "source_id": "EG-KANONMISR-DECISION73-2023-GAZETTE",
@@ -1334,7 +1391,7 @@
     {
       "source_id": "EG-LAWEG-LEGAL-ARCHIVE",
       "authority": "Legal and Administrative Legislation website (Laweg)",
-      "source_page": "https://www.laweg.net/; https://www.laweg.net/Default.aspx?Year=1946&action=LegsYears; https://www.laweg.net/Default.aspx?Year=1964&action=LegsYears; https://www.laweg.net/Default.aspx?ItemID=36923&Type=6&action=ViewActivePages; https://www.laweg.net/Default.aspx?ItemID=29242&Type=6&action=ViewActivePages; https://www.laweg.net/framePlain.aspx?JID=98789&NID=56502&Type=16&action=LawEg",
+      "source_page": "https://www.laweg.net/",
       "material_types": [
         "Egyptian legislation index",
         "searchable legal text portal",
@@ -1350,7 +1407,14 @@
       "permission_evidence": "The 1946 year index lists Law 114/1946 and exposes item ID36923; the 1964 year index lists Law 142/1964 and exposes item ID29242. Search snippets show the opening provision of each. The item pages require selecting a page, but the browser interface exposes only an input/select and direct page-number URL attempts were blocked. This is a useful alternate source lead, not a downloaded full text or original Gazette PDF. The portal footer says all rights reserved; no collection, bulk extraction, or commercial reuse permission is established. A separate Laweg page reproduces the complete SCC Case 11/23/2018 judgment within the Gazette issue dated 13 May 2018. This is a secondary-hosted Gazette reproduction, not a direct signed SCC binary; the portal footer says all rights reserved and no bulk extraction or commercial reuse permission is established. Decision846/2017 source: https://www.laweg.net/framePlain.aspx?ItemID=108893&NID=134997&Type=6&action=ViewActivePages. Decision is repealed by Decision271/2026 effective 22 Jul 2026. Public text is not permission for bulk/commercial reuse.",
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
-      "required_next_action": "Use a human browser to select and export article pages for Laws 114/1946 and 142/1964 if permitted; request written permission for bulk extraction and commercial use; compare against original Gazette scans. Preserve the Case11/23 Gazette reproduction as a secondary-hosted full judgment text; obtain original signed SCC copy and review terms before any reuse."
+      "required_next_action": "Use a human browser to select and export article pages for Laws 114/1946 and 142/1964 if permitted; request written permission for bulk extraction and commercial use; compare against original Gazette scans. Preserve the Case11/23 Gazette reproduction as a secondary-hosted full judgment text; obtain original signed SCC copy and review terms before any reuse.",
+      "related_source_pages": [
+        "https://www.laweg.net/Default.aspx?Year=1946&action=LegsYears",
+        "https://www.laweg.net/Default.aspx?Year=1964&action=LegsYears",
+        "https://www.laweg.net/Default.aspx?ItemID=36923&Type=6&action=ViewActivePages",
+        "https://www.laweg.net/Default.aspx?ItemID=29242&Type=6&action=ViewActivePages",
+        "https://www.laweg.net/framePlain.aspx?JID=98789&NID=56502&Type=16&action=LawEg"
+      ]
     },
     {
       "source_id": "EG-LAWHUB-2026",
@@ -1360,13 +1424,17 @@
         "Egyptian legislation full-text transcriptions including Laws155/2026 and161/2026"
       ],
       "access_status": "Full searchable Arabic text pages observed; page footer displays Creative Commons Attribution 4.0 notice.",
-      "collection_permission": "cc_by_4_0_attributed_use_subject_to_license_scope",
-      "commercial_reuse_permission": "cc_by_4_0_applies_to_site_text_as_displayed_only; embedded third_party_scans_and_materials_not_cleared",
+      "collection_permission": "allowed_limited",
+      "commercial_reuse_permission": "allowed_limited",
       "terms_url": "https://creativecommons.org/licenses/by/4.0/",
-      "permission_evidence": "Individual LAW HUB pages for Laws155/2026 and161/2026 display a CC BY 4.0 notice. Do not assume the license covers linked Gazette scans or third-party material.",
+      "permission_evidence": "Individual LAW HUB pages for Laws155/2026 and161/2026 display a CC BY 4.0 notice. Do not assume the license covers linked Gazette scans or third-party material. Permission scope is limited to site-displayed text under the observed CC BY 4.0 notice; embedded scans and third-party materials are not cleared.",
       "terms_checked_on": "2026-11-18",
       "bulk_download_or_api": "No bulk/API permission established; manual page access only",
-      "required_next_action": "Preserve attribution and license notice; verify license scope for each page and exclude third-party attachments unless independently cleared."
+      "required_next_action": "Preserve attribution and license notice; verify license scope for each page and exclude third-party attachments unless independently cleared.",
+      "permission_evidence_url": "https://lawhub.info/eg/",
+      "commercial_reuse_evidence_url": "https://lawhub.info/eg/",
+      "commercial_reuse_evidence": "CC BY 4.0 attribution notice applies only to text displayed on the site; embedded Gazette scans and third-party materials are excluded. Attribution and license scope must be preserved.",
+      "commercial_terms_checked_on": "2026-11-18"
     },
     {
       "source_id": "EG-LAWHUB-CIVILCODE-REPEALED-389-417",
@@ -1472,7 +1540,7 @@
     {
       "source_id": "EG-LAWHUB-STATUTE-TEXTS",
       "authority": "Law Hub / Al-Mawsoua al-Qanuniya (secondary legal information site)",
-      "source_page": "https://lawhub.info/eg/; https://lawhub.info/eg/?p=12146; https://lawhub.info/eg/?p=11694; https://lawhub.info/eg/?p=12146 (Decision 144/2009)",
+      "source_page": "https://lawhub.info/eg/",
       "material_types": [
         "Egyptian statutory full-text reproductions",
         "Civil Code and Evidence Law source pages",
@@ -1493,7 +1561,12 @@
       "permission_evidence": "Five additional substantive Law142 article bodies (Articles3,5,6,7,22) were transcribed from page ?p=11694. Repeated numbering between issuing provisions and substantive law is explicitly separated. The site is a secondary legal information database; no commercial reuse or bulk extraction permission is established. Decision144/2009 source update: Complete Arabic body transcriptions for 184 extant Decision144 base articles (Articles 1–126 and 128–185) are preserved across checkpoints 170 and 206–225; Article 127 is repealed. Inserted provisions including 98 bis, 108 bis, 110 bis, 112 bis, 112 bis 1, 117 bis, 124 bis, 135 bis and 139 bis are tracked separately; text completeness varies.  No bulk extraction or commercial reuse permission is established. Checkpoint 221 adds full Arabic Articles 91–98 and inserted Article 98 bis; Articles 94 and 95 current/original wordings are preserved. Decision 109/2013 is an existing acquisition instrument; the original DSpace bundle is catalogued but download and hash remain outstanding. No reuse permission is established. Additional 18 Nov 2026: Decision 1082/2017 text at https://lawhub.info/eg/?p=12579 identifies Decision 298/2021 as adding a paragraph to Article 22 and Decision 444/2022 as adding Article 22 bis. The source is secondary; no bulk or commercial reuse permission is established. Law121/1982 page: https://lawhub.info/eg/?p=11692. It is a secondary consolidation and should not be treated as the 2026 current consolidated law. No bulk or commercial reuse permission is established. Law147/2026 text: https://lawhub.info/eg/?p=18918. Site terms do not authorize commercial republication or systematic bulk extraction; underlying official text rights remain separately assessed. Law161/2026 text: https://lawhub.info/eg/?p=20129. Public text access does not establish bulk or commercial reuse permission. Law155/2026 text at https://lawhub.info/eg/?p=19430. No bulk extraction or commercial reuse permission established. Law3/2026 full text: https://lawhub.info/eg/?p=20220. No bulk extraction or commercial reuse permission established. Decision144/2009 text is a public secondary transcription; public access does not establish commercial reuse, bulk extraction or redistribution permission. Original Gazette issue82 supplement (أ), 8 Apr 2009, and amendment Gazettes still need authentication.",
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
-      "required_next_action": "Obtain written permission for bulk extraction and commercial use; compare the 72 substantive headings and all amendments against original Gazette scans and constitutional judgments. No extant base article bodies remain untranscribed; Article127 is repealed. Continue page-image/OCR verification; complete all inserted-provision versions, forms/schedules, amendment redlines and currentness; obtain written reuse permission before bulk/commercial use. preserve inserted provisions and all amendment versions separately; obtain Gazette image comparison and written reuse permission before any bulk/commercial reuse."
+      "required_next_action": "Obtain written permission for bulk extraction and commercial use; compare the 72 substantive headings and all amendments against original Gazette scans and constitutional judgments. No extant base article bodies remain untranscribed; Article127 is repealed. Continue page-image/OCR verification; complete all inserted-provision versions, forms/schedules, amendment redlines and currentness; obtain written reuse permission before bulk/commercial use. preserve inserted provisions and all amendment versions separately; obtain Gazette image comparison and written reuse permission before any bulk/commercial reuse.",
+      "related_source_pages": [
+        "https://lawhub.info/eg/?p=12146",
+        "https://lawhub.info/eg/?p=11694",
+        "https://lawhub.info/eg/?p=12146%20(Decision%20144/2009)"
+      ]
     },
     {
       "source_id": "EG-LAWYEREGYPT-LAW143-2004-ARTICLE11",
@@ -1616,55 +1689,60 @@
     {
       "source_id": "EG-MANSHURAT-CASE10-35-SCAN",
       "authority": "Manshurat legal documents archive",
-      "source_page": "https://manshurat.org/node/65064; https://manshurat.org/file/75813/download?token=E2jG1O_x",
+      "source_page": "https://manshurat.org/node/65064",
       "material_types": [
         "secondary-hosted scan reproduction of SCC judgment",
         "Constitutional Case10/35",
         "Official Gazette issue22 bis (T)"
       ],
-      "access_status": "Public 10-page PDF opened and all pages visually inspected 2026-11-18; scan reproduces judgment pages16–25 of Official Gazette issue22 bis (T), 6 June 2018; not an official SCC-hosted binary; terms not reviewed",
+      "access_status": "Public 10-page PDF opened and all pages visually inspected 2026-11-18; scan reproduces judgment pages16–25 of Official Gazette issue22 bis (T), 6 June 2018; not an official SCC-hosted binary; terms not reviewed Original download URL contained an expiring token; token removed from the register, and the stable non-token locator is retained.",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
       "permission_evidence": "The PDF is a page-image scan of the full Case10/35 judgment and includes the Gazette header and pages16–25. The original signed SCC binary and official Amiri Press PDF were not acquired. Public access does not grant bulk collection, local archiving, commercial use, excerpt display or redistribution permission.",
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
-      "required_next_action": "Seek official SCC/Amiri Press original file; review Manshurat terms and seek written permission before commercial archiving or redistribution; hash only after authorized local acquisition."
+      "required_next_action": "Seek official SCC/Amiri Press original file; review Manshurat terms and seek written permission before commercial archiving or redistribution; hash only after authorized local acquisition.",
+      "related_source_pages": [
+        "https://manshurat.org/file/75813/download"
+      ]
     },
     {
       "source_id": "EG-MANSHURAT-CASE32-43-2023-RENT",
       "authority": "Manshurat legal document archive",
-      "source_page": "https://manshurat.org/file/88745/download?token=CN_YyNd4",
+      "source_page": "https://manshurat.org/file/88745/download",
       "material_types": [
         "secondary reproduction of SCC judgment",
         "rent-law case 32/43/2023"
       ],
-      "access_status": "Public PDF route opened 2026-11-18; PDF is a later Case32/43/2023 judgment that quotes the operative Case11/23 holding; it is not the original Case11/23 judgment; terms not reviewed",
+      "access_status": "Public PDF route opened 2026-11-18; PDF is a later Case32/43/2023 judgment that quotes the operative Case11/23 holding; it is not the original Case11/23 judgment; terms not reviewed Original download URL contained an expiring token; token removed from the register, and the stable non-token locator is retained.",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
       "permission_evidence": "The PDF was initially treated as a possible Case11/23 text source, but its title/body identify Case32/43/2023. It contains a quotation of the 2018 Case11/23 operative order, not the original full judgment. No reuse rights are inferred.",
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
-      "required_next_action": "Use only as a secondary cross-reference; obtain original Case11/23 judgment and Gazette scan; review terms and seek written permission before commercial use or redistribution."
+      "required_next_action": "Use only as a secondary cross-reference; obtain original Case11/23 judgment and Gazette scan; review terms and seek written permission before commercial use or redistribution.",
+      "related_source_pages": []
     },
     {
       "source_id": "EG-MANSHURAT-LAW11-2024",
       "authority": "Manshurat legal documents archive",
-      "source_page": "https://manshurat.org/file/88853/download?token=3NTAFW5f",
+      "source_page": "https://manshurat.org/file/88853/download",
       "material_types": [
         "secondary-hosted scan reproduction of amending law",
         "Law 11/2024",
         "Official Gazette issue8 bis (A)"
       ],
-      "access_status": "Public one-page PDF opened 2026-11-18; scan identifies Official Gazette issue8 bis (A), 24 February 2024; full text layer extracted; scan carries notice electronic copy not valid for circulation; terms not reviewed",
+      "access_status": "Public one-page PDF opened 2026-11-18; scan identifies Official Gazette issue8 bis (A), 24 February 2024; full text layer extracted; scan carries notice electronic copy not valid for circulation; terms not reviewed Original download URL contained an expiring token; token removed from the register, and the stable non-token locator is retained.",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
       "permission_evidence": "One-page page-image reproduction of Law11/2024, amending Law143/1981 Articles11(2) and12(2). Public access does not establish commercial reuse or redistribution rights; scan includes non-circulation notice.",
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
-      "required_next_action": "Obtain authenticated Amiri Press original issue8 bis (A); compare with consolidated 2024 text; review terms and seek written permission before commercial use or redistribution."
+      "required_next_action": "Obtain authenticated Amiri Press original issue8 bis (A); compare with consolidated 2024 text; review terms and seek written permission before commercial use or redistribution.",
+      "related_source_pages": []
     },
     {
       "source_id": "EG-MANSHURAT-LAW114-1946-GAZETTE-SCAN",
@@ -1688,19 +1766,22 @@
     {
       "source_id": "EG-MANSHURAT-LAW114-SCAN",
       "authority": "Manshurat secondary legal archive",
-      "source_page": "https://manshurat.org/node/71597; https://manshurat.org/file/83333/download?token=Kv0YfwAI",
+      "source_page": "https://manshurat.org/node/71597",
       "file_url": "https://manshurat.org/file/83333/download?token=Kv0YfwAI",
       "material_types": [
         "Law 114/1946 six-page PDF scan copy"
       ],
-      "access_status": "6-page scan-copy; Gazette issue85, 24 Aug1946; page images visually inspected; secondary-hosted; not authenticated Amiri Press binary.",
+      "access_status": "6-page scan-copy; Gazette issue85, 24 Aug1946; page images visually inspected; secondary-hosted; not authenticated Amiri Press binary. Original download URL contained an expiring token; token removed from the register, and the stable non-token locator is retained.",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": "https://manshurat.org",
       "terms_checked_on": null,
       "permission_evidence": "Checked 2026-11-18. Public scan copy available through Manshurat. This is a secondary-hosted scan, not an Amiri Press repository file. The repository metadata identifies the historical publication dates. No licence establishing bulk extraction, OCR, commercial indexing, excerpt display or redistribution rights was located. These scan routes are public access leads only; no permission for bulk download, OCR, local archiving, commercial indexing, excerpt display or redistribution is inferred.",
       "bulk_download_or_api": "single public download route; no bulk/API permission established",
-      "required_next_action": "Use for page comparison only; request an official Gazette copy; review terms and obtain permission before systematic reuse."
+      "required_next_action": "Use for page comparison only; request an official Gazette copy; review terms and obtain permission before systematic reuse.",
+      "related_source_pages": [
+        "https://manshurat.org/file/83333/download"
+      ]
     },
     {
       "source_id": "EG-MANSHURAT-LAW136-1957",
@@ -1740,35 +1821,39 @@
     {
       "source_id": "EG-MANSHURAT-LAW142-SCAN",
       "authority": "Manshurat secondary legal archive",
-      "source_page": "https://manshurat.org/node/33844; https://manshurat.org/file/44021/download?token=5Zwo9ziS",
+      "source_page": "https://manshurat.org/node/33844",
       "file_url": "https://manshurat.org/file/44021/download?token=5Zwo9ziS",
       "material_types": [
         "Law 142/1964 seven-page PDF scan copy"
       ],
-      "access_status": "7-page scan-copy; Gazette issue69, 24 Mar1964; page images visually inspected; secondary-hosted; not authenticated Amiri Press binary.",
+      "access_status": "7-page scan-copy; Gazette issue69, 24 Mar1964; page images visually inspected; secondary-hosted; not authenticated Amiri Press binary. Original download URL contained an expiring token; token removed from the register, and the stable non-token locator is retained.",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": "https://manshurat.org",
       "terms_checked_on": null,
       "permission_evidence": "Checked 2026-11-18. Public seven-page scan copy available through Manshurat. Secondary-hosted scan, not Amiri Press source; original Gazette issue number and exact page sequence need cross-check. No licence or commercial reuse grant established. These scan routes are public access leads only; no permission for bulk download, OCR, local archiving, commercial indexing, excerpt display or redistribution is inferred.",
       "bulk_download_or_api": "single public download route; no bulk/API permission established",
-      "required_next_action": "Compare against Official Gazette issue 69/1964 and request official copy; obtain permission before bulk extraction or commercial display."
+      "required_next_action": "Compare against Official Gazette issue 69/1964 and request official copy; obtain permission before bulk extraction or commercial display.",
+      "related_source_pages": [
+        "https://manshurat.org/file/44021/download"
+      ]
     },
     {
       "source_id": "EG-MANSHURAT-LAW157-1947-GAZETTE-SCAN",
       "authority": "Manshurat legal archive",
-      "source_page": "https://manshurat.org/file/83011/download?token=oTVSE6px",
+      "source_page": "https://manshurat.org/file/83011/download",
       "material_types": [
         "One-page Gazette scan copy of Law157/1947 extending Law114/1946 Article58 transitional period; publication 1 January 1948"
       ],
-      "access_status": "Public one-page image-only PDF scan copy; visually inspected and transcribed. Secondary host; not an authenticated Amiri Press digital binary.",
+      "access_status": "Public one-page image-only PDF scan copy; visually inspected and transcribed. Secondary host; not an authenticated Amiri Press digital binary. Original download URL contained an expiring token; token removed from the register, and the stable non-token locator is retained.",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": null,
       "permission_evidence": "Used for statutory text extraction and metadata. No source-specific licence or written permission for bulk ingestion, commercial display or redistribution was established.",
       "terms_checked_on": null,
       "bulk_download_or_api": "Single public PDF endpoint; no bulk/API permission established",
-      "required_next_action": "Acquire original Amiri Press issue page/binary and hash if authorized; review Manshurat terms before redistribution."
+      "required_next_action": "Acquire original Amiri Press issue page/binary and hash if authorized; review Manshurat terms before redistribution.",
+      "related_source_pages": []
     },
     {
       "source_id": "EG-MANSHURAT-LAW181-1957",
@@ -1840,19 +1925,22 @@
     {
       "source_id": "EG-MANSHURAT-LAW68-SCAN",
       "authority": "Manshurat secondary legal archive",
-      "source_page": "https://manshurat.org/node/70547; https://manshurat.org/file/82270/download?token=fuDVQjIu",
+      "source_page": "https://manshurat.org/node/70547",
       "file_url": "https://manshurat.org/file/82270/download?token=fuDVQjIu",
       "material_types": [
         "Law 68/1947 two-page PDF scan copy"
       ],
-      "access_status": "2-page scan-copy; الوقائع المصرية issue58, 3 Jul1947; page images visually inspected; secondary-hosted; not authenticated Amiri Press binary.",
+      "access_status": "2-page scan-copy; الوقائع المصرية issue58, 3 Jul1947; page images visually inspected; secondary-hosted; not authenticated Amiri Press binary. Original download URL contained an expiring token; token removed from the register, and the stable non-token locator is retained.",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": "https://manshurat.org",
       "terms_checked_on": null,
       "permission_evidence": "Checked 2026-11-18. Public two-page scan copy available through Manshurat. Secondary-hosted and not independently authenticated as original Amiri Press Gazette PDF. No licence establishing bulk extraction, commercial use or redistribution located. These scan routes are public access leads only; no permission for bulk download, OCR, local archiving, commercial indexing, excerpt display or redistribution is inferred.",
       "bulk_download_or_api": "single public download route; no bulk/API permission established",
-      "required_next_action": "Compare scan against original Gazette issue; obtain official copy and rights clarification before bulk extraction."
+      "required_next_action": "Compare scan against original Gazette issue; obtain official copy and rights clarification before bulk extraction.",
+      "related_source_pages": [
+        "https://manshurat.org/file/82270/download"
+      ]
     },
     {
       "source_id": "EG-MANSHURAT-LAW69-1950",
@@ -1892,19 +1980,22 @@
     {
       "source_id": "EG-MANSHURAT-LAW70-SCAN",
       "authority": "Manshurat secondary legal archive",
-      "source_page": "https://manshurat.org/node/33668; https://manshurat.org/file/43842/download?token=z-q7csZN",
+      "source_page": "https://manshurat.org/node/33668",
       "file_url": "https://manshurat.org/file/43842/download?token=z-q7csZN",
       "material_types": [
         "Law 70/1964 eleven-page PDF scan copy"
       ],
-      "access_status": "11-page scan-copy; Gazette issue67, 22 Mar1964; page images visually inspected; secondary-hosted; not authenticated Amiri Press binary.",
+      "access_status": "11-page scan-copy; Gazette issue67, 22 Mar1964; page images visually inspected; secondary-hosted; not authenticated Amiri Press binary. Original download URL contained an expiring token; token removed from the register, and the stable non-token locator is retained.",
       "collection_permission": "unknown",
       "commercial_reuse_permission": "unknown",
       "terms_url": "https://manshurat.org",
       "terms_checked_on": null,
       "permission_evidence": "Checked 2026-11-18. Public eleven-page scan copy available through Manshurat. Secondary-hosted scan; not verified as the original Amiri Press Gazette PDF. No licence establishing bulk extraction, commercial use, excerpt display or redistribution located. These scan routes are public access leads only; no permission for bulk download, OCR, local archiving, commercial indexing, excerpt display or redistribution is inferred.",
       "bulk_download_or_api": "single public download route; no bulk/API permission established",
-      "required_next_action": "Compare scan against Gazette issue and amended article versions; obtain official copy and rights clarification."
+      "required_next_action": "Compare scan against Gazette issue and amended article versions; obtain official copy and rights clarification.",
+      "related_source_pages": [
+        "https://manshurat.org/file/43842/download"
+      ]
     },
     {
       "source_id": "EG-MANSHURAT-LAW82-1957",
@@ -2058,13 +2149,17 @@
         "Arabic full-text transcriptions Laws10/2026 and11/2026"
       ],
       "access_status": "Full searchable Arabic text pages observed; page footer displays Creative Commons Attribution 4.0 notice.",
-      "collection_permission": "cc_by_4_0_attributed_use_subject_to_license_scope",
-      "commercial_reuse_permission": "cc_by_4_0_applies_to_site_text_as_displayed_only; embedded third_party_scans_and_materials_not_cleared",
+      "collection_permission": "allowed_limited",
+      "commercial_reuse_permission": "allowed_limited",
       "terms_url": "https://creativecommons.org/licenses/by/4.0/",
-      "permission_evidence": "MKSEgypt pages for Laws10/2026 and11/2026 display CC BY 4.0. License applies to the site's text only as represented; not necessarily source Gazette scans or third-party content.",
+      "permission_evidence": "MKSEgypt pages for Laws10/2026 and11/2026 display CC BY 4.0. License applies to the site's text only as represented; not necessarily source Gazette scans or third-party content. Permission scope is limited to site-displayed text under the observed CC BY 4.0 notice; embedded scans and third-party materials are not cleared.",
       "terms_checked_on": "2026-11-18",
       "bulk_download_or_api": "No bulk/API permission established; manual page access only",
-      "required_next_action": "Preserve attribution and license notice; verify page-specific license scope before redistribution."
+      "required_next_action": "Preserve attribution and license notice; verify page-specific license scope before redistribution.",
+      "permission_evidence_url": "https://www.mksegypt.org/ar/laws/24665",
+      "commercial_reuse_evidence_url": "https://www.mksegypt.org/ar/laws/24665",
+      "commercial_reuse_evidence": "CC BY 4.0 attribution notice applies only to text displayed on the site; embedded Gazette scans and third-party materials are excluded. Attribution and license scope must be preserved.",
+      "commercial_terms_checked_on": "2026-11-18"
     },
     {
       "source_id": "EG-MKSEGYPT-CASE42-17",
@@ -2092,13 +2187,17 @@
         "PM Decision1985/2026 and Executive Regulation of State Planning Law18/2022; selected Arabic Articles1,5,11,23,35,39,43,44"
       ],
       "access_status": "Searchable Arabic full-text page contains the 44-article regulation and issuing clauses; selected articles transcribed locally. Page footer displays Creative Commons Attribution 4.0 (CC BY 4.0). Official Gazette page-image/PDF not acquired.",
-      "collection_permission": "cc_by_4_0_attributed_use_subject_to_license_scope",
-      "commercial_reuse_permission": "cc_by_4_0_applies_to_site_text_as_displayed_only; embedded_third_party_scans_and_materials_not_cleared",
+      "collection_permission": "allowed_limited",
+      "commercial_reuse_permission": "allowed_limited",
       "terms_url": "https://creativecommons.org/licenses/by/4.0/",
-      "permission_evidence": "The specific decision page displays the MKSEgypt CC BY 4.0 footer. The capture is limited to the site's text as displayed, with attribution and licence notice. This does not establish rights in embedded Gazette scans, third-party source documents, or material not owned by the site; no bulk/API permission or blanket right to ingest the whole site is claimed.",
+      "permission_evidence": "The specific decision page displays the MKSEgypt CC BY 4.0 footer. The capture is limited to the site's text as displayed, with attribution and licence notice. This does not establish rights in embedded Gazette scans, third-party source documents, or material not owned by the site; no bulk/API permission or blanket right to ingest the whole site is claimed. Permission scope is limited to site-displayed text under the observed CC BY 4.0 notice; embedded scans and third-party materials are not cleared.",
       "terms_checked_on": "2026-11-18",
       "bulk_download_or_api": "No bulk/API permission established; manual page access only",
-      "required_next_action": "Preserve attribution and CC BY 4.0 notice for the displayed text; obtain Gazette page images from an authorized source; do not assume the site licence covers third-party scans or bulk extraction."
+      "required_next_action": "Preserve attribution and CC BY 4.0 notice for the displayed text; obtain Gazette page images from an authorized source; do not assume the site licence covers third-party scans or bulk extraction.",
+      "permission_evidence_url": "https://mksegypt.org/ar/decisions/34892",
+      "commercial_reuse_evidence_url": "https://mksegypt.org/ar/decisions/34892",
+      "commercial_reuse_evidence": "CC BY 4.0 attribution notice applies only to text displayed on the site; embedded Gazette scans and third-party materials are excluded. Attribution and license scope must be preserved.",
+      "commercial_terms_checked_on": "2026-11-18"
     },
     {
       "source_id": "EG-MKSEGYPT-DECISION32-2024",
@@ -2108,13 +2207,17 @@
         "Full Arabic text of Cabinet Decision32/2024 amending PM Decision1/2001 Executive Regulation of Law148/2001"
       ],
       "access_status": "Public searchable full text. Page footer states content is published under Creative Commons Attribution 4.0; DSpace catalogue separately lists Arabic PDF attachment.",
-      "collection_permission": "allowed_with_attribution_for_site_displayed_text_only",
-      "commercial_reuse_permission": "allowed_with_attribution_for_site_displayed_text_only",
+      "collection_permission": "allowed_limited",
+      "commercial_reuse_permission": "allowed_limited",
       "terms_url": "https://creativecommons.org/licenses/by/4.0/",
-      "permission_evidence": "The page footer expressly states: محتوى الموقع منشور برخصة المشاع الإبداعي نسب المصنف 4.0. Scope recorded narrowly for the text displayed on this MKSEgypt page only, subject to attribution and licence terms. This does not establish rights in the DSpace PDF attachment, embedded Gazette scans, third-party material, or bulk/API extraction.",
+      "permission_evidence": "The page footer expressly states: محتوى الموقع منشور برخصة المشاع الإبداعي نسب المصنف 4.0. Scope recorded narrowly for the text displayed on this MKSEgypt page only, subject to attribution and licence terms. This does not establish rights in the DSpace PDF attachment, embedded Gazette scans, third-party material, or bulk/API extraction. Permission scope is limited to site-displayed text under the observed CC BY 4.0 notice; embedded scans and third-party materials are not cleared.",
       "terms_checked_on": "2026-11-18",
       "bulk_download_or_api": "No bulk/API permission established; manual page access only",
-      "required_next_action": "Preserve attribution and CC BY4.0 notice for displayed text; compare with DSpace Arabic PDF and Gazette page images; do not assume licence covers embedded third-party scans or bulk extraction."
+      "required_next_action": "Preserve attribution and CC BY4.0 notice for displayed text; compare with DSpace Arabic PDF and Gazette page images; do not assume licence covers embedded third-party scans or bulk extraction.",
+      "permission_evidence_url": "https://mksegypt.org/ar/decisions/21995",
+      "commercial_reuse_evidence_url": "https://mksegypt.org/ar/decisions/21995",
+      "commercial_reuse_evidence": "CC BY 4.0 attribution notice applies only to text displayed on the site; embedded Gazette scans and third-party materials are excluded. Attribution and license scope must be preserved.",
+      "commercial_terms_checked_on": "2026-11-18"
     },
     {
       "source_id": "EG-MKSEGYPT-LAW223-1996",
@@ -2233,7 +2336,7 @@
     {
       "source_id": "EG-MOF-TAX-LEGISLATION-INDEX-2026",
       "authority": "Ministry of Finance, Arab Republic of Egypt",
-      "source_page": "https://mof-web-prd.apps.fslabs.net/ar/legislation/legislation-6a731e1163496600085dd856; https://mof.gov.eg/ar/legislation/legislation-29; https://mof.gov.eg/ar/legislation/legislation-5fe868ea7bfc600007cbee84; https://mof.gov.eg/ar/legislation/legislation-5fe868af7bfc600007cbec34; https://mof.gov.eg/ar/legislation/legislation-5fe868c77bfc600007cbecbf; https://mof.gov.eg/ar/legislation/legislation-5fe868ab7bfc600007cbebd3; https://mof.gov.eg/ar/legislation/legislation-63b153f2c20e810008ffe605; https://mof.gov.eg/ar/legislation/legislation-63b157e65e154a0008be3060; https://mof.gov.eg/ar/legislation/legislation-6549ebe5c845320009ac2789; https://mof.gov.eg/ar/legislation/legislation-5fe869e57bfc600007cbf840; https://mof.gov.eg/ar/legislation/legislation-5fe868ad7bfc600007cbec04; https://mof.gov.eg/ar/legislation/legislation-5fe868a87bfc600007cbeb6d; https://mof.gov.eg/ar/legislation/legislation-5fe868aa7bfc600007cbeb9c; https://mof.gov.eg/ar/legislation/legislation-5fe868ab7bfc600007cbebd2; https://mof.gov.eg/ar/legislation/legislation-5fe868ab7bfc600007cbebbe; https://mof.gov.eg/ar/legislation/legislation-6522692e90919500080df0af; https://mof.gov.eg/ar/legislation/legislation-66a7477cfb247e0008920cd9",
+      "source_page": "https://mof-web-prd.apps.fslabs.net/ar/legislation/legislation-6a731e1163496600085dd856",
       "material_types": [
         "tax laws",
         "financial legislation",
@@ -2255,7 +2358,25 @@
       "permission_evidence": null,
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
-      "required_next_action": "Confirm the production portal domain and terms, request permission for intended uses, and verify every instrument against the Official Gazette before indexing. Obtain exact Decision197/2020 replacement wording; verify scanned Decisions337/2019 and780/2019 against page images; archive/hash only as permitted. Check all additional pages of MOF Decision991 related-legislation index and acquire other amendments (including 2019–2020) before declaring the regulation chain complete."
+      "required_next_action": "Confirm the production portal domain and terms, request permission for intended uses, and verify every instrument against the Official Gazette before indexing. Obtain exact Decision197/2020 replacement wording; verify scanned Decisions337/2019 and780/2019 against page images; archive/hash only as permitted. Check all additional pages of MOF Decision991 related-legislation index and acquire other amendments (including 2019–2020) before declaring the regulation chain complete.",
+      "related_source_pages": [
+        "https://mof.gov.eg/ar/legislation/legislation-29",
+        "https://mof.gov.eg/ar/legislation/legislation-5fe868ea7bfc600007cbee84",
+        "https://mof.gov.eg/ar/legislation/legislation-5fe868af7bfc600007cbec34",
+        "https://mof.gov.eg/ar/legislation/legislation-5fe868c77bfc600007cbecbf",
+        "https://mof.gov.eg/ar/legislation/legislation-5fe868ab7bfc600007cbebd3",
+        "https://mof.gov.eg/ar/legislation/legislation-63b153f2c20e810008ffe605",
+        "https://mof.gov.eg/ar/legislation/legislation-63b157e65e154a0008be3060",
+        "https://mof.gov.eg/ar/legislation/legislation-6549ebe5c845320009ac2789",
+        "https://mof.gov.eg/ar/legislation/legislation-5fe869e57bfc600007cbf840",
+        "https://mof.gov.eg/ar/legislation/legislation-5fe868ad7bfc600007cbec04",
+        "https://mof.gov.eg/ar/legislation/legislation-5fe868a87bfc600007cbeb6d",
+        "https://mof.gov.eg/ar/legislation/legislation-5fe868aa7bfc600007cbeb9c",
+        "https://mof.gov.eg/ar/legislation/legislation-5fe868ab7bfc600007cbebd2",
+        "https://mof.gov.eg/ar/legislation/legislation-5fe868ab7bfc600007cbebbe",
+        "https://mof.gov.eg/ar/legislation/legislation-6522692e90919500080df0af",
+        "https://mof.gov.eg/ar/legislation/legislation-66a7477cfb247e0008920cd9"
+      ]
     },
     {
       "source_id": "EG-MOHAMAH-SCC-REPRODUCTIONS",
@@ -2433,7 +2554,7 @@
     {
       "source_id": "EG-NOTARIES-UNION-TEXT",
       "authority": "Egypt Notaries Union",
-      "source_page": "https://notariesofegypt.org/article.php?id=312; https://www.notariesofegypt.org/article.php?id=430; https://notariesofegypt.org/article.php?id=485",
+      "source_page": "https://notariesofegypt.org/article.php?id=312",
       "material_types": [
         "Egypt Notaries Union full-text statutory reproductions",
         "Law114/1946 full text and historical articles",
@@ -2447,7 +2568,11 @@
       "permission_evidence": "Law114 page id485 has been used for eight article bodies in total: Articles2,14,16,17 and historical Articles3,24,26,29. The page has duplicate article numbering for some inserted/amended provisions and is dated 17 Feb 2021; it is not an original Gazette scan or a fully current consolidated text. Public accessibility does not grant commercial reuse permission.",
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
-      "required_next_action": "Compare Law114 page id485 against original Gazette issue85 and amendments Law157/1947, Law25/1976, Law9/2022; verify historical Articles3,24,26,29 against Gazette page images; request written reuse permission before commercial redistribution."
+      "required_next_action": "Compare Law114 page id485 against original Gazette issue85 and amendments Law157/1947, Law25/1976, Law9/2022; verify historical Articles3,24,26,29 against Gazette page images; request written reuse permission before commercial redistribution.",
+      "related_source_pages": [
+        "https://www.notariesofegypt.org/article.php?id=430",
+        "https://notariesofegypt.org/article.php?id=485"
+      ]
     },
     {
       "source_id": "EG-NYU-COLUMBIA-CIVILCODE-1948-PRINT",
@@ -2634,7 +2759,7 @@
     {
       "source_id": "EG-SCC",
       "authority": "Supreme Constitutional Court of Egypt",
-      "source_page": "https://www.sccourt.gov.eg/newportal/?a=cp3&id=829; https://www.sccourt.gov.eg/DjangoPortalResources/Rules_Html/1129_20_63_1_2.html; https://www.sccourt.gov.eg/DjangoPortalResources/Rules_Html/107_20_119_1_2.html; https://www.sccourt.gov.eg/DjangoPortalResources/Rules_Html/25_21_5_1_2.html; https://www.laweg.net/framePlain.aspx?JID=97461&NID=55171&Type=16&action=LawEg",
+      "source_page": "https://www.sccourt.gov.eg/newportal/?a=cp3&id=829",
       "material_types": [
         "constitutional judgments",
         "court decisions",
@@ -2648,7 +2773,13 @@
       "terms_checked_on": "2026-10-30",
       "bulk_download_or_api": "An unauthenticated JSON API is described by an independent fetcher, but was not independently validated and no official bulk/API permission was identified. Do not call endpoints or bulk collect pending terms and rights review.",
       "required_next_action": "Manually inspect official public judgment pages and capture exact case number, judicial year, date, case type, disposition and whether the page is a summary or full judgment. Locate current official terms and establish rights for storage, extraction, indexing, commercial use, excerpt display and redistribution. Independently validate any API only after terms review; compare selected records with Official Gazette publications and record page/source pinpoints. Keep collection and commercial reuse unknown. Preserve the Case 101/26 and Case 24/20 direct official URLs as manual citation leads; obtain explicit source terms before any bulk collection or commercial display.",
-      "permission_evidence_url": "https://www.sccourt.gov.eg/newportal/?a=cp3&id=829"
+      "permission_evidence_url": "https://www.sccourt.gov.eg/newportal/?a=cp3&id=829",
+      "related_source_pages": [
+        "https://www.sccourt.gov.eg/DjangoPortalResources/Rules_Html/1129_20_63_1_2.html",
+        "https://www.sccourt.gov.eg/DjangoPortalResources/Rules_Html/107_20_119_1_2.html",
+        "https://www.sccourt.gov.eg/DjangoPortalResources/Rules_Html/25_21_5_1_2.html",
+        "https://www.laweg.net/framePlain.aspx?JID=97461&NID=55171&Type=16&action=LawEg"
+      ]
     },
     {
       "source_id": "EG-SCC-CASE101-26-OFFICIAL-HTML",
@@ -2737,7 +2868,7 @@
     {
       "source_id": "EG-SIS-GAZETTE-2025-08-13-LAW168",
       "authority": "Egyptian State Information Service digital repository; item metadata identifies Amiri Press (مطابع الأميرية) as issuing entity",
-      "source_page": "https://mediadr.sis.gov.eg/handle/123456789/105925; https://mediadr.sis.gov.eg/xmlui/handle/123456789/105925; https://mediadr.sis.gov.eg/xmlui/bitstream/handle/123456789/105925/OG32_20250813_5008.pdf?isAllowed=y&sequence=1",
+      "source_page": "https://mediadr.sis.gov.eg/handle/123456789/105925",
       "material_types": [
         "Official Gazette full-issue PDF",
         "Law 168/2025",
@@ -2750,7 +2881,11 @@
       "permission_evidence": "Official repository metadata identifies the issuing authority as Amiri Press and the item abstract as Laws 168 and 169 of 2025. The listed PDF file was not retrievable due 502/URL access failure. Public item metadata does not establish bulk download, local archiving, OCR, commercial use or redistribution permission.",
       "terms_checked_on": null,
       "bulk_download_or_api": "not established; retry SIS repository item/PDF route or request authorized copy",
-      "required_next_action": "Retry official SIS PDF route or request the 295.3 KB file through the repository; obtain bytes and SHA-256 if access is granted; compare Law168 pages to VetoGate secondary scan and Diwan searchable text; seek written rights clarification."
+      "required_next_action": "Retry official SIS PDF route or request the 295.3 KB file through the repository; obtain bytes and SHA-256 if access is granted; compare Law168 pages to VetoGate secondary scan and Diwan searchable text; seek written rights clarification.",
+      "related_source_pages": [
+        "https://mediadr.sis.gov.eg/xmlui/handle/123456789/105925",
+        "https://mediadr.sis.gov.eg/xmlui/bitstream/handle/123456789/105925/OG32_20250813_5008.pdf?isAllowed=y&sequence=1"
+      ]
     },
     {
       "source_id": "EG-SIS-GAZETTE-2025-295-SUPPLEMENT-D",
@@ -2772,7 +2907,7 @@
     {
       "source_id": "EG-SIS-GAZETTE-2026-01-18",
       "authority": "State Information Service / Media Digital Repository",
-      "source_page": "https://mediadr.sis.gov.eg/xmlui/handle/123456789/118973; https://mediadr.sis.gov.eg/xmlui/bitstream/handle/123456789/118973/OG3_20260118_2885.pdf?isAllowed=y&sequence=2",
+      "source_page": "https://mediadr.sis.gov.eg/xmlui/handle/123456789/118973",
       "file_url": "https://mediadr.sis.gov.eg/xmlui/bitstream/handle/123456789/118973/OG3_20260118_2885.pdf?isAllowed=y&sequence=2",
       "material_types": [
         "Official Gazette issue 3 bis (A), 18 January 2026",
@@ -2786,7 +2921,10 @@
       "terms_checked_on": null,
       "permission_evidence": "Checked 2026-11-18. Public full Gazette issue PDF served from SIS Media Digital Repository; page content begins with the Republic/Presidency/Official Gazette masthead and issue/date metadata. The PDF text layer includes Decision 200/2026 and all regulation articles. This establishes access to an official government-hosted Gazette reproduction, not an explicit licence for bulk collection, commercial indexing, public display or redistribution. The DSpace original bundle is separately restricted. Full text and forms extracted. Article20 PDF text layer says annual reports, while Form3 says quarterly and Law168 Article14 says quarterly; page-image verification unresolved. No commercial reuse permission or redistribution permission inferred.",
       "bulk_download_or_api": "single public issue PDF URL; no bulk/API licence established",
-      "required_next_action": "Archive/hash exact PDF; inspect page images; compare against restricted DSpace original when authorized; seek explicit reuse terms."
+      "required_next_action": "Archive/hash exact PDF; inspect page images; compare against restricted DSpace original when authorized; seek explicit reuse terms.",
+      "related_source_pages": [
+        "https://mediadr.sis.gov.eg/xmlui/bitstream/handle/123456789/118973/OG3_20260118_2885.pdf?isAllowed=y&sequence=2"
+      ]
     },
     {
       "source_id": "EG-SIS-GAZETTE-216-2024-BUILDING-DECISION-943",
@@ -2908,7 +3046,7 @@
     {
       "source_id": "EG-UMN-SCC-JUDGMENTS",
       "authority": "University of Minnesota Human Rights Library — archived Egyptian Supreme Constitutional Court judgments",
-      "source_page": "https://hrlibrary.umn.edu/arabic/Egypt-SCC-SC/Egypt-SCC-4-Y23.html; https://hrlibrary.umn.edu/arabic/Egypt-SCC-SC/Egypt-SCC-47-Y21.html",
+      "source_page": "https://hrlibrary.umn.edu/arabic/Egypt-SCC-SC/Egypt-SCC-4-Y23.html",
       "material_types": [
         "secondary archive of full Constitutional Court judgments",
         "rent-law judgments"
@@ -2920,7 +3058,10 @@
       "permission_evidence": "Full Arabic judgment transcriptions for Cases 4/23 (13 Apr 2003) and 47/21 (4 Apr 2004) were inspected. Public access and archived status do not establish bulk extraction, local archiving, commercial indexing, excerpt display or redistribution permission.",
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
-      "required_next_action": "Compare both judgment texts against original SCC judgment copies and Gazette publication scans; review archive terms and seek written permission before commercial reuse."
+      "required_next_action": "Compare both judgment texts against original SCC judgment copies and Gazette publication scans; review archive terms and seek written permission before commercial reuse.",
+      "related_source_pages": [
+        "https://hrlibrary.umn.edu/arabic/Egypt-SCC-SC/Egypt-SCC-47-Y21.html"
+      ]
     },
     {
       "source_id": "EG-VETOGATE-GAZETTE-168-2025",
@@ -2943,7 +3084,7 @@
     {
       "source_id": "EG-WIPO-LEX",
       "authority": "World Intellectual Property Organization",
-      "source_page": "https://www.wipo.int/wipolex/; https://www.wipo.int/wipolex/en/legislation/details/22397; https://wipolex-res.wipo.int/edocs/lexdocs/laws/ar/eg/eg087ar_1.pdf",
+      "source_page": "https://www.wipo.int/wipolex/",
       "material_types": [
         "legal texts",
         "IP legislation",
@@ -2956,7 +3097,11 @@
       "terms_checked_on": "2026-10-24",
       "bulk_download_or_api": "not established",
       "required_next_action": "Review WIPO site/database terms; use as a discovery and cross-reference source unless intended reuse is clearly permitted.",
-      "permission_evidence": "Terms reviewed 2026-10-24. WIPO's open-access policy generally licenses WIPO-owned online publications/content under CC BY 4.0 unless more restrictive terms apply, but expressly excludes third-party content. WIPO Lex includes national legal materials; item-level ownership and service-specific terms are not established here. Keep collection and commercial reuse unknown until rights for each record are confirmed. Evidence Law source upgrade checked 2026-11-18: WIPO Lex hosts an Arabic PDF of Law 25/1968 with extracted text through Article 162; the final WIPO extracted line labelled 163 duplicates Article 153 and is treated as OCR anomaly pending Gazette image check (not 117). This is a useful comparative full-text source but not a substitute for the Egyptian Official Gazette; no separate commercial/bulk reuse permission is established by its availability. The Egypt Law 25/1968 PDF identifies Official Gazette issue22, 30 May1968, and WIPO metadata gives 30 Nov1968 commencement; text layer is not reliable for verbatim extraction. No commercial reuse permission inferred."
+      "permission_evidence": "Terms reviewed 2026-10-24. WIPO's open-access policy generally licenses WIPO-owned online publications/content under CC BY 4.0 unless more restrictive terms apply, but expressly excludes third-party content. WIPO Lex includes national legal materials; item-level ownership and service-specific terms are not established here. Keep collection and commercial reuse unknown until rights for each record are confirmed. Evidence Law source upgrade checked 2026-11-18: WIPO Lex hosts an Arabic PDF of Law 25/1968 with extracted text through Article 162; the final WIPO extracted line labelled 163 duplicates Article 153 and is treated as OCR anomaly pending Gazette image check (not 117). This is a useful comparative full-text source but not a substitute for the Egyptian Official Gazette; no separate commercial/bulk reuse permission is established by its availability. The Egypt Law 25/1968 PDF identifies Official Gazette issue22, 30 May1968, and WIPO metadata gives 30 Nov1968 commencement; text layer is not reliable for verbatim extraction. No commercial reuse permission inferred.",
+      "related_source_pages": [
+        "https://www.wipo.int/wipolex/en/legislation/details/22397",
+        "https://wipolex-res.wipo.int/edocs/lexdocs/laws/ar/eg/eg087ar_1.pdf"
+      ]
     },
     {
       "source_id": "EG-YOUM7-DECISION2332-2022",
@@ -2982,8 +3127,8 @@
         "Arabic full-text transcriptions of Egyptian statutes, executive decisions and court judgments"
       ],
       "access_status": "Full searchable Arabic decision and judgment texts observed; pages display Creative Commons Attribution 4.0 notice.",
-      "collection_permission": "cc_by_4_0_attributed_use_subject_to_license_scope",
-      "commercial_reuse_permission": "cc_by_4_0_applies_to_site_text_as_displayed_only; embedded_third_party_scans_and_materials_not_cleared",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
       "terms_url": "https://creativecommons.org/licenses/by/4.0/",
       "permission_evidence": "The MKS Egypt pages for SCC Cases 2/16 (1996) and 36/18 (1998), SAC Appeal 2566/34 (1990), PM Decisions 1543/1993 and 2718/1996 display a CC BY 4.0 attribution notice in the page footer. Permission is limited to text as displayed on those pages; embedded Gazette scans and third-party materials are not cleared.",
       "terms_checked_on": "2026-11-23",
@@ -3287,7 +3432,7 @@
     {
       "source_id": "EG-LAWYEREGYPT-METRO-LAWS113-1983-33-2018",
       "authority": "Lawyer Egypt legal-information website (secondary statutory reproductions)",
-      "source_page": "https://lawyeregypt.net/قانون-إنشاء-الهيئة-القومية-للأنفاق/; https://lawyeregypt.net/قانون-رقم-33-لسنة-2018-بتعديل-بعض-أحكام-القانون-رقم-113-لسنة-1983-بإنشاء-الهيئة-القومية-للأنفاق/",
+      "source_page": "https://lawyeregypt.net/قانون-إنشاء-الهيئة-القومية-للأنفاق/",
       "material_types": [
         "Secondary full Arabic text of Law 113/1983 as consolidated through 2020 and text of Law 33/2018 amending Articles 2 and 3."
       ],
@@ -3298,12 +3443,15 @@
       "permission_evidence": "No affirmative licence for full-text mirroring, bulk extraction, commercial indexing, redistribution or republication identified. Public access does not establish reuse permission.",
       "terms_checked_on": "2026-11-23",
       "bulk_download_or_api": "Individual public pages; no bulk/API permission established",
-      "required_next_action": "Review site terms and seek written authorization before local mirroring or commercial reuse; compare all reproduced articles with original Gazette page images."
+      "required_next_action": "Review site terms and seek written authorization before local mirroring or commercial reuse; compare all reproduced articles with original Gazette page images.",
+      "related_source_pages": [
+        "https://lawyeregypt.net/قانون-رقم-33-لسنة-2018-بتعديل-بعض-أحكام-القانون-رقم-113-لسنة-1983-بإنشاء-الهيئة-القومية-للأنفاق/"
+      ]
     },
     {
       "source_id": "EG-SUEZ-CANAL-AUTHORITY-LEGAL-PAGES-1975-1998-2014",
       "authority": "Suez Canal Authority (Egypt) — official authority website",
-      "source_page": "https://www.suezcanal.gov.eg/Arabic/About/CanalTreatiesAndDecrees/Pages/ARepublicanDecreeLawNo.30of1975.aspx; https://www.suezcanal.gov.eg/Arabic/About/CanalTreatiesAndDecrees/Pages/LawNo4.aspx; https://www.suezcanal.gov.eg/Arabic/About/CanalTreatiesAndDecrees/Pages/Law_No_34_2014.aspx",
+      "source_page": "https://www.suezcanal.gov.eg/Arabic/About/CanalTreatiesAndDecrees/Pages/ARepublicanDecreeLawNo.30of1975.aspx",
       "material_types": [
         "Official authority-hosted Arabic legal reproductions of Law 30/1975, Law 4/1998 and Law 34/2014 governing the Suez Canal Authority."
       ],
@@ -3314,7 +3462,11 @@
       "permission_evidence": "No explicit licence permitting bulk extraction, local mirroring, commercial indexing, republication or redistribution was identified. Official authority publication does not establish commercial reuse rights.",
       "terms_checked_on": "2026-11-23",
       "bulk_download_or_api": "Public web pages; no bulk/API permission established",
-      "required_next_action": "Review SCA site terms and request written authorization before bulk/local mirroring or commercial redistribution; obtain corresponding Gazette originals."
+      "required_next_action": "Review SCA site terms and request written authorization before bulk/local mirroring or commercial redistribution; obtain corresponding Gazette originals.",
+      "related_source_pages": [
+        "https://www.suezcanal.gov.eg/Arabic/About/CanalTreatiesAndDecrees/Pages/LawNo4.aspx",
+        "https://www.suezcanal.gov.eg/Arabic/About/CanalTreatiesAndDecrees/Pages/Law_No_34_2014.aspx"
+      ]
     },
     {
       "source_id": "EG-MTS-MARITIME-TRANSPORT-SECTOR-PORT-LICENSING",
@@ -3351,7 +3503,7 @@
     {
       "source_id": "EG-EEAA-ENVIRONMENT-AND-WASTE-LAW-LIBRARY",
       "authority": "Egyptian Environmental Affairs Agency (EEAA)",
-      "source_page": "https://www.eeaa.gov.eg/laws/55/index; https://www.eeaa.gov.eg/Laws/56/index; https://www.eeaa.gov.eg/Uploads/Laws/Files/20221004120054988.pdf; https://www.eeaa.gov.eg/Uploads/Laws/Files/20250526101230761.pdf",
+      "source_page": "https://www.eeaa.gov.eg/laws/55/index",
       "material_types": [
         "Official Arabic law-library index for Environment Law4/1994, Law105/2015, Executive Regulation338/1995 and amendments; Waste Management Law202/2020 and PM Decision722/2022; official EEAA-hosted Gazette PDF copies."
       ],
@@ -3362,7 +3514,12 @@
       "permission_evidence": "No explicit licence authorizing bulk acquisition, local mirroring, commercial indexing, redistribution or republication was identified in this pass. Public access or government hosting does not by itself establish reuse permission.",
       "terms_checked_on": "2026-11-23",
       "bulk_download_or_api": "Individual public pages/PDFs; no bulk/API permission established",
-      "required_next_action": "Review EEAA terms and seek written permission before bulk/local mirroring or commercial display; obtain original Gazette binaries where available."
+      "required_next_action": "Review EEAA terms and seek written permission before bulk/local mirroring or commercial display; obtain original Gazette binaries where available.",
+      "related_source_pages": [
+        "https://www.eeaa.gov.eg/Laws/56/index",
+        "https://www.eeaa.gov.eg/Uploads/Laws/Files/20221004120054988.pdf",
+        "https://www.eeaa.gov.eg/Uploads/Laws/Files/20250526101230761.pdf"
+      ]
     },
     {
       "source_id": "EG-IDA-ENVIRONMENT-EXECUTIVE-REGULATION-338-1995",
@@ -3383,7 +3540,7 @@
     {
       "source_id": "EG-MWRI-NILE-WATERCOURSE-LEGISLATION",
       "authority": "Ministry of Water Resources and Irrigation (MWRI), Egypt",
-      "source_page": "https://www.mwri.gov.eg/wp-content/uploads/2020/01/Law-Nile-48-82.pdf; https://www.mwri.gov.eg/wp-content/uploads/2020/01/LAw-Regulations-48-82.pdf",
+      "source_page": "https://www.mwri.gov.eg/wp-content/uploads/2020/01/Law-Nile-48-82.pdf",
       "material_types": [
         "Official MWRI-hosted Arabic PDF of Law48/1982 (19 articles); official MWRI-hosted searchable Arabic text of PM Decision92/2013 revised Executive Regulation (64 articles and annexed water-quality standards)."
       ],
@@ -3394,12 +3551,15 @@
       "permission_evidence": "No explicit licence authorizing bulk acquisition, local mirroring, commercial indexing, redistribution or republication was identified in this pass. Public access or government hosting does not by itself establish reuse permission.",
       "terms_checked_on": "2026-11-23",
       "bulk_download_or_api": "Individual public pages/PDFs; no bulk/API permission established",
-      "required_next_action": "Review MWRI site terms and seek written authorization for bulk extraction or commercial reuse; verify Gazette originals and all numerical water-quality tables."
+      "required_next_action": "Review MWRI site terms and seek written authorization for bulk extraction or commercial reuse; verify Gazette originals and all numerical water-quality tables.",
+      "related_source_pages": [
+        "https://www.mwri.gov.eg/wp-content/uploads/2020/01/LAw-Regulations-48-82.pdf"
+      ]
     },
     {
       "source_id": "EG-SIS-GAZETTE-HEALTH-2023-2024",
       "authority": "State Information Service (SIS) Media/Document Repository, Egypt",
-      "source_page": "https://mediadr.sis.gov.eg/bitstream/handle/123456789/47210/OG39_20231004_0126.pdf?isAllowed=y&sequence=1; https://mediadr.sis.gov.eg/bitstream/handle/123456789/79455/WQ258_20241120_7462.pdf?isAllowed=y&sequence=2; https://mediadr.sis.gov.eg/handle/123456789/63697?locale-attribute=ar",
+      "source_page": "https://mediadr.sis.gov.eg/bitstream/handle/123456789/47210/OG39_20231004_0126.pdf?isAllowed=y&sequence=1",
       "material_types": [
         "Official Gazette issue39 bis (و), 4 Oct 2023 (Egyptian Health Council executive regulation); Official Proceedings issue258, 20 Nov 2024 (Health Minister Decision439/2024); Official Gazette issue25 bis, 23 Jun 2024 (Law87/2024)."
       ],
@@ -3410,12 +3570,16 @@
       "permission_evidence": "No explicit licence authorizing bulk acquisition, local mirroring, commercial indexing, redistribution or republication was identified in this pass. Public access or government hosting does not by itself establish reuse permission.",
       "terms_checked_on": "2026-11-23",
       "bulk_download_or_api": "Individual public pages/PDFs; no bulk/API permission established",
-      "required_next_action": "Review SIS repository terms and request permission for bulk downloading/local mirroring or commercial display; inspect page images and preserve Gazette issue/version metadata."
+      "required_next_action": "Review SIS repository terms and request permission for bulk downloading/local mirroring or commercial display; inspect page images and preserve Gazette issue/version metadata.",
+      "related_source_pages": [
+        "https://mediadr.sis.gov.eg/bitstream/handle/123456789/79455/WQ258_20241120_7462.pdf?isAllowed=y&sequence=2",
+        "https://mediadr.sis.gov.eg/handle/123456789/63697?locale-attribute=ar"
+      ]
     },
     {
       "source_id": "EG-EDA-BLOOD-PLASMA-LEGISLATION",
       "authority": "Egyptian Drug Authority (EDA), Egypt",
-      "source_page": "https://dev.edaegypt.gov.eg/media/qt2lptuz/2021-8.pdf; https://www.edaegypt.gov.eg/media/mkwle5kk/minister-decree-no-2603.pdf; https://www.edaegypt.gov.eg/media/2lfhbcbe/minister-decree-no-2603.pdf",
+      "source_page": "https://dev.edaegypt.gov.eg/media/qt2lptuz/2021-8.pdf",
       "material_types": [
         "EDA-hosted Arabic Official Gazette PDF for Law8/2021 on blood operations and plasma; EDA-hosted 17-page English translation of PM Decision2603/2021 executive regulation."
       ],
@@ -3426,12 +3590,16 @@
       "permission_evidence": "No explicit licence authorizing bulk acquisition, local mirroring, commercial indexing, redistribution or republication was identified in this pass. Public access or government hosting does not by itself establish reuse permission.",
       "terms_checked_on": "2026-11-23",
       "bulk_download_or_api": "Individual public pages/PDFs; no bulk/API permission established",
-      "required_next_action": "Review EDA website terms and request written permission for bulk/local mirroring or commercial display; obtain the original Arabic PM2603/2021 Gazette PDF and technical annexes."
+      "required_next_action": "Review EDA website terms and request written permission for bulk/local mirroring or commercial display; obtain the original Arabic PM2603/2021 Gazette PDF and technical annexes.",
+      "related_source_pages": [
+        "https://www.edaegypt.gov.eg/media/mkwle5kk/minister-decree-no-2603.pdf",
+        "https://www.edaegypt.gov.eg/media/2lfhbcbe/minister-decree-no-2603.pdf"
+      ]
     },
     {
       "source_id": "EG-FAOLEX-EGYPT-WASTE-WATER-ENVIRONMENT-LAWS",
       "authority": "FAOLEX (FAO Legal Office database)",
-      "source_page": "https://faolex.fao.org/docs/pdf/egy199134.pdf; https://faolex.fao.org/docs/pdf/egy179415.pdf; https://faolex.fao.org/docs/pdf/egy179418.pdf; https://faolex.fao.org/docs/pdf/egy195608.pdf",
+      "source_page": "https://faolex.fao.org/docs/pdf/egy199134.pdf",
       "material_types": [
         "Arabic Gazette reproductions/text layers for Law202/2020 Waste Management; Law93/1962 liquid-waste discharge; PM Decision44/2000; Law103/2015 amending Law48/1982."
       ],
@@ -3442,7 +3610,12 @@
       "permission_evidence": "No explicit licence authorizing bulk acquisition, local mirroring, commercial indexing, redistribution or republication was identified in this pass. Public access or government hosting does not by itself establish reuse permission.",
       "terms_checked_on": "2026-11-23",
       "bulk_download_or_api": "Individual public pages/PDFs; no bulk/API permission established",
-      "required_next_action": "Review FAOLEX terms and source attribution requirements; confirm underlying Gazette provenance and seek authorization for bulk redistribution or commercial reuse."
+      "required_next_action": "Review FAOLEX terms and source attribution requirements; confirm underlying Gazette provenance and seek authorization for bulk redistribution or commercial reuse.",
+      "related_source_pages": [
+        "https://faolex.fao.org/docs/pdf/egy179415.pdf",
+        "https://faolex.fao.org/docs/pdf/egy179418.pdf",
+        "https://faolex.fao.org/docs/pdf/egy195608.pdf"
+      ]
     }
   ]
 }
