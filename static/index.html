@@ -3494,12 +3494,15 @@ function documentIntelligencePanel(caseId,documents){
    await api('/cases/'+caseId+'/docs/'+item.doc.document_id+'/chunks/'+chunk.id+'/review','POST',payload);
    const [refreshed,annotationData]=await Promise.all([
     api('/cases/'+caseId+'/docs/'+item.doc.document_id+'/chunks'),
-    api('/cases/'+caseId+'/docs/'+item.doc.document_id+'/annotations'),
+    api('/cases/'+caseId+'/docs/'+item.doc.document_id+'/annotations').catch(error=>({
+     annotations:[],error:String(error.message||uiText('تعذر تحميل التعليقات المحفوظة.','Could not load saved annotations.'))
+    })),
    ]);
    item.chunks=Array.isArray(refreshed.chunks)?refreshed.chunks:[];
    item.text=item.chunks.map(part=>String(part.text||'')).join('\n');
    item.intelligence=refreshed.intelligence||item.intelligence;
    item.annotations=Array.isArray(annotationData.annotations)?annotationData.annotations:[];
+   item.annotationError=annotationData.error||null;
    renderAnalysis();
    status.textContent=uiText('تم حفظ قرار مراجعة الاستخراج في سجل التدقيق.','Extraction review decision saved to the audit history.');
   }catch(error){
@@ -3511,8 +3514,11 @@ function documentIntelligencePanel(caseId,documents){
      item.chunks=Array.isArray(latest.chunks)?latest.chunks:[];
      item.text=item.chunks.map(part=>String(part.text||'')).join('\n');
      item.intelligence=latest.intelligence||item.intelligence;
-     const annotationData=await api('/cases/'+caseId+'/docs/'+item.doc.document_id+'/annotations');
+     const annotationData=await api('/cases/'+caseId+'/docs/'+item.doc.document_id+'/annotations').catch(error=>({
+      annotations:[],error:String(error.message||uiText('تعذر تحميل التعليقات المحفوظة.','Could not load saved annotations.'))
+     }));
      item.annotations=Array.isArray(annotationData.annotations)?annotationData.annotations:[];
+     item.annotationError=annotationData.error||null;
      renderAnalysis();
      status.textContent=uiText('تغير النص المستخرج منذ فتح المراجعة. تم تحديث المقطع؛ راجعه قبل إعادة المحاولة.','The extracted text changed since this review was opened. The passage was refreshed; review it before retrying.');
      sourceChanged=true;
@@ -3564,8 +3570,11 @@ function documentIntelligencePanel(caseId,documents){
      const controls=[captureSelection,saveHighlight,saveNote];controls.forEach(control=>control.disabled=true);
      try{
       await api('/cases/'+caseId+'/docs/'+item.doc.document_id+'/annotations','POST',payload);
-      const saved=await api('/cases/'+caseId+'/docs/'+item.doc.document_id+'/annotations');
+      const saved=await api('/cases/'+caseId+'/docs/'+item.doc.document_id+'/annotations').catch(error=>({
+       annotations:item.annotations||[],error:String(error.message||uiText('تعذر تحديث قائمة التعليقات.','Could not refresh the annotation list.'))
+      }));
       item.annotations=Array.isArray(saved.annotations)?saved.annotations:[];
+      item.annotationError=saved.error||null;
       selectedAnchor=null;annotationBody.value='';
       annotationStatus.textContent=uiText('تم حفظ التعليق في ملف القضية مع مرجع النص الأصلي.','Annotation saved to the matter with its source-text reference.');
       status.textContent=uiText('تم حفظ التظليل أو الملاحظة في سجل مستندات القضية.','Highlight or note saved in the matter document record.');
@@ -3580,6 +3589,7 @@ function documentIntelligencePanel(caseId,documents){
     const saveHighlight=btn(uiText('حفظ التظليل','Save highlight'),()=>saveAnnotation('highlight'),'g');
     const saveNote=btn(uiText('حفظ الملاحظة','Save note'),()=>saveAnnotation('note'),'primary');
     const savedAnnotations=(Array.isArray(item.annotations)?item.annotations:[]).filter(annotation=>Number(annotation.chunk_id)===Number(chunk.id));
+    const annotationWarning=item.annotationError?h('p',{className:'notice danger',role:'alert',textContent:uiText('تعذر تحميل التعليقات المحفوظة: ','Could not load saved annotations: ')+item.annotationError}):null;
     const annotationHistory=savedAnnotations.map(annotation=>h('article',{className:'card document-annotation-item'},
      h('div',{className:'row'},h('b',{textContent:annotation.annotation_type==='highlight'?uiText('تظليل محفوظ','Saved highlight'):uiText('ملاحظة محفوظة','Saved note')}),annotation.stale_anchor?pill(uiText('مرجع قديم — راجع النص','Stale anchor — recheck text'),'soon'):pill(uiText('مرجع النص ساري','Current text anchor'),'done')),
      annotation.annotation_type==='highlight'
@@ -3599,7 +3609,7 @@ function documentIntelligencePanel(caseId,documents){
      h('p',{className:'mut',textContent:[chunk.ref,latest&&latest.page_reference?uiText('مرجع المراجع: ','Reviewer reference: ')+latest.page_reference:chunk.page?uiText('صفحة ','Page ')+chunk.page:''].filter(Boolean).join(' · ')}),
      latest&&latest.page_reference?h('p',{className:'mut',textContent:uiText('مرجع أدخله المراجع ولم يتم التحقق منه مقابل الملف الأصلي.','Reviewer-entered reference; not verified against the original file.')}):null,
      h('div',{},h('b',{textContent:latest&&latest.outcome==='corrected'?uiText('النص المستخرج الأصلي','Original extracted passage'):uiText('النص المستخرج','Extracted passage')}),passage),
-     h('div',{className:'document-annotation-controls'},h('b',{textContent:uiText('التظليل والملاحظات المحفوظة','Saved highlights and notes')}),h('p',{className:'mut',textContent:uiText('حدد النص أعلاه بالماوس أو لوحة المفاتيح، ثم احفظه كتظليل أو أرفق به ملاحظة.','Select text above with the mouse or keyboard, then save a highlight or attach a note.')}),annotationBody,h('div',{className:'row'},captureSelection,saveHighlight,saveNote),annotationStatus,...annotationHistory),
+     h('div',{className:'document-annotation-controls'},h('b',{textContent:uiText('التظليل والملاحظات المحفوظة','Saved highlights and notes')}),h('p',{className:'mut',textContent:uiText('حدد النص أعلاه بالماوس أو لوحة المفاتيح، ثم احفظه كتظليل أو أرفق به ملاحظة.','Select text above with the mouse or keyboard, then save a highlight or attach a note.')}),annotationBody,h('div',{className:'row'},captureSelection,saveHighlight,saveNote),annotationWarning,annotationStatus,...annotationHistory),
      latest&&latest.outcome==='corrected'?h('div',{className:'reviewed-correction'},h('b',{textContent:uiText('آخر نص مصحح مسجل','Latest recorded correction')}),h('p',{className:'extraction-review-text',textContent:String(latest.reviewed_text||'')})):null,
      latest&&latest.outcome==='corrected'&&Array.isArray(latest.changes)?h('div',{className:'reviewed-change-list'},h('b',{textContent:uiText('التغييرات النصية الحرفية','Literal text changes')}),...latest.changes.map((change,index)=>h('div',{className:'reviewed-change'},h('p',{className:'mut',textContent:uiText('قبل التعديل','Before')}),h('p',{className:'extraction-review-text',textContent:String(change.before||'')}),h('p',{className:'mut',textContent:uiText('بعد التعديل','After')}),h('p',{className:'extraction-review-text',textContent:String(change.after||'')}),h('p',{className:'mut',textContent:uiText('هذا اختلاف نصي حرفي ويتطلب مراجعة قانونية.','Literal text difference; requires lawyer review.')})))):null,
      latest&&latest.comparison_warning?h('p',{className:'mut',textContent:latest.comparison_warning}):null,
@@ -3781,13 +3791,15 @@ function documentIntelligencePanel(caseId,documents){
     const [data,classification,annotationData]=await Promise.all([
      api('/cases/'+caseId+'/docs/'+doc.document_id+'/chunks'),
      api('/cases/'+caseId+'/docs/'+doc.document_id+'/classification').catch(()=>null),
-     api('/cases/'+caseId+'/docs/'+doc.document_id+'/annotations').catch(()=>({annotations:[]})),
+     api('/cases/'+caseId+'/docs/'+doc.document_id+'/annotations').catch(error=>({
+      annotations:[],error:String(error.message||uiText('تعذر تحميل التعليقات المحفوظة.','Could not load saved annotations.'))
+     })),
     ]);
     const chunks=Array.isArray(data.chunks)?data.chunks:[];
     if(!data.intelligence||!data.intelligence.classification||!Array.isArray(data.intelligence.candidates))throw new Error('server_document_intelligence_unavailable');
     const text=chunks.map(chunk=>String(chunk.text||'')).join('\n');
     if(totalChars+text.length>1000000){skipped++;break}
-    totalChars+=text.length;cache.set(String(doc.document_id),{doc,chunks,text,intelligence:data.intelligence,classification,annotations:Array.isArray(annotationData.annotations)?annotationData.annotations:[]});loaded++;
+    totalChars+=text.length;cache.set(String(doc.document_id),{doc,chunks,text,intelligence:data.intelligence,classification,annotations:Array.isArray(annotationData.annotations)?annotationData.annotations:[],annotationError:annotationData.error||null});loaded++;
    }
    if(docs.length>40)skipped+=docs.length-40;
    renderAnalysis();
