@@ -249,3 +249,11 @@ All newly recovered entries remain provisional. Preserve `lawyer_reviewed=false`
 ## 61. NFSA Board Decision 9/2020 — service and laboratory fees
 
 - [Decision 9/2020 official Customs scan capture](../legal_evidence/nfsa_board_decision_9_2020_import_export_service_fees_official_scan_capture_2026-11-24.md) — signed three-page Arabic decision scan hosted by Customs, all pages inspected. Records administrative request fees, expedited/after-hours inspections, second inspection, processing/destruction supervision, transport, treatment extensions, sample coding/transport and laboratory charges. Treat as historical only until compared with Decisions 4/2021, 11/2021 and later fee instruments.
+
+## 62. NFSA Chair Decision 269/2022 — reduced sampling for white-list manufacturers
+
+- [Decision 269/2022 official scan capture](../legal_evidence/nfsa_chair_decision_269_2022_reduced_sampling_white_list_food_manufacturers_official_scan_2026-11-24.md) — six-page signed Customs-hosted Arabic scan, including implementation mechanism and two forms; all pages inspected. Establishes risk-based sampling below 100% for qualifying white-list manufacturers importing production inputs for their own use, not market sale. Read with Decision 270/2024.
+
+## 63. NFSA Decision 270/2024 — fast release of production inputs
+
+- [Decision 270/2024 Gazette capture](../legal_evidence/nfsa_decision_270_2024_fast_release_production_inputs_post_market_control_official_gazette_capture_2026-11-24.md) — complete 10-article Arabic text from Ministry of Finance-hosted Official Gazette issue195 (5 September 2024), all seven pages visually inspected. Defines white-list eligibility, prior notice, sampling/risk factors, three release routes, recordkeeping, technical committee and suspension. Ministry of Finance repository currently labels it in force; independent amendment/currentness review remains open.
