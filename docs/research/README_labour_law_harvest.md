@@ -182,3 +182,28 @@ This folder contains free/public source discovery, metadata registers and extrac
 
 
 86. [OSH Decisions 251 and 252/2026 — Arabic text recovery addendum](../legal_evidence/osh_decisions_251_252_2026_arabic_text_recovery_addendum_2026-11-22.md) — Decision251: full Article1 definitions, Article2 two-level Consultant A/B licensing requirement, and opening of Article3/first degree criterion; Decision252: all nine definitions in Article1. Al-Masdar sources reproduce only excerpts, not complete decisions; Youm7 provides a non-verbatim summary of additional level-A eligibility. Full operative text, annexes and Gazette page matching remain open. verified=0.
+
+
+## 2026-11-24 — recovered labour-instrument acquisition tranche
+
+87. [Decision 272/2025 — Arabic extracts and article map](../legal_evidence/labour_decision_272_2025_arabic_extracts_2026-11-23.md) — selected provisions from a third-party-hosted 14-page Gazette reproduction (issue 291 supplement, printed pages 43–56), with official issue catalogue/SIS record leads. OCR/layout artefacts and numeric conditions require Gazette-image review; this is not a complete transcription.
+
+88. [Decision 279/2025 — foreign-worker permit regulation extracts](../legal_evidence/labour_decision_279_2025_foreign_worker_permits_arabic_extracts_2026-11-23.md) — selected provisions and a 40-article topic map. The SIS issue record identifies the official Gazette bundle, but the readable text is from a third-party reproduction; full article-by-article transcription and fee/exception table remain outstanding.
+
+89. [Decision 288/2025 — complete six-article Arabic text](../legal_evidence/labour_decision_288_2025_complete_secondary_arabic_text_2026-11-23.md) — secondary transcription with issue-295(D) catalogue corroboration; one chemical-risk phrase is explicitly flagged for Gazette-image review.
+
+90. [Decision 346/2025 — Christian religious holidays](../legal_evidence/labour_decision_346_2025_christian_religious_holidays_arabic_text_2026-11-23.md) — two operative articles and preamble from an IDSC-hosted government release with press cross-checks; Gazette page-image comparison remains outstanding.
+
+91. [Decision 48/2026 — workplace nurseries](../legal_evidence/labour_decision_48_2026_workplace_nurseries_complete_arabic_text_2026-11-23.md) — eight operative articles from a third-party-hosted issue-64 supplement scan; includes the 100-female-worker threshold and shared-nursery conditions. Page-image proofing and reuse review remain open.
+
+92. [Decision 49/2026 — hazardous/arduous work and remote areas](../legal_evidence/labour_decision_49_2026_hazardous_work_remote_areas_arabic_capture_2026-11-23.md) — five articles and Article 2 activity categories from issue 64 supplement, with IDSC/Ministry corroboration. Keep the source's OCR/transcription caveats; do not use for automated entitlement decisions before review.
+
+93. [Decision 50/2026 — child employment/training](../legal_evidence/labour_decision_50_2026_child_work_training_complete_articles_annex_gaps_2026-11-23.md) and [full Annexes 1–2 extraction](../legal_evidence/labour_decision_50_2026_annexes_1_2_full_text_capture_2026-11-23.md) — all 18 articles plus both annexes have text-layer captures; visual OCR proofing remains outstanding.
+
+94. [Decision 74/2026 — labour-market observatories](../legal_evidence/labour_decision_74_2026_market_observatories_partial_arabic_capture_2026-11-23.md) — full 17-article secondary transcription; official Amiri Press search-indexed results corroborate substantial text and the issue-108 catalogue identifies the item. A correction notice lead and primary page-image comparison remain unresolved.
+
+95. [Decision 75/2026 — women’s work, maternity and night work](../legal_evidence/labour_decision_75_2026_women_work_maternity_night_work_complete_arabic_text_2026-11-23.md) — 15-article secondary transcription; official Amiri Press indexed text corroborates Articles 1–10 and 12–15, while Article 11 remains secondary-only. The possible issue-108 correction notice has not been obtained; no correction has been applied.
+
+96. [Decisions 289–291/2025 — working hours, intermittent work and night/overtime inspection](../legal_evidence/labour_decisions_289_291_2025_complete_secondary_arabic_text_2026-11-23.md) — full operative texts for Decisions 289, 290 and 291 are documented in the acquisition tranche; Gazette image matching and item-specific reuse review remain outstanding.
+
+[Labour and employment 2026-11-20/23 incremental acquisition tranche](labour_employment_new_text_acquisition_tranche_2026-11-20.md) records additional issue-290/291 leads and captured Decisions 259, 260, 264, 267, 270, 292, 294, 299, 300, 301, 319 and 320/2025. It is a research acquisition record, not a verified consolidated corpus. Preserve lawyer_reviewed=false and verified=false.
