@@ -1493,6 +1493,8 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(downloaded.status_code, 200, downloaded.text)
         self.assertEqual(downloaded.content, original)
         self.assertEqual(downloaded.headers["content-type"], "application/octet-stream")
+        self.assertTrue(downloaded.headers["content-disposition"].lower().startswith("attachment;"))
+        self.assertNotIn("retained-original.docx", downloaded.headers["content-disposition"])
         self.assertEqual(downloaded.headers["cache-control"], "no-store")
         self.assertEqual(downloaded.headers["pragma"], "no-cache")
         self.assertEqual(downloaded.headers["expires"], "0")
