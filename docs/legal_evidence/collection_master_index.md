@@ -2596,3 +2596,7 @@ Added Law75/2026 (annual raises/special allowance/EGP750 incentive), Law77/2026 
 ### Coordinator research-agent intake — 24 November 2026
 
 - [Research Agent 5–8 intake and prioritized acquisition leads](coordinator_research_agent_intake_2026-11-24.md) — 144 candidate/enrichment rows across tax/customs/public finance, personal status, constitutional/administrative, and specialised fields. All agent rows remain unverified; primary texts, amendment chains, source rights and lawyer review are outstanding. The companion ZIP's 807-key union and dashboard are historical snapshots at commit `558c43a`, not current-main totals. Superseded Agent 2 criminal material was excluded.
+
+### Law 10/2004 — Family Courts Law (24 November 2026)
+
+- [Official Gazette source record](law_10_2004_family_courts_official_gazette_source_2026-11-24.md) — Official Gazette issue 12 supplement (A), 18 Mar 2004, PDF hosted on the Egyptian Ministry of Finance domain; five issuing provisions and 15-article law are available at source. Not transcribed locally, not currentness-reviewed, not lawyer-reviewed, and rights not assessed. Law 215/2017 is only an unverified amendment lead.
