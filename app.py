@@ -8872,9 +8872,8 @@ def release_original_document_legal_hold(
 
 @app.get("/cases/{cid}/docs/{document_id}/original/legal-hold/events")
 def list_original_document_legal_hold_events(
-    cid: int, limit: int = Query(default=100, ge=1, le=200),
-    offset: int = Query(default=0, ge=0, le=100000),
-    document_id: int = 0, u: dict = Depends(user)
+    cid: int, document_id: int, limit: int = Query(default=100, ge=1, le=200),
+    offset: int = Query(default=0, ge=0, le=100000), u: dict = Depends(user)
 ):
     """Return immutable hold history to firm admins for the authorized matter."""
     if not _separate_runtime_enabled():
