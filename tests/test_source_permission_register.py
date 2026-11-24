@@ -476,9 +476,6 @@ class SourcePermissionRegisterTests(unittest.TestCase):
             with self.assertRaises((OSError, ValueError)):
                 MODULE.load_register(oversized)
 
-if __name__ == "__main__":
-    unittest.main()
-
     def test_eta_official_gazette_pdf_provenance_does_not_imply_reuse_permission(self):
         import json
         data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
@@ -503,3 +500,16 @@ if __name__ == "__main__":
         self.assertIsNone(source["terms_checked_on"])
         self.assertIn("download attempt failed", source["permission_evidence"])
         self.assertEqual(MODULE.validate(data), [])
+    def test_related_source_pages_are_validated_as_clean_https_locators(self):
+        import json
+        data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        source = data["sources"][0]
+        source["related_source_pages"] = ["https://example.gov/related"]
+        self.assertEqual(MODULE.validate(data), [])
+        source["related_source_pages"] = ["https://user:secret@example.gov/related"]
+        self.assertTrue(any("related_source_pages must be a list of clean HTTPS URLs" in error for error in MODULE.validate(data)))
+        source["related_source_pages"] = "https://example.gov/related"
+        self.assertTrue(any("related_source_pages must be a list of clean HTTPS URLs" in error for error in MODULE.validate(data)))
+
+if __name__ == "__main__":
+    unittest.main()
