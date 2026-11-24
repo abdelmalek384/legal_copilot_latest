@@ -25,3 +25,11 @@ class ClientWideDocumentSearchTests(unittest.TestCase):
         self.assertIn("api('/clients')", page)
         self.assertIn("searchParams.set('client_id',clientSearchFilter.value)", page)
         self.assertIn("clientSearchFilter.onchange", page)
+
+    def test_text_search_pagination_has_a_stable_tie_breaker(self):
+        app = (ROOT / "app.py").read_text(encoding="utf-8")
+        endpoint = app[
+            app.index("def search_accessible_document_text("):
+            app.index('@app.get("/documents/search")')
+        ]
+        self.assertIn('" ORDER BY rank,chunks.id ASC LIMIT ? OFFSET ?" ', endpoint)
