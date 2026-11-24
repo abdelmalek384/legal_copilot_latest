@@ -1259,6 +1259,14 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("Open matter", page)
         self.assertIn("These results cover document metadata only", page)
 
+    def test_global_document_view_applies_selected_tab_filter_to_rows_and_stats(self):
+        page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\\nasync function law(){")]
+        self.assertIn("visibleItems=items.filter(doc=>", page)
+        self.assertIn("visibleItems.length?visibleItems.map(doc=>", page)
+        self.assertIn("readyOnPage=visibleItems.filter(doc=>", page)
+        self.assertIn("attentionOnPage=visibleItems.filter(doc=>", page)
+        self.assertIn("pageBytes=visibleItems.reduce((total,doc)=>", page)
+
     def test_global_document_open_matter_adds_paged_case_to_selector(self):
         page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\nasync function law(){")]
         self.assertIn("Array.from(matterSelect.options).some(option=>option.value===value)", page)
