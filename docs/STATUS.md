@@ -1574,3 +1574,10 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Source permission register static count: **199 sources**; **199/199** have unique non-empty IDs. Collection permission: **186 unknown (93.5%)**, **9 explicitly not allowed absent exception/license (4.5%)**, **4 limited (2.0%)**. Commercial reuse: **185 unknown (93.0%)**, **7 require prior written permission per published terms (3.5%)**, **3 not allowed absent exception/license (1.5%)**, **4 limited (2.0%)**. These percentages are status distribution only, not source availability or clearance.
 - No permission values, legal-review labels, or trust flags were upgraded. Validator/test execution remains unverified because no runtime was available and Actions billing remains blocked.
 - Release readiness remains **NOT READY**. The practical next gate is an authorized local Python 3.12 environment to run locked install, security checks, targeted/full tests, and browser acceptance; real lawyer review and pilot-user acceptance remain separate external gates.
+
+
+## AI-2 document-review history scope and truncation disclosure — 2026-11-24
+
+- The review-history UI now states that it covers only documents loaded in the current analysis, displays at most 100 events combined, and receives at most the latest 200 events per document from the server.
+- It warns when documents were omitted from the current analysis, when the combined 100-event UI cap is reached, or when a document response reaches the 200-event limit. This avoids presenting a bounded view as a complete matter history.
+- Added frontend UX contract coverage. Inline JavaScript syntax parsed successfully with V8; Python test and browser execution remain outstanding. No CI or test pass is claimed.
