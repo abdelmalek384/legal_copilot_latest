@@ -2619,3 +2619,9 @@ Added Law75/2026 (annual raises/special allowance/EGP750 incentive), Law77/2026 
 ### Law 137/2021 — amendment to Supreme Constitutional Court Law 48/1979 (25 November 2026)
 
 - [Evidence record](law_137_2021_scc_law_amendment_official_gazette_2026-11-25.md) — Official Gazette issue 32 bis (A), 15 Aug 2021. DSpace item identifies publisher as Amiri Press but its PDF is restricted to request-a-copy; secondary full text confirms two new articles. Records EG-0548 / FT-0223 and provisional version events EV-0355 / EV-0356; no page-image match, lawyer review or rights clearance.
+
+### Law 1/2000 and Law 91/2000 — Personal Status Litigation Procedures (25 November 2026)
+
+- Law 1/2000: acquisition EG-0549 / inventory FT-0224. MKSEgypt provides the Arabic base text under CC BY 4.0; LAWEG identifies Official Gazette issue 4 bis, 29 Jan 2000. The base page shows 79 operative articles, while a separate consolidated source reports 86 through 2020; this is explicitly unresolved.
+- Law 91/2000: acquisition EG-0550 / inventory FT-0225. A two-article Arabic text capture is included in `text_captures/law_91_2000_personal_status_amendment_ar.md` under CC BY 4.0 attribution. It inserts Article 9(1) item 9 and Article 76 bis; provisional events EV-0357 and EV-0358 effective 19 May 2000. Gazette issue number and page-image comparison remain outstanding.
+- [Evidence note](law_1_2000_and_law_91_2000_personal_status_procedure_evidence_2026-11-25.md).
