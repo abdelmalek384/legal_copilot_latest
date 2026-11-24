@@ -1848,5 +1848,37 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("commandItems.filter(([id,label])", navigation)
         self.assertIn("commandItems.find(([id,label])", navigation)
 
+    def test_fee_and_invoice_entry_fields_have_visible_bilingual_labels(self):
+        fees_start = HTML.index("if(TAB==='fees'){")
+        invoices_start = HTML.index("if(TAB==='invoices'){", fees_start)
+        fees = HTML[fees_start:invoices_start]
+        self.assertIn("const feeField=(label,control)=>h('label'", fees)
+        for label in (
+            "وصف الأتعاب", "Fee description",
+            "المبلغ الإجمالي (جنيه مصري)", "Total amount (EGP)",
+            "المبلغ المدفوع (جنيه مصري)", "Amount paid (EGP)",
+            "تاريخ استحقاق الأتعاب", "Fee due date",
+            "ملاحظة (اختياري)", "Note (optional)",
+        ):
+            self.assertIn(label, fees)
+        self.assertIn("feeField(uiText(", fees)
+
+        docs_start = HTML.index("if(TAB==='docs'){", invoices_start)
+        invoices = HTML[invoices_start:docs_start]
+        self.assertIn("const invoiceField=(label,control)=>h('label'", invoices)
+        for label in (
+            "وصف الفاتورة أو نطاق العمل", "Invoice description or scope",
+            "تاريخ الاستحقاق", "Due date",
+            "بيان الخدمة", "Service description",
+            "الكمية", "Quantity",
+            "سعر الوحدة (جنيه مصري)", "Unit price (EGP)",
+        ):
+            self.assertIn(label, invoices)
+        self.assertIn("descriptionField:invoiceField(", invoices)
+        self.assertIn("quantityField:invoiceField(", invoices)
+        self.assertIn("priceField:invoiceField(", invoices)
+        self.assertIn("line.descriptionField,line.quantityField,line.priceField", invoices)
+
+
 if __name__ == "__main__":
     unittest.main()
