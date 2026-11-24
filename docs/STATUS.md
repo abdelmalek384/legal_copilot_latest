@@ -1542,3 +1542,19 @@ Percentages are scoped to the described implementation or acceptance phase. They
 | Security, reminders, source-release and AWS acceptance | Implementation reported complete in earlier checkpoints; external acceptance remains 0% | Do not repeat blocked deployment/credential-dependent tasks in this pass |
 
 **Test status:** repository-level source and data-shape checks were performed through GitHub file reads. Python suites, migration rehearsal, browser acceptance and production deployment tests were not run; no test pass is claimed. The exact #1910 head was explicitly not mergeable and remained unvalidated, so it was closed unmerged. Current open-PR count was rechecked as zero.
+
+### 2026-11-24 follow-up — legacy labour text and UI safety fixes
+
+- Added a complete three-article Arabic transcription of Ministerial Decision 217/2003 from a secondary Gazette reproduction. The official Ministry PDF locator is recorded but was not downloaded; the issue number differs between secondary indexes (227 vs 277), so issue 227 is retained provisionally from the page reproduction pending official-image confirmation.
+- Recorded the 2014 Supreme Constitutional Court Case 21/30 effect: Article 2 of Decision 217/2003 fell; do not treat its old national service catalogue as operative. Article 1 and Article 3 were not separately shown repealed in this pass.
+- Captured the three operative articles of Decision 215/2003 from secondary text. Its preamble contains an unrelated licensing-committee fragment; the official Ministry PDF retrieval timed out, so the preamble and issue metadata remain unverified.
+- Registered exact DSpace Gazette item metadata for PM Decisions 3356/2026 and 3561/2026. Both original Gazette PDFs remain request-copy restricted; collection and commercial reuse remain blocked. Decision 3356 secondary text remains unverified against official bytes.
+- Source permission register now has 196 unique records. A structural check found 0 duplicate IDs, missing required fields, invalid permission enums or malformed source/related-source URLs. This was a structural audit, not the repository's Python validator run.
+- Repaired answer trust labels in the Legal Research UI: `verified` is displayed as “Lawyer-verified”; `source_matched` as “Source-matched, not lawyer-reviewed”; `unreviewed` and `unverified` remain distinct.
+- Fixed the global document-library tabs so “Needs review” and “Processing” render only their filtered rows and calculate page stats from those visible rows. Added frontend contract coverage.
+- Fixed an acquisition-readiness CLI test that patched `MODULE.os.open` even though the shared `os.open` belongs to the source-permission validator module.
+- Closed draft PRs #1911 (passage annotations) and #1912 (fee/invoice labels) unmerged. Both branches are preserved; neither was merged. The earlier tested heads had a red frontend UX contract suite, and exact-head validation did not run after the latest branch updates. Passage annotations remain unintegrated.
+- Legacy transition CSV now has 118 nonblank rows, 10 columns, and no ragged rows. National and labour acquisition registers remain 511 rows/12 columns and 59 rows/11 columns, respectively, with consistent widths.
+- No law was promoted to `verified` or `lawyer_reviewed`; no rights were cleared. The legal evidence readiness estimate remains ~7%, labour collection remains ~70% provisional, and pilot acceptance remains 0%.
+
+**Test status:** static JSON/CSV structural checks and source inspection only. No exact-head Python suite, migration rehearsal, browser acceptance or production deployment test is claimed.
