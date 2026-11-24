@@ -10419,10 +10419,20 @@ def save_research_to_matter(conversation_id: int, b: ResearchSaveToMatterIn, u: 
         result = json.loads(row["message_json"] or "{}")
     except (TypeError, ValueError):
         result = {}
-    prior_question = c.execute(
-        "SELECT content FROM research_messages WHERE conversation_id=? AND role='user' AND id<? ORDER BY id DESC LIMIT 1",
-        (conversation_id, b.message_id)
-    ).fetchone()
+    question_message_id = result.get("question_message_id")
+    prior_question = None
+    if isinstance(question_message_id, int) and not isinstance(question_message_id, bool) and question_message_id > 0:
+        prior_question = c.execute(
+            "SELECT content FROM research_messages WHERE id=? AND conversation_id=? AND role='user'",
+            (question_message_id, conversation_id),
+        ).fetchone()
+    elif "question_message_id" not in result:
+        # Legacy assistant rows predate explicit question linkage. Retain their
+        # historical best-effort behavior without using it for new messages.
+        prior_question = c.execute(
+            "SELECT content FROM research_messages WHERE conversation_id=? AND role='user' AND id<? ORDER BY id DESC LIMIT 1",
+            (conversation_id, b.message_id),
+        ).fetchone()
     memo = research_memo(prior_question["content"] if prior_question else None, result)
     if len(memo) > 10000:
         memo = memo[:9850] + "\n\n[Memo truncated to fit matter-note limit.]"
@@ -10579,8 +10589,11 @@ def send_research_message(conversation_id: int, b: ResearchMessageIn, u: dict = 
     context = _research_context_for_scope(
         list(reversed([dict(r) for r in prior])), b.scope, b.case_id
     )
-    c.execute("INSERT INTO research_messages(conversation_id,role,content) VALUES(?,?,?)",
-              (conversation_id, "user", question))
+    question_insert = c.execute(
+        "INSERT INTO research_messages(conversation_id,role,content) VALUES(?,?,?)",
+        (conversation_id, "user", question),
+    )
+    question_message_id = question_insert.lastrowid
     try:
         result = ask(c, question, case_id=b.case_id, firm_id=u["firm_id"], as_of=b.as_of, conversation_context=context, scope=b.scope)
     except ValueError as e:
@@ -10593,6 +10606,7 @@ def send_research_message(conversation_id: int, b: ResearchMessageIn, u: dict = 
     message_metadata = dict(result)
     message_metadata["scope"] = b.scope
     message_metadata["case_id"] = b.case_id
+    message_metadata["question_message_id"] = question_message_id
     # Persist a fresh opaque ID with this exact assistant message; no schema change is needed.
     answer_id = "ans_" + secrets.token_urlsafe(24)
     message_metadata["answer_id"] = answer_id
