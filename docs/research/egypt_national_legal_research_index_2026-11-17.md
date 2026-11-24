@@ -168,3 +168,8 @@ All newly recovered entries remain provisional. Preserve `lawyer_reviewed=false`
 ## 41. Human-resource skills council — PM Decision 3561/2026
 
 - [Decision 3561/2026 incremental Arabic clauses](../legal_evidence/acquisition_tranche_finance634_and_hr_skills3561_2026-11-18.md) — Articles 5, 8 and 10 captured from secondary sources, including committee formation and quarterly reporting; full 10-article text and Gazette scan remain outstanding.
+
+## 42. Environment / hazardous-waste source and currentness updates — 24 November 2026
+
+- [EEAA official procedure-page capture for Environment Decision 342/2025](../legal_evidence/eeaa_official_procedure_decision_342_2025_capture_2026-11-24.md) — dated capture of the official agency procedure page: regulated environmental fields, accreditation experience bands, application checklists, displayed fees and linked forms. This is administrative-page content, not Gazette transcription; page-derived values remain subject to legal/currentness review.
+- [Hazardous-waste technical committee reconstitution currentness delta](../legal_evidence/hazardous_waste_committee_reconstitution_currentness_delta_2026-11-24.md) — official EEAA notices confirm Decision 30/2023 formed the committee and a later reconstitution was reported by 2 January 2026, chaired by the WMRA Executive President with representatives of 23 authorities. The reconstitution instrument and Decision 30/2023 full text remain missing; do not infer repeal or current membership.
