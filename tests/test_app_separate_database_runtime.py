@@ -5765,6 +5765,36 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertIn("Hearing: Workflow acceptance matter", calendar.text)
 
 
+    def test_calendar_windows_use_cairo_local_date(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate("post", "/cases", json={"title": "Cairo local date boundary"})
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+        session = self._mutate(
+            "post", f"/cases/{case_id}/sessions",
+            json={"date": "2026-11-25", "note": "Cairo next-day hearing"},
+        )
+        self.assertEqual(session.status_code, 200, session.text)
+        deadline = self._mutate(
+            "post", f"/cases/{case_id}/deadlines",
+            json={"title": "Cairo next-day deadline", "due": "2026-11-25"},
+        )
+        self.assertEqual(deadline.status_code, 200, deadline.text)
+
+        with patch.object(app, "_invoice_today", return_value=date(2026, 11, 24)):
+            dashboard = self.client.get("/dashboard")
+            self.assertEqual(dashboard.status_code, 200, dashboard.text)
+            self.assertTrue(any(x["title"] == "Cairo next-day hearing" for x in dashboard.json()["sessions"]))
+            self.assertTrue(any(x["title"] == "Cairo next-day deadline" for x in dashboard.json()["deadlines"]))
+            calendar = self.client.get("/calendar.ics")
+            self.assertEqual(calendar.status_code, 200, calendar.text)
+            self.assertIn("DTSTART;VALUE=DATE:20261125", calendar.text)
+            self.assertIn("Cairo next-day hearing", calendar.text)
+            self.assertIn("Cairo next-day deadline", calendar.text)
+
     def test_calendar_text_escaping_prevents_crlf_line_injection(self):
         self.assertEqual(
             app._ics_escape("a\\b,c;d\r\ne\rf\ng"),
