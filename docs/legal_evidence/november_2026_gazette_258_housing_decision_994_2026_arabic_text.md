@@ -47,3 +47,10 @@
 2. Obtain the integral planning map/annex and verify the plot boundary and conditions.
 3. Retrieve and link PM Decision 2184/2022 and Housing Decision 865/2019 with their amendment chains.
 4. Confirm the current status of the larger master plan and whether any subsequent amendments affect this plot.
+
+## Explicit machine trust flags
+
+- `lawyer_reviewed: false`
+- `verified: false`
+- `rights_cleared: false`
+- This material is a research capture, not an approved production legal source. Preserve all source-quality, missing-annex and Gazette-image limitations above. Do not use it as a verified/current consolidated legal text until the original source is matched, reuse rights are cleared and a qualified Egyptian lawyer approves it.
