@@ -271,3 +271,10 @@ The unified list itself is the substantive regulatory content and is **not acqui
 | Decision 30/2023 | Identified by title/reference in later decisions | Obtain full decision and committee membership/mandate text |
 
 **No new legal register IDs created here.** These are acquisition evidence and text captures only. Preserve all trust flags as false pending page-image QA, rights assessment and qualified Egyptian lawyer review.
+
+## Explicit machine trust flags
+
+- `lawyer_reviewed: false`
+- `verified: false`
+- `rights_cleared: false`
+- This acquisition is research-only. Preserve source-specific completeness, Gazette-image and amendment/currentness limitations; do not use as a verified/current consolidated legal source until primary-source comparison, reuse-rights review and qualified Egyptian lawyer approval are complete.
