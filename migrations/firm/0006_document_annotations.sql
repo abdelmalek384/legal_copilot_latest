@@ -47,9 +47,6 @@ BEGIN SELECT RAISE(ABORT, 'document annotation scope mismatch'); END;
 CREATE TRIGGER document_annotations_no_update
 BEFORE UPDATE ON document_annotations
 BEGIN SELECT RAISE(ABORT, 'document annotations are append-only'); END;
-CREATE TRIGGER document_annotations_no_delete
-BEFORE DELETE ON document_annotations
-BEGIN SELECT RAISE(ABORT, 'document annotations are append-only'); END;
 
 CREATE TRIGGER document_annotation_events_scope_insert
 BEFORE INSERT ON document_annotation_events
@@ -63,9 +60,6 @@ WHEN NOT EXISTS (
 BEGIN SELECT RAISE(ABORT, 'document annotation event scope mismatch'); END;
 CREATE TRIGGER document_annotation_events_no_update
 BEFORE UPDATE ON document_annotation_events
-BEGIN SELECT RAISE(ABORT, 'document annotation events are append-only'); END;
-CREATE TRIGGER document_annotation_events_no_delete
-BEFORE DELETE ON document_annotation_events
 BEGIN SELECT RAISE(ABORT, 'document annotation events are append-only'); END;
 
 CREATE TRIGGER document_annotations_tenant_firm_insert
