@@ -104,7 +104,6 @@ class MFAAccountSecurityTests(unittest.TestCase):
         csrf_header = next(value for value in set_cookies if value.startswith("lc_csrf="))
         self.assertIn("httponly", session_header.lower())
         self.assertIn("samesite=lax", session_header.lower())
-        self.assertIn("httponly", csrf_header.lower() if "httponly" in csrf_header.lower() else "csrf-cookie-readable")
         self.assertNotIn("httponly", csrf_header.lower())
         self.assertIn("samesite=lax", csrf_header.lower())
 
