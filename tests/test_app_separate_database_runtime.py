@@ -1493,6 +1493,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(downloaded.status_code, 200, downloaded.text)
         self.assertEqual(downloaded.content, original)
         self.assertEqual(downloaded.headers["content-type"], "application/octet-stream")
+        self.assertIn("filename*=UTF-8''original-contract.docx", downloaded.headers["content-disposition"])
         self.assertEqual(downloaded.headers["cache-control"], "no-store")
         # End the older snapshot before checking the newly committed audit row.
         firm_db.commit()
