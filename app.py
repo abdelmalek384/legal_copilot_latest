@@ -4983,7 +4983,7 @@ def conflict_check(b: Q, u: dict = Depends(user)):
         "SELECT id,title,client,case_number,case_year,court,circuit,opposing_party,status,"
         "CASE WHEN id IN (SELECT case_id FROM members WHERE user_id=?) OR ?='admin' THEN 1 ELSE 0 END AS visible "
         "FROM cases WHERE firm_id=? ORDER BY id DESC",
-        (u["id"], u["role"], u["firm_id"])).fetchall()
+        (u["id"], u["role"], u["firm_id"]))
     found, hidden_match = [], False
     for r in rows:
         d = dict(r)
