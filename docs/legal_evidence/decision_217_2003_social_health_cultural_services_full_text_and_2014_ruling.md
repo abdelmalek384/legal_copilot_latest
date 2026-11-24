@@ -69,4 +69,6 @@ Consequences for Legal Copilot:
 - Decision 215/2003 is a separate establishment-level minimum-services instrument. Its official Ministry PDF locator has been found, but its full text was not captured in this pass. Do not confuse Decisions 215 and 217.
 - Decision 16/2012 Article 14 repealed Decisions 214/2003 and 216/2003; it did not list Decision 217/2003 as repealed. That does not negate the specific constitutional fall of Decision 217 Article 2.
 
+**Related case record:** [Supreme Constitutional Court Case 21/30 (2014), Article 223 and Decisions 216/217](scc_case21_30_2014_labour_law12_article223_and_decisions216_217.md).
+
 **Review flags:** lawyer_reviewed=false; verified=false; currentness_reviewed=false; source_matched=false.
