@@ -1619,3 +1619,17 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Marked the draft ready and manually squash-merged after the head was refreshed; merge commit ce017aee4e66adfdbe35d470958b95f6c1688687. Fetched main afterward and confirmed the aggregate query and regression test file are present.
 - Full repository tests and app integration/browser tests remain unexecuted; GitHub Actions billing remains unavailable. This is a targeted SQL fixture validation only, not a full application test pass.
 - This is AI-2-owned app.py work; no legal retrieval, corpus, DB schema or migration change was made.
+
+### 2026-11-24 current progress snapshot after this pass
+
+| Workstream | Current estimate | Change this pass / remaining gate |
+|---|---:|---|
+| Legal Research engineering | 65% | No engineering completion claimed; local Python/runtime validation still needed |
+| Legal-source acquisition/evidence workflow | **33%** | Up from 32%: acquired NFSA Law 1/2017, PM Decision 412/2019 Executive Regulation, NFSA Board Decision 11/2020 text layer, and EEAA September 2026 committee currentness update |
+| Retrieval evaluation | 5% | No lawyer-approved benchmark or measured quality rates yet |
+| Integration/regression validation | 25% | Targeted SQLite SQL fixture run for #1932; full suites/browser/two-firm acceptance remain unrun |
+| National legal-content coverage | ~1.5% (rough estimate; denominator unknown) | Unchanged; cannot infer national coverage from a small acquisition tranche |
+| Legal evidence readiness | ~7% | Unchanged; no newly acquired instrument has lawyer sign-off/currentness and rights clearance |
+| Small-firm pilot readiness | ~35% | Unchanged; external pilot acceptance and release gates remain open |
+
+**Repository state:** 0 open PRs at final check. PR #1932 manually merged and verified on main; PRs #1913, #1918, #1921 and #1929 closed unmerged. GitHub Actions remain blocked by billing. Register structure is 513 statute rows / 12 columns and 188 full-text rows / 11 columns, with zero ragged rows but 15 duplicated statute IDs and 4 duplicated full-text IDs still requiring controlled remapping.
