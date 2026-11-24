@@ -17,3 +17,10 @@
 - Integral plan/map and 2 February 2025 status-regularization contract are missing.
 - No parcel-specific development rights (height, setbacks, ratios, etc.) inferred from this transcription.
 - Confirm amendments, cancellation/currentness, original issue pages, and lawyer review. No `verified` flag changed.
+
+## Explicit trust and reuse status
+
+- `lawyer_reviewed: false`
+- `verified: false`
+- `rights_cleared: false`
+- The captured wording is a research aid only. Do not present it as an authoritative consolidated text or use it to make legal conclusions without Gazette-page comparison and qualified Egyptian lawyer review.
