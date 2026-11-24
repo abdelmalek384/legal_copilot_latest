@@ -90,3 +90,48 @@ This is the cross-domain research entry point for the Legal Copilot national Egy
 ## 26. Historical Labour Law 12/2003 amendment chain — 21 November 2026
 
 - [Law90/2005, SCC Case26/27, Law180/2008 and Law125/2010 historical priority chain](../legal_evidence/labour_law12_amendment_chain_law90_2005_scc26_2008_law180_2008_2026-11-21.md) — adds Law90/2005 Arts70,71,72,248; official SCC reproduction of the 2008 invalidation; Law180/2008 replacement; full Law125/2010 text, PM Decision2736/2010's 11 clauses and Ministerial Decision290/2010's three articles. The Decision290 annexed instructions and original Law90 Gazette scan remain outstanding; post-repeal priority of worker claims is unresolved. Labour-domain estimate now 70% provisional; national legal-content baseline remains ~1.5%; lawyer-reviewed=0 and verified=0.
+
+
+## 27. Environment / hazardous-waste ministerial decisions 342 and 346/2025 — 23 November 2026
+
+- [Environment Decisions 342/2025 and 346/2025 Arabic text acquisition supplement](../legal_evidence/environment_decisions_342_346_2025_arabic_text_acquisition_2026-11-23.md) — official EEAA-hosted Gazette PDF for Decision 342/2025 with promulgation articles and substantial attached rules extracted; Decision 346/2025 Article 1 captured from a secondary reproduction. Remaining schedules/forms and Gazette page-image QA are open. Not lawyer-reviewed, verified or rights-cleared.
+
+## 28. Waste and hazardous-material Decisions 120, 121 and 151/2025 — 23 November 2026
+
+- [Decisions 120, 121 and 151/2025 Arabic text acquisition](../legal_evidence/waste_decisions_120_121_151_2025_arabic_text_acquisition_2026-11-23.md) — full operative Arabic text of Decisions 120/2025 and 121/2025 captured from Amiri Press searchable text with secondary cross-checks; Decision 151/2025 Articles 1–2 captured, but its attached unified hazardous-materials/waste list remains missing. No lawyer verification or reuse clearance.
+
+## 29. October 2026 building, environment, health and tourism instruments — 23 November 2026
+
+- [October 2026 four-instrument Arabic acquisition tranche](../legal_evidence/october_2026_building_environment_health_tourism_decisions_arabic_text_2026-11-23.md) — PM Decision 3166/2026 (building-reconciliation application extension; secondary full text), EEAA Executive President Decision 716/2026 (environmental data register; one article only), Housing Decision 1181/2026 (three issuing articles; technical standards annex missing), and Tourism Decision 889/2026 (three issuing articles; Gazette image QA outstanding). Do not infer missing annex content or deadline details.
+
+## 30. Medical liability, insurance and professional-development sources — 23 November 2026
+
+- [Medical-practice renewal, CPD rules and medical-liability insurance acquisition tranche](../legal_evidence/medical_practice_renewal_decision_280_2026_cpd_rules_and_fra_decision_272_2025_policy_2026-11-23.md) — FRA Decision 272/2025 and its seven-page policy form extracted from an official FRA-hosted PDF text layer; Health Decision 280/2026 issuing articles from official Amiri Press indexed text, with annex only partially captured; official EHC CPD rules PDF (English) recorded separately.
+- [PM Decision 3973/2025 and FRA Decision 303/2025 medical-liability fund source bundle](../legal_evidence/medical_liability_fund_decision_3973_2025_and_fra_decision_303_2025_arabic_text_sources_2026-11-23.md) — PM Decision 3973/2025 text excerpts and FRA Decision 303/2025 issuing provisions/insurance tables; source and attachment gaps are explicitly listed. All remain unreviewed.
+
+## 31. Health Decision 149/2026 — medical laser devices — 23 November 2026
+
+- [Health Decision 149/2026 Arabic text capture](../legal_evidence/health_ministry_decision_149_2026_medical_laser_devices_arabic_text_2026-11-23.md) — Articles 1–10 transcribed from a secondary-hosted Gazette issue text/OCR, with Gazette metadata cross-checks. The technical guide required by Article 4 and Gazette page-image comparison remain missing.
+
+## 32. Blood and plasma regulation — PM Decision 2603/2021
+
+- [PM Decision 2603/2021 blood/plasma executive regulation secondary consolidated text](../legal_evidence/pm_decision_2603_2021_blood_plasma_executive_regulation_secondary_consolidated_text_2026-11-23.md) — Arabic regulation text from LAW HUB, with EDA official reference confirming the instrument exists. Consolidation cutoff, missing Article 37, amendment chain and original Gazette pages remain unresolved; do not treat the secondary text as a current consolidated official version.
+
+## 33. Health Decision 444/2025 — informed-consent forms — 23 November 2026
+
+- [Health Decision 444/2025 Official Gazette text capture](../legal_evidence/health_ministry_decision_444_2025_informed_consent_forms_gazette_text_2026-11-23.md) — issuing decision and attached informed-consent form text extracted from an official SIS-hosted Gazette PDF text layer. Page-image verification remains outstanding.
+
+## 34. Environment PM Decision 2466/2024 — Executive Regulation of Environment Law 4/1994
+
+- [PM Decision 2466/2024 full Arabic text and annexes](../legal_evidence/pm_decision_2466_2024_full_arabic_text_and_annexes_2026-11-23.md) — Arabic text extracted from a Gazette issue PDF hosted by a secondary mirror, with EEAA official index corroboration; no line-by-line visual comparison against an official Amiri Press scan.
+- [Environment Executive Regulation Article 13 bis official text capture](../legal_evidence/pm_decision_2466_2024_environment_regulation_article_13_bis_arabic_capture_2026-11-23.md) — supplemental operative text from the official EEAA service page; Gazette issue/page linkage remains to be completed.
+
+## 35. November 2026 housing and state-ownership decisions
+
+- [Housing Decision 694/2026 partial Arabic capture](../legal_evidence/november_2026_housing_decision_694_2026_partial_arabic_text_capture.md) — partial secondary reproduction; incomplete text and Gazette page-image verification outstanding.
+- [Housing Decision 2/2026 — New Sphinx City](../legal_evidence/november_2026_housing_decision_2_2026_new_sphinx_arabic_capture.md) — one operative article reproduced secondarily; plan/map and full Gazette issue are missing.
+- [PM Decision 3553/2026 — State Ownership Policy 2026–2030](../legal_evidence/november_2026_pm_decision_3553_state_ownership_policy_2026_2030.md) — three operative articles reproduced secondarily; the policy annex is a separate official Cabinet document and must be acquired/extracted independently.
+- [Housing Decision 958/2026](../legal_evidence/november_2026_housing_decision_958_2026_secondary_arabic_text_capture.md) — provisional secondary Arabic text; Gazette image comparison and attached plans remain open.
+- [Gazette issue 258 Dakahlia Decisions 457, 458 and 463/2026](../legal_evidence/november_2026_gazette_258_dakahlia_planning_decisions_457_458_463.md) and [Housing Decision 994/2026](../legal_evidence/november_2026_gazette_258_housing_decision_994_2026_arabic_text.md) — secondary text captures; original issue 258 pages and integral planning maps remain outstanding.
+
+All newly recovered entries remain provisional. Preserve `lawyer_reviewed=false`, `verified=false`, and `rights_cleared=false` until the required source, permission and qualified-lawyer review gates are actually met.
