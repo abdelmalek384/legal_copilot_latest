@@ -2737,7 +2737,7 @@
     {
       "source_id": "EG-SIS-GAZETTE-2025-08-13-LAW168",
       "authority": "Egyptian State Information Service digital repository; item metadata identifies Amiri Press (مطابع الأميرية) as issuing entity",
-      "source_page": "https://mediadr.sis.gov.eg/handle/123456789/105925; https://mediadr.sis.gov.eg/xmlui/handle/123456789/105925; https://mediadr.sis.gov.eg/xmlui/bitstream/handle/123456789/105925/OG32_20250813_5008.pdf?isAllowed=y&sequence=1",
+      "source_page": "https://mediadr.sis.gov.eg/handle/123456789/105925",
       "material_types": [
         "Official Gazette full-issue PDF",
         "Law 168/2025",
@@ -2750,7 +2750,11 @@
       "permission_evidence": "Official repository metadata identifies the issuing authority as Amiri Press and the item abstract as Laws 168 and 169 of 2025. The listed PDF file was not retrievable due 502/URL access failure. Public item metadata does not establish bulk download, local archiving, OCR, commercial use or redistribution permission.",
       "terms_checked_on": null,
       "bulk_download_or_api": "not established; retry SIS repository item/PDF route or request authorized copy",
-      "required_next_action": "Retry official SIS PDF route or request the 295.3 KB file through the repository; obtain bytes and SHA-256 if access is granted; compare Law168 pages to VetoGate secondary scan and Diwan searchable text; seek written rights clarification."
+      "required_next_action": "Retry official SIS PDF route or request the 295.3 KB file through the repository; obtain bytes and SHA-256 if access is granted; compare Law168 pages to VetoGate secondary scan and Diwan searchable text; seek written rights clarification.",
+      "related_source_pages": [
+        "https://mediadr.sis.gov.eg/xmlui/handle/123456789/105925",
+        "https://mediadr.sis.gov.eg/xmlui/bitstream/handle/123456789/105925/OG32_20250813_5008.pdf?isAllowed=y&sequence=1"
+      ]
     },
     {
       "source_id": "EG-SIS-GAZETTE-2025-295-SUPPLEMENT-D",
@@ -2772,7 +2776,7 @@
     {
       "source_id": "EG-SIS-GAZETTE-2026-01-18",
       "authority": "State Information Service / Media Digital Repository",
-      "source_page": "https://mediadr.sis.gov.eg/xmlui/handle/123456789/118973; https://mediadr.sis.gov.eg/xmlui/bitstream/handle/123456789/118973/OG3_20260118_2885.pdf?isAllowed=y&sequence=2",
+      "source_page": "https://mediadr.sis.gov.eg/xmlui/handle/123456789/118973",
       "file_url": "https://mediadr.sis.gov.eg/xmlui/bitstream/handle/123456789/118973/OG3_20260118_2885.pdf?isAllowed=y&sequence=2",
       "material_types": [
         "Official Gazette issue 3 bis (A), 18 January 2026",
@@ -2786,7 +2790,10 @@
       "terms_checked_on": null,
       "permission_evidence": "Checked 2026-11-18. Public full Gazette issue PDF served from SIS Media Digital Repository; page content begins with the Republic/Presidency/Official Gazette masthead and issue/date metadata. The PDF text layer includes Decision 200/2026 and all regulation articles. This establishes access to an official government-hosted Gazette reproduction, not an explicit licence for bulk collection, commercial indexing, public display or redistribution. The DSpace original bundle is separately restricted. Full text and forms extracted. Article20 PDF text layer says annual reports, while Form3 says quarterly and Law168 Article14 says quarterly; page-image verification unresolved. No commercial reuse permission or redistribution permission inferred.",
       "bulk_download_or_api": "single public issue PDF URL; no bulk/API licence established",
-      "required_next_action": "Archive/hash exact PDF; inspect page images; compare against restricted DSpace original when authorized; seek explicit reuse terms."
+      "required_next_action": "Archive/hash exact PDF; inspect page images; compare against restricted DSpace original when authorized; seek explicit reuse terms.",
+      "related_source_pages": [
+        "https://mediadr.sis.gov.eg/xmlui/bitstream/handle/123456789/118973/OG3_20260118_2885.pdf?isAllowed=y&sequence=2"
+      ]
     },
     {
       "source_id": "EG-SIS-GAZETTE-216-2024-BUILDING-DECISION-943",
@@ -2908,7 +2915,7 @@
     {
       "source_id": "EG-UMN-SCC-JUDGMENTS",
       "authority": "University of Minnesota Human Rights Library — archived Egyptian Supreme Constitutional Court judgments",
-      "source_page": "https://hrlibrary.umn.edu/arabic/Egypt-SCC-SC/Egypt-SCC-4-Y23.html; https://hrlibrary.umn.edu/arabic/Egypt-SCC-SC/Egypt-SCC-47-Y21.html",
+      "source_page": "https://hrlibrary.umn.edu/arabic/Egypt-SCC-SC/Egypt-SCC-4-Y23.html",
       "material_types": [
         "secondary archive of full Constitutional Court judgments",
         "rent-law judgments"
@@ -2920,7 +2927,10 @@
       "permission_evidence": "Full Arabic judgment transcriptions for Cases 4/23 (13 Apr 2003) and 47/21 (4 Apr 2004) were inspected. Public access and archived status do not establish bulk extraction, local archiving, commercial indexing, excerpt display or redistribution permission.",
       "terms_checked_on": null,
       "bulk_download_or_api": "not established",
-      "required_next_action": "Compare both judgment texts against original SCC judgment copies and Gazette publication scans; review archive terms and seek written permission before commercial reuse."
+      "required_next_action": "Compare both judgment texts against original SCC judgment copies and Gazette publication scans; review archive terms and seek written permission before commercial reuse.",
+      "related_source_pages": [
+        "https://hrlibrary.umn.edu/arabic/Egypt-SCC-SC/Egypt-SCC-47-Y21.html"
+      ]
     },
     {
       "source_id": "EG-VETOGATE-GAZETTE-168-2025",
@@ -2943,7 +2953,7 @@
     {
       "source_id": "EG-WIPO-LEX",
       "authority": "World Intellectual Property Organization",
-      "source_page": "https://www.wipo.int/wipolex/; https://www.wipo.int/wipolex/en/legislation/details/22397; https://wipolex-res.wipo.int/edocs/lexdocs/laws/ar/eg/eg087ar_1.pdf",
+      "source_page": "https://www.wipo.int/wipolex/",
       "material_types": [
         "legal texts",
         "IP legislation",
@@ -2956,7 +2966,11 @@
       "terms_checked_on": "2026-10-24",
       "bulk_download_or_api": "not established",
       "required_next_action": "Review WIPO site/database terms; use as a discovery and cross-reference source unless intended reuse is clearly permitted.",
-      "permission_evidence": "Terms reviewed 2026-10-24. WIPO's open-access policy generally licenses WIPO-owned online publications/content under CC BY 4.0 unless more restrictive terms apply, but expressly excludes third-party content. WIPO Lex includes national legal materials; item-level ownership and service-specific terms are not established here. Keep collection and commercial reuse unknown until rights for each record are confirmed. Evidence Law source upgrade checked 2026-11-18: WIPO Lex hosts an Arabic PDF of Law 25/1968 with extracted text through Article 162; the final WIPO extracted line labelled 163 duplicates Article 153 and is treated as OCR anomaly pending Gazette image check (not 117). This is a useful comparative full-text source but not a substitute for the Egyptian Official Gazette; no separate commercial/bulk reuse permission is established by its availability. The Egypt Law 25/1968 PDF identifies Official Gazette issue22, 30 May1968, and WIPO metadata gives 30 Nov1968 commencement; text layer is not reliable for verbatim extraction. No commercial reuse permission inferred."
+      "permission_evidence": "Terms reviewed 2026-10-24. WIPO's open-access policy generally licenses WIPO-owned online publications/content under CC BY 4.0 unless more restrictive terms apply, but expressly excludes third-party content. WIPO Lex includes national legal materials; item-level ownership and service-specific terms are not established here. Keep collection and commercial reuse unknown until rights for each record are confirmed. Evidence Law source upgrade checked 2026-11-18: WIPO Lex hosts an Arabic PDF of Law 25/1968 with extracted text through Article 162; the final WIPO extracted line labelled 163 duplicates Article 153 and is treated as OCR anomaly pending Gazette image check (not 117). This is a useful comparative full-text source but not a substitute for the Egyptian Official Gazette; no separate commercial/bulk reuse permission is established by its availability. The Egypt Law 25/1968 PDF identifies Official Gazette issue22, 30 May1968, and WIPO metadata gives 30 Nov1968 commencement; text layer is not reliable for verbatim extraction. No commercial reuse permission inferred.",
+      "related_source_pages": [
+        "https://www.wipo.int/wipolex/en/legislation/details/22397",
+        "https://wipolex-res.wipo.int/edocs/lexdocs/laws/ar/eg/eg087ar_1.pdf"
+      ]
     },
     {
       "source_id": "EG-YOUM7-DECISION2332-2022",
@@ -2982,8 +2996,8 @@
         "Arabic full-text transcriptions of Egyptian statutes, executive decisions and court judgments"
       ],
       "access_status": "Full searchable Arabic decision and judgment texts observed; pages display Creative Commons Attribution 4.0 notice.",
-      "collection_permission": "cc_by_4_0_attributed_use_subject_to_license_scope",
-      "commercial_reuse_permission": "cc_by_4_0_applies_to_site_text_as_displayed_only; embedded_third_party_scans_and_materials_not_cleared",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
       "terms_url": "https://creativecommons.org/licenses/by/4.0/",
       "permission_evidence": "The MKS Egypt pages for SCC Cases 2/16 (1996) and 36/18 (1998), SAC Appeal 2566/34 (1990), PM Decisions 1543/1993 and 2718/1996 display a CC BY 4.0 attribution notice in the page footer. Permission is limited to text as displayed on those pages; embedded Gazette scans and third-party materials are not cleared.",
       "terms_checked_on": "2026-11-23",
@@ -3287,7 +3301,7 @@
     {
       "source_id": "EG-LAWYEREGYPT-METRO-LAWS113-1983-33-2018",
       "authority": "Lawyer Egypt legal-information website (secondary statutory reproductions)",
-      "source_page": "https://lawyeregypt.net/قانون-إنشاء-الهيئة-القومية-للأنفاق/; https://lawyeregypt.net/قانون-رقم-33-لسنة-2018-بتعديل-بعض-أحكام-القانون-رقم-113-لسنة-1983-بإنشاء-الهيئة-القومية-للأنفاق/",
+      "source_page": "https://lawyeregypt.net/قانون-إنشاء-الهيئة-القومية-للأنفاق/",
       "material_types": [
         "Secondary full Arabic text of Law 113/1983 as consolidated through 2020 and text of Law 33/2018 amending Articles 2 and 3."
       ],
@@ -3298,12 +3312,15 @@
       "permission_evidence": "No affirmative licence for full-text mirroring, bulk extraction, commercial indexing, redistribution or republication identified. Public access does not establish reuse permission.",
       "terms_checked_on": "2026-11-23",
       "bulk_download_or_api": "Individual public pages; no bulk/API permission established",
-      "required_next_action": "Review site terms and seek written authorization before local mirroring or commercial reuse; compare all reproduced articles with original Gazette page images."
+      "required_next_action": "Review site terms and seek written authorization before local mirroring or commercial reuse; compare all reproduced articles with original Gazette page images.",
+      "related_source_pages": [
+        "https://lawyeregypt.net/قانون-رقم-33-لسنة-2018-بتعديل-بعض-أحكام-القانون-رقم-113-لسنة-1983-بإنشاء-الهيئة-القومية-للأنفاق/"
+      ]
     },
     {
       "source_id": "EG-SUEZ-CANAL-AUTHORITY-LEGAL-PAGES-1975-1998-2014",
       "authority": "Suez Canal Authority (Egypt) — official authority website",
-      "source_page": "https://www.suezcanal.gov.eg/Arabic/About/CanalTreatiesAndDecrees/Pages/ARepublicanDecreeLawNo.30of1975.aspx; https://www.suezcanal.gov.eg/Arabic/About/CanalTreatiesAndDecrees/Pages/LawNo4.aspx; https://www.suezcanal.gov.eg/Arabic/About/CanalTreatiesAndDecrees/Pages/Law_No_34_2014.aspx",
+      "source_page": "https://www.suezcanal.gov.eg/Arabic/About/CanalTreatiesAndDecrees/Pages/ARepublicanDecreeLawNo.30of1975.aspx",
       "material_types": [
         "Official authority-hosted Arabic legal reproductions of Law 30/1975, Law 4/1998 and Law 34/2014 governing the Suez Canal Authority."
       ],
@@ -3314,7 +3331,11 @@
       "permission_evidence": "No explicit licence permitting bulk extraction, local mirroring, commercial indexing, republication or redistribution was identified. Official authority publication does not establish commercial reuse rights.",
       "terms_checked_on": "2026-11-23",
       "bulk_download_or_api": "Public web pages; no bulk/API permission established",
-      "required_next_action": "Review SCA site terms and request written authorization before bulk/local mirroring or commercial redistribution; obtain corresponding Gazette originals."
+      "required_next_action": "Review SCA site terms and request written authorization before bulk/local mirroring or commercial redistribution; obtain corresponding Gazette originals.",
+      "related_source_pages": [
+        "https://www.suezcanal.gov.eg/Arabic/About/CanalTreatiesAndDecrees/Pages/LawNo4.aspx",
+        "https://www.suezcanal.gov.eg/Arabic/About/CanalTreatiesAndDecrees/Pages/Law_No_34_2014.aspx"
+      ]
     },
     {
       "source_id": "EG-MTS-MARITIME-TRANSPORT-SECTOR-PORT-LICENSING",
@@ -3351,7 +3372,7 @@
     {
       "source_id": "EG-EEAA-ENVIRONMENT-AND-WASTE-LAW-LIBRARY",
       "authority": "Egyptian Environmental Affairs Agency (EEAA)",
-      "source_page": "https://www.eeaa.gov.eg/laws/55/index; https://www.eeaa.gov.eg/Laws/56/index; https://www.eeaa.gov.eg/Uploads/Laws/Files/20221004120054988.pdf; https://www.eeaa.gov.eg/Uploads/Laws/Files/20250526101230761.pdf",
+      "source_page": "https://www.eeaa.gov.eg/laws/55/index",
       "material_types": [
         "Official Arabic law-library index for Environment Law4/1994, Law105/2015, Executive Regulation338/1995 and amendments; Waste Management Law202/2020 and PM Decision722/2022; official EEAA-hosted Gazette PDF copies."
       ],
@@ -3362,7 +3383,12 @@
       "permission_evidence": "No explicit licence authorizing bulk acquisition, local mirroring, commercial indexing, redistribution or republication was identified in this pass. Public access or government hosting does not by itself establish reuse permission.",
       "terms_checked_on": "2026-11-23",
       "bulk_download_or_api": "Individual public pages/PDFs; no bulk/API permission established",
-      "required_next_action": "Review EEAA terms and seek written permission before bulk/local mirroring or commercial display; obtain original Gazette binaries where available."
+      "required_next_action": "Review EEAA terms and seek written permission before bulk/local mirroring or commercial display; obtain original Gazette binaries where available.",
+      "related_source_pages": [
+        "https://www.eeaa.gov.eg/Laws/56/index",
+        "https://www.eeaa.gov.eg/Uploads/Laws/Files/20221004120054988.pdf",
+        "https://www.eeaa.gov.eg/Uploads/Laws/Files/20250526101230761.pdf"
+      ]
     },
     {
       "source_id": "EG-IDA-ENVIRONMENT-EXECUTIVE-REGULATION-338-1995",
@@ -3383,7 +3409,7 @@
     {
       "source_id": "EG-MWRI-NILE-WATERCOURSE-LEGISLATION",
       "authority": "Ministry of Water Resources and Irrigation (MWRI), Egypt",
-      "source_page": "https://www.mwri.gov.eg/wp-content/uploads/2020/01/Law-Nile-48-82.pdf; https://www.mwri.gov.eg/wp-content/uploads/2020/01/LAw-Regulations-48-82.pdf",
+      "source_page": "https://www.mwri.gov.eg/wp-content/uploads/2020/01/Law-Nile-48-82.pdf",
       "material_types": [
         "Official MWRI-hosted Arabic PDF of Law48/1982 (19 articles); official MWRI-hosted searchable Arabic text of PM Decision92/2013 revised Executive Regulation (64 articles and annexed water-quality standards)."
       ],
@@ -3394,12 +3420,15 @@
       "permission_evidence": "No explicit licence authorizing bulk acquisition, local mirroring, commercial indexing, redistribution or republication was identified in this pass. Public access or government hosting does not by itself establish reuse permission.",
       "terms_checked_on": "2026-11-23",
       "bulk_download_or_api": "Individual public pages/PDFs; no bulk/API permission established",
-      "required_next_action": "Review MWRI site terms and seek written authorization for bulk extraction or commercial reuse; verify Gazette originals and all numerical water-quality tables."
+      "required_next_action": "Review MWRI site terms and seek written authorization for bulk extraction or commercial reuse; verify Gazette originals and all numerical water-quality tables.",
+      "related_source_pages": [
+        "https://www.mwri.gov.eg/wp-content/uploads/2020/01/LAw-Regulations-48-82.pdf"
+      ]
     },
     {
       "source_id": "EG-SIS-GAZETTE-HEALTH-2023-2024",
       "authority": "State Information Service (SIS) Media/Document Repository, Egypt",
-      "source_page": "https://mediadr.sis.gov.eg/bitstream/handle/123456789/47210/OG39_20231004_0126.pdf?isAllowed=y&sequence=1; https://mediadr.sis.gov.eg/bitstream/handle/123456789/79455/WQ258_20241120_7462.pdf?isAllowed=y&sequence=2; https://mediadr.sis.gov.eg/handle/123456789/63697?locale-attribute=ar",
+      "source_page": "https://mediadr.sis.gov.eg/bitstream/handle/123456789/47210/OG39_20231004_0126.pdf?isAllowed=y&sequence=1",
       "material_types": [
         "Official Gazette issue39 bis (و), 4 Oct 2023 (Egyptian Health Council executive regulation); Official Proceedings issue258, 20 Nov 2024 (Health Minister Decision439/2024); Official Gazette issue25 bis, 23 Jun 2024 (Law87/2024)."
       ],
@@ -3410,12 +3439,16 @@
       "permission_evidence": "No explicit licence authorizing bulk acquisition, local mirroring, commercial indexing, redistribution or republication was identified in this pass. Public access or government hosting does not by itself establish reuse permission.",
       "terms_checked_on": "2026-11-23",
       "bulk_download_or_api": "Individual public pages/PDFs; no bulk/API permission established",
-      "required_next_action": "Review SIS repository terms and request permission for bulk downloading/local mirroring or commercial display; inspect page images and preserve Gazette issue/version metadata."
+      "required_next_action": "Review SIS repository terms and request permission for bulk downloading/local mirroring or commercial display; inspect page images and preserve Gazette issue/version metadata.",
+      "related_source_pages": [
+        "https://mediadr.sis.gov.eg/bitstream/handle/123456789/79455/WQ258_20241120_7462.pdf?isAllowed=y&sequence=2",
+        "https://mediadr.sis.gov.eg/handle/123456789/63697?locale-attribute=ar"
+      ]
     },
     {
       "source_id": "EG-EDA-BLOOD-PLASMA-LEGISLATION",
       "authority": "Egyptian Drug Authority (EDA), Egypt",
-      "source_page": "https://dev.edaegypt.gov.eg/media/qt2lptuz/2021-8.pdf; https://www.edaegypt.gov.eg/media/mkwle5kk/minister-decree-no-2603.pdf; https://www.edaegypt.gov.eg/media/2lfhbcbe/minister-decree-no-2603.pdf",
+      "source_page": "https://dev.edaegypt.gov.eg/media/qt2lptuz/2021-8.pdf",
       "material_types": [
         "EDA-hosted Arabic Official Gazette PDF for Law8/2021 on blood operations and plasma; EDA-hosted 17-page English translation of PM Decision2603/2021 executive regulation."
       ],
@@ -3426,12 +3459,16 @@
       "permission_evidence": "No explicit licence authorizing bulk acquisition, local mirroring, commercial indexing, redistribution or republication was identified in this pass. Public access or government hosting does not by itself establish reuse permission.",
       "terms_checked_on": "2026-11-23",
       "bulk_download_or_api": "Individual public pages/PDFs; no bulk/API permission established",
-      "required_next_action": "Review EDA website terms and request written permission for bulk/local mirroring or commercial display; obtain the original Arabic PM2603/2021 Gazette PDF and technical annexes."
+      "required_next_action": "Review EDA website terms and request written permission for bulk/local mirroring or commercial display; obtain the original Arabic PM2603/2021 Gazette PDF and technical annexes.",
+      "related_source_pages": [
+        "https://www.edaegypt.gov.eg/media/mkwle5kk/minister-decree-no-2603.pdf",
+        "https://www.edaegypt.gov.eg/media/2lfhbcbe/minister-decree-no-2603.pdf"
+      ]
     },
     {
       "source_id": "EG-FAOLEX-EGYPT-WASTE-WATER-ENVIRONMENT-LAWS",
       "authority": "FAOLEX (FAO Legal Office database)",
-      "source_page": "https://faolex.fao.org/docs/pdf/egy199134.pdf; https://faolex.fao.org/docs/pdf/egy179415.pdf; https://faolex.fao.org/docs/pdf/egy179418.pdf; https://faolex.fao.org/docs/pdf/egy195608.pdf",
+      "source_page": "https://faolex.fao.org/docs/pdf/egy199134.pdf",
       "material_types": [
         "Arabic Gazette reproductions/text layers for Law202/2020 Waste Management; Law93/1962 liquid-waste discharge; PM Decision44/2000; Law103/2015 amending Law48/1982."
       ],
@@ -3442,7 +3479,12 @@
       "permission_evidence": "No explicit licence authorizing bulk acquisition, local mirroring, commercial indexing, redistribution or republication was identified in this pass. Public access or government hosting does not by itself establish reuse permission.",
       "terms_checked_on": "2026-11-23",
       "bulk_download_or_api": "Individual public pages/PDFs; no bulk/API permission established",
-      "required_next_action": "Review FAOLEX terms and source attribution requirements; confirm underlying Gazette provenance and seek authorization for bulk redistribution or commercial reuse."
+      "required_next_action": "Review FAOLEX terms and source attribution requirements; confirm underlying Gazette provenance and seek authorization for bulk redistribution or commercial reuse.",
+      "related_source_pages": [
+        "https://faolex.fao.org/docs/pdf/egy179415.pdf",
+        "https://faolex.fao.org/docs/pdf/egy179418.pdf",
+        "https://faolex.fao.org/docs/pdf/egy195608.pdf"
+      ]
     }
   ]
 }
