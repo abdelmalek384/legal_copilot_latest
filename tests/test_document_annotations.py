@@ -119,6 +119,8 @@ class DocumentAnnotationAPITests(unittest.TestCase):
         self.assertIn("cursor.rowcount != 1", endpoint)
         self.assertIn("document_annotation_events", endpoint)
         self.assertIn("document_annotation_created", endpoint)
+        self.assertIn("WHERE a.firm_id=? AND c.firm_id=?", app)
+        self.assertIn("WHERE e.firm_id=? AND c.firm_id=?", app)
         self.assertIn('bucket = "document_annotations"', app)
         self.assertIn("limit = (30, 60)", app)
 
