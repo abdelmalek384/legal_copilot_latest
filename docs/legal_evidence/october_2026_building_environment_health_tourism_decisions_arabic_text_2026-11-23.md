@@ -195,3 +195,10 @@ Gap: acquire issue 226 page image and verify date, punctuation and exact text ag
 5. Environment Agency implementation guide, forms, registration deadlines and portal fields for Decision 716/2026.
 
 All four entries remain source-matched or partial; lawyer_reviewed=false; verified=false; rights_cleared=false.
+
+## Explicit machine trust flags
+
+- `lawyer_reviewed: false`
+- `verified: false`
+- `rights_cleared: false`
+- This acquisition is research-only. Preserve the instrument-specific source and completeness caveats above; do not treat it as a verified/current consolidated legal text or use it for production legal answers until primary-source comparison, reuse-rights review and qualified Egyptian lawyer approval are complete.
