@@ -5292,6 +5292,61 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             researcher.close()
 
 
+    def test_research_save_to_matter_uses_exact_question_link_when_messages_interleave(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created_case = self._mutate(
+            "post", "/cases", json={"title": "Interleaved research memo matter"}
+        )
+        self.assertEqual(created_case.status_code, 200, created_case.text)
+        case_id = created_case.json()["id"]
+        conversation = self._mutate("post", "/research/conversations")
+        self.assertEqual(conversation.status_code, 200, conversation.text)
+        conversation_id = conversation.json()["id"]
+        context = self.runtime.resolve_context(self.user_id, self.firm_a)
+        tenant = self.runtime.firm_connection(context)
+
+        first_question_id = tenant.execute(
+            "INSERT INTO research_messages(conversation_id,role,content) VALUES(?,?,?)",
+            (conversation_id, "user", "FIRST_INTERLEAVED_QUESTION"),
+        ).lastrowid
+        tenant.execute(
+            "INSERT INTO research_messages(conversation_id,role,content) VALUES(?,?,?)",
+            (conversation_id, "user", "SECOND_INTERLEAVED_QUESTION"),
+        )
+        result = {
+            "answer": "Answer belonging to the first question.",
+            "requested_as_of": "2026-11-24",
+            "scope": "verified_corpus",
+            "sources": [],
+            "question_message_id": first_question_id,
+        }
+        assistant_message_id = tenant.execute(
+            "INSERT INTO research_messages(conversation_id,role,content,message_json) VALUES(?,?,?,?)",
+            (
+                conversation_id,
+                "assistant",
+                result["answer"],
+                json.dumps(result, ensure_ascii=False),
+            ),
+        ).lastrowid
+        tenant.commit()
+
+        saved = self._mutate(
+            "post",
+            f"/research/conversations/{conversation_id}/save-to-matter",
+            json={"case_id": case_id, "message_id": assistant_message_id},
+        )
+        self.assertEqual(saved.status_code, 201, saved.text)
+        note = tenant.execute(
+            "SELECT text FROM notes WHERE id=?", (saved.json()["note_id"],)
+        ).fetchone()
+        self.assertIn("Question: FIRST_INTERLEAVED_QUESTION", note["text"])
+        self.assertNotIn("SECOND_INTERLEAVED_QUESTION", note["text"])
+
+
     def test_security_headers_and_csp_nonce_are_present(self):
         response = self.client.get("/")
         self.assertEqual(response.status_code, 200, response.text)
