@@ -11,8 +11,9 @@ Delta-only supplement: two newly published Prime Minister decisions that were no
 **Gazette pages:** PDF facsimile indicates pp. 10–18.  
 **Full searchable Arabic Gazette facsimile (secondary-hosted):** https://lawhub.info/eg/wp-content/uploads/2026/11/lawhub.info-eg-dec-3356-2026-.pdf  
 **Secondary full text and instrument metadata:** https://lawhub.info/eg/?p=20271  
-**Official Gazette collection / item-discovery source:** https://dspace.id.com.eg/collections/bb4a4122-9215-48e2-a8a5-b622ffa5eeb6 (item “الجريدة الرسمية - العدد 44 مكرر (أ)”, Amiri Press, 1 November 2026).  
-**Status:** Gazette page header and full text reproduced in a secondary-hosted PDF facsimile; the DSpace item is official Gazette repository metadata. Direct official publisher's own text page/PDF not yet located. This is a strong secondary facsimile, not an official-source byte match.
+**Official Gazette item metadata:** https://dspace.id.com.eg/items/8eb0d1fe-3ec4-425a-9bcf-2965230e9b42/full (issue 44 bis (A), Amiri Press publisher, 1 November 2026; 2.7 MB original PDF listed). The repository Download link opens a request-a-copy form stating that all files for the item are in restricted access; no original bytes or SHA-256 were obtained.  
+**Collection record:** https://dspace.id.com.eg/collections/bb4a4122-9215-48e2-a8a5-b622ffa5eeb6.  
+**Status:** Complete 18-article Arabic text is available through the secondary LAW HUB transcription/PDF; DSpace provides official issue/item metadata only. The official Gazette PDF is request-copy restricted, so this remains a secondary text capture and not an official-source byte match. No restricted access was bypassed.
 
 ### Article-by-article acquisition map
 
@@ -49,6 +50,7 @@ This is the operative contribution formula, not a generic 1% levy. The amount is
 - Labour Law 14/2025 Article 20 sets the Fund's statutory functions and delegates the board's formation, other powers, working system, financial treatment, branches, basic regulations and collection/accounting rules to a PM decision.
 - PM Decision 3356/2026 now supplies the current governance and operational framework and expressly repeals PM Decision 1543/2003. The 0.25% contribution formula itself is prescribed by Labour Law Article 21; Decision 3356 Article 2 mirrors that statutory resource rule, while Article 3 delegates only the full-exemption rules to a separate Minister of Labour decision.
 - PM Decision 3356 Article 3 leaves a further ministerial decision outstanding: rules/conditions for full exemption from the 0.25% contribution where establishments train their own workers.
+- **Payment interpretation caution:** Article 2 states the annual per-worker contribution formula (0.25% of the minimum insured wage, with EGP 10 floor and EGP 30 cap); Article 3 schedules payment in quarterly instalments. Do not multiply the annual per-worker amount or cap by four. The separate full-exemption rules remain delegated to a Minister of Labour decision; no publicly accessible text of that decision was located in this acquisition pass.
 - Do not assume that the former 1% training-fund contribution under Law 12/2003 remains collectible after the new statutory transition and PM Decision 3356/2026. Reconcile issuance Article 2, Labour Law Article 20, Decision 3356 Article 2, the old 1% litigation savings and any later ministerial exemption/collection rules before encoding liabilities.
 
 ### OCR/page QA
