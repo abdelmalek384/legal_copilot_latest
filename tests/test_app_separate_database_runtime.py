@@ -3540,6 +3540,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
                 "/session/firm", json={"firm_id": self.firm_a}, headers=outsider_headers
             )
             self.assertEqual(outsider_firm.status_code, 200, outsider_firm.text)
+            outsider_headers = {"X-CSRF-Token": outsider.cookies.get("lc_csrf") or ""}
             denied = outsider.get(
                 f"/cases/{case_id}/docs/{document_id}/chunks/{chunk_id}/annotations"
             )
@@ -3579,6 +3580,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
                 "/session/firm", json={"firm_id": self.firm_a}, headers=member_headers
             )
             self.assertEqual(member_select.status_code, 200, member_select.text)
+            member_headers = {"X-CSRF-Token": member_client.cookies.get("lc_csrf") or ""}
             denied_delete = member_client.delete(
                 f"/cases/{case_id}/docs/{document_id}/annotations/{annotation_id}",
                 headers=member_headers,
