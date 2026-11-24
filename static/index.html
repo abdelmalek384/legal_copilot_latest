@@ -1540,7 +1540,9 @@ input::placeholder, textarea::placeholder { color: #9aa6b7; }
 <script>
 const $=i=>document.getElementById(i),A=$('app');
 let ME=JSON.parse(sessionStorage.me||'{}'),TAB='sum',PAGE='dash';
-const RL={admin:'مسؤول المكتب',lawyer:'محامٍ',lead:'رئيسي',associate:'محامٍ مساعد',junior:'متدرب'},today=(()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')})();
+function cairoDateKey(value=new Date()){const parts=new Intl.DateTimeFormat('en-GB',{timeZone:'Africa/Cairo',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(value);const part=type=>parts.find(item=>item.type===type)?.value||'';return part('year')+'-'+part('month')+'-'+part('day')}
+function cairoTodayDate(){const [year,month,day]=cairoDateKey().split('-').map(Number);return new Date(year,month-1,day)}
+const RL={admin:'مسؤول المكتب',lawyer:'محامٍ',lead:'رئيسي',associate:'محامٍ مساعد',junior:'متدرب'},today=cairoDateKey();
 let generatedControlId=0;
 const h=(t,p={},...k)=>{const e=document.createElement(t);for(const [key,value] of Object.entries(p||{})){if(key==='role'||key.startsWith('aria-')||key.startsWith('data-')){if(value!=null)e.setAttribute(key,String(value))}else e[key]=value}e.append(...k.flat().filter(x=>x!=null&&x!==false));if((t==='input'||t==='textarea')&&p.placeholder&&!e.hasAttribute('aria-label'))e.setAttribute('aria-label',p.placeholder);for(let i=0;i<e.children.length-1;i++){const label=e.children[i],control=e.children[i+1];if(label.tagName==='LABEL'&&!label.htmlFor&&/^(INPUT|SELECT|TEXTAREA)$/.test(control.tagName)){if(!control.id)control.id='field-'+(++generatedControlId);label.htmlFor=control.id}}return e};
 const pill=(t,k)=>h('span',{className:'pill '+k,textContent:t}),btn=(t,f,c='')=>h('button',{textContent:t,onclick:f,className:c});
@@ -2065,11 +2067,11 @@ function openPage(id,fn){PAGE=id;window.CASE_ID=null;window.DOCUMENT_REVIEW_TARG
 function localReminderSettingKey(){return 'lc_local_reminders_enabled_'+String(ME.firm_id||'0')+'_'+String(ME.id||'0')}
 function localReminderSentKey(day){return 'lc_local_reminder_sent_'+String(ME.firm_id||'0')+'_'+String(ME.id||'0')+'_'+day}
 function localReminderDate(value){return typeof value==='string'&&/^\d{4}-\d{2}-\d{2}/.test(value)?value.slice(0,10):null}
-function localReminderToday(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function localReminderToday(){return cairoDateKey()}
 function sendLocalReminderSummary(d){
  if(localStorage.getItem(localReminderSettingKey())!=='1'||!('Notification' in window)||Notification.permission!=='granted')return;
- const todayKey=localReminderToday(),tomorrowDate=new Date();tomorrowDate.setDate(tomorrowDate.getDate()+1);
- const tomorrow=tomorrowDate.getFullYear()+'-'+String(tomorrowDate.getMonth()+1).padStart(2,'0')+'-'+String(tomorrowDate.getDate()).padStart(2,'0');
+ const todayKey=localReminderToday(),tomorrowDate=new Date(todayKey+'T00:00:00Z');tomorrowDate.setUTCDate(tomorrowDate.getUTCDate()+1);
+ const tomorrow=tomorrowDate.toISOString().slice(0,10);
  const items=[];
  (d.tasks||[]).forEach(x=>{const day=localReminderDate(x.due);if(day&&day<=tomorrow)items.push({kind:'task',day})});
  (d.unassigned_tasks||[]).forEach(x=>{const day=localReminderDate(x.due);if(day&&day<=tomorrow)items.push({kind:'task',day})});
@@ -2215,7 +2217,7 @@ async function calendarPage(){
  const info=h('p',{className:'mut',textContent:uiText('تعرض هذه الأجندة الجلسات المسجلة والمواعيد والمهام ذات تواريخ الاستحقاق. تحقق من الملف والمصدر القانوني قبل الاعتماد على أي ميعاد طعن.','This calendar combines recorded hearings, deadlines and tasks with due dates. Verify the case file and legal source before relying on any appeal deadline.')});
  const localKey=value=>value.getFullYear()+'-'+String(value.getMonth()+1).padStart(2,'0')+'-'+String(value.getDate()).padStart(2,'0');
  const itemDay=item=>String(item.date||'').slice(0,10);
- const todayDate=new Date();todayDate.setHours(0,0,0,0);
+ const todayDate=cairoTodayDate();
  const todayKey=localKey(todayDate);
  let shownMonth=new Date(todayDate.getFullYear(),todayDate.getMonth(),1),selectedDay=todayKey;
  const monthLabel=()=>shownMonth.toLocaleDateString(LANG==='ar'?'ar-EG':'en-US',{month:'long',year:'numeric'});
