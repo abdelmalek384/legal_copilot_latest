@@ -1858,5 +1858,18 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("commandItems.filter(([id,label])", navigation)
         self.assertIn("commandItems.find(([id,label])", navigation)
 
+    def test_date_sensitive_workspace_uses_cairo_timezone_not_browser_timezone(self):
+        start = HTML.index("function cairoDateKey(")
+        dates = HTML[start:HTML.index("let generatedControlId", start)]
+        self.assertIn("timeZone:'Africa/Cairo'", dates)
+        self.assertIn("today=cairoDateKey()", dates)
+        reminder_start = HTML.index("function localReminderToday()")
+        reminder = HTML[reminder_start:HTML.index("function sendLocalReminderSummary", reminder_start)]
+        self.assertIn("return cairoDateKey()", reminder)
+        self.assertIn("tomorrowDate.setUTCDate(tomorrowDate.getUTCDate()+1)", HTML)
+        calendar_start = HTML.index("async function calendarPage()")
+        calendar = HTML[calendar_start:HTML.index("async function", calendar_start+20)]
+        self.assertIn("const todayDate=cairoTodayDate()", calendar)
+
 if __name__ == "__main__":
     unittest.main()
