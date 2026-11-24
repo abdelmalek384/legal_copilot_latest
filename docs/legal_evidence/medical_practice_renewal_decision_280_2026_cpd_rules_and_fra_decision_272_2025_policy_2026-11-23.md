@@ -200,3 +200,10 @@ No item in this tranche is represented as lawyer-reviewed, legally verified, or 
 - Check whether FRA Decision 272/2025 has later amendments or a corrected policy form; inspect the FRA insurance legislation index and subsequent Gazette issues.
 - Download/hash the official 272 PDF and EHC PDF into the project's ingestion workflow where permitted; record hashes and extraction versions.
 - Obtain Arabic original/version history for EHC CPD rules, if publicly available; compare the official live EHC rules page with the 30-page PDF.
+
+## Explicit machine trust flags
+
+- `lawyer_reviewed: false`
+- `verified: false`
+- `rights_cleared: false`
+- This acquisition is research-only. Preserve the instrument-specific source and completeness caveats above; do not treat it as a verified/current consolidated legal text or use it for production legal answers until primary-source comparison, reuse-rights review and qualified Egyptian lawyer approval are complete.
