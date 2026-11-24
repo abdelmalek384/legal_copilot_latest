@@ -3480,8 +3480,8 @@ function documentIntelligencePanel(caseId,documents){
   }finally{compareButton.disabled=false}
  };
 
- const noteClearReviewDrafts=(note,correction)=>{note.value='';correction.value='';window.DOCUMENT_REVIEW_DRAFT_DIRTY=Array.from(document.querySelectorAll('[data-review-draft="1"]')).some(field=>String(field.value||'').trim().length>0)};
- const submitChunkReview=async(item,chunk,outcome,correctedText,note,correction,controls)=>{
+ const noteClearReviewDrafts=(note,correction,draftKey)=>{note.value='';correction.value='';draftOverrides.delete(draftKey);window.DOCUMENT_REVIEW_DRAFT_DIRTY=draftOverrides.size>0};
+ const submitChunkReview=async(item,chunk,outcome,correctedText,note,correction,draftKey,controls)=>{
   controls.forEach(control=>control.disabled=true);
   try{
    const payload={outcome,page_reference:chunk.page==null?'':String(chunk.page),note:String(note||'').trim()};
@@ -3493,7 +3493,7 @@ function documentIntelligencePanel(caseId,documents){
     payload.expected_text_sha256=chunk.text_sha256;
    }
    await api('/cases/'+caseId+'/docs/'+item.doc.document_id+'/chunks/'+chunk.id+'/review','POST',payload);
-   noteClearReviewDrafts(note,correction);
+   noteClearReviewDrafts(note,correction,draftKey);
    const refreshed=await api('/cases/'+caseId+'/docs/'+item.doc.document_id+'/chunks');
    item.chunks=Array.isArray(refreshed.chunks)?refreshed.chunks:[];
    item.text=item.chunks.map(part=>String(part.text||'')).join('\n');
@@ -3530,13 +3530,17 @@ function documentIntelligencePanel(caseId,documents){
     remaining--;
     const reviewLabel=latest?({accepted:uiText('تمت المراجعة','Reviewed — accepted'),corrected:uiText('تم تصحيح النص','Text corrected'),needs_recheck:uiText('يتطلب إعادة الفحص','Needs recheck')}[latest.outcome]||uiText('له سجل مراجعة','Review recorded')):uiText('لم تتم المراجعة','Not yet reviewed');
     const note=h('input',{type:'text',maxLength:2000,placeholder:uiText('ملاحظة المراجع (اختيارية)','Reviewer note (optional)'),'aria-label':uiText('ملاحظة مراجعة المقطع ','Review note for chunk ')+chunk.id});
-    note.setAttribute('data-review-draft','1');note.addEventListener('input',()=>{window.DOCUMENT_REVIEW_DRAFT_DIRTY=true});
+    note.setAttribute('data-review-draft','1');
+    const draftKey=String(item.doc.document_id)+':'+String(chunk.id),savedDraft=draftOverrides.get(draftKey)||{};
+    note.value=String(savedDraft.note||'');correction.value=String(savedDraft.correction||'');
+    const rememberReviewDraft=()=>{const draft={note:String(note.value||''),correction:String(correction.value||'')};if(draft.note.trim()||draft.correction.trim())draftOverrides.set(draftKey,draft);else draftOverrides.delete(draftKey);window.DOCUMENT_REVIEW_DRAFT_DIRTY=draftOverrides.size>0};
+    note.addEventListener('input',rememberReviewDraft);
     const correction=h('textarea',{rows:4,maxLength:20000,placeholder:uiText('أدخل النص المصحح بعد الرجوع إلى المستند الأصلي.','Enter corrected text after checking the original document.'),'aria-label':uiText('النص المصحح للمقطع ','Corrected text for chunk ')+chunk.id,style:'display:none;width:100%'});
-    correction.setAttribute('data-review-draft','1');correction.addEventListener('input',()=>{window.DOCUMENT_REVIEW_DRAFT_DIRTY=true});
-    const accepted=btn(uiText('اعتماد النص','Accept text'),()=>submitChunkReview(item,chunk,'accepted','',note.value,correction,[accepted,recheck,edit]),'g');
+    correction.setAttribute('data-review-draft','1');correction.addEventListener('input',rememberReviewDraft);
+    const accepted=btn(uiText('اعتماد النص','Accept text'),()=>submitChunkReview(item,chunk,'accepted','',note.value,correction,draftKey,[accepted,recheck,edit]),'g');
     const recheck=btn(uiText('يحتاج إعادة فحص','Needs recheck'),()=>submitChunkReview(item,chunk,'needs_recheck','',note.value,correction,[accepted,recheck,edit]),'g');
     const edit=btn(uiText('تصحيح النص','Correct text'),()=>{correction.style.display=correction.style.display==='none'?'block':'none';if(correction.style.display==='block')correction.focus()},'g');
-    const save=btn(uiText('حفظ التصحيح','Save correction'),()=>submitChunkReview(item,chunk,'corrected',correction.value,note.value,correction,[accepted,recheck,edit,save]),'primary');
+    const save=btn(uiText('حفظ التصحيح','Save correction'),()=>submitChunkReview(item,chunk,'corrected',correction.value,note.value,correction,draftKey,[accepted,recheck,edit,save]),'primary');
     save.style.display='none';
     edit.onclick=()=>{const show=correction.style.display==='none';correction.style.display=show?'block':'none';save.style.display=show?'inline-flex':'none';if(show)correction.focus()};
     cards.push(h('article',{className:'card extraction-review-card'},
