@@ -2615,3 +2615,7 @@ Added Law75/2026 (annual raises/special allowance/EGP750 incentive), Law77/2026 
 ### Law 48/1979 — Supreme Constitutional Court Law (25 November 2026)
 
 - [Evidence record](law_48_1979_supreme_constitutional_court_source_2026-11-25.md) — official Court of Cassation portal locator plus secondary full-text reproduction reporting 73 articles and amendment notes through Law 137/2021. Original official portal fetch was unavailable; no Gazette PDF was locally acquired. Acquisition EG-0547 / inventory FT-0222; not source-matched, not lawyer-reviewed, rights not assessed.
+
+### Law 137/2021 — amendment to Supreme Constitutional Court Law 48/1979 (25 November 2026)
+
+- [Evidence record](law_137_2021_scc_law_amendment_official_gazette_2026-11-25.md) — Official Gazette issue 32 bis (A), 15 Aug 2021. DSpace item identifies publisher as Amiri Press but its PDF is restricted to request-a-copy; secondary full text confirms two new articles. Records EG-0548 / FT-0223 and provisional version events EV-0355 / EV-0356; no page-image match, lawyer review or rights clearance.
