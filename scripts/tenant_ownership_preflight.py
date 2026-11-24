@@ -212,6 +212,10 @@ def audit(conn: sqlite3.Connection) -> dict[str, Any]:
             add("document_annotation_author_missing", "high",
                 _count(conn, "SELECT COUNT(*) FROM document_annotations a LEFT JOIN users u ON u.id=a.author_user_id WHERE u.id IS NULL"),
                 "Document annotation references a missing author.")
+            if "firm_id" in annotation_cols and "firm_id" in _columns(conn, "users"):
+                add("document_annotation_author_firm_mismatch", "critical",
+                    _count(conn, "SELECT COUNT(*) FROM document_annotations a JOIN users u ON u.id=a.author_user_id WHERE a.firm_id IS NOT u.firm_id"),
+                    "Document annotation firm differs from its author's firm.")
 
     if "document_annotation_events" in tables:
         add("document_annotation_event_parent_missing", "high",
@@ -221,6 +225,14 @@ def audit(conn: sqlite3.Connection) -> dict[str, Any]:
             add("document_annotation_event_scope_mismatch", "critical",
                 _count(conn, "SELECT COUNT(*) FROM document_annotation_events e JOIN document_annotations a ON a.id=e.annotation_id WHERE e.firm_id IS NOT a.firm_id OR e.case_id IS NOT a.case_id OR e.document_id IS NOT a.document_id"),
                 "Document annotation event scope differs from its annotation.")
+        if "actor_user_id" in _columns(conn, "document_annotation_events") and "users" in tables:
+            add("document_annotation_event_actor_missing", "high",
+                _count(conn, "SELECT COUNT(*) FROM document_annotation_events e LEFT JOIN users u ON u.id=e.actor_user_id WHERE u.id IS NULL"),
+                "Document annotation event references a missing actor.")
+            if "firm_id" in _columns(conn, "document_annotation_events") and "firm_id" in _columns(conn, "users"):
+                add("document_annotation_event_actor_firm_mismatch", "critical",
+                    _count(conn, "SELECT COUNT(*) FROM document_annotation_events e JOIN users u ON u.id=e.actor_user_id WHERE e.firm_id IS NOT u.firm_id"),
+                    "Document annotation event firm differs from its actor's firm.")
 
     if "research_messages" in tables:
         message_cols = _columns(conn, "research_messages")
