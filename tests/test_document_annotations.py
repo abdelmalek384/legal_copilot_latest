@@ -170,7 +170,7 @@ class DocumentAnnotationAPITests(unittest.TestCase):
 
 class DocumentAnnotationAPIRuntimeTests(InvoiceTestSupport, unittest.TestCase):
     def test_annotation_persists_across_case_switch_and_stales_after_source_correction(self):
-        source = "Alpha source passage for a synthetic annotation acceptance test."
+        source = "Alpha 🧑‍⚖️ source passage for a synthetic annotation acceptance test."
         uploaded = self.mutate(
             self.client_a, "post", f"/cases/{self.case_id}/docs",
             json={"name": "annotation-source.txt", "text": source},
