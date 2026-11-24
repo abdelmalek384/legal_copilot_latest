@@ -2604,3 +2604,10 @@ Added Law75/2026 (annual raises/special allowance/EGP750 incentive), Law77/2026 
 ### Law 215/2017 — amendment to Family Courts Law 10/2004 (25 November 2026)
 
 - Article-version event EV-0352 is recorded in the historical article-version events CSV. [Evidence record](law_215_2017_family_courts_amendment_official_gazette_2026-11-25.md) — SIS-hosted Official Gazette issue 51 bis (A), 25 Dec 2017. PDF text layer identifies a two-article amendment adding a final paragraph to Law 10/2004 Article 11; page-image inspection remains outstanding. Records EG-0544 / FT-0219; not source-matched, not lawyer-reviewed, and rights not assessed.
+
+### Law 25/1929 — additional amendment-chain leads (25 November 2026)
+
+- Law 4/2005: acquisition EG-0545, inventory FT-0220, provisional Article 20(1) replacement event EV-0353. Secondary LAWEG page identifies Official Gazette issue 9 bis, 8 Mar 2005; original Gazette scan remains outstanding.
+- Law 140/2017: acquisition EG-0546, inventory FT-0221, provisional replacement event EV-0354 for Article 21(2)-(3) and Article 22. Secondary sources identify Official Gazette issue 29 bis, 22 Jul 2017; original Gazette scan remains outstanding.
+- These entries do not complete the Law 25/1929 amendment chain. Law 44/1979, Law 100/1985, Law 33/1992, Law 2/2006 and other cited changes still need source-level reconciliation.
+- [Amendment-chain evidence note](law_25_1929_amendment_chain_leads_2005_2017_2026-11-25.md).
