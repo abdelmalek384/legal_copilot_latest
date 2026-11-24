@@ -376,6 +376,11 @@ def document_search_excerpt(text, query, context_before=450, max_chars=1200):
             normalized_parts.append(part)
             source_offsets.extend([source_index] * len(part))
     normalized = "".join(normalized_parts)
+    if normalized != norm(text):
+        # NFKC can compose across adjacent code points. If the per-character
+        # map does not reproduce the indexed normalization exactly, fall back
+        # to an uncentered excerpt rather than inventing source offsets.
+        return text[:max_chars]
     match_start = normalized.find(needle)
     if match_start < 0 or match_start >= len(source_offsets):
         return text[:max_chars]
