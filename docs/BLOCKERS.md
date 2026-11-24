@@ -579,3 +579,5 @@ The owner has explicitly requested a non-production firm-test implementation. Th
 - Added confirmation before navigation that would discard drafts, including same-matter rerenders and global navigation paths, plus browser-unload protection.
 - Added static frontend contract coverage. Inline JavaScript syntax was checked with V8; Python tests and browser acceptance remain unexecuted. No CI or test pass is claimed.
 - Bounded implementation status: **100% source implementation**. Acceptance remains pending because the frontend test module, keyboard navigation, Arabic RTL/LTR, responsive layout, and two-case lawyer workflow have not been run.
+
+- Follow-up hardening: correction controls are initialized before draft restoration; accept/recheck/correct actions share the same passage key; a successful review POST followed by a failed refresh is reported as saved (with re-analysis required), not as a failed save. Static contract assertions added; runtime remains unexecuted.
