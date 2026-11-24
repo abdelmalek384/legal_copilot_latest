@@ -5765,6 +5765,19 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertIn("Hearing: Workflow acceptance matter", calendar.text)
 
 
+    def test_workflow_models_trim_and_reject_blank_titles_and_notes(self):
+        with self.assertRaises(ValidationError):
+            app.TaskIn(title="   ")
+        self.assertEqual(app.TaskIn(title="  Prepare filing  ").title, "Prepare filing")
+        self.assertEqual(app.SessIn(date="2026-11-25", note="   ").note, "")
+        with self.assertRaises(ValidationError):
+            app.NoteIn(text=" \t ")
+        with self.assertRaises(ValidationError):
+            app.DeadlineIn(title="   ", due="2099-01-01")
+        deadline = app.DeadlineIn(title="  Appeal filing  ", due="2099-01-01", note="  reviewed trigger  ")
+        self.assertEqual(deadline.title, "Appeal filing")
+        self.assertEqual(deadline.note, "reviewed trigger")
+
     def test_calendar_windows_use_cairo_local_date(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
