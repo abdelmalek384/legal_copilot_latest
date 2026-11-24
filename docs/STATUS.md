@@ -1751,3 +1751,11 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Added a regression that injects a duplicate candidate document ID and verifies the report emits a blocking consistency issue rather than hiding the collision.
 - Commits: `e7607688c1f3a1e88ab4b9f67521f10ac3868011` (duplicate-ID detection), `dcfbc7a8eabc47f6c7f0d802779ef430635c423e` (regression).
 - Tests remain committed but **unexecuted**. No legal-content or trust-tier status changed.
+
+## Manual legal-corpus registry fail-closed checks — 2026-11-24
+
+- The inventory report now flags missing, blank, non-string, and whitespace-padded stable identifiers in all six source/evidence/acquisition registries instead of silently excluding them from set comparisons.
+- It also rejects malformed acquisition-queue `document_ids` values (non-list containers or empty/non-string members) as consistency issues; this prevents a string from being iterated character-by-character and treated as a valid set of document references.
+- Added regressions for missing/blank registry identifiers, malformed queue document references, and `--strict` returning exit code 1 when an integrity issue is present while still writing the diagnostic report.
+- Commits: `eaee5a3324ef7c2f0114dafc7c103046494c3531` (fail-closed issue detection), `71d6c64baeae50d259ae8a36f779b7d299d26eae` (malformed identifier regression), `3ca7a163e444ddd711dbd145ee27cb4f17b6e88c` (strict-mode CLI regression).
+- These tests are committed but **not executed**. The inventory is still metadata-only and makes no legal corpus, authenticity, permission, currentness, or lawyer-review certification.
