@@ -1418,3 +1418,17 @@ Percentages below describe the named deliverable only. They are not a project-wi
 - Main commit `74f0ae8`: add a focused async middleware regression proving the final 401 contains expiry cookies for `lc_session`, `lc_csrf`, and `lc_firm`.
 - Main commit `f9c765f`: register that regression in `.github/workflows/tests.yml`.
 - Static source verification confirms the fix, all three invalid-session paths, the regression file, and workflow registration are present on main. No PR-triggered workflow run was returned for the exact commit; **no test pass is claimed**.
+
+
+### Recovered legal acquisition tranche — 24 November
+
+Recovered and committed the document-only portions of closed acquisition PRs directly to `main`, avoiding reopening PRs or merging unrelated test/UI changes:
+
+- 19 Egyptian decisions/instruments plus one official CPD-rules source document, covering medical liability/insurance, medical-practice renewal, building reconciliation, environment, tourism, housing and planning/heritage.
+- Added complete or partial Arabic text captures where present, official source URLs where available, and explicit missing-annex/Gazette-image/currentness limitations.
+- Secondary reproductions remain explicitly provisional. No `verified`, `lawyer_reviewed`, or `rights_cleared` flags were promoted. These are evidence files, not yet imported into the searchable legal corpus.
+- Recovered sources include an official FRA-hosted seven-page PDF text capture for Decision 272/2025; official Amiri Press searchable text for multiple 2026 decisions; and secondary text captures where the primary Gazette scan was not obtained.
+- Additional main commits: `58862fc`, `d365f43`, `db2d4ed`, `f3d5a0e`, `13d6ffe`, `aa39ad0`, `8bcf593`, `d5332c4`, `6e64b95`, `3a176a8`, plus explicit trust-flag commits `389f542`, `8c2c199`, `4e679f8`.
+- PR #1901's unrelated classification/UI/test changes were not copied; only its standalone legal-evidence document was recovered. No open PR was created.
+
+The next unblocked acquisition step is to add provenance metadata and deduplication checks for these evidence files, then move only rights-cleared, source-backed text through the existing importer. Primary Gazette page acquisition and lawyer review remain external evidence gates, not tasks to simulate.
