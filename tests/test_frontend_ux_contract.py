@@ -28,7 +28,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertEqual(HTML.count("const firmSwitcher=mfaFirmSwitcher();if(firmSwitcher)card.append(firmSwitcher)"), 2)
 
     def test_client_profile_required_name_has_associated_accessible_error(self):
-        profile_form = HTML[HTML.index("async function clientProfileForm("):HTML.index("\nasync function clients()")]
+        profile_form = HTML[HTML.index("async function clientProfileForm("):HTML.index("\nasync function clients(initialQuery='')")]
         self.assertIn("id:'client-profile-name-error'", profile_form)
         self.assertIn("inputs.name.setAttribute('aria-describedby',nameError.id)", profile_form)
         self.assertIn("inputs.name.setAttribute('aria-invalid','true')", profile_form)
@@ -1442,8 +1442,8 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("Original file is unavailable or was purged under the retention policy.", page)
 
     def test_matter_extraction_review_discloses_ocr_and_partial_page_status(self):
-        start = HTML.index("const renderChunkReview=")
-        end = HTML.index("const suggestCorrection=", start)
+        start = HTML.index("const renderChunkReviewCards=()=>")
+        end = HTML.index("const renderAnalysis=()=>{", start)
         page = HTML[start:end]
         self.assertIn("reviewDoc.ocr_used===true||reviewDoc.ocr_used===1", page)
         self.assertIn("reviewDoc.extraction_status==='partial_text_ocr_unavailable'", page)
