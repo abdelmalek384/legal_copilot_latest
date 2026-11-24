@@ -9292,6 +9292,7 @@ def list_document_reviews(cid: int, document_id: int, u: dict = Depends(user)):
 
 
 @app.get("/cases/{cid}/docs/{document_id}/annotations")
+@rollback_tenant_transaction_on_error
 def list_document_annotations(cid: int, document_id: int, u: dict = Depends(user)):
     c = conn()
     need(c, u, cid)
