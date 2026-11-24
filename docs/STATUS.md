@@ -1736,6 +1736,7 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Added authenticated `GET`/`POST /cases/{cid}/docs/{document_id}/annotations` endpoints. Creation validates current chunk identity, exact quoted text, code-point offsets and SHA-256 source version; stale writes return 409. Reads mark annotations stale when the extracted text has since changed.
 - Added bilingual browser selection capture and save controls, saved-annotation display, and stale-anchor indicators. Browser UTF-16 selection offsets are converted to Unicode code-point offsets before submission.
 - Added firm ZIP export of annotation rows and creation events, read-only ownership-preflight checks, tenant-route inventory coverage and focused regression modules.
+- Corrected cross-matter Arabic/Unicode search excerpt offsets by mapping normalized character positions back to original extracted text, with a safe uncentered fallback when NFKC composition cannot be mapped exactly. Added a long diacritic-heavy two-case/client-search regression fixture; the integration test remains unexecuted.
 - Added tests for firm migration scope, immutable rows, parent deletion cascade, API source binding, UI selection contract, export content and orphan ownership findings. These tests are committed but have **not** been executed in the supported Python 3.12 environment.
 
 | Annotation workstream | Previous | Current | Delta | Evidence / remaining gate |
@@ -1743,6 +1744,6 @@ Percentages are scoped to the described implementation or acceptance phase. They
 | Persistent annotation schema/API | 0% | **90% authored** | **+90 pp** | Create/list, firm/case/document/chunk binding, source digest and compare-and-swap committed; annotation editing/deletion and threaded replies are not included; migration/runtime/API tests not run |
 | Bilingual annotation interaction | 0% | **85% authored** | **+85 pp** | Text selection capture, code-point offsets, note/highlight save and stale-anchor UI committed; edit/reply controls and browser/keyboard/RTL acceptance remain |
 | Export, ownership preflight and route inventory | 0% | **100% authored** | **+100 pp** | Export tables, preflight checks and route inventory tests committed; tests not run |
-| Annotation end-to-end acceptance | 0% | **0%** | **0 pp** | Requires Python 3.12 runtime, migration execution, authenticated API tests and browser validation |
+| Arabic/Unicode search excerpt mapping | 0% | **100% authored** | **+100 pp** | Original-text offset mapping and safe NFKC fallback committed; stress integration fixture not executed |\n| Annotation end-to-end acceptance | 0% | **0%** | **0 pp** | Requires Python 3.12 runtime, migration execution, authenticated API tests and browser validation |
 
 **Validation boundary:** GitHub file/commit operations and static source inspection succeeded. No application test, migration execution, endpoint request, or browser interaction was run. No test pass or pilot-readiness increase is claimed. Annotation implementation is authored, not yet runtime-verified.
