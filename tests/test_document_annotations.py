@@ -102,8 +102,8 @@ class DocumentAnnotationAPITests(unittest.TestCase):
         self.assertIn('@app.post("/cases/{cid}/docs/{document_id}/annotations", status_code=201)', app)
         endpoint = app[app.index("def create_document_annotation("):app.index('@app.get("/cases/{cid}/documents/timeline")')]
         self.assertIn("need(c, u, cid)", endpoint)
-        self.assertIn("d.id=? AND d.case_id=? AND d.firm_id=?", endpoint)
-        self.assertIn("ch.id=? AND ch.document_id=? AND ch.case_id=?", endpoint)
+        self.assertIn("SELECT id FROM docs WHERE id=? AND case_id=? AND firm_id=?", endpoint)
+        self.assertIn("WHERE id=? AND document_id=? AND case_id=?", endpoint)
         self.assertIn("hmac.compare_digest(current_digest, b.text_sha256)", endpoint)
         self.assertIn("source_text[b.start_offset:b.end_offset] != b.quoted_text", endpoint)
         self.assertIn("document_annotation_events", endpoint)
