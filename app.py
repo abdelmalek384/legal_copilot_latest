@@ -4293,7 +4293,19 @@ def login(b: LoginIn, request: Request, response: Response):
     k = normalize_email(b.email)
     now = int(time.time())
     ip = client_ip(request)
-    identifiers = (k, "ip:" + ip)
+    try:
+        # Never persist raw email addresses or source IPs in login throttling rows.
+        # Keep identifiers purpose-separated from middleware/recovery digests.
+        identifiers = (
+            _identity_rate_limit_digest(k, purpose="login_email"),
+            _identity_rate_limit_digest(ip, purpose="login_ip"),
+        )
+    except ValueError as exc:
+        if _environment_mode in {"prod", "production", "stage", "staging"}:
+            logger.error("Login throttling is unavailable because its HMAC key is not configured")
+            raise HTTPException(503, "login is temporarily unavailable") from exc
+        # Development-only compatibility for local databases without the secret.
+        identifiers = (k, "ip:" + ip)
     c = conn()
 
     # Fast preflight: reject an active email/IP lockout before doing expensive password hashing.
