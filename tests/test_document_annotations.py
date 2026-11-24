@@ -208,6 +208,13 @@ class DocumentAnnotationAPIRuntimeTests(InvoiceTestSupport, unittest.TestCase):
             "page_reference": page_reference,
             "text_sha256": chunk["text_sha256"],
         }
+        bad_page_payload = {**payload, "page_reference": "999"}
+        bad_page = self.mutate(
+            self.client_a, "post",
+            f"/cases/{self.case_id}/docs/{document_id}/annotations",
+            json=bad_page_payload,
+        )
+        self.assertEqual(bad_page.status_code, 409, bad_page.text)
         created = self.mutate(
             self.client_a, "post",
             f"/cases/{self.case_id}/docs/{document_id}/annotations",
