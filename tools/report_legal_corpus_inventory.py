@@ -10,6 +10,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import io
 from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
@@ -82,6 +83,49 @@ def hostname(value: Any) -> str | None:
         return None
 
 
+def read_coverage_matrix(path: Path) -> list[dict[str, str]]:
+    """Read a bounded, stable CSV and reject ambiguous headers or ragged rows."""
+    raw = read_regular_file(path, max_bytes=2 * 1024 * 1024)
+    try:
+        reader = csv.reader(io.StringIO(raw.decode("utf-8-sig"), newline=""), strict=True)
+        headers = next(reader, None)
+        if not headers or any(not isinstance(item, str) or not item.strip() for item in headers):
+            raise ValueError(f"{path}: coverage matrix needs non-empty column headers")
+        if len(headers) != len(set(headers)):
+            raise ValueError(f"{path}: coverage matrix contains duplicate column headers")
+        required = {
+            "practice_area", "priority", "core_materials", "judgment_sources",
+            "temporal_checks", "evaluation_owner", "status",
+        }
+        missing = required - set(headers)
+        if missing:
+            raise ValueError(f"{path}: coverage matrix missing columns: {', '.join(sorted(missing))}")
+        rows: list[dict[str, str]] = []
+        seen_areas: set[str] = set()
+        for line_number, values in enumerate(reader, start=2):
+            if not values:
+                continue
+            if len(values) != len(headers):
+                raise ValueError(
+                    f"{path}: coverage row {line_number} has {len(values)} fields; expected {len(headers)}"
+                )
+            row = dict(zip(headers, values))
+            if any(not row.get(field, "").strip() for field in required):
+                raise ValueError(f"{path}: coverage row {line_number} has an empty required field")
+            area_key = row["practice_area"].strip().casefold()
+            if area_key in seen_areas:
+                raise ValueError(f"{path}: duplicate practice_area at row {line_number}")
+            seen_areas.add(area_key)
+            rows.append(row)
+    except UnicodeDecodeError as exc:
+        raise ValueError(f"{path}: coverage matrix must be UTF-8 CSV") from exc
+    except csv.Error as exc:
+        raise ValueError(f"{path}: malformed coverage CSV: {exc}") from exc
+    if not rows:
+        raise ValueError(f"{path}: coverage matrix is empty")
+    return rows
+
+
 def counts(values: list[Any]) -> dict[str, int]:
     return dict(sorted(Counter(str(v or "unknown") for v in values).items()))
 
@@ -100,10 +144,7 @@ def build_report(paths: dict[str, Path]) -> dict[str, Any]:
     evidence_sources = list_of_objects(evidence.get("sources"), "phase_2_source_evidence_register.sources")
     queue_items = list_of_objects(queue.get("queue"), "phase_2_authorized_acquisition_queue.queue")
 
-    with paths["coverage"].open(encoding="utf-8-sig", newline="") as stream:
-        coverage = list(csv.DictReader(stream))
-    if not coverage:
-        raise ValueError(f"{paths['coverage']}: coverage matrix is empty")
+    coverage = read_coverage_matrix(paths["coverage"])
 
     permission_ids = {str(s.get("source_id")) for s in permission_sources if s.get("source_id")}
     candidate_source_ids = {str(s.get("source_id")) for s in candidate_sources if s.get("source_id")}
