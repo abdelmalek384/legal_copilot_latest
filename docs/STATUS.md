@@ -1740,8 +1740,8 @@ Percentages are scoped to the described implementation or acceptance phase. They
 
 | Annotation workstream | Previous | Current | Delta | Evidence / remaining gate |
 |---|---:|---:|---:|---|
-| Persistent annotation schema/API | 0% | **100% authored** | **+100 pp** | Migration and authenticated endpoints committed; migration/runtime/API tests not run |
-| Bilingual annotation interaction | 0% | **100% authored** | **+100 pp** | Text selection capture, exact source offsets, note/highlight save and stale-anchor UI committed; browser/keyboard/RTL acceptance not run |
+| Persistent annotation schema/API | 0% | **90% authored** | **+90 pp** | Create/list, firm/case/document/chunk binding, source digest and compare-and-swap committed; annotation editing/deletion and threaded replies are not included; migration/runtime/API tests not run |
+| Bilingual annotation interaction | 0% | **85% authored** | **+85 pp** | Text selection capture, code-point offsets, note/highlight save and stale-anchor UI committed; edit/reply controls and browser/keyboard/RTL acceptance remain |
 | Export, ownership preflight and route inventory | 0% | **100% authored** | **+100 pp** | Export tables, preflight checks and route inventory tests committed; tests not run |
 | Annotation end-to-end acceptance | 0% | **0%** | **0 pp** | Requires Python 3.12 runtime, migration execution, authenticated API tests and browser validation |
 
