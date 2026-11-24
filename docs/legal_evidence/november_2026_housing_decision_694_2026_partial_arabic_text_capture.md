@@ -58,3 +58,10 @@
 - No page image comparison, full official Gazette PDF archival/hash, attached plan/maps or annexes.
 - Earlier decisions 801/2020 and 835/2024 not re-ingested here; currentness and cancellation status not independently established.
 - No legal interpretation or property rights conclusions; no lawyer review.
+
+## Explicit trust and reuse status
+
+- `lawyer_reviewed: false`
+- `verified: false`
+- `rights_cleared: false`
+- The captured wording is a research aid only. Do not present it as an authoritative consolidated text or use it to make legal conclusions without Gazette-page comparison and qualified Egyptian lawyer review.
