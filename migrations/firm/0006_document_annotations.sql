@@ -12,8 +12,9 @@ CREATE TABLE document_annotations(
  quoted_text TEXT NOT NULL CHECK(length(quoted_text) BETWEEN 1 AND 2000),
  body TEXT NOT NULL DEFAULT '' CHECK(length(body) <= 5000),
  page_reference TEXT NOT NULL DEFAULT '' CHECK(length(page_reference) <= 100),
- text_sha256 TEXT NOT NULL CHECK(length(text_sha256)=64),
- created_at TEXT NOT NULL DEFAULT (datetime('now'))
+ text_sha256 TEXT NOT NULL CHECK(length(text_sha256)=64 AND text_sha256 NOT GLOB '*[^0-9a-f]*'),
+ created_at TEXT NOT NULL DEFAULT (datetime('now')),
+ CHECK(annotation_type <> 'note' OR length(trim(body)) > 0)
 );
 CREATE INDEX idx_document_annotations_scope
  ON document_annotations(firm_id,case_id,document_id,chunk_id,id DESC);
