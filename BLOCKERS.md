@@ -118,3 +118,26 @@
 
 
 - 2026-11-16: Added local backup regression for replacement of the object-root directory with a different real directory between stat and open; backup must fail before copying bytes (test 66f78c7). Removed the now-unreachable path-based fallback branch (commit 5d9a132). Runtime tests remain unexecuted.
+
+
+## Pre-pilot / pre-production stop-gate bundle (2026-11-24)
+
+Treat the risks below as **one combined release gate**, not separate optional tasks. A firm pilot with confidential client matters is blocked if any high-risk gate lacks evidence. This checklist consolidates the already-listed blockers; it does not claim new test execution or security sign-off.
+
+### P0 — must be closed before confidential firm/client data
+- **Tenant isolation & authorization:** route-by-route active membership, role checks, direct object IDs, alternate HTTP methods, exports, files, child writes, background jobs; synthetic firm A/B sentinel proving no data/metadata/side-effect leaks.
+- **Authentication/session & admin compromise:** session fixation/rotation, MFA enrollment and enforcement, replay/recovery, rate limits, inactive-user/firm behavior, privilege escalation, platform-admin boundaries; independently check that operator credentials cannot casually access all firm data.
+- **SQL injection & query scope:** parameterization review of user-controlled query values, safe dynamic identifiers, correct firm/case filters, search/ask routes; injection probes with non-destructive synthetic fixtures.
+- **Uploads/document parsing & prompt injection:** limits before expensive parsing; malformed/encrypted/polyglot PDFs and DOCX/ZIP, page/dimension/expanded-size/timeout/concurrency bounds, cleanup and safe temp files; adversarial matter text, filenames and metadata must remain untrusted prompt data and never cross firm scope.
+- **Private file storage, backup/restore & recovery:** live S3/KMS/IAM acceptance, firm namespace isolation, upload/finalize/readback/cleanup; encrypted backup, integrity and bounded restore, witnessed restore/rollback, protected secrets and storage permissions. No production originals enabled until provider acceptance is documented.
+- **Transport/deployment boundary:** HTTPS public origin, secure cookies/CSRF, trusted-proxy allowlist (never wildcard), DNS-rebinding/SSRF and egress controls for external LLM calls, secrets, firewall/host hardening, monitoring/log redaction.
+- **Data lifecycle/legal exposure:** firm-approved retention, deletion, export, legal hold, backup retention and incident-response plan; minimize real data in logs/metrics and restrict downloads/export.
+- **Operational readiness:** independent reviewer sign-off; exact-head Python 3.12 tests and security suite; manual device/browser acceptance in Arabic RTL and English; credentials/provider/mailbox/config preflight; operator runbooks and recovery rehearsal.
+
+### P1 — must be resolved before launch decision (not merely before a confidential-data pilot)
+- **Legal-content reliability:** sources/currentness/corrigenda/amendments, lawyer validation, citation accuracy, answer abstention and retrieval evaluation. Keep source-matched material clearly not lawyer-reviewed; do not advertise verified legal advice.
+- **Pilot usability/support:** 3-firm onboarding rehearsal, unaided phone use, backup/support ownership, metrics and incident escalation, no unresolved critical/major UX defects.
+- **Dependencies/build integrity:** Python 3.12 hash lock parity, clean install, dependency vulnerability review, reproducible release artifact. Do not hand-edit lock hashes or bypass failing/blocked checks.
+
+### Evidence rule / release decision
+Each gate requires an owner, exact candidate commit, reproducible command/config, positive control, adversarial negative control, observed result, and retained evidence. **“Implemented”, static inspection, test files present, isolated primitive harnesses, or Actions blocked/failing are not PASS.** Record only PASS, FAIL, BLOCKED, or NOT RUN. Do not start a confidential client-data pilot, and do not release to production, until all P0 gates are PASS and the remaining launch gates are approved. For a first pilot, use synthetic or explicitly authorized/redacted data only while any P0 gate is unresolved.
