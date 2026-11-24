@@ -1685,3 +1685,12 @@ Percentages are scoped to the described implementation or acceptance phase. They
 | Small-firm pilot readiness | ~35% | ~35% | 0 pp | No live firm acceptance or pilot gate |
 
 **Current structural validation:** register 518 rows / 12 columns; full-text inventory 190 / 11; classification 414 / 5; historical event ledger 350 / 12. All four have zero ragged rows and zero duplicate IDs. Inventory, classification and historical-event joins have zero orphan national instrument keys (seven intentional EG-CASE fixture keys excluded from national-key checking). Open PRs: zero.
+
+### 2026-11-24 follow-up — NFSA Decisions 8/2020 and 9/2020
+
+- Acquired and page-image inspected the official Customs-hosted three-page signed Arabic scan of NFSA Board Decision 9/2020. Transcribed its administrative, port-service, sample coding/transport and laboratory fee categories; the exact Gazette issue/effective date remains to be matched.
+- Acquired and page-image inspected the official Customs-hosted two-page Gazette scan of NFSA Board Decision 8/2020. It expressly sets a temporary 25% inspection framework for specified white-list raw materials and finished goods under Decision 2/2020, with an expiry date of 31 October 2020.
+- Added evidence records, index sections 60–61, register IDs EG-0536/EG-0537, inventory IDs FT-0211/FT-0212 and classification rows.
+- Decision 8 is historical and expired; Decision 14/2020 is a successor/extension lead, while Decisions 269/2022 and 270/2024 form later sampling/fast-release currentness leads.
+- Decision 9 fee amounts are historical text only; later Decisions 4/2021 and 11/2021 and subsequent fee instruments must be reconciled before any current fee display.
+- Neither instrument is lawyer-reviewed, currentness-consolidated, rights-cleared or marked verified.
