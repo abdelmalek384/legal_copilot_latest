@@ -182,6 +182,46 @@ def audit(conn: sqlite3.Connection) -> dict[str, Any]:
                     _count(conn, "SELECT COUNT(*) FROM document_extraction_reviews r JOIN chunks ch ON ch.id=r.chunk_id WHERE r.case_id IS NOT ch.case_id OR r.document_id IS NOT ch.document_id"),
                     "Extraction review matter/document scope differs from its chunk.")
 
+    if "document_annotations" in tables:
+        annotation_cols = _columns(conn, "document_annotations")
+        if "document_id" in annotation_cols and "docs" in tables:
+            add("document_annotation_document_missing", "high",
+                _count(conn, "SELECT COUNT(*) FROM document_annotations a LEFT JOIN docs d ON d.id=a.document_id WHERE d.id IS NULL"),
+                "Document annotation references a missing document.")
+            if "firm_id" in annotation_cols and "firm_id" in _columns(conn, "docs"):
+                add("document_annotation_document_firm_mismatch", "critical",
+                    _count(conn, "SELECT COUNT(*) FROM document_annotations a JOIN docs d ON d.id=a.document_id WHERE a.firm_id IS NOT d.firm_id"),
+                    "Document annotation firm differs from its document firm.")
+        if "case_id" in annotation_cols and "cases" in tables:
+            add("document_annotation_case_missing", "high",
+                _count(conn, "SELECT COUNT(*) FROM document_annotations a LEFT JOIN cases c ON c.id=a.case_id WHERE c.id IS NULL"),
+                "Document annotation references a missing matter.")
+            if "firm_id" in annotation_cols and "firm_id" in _columns(conn, "cases"):
+                add("document_annotation_case_firm_mismatch", "critical",
+                    _count(conn, "SELECT COUNT(*) FROM document_annotations a JOIN cases c ON c.id=a.case_id WHERE a.firm_id IS NOT c.firm_id"),
+                    "Document annotation firm differs from its matter firm.")
+        if "chunk_id" in annotation_cols and "chunks" in tables:
+            add("document_annotation_chunk_missing", "high",
+                _count(conn, "SELECT COUNT(*) FROM document_annotations a LEFT JOIN chunks ch ON ch.id=a.chunk_id WHERE ch.id IS NULL"),
+                "Document annotation references a missing extracted chunk.")
+            if {"case_id", "document_id"} <= annotation_cols and {"case_id", "document_id"} <= _columns(conn, "chunks"):
+                add("document_annotation_chunk_scope_mismatch", "critical",
+                    _count(conn, "SELECT COUNT(*) FROM document_annotations a JOIN chunks ch ON ch.id=a.chunk_id WHERE a.case_id IS NOT ch.case_id OR a.document_id IS NOT ch.document_id"),
+                    "Document annotation matter/document scope differs from its chunk.")
+        if "author_user_id" in annotation_cols and "users" in tables:
+            add("document_annotation_author_missing", "high",
+                _count(conn, "SELECT COUNT(*) FROM document_annotations a LEFT JOIN users u ON u.id=a.author_user_id WHERE u.id IS NULL"),
+                "Document annotation references a missing author.")
+
+    if "document_annotation_events" in tables:
+        add("document_annotation_event_parent_missing", "high",
+            _count(conn, "SELECT COUNT(*) FROM document_annotation_events e LEFT JOIN document_annotations a ON a.id=e.annotation_id WHERE a.id IS NULL"),
+            "Document annotation audit event references a missing annotation.")
+        if {"firm_id", "case_id", "document_id"} <= _columns(conn, "document_annotation_events"):
+            add("document_annotation_event_scope_mismatch", "critical",
+                _count(conn, "SELECT COUNT(*) FROM document_annotation_events e JOIN document_annotations a ON a.id=e.annotation_id WHERE e.firm_id IS NOT a.firm_id OR e.case_id IS NOT a.case_id OR e.document_id IS NOT a.document_id"),
+                "Document annotation event scope differs from its annotation.")
+
     if "research_messages" in tables:
         message_cols = _columns(conn, "research_messages")
         if "conversation_id" in message_cols:
