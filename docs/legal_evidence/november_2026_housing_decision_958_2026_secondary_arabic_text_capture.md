@@ -27,3 +27,10 @@ Decision 958/2026 approves modification of the planning and subdivision of Plot 
 - Confirm currentness and subsequent amendments/cancellations.
 - No rights-cleared original PDF stored; no OCR performed.
 - No lawyer sign-off; no `verified` flag changed.
+
+## Explicit machine trust flags
+
+- `lawyer_reviewed: false`
+- `verified: false`
+- `rights_cleared: false`
+- This material is a research capture, not an approved production legal source. Preserve all source-quality, missing-annex and Gazette-image limitations above. Do not use it as a verified/current consolidated legal text until the original source is matched, reuse rights are cleared and a qualified Egyptian lawyer approves it.
