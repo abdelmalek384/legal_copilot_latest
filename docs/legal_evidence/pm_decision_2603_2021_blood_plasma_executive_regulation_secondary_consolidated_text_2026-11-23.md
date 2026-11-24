@@ -230,3 +230,10 @@
 - هيئة الدواء المصرية، المرجع التنظيمي: https://www.edaegypt.gov.eg/ar/المرجع-التنظيمي-لهيئة-الدواء-المصرية/القوانين-واللوائح-التنفيذية/
 - LAW HUB، النص العربي: https://lawhub.info/eg/?p=12834
 - الحصوة للمحاماة، نص موصوف بأنه وفق تعديل 6 أبريل 2025: https://alhasswalawfirm.com/law-library/decree-2603-2021
+
+## Explicit machine trust flags
+
+- `lawyer_reviewed: false`
+- `verified: false`
+- `rights_cleared: false`
+- This acquisition is research-only. Preserve the instrument-specific source and completeness caveats above; do not treat it as a verified/current consolidated legal text or use it for production legal answers until primary-source comparison, reuse-rights review and qualified Egyptian lawyer approval are complete.
