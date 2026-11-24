@@ -72,3 +72,6 @@ The document review interface provides Arabic/English text selection, four highl
 
 
 Additional database guard: direct SQL `DELETE` of an annotation is rejected while its owning document, matter and chunk still exist. Parent-driven retention cascades remain available when an owning record is removed, so the immutability guard does not prevent normal data-retention cleanup. The authorized API's one-way soft-delete remains the ordinary removal path.
+
+
+Active passage highlights are non-overlapping within a single extracted chunk. The API rejects a new range that intersects an existing active range with HTTP 409, and a firm-database insert trigger enforces the same rule against concurrent or non-API writes. Adjacent ranges are allowed; a range can be reused after the earlier annotation is soft-deleted. This avoids silently hiding a valid overlapping annotation in the linear text renderer.
