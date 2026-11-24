@@ -123,3 +123,10 @@ The secondary article reproduces the first operative item: Ministry of Finance m
 - PM Decision 2167/2026 remains a secondary transcription lead only.
 - No permission is inferred for bulk copying/republication of any DSpace or third-party hosted PDF. Retain legal metadata, short excerpts and source links pending item-specific rights review.
 - All new entries remain verified=0, lawyer_reviewed=0; no instrument is promoted into authoritative retrieval.
+
+## Explicit machine trust flags
+
+- `lawyer_reviewed: false`
+- `verified: false`
+- `rights_cleared: false`
+- This acquisition note is research-only. Preserve source distinctions and missing-text limitations; do not use as a verified/current consolidated legal instrument or production answer source until primary-source comparison, rights review and qualified Egyptian lawyer approval are complete.
