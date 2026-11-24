@@ -130,3 +130,10 @@
 4. افحص تاريخ بدء العمل بقرار 303/2025 بدقة: نص المادة الثالثة يربط النفاذ بانقضاء ستة أشهر من تاريخ إصدار النظام الأساسي، لا بمجرد تاريخ نشر 303.
 5. اربط قرار 37/2026 بملف القانون 13/2025 بوصفه قرار مد مدة، ولا تفترض أنه عدل النظام الأساسي للصندوق.
 6. لا ترفع أي أداة إلى `verified` أو `lawyer_reviewed` دون مطابقة رسمية ومراجعة محامٍ مصري مؤهل.
+
+## Explicit machine trust flags
+
+- `lawyer_reviewed: false`
+- `verified: false`
+- `rights_cleared: false`
+- This acquisition is research-only. Preserve the instrument-specific source and completeness caveats above; do not treat it as a verified/current consolidated legal text or use it for production legal answers until primary-source comparison, reuse-rights review and qualified Egyptian lawyer approval are complete.
