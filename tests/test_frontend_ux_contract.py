@@ -14,6 +14,12 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("ابحث في القانون المصري بمساعدة ذكية مدعومة بالمصادر", HTML)
         self.assertNotIn("Research UK law with source-backed AI assistance.", HTML)
 
+    def test_legacy_verified_tier_does_not_create_lawyer_verified_badge(self):
+        badge = HTML[HTML.index("const trustTierBadge="):HTML.index("const resetInspector=")]
+        self.assertIn("lawyer_verified:", badge)
+        self.assertNotIn("verified:[LANG===", badge)
+        self.assertIn("const item=labels[tier]||labels.unverified", badge)
+
     def test_lawyer_verified_badge_requires_verified_status_and_counsel_attestation(self):
         answer_sources = HTML[HTML.index("for(const [i,s] of m.sources.entries())"):HTML.index("const suggestCorrection=")]
         self.assertIn("status==='verified_operative_text'&&(Array.isArray(s.provenance?.review_evidence)", answer_sources)
