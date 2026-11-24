@@ -191,3 +191,10 @@ The extracted text states that the Decision is published in Egyptian Proceedings
 - Completeness: 40-article instrument identified; this file contains selected passages and an article/topic map, not full text.
 - Gazette image comparison, OCR QA, rights clearance, currentness and qualified Egyptian lawyer review remain pending.
 - No production ingestion as verified law; keep `verified=0`.
+
+## Explicit machine trust flags
+
+- `lawyer_reviewed: false`
+- `verified: false`
+- `rights_cleared: false`
+- This capture is research material only. It must not be treated as a lawyer-approved operative text or imported into production legal answering until the stated primary-source comparison, rights review and qualified Egyptian lawyer review are completed.
