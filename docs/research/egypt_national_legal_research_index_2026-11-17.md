@@ -177,3 +177,7 @@ All newly recovered entries remain provisional. Preserve `lawyer_reviewed=false`
 ## 43. Plastic shopping bags extended producer responsibility — PM Decision 662/2025
 
 - [PM Decision 662/2025 Arabic text capture](../legal_evidence/pm_decision_662_2025_plastic_shopping_bags_epr_arabic_capture_2026-11-24.md) — full five-article searchable Arabic text captured from the Amiri Press; SIS independently identifies Official Gazette issue 9 bis (B), 2 March 2025. Captures registration, quarterly sales reporting, EGP 37.5/kg payment, WMRA proceeds account and annual Cabinet reporting. Gazette page-image comparison, Standard 3040 acquisition, fee/currentness review, rights clearance and lawyer review remain open; not verified.
+
+## 44. Waste Management Executive Regulation Article 56 — unified-list transition crosswalk
+
+- [PM Decision 722/2022 Articles 47 and 56 transition crosswalk](../legal_evidence/waste_exec_reg_722_2022_article56_unified_list_transition_crosswalk_2026-11-24.md) — captures official Amiri Press searchable text assigning unified-list functions to the technical committee and the Article 56 interim continuation of legacy lists until the unified list is issued. Crosswalks that transition clause with Decision 151/2025's 27 July 2025 publication/effective date. This marks the transition milestone, not blanket repeal of every legacy list; Decision 151 annex and Gazette page-image QA remain outstanding.
