@@ -15,14 +15,15 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
-from tools.validate_source_permission_register import read_regular_file
-
-ROOT = Path(__file__).resolve().parents[1]
 import sys
 
+ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+# Resolve repository-local imports only after adding the repository root. This
+# keeps the documented direct CLI invocation working without PYTHONPATH.
+from tools.validate_source_permission_register import read_regular_file
 from tools.output_path_safety import ensure_output_paths_safe
 DEFAULTS = {
     "manifest": ROOT / "docs/source_manifest.json",
