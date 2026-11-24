@@ -5774,6 +5774,20 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             app.NoteIn(text=" \t ")
         with self.assertRaises(ValidationError):
             app.DeadlineIn(title="   ", due="2099-01-01")
+        with self.assertRaises(ValidationError):
+            app.CaseIn(title="   ")
+        self.assertEqual(app.CaseIn(title="  Matter title  ").title, "Matter title")
+        with self.assertRaises(ValidationError):
+            app.FeeIn(title="   ", amount=0, paid=0)
+        self.assertEqual(app.FeeIn(title="  Filing fee  ", amount=0, paid=0, note="  receipt pending  ").note, "receipt pending")
+        with self.assertRaises(ValidationError):
+            app.InvoiceLineIn(description="   ", unit_price_piasters=100)
+        self.assertEqual(app.InvoiceLineIn(description="  Court fee  ", unit_price_piasters=100).description, "Court fee")
+        with self.assertRaises(ValidationError):
+            app.DocIn(name="   ", text="evidence")
+        with self.assertRaises(ValidationError):
+            app.DocIn(name="scan.pdf", text="   ")
+        self.assertEqual(app.DocIn(name="  scan.pdf  ", text="  source text  ").text, "  source text  ")
         deadline = app.DeadlineIn(title="  Appeal filing  ", due="2099-01-01", note="  reviewed trigger  ")
         self.assertEqual(deadline.title, "Appeal filing")
         self.assertEqual(deadline.note, "reviewed trigger")
