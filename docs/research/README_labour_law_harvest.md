@@ -207,3 +207,8 @@ This folder contains free/public source discovery, metadata registers and extrac
 96. [Labour and employment 2026-11-20/23 incremental acquisition tranche](labour_employment_new_text_acquisition_tranche_2026-11-20.md) — full operative texts for Decisions 289, 290 and 291 are documented in the acquisition tranche; Gazette image matching and item-specific reuse review remain outstanding.
 
 [Labour and employment 2026-11-20/23 incremental acquisition tranche](labour_employment_new_text_acquisition_tranche_2026-11-20.md) records additional issue-290/291 leads and captured Decisions 259, 260, 264, 267, 270, 292, 294, 299, 300, 301, 319 and 320/2025. It is a research acquisition record, not a verified consolidated corpus. Preserve lawyer_reviewed=false and verified=false.
+
+
+97. [OSH Decisions 249–252/2026 incremental Arabic-text acquisition](../legal_evidence/osh_decisions_249_250_251_252_incremental_text_acquisition_2026-11-20.md) — supplements the existing Decision 251/252 recovery addendum with additional Decision 250 passages and alternate-source findings for the Gazette issue-225(A) bundle. The official bundle remains request-copy restricted; no complete issue PDF, source hash or full page-image QA is claimed. Keep all text research-only.
+
+98. [PM Decision 3561/2026 — Human Resource Skills Development Council](../legal_evidence/acquisition_tranche_finance634_and_hr_skills3561_2026-11-18.md) — adds Arabic excerpts for Articles 5, 8 and 10, committee composition, quarterly reporting and reported commencement. Secondary text only; the complete ten-article Gazette text and original issue 46 bis (C) scan remain outstanding.
