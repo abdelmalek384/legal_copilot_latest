@@ -261,15 +261,18 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("window.DOCUMENT_REVIEW_DRAFT_DIRTY&&Number(window.CASE_ID)!==Number(id)&&!confirmDocumentReviewDraftLeave()", HTML)
         self.assertIn("if(!confirmDocumentReviewDraftLeave())return;window.DOCUMENT_REVIEW_TARGET=null;TAB=group.items[0][0];again()", HTML)
         self.assertIn("if(!confirmDocumentReviewDraftLeave())return;window.DOCUMENT_REVIEW_TARGET=null;TAB=key;again()", HTML)
+        self.assertIn("if(!confirmDocumentReviewDraftLeave())return;PAGE=id;window.CASE_ID=null", HTML)
+        self.assertIn("if(!confirmDocumentReviewDraftLeave())return;try{await api('/logout','POST')}", HTML)
         self.assertIn("window.addEventListener('beforeunload'", HTML)
 
     def test_document_review_note_and_correction_drafts_clear_only_after_save(self):
-        panel = HTML[HTML.index("function documentIntelligencePanel(caseId,documents)"):HTML.index("\\nasync function view(id)")]
+        panel = HTML[HTML.index("function documentIntelligencePanel(caseId,documents)"):HTML.index("\nasync function view(id)")]
         self.assertIn("note.setAttribute('data-review-draft','1')", panel)
         self.assertIn("correction.setAttribute('data-review-draft','1')", panel)
         self.assertIn("window.DOCUMENT_REVIEW_DRAFT_DIRTY=true", panel)
-        self.assertIn("noteClearReviewDrafts()", panel)
-        self.assertIn("await api('/cases/'+caseId+'/docs/'+item.doc.document_id+'/chunks/'+chunk.id+'/review','POST',payload);\\n   noteClearReviewDrafts();", panel)
+        self.assertIn("noteClearReviewDrafts(note,correction)", panel)
+        self.assertIn("window.DOCUMENT_REVIEW_DRAFT_DIRTY=Array.from(document.querySelectorAll('[data-review-draft=\"1\"]')).some(field=>String(field.value||'').trim().length>0)", panel)
+        self.assertIn("await api('/cases/'+caseId+'/docs/'+item.doc.document_id+'/chunks/'+chunk.id+'/review','POST',payload);\n   noteClearReviewDrafts(note,correction);", panel)
 
     def test_case_detail_inputs_and_validation_follow_selected_language(self):
         self.assertIn("uiText('رقم القضية','Case number')", HTML)
