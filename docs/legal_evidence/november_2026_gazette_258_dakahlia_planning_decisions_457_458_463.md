@@ -94,3 +94,10 @@
 2. Capture the referenced maps/drawings and preserve page references.
 3. Search Dakahlia Governorate's official publication channels for the signed decisions and map annexes.
 4. Retrieve the complete current text of Building Law 119/2008 and its Executive Regulations and amendment chain if not already present in the corpus; link rather than duplicate existing canonical records.
+
+## Explicit machine trust flags
+
+- `lawyer_reviewed: false`
+- `verified: false`
+- `rights_cleared: false`
+- This material is a research capture, not an approved production legal source. Preserve all source-quality, missing-annex and Gazette-image limitations above. Do not use it as a verified/current consolidated legal text until the original source is matched, reuse rights are cleared and a qualified Egyptian lawyer approves it.
