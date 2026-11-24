@@ -9212,7 +9212,22 @@ def list_document_passage_annotations(
         "ORDER BY start_offset,id",
         (int(u["firm_id"]), cid, document_id, chunk_id),
     ).fetchall()
-    return {"items": [dict(row) for row in rows]}
+    author_ids = sorted({int(row["created_by_user_id"]) for row in rows})
+    author_names = {}
+    if author_ids:
+        placeholders = ",".join("?" for _ in author_ids)
+        author_names = {
+            int(row["id"]): row["name"]
+            for row in control_conn().execute(
+                f"SELECT id,name FROM users WHERE id IN ({placeholders})", author_ids
+            ).fetchall()
+        }
+    items = []
+    for row in rows:
+        item = dict(row)
+        item["created_by_name"] = author_names.get(int(item["created_by_user_id"]), "")
+        items.append(item)
+    return {"items": items}
 
 
 @app.post("/cases/{cid}/docs/{document_id}/chunks/{chunk_id}/annotations", status_code=201)
