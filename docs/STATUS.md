@@ -1391,3 +1391,30 @@ The previously recorded estimates remain unchanged pending exact-head automated 
 - Fixed the OCR importer test double in `tests/test_import_laws_bundle.py`: its mocked page now supplies finite positive page geometry required by the production pre-render pixel-limit guard. Commit: `cdc415d6bf5c4d267f854ba64129d6b3076f5f44`.
 - Exact-head workflow lookup for that direct-main commit returned no PR-triggered workflow runs. The fixture correction is committed, but its test is **not yet runtime-verified**.
 - Release decision remains **NOT READY**. Do not infer legal verification, operational readiness, or test success from a zero-PR queue. Lawyer review, source rights/currentness, clean Python 3.12 locked-environment test execution, browser/device acceptance, and witnessed backup/restore remain separate release gates.
+
+
+## 2026-11-24 task completion dashboard
+
+Percentages below describe the named deliverable only. They are not a project-wide release-readiness score. “Implemented” does not mean runtime-tested, lawyer-approved, or production-ready.
+
+| Assigned deliverable | Implementation | Validation / acceptance | Remaining work |
+|---|---:|---:|---|
+| Open PR queue cleanup | 100% | 100% (GitHub open list returned zero) | Keep changes on main or leave no PR open; do not equate closed PRs with merged work |
+| Auth-cookie expiry on middleware-generated 401 responses | 100% | 0% | Regression test added and registered; execute on exact main SHA |
+| OCR importer page-geometry test fixture | 100% | 0% | Test execution still unavailable |
+| Client-wide extracted-text search | 100% | 0% | #1904 is merged; run exact-head tenant/membership tests and browser acceptance |
+| Passage annotations | 0% on main | 0% | Closed #1905 branch contains migration/API/UI work; not copied because it is a broad, unvalidated integration. Recover in isolated slices |
+| Legal evaluation question inventory | 100% structural draft (116 items) | 0% lawyer-approved labels; 0% measured retrieval metrics | Obtain reviewer-approved article/answer labels and execute real retrieval runs |
+| Gazette importer/operator workflow | 100% code and handoff artifacts | 0% real authorized source import | Requires lawful source text and truthful source/permission metadata |
+| Egyptian legal corpus readiness | 7% evidence-backed readiness (existing estimate) | 0% lawyer-verified release set | Acquire complete primary texts, establish rights/currentness, and obtain qualified Egyptian lawyer sign-off |
+| Source-matched firm-test retrieval | 100% fail-closed gate implementation | 0% real candidates returned | Connect the authorized evidence adapter and test against a rights-cleared source; keep disabled in production |
+| Backup/restore release acceptance | Implementation hardening ongoing | 0% witnessed end-to-end restore drill | Run controlled isolated backup/restore and verify recovered tenant data |
+| Physical phone/desktop acceptance | 0% | 0% | Manual Arabic RTL/English LTR testing on real target devices |
+| Small-firm pilot gate | 0% accepted | 0% | Complete onboarding, data-isolation, document workflow, backup, and lawyer-review gates before inviting a firm |
+
+#### Changes made in this continuation
+
+- Main commit `6cf203f`: mark requests whose authentication dependency clears cookies, then reapply the expiry headers to the final response created by middleware after an `HTTPException`.
+- Main commit `74f0ae8`: add a focused async middleware regression proving the final 401 contains expiry cookies for `lc_session`, `lc_csrf`, and `lc_firm`.
+- Main commit `f9c765f`: register that regression in `.github/workflows/tests.yml`.
+- Static source verification confirms the fix, all three invalid-session paths, the regression file, and workflow registration are present on main. No PR-triggered workflow run was returned for the exact commit; **no test pass is claimed**.
