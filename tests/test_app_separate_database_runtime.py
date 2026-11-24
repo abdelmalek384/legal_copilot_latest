@@ -3200,6 +3200,50 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             0,
         )
 
+    def test_repeated_task_and_deadline_completion_does_not_duplicate_audit_events(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate("post", "/cases", json={"title": "Idempotent workflow matter"})
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+        task = self._mutate(
+            "post", f"/cases/{case_id}/tasks", json={"title": "Review filing"}
+        )
+        self.assertEqual(task.status_code, 200, task.text)
+        deadline = self._mutate(
+            "post", f"/cases/{case_id}/deadlines",
+            json={"title": "File appeal", "due": "2099-01-01"},
+        )
+        self.assertEqual(deadline.status_code, 200, deadline.text)
+        context = self.runtime.resolve_context(self.user_id, self.firm_a)
+        db = self.runtime.firm_connection(context)
+        task_id = db.execute("SELECT id FROM tasks WHERE case_id=?", (case_id,)).fetchone()["id"]
+        deadline_id = db.execute("SELECT id FROM deadlines WHERE case_id=?", (case_id,)).fetchone()["id"]
+
+        first_task = self._mutate("post", f"/tasks/{task_id}/done")
+        second_task = self._mutate("post", f"/tasks/{task_id}/done")
+        self.assertEqual(first_task.status_code, 200, first_task.text)
+        self.assertEqual(second_task.status_code, 200, second_task.text)
+        self.assertTrue(second_task.json()["already_done"])
+        task_events = db.execute(
+            "SELECT COUNT(*) FROM events WHERE case_id=? AND text=?",
+            (case_id, "تم إنجاز: Review filing"),
+        ).fetchone()[0]
+        self.assertEqual(task_events, 1)
+
+        first_deadline = self._mutate("post", f"/deadlines/{deadline_id}/done")
+        second_deadline = self._mutate("post", f"/deadlines/{deadline_id}/done")
+        self.assertEqual(first_deadline.status_code, 200, first_deadline.text)
+        self.assertEqual(second_deadline.status_code, 200, second_deadline.text)
+        self.assertTrue(second_deadline.json()["already_done"])
+        deadline_events = db.execute(
+            "SELECT COUNT(*) FROM events WHERE case_id=? AND text=?",
+            (case_id, "إكمال موعد قانوني"),
+        ).fetchone()[0]
+        self.assertEqual(deadline_events, 1)
+
     def test_deadline_action_cannot_mutate_another_firms_deadline(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
