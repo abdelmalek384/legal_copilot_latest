@@ -2600,3 +2600,7 @@ Added Law75/2026 (annual raises/special allowance/EGP750 incentive), Law77/2026 
 ### Law 10/2004 — Family Courts Law (24 November 2026)
 
 - [Official Gazette source record](law_10_2004_family_courts_official_gazette_source_2026-11-24.md) — Official Gazette issue 12 supplement (A), 18 Mar 2004, PDF hosted on the Egyptian Ministry of Finance domain; five issuing provisions and 15-article law are available at source. Not transcribed locally, not currentness-reviewed, not lawyer-reviewed, and rights not assessed. Law 215/2017 is only an unverified amendment lead.
+
+### Law 215/2017 — amendment to Family Courts Law 10/2004 (25 November 2026)
+
+- Article-version event EV-0352 is recorded in the historical article-version events CSV. [Evidence record](law_215_2017_family_courts_amendment_official_gazette_2026-11-25.md) — SIS-hosted Official Gazette issue 51 bis (A), 25 Dec 2017. PDF text layer identifies a two-article amendment adding a final paragraph to Law 10/2004 Article 11; page-image inspection remains outstanding. Records EG-0544 / FT-0219; not source-matched, not lawyer-reviewed, and rights not assessed.

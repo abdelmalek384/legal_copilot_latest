@@ -54,3 +54,14 @@ No claim is made here that the 2004 text is the current consolidated version. Fu
 - **Production/search eligibility:** not established
 
 The document must remain a source-available lead until the PDF is lawfully archived, the complete Arabic text is normalized with page/article locators, amendments are collated, and a qualified Egyptian lawyer reviews it.
+
+
+## Later amendment located — Law 215/2017
+
+The Ministry of Finance's Law 10/2004 portal page currently labels the instrument **سارٍ** and links the same Official Gazette PDF. The page also expressly cautions that its electronic texts are for guidance and that the sole legal reference is the Official Gazette. This status label is therefore portal metadata, not a consolidated-currentness certification.
+
+A distinct government-hosted PDF reproduction of **Law 215/2017** has now been located on the State Information Service (SIS) human-rights studies portal. Its text layer identifies Official Gazette issue 51 bis (A), 25 December 2017, and contains two articles. Article 1 adds a final paragraph to Article 11 of Law 10/2004: where the case concerns proof of lineage, the social specialist's report must state whether the child is subject to the Ministry of Social Solidarity's alternative-families system. Article 2 provides for publication and commencement on the day after publication (26 December 2017). The PDF text layer was inspected, but the page-image request failed; this amendment is not yet source-matched or locally captured.
+
+- Amendment acquisition record: EG-0544; inventory record: FT-0219.
+- Amendment source: https://hrightsstudies.sis.gov.eg/media/1205/قانونplusرقمplus215plusلسنةplus2017plusبتعديلplusبعضplusأحكامplusقانونplusمحاكمplusالأسرةplusرقمplus10plusلسنةplus2004-1.pdf
+- Current consolidated text and later amendments remain unverified. Both laws remain lawyer_reviewed=false and rights_cleared=false.
