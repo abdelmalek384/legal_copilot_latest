@@ -5,6 +5,7 @@ import unittest
 from pathlib import Path
 
 from schema_profiles import apply_profile_migrations
+from tests.invoice_test_support import InvoiceTestSupport
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -159,6 +160,115 @@ class DocumentAnnotationAPITests(unittest.TestCase):
         self.assertIn("text_sha256:chunk.text_sha256", html)
         self.assertIn("stale_anchor", html)
         self.assertIn("item.annotations=Array.isArray(annotationData.annotations)?annotationData.annotations:[]", html)
+
+
+
+
+class DocumentAnnotationAPIRuntimeTests(InvoiceTestSupport, unittest.TestCase):
+    def test_annotation_persists_across_case_switch_and_stales_after_source_correction(self):
+        source = "Alpha source passage for a synthetic annotation acceptance test."
+        uploaded = self.mutate(
+            self.client_a, "post", f"/cases/{self.case_id}/docs",
+            json={"name": "annotation-source.txt", "text": source},
+        )
+        self.assertEqual(uploaded.status_code, 200, uploaded.text)
+        matter = self.mutate(self.client_a, "get", f"/cases/{self.case_id}")
+        self.assertEqual(matter.status_code, 200, matter.text)
+        document_id = next(
+            item["document_id"] for item in matter.json()["docs"]
+            if item["name"] == "annotation-source.txt"
+        )
+        chunk_response = self.mutate(
+            self.client_a, "get",
+            f"/cases/{self.case_id}/docs/{document_id}/chunks",
+        )
+        self.assertEqual(chunk_response.status_code, 200, chunk_response.text)
+        chunk = chunk_response.json()["chunks"][0]
+        quote = "source passage"
+        start = chunk["text"].index(quote)
+        payload = {
+            "chunk_id": chunk["id"],
+            "annotation_type": "note",
+            "start_offset": start,
+            "end_offset": start + len(quote),
+            "quoted_text": quote,
+            "body": "Verify this passage against the uploaded original.",
+            "page_reference": "1",
+            "text_sha256": chunk["text_sha256"],
+        }
+        created = self.mutate(
+            self.client_a, "post",
+            f"/cases/{self.case_id}/docs/{document_id}/annotations",
+            json=payload,
+        )
+        self.assertEqual(created.status_code, 201, created.text)
+
+        listed = self.mutate(
+            self.client_a, "get",
+            f"/cases/{self.case_id}/docs/{document_id}/annotations",
+        )
+        self.assertEqual(listed.status_code, 200, listed.text)
+        self.assertEqual(len(listed.json()["annotations"]), 1)
+        self.assertFalse(listed.json()["annotations"][0]["stale_anchor"])
+
+        second_case = self.mutate(
+            self.client_a, "post", "/cases",
+            json={"title": "Second matter, same client", "client": "Client Snapshot"},
+        )
+        self.assertEqual(second_case.status_code, 200, second_case.text)
+        second_case_id = second_case.json()["id"]
+        self.assertEqual(
+            self.mutate(self.client_a, "get", f"/cases/{second_case_id}").status_code,
+            200,
+        )
+        self.assertEqual(
+            self.mutate(
+                self.client_a, "get",
+                f"/cases/{self.case_id}/docs/{document_id}/annotations",
+            ).status_code,
+            200,
+        )
+        self.assertEqual(
+            self.mutate(
+                self.client_a, "get",
+                f"/cases/{second_case_id}/docs/{document_id}/annotations",
+            ).status_code,
+            404,
+        )
+        self.assertEqual(
+            self.mutate(
+                self.client_b, "get",
+                f"/cases/{self.case_id}/docs/{document_id}/annotations",
+            ).status_code,
+            404,
+        )
+
+        corrected_text = chunk["text"].replace("source passage", "revised source passage")
+        reviewed = self.mutate(
+            self.client_a, "post",
+            f"/cases/{self.case_id}/docs/{document_id}/chunks/{chunk['id']}/review",
+            json={
+                "outcome": "corrected",
+                "corrected_text": corrected_text,
+                "expected_text_sha256": chunk["text_sha256"],
+                "page_reference": "1",
+                "note": "Synthetic correction to test stale annotation handling.",
+            },
+        )
+        self.assertEqual(reviewed.status_code, 201, reviewed.text)
+        stale = self.mutate(
+            self.client_a, "get",
+            f"/cases/{self.case_id}/docs/{document_id}/annotations",
+        )
+        self.assertEqual(stale.status_code, 200, stale.text)
+        self.assertTrue(stale.json()["annotations"][0]["stale_anchor"])
+
+        old_anchor_write = self.mutate(
+            self.client_a, "post",
+            f"/cases/{self.case_id}/docs/{document_id}/annotations",
+            json=payload,
+        )
+        self.assertEqual(old_anchor_write.status_code, 409, old_anchor_write.text)
 
 
 if __name__ == "__main__":
