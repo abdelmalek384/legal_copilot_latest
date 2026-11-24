@@ -3646,8 +3646,8 @@
       "collection_permission": "not_allowed_without_explicit_exception_or_license",
       "commercial_reuse_permission": "prior_written_permission_required_per_published_terms",
       "terms_url": "https://dspace.id.com.eg/info/end-user-agreement",
-      "permission_evidence": "Reviewed against the repository End User Agreement previously checked 2026-10-31. The agreement limits content to personal, non-commercial use; copying, reproducing, aggregating, republishing, distributing, selling, licensing or commercial exploitation requires express prior written permission; systematic retrieval to compile a collection/database requires written permission; and bypassing access/copy restrictions is prohibited. The specific issue 46 bis (ج) item is request-copy restricted or returned an access failure. No PDF bytes or item-specific license bytes were obtained; no permission is inferred from publisher metadata.",
-      "terms_checked_on": "2026-10-31",
+      "permission_evidence": "Reviewed against the repository End User Agreement checked 2026-11-24. The agreement limits content to personal, non-commercial use; copying, reproducing, aggregating, republishing, distributing, selling, licensing or commercial exploitation requires express prior written permission; systematic retrieval to compile a collection/database requires written permission; and bypassing access/copy restrictions is prohibited. The specific issue 46 bis (ج) item is request-copy restricted or returned an access failure. No PDF bytes or item-specific license bytes were obtained; no permission is inferred from publisher metadata.",
+      "terms_checked_on": "2026-11-24",
       "bulk_download_or_api": "not authorized; systematic retrieval to compile a collection/database requires written permission under the published End User Agreement",
       "required_next_action": "Use public catalogue metadata only. Do not request or bypass the restricted original PDF under the current acquisition constraint. Keep collection blocked absent explicit written permission and commercial reuse blocked absent prior written permission. Do not mark the secondary-hosted page images as official-source bytes or lawyer-verified text."
     },
@@ -3665,7 +3665,7 @@
       "commercial_reuse_permission": "prior_written_permission_required_per_published_terms",
       "terms_url": "https://dspace.id.com.eg/info/end-user-agreement",
       "permission_evidence": "The item page lists the original 2.7 MB Gazette PDF; its Download link opens a request-a-copy form explicitly stating all files of the item are in restricted access. The repository End User Agreement limits content to personal, non-commercial use; copying, aggregating, republishing, distributing, selling, licensing or commercial exploitation requires express prior written permission; systematic retrieval to compile a collection/database requires written permission; and bypassing access/copy restrictions is prohibited. No original bytes or item-specific license text were obtained. Public catalogue metadata and the publisher field do not grant collection or reuse rights.",
-      "terms_checked_on": "2026-10-31",
+      "terms_checked_on": "2026-11-24",
       "bulk_download_or_api": "not authorized; systematic retrieval to compile a collection/database requires written permission under the published End User Agreement",
       "required_next_action": "Use public catalogue metadata only. Do not request or bypass the restricted original PDF under the current acquisition constraint. Keep collection blocked absent explicit written permission and commercial reuse blocked absent prior written permission. The full text captured from LAW HUB is secondary and must not be labeled an official-source byte match."
     },
