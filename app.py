@@ -9227,6 +9227,7 @@ class ExtractionReviewIn(BaseModel):
 
 
 class DocumentAnnotationIn(BaseModel):
+    chunk_id: int = Field(ge=1)
     annotation_type: str = Field(pattern=r"^(highlight|note)$")
     start_offset: int = Field(ge=0, le=2_000_000)
     end_offset: int = Field(ge=1, le=2_000_000)
@@ -9332,7 +9333,7 @@ def create_document_annotation(
     chunk = c.execute(
         "SELECT id,text,page FROM chunks "
         "WHERE id=? AND document_id=? AND case_id=?",
-        (b.chunk_id if hasattr(b, "chunk_id") else -1, document_id, cid),
+        (b.chunk_id, document_id, cid),
     ).fetchone()
     if not doc or not chunk:
         raise HTTPException(404, "document chunk not found")
