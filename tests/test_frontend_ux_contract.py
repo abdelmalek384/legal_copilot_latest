@@ -258,7 +258,7 @@ class FrontendUXContractTests(unittest.TestCase):
 
     def test_document_review_history_discloses_scope_and_truncation(self):
         panel = HTML[HTML.index("function documentIntelligencePanel(caseId,documents)"):HTML.index("\nasync function view(id)")]
-        self.assertIn("let combinedCapReached=false,documentCapReached=false", panel)
+        self.assertIn("const records=[];let documentCapReached=false", panel)
         self.assertIn("if(reviews.length>=200)documentCapReached=true", panel)
         self.assertIn("const combinedCapReached=records.length>100", panel)
         self.assertNotIn("if(records.length>=100)", panel)
