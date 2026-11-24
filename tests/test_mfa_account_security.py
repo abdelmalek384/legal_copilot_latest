@@ -107,6 +107,23 @@ class MFAAccountSecurityTests(unittest.TestCase):
         self.assertNotIn("httponly", csrf_header.lower())
         self.assertIn("samesite=lax", csrf_header.lower())
 
+    def test_login_sets_secure_on_all_auth_cookies_when_proxy_mode_is_explicit(self):
+        with patch.dict(os.environ, {"COPILOT_SECURE_COOKIES": "1"}):
+            response = self.login()
+        self.assertEqual(response.status_code, 200, response.text)
+
+        cookies = response.headers.get_list("set-cookie")
+        for name in ("lc_session", "lc_csrf", "lc_firm"):
+            with self.subTest(cookie=name):
+                header = next(value for value in cookies if value.startswith(name + "="))
+                self.assertIn("secure", header.lower())
+        session = next(value for value in cookies if value.startswith("lc_session="))
+        csrf = next(value for value in cookies if value.startswith("lc_csrf="))
+        firm = next(value for value in cookies if value.startswith("lc_firm="))
+        self.assertIn("httponly", session.lower())
+        self.assertNotIn("httponly", csrf.lower())
+        self.assertIn("httponly", firm.lower())
+
     def login(self):
         return self.client.post(
             "/login", json={"email": "MFA-OWNER@example.test", "password": self.password}
