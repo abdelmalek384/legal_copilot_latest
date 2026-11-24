@@ -1595,3 +1595,11 @@ Percentages are scoped to the described implementation or acceptance phase. They
   - #1929 — partial document-analysis recovery; frontend source assertions only.
 - No AI-2 code from these branches was copied to `main`. Do not report these changes as shipped. Reconsider individually only after rebasing and running exact-head focused tests plus relevant browser/two-firm acceptance.
 - GitHub Actions were not triggered. No test pass is claimed.
+
+### 2026-11-24 follow-up — NFSA acquisition register integration and CSV structural check
+
+- Updated existing national-register record EG-0060 for Law 1/2017 with the newly located Gazette text source, Amiri Press corroboration and explicit remaining amendment/currentness work.
+- Added PM Decision 412/2019 as EG-0513, linked to Law 1/2017.
+- Added full-text inventory records FT-0202 (Law 1/2017) and FT-0203 (Decision 412/2019).
+- Reparsed both CSV files with quote-aware structural checks after the writes: national statute register **512 data rows / 12 columns**, priority full-text inventory **187 data rows / 11 columns**; duplicate IDs and ragged rows were checked separately. The detailed result is recorded in this session's validation output; no legal-content validation is implied.
+- The new records remain unreviewed and not rights-cleared. No national coverage percentage is increased from these two instruments because the denominator and currentness universe remain incomplete.
