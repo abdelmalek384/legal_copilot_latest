@@ -1574,3 +1574,13 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Source permission register static count: **199 sources**; **199/199** have unique non-empty IDs. Collection permission: **186 unknown (93.5%)**, **9 explicitly not allowed absent exception/license (4.5%)**, **4 limited (2.0%)**. Commercial reuse: **185 unknown (93.0%)**, **7 require prior written permission per published terms (3.5%)**, **3 not allowed absent exception/license (1.5%)**, **4 limited (2.0%)**. These percentages are status distribution only, not source availability or clearance.
 - No permission values, legal-review labels, or trust flags were upgraded. Validator/test execution remains unverified because no runtime was available and Actions billing remains blocked.
 - Release readiness remains **NOT READY**. The practical next gate is an authorized local Python 3.12 environment to run locked install, security checks, targeted/full tests, and browser acceptance; real lawyer review and pilot-user acceptance remain separate external gates.
+
+
+## AI-2 document-review draft navigation guard — 2026-11-24
+
+- Added per-document/per-chunk in-memory draft tracking for reviewer notes and corrected text. A panel refresh restores those draft values instead of silently dropping them.
+- A successful review save clears only the current passage's draft; drafts on other passages remain pending.
+- Case-tab changes, matter view rerenders, primary navigation, command-palette navigation/actions, firm switching, sign-out, language switching, and browser unload now require confirmation before discarding unsaved review drafts.
+- Added frontend UX contract assertions for the navigation guard, draft restoration, per-passage clearing, and save-handler arguments.
+- The inline frontend JavaScript was parsed successfully with the available V8 runtime. Python frontend-contract tests and real browser/keyboard/RTL acceptance were not executed. This is implementation evidence only, not pilot acceptance.
+- Scope is AI-2 frontend workflow protection; no legal retrieval, corpus, or trust-label changes.
