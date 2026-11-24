@@ -3688,6 +3688,70 @@
       "related_source_pages": [
         "https://lawhub.info/eg/wp-content/uploads/2026/11/lawhub.info-eg-dec-3356-2026-.pdf"
       ]
+    },
+    {
+      "source_id": "EG-LABOUR-MINISTRY-DECISION215-2003",
+      "authority": "Egyptian Ministry of Labour",
+      "source_page": "https://www.labour.gov.eg/media/yhjp3rzk/2003-215-الحد-الادنى-للخدمات-الاجتماعية-والثقافية-على-مستوى-المنشأة.pdf",
+      "material_types": [
+        "Official Ministry PDF locator for Ministerial Decision 215/2003"
+      ],
+      "access_status": "The Ministry-hosted PDF URL is publicly listed by a secondary legislative index and the Ministry legislation index lists Decision 215/2003. Direct retrieval timed out in this pass; no PDF bytes, page images or SHA-256 were obtained.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Official Ministry host and direct PDF locator identified. No page-specific licence or reuse permission was verified. Public availability of the locator does not establish permission for bulk collection, redistribution or commercial reuse.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Retry only through the public Ministry URL when available; obtain the full text and page images, compare with Gazette publication, identify amendments/currentness under Law14/2025 Article272, and verify reuse terms before ingestion.",
+      "related_source_pages": [
+        "https://www.labour.gov.eg/ar/القوانين-والتشريعات/",
+        "https://www.mohamedabdelfattah.com/library/d/decree-2003-215"
+      ]
+    },
+    {
+      "source_id": "EG-LABOUR-MINISTRY-DECISION217-2003",
+      "authority": "Egyptian Ministry of Labour",
+      "source_page": "https://www.labour.gov.eg/media/af3bx4be/2003-217-تحديد-الخدمات-الاجتماعية-والصحية-والثقافية-على-المستوى-القومي.pdf",
+      "material_types": [
+        "Official Ministry PDF locator for Ministerial Decision 217/2003"
+      ],
+      "access_status": "The Ministry-hosted PDF URL is publicly listed and the Ministry legislation index lists Decision 217/2003. Direct retrieval timed out in this pass. A complete three-article text was captured from a secondary-hosted compiled PDF; no official PDF bytes or SHA-256 were obtained.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Official Ministry host and direct PDF locator identified. No page-specific licence or reuse permission was verified. The secondary text capture is not proof of official-source byte identity or rights to redistribute.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Retry only through the public Ministry URL when available; visually compare the complete three-article text against the official Gazette pages; preserve the 2014 Constitutional Court ruling that caused Article2 to fall; verify reuse terms before ingestion.",
+      "related_source_pages": [
+        "https://www.labour.gov.eg/ar/القوانين-والتشريعات/",
+        "https://www.mohamedabdelfattah.com/library/d/decree-2003-217",
+        "https://hrdiscussion.com/hr69856.html",
+        "https://hrdiscussion.com/hr69856-print.html"
+      ]
+    },
+    {
+      "source_id": "EG-RAAFATELSHAER-LEGACY-LABOUR-FUNDS-PDF-2018",
+      "authority": "Raaft Alshaer / secondary-hosted labour-law compilation",
+      "source_page": "https://raafatelshaer.com/wp-content/uploads/2018/12/ملف-كامل-بالصناديق-الخاصه-بقانون-العمل-12-لسنه-2003.pdf",
+      "material_types": [
+        "Secondary Gazette-page reproduction of Decisions 214, 216 and 217/2003",
+        "Secondary reproduction of Supreme Constitutional Court Case 21/30 (2014)"
+      ],
+      "access_status": "Publicly indexed PDF compilation; the captured text includes Decision 217/2003 on printed pages 61–62 and the 2014 Constitutional Court judgment reproduction on later pages. This is not the official Gazette PDF; no rights/redistribution licence was verified.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "Secondary-hosted compilation attributed in the PDF to a third-party HR/Facebook source. No page-specific licence, bulk extraction permission or commercial reuse permission was identified. Use only as a manual research/transcription lead and preserve secondary-source labeling.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Do not bulk-ingest or redistribute the compilation. Keep any manual transcription marked secondary; compare with official Ministry/Gazette copies and obtain rights confirmation before reuse.",
+      "related_source_pages": [
+        "https://hrdiscussion.com/hr69856.html",
+        "https://hrdiscussion.com/hr69856-print.html",
+        "https://www.labour.gov.eg/ar/القوانين-والتشريعات/"
+      ]
     }
   ]
 }
