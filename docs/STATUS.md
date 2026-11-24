@@ -1513,3 +1513,10 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - The 11-column full-text inventory had nine malformed rows: FT-0142 lacked its full-text-status cell, and FT-0181–FT-0188 lacked the annex/forms-status cell. Restored the missing field(s) without changing their source or validation-gap statements.
 - Rechecked both repaired files: all nonblank rows now match their header widths (initial statute register: 12 columns; full-text inventory: 11 columns). Other checked acquisition CSVs had consistent row widths.
 - These are schema/metadata repairs only. They do not validate legal substance, currentness, Gazette authenticity or reuse rights.
+
+
+### 2026-11-24 passage annotation PR disposition
+
+- Draft PR #1910 was discovered after the earlier zero-open-PR check. It contained firm-scoped passage annotations, immutable notes, migration 0025, API/UI changes and tests, but GitHub reported `mergeable=false`; exact-head Python tests, migration rehearsal and browser acceptance had not run.
+- Closed #1910 unmerged to honor the zero-pending-PR requirement and avoid force-merging an unvalidated migration/API/UI change. No part of this branch was copied into `main`.
+- This is an intentionally deferred implementation, not a completed feature. It should only be reconsidered when the branch can be rebased cleanly and its exact-head two-firm/two-case tests and browser acceptance can actually be executed.
