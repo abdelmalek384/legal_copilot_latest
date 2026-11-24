@@ -5789,7 +5789,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         )
         self.assertEqual(fee.status_code, 200, fee.text)
 
-        with patch.object(app, "_invoice_today", return_value=date(2026, 11, 24)):
+        with patch.object(app, "_cairo_today", return_value=date(2026, 11, 24)):
             dashboard = self.client.get("/dashboard")
             self.assertEqual(dashboard.status_code, 200, dashboard.text)
             self.assertTrue(any(x["note"] == "Cairo next-day hearing" and x["case_title"] == "Cairo local date boundary" for x in dashboard.json()["sessions"]))
