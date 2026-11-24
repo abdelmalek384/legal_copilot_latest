@@ -2659,3 +2659,10 @@ Added Law75/2026 (annual raises/special allowance/EGP750 incentive), Law77/2026 
 - The Court invalidated only two specified portions of Article 18 bis 3: the absolute housing obligation despite sufficient child funds/existing custodian dwelling, and the deadline tied to the former wife's idda for a rented marital home. **The entire article was not invalidated.**
 - Official SCC judgment text: https://www.sccourt.gov.eg/DjangoPortalResources/Rules_Html/592_8_5_1_2.html. A later official SCC decision (Case 95/36, 2016) quotes the disposition and identifies Gazette issue 3, 18 Jan 1996.
 - Provisional event EV-0368 records non-application from 19 Jan 1996 under Law 48/1979 Art. 49; original Gazette issue 3 scan and lawyer review remain outstanding.
+
+### SCC judgment 113/26 (constitutional), 15 January 2006 — partial invalidation of Law 1/2000 Article 21
+
+- Acquisition EG-0558 / inventory FT-0234; full judgment text is reproduced by LAW HUB with case number/date and final disposition.
+- The Court invalidated **only** the part of Article 21 that restricted proof of divorce upon denial to witnessing and documentation, excluding other legally admissible proof. It did not invalidate the rest of Article 21's notarial procedure, warnings, reconciliation and recordkeeping rules.
+- Secondary sources identify Official Gazette issue 24 bis, 24 Jan 2006; event EV-0369 provisionally records non-application from 25 Jan under Law 48/1979 Art. 49. Original SCC judgment/Gazette scan remains outstanding.
+- [Evidence note](scc_case_113_26_2006_partial_invalidation_law1_2000_art21_2026-11-25.md).

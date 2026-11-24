@@ -31,3 +31,10 @@
 - Lawyer review: no.
 - Rights: CC BY 4.0 applies to MKSEgypt page text; Gazette scan rights not established.
 - Production/search eligibility: not established.
+
+
+## 2006 constitutional judgment affecting Article 21
+
+The Supreme Constitutional Court's judgment in **Case 113/26 (constitutional), 15 January 2006**, is reproduced in full by LAW HUB: https://lawhub.info/eg-j/?p=24404. The Court declared Article 21 unconstitutional only insofar as it restricted proof of divorce upon denial to witnessing and documentation, excluding other legally admissible methods of proof. The Court expressly limited the scope of the case to that clause; the remaining notarial, warning, reconciliation and recordkeeping provisions of Article 21 were not invalidated by this judgment.
+
+Secondary sources report publication in Official Gazette issue 24 bis on 24 January 2006. Under Article 49 of Law 48/1979, the non-application date is provisionally recorded as 25 January 2006, subject to acquiring the original SCC judgment and Gazette issue. See EG-0558 / FT-0234 / EV-0369.
