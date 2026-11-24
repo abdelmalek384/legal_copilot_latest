@@ -5836,6 +5836,36 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(deadline.title, "Appeal filing")
         self.assertEqual(deadline.note, "reviewed trigger")
 
+    def test_calendar_view_requests_a_wider_window_than_dashboard(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate("post", "/cases", json={"title": "Extended calendar horizon"})
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+        session = self._mutate(
+            "post", f"/cases/{case_id}/sessions",
+            json={"date": "2026-12-24", "note": "Hearing beyond dashboard window"},
+        )
+        self.assertEqual(session.status_code, 200, session.text)
+        deadline = self._mutate(
+            "post", f"/cases/{case_id}/deadlines",
+            json={"title": "Deadline beyond dashboard window", "due": "2027-01-23"},
+        )
+        self.assertEqual(deadline.status_code, 200, deadline.text)
+
+        with patch.object(app, "_cairo_today", return_value=date(2026, 11, 24)):
+            dashboard = self.client.get("/dashboard")
+            self.assertEqual(dashboard.status_code, 200, dashboard.text)
+            self.assertFalse(any(x["note"] == "Hearing beyond dashboard window" for x in dashboard.json()["sessions"]))
+            self.assertFalse(any(x["title"] == "Deadline beyond dashboard window" for x in dashboard.json()["deadlines"]))
+
+            calendar = self.client.get("/dashboard?calendar_days=365&deadline_days=365")
+            self.assertEqual(calendar.status_code, 200, calendar.text)
+            self.assertTrue(any(x["note"] == "Hearing beyond dashboard window" for x in calendar.json()["sessions"]))
+            self.assertTrue(any(x["title"] == "Deadline beyond dashboard window" for x in calendar.json()["deadlines"]))
+
     def test_calendar_windows_use_cairo_local_date(self):
         login = self.client.post(
             "/login", json={"email": "OWNER@example.test", "password": self.password}
