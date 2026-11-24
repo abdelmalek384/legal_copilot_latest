@@ -2640,3 +2640,9 @@ Added Law75/2026 (annual raises/special allowance/EGP750 incentive), Law77/2026 
 - [Evidence note](law_44_1979_law_100_1985_and_1985_erratum_transition_2026-11-25.md).
 
 - **Law 100/1985 page-image evidence update:** Manshurat-hosted scan of Gazette issue 27 supplement inspected 8/8 pages (Gazette pp. 4–11); text transcription/word-match and issue 33 erratum remain outstanding.
+
+### Law 2/2006 and base text — Personal Status Law 25/1929 (25 November 2026)
+
+- **Law 2/2006:** EG-0555 / FT-0230; Article 1 replaces Article 21(2), effective 16 Feb 2006 (Official Gazette issue 6 bis, 15 Feb 2006). Provisional event EV-0366 records the 2006 version between Law 33/1992 and Law 140/2017.
+- **Base Law 25/1929 text:** FT-0231 records the complete consolidated text available at LAWEG and two secondary portal versions. Their displayed article counts differ (32 vs 34); this is unresolved and no original 1929 publication image has been acquired.
+- [Evidence note](law_25_1929_base_text_and_law2_2006_amendment_evidence_2026-11-25.md).
