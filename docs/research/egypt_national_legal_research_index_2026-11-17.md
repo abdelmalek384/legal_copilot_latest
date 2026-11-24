@@ -229,3 +229,7 @@ All newly recovered entries remain provisional. Preserve `lawyer_reviewed=false`
 ## 56. National Food Safety Authority — Prime Minister Decision 412/2019 Executive Regulation
 
 - [Decision 412/2019 primary Gazette capture](../legal_evidence/prime_minister_decision_412_2019_nfsa_executive_regulation_primary_gazette_capture_2026-11-24.md) — complete Arabic text of the issuing decision and 30 regulation articles extracted from an Official Gazette PDF hosted by the Egyptian Customs Authority, issue 7 bis (A), 18 February 2019. Covers food-business licensing and duties, inspections, risk/traceability/labelling, import/export controls, labs, emergencies, grievances and judicial officers. Later amendments/currentness, page-image QA, lawyer review and rights clearance remain open.
+
+## 57. NFSA Board Decision 11/2020 — food-establishment safety requirements
+
+- [NFSA Board Decision 11/2020 Gazette research-copy capture](../legal_evidence/nfsa_board_decision_11_2020_food_establishment_food_safety_requirements_gazette_capture_2026-11-24.md) — full PDF text layer located on the NFSA official domain for Proceedings issue 141 supplement (A), 24 June 2021. Includes the decision and its integral basic food-safety requirements annex, covering PRPs/HACCP, licensing/operator duties, hygiene, personnel, storage, packaging, water, records, transport, withdrawal/recall and labelling. The PDF itself warns that its electronic image is not valid for circulation; OCR/RTL numbering and currentness remain to be checked. Not a certified copy or verified checklist.
