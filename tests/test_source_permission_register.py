@@ -500,6 +500,25 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         self.assertIsNone(source["terms_checked_on"])
         self.assertIn("download attempt failed", source["permission_evidence"])
         self.assertEqual(MODULE.validate(data), [])
+    def test_new_november_2026_gazette_sources_keep_access_and_reuse_gates(self):
+        import json
+        data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        by_id = {item["source_id"]: item for item in data["sources"]}
+        decision_3356 = by_id["EG-IDSC-GAZETTE-2026-44BIS-A-PM-DECISION3356"]
+        self.assertIn("request-a-copy", decision_3356["access_status"])
+        self.assertEqual(decision_3356["collection_permission"], "not_allowed_without_explicit_exception_or_license")
+        self.assertEqual(decision_3356["commercial_reuse_permission"], "prior_written_permission_required_per_published_terms")
+        self.assertEqual(decision_3356["terms_checked_on"], "2026-11-24")
+        secondary_3356 = by_id["EG-LAWHUB-PM-DECISION3356-2026"]
+        self.assertEqual(secondary_3356["collection_permission"], "unknown")
+        self.assertEqual(secondary_3356["commercial_reuse_permission"], "unknown")
+        self.assertIn("lawhub.info-eg-dec-3356-2026-.pdf", secondary_3356["related_source_pages"][0])
+        decision_3561 = by_id["EG-IDSC-GAZETTE-2026-46BIS-C-PM-DECISION3561"]
+        self.assertEqual(decision_3561["collection_permission"], "not_allowed_without_explicit_exception_or_license")
+        self.assertEqual(decision_3561["commercial_reuse_permission"], "prior_written_permission_required_per_published_terms")
+        self.assertEqual(decision_3561["terms_checked_on"], "2026-11-24")
+        self.assertEqual(MODULE.validate(data), [])
+
     def test_related_source_pages_are_validated_as_clean_https_locators(self):
         import json
         data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
