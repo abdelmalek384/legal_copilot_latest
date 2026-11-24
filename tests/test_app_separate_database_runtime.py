@@ -6497,7 +6497,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         alpha_case, beta_case, private_case = first.json()["id"], second.json()["id"], private.json()["id"]
 
         for case_id, filename, body in (
-            (alpha_case, "alpha-accessible-contract.txt", "Alpha source. التزام قانوني. رقم ١٢٣"),
+            (alpha_case, "alpha-accessible-contract.txt", ("قَ" * 4000) + " Alpha source. التزام قانوني. رقم ١٢٣"),
             (beta_case, "beta-accessible-contract.txt", "Beta source. التزام قانوني. رقم ٤٥٦"),
             (private_case, "gamma-private-contract.txt", "Private source. التزام سري."),
         ):
@@ -6553,6 +6553,12 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
                 {item["case_id"] for item in arabic_hits.json()["items"]},
                 {alpha_case, beta_case},
             )
+            alpha_excerpt = next(
+                item["excerpt"] for item in arabic_hits.json()["items"]
+                if item["case_id"] == alpha_case
+            )
+            self.assertIn("قانوني", alpha_excerpt)
+            self.assertLessEqual(len(alpha_excerpt), 1200)
             client_hits = junior.get(
                 f"/documents/search-text?q=قَانوني&client_id={shared_client_id}"
             )
