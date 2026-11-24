@@ -3459,7 +3459,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(case_b.status_code, 200, case_b.text)
         case_id, other_case_id = case_a.json()["id"], case_b.json()["id"]
 
-        original_text = "ORIGINAL-PASSAGE-SENTINEL This is immutable extracted evidence."
+        original_text = "مقدمة عربية 🧑‍⚖️ ORIGINAL-PASSAGE-SENTINEL This is immutable extracted evidence."
         source = Document()
         source.add_paragraph(original_text)
         buffer = io.BytesIO()
@@ -3483,6 +3483,12 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         chunk_id, extracted_text = int(chunk["id"]), str(chunk["text"])
         selected = "ORIGINAL-PASSAGE-SENTINEL"
         start = extracted_text.index(selected)
+        self.assertIn("مقدمة عربية 🧑‍⚖️", extracted_text)
+        self.assertGreater(
+            len(extracted_text[:start].encode("utf-16-le")) // 2,
+            start,
+            "the fixture must distinguish Unicode code-point offsets from UTF-16 offsets",
+        )
         digest = hashlib.sha256(extracted_text.encode("utf-8")).hexdigest()
         create_path = f"/cases/{case_id}/docs/{document_id}/chunks/{chunk_id}/annotations"
         stale_digest = self._mutate(
