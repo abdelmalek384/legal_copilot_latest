@@ -1572,6 +1572,8 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
                         kwargs["headers"] = {"X-CSRF-Token": nonmember_csrf}
                     response = getattr(nonmember_client, method)(url, **kwargs)
                     self.assertEqual(response.status_code, 404, response.text)
+                    self.assertEqual(response.headers["cache-control"], "no-store")
+                    self.assertEqual(response.headers["x-content-type-options"], "nosniff")
         finally:
             nonmember_client.close()
         firm_db.commit()
