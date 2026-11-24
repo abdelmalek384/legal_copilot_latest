@@ -197,3 +197,7 @@ All newly recovered entries remain provisional. Preserve `lawyer_reviewed=false`
 ## 48. EOS catalogue currentness delta — Standard 3040/2022 correction 2024
 
 - [EOS Standard 3040 catalogue delta](../legal_evidence/eos_standard_3040_2022_correction_2024_catalogue_delta_2026-11-24.md) — official EOS catalogue displays the title as “أكياس التسوق البلاستيكية (تصويب 2024)”, scope as single-layer thermoplastic shopping bags, mandatory status, 11 pages and catalogue status “تعديل كلي”, while referencing Decision 559/2022. The exact 2024 correction instrument and full current standard are not captured. This means the 50-micron implementation statement must not be treated as a fully checked current technical clause until matched against the corrected standard.
+
+## 49. Environment Minister Decision 346/2025 — hazardous-waste technical committee approvals
+
+- [Decision 346/2025 evidence/access record](../legal_evidence/environment_minister_decision_346_2025_hazardous_committee_approval_evidence_record_2026-11-24.md) — Gazette issue 272 supplement (3 Dec 2025) metadata identifies Decisions 342/2025 and 346/2025; secondary catalogue metadata gives Decision 346 date 20 Nov 2025 and effective date 4 Dec 2025. The Gazette file is request-copy/restricted, so no operative articles, committee resolutions or annexes are captured. Do not infer repeal of Decision 30/2023 or substantive adoption of the unified list from the title alone.
