@@ -33,7 +33,8 @@ let language=(navigator.language||"en").toLowerCase().startsWith("ar")?"ar":"en"
 function setLanguage(next){language=next;document.documentElement.lang=next;document.documentElement.dir=next==="ar"?"rtl":"ltr";
 document.querySelectorAll("[data-en][data-ar]").forEach(el=>{el.textContent=el.dataset[next];});
 document.getElementById("language").textContent=next==="ar"?"English":"العربية";
-document.getElementById("language").setAttribute("aria-label",next==="ar"?"التبديل إلى الإنجليزية":"Switch to Arabic");}
+document.getElementById("language").setAttribute("aria-label",next==="ar"?"التبديل إلى الإنجليزية":"Switch to Arabic");
+document.getElementById("language").setAttribute("aria-pressed",String(next==="ar"));}
 document.getElementById("language").addEventListener("click",()=>setLanguage(language==="ar"?"en":"ar"));
 function status(en,ar){result.textContent=language==="ar"?ar:en;}
 function csrf(){const m=document.cookie.match(/(?:^|; )lc_csrf=([^;]+)/);return m?decodeURIComponent(m[1]):"";}
@@ -75,7 +76,8 @@ let language=(navigator.language||"en").toLowerCase().startsWith("ar")?"ar":"en"
 function setLanguage(next){language=next;document.documentElement.lang=next;document.documentElement.dir=next==="ar"?"rtl":"ltr";
 document.querySelectorAll("[data-en][data-ar]").forEach(el=>{el.textContent=el.dataset[next];});
 document.getElementById("language").textContent=next==="ar"?"English":"العربية";
-document.getElementById("language").setAttribute("aria-label",next==="ar"?"التبديل إلى الإنجليزية":"Switch to Arabic");}
+document.getElementById("language").setAttribute("aria-label",next==="ar"?"التبديل إلى الإنجليزية":"Switch to Arabic");
+document.getElementById("language").setAttribute("aria-pressed",String(next==="ar"));}
 document.getElementById("language").addEventListener("click",()=>setLanguage(language==="ar"?"en":"ar"));
 function status(en,ar){result.textContent=language==="ar"?ar:en;}
 form.addEventListener("submit",async e=>{e.preventDefault();try{const r=await fetch("/account/recovery/consume",{
