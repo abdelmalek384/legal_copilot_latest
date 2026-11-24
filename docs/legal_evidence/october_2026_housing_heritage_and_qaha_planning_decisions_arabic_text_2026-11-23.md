@@ -301,3 +301,10 @@ The Amiri Press searchable record for Decision 1179/2026 identifies **ملوى (
 | Housing Decision 1180/2026 — Maghagha | Official searchable Amiri Press text captured | Not acquired | Map, memorandum, Gazette issue/page, military approval 383/2010, earlier plan 326/2011 |
 
 **Trust flags remain:** `source_matched` for the searchable issuing text only; `lawyer_reviewed=false`; `verified=false`; `rights_cleared=false`.
+
+## Explicit machine trust flags
+
+- `lawyer_reviewed: false`
+- `verified: false`
+- `rights_cleared: false`
+- This acquisition is research-only. Preserve the instrument-specific source and completeness caveats above; do not treat it as a verified/current consolidated legal text or use it for production legal answers until primary-source comparison, reuse-rights review and qualified Egyptian lawyer approval are complete.
