@@ -26,3 +26,13 @@ class DocumentReviewWorkflowTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+    def test_document_review_summary_discloses_its_100_passage_cap(self):
+        html = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
+        start = html.index("const renderChunkReviewCards=()=>{")
+        end = html.index("const renderAnalysis=()=>{", start)
+        review = html[start:end]
+        self.assertIn("let remaining=100,hasMore=false", review)
+        self.assertIn("if(remaining<=0){hasMore=true;break}", review)
+        self.assertIn("if(hasMore)cards.unshift", review)
+        self.assertIn("This summary shows the first 100 passages only. Open the document review panel to access the remaining passages.", review)
