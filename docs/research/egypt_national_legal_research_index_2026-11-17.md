@@ -185,3 +185,7 @@ All newly recovered entries remain provisional. Preserve `lawyer_reviewed=false`
 ## 45. Single-use plastic bags — statutory framework and 2026 implementation delta
 
 - [Law 202/2020 Article 27 / Executive Regulation Articles 18–19 / Decision 662/2025 crosswalk](../legal_evidence/plastic_bags_law_202_2020_articles_27_18_19_and_2026_currentness_delta_2026-11-24.md) — captures Article 18 from the EEAA-hosted Gazette PDF for Decision 722/2022 and crosswalks it with Law 202/2020 Article 27 and Decision 662/2025. Adds a later official SIS implementation statement that cites Decision 559/2022 / Standard 3040 and describes a 50-micron requirement. The 50-micron item is an official implementation lead, not the standard itself; Decision 559/2022, Standard 3040 and complete Article 19 remain unacquired. No compliance checklist or current verified rule is asserted.
+
+## 46. Trade and Industry Decision 559/2022 — Standard 3040 primary-text fragment
+
+- [Decision 559/2022 partial Amiri Press text capture](../legal_evidence/trade_industry_decision_559_2022_standard_3040_primary_text_fragment_2026-11-24.md) — official searchable text identifies Standard 3040 as “أكياس التسوق البلاستيكية” in Article 1's mandatory-standard table. Captures only the relevant table rows and preamble fragment; full schedule, operative articles, Gazette page-image comparison and the complete technical Standard 3040 remain outstanding. The 50-micron figure is separately labelled as an official government implementation statement, not text reproduced in this capture.
