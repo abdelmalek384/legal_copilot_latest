@@ -5347,6 +5347,40 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertNotIn("SECOND_INTERLEAVED_QUESTION", note["text"])
 
 
+    def test_research_save_to_matter_handles_non_object_message_metadata(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created_case = self._mutate(
+            "post", "/cases", json={"title": "Malformed research metadata matter"}
+        )
+        self.assertEqual(created_case.status_code, 200, created_case.text)
+        case_id = created_case.json()["id"]
+        conversation = self._mutate("post", "/research/conversations")
+        self.assertEqual(conversation.status_code, 200, conversation.text)
+        conversation_id = conversation.json()["id"]
+        context = self.runtime.resolve_context(self.user_id, self.firm_a)
+        tenant = self.runtime.firm_connection(context)
+        assistant_message_id = tenant.execute(
+            "INSERT INTO research_messages(conversation_id,role,content,message_json) VALUES(?,?,?,?)",
+            (conversation_id, "assistant", "Legacy answer without object metadata", "[]"),
+        ).lastrowid
+        tenant.commit()
+
+        saved = self._mutate(
+            "post",
+            f"/research/conversations/{conversation_id}/save-to-matter",
+            json={"case_id": case_id, "message_id": assistant_message_id},
+        )
+        self.assertEqual(saved.status_code, 201, saved.text)
+        note = tenant.execute(
+            "SELECT text FROM notes WHERE id=?", (saved.json()["note_id"],)
+        ).fetchone()
+        self.assertIn("Question: (not recorded)", note["text"])
+        self.assertIn("Legacy answer without object metadata", note["text"])
+
+
     def test_security_headers_and_csp_nonce_are_present(self):
         response = self.client.get("/")
         self.assertEqual(response.status_code, 200, response.text)
