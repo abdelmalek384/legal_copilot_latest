@@ -9891,6 +9891,17 @@ def export_firm_data_zip(u: dict = Depends(user)):
                 "FROM document_extraction_reviews r JOIN cases c ON c.id=r.case_id "
                 "ORDER BY r.id"
             )))
+            archive.writestr("document_passage_annotations.csv", _firm_export_csv_bytes(tenant.execute(
+                "SELECT a.id,a.document_id,a.case_id,a.firm_id,a.chunk_id,a.created_by_user_id,"
+                "a.start_offset,a.end_offset,a.selected_text,a.source_text_sha256,a.note,a.color,"
+                "a.created_at,a.deleted_at,a.deleted_by_user_id "
+                "FROM document_passage_annotations a "
+                "JOIN docs d ON d.id=a.document_id AND d.case_id=a.case_id "
+                "JOIN cases c ON c.id=a.case_id "
+                "WHERE a.firm_id=? AND d.firm_id=? AND c.firm_id=? "
+                "ORDER BY a.document_id,a.chunk_id,a.start_offset,a.id",
+                (firm_id, firm_id, firm_id),
+            )))
             archive.writestr("document_classifications.csv", _firm_export_csv_bytes(tenant.execute(
                 "SELECT dc.document_id,dc.case_id,dc.firm_id,dc.category,dc.version,"
                 "dc.updated_by_user_id,dc.updated_at FROM document_classifications dc "
