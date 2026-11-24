@@ -186,3 +186,10 @@ The earlier note described the annexes as incomplete. A subsequent extraction of
 ## Official catalogue provenance update
 
 The official Amiria Press / MELES catalogue record for the complete Egyptian Proceedings issue 64 supplement identifies the publisher as **المطابع الأميرية**, date 18 March 2026, and lists Decisions 48, 49 and 50 in the abstract: https://dspace.id.com.eg/items/f32b4a07-6598-4ed8-a170-60d631a57221. The catalogue file is access-restricted and its click-through opens a “request a copy” form; it was not directly downloadable in this session. This improves issue-level bibliographic corroboration but does not authenticate the third-party-hosted text line-by-line or grant reuse rights.
+
+## Explicit machine trust flags
+
+- `lawyer_reviewed: false`
+- `verified: false`
+- `rights_cleared: false`
+- This capture is research material only. It must not be treated as a lawyer-approved operative text or imported into production legal answering until the stated primary-source comparison, rights review and qualified Egyptian lawyer review are completed.
