@@ -256,6 +256,16 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("uiText('جارٍ تحميل المقاطع…','Loading text chunks…')", HTML)
         self.assertIn("uiText('PDF وDOCX فقط · 15 ميجابايت كحد أقصى لكل ملف','PDF and DOCX only · 15 MB maximum per file')", HTML)
 
+    def test_document_review_history_discloses_scope_and_truncation(self):
+        panel = HTML[HTML.index("function documentIntelligencePanel(caseId,documents)"):HTML.index("\\nasync function view(id)")]
+        self.assertIn("let combinedCapReached=false,documentCapReached=false", panel)
+        self.assertIn("if(reviews.length>=200)documentCapReached=true", panel)
+        self.assertIn("if(records.length>=100){combinedCapReached=true;break}", panel)
+        self.assertIn("if(docs.length>cache.size)", panel)
+        self.assertIn("This history view covers only documents loaded in the current analysis", panel)
+        self.assertIn("The 100-event display limit was reached; additional review events may exist.", panel)
+        self.assertIn("At least one document reached the server response limit of 200 events", panel)
+
     def test_case_detail_inputs_and_validation_follow_selected_language(self):
         self.assertIn("uiText('رقم القضية','Case number')", HTML)
         self.assertIn("uiText('مهمة جديدة','New task')", HTML)
