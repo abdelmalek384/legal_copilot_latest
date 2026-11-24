@@ -1566,3 +1566,11 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - No law was promoted to `verified` or `lawyer_reviewed`; no rights were cleared. The legal evidence readiness estimate remains ~7%, labour collection remains ~70% provisional, and pilot acceptance remains 0%.
 
 **Test status:** static JSON/CSV structural checks and source inspection only. No exact-head Python suite, migration rehearsal, browser acceptance or production deployment test is claimed.
+
+
+## Manual follow-up — 2026-11-24
+
+- Refreshed `docs/BLOCKERS.md` with the billing-blocked manual checkpoint and current source-permission state counts.
+- Source permission register static count: **199 sources**; **199/199** have unique non-empty IDs. Collection permission: **186 unknown (93.5%)**, **9 explicitly not allowed absent exception/license (4.5%)**, **4 limited (2.0%)**. Commercial reuse: **185 unknown (93.0%)**, **7 require prior written permission per published terms (3.5%)**, **3 not allowed absent exception/license (1.5%)**, **4 limited (2.0%)**. These percentages are status distribution only, not source availability or clearance.
+- No permission values, legal-review labels, or trust flags were upgraded. Validator/test execution remains unverified because no runtime was available and Actions billing remains blocked.
+- Release readiness remains **NOT READY**. The practical next gate is an authorized local Python 3.12 environment to run locked install, security checks, targeted/full tests, and browser acceptance; real lawyer review and pilot-user acceptance remain separate external gates.
