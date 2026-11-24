@@ -128,7 +128,7 @@ class TenantOwnershipPreflightTests(unittest.TestCase):
                 );
                 CREATE TABLE document_annotation_events(
                     id INTEGER PRIMARY KEY, annotation_id INTEGER, firm_id INTEGER,
-                    case_id INTEGER, document_id INTEGER
+                    case_id INTEGER, document_id INTEGER, actor_user_id INTEGER
                 );
                 INSERT INTO firms VALUES (1);
                 INSERT INTO users VALUES (1,1);
