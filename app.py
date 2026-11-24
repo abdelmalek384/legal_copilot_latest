@@ -8766,22 +8766,16 @@ def download_original_document(cid: int, document_id: int, u: dict = Depends(use
     # Preserve the uploaded filename for the authorized user while preventing
     # header injection and path disclosure. RFC 5987 carries Arabic/Unicode names;
     # the ASCII fallback is deliberately generic for older clients.
-    original_name = str(row["name"] or "original-document").replace("\\\\", "/").rsplit("/", 1)[-1]
+    original_name = str(row["name"] or "original-document").replace("\\", "/").rsplit("/", 1)[-1]
     original_name = "".join(
         ch for ch in original_name
-        if ord(ch) >= 32 and ord(ch) != 127 and ch not in "\\r\\n"
+        if ord(ch) >= 32 and ord(ch) != 127 and ch not in "\r\n"
     ).strip().strip(".")[:180] or "original-document"
-    encoded_name = quote(original_name, safe="!#    return Response(
-        content=data,
-        media_type="application/octet-stream",
-        headers={"Content-Disposition": 'attachment; filename="original-document"',
-                 "Cache-Control": "no-store", "Pragma": "no-cache"},
-    )
-+-.^_`|~")
+    encoded_name = quote(original_name, safe="!#$&+-.^_|~")
     return Response(
         content=data,
         media_type="application/octet-stream",
-        headers={"Content-Disposition": "attachment; filename=\"original-document\"; "
+        headers={"Content-Disposition": 'attachment; filename="original-document"; '
                  f"filename*=UTF-8''{encoded_name}",
                  "Cache-Control": "no-store", "Pragma": "no-cache"},
     )
