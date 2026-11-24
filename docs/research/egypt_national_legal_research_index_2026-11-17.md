@@ -221,3 +221,11 @@ All newly recovered entries remain provisional. Preserve `lawyer_reviewed=false`
 ## 54. EEAA September 2026 hazardous-waste committee operational update
 
 - [EEAA report on the third hazardous-waste technical committee meeting](../legal_evidence/eeaa_hazardous_waste_committee_third_meeting_operational_currentness_2026-11-24.md) — official EEAA report dated 9 September 2026, expressly citing Ministerial Decision 368/2025. Records reported handling of rejected consignments and coordination on consignments refused for return. This is an agency operational report, not Decision 368/2025 or a binding committee resolution; do not convert the reported cement-kiln practice or NFSA coordination into general legal rules. Decision 368/2025, meeting minutes/resolutions and relevant technical annexes remain unacquired.
+
+## 55. National Food Safety Authority — Law 1/2017
+
+- [Law 1/2017 primary Gazette text acquisition](../legal_evidence/national_food_safety_authority_law_1_2017_primary_gazette_text_capture_2026-11-24.md) — full 19-article Arabic text located in a Gazette reproduction hosted by FAOLEX, with an official Amiri Press searchable-text corroboration. Records the NFSA's statutory establishment, consolidated food-control remit, licensing/inspection/risk/traceability powers, governance, fee framework, grievances and enforcement. Amendment/currentness consolidation, Gazette page-image QA, lawyer review and rights clearance remain outstanding.
+
+## 56. National Food Safety Authority — Prime Minister Decision 412/2019 Executive Regulation
+
+- [Decision 412/2019 primary Gazette capture](../legal_evidence/prime_minister_decision_412_2019_nfsa_executive_regulation_primary_gazette_capture_2026-11-24.md) — complete Arabic text of the issuing decision and 30 regulation articles extracted from an Official Gazette PDF hosted by the Egyptian Customs Authority, issue 7 bis (A), 18 February 2019. Covers food-business licensing and duties, inspections, risk/traceability/labelling, import/export controls, labs, emergencies, grievances and judicial officers. Later amendments/currentness, page-image QA, lawyer review and rights clearance remain open.
