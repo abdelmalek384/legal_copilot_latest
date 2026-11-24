@@ -161,7 +161,19 @@
       "permission_evidence_url": "https://www.almasdar.com/175150",
       "terms_checked_on": null,
       "bulk_download_or_api": "No API or bulk-export permission established; individual secondary articles and watermarked image links only",
-      "required_next_action": "Use only for manual discovery and link-out. Do not bulk-copy or redistribute articles or images; preserve attribution and site rights. Verify all instrument text against the original Official Gazette through an authorized route; keep legal status, reuse and retrieval eligibility unresolved."
+      "required_next_action": "Use only for manual discovery and link-out. Do not bulk-copy or redistribute articles or images; preserve attribution and site rights. Verify all instrument text against the original Official Gazette through an authorized route; keep legal status, reuse and retrieval eligibility unresolved.",
+      "related_source_pages": [
+        "https://www.almasdar.com/176172",
+        "https://www.almasdar.com/WebP/libfiles/46/9/533.webp",
+        "https://www.almasdar.com/WebP/libfiles/46/9/534.webp",
+        "https://www.almasdar.com/WebP/libfiles/46/9/535.webp",
+        "https://www.almasdar.com/WebP/libfiles/46/9/536.webp",
+        "https://www.almasdar.com/WebP/libfiles/46/9/537.webp",
+        "https://www.almasdar.com/WebP/libfiles/46/9/538.webp",
+        "https://www.almasdar.com/WebP/libfiles/46/9/539.webp",
+        "https://lawhub.info/eg/wp-content/uploads/2026/11/lawhub.info-eg-dec-3356-2026-.pdf",
+        "https://lawhub.info/eg/?p=20271"
+      ]
     },
     {
       "source_id": "EG-ALMASRYALYOUM-DECISION480",
@@ -1181,7 +1193,7 @@
       "permission_evidence": "Checked 2026-10-31. The public homepage (https://dspace.id.com.eg/) titles the service 'Ibrachy & Dermarkar Repository', describes it as an I&D Digital Repository for E-Resources for the Knowledge Management Department, and says account creation is by request. The item page (https://dspace.id.com.eg/items/9cf7c0e9-002a-4467-9d35-e0bb26f81657/full) identifies the metadata publisher as المطابع الاميرية and lists an Original bundle (6.13 MB PDF) plus an item-specific license bundle (license.txt, 55 B; 'Item-specific license agreed to upon submission'). The public host is not the Amiri Press official domain; publisher metadata does not establish repository operation by Amiri Press or grant collection/commercial reuse rights. Prior click-through inspection recorded both file links resolving to request-a-copy forms; no bytes or license text were obtained and no request was submitted. Collection and commercial reuse remain unknown. Law147/2026 item lists original 426.95 KB PDF but request-copy restriction applies; no item-specific license bytes obtained. No collection/commercial reuse rights inferred. Decision3530/2026 metadata confirms issue45 bis (أ), 9 Nov 2026. No PDF bytes or item-specific licence acquired. Public catalogue metadata does not establish PDF bulk-download or commercial reuse rights. Public metadata does not imply access to restricted original PDF or bulk/commercial reuse permission.",
       "terms_checked_on": null,
       "bulk_download_or_api": "not established; item-level access controls and licenses must be checked",
-      "required_next_action": "Do not bypass request-copy restrictions. Request the restricted original PDF for issue245 supplement A through the repository's stated process; obtain issue253, issue256 and issue257 original Gazette PDFs and associated plans/annexes.",
+      "required_next_action": "Request restricted original PDF for issue245 supplement A; obtain issue253, issue256 and issue257 original Gazette PDFs and associated plans/annexes.",
       "repository_brand": "Ibrachy & Dermarkar Repository",
       "repository_homepage_url": "https://dspace.id.com.eg/",
       "repository_account_access": "Homepage says account creation is requested from the Knowledge Management Department; no account request submitted.",
@@ -1190,7 +1202,11 @@
       "publisher_metadata": "المطابع الاميرية",
       "original_file_access_status": "request-copy restricted in prior click-through inspection; no bytes downloaded",
       "license_file_access_status": "request-copy restricted in prior click-through inspection; 55-byte license text not obtained",
-      "source_checked_on": "2026-10-31"
+      "source_checked_on": "2026-10-31",
+      "related_source_pages": [
+        "https://dspace.id.com.eg/items/cb156f2d-a809-4480-ada2-48df74251c68",
+        "https://dspace.id.com.eg/collections/bb4a4122-9215-48e2-a8a5-b622ffa5eeb6"
+      ]
     },
     {
       "source_id": "EG-IDSC-GAZETTE-2025-291-SUPPLEMENT-LABOUR",
@@ -3616,6 +3632,24 @@
         "https://faolex.fao.org/docs/pdf/egy179418.pdf",
         "https://faolex.fao.org/docs/pdf/egy195608.pdf"
       ]
+    },
+    {
+      "source_id": "EG-IDSC-GAZETTE-2026-46BIS-C-PM-DECISION3561",
+      "authority": "Ibrachy & Dermarkar Repository; item metadata identifies Amiri Press as publisher",
+      "source_page": "https://dspace.id.com.eg/items/cb156f2d-a809-4480-ada2-48df74251c68",
+      "material_types": [
+        "Official Gazette issue metadata",
+        "PM Decision 3561/2026 metadata",
+        "Official Gazette PDF listing"
+      ],
+      "access_status": "Public item metadata identifies Official Gazette issue 46 bis (ج), dated 2026-11-15, and the PM Decision 3561/2026 item. The original 274.86 KB PDF is request-copy restricted or returns an access failure; no original bytes or SHA-256 were obtained.",
+      "collection_permission": "not_allowed_without_explicit_exception_or_license",
+      "commercial_reuse_permission": "prior_written_permission_required_per_published_terms",
+      "terms_url": "https://dspace.id.com.eg/info/end-user-agreement",
+      "permission_evidence": "Reviewed against the repository End User Agreement previously checked 2026-10-31. The agreement limits content to personal, non-commercial use; copying, reproducing, aggregating, republishing, distributing, selling, licensing or commercial exploitation requires express prior written permission; systematic retrieval to compile a collection/database requires written permission; and bypassing access/copy restrictions is prohibited. The specific issue 46 bis (ج) item is request-copy restricted or returned an access failure. No PDF bytes or item-specific license bytes were obtained; no permission is inferred from publisher metadata.",
+      "terms_checked_on": "2026-10-31",
+      "bulk_download_or_api": "not authorized; systematic retrieval to compile a collection/database requires written permission under the published End User Agreement",
+      "required_next_action": "Use public catalogue metadata only. Do not request or bypass the restricted original PDF under the current acquisition constraint. Keep collection blocked absent explicit written permission and commercial reuse blocked absent prior written permission. Do not mark the secondary-hosted page images as official-source bytes or lawyer-verified text."
     }
   ]
 }
