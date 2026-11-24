@@ -153,6 +153,10 @@ class DocumentClassificationContractTests(unittest.TestCase):
         self.assertIn("Your draft is retained", block)
 
     def test_extraction_review_card_shows_latest_corrected_text_separately(self):
+        app = (ROOT / "app.py").read_text(encoding="utf-8")
+        compare_start = app.index('@app.get("/documents/compare")')
+        compare_end = app.index("\\n\\n@app.", compare_start + 1)
+        endpoint = app[compare_start:compare_end]
         html = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
         self.assertIn("latest.outcome==='corrected'", html)
         self.assertIn("latest.original_text", html)
