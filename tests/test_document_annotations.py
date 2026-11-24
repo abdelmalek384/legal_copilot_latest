@@ -116,6 +116,19 @@ class DocumentAnnotationAPITests(unittest.TestCase):
         self.assertIn("return value", model)
         self.assertNotIn('return value.strip()', model)
 
+    def test_bilingual_ui_captures_and_saves_selected_passage_annotations(self):
+        html = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
+        self.assertIn("التقاط التحديد", html)
+        self.assertIn("Capture selection", html)
+        self.assertIn("حفظ التظليل", html)
+        self.assertIn("Save highlight", html)
+        self.assertIn("حفظ الملاحظة", html)
+        self.assertIn("Save note", html)
+        self.assertIn("Array.from(fullText.slice(0,range.startOffset)).length", html)
+        self.assertIn("text_sha256:chunk.text_sha256", html)
+        self.assertIn("stale_anchor", html)
+        self.assertIn("item.annotations=Array.isArray(annotationData.annotations)?annotationData.annotations:[]", html)
+
 
 if __name__ == "__main__":
     unittest.main()
