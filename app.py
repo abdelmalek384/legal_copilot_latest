@@ -956,6 +956,12 @@ def delete_case(c, u, cid):
         ).fetchall()]
         related_counts = {}
         for table in ("chunks", "sessions", "tasks", "docs", "document_annotations", "document_annotation_events", "members", "notes", "deadlines", "fees"):
+            if table in {"document_annotations", "document_annotation_events"} and not c.execute(
+                "SELECT 1 FROM sqlite_master WHERE type='table' AND name=?",
+                (table,),
+            ).fetchone():
+                related_counts[table] = 0
+                continue
             related_counts[table] = c.execute(
                 "SELECT COUNT(*) FROM %s WHERE case_id=?" % table, (cid,)
             ).fetchone()[0]
