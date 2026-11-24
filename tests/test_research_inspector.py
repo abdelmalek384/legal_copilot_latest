@@ -285,6 +285,15 @@ class ResearchInspectorTests(unittest.TestCase):
         source["provenance"]["official_title"] = " "
         self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
 
+        for label in (
+            "secondary legal text copy",
+            "public secondary transcription",
+            "commentary",
+        ):
+            source = valid_source()
+            source["source_type"] = label
+            self.assertEqual(source_status(source, "2026-10-24"), "secondary_copy", label)
+
     def test_publication_date_and_gazette_pinpoint_are_required_for_verified_status(self):
         for field, value in (
             ("publication_date", None),
