@@ -108,6 +108,8 @@ class DocumentAnnotationAPITests(unittest.TestCase):
         self.assertIn("source_text[b.start_offset:b.end_offset] != b.quoted_text", endpoint)
         self.assertIn("document_annotation_events", endpoint)
         self.assertIn("document_annotation_created", endpoint)
+        self.assertIn('bucket = "document_annotations"', app)
+        self.assertIn("limit = (30, 60)", app)
 
     def test_quote_is_preserved_exactly_for_unicode_source_offsets(self):
         app = (ROOT / "app.py").read_text(encoding="utf-8")
