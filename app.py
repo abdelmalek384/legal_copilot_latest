@@ -8730,7 +8730,7 @@ def download_original_document(cid: int, document_id: int, u: dict = Depends(use
     c = conn()
     need(c, u, cid)
     row = c.execute(
-        "SELECT d.id,d.name,o.object_id,o.sha256,o.byte_size,o.legal_hold "
+        "SELECT d.id,d.name,d.content_type,o.object_id,o.sha256,o.byte_size,o.legal_hold "
         "FROM docs d JOIN original_file_objects o ON o.document_id=d.id "
         "WHERE d.id=? AND d.case_id=? AND d.firm_id=? AND o.firm_id=? "
         "AND o.state='ready' AND o.purged_at IS NULL",
@@ -8771,12 +8771,29 @@ def download_original_document(cid: int, document_id: int, u: dict = Depends(use
         ch for ch in original_name
         if ord(ch) >= 32 and ord(ch) != 127 and ch not in "\r\n"
     ).strip().strip(".")[:180] or "original-document"
-    encoded_name = quote(original_name, safe="!#$&+-.^_|~")
+    encoded_name = quote(original_name, safe="!#    encoded_name = quote(original_name, safe="!#$&+-.^_|~")
     return Response(
         content=data,
         media_type="application/octet-stream",
         headers={"Content-Disposition": 'attachment; filename="original-document"; '
                  f"filename*=UTF-8''{encoded_name}",
+                 "Cache-Control": "no-store", "Pragma": "no-cache"},
+    )+-.^_|~")
+    # The document-review UI previews PDFs from a fetched Blob. Return a PDF
+    # media type only when both stored metadata and the original bytes agree;
+    # all other formats remain generic downloads.
+    is_pdf = (
+        str(row["content_type"] or "").lower() == "application/pdf"
+        and original_name.lower().endswith(".pdf")
+        and b"%PDF-" in data[:1024]
+    )
+    response_type = "application/pdf" if is_pdf else "application/octet-stream"
+    return Response(
+        content=data,
+        media_type=response_type,
+        headers={"Content-Disposition": 'attachment; filename="original-document"; '
+                 f"filename*=UTF-8''{encoded_name}",
+                 "X-Content-Type-Options": "nosniff",
                  "Cache-Control": "no-store", "Pragma": "no-cache"},
     )
 
