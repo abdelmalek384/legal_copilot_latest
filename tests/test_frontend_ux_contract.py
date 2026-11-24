@@ -260,7 +260,9 @@ class FrontendUXContractTests(unittest.TestCase):
         panel = HTML[HTML.index("function documentIntelligencePanel(caseId,documents)"):HTML.index("\nasync function view(id)")]
         self.assertIn("let combinedCapReached=false,documentCapReached=false", panel)
         self.assertIn("if(reviews.length>=200)documentCapReached=true", panel)
-        self.assertIn("if(records.length>=100){combinedCapReached=true;break}", panel)
+        self.assertIn("const combinedCapReached=records.length>100", panel)
+        self.assertNotIn("if(records.length>=100)", panel)
+        self.assertLess(panel.index("records.sort((a,b)=>String(b.created_at||'').localeCompare(String(a.created_at||'')))"), panel.index("const combinedCapReached=records.length>100"))
         self.assertIn("if(docs.length>cache.size)", panel)
         self.assertIn("This history view covers only documents loaded in the current analysis", panel)
         self.assertIn("The 100-event display limit was reached; additional review events may exist.", panel)
