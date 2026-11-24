@@ -62,3 +62,11 @@ Published in Al-Waqa'i al-Misriyya and effective the day after publication.
 - Confirm whether the manual was issued within the three-month period and whether later versions amend it.
 - Confirm the department's secure submission channel and official retention/processing rules.
 - Lawyer/privacy review and rights clearance remain false; no production import.
+
+
+## Explicit machine trust flags
+
+- `lawyer_reviewed: false`
+- `verified: false`
+- `rights_cleared: false`
+- This material is a research capture, not an approved production legal source. Preserve all source-quality, missing-annex and Gazette-image limitations above. Do not use it as a verified/current consolidated legal text until the original source is matched, reuse rights are cleared and a qualified Egyptian lawyer approves it.
