@@ -209,3 +209,7 @@ All newly recovered entries remain provisional. Preserve `lawyer_reviewed=false`
 ## 51. Environment Minister Decision 150/2025 — facility hazardous-waste and used cooking-oil fees
 
 - [Decision 150/2025 provisional fee capture](../legal_evidence/environment_minister_decision_150_2025_hazardous_waste_and_used_cooking_oil_fees_2026-11-24.md) — SIS identifies issue 163 supplement (27 July 2025) and lists a public 92.21 MB Gazette PDF containing Decisions 150/2025 and 151/2025. The extracted fee tables and Articles 1–2 are currently secondary transcription, with Article 3–4 only partly summarized by secondary reporting. Gazette PDF has not yet been fetched/page-matched; do not use as a verified live fee schedule. Distinguish it from Decisions 113/2022, 120/2025 and later Decision 279/2025.
+
+## 52. Environment Minister Decision 279/2025 — WMRA service/appeal and rice-straw fee delta
+
+- [Decision 279/2025 official Gazette capture](../legal_evidence/environment_minister_decision_279_2025_wmra_amendment_appeal_and_rice_straw_fees_2026-11-24.md) — official SIS-hosted issue 245 PDF text extraction, printed pp. 16–17, captures Articles 1–4. Adds EGP 2,000 for studying an application to amend a WMRA licence/approval/permit and EGP 2,000 for submitting an appeal under Waste Management Law 202/2020; reduces rice-straw collection/transport licence fee to EGP 1,000 excluding VAT. Article 4 expressly makes it effective from issuance date (24 Sep 2025), not publication date. Page-image visual comparison, later currentness and lawyer review remain outstanding.
