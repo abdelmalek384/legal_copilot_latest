@@ -1744,3 +1744,10 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Added regressions for duplicate headers, malformed row widths, duplicate practice areas, symlink rejection, and the current 21-row coverage matrix shape. The direct-CLI regression from the preceding slice remains in the same test module.
 - Commits: `36ed2e215ff9b67bb5cbae6b1f8a50f55701a118` (reader hardening), `0156661c85aad0ab5b1b21b1eb4c8bc1353acc8c` (regressions), `42c3fdeba7f1f76ea2278e384e929814777f05d9` (fixture newline correction).
 - All new tests are committed but **not executed**. The report's legal corpus, permission, authenticity, currentness and lawyer-review claims remain unchanged.
+
+## Manual legal-corpus registry collision audit — 2026-11-24
+
+- Extended the read-only corpus inventory report to detect duplicate stable identifiers in the source manifest, central permission register, candidate source catalogue, candidate document catalogue, phase-two evidence register, and acquisition queue. Previously, set construction could silently collapse duplicate identifiers and make the cross-register summary look cleaner than the source data.
+- Added a regression that injects a duplicate candidate document ID and verifies the report emits a blocking consistency issue rather than hiding the collision.
+- Commits: `e7607688c1f3a1e88ab4b9f67521f10ac3868011` (duplicate-ID detection), `dcfbc7a8eabc47f6c7f0d802779ef430635c423e` (regression).
+- Tests remain committed but **unexecuted**. No legal-content or trust-tier status changed.
