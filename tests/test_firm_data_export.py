@@ -26,6 +26,15 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
             archive.read(name).decode("utf-8-sig")
         )))
 
+    def _tenant_b(self):
+        control = self.runtime.control_connection()
+        owner_id = control.execute(
+            "SELECT id FROM users WHERE email_normalized=?",
+            ("invoice-owner-b@example.test",),
+        ).fetchone()["id"]
+        context = self.runtime.resolve_context(int(owner_id), self.firm_b)
+        return self.runtime.firm_connection(context), int(owner_id)
+
     def test_admin_export_contains_firm_data_and_audit_event_only(self):
         case_b = self.mutate(
             self.client_b, "post", "/cases",
@@ -248,6 +257,27 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
         )
         self.assertEqual(case_b.status_code, 200, case_b.text)
 
+        tenant_b, owner_b = self._tenant_b()
+        private_text = "Firm B only passage"
+        private_doc = tenant_b.execute(
+            "INSERT INTO docs(case_id,name,added,firm_id,uploader_user_id,sha256,content_type,byte_size) "
+            "VALUES(?,?,datetime('now'),?,?,?,'application/pdf',?)",
+            (case_b.json()["id"], "firm-b.pdf", self.firm_b, owner_b,
+             hashlib.sha256(b"b").hexdigest(), 1),
+        )
+        private_chunk = tenant_b.execute(
+            "INSERT INTO chunks(case_id,document_id,text,norm) VALUES(?,?,?,?)",
+            (case_b.json()["id"], private_doc.lastrowid, private_text, "firm b only passage"),
+        )
+        tenant_b.execute(
+            "INSERT INTO document_passage_annotations(document_id,case_id,firm_id,chunk_id,created_by_user_id,"
+            "start_offset,end_offset,selected_text,source_text_sha256,note,color) VALUES(?,?,?,?,?,?,?,?,?,?,?)",
+            (private_doc.lastrowid, case_b.json()["id"], self.firm_b, private_chunk.lastrowid, owner_b,
+             0, 6, "Firm B", hashlib.sha256(private_text.encode("utf-8")).hexdigest(),
+             "Firm B private annotation", "blue"),
+        )
+        tenant_b.commit()
+
         same_firm_non_admin = self.client_nonmember.get(
             f"/firm/data-export.zip?firm_id={self.firm_a}"
         )
@@ -262,6 +292,9 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
         other_cases = other_archive.read("cases.csv").decode("utf-8-sig")
         self.assertIn("Firm B confidential matter", other_cases)
         self.assertNotIn("Invoice matter", other_cases)
+        other_annotations = self._zip_csv(other_firm_export, "document_passage_annotations.csv")
+        self.assertEqual([row["selected_text"] for row in other_annotations], ["Firm B"])
+        self.assertEqual(other_annotations[0]["note"], "Firm B private annotation")
 
     def test_demo_firm_export_is_not_available(self):
         demo_firm, _ = self.runtime.provision_firm("Demo Export Firm")
