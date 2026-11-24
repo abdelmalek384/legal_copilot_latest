@@ -258,7 +258,7 @@ class FrontendUXContractTests(unittest.TestCase):
 
     def test_document_review_drafts_warn_before_case_or_tab_navigation(self):
         self.assertIn("function confirmDocumentReviewDraftLeave()", HTML)
-        self.assertIn("window.DOCUMENT_REVIEW_DRAFT_DIRTY&&Number(window.CASE_ID)!==Number(id)&&!confirmDocumentReviewDraftLeave()", HTML)
+        self.assertIn("window.DOCUMENT_REVIEW_DRAFT_DIRTY&&!confirmDocumentReviewDraftLeave()", HTML)
         self.assertIn("if(!confirmDocumentReviewDraftLeave())return;window.DOCUMENT_REVIEW_TARGET=null;TAB=group.items[0][0];again()", HTML)
         self.assertIn("if(!confirmDocumentReviewDraftLeave())return;window.DOCUMENT_REVIEW_TARGET=null;TAB=key;again()", HTML)
         self.assertIn("if(!confirmDocumentReviewDraftLeave())return;PAGE=id;window.CASE_ID=null", HTML)
