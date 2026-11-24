@@ -86,7 +86,7 @@ This folder contains free/public source discovery, metadata registers and extrac
 41. [Decision 162/2026 cross-source and approval review](decision_162_2026_extracted_structure_and_notes.md) — official Gazette issue176 metadata, separate MELES Arabic/English catalogue copies, Ministry 29 Aug/5 Sep announcements, and four secondary cross-checks. 66 articles/six parts remain secondary text only; original Gazette PDF/hash/page review and counsel review pending; Art46/Art141 reconciliation remains open.
 
 
-42. [Social/Health/Cultural Services Fund transition](labour_law_14_2025_statutory_delegation_gap_analysis.md) — maps legacy Decisions214/216/2003 repealed by Ministerial Decision16/2012; Decision310/2009 derivative; Decisions215/217/2003 still need full-text/currentness review; new PM Board/regulation under Law14 Art273 not located.
+42. [Social/Health/Cultural Services Fund transition](labour_law_14_2025_statutory_delegation_gap_analysis.md) — secondary full-text captures now cover Decisions214–217/2003. Decisions214/216 were repealed by Decision16/2012; Decision216 Articles2(1) and7 were also invalidated by SCC Case21/30; Decision217 Article2 fell; Decision215 has a preamble anomaly and unresolved currentness under Law14 Article272. The new PM Board/financial-administration decision under Law14 Article273 remains unlocated.
 43. [PM Decisions 3356/2026 and 2403/2026 implementation status](decision_3356_2026_training_qualification_fund.md) and [Fund governance notes](prime_minister_decisions_562_2025_2402_2403_2026.md) — 3356 repeals PM1543/2003 and requires separate ministerial exemption rules; 2403's 2 Nov Ministry update shows detailed operational regulations/benefit schedules were still being prepared.
 
 
