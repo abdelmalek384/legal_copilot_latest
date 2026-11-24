@@ -215,8 +215,16 @@ def source_status(source, as_of=None):
         document_type = provenance.get("document_type")
         if not isinstance(document_type, str) or not document_type.strip():
             return STATUS_REVIEW
-        if (document_type.strip().casefold() in {"secondary", "commentary", "guide", "summary"}
-                or source.get("source_type") == "secondary_copy"):
+        source_type = source.get("source_type")
+        if source_type is not None and not isinstance(source_type, str):
+            return STATUS_REVIEW
+        source_type_label = source_type.strip().casefold() if isinstance(source_type, str) else ""
+        if (
+            document_type.strip().casefold() in {"secondary", "commentary", "guide", "summary"}
+            or any(marker in source_type_label for marker in (
+                "secondary", "commentary", "guide", "summary", "transcription",
+            ))
+        ):
             return STATUS_SECONDARY
         if not isinstance(provenance.get("official_title"), str) or not provenance["official_title"].strip():
             return STATUS_REVIEW
@@ -279,7 +287,16 @@ def source_status(source, as_of=None):
     document_type = provenance.get("document_type")
     if not isinstance(document_type, str) or not document_type.strip():
         return STATUS_REVIEW
-    if document_type.strip().casefold() in {"secondary", "commentary", "guide", "summary"} or source.get("source_type") == "secondary_copy":
+    source_type = source.get("source_type")
+    if source_type is not None and not isinstance(source_type, str):
+        return STATUS_REVIEW
+    source_type_label = source_type.strip().casefold() if isinstance(source_type, str) else ""
+    if (
+        document_type.strip().casefold() in {"secondary", "commentary", "guide", "summary"}
+        or any(marker in source_type_label for marker in (
+            "secondary", "commentary", "guide", "summary", "transcription",
+        ))
+    ):
         return STATUS_SECONDARY
     if provenance.get("status") != "registry_linked":
         return STATUS_REVIEW
