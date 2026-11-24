@@ -3813,6 +3813,27 @@
         "https://raafatelshaer.com/wp-content/uploads/2018/12/ملف-كامل-بالصناديق-الخاصه-بقانون-العمل-12-لسنه-2003.pdf",
         "https://hrdiscussion.com/hrdiscussion21-28.html"
       ]
+    },
+    {
+      "source_id": "EG-LAWEG-DECISION16-2012",
+      "authority": "Laweg Egyptian legal portal; secondary reproduction of Ministerial Decision 16/2012",
+      "source_page": "https://www.laweg.net/framePlain.aspx?ItemID=76003&NID=93978&Type=6&action=ViewActivePages",
+      "material_types": [
+        "Secondary full-text reproduction of Decision 16/2012, 15 articles",
+        "Official Gazette issue metadata (issue 43, 22 February 2012)"
+      ],
+      "access_status": "Complete 15-article Arabic text is accessible on the Laweg page. The page identifies Official Gazette issue 43, dated 22 February 2012. It is a secondary legal portal, not the official Gazette binary; no original PDF bytes or SHA-256 were obtained.",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "permission_evidence": "No page-specific licence, bulk extraction permission, redistribution permission or commercial reuse permission was verified for this specific Laweg page. The full text is retained as a manual legal research capture with source attribution only.",
+      "terms_checked_on": null,
+      "bulk_download_or_api": "not established",
+      "required_next_action": "Use as a manual text and transition reference only. Compare against the original Official Gazette issue 43 page images; verify the current operation of Articles 8–9 under Law14/2025 Article273 and Article11 transition; do not bulk-ingest or redistribute without rights review.",
+      "related_source_pages": [
+        "https://lawegypt.net/وزارة-القوى-العاملة-والهجرة-قرار-رقم-16/",
+        "https://www.labour.gov.eg/ar/القوانين-والتشريعات/"
+      ]
     }
   ]
 }
