@@ -133,6 +133,8 @@ class DocumentAnnotationAPITests(unittest.TestCase):
         self.assertIn("JOIN chunks ch ON ch.id=a.chunk_id", endpoint)
         self.assertIn("a.firm_id=? AND c.firm_id=?", endpoint)
         self.assertIn('item["stale_anchor"]', endpoint)
+        self.assertIn("current_page", endpoint)
+        self.assertIn("str(current_page) != str(item[\"page_reference\"])", endpoint)
         self.assertIn('item["author_name"]', endpoint)
 
     def test_quote_is_preserved_exactly_for_unicode_source_offsets(self):
