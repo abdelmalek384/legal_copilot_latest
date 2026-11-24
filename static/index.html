@@ -3480,10 +3480,10 @@ function documentIntelligencePanel(caseId,documents){
   }finally{compareButton.disabled=false}
  };
 
- const submitChunkReview=async(item,chunk,outcome,correctedText,note,controls)=>{
+ const submitChunkReview=async(item,chunk,outcome,correctedText,note,pageReference,controls)=>{
   controls.forEach(control=>control.disabled=true);
   try{
-   const payload={outcome,page_reference:chunk.page==null?'':String(chunk.page),note:String(note||'').trim()};
+   const payload={outcome,page_reference:String(pageReference||'').trim(),note:String(note||'').trim()};
    if(outcome==='corrected'){
     const corrected=String(correctedText||'').trim();
     if(!corrected)throw new Error(uiText('أدخل النص المصحح أولاً.','Enter the corrected text first.'));
@@ -3528,11 +3528,12 @@ function documentIntelligencePanel(caseId,documents){
     remaining--;
     const reviewLabel=latest?({accepted:uiText('تمت المراجعة','Reviewed — accepted'),corrected:uiText('تم تصحيح النص','Text corrected'),needs_recheck:uiText('يتطلب إعادة الفحص','Needs recheck')}[latest.outcome]||uiText('له سجل مراجعة','Review recorded')):uiText('لم تتم المراجعة','Not yet reviewed');
     const note=h('input',{type:'text',maxLength:2000,placeholder:uiText('ملاحظة المراجع (اختيارية)','Reviewer note (optional)'),'aria-label':uiText('ملاحظة مراجعة المقطع ','Review note for chunk ')+chunk.id});
+    const pageReference=h('input',{type:'text',maxLength:100,value:latest&&latest.page_reference?String(latest.page_reference):'',placeholder:uiText('مرجع الصفحة (اختياري)','Page reference (optional)'),'aria-label':uiText('مرجع الصفحة للمقطع ','Page reference for chunk ')+chunk.id});
     const correction=h('textarea',{rows:4,maxLength:20000,placeholder:uiText('أدخل النص المصحح بعد الرجوع إلى المستند الأصلي.','Enter corrected text after checking the original document.'),'aria-label':uiText('النص المصحح للمقطع ','Corrected text for chunk ')+chunk.id,style:'display:none;width:100%'});
-    const accepted=btn(uiText('اعتماد النص','Accept text'),()=>submitChunkReview(item,chunk,'accepted','',note.value,[accepted,recheck,edit]),'g');
-    const recheck=btn(uiText('يحتاج إعادة فحص','Needs recheck'),()=>submitChunkReview(item,chunk,'needs_recheck','',note.value,[accepted,recheck,edit]),'g');
+    const accepted=btn(uiText('اعتماد النص','Accept text'),()=>submitChunkReview(item,chunk,'accepted','',note.value,pageReference.value,[accepted,recheck,edit]),'g');
+    const recheck=btn(uiText('يحتاج إعادة فحص','Needs recheck'),()=>submitChunkReview(item,chunk,'needs_recheck','',note.value,pageReference.value,[accepted,recheck,edit]),'g');
     const edit=btn(uiText('تصحيح النص','Correct text'),()=>{correction.style.display=correction.style.display==='none'?'block':'none';if(correction.style.display==='block')correction.focus()},'g');
-    const save=btn(uiText('حفظ التصحيح','Save correction'),()=>submitChunkReview(item,chunk,'corrected',correction.value,note.value,[accepted,recheck,edit,save]),'primary');
+    const save=btn(uiText('حفظ التصحيح','Save correction'),()=>submitChunkReview(item,chunk,'corrected',correction.value,note.value,pageReference.value,[accepted,recheck,edit,save]),'primary');
     save.style.display='none';
     edit.onclick=()=>{const show=correction.style.display==='none';correction.style.display=show?'block':'none';save.style.display=show?'inline-flex':'none';if(show)correction.focus()};
     cards.push(h('article',{className:'card extraction-review-card'},
@@ -3544,7 +3545,7 @@ function documentIntelligencePanel(caseId,documents){
      latest&&latest.outcome==='corrected'&&Array.isArray(latest.changes)?h('div',{className:'reviewed-change-list'},h('b',{textContent:uiText('التغييرات النصية الحرفية','Literal text changes')}),...latest.changes.map((change,index)=>h('div',{className:'reviewed-change'},h('p',{className:'mut',textContent:uiText('قبل التعديل','Before')}),h('p',{className:'extraction-review-text',textContent:String(change.before||'')}),h('p',{className:'mut',textContent:uiText('بعد التعديل','After')}),h('p',{className:'extraction-review-text',textContent:String(change.after||'')}),h('p',{className:'mut',textContent:uiText('هذا اختلاف نصي حرفي ويتطلب مراجعة قانونية.','Literal text difference; requires lawyer review.')})))):null,
      latest&&latest.comparison_warning?h('p',{className:'mut',textContent:latest.comparison_warning}):null,
      latest&&latest.note?h('p',{className:'mut',textContent:uiText('آخر ملاحظة: ','Latest note: ')+latest.note}):null,
-     note,correction,h('div',{className:'row'},accepted,recheck,edit,save)
+     note,pageReference,correction,h('div',{className:'row'},accepted,recheck,edit,save)
     ));
    }
    if(remaining<=0)break;
