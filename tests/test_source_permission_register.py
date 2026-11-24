@@ -519,6 +519,21 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         self.assertEqual(decision_3561["terms_checked_on"], "2026-11-24")
         self.assertEqual(MODULE.validate(data), [])
 
+    def test_legacy_labour_decision_sources_keep_official_and_secondary_rights_distinct(self):
+        import json
+        data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        by_id = {item["source_id"]: item for item in data["sources"]}
+        for source_id in ("EG-LABOUR-MINISTRY-DECISION215-2003", "EG-LABOUR-MINISTRY-DECISION217-2003"):
+            source = by_id[source_id]
+            self.assertEqual(source["collection_permission"], "unknown")
+            self.assertEqual(source["commercial_reuse_permission"], "unknown")
+            self.assertIn("labour.gov.eg/media/", source["source_page"])
+        secondary = by_id["EG-RAAFATELSHAER-LEGACY-LABOUR-FUNDS-PDF-2018"]
+        self.assertEqual(secondary["collection_permission"], "unknown")
+        self.assertEqual(secondary["commercial_reuse_permission"], "unknown")
+        self.assertIn("Decision 217/2003", secondary["material_types"][0])
+        self.assertEqual(MODULE.validate(data), [])
+
     def test_related_source_pages_are_validated_as_clean_https_locators(self):
         import json
         data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
