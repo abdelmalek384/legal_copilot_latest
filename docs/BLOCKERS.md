@@ -571,3 +571,12 @@ The owner has explicitly requested a non-production firm-test implementation. Th
 - The 4 limited-permission records are not promoted to unrestricted permissions. No legal content or source rights were upgraded. This is a static inventory count only; the existing validator and regression suite were not executed in this environment.
 - Dependency PRs remain deferred until the hash-locked Python 3.12 requirements file can be regenerated and a clean install/test/audit can run. Do not merge based on version-only edits.
 - Next available in-repository work: document actionable, non-CI release checks and maintain accurate owner/evidence status; avoid retrying blocked GitHub Actions or the closed AI-2 draft PRs.
+
+
+## AI-2 source-permission URL delimiter hardening — 2026-11-24
+
+- Found a fail-closed URL-validation edge case: Python's URL parser represents a literal trailing `#` as an empty fragment, so checking only `parsed.fragment` allowed an ambiguous empty fragment delimiter.
+- Updated `tools/validate_source_permission_register.py` to reject any literal fragment delimiter, including empty fragments, while retaining the existing HTTPS/credential/port/query checks.
+- Added focused regression coverage for trailing `#`, empty `#page=`, and combined empty user-info/fragment input. Registered the new test in `.github/workflows/tests.yml` and `scripts/security_regression_check.sh`.
+- This is a narrow source-rights metadata validator change. It does not change any source permission, trust label, legal text, or retrieval behavior.
+- Static review only: Python tests and the security matrix were not executed because no authorized local Python 3.12 runtime is available and Actions billing is unavailable. No test pass is claimed.
