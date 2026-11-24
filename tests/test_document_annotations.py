@@ -194,6 +194,7 @@ class DocumentAnnotationAPIRuntimeTests(InvoiceTestSupport, unittest.TestCase):
         )
         self.assertEqual(chunk_response.status_code, 200, chunk_response.text)
         chunk = chunk_response.json()["chunks"][0]
+        page_reference = str(chunk.get("page") or "")
         quote = "source passage"
         start = chunk["text"].index(quote)
         payload = {
@@ -203,7 +204,7 @@ class DocumentAnnotationAPIRuntimeTests(InvoiceTestSupport, unittest.TestCase):
             "end_offset": start + len(quote),
             "quoted_text": quote,
             "body": "Verify this passage against the uploaded original.",
-            "page_reference": "1",
+            "page_reference": page_reference,
             "text_sha256": chunk["text_sha256"],
         }
         created = self.mutate(
@@ -282,7 +283,7 @@ class DocumentAnnotationAPIRuntimeTests(InvoiceTestSupport, unittest.TestCase):
                 "outcome": "corrected",
                 "corrected_text": corrected_text,
                 "expected_text_sha256": chunk["text_sha256"],
-                "page_reference": "1",
+                "page_reference": page_reference,
                 "note": "Synthetic correction to test stale annotation handling.",
             },
         )
