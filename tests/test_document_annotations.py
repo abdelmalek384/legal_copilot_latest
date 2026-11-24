@@ -206,14 +206,35 @@ class DocumentAnnotationAPIRuntimeTests(InvoiceTestSupport, unittest.TestCase):
             json=payload,
         )
         self.assertEqual(created.status_code, 201, created.text)
+        highlight_quote = "synthetic annotation"
+        highlight_start = chunk["text"].index(highlight_quote)
+        highlight_payload = {
+            **payload,
+            "annotation_type": "highlight",
+            "start_offset": highlight_start,
+            "end_offset": highlight_start + len(highlight_quote),
+            "quoted_text": highlight_quote,
+            "body": "",
+        }
+        highlighted = self.mutate(
+            self.client_a, "post",
+            f"/cases/{self.case_id}/docs/{document_id}/annotations",
+            json=highlight_payload,
+        )
+        self.assertEqual(highlighted.status_code, 201, highlighted.text)
 
         listed = self.mutate(
             self.client_a, "get",
             f"/cases/{self.case_id}/docs/{document_id}/annotations",
         )
         self.assertEqual(listed.status_code, 200, listed.text)
-        self.assertEqual(len(listed.json()["annotations"]), 1)
-        self.assertFalse(listed.json()["annotations"][0]["stale_anchor"])
+        self.assertEqual(len(listed.json()["annotations"]), 2)
+        self.assertEqual(
+            {item["annotation_type"] for item in listed.json()["annotations"]},
+            {"note", "highlight"},
+        )
+        self.assertTrue(all(not item["stale_anchor"] for item in listed.json()["annotations"]))
+        self.assertIn("Invoice Owner A", {item["author_name"] for item in listed.json()["annotations"]})
 
         second_case = self.mutate(
             self.client_a, "post", "/cases",
@@ -265,7 +286,7 @@ class DocumentAnnotationAPIRuntimeTests(InvoiceTestSupport, unittest.TestCase):
             f"/cases/{self.case_id}/docs/{document_id}/annotations",
         )
         self.assertEqual(stale.status_code, 200, stale.text)
-        self.assertTrue(stale.json()["annotations"][0]["stale_anchor"])
+        self.assertTrue(all(item["stale_anchor"] for item in stale.json()["annotations"]))
 
         old_anchor_write = self.mutate(
             self.client_a, "post",
