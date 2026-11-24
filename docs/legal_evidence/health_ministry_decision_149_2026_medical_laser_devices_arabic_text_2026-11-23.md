@@ -143,3 +143,10 @@
 2. المصدر، خبر يعرض المواد 1–3: https://www.almasdar.com/171000
 3. نشرة الذاكرة القانونية، فهرسة القرار 149/2026 وتاريخ نشره: https://www.mksegypt.org/public/index.php/ar/nashras/44
 4. هيئة الدواء المصرية، الأدلة التنظيمية للمستلزمات الطبية: https://edaegypt.gov.eg/ar/المرجع-التنظيمي-لهيئة-الدواء-المصرية/الأدلة-التنظيمية/الأدلة-الخاصة-بالإدارة-المركزية-للمستلزمات-الطبية/
+
+## Explicit machine trust flags
+
+- `lawyer_reviewed: false`
+- `verified: false`
+- `rights_cleared: false`
+- This acquisition is research-only. Preserve the instrument-specific source and completeness caveats above; do not treat it as a verified/current consolidated legal text or use it for production legal answers until primary-source comparison, reuse-rights review and qualified Egyptian lawyer approval are complete.
