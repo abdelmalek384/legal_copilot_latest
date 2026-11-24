@@ -1259,6 +1259,13 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(ocr_uploaded.status_code, 200, ocr_uploaded.text)
         self.assertTrue(ocr_uploaded.json()["ocr_used"])
         ocr_engine.assert_called_once()
+        original_pdf = self.client.get(
+            f"/cases/{case_id}/docs/{ocr_uploaded.json()['document_id']}/original"
+        )
+        self.assertEqual(original_pdf.status_code, 200, original_pdf.text)
+        self.assertEqual(original_pdf.content, blank_pdf.getvalue())
+        self.assertEqual(original_pdf.headers["content-type"], "application/pdf")
+        self.assertEqual(original_pdf.headers["x-content-type-options"], "nosniff")
 
         context = self.runtime.resolve_context(self.user_id, self.firm_a)
         firm_db = self.runtime.firm_connection(context)
