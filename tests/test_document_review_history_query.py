@@ -11,7 +11,7 @@ APP_SOURCE = (ROOT / "app.py").read_text(encoding="utf-8")
 class DocumentReviewHistoryQueryTests(unittest.TestCase):
     def test_chunk_endpoint_fetches_only_latest_review_per_chunk(self):
         start = APP_SOURCE.index("def list_document_chunks(")
-        end = APP_SOURCE.index("@app.post(\"/cases/{cid}/docs/{document_id}/chunks/{chunk_id}/review\")", start)
+        end = APP_SOURCE.index("def review_document_chunk(", start)
         endpoint = APP_SOURCE[start:end]
         self.assertIn("MAX(id) AS latest_id", endpoint)
         self.assertIn("GROUP BY chunk_id", endpoint)
