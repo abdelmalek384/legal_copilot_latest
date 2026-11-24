@@ -1769,3 +1769,9 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - These tests are committed but **not executed**. The inventory is still metadata-only and makes no legal corpus, authenticity, permission, currentness, or lawyer-review certification.
 
 - Final wording correction: the clean Markdown inventory now explicitly says it found no missing, malformed, or duplicate identifiers, rather than referring only to missing identifiers. Commit: `bc6b2b69351188afaa56e0a7959b3a039a8e1215`.
+## AI-2 private original-download response-header regression — 2026-11-25
+
+- Extended the separate-runtime original-file download integration test to assert `Pragma: no-cache`, `Expires: 0`, `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`, and `Referrer-Policy: no-referrer` on successful binary responses, in addition to the existing `Cache-Control: no-store` assertion.
+- Added error-path assertions proving that when mandatory download-audit persistence fails and the endpoint returns 503, the error response remains non-cacheable and retains `nosniff`.
+- Static read-back confirms all eight added header assertions are present. The test module was not executed; this is source-level regression coverage, not runtime acceptance.
+- **Bounded implementation task: 100%. Runtime validation: 0%.** No application behavior changed.
