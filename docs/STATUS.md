@@ -1574,3 +1574,12 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Source permission register static count: **199 sources**; **199/199** have unique non-empty IDs. Collection permission: **186 unknown (93.5%)**, **9 explicitly not allowed absent exception/license (4.5%)**, **4 limited (2.0%)**. Commercial reuse: **185 unknown (93.0%)**, **7 require prior written permission per published terms (3.5%)**, **3 not allowed absent exception/license (1.5%)**, **4 limited (2.0%)**. These percentages are status distribution only, not source availability or clearance.
 - No permission values, legal-review labels, or trust flags were upgraded. Validator/test execution remains unverified because no runtime was available and Actions billing remains blocked.
 - Release readiness remains **NOT READY**. The practical next gate is an authorized local Python 3.12 environment to run locked install, security checks, targeted/full tests, and browser acceptance; real lawyer review and pilot-user acceptance remain separate external gates.
+
+### 2026-11-24 follow-up — National Food Safety Authority legal framework
+
+- Added the full 19-article Arabic text acquisition record for Law 1/2017, based on an Official Gazette reproduction hosted by FAOLEX and corroborated by the Amiri Press searchable-text record.
+- Added the complete 30-article Executive Regulation under Prime Minister Decision 412/2019 from the Official Gazette PDF hosted by the Egyptian Customs Authority; the official Cabinet announcement independently confirms the regulation's eight chapters and 30 articles.
+- Added national research-index sections 55–56 and linked both evidence records.
+- Substantive retrieval crosswalk now connects NFSA licensing, food-trading controls, import/export inspection, rejected-food powers, grievances and enforcement with the September 2026 EEAA rejected-consignment operational report and the waste-law instrument chain.
+- These are primary-text acquisition records, not consolidated current law. Gazette page-image QA, later amendments/Board technical rules, qualified lawyer review and commercial reuse clearance remain outstanding. No record was promoted to `verified`.
+- No Python suite, importer or browser test was run; GitHub Actions billing remains unavailable. These changes were committed directly to `main`; no PR or CI pass is claimed.
