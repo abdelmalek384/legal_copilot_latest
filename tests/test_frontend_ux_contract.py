@@ -14,6 +14,13 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("ابحث في القانون المصري بمساعدة ذكية مدعومة بالمصادر", HTML)
         self.assertNotIn("Research UK law with source-backed AI assistance.", HTML)
 
+    def test_lawyer_verified_badge_requires_verified_status_and_counsel_attestation(self):
+        answer_sources = HTML[HTML.index("for(const [i,s] of m.sources.entries())"):HTML.index("const suggestCorrection=")]
+        self.assertIn("status==='verified_operative_text'&&(Array.isArray(s.provenance?.review_evidence)", answer_sources)
+        self.assertIn("e.notes.includes('[qualified_egyptian_counsel_attested:user_id=')", answer_sources)
+        self.assertIn("if(s.trust_tier==='source_matched'||s.trust_tier==='unreviewed')", answer_sources)
+        self.assertNotIn("if(s.trust_tier||recordedLawyerApproval)", answer_sources)
+
     def test_source_inspector_uses_precise_verified_operative_label(self):
         inspector = HTML[HTML.index("const inspectSource="):HTML.index("const suggestCorrection=")]
         self.assertIn("verified_operative_text:LANG==='ar'?'نص ساري متحقق منه':'Verified operative text'", inspector)
