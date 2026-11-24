@@ -77,6 +77,29 @@ class PassageAnnotationMigrationTests(unittest.TestCase):
         ).fetchone()[0]
         self.assertEqual(remaining, 0)
 
+    def test_active_annotations_cannot_overlap_but_soft_deleted_ranges_can_be_reused(self):
+        first = self.insert_annotation()
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "overlaps an active"):
+            self.db.execute(
+                """INSERT INTO document_passage_annotations(
+                    document_id,case_id,firm_id,chunk_id,created_by_user_id,start_offset,end_offset,
+                    selected_text,source_text_sha256,note,color
+                ) VALUES(100,10,7,1000,55,4,12,'ginal evi',?,'overlap','blue')""",
+                (hashlib.sha256(b"Original evidence passage").hexdigest(),),
+            )
+        self.db.execute(
+            "UPDATE document_passage_annotations SET deleted_at=datetime('now'),deleted_by_user_id=55 WHERE id=?",
+            (first,),
+        )
+        reused = self.db.execute(
+            """INSERT INTO document_passage_annotations(
+                document_id,case_id,firm_id,chunk_id,created_by_user_id,start_offset,end_offset,
+                selected_text,source_text_sha256,note,color
+            ) VALUES(100,10,7,1000,55,4,12,'ginal evi',?,'replacement','blue')""",
+            (hashlib.sha256(b"Original evidence passage").hexdigest(),),
+        )
+        self.assertGreater(reused.lastrowid, first)
+
     def test_original_chunk_text_is_not_mutated_by_annotation_storage(self):
         self.insert_annotation()
         original = self.db.execute("SELECT text FROM chunks WHERE id=1000").fetchone()[0]
@@ -95,6 +118,8 @@ class PassageAnnotationApiContractTests(unittest.TestCase):
             "hashlib.sha256(source_text.encode(\"utf-8\")).hexdigest()",
             "b.source_text_sha256 != actual_digest",
             "source_text[b.start_offset:b.end_offset] != b.selected_text",
+            "start_offset < ? AND end_offset > ?",
+            "overlaps an active passage annotation",
             "document_passage_annotation_created",
         ):
             self.assertIn(required, route)
