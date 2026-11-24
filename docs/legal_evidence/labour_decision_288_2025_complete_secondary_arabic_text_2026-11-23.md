@@ -133,3 +133,10 @@ The text below is copied from the secondary HTML transcription. The Amiria Press
 - Collection and commercial reuse permission: pending.
 - Lawyer review/currentness: pending.
 - Production ingestion as verified law: prohibited until source and legal review gates pass; keep `verified=0`.
+
+## Explicit machine trust flags
+
+- `lawyer_reviewed: false`
+- `verified: false`
+- `rights_cleared: false`
+- This capture is research material only. It must not be treated as a lawyer-approved operative text or imported into production legal answering until the stated primary-source comparison, rights review and qualified Egyptian lawyer review are completed.
