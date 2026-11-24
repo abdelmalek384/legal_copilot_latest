@@ -126,6 +126,11 @@ def read_coverage_matrix(path: Path) -> list[dict[str, str]]:
     return rows
 
 
+def duplicate_ids(values: list[Any]) -> list[str]:
+    normalized = [value.strip() for value in values if isinstance(value, str) and value.strip()]
+    return sorted(value for value, count in Counter(normalized).items() if count > 1)
+
+
 def counts(values: list[Any]) -> dict[str, int]:
     return dict(sorted(Counter(str(v or "unknown") for v in values).items()))
 
@@ -168,6 +173,17 @@ def build_report(paths: dict[str, Path]) -> dict[str, Any]:
         if isinstance(doc_id, str)
     }
     issues: list[dict[str, Any]] = []
+    for label, duplicates in (
+        ("duplicate_manifest_source_ids", duplicate_ids([s.get("id") for s in manifest_sources])),
+        ("duplicate_permission_source_ids", duplicate_ids([s.get("source_id") for s in permission_sources])),
+        ("duplicate_candidate_source_ids", duplicate_ids([s.get("source_id") for s in candidate_sources])),
+        ("duplicate_candidate_document_ids", duplicate_ids([d.get("document_id") for d in documents])),
+        ("duplicate_evidence_source_ids", duplicate_ids([s.get("source_id") for s in evidence_sources])),
+        ("duplicate_acquisition_queue_item_ids", duplicate_ids([item.get("queue_item_id") for item in queue_items])),
+    ):
+        if duplicates:
+            issues.append({"code": label, "count": len(duplicates), "ids": duplicates})
+
     for label, ids in (
         ("candidate_sources_missing_permission_register", candidate_source_ids - permission_ids),
         ("manifest_source_hosts_missing_permission_register", manifest_source_hosts - permission_source_hosts),
