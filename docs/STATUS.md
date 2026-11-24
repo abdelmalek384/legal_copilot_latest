@@ -1473,3 +1473,20 @@ The main research index now extends through items 27–41; the Labour harvest in
 - **#1906:** mobile navigation work is superseded by the already-merged #1907 correction; do not duplicate.
 - **#1837:** Law 14/2025 Gazette comparison remains a quantitative/provisional exercise, not lawyer verification. Do not change trust flags or import the comparison as operative law.
 - Other recent closed unmerged PRs were inspected for standalone legal-evidence artifacts. Their recoverable documents were copied selectively; unrelated app/UI/tests and duplicate files were left untouched.
+
+
+### Open GitHub issue acceptance map — reviewed 24 November
+
+These are open because they require external acceptance evidence, not because their core implementation is absent. I am not retrying the blocked work in this session.
+
+| Issue | Implementation | External acceptance | Why it remains open |
+|---|---:|---:|---|
+| #95 Research Results / Source Inspector | 100% | 0% | Exact-build manual bilingual/accessibility acceptance and lawyer usability study |
+| #474 Deadline reminders | 100% | 0% | Real SMTP provider, staging two-firm runtime, service-manager deployment and outage rehearsal |
+| #93 Corpus Coverage / Provenance dashboard | 100% | 0% | Exact-build manual accessibility review and real source/counsel evidence |
+| #473 MFA and self-service recovery | 100% | 0% | Deployment secret provisioning, two-admin recovery rehearsal and independent security review |
+| #475 Source-to-release legal gate | 100% governance implementation | 0% source/legal release | Lawful source bytes, source-specific reuse rights, qualified counsel review and approved benchmark |
+| #886 S3/KMS/IAM purge and recovery | 100% code implementation | 0% live AWS acceptance | Real account/bucket/KMS/IAM configuration, independent no-writer test and witnessed restore/purge drill |
+| #1903 Source-match evidence persistence | 0% integration | 0% | Shared-corpus/DB adapter ownership and source permission prerequisites; keep fail-closed and do not enable |
+
+Percentages are scoped to the described implementation or acceptance phase. They do not mean the overall product or legal corpus is ready. Do not close these issues until their listed evidence is attached.
