@@ -3756,7 +3756,7 @@ window.addEventListener('beforeunload',event=>{
  event.preventDefault();
  event.returnValue='';
 });
-async function view(id){if(window.DOCUMENT_REVIEW_DRAFT_DIRTY&&Number(window.CASE_ID)!==Number(id)&&!confirmDocumentReviewDraftLeave())return;if(window.DOCUMENT_REVIEW_TARGET&&Number(window.DOCUMENT_REVIEW_TARGET.caseId)!==Number(id))window.DOCUMENT_REVIEW_TARGET=null;window.CASE_ID=id;const c=await api('/cases/'+id),us=await api('/users'),again=()=>view(id);
+async function view(id){if(window.DOCUMENT_REVIEW_DRAFT_DIRTY&&!confirmDocumentReviewDraftLeave())return;if(window.DOCUMENT_REVIEW_TARGET&&Number(window.DOCUMENT_REVIEW_TARGET.caseId)!==Number(id))window.DOCUMENT_REVIEW_TARGET=null;window.CASE_ID=id;const c=await api('/cases/'+id),us=await api('/users'),again=()=>view(id);
  const lead=ME.role==='admin'||c.members.some(m=>m.role==='lead'&&m.user_id===ME.id),dn=c.tasks.filter(t=>t.status==='done').length,tot=c.tasks.length;
  if(!lead&&['fees','invoices'].includes(TAB))TAB='sum';
  const tabGroups=[
