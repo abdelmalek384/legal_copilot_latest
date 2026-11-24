@@ -1702,3 +1702,11 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Added evidence notes, index sections 62–63, register IDs EG-0538/EG-0539, inventory IDs FT-0213/FT-0214 and classification rows.
 - Decision 269's exact Gazette issue/publication page is not independently verified; Decision 270's official Gazette publication is 5 September 2024, with signed decision date 11 August 2024 and commencement the following day.
 - Current operational sampling rates, later amendments and NFSA circulars remain to be audited. No lawyer review, rights clearance or verified label was granted.
+
+### 2026-11-24 follow-up — NFSA temporary release and foreign-authority recognition
+
+- Acquired full Arabic Decision 9/2021 (nine articles) and Decision 10/2021 (12 articles plus integral Annex 1) from the Gazette issue285 supplement (A), 19 December 2021, reproduced in a single Ahram Gate-hosted issue PDF.
+- Added evidence notes, index sections 64–65, register IDs EG-0540/EG-0541, full-text records FT-0215/FT-0216 and classification rows.
+- Decision 9/2021 adds the detailed legal basis for temporary release, storage/custody, sampling, re-export/destruction and importer-licence enforcement; Article9's delayed Article3(c) commencement and possible Board renewals remain to be checked.
+- Decision 10/2021 supplies the recognition/equivalence framework and integral exporting-authority evaluation criteria. Country/product-specific memoranda and current recognition lists remain unacquired.
+- Updated the Decision 270/2024 crosswalk to reflect that Decisions 9/2021 and 10/2021 now have separate evidence records. Neither new record is lawyer-reviewed, currentness-certified, rights-cleared or verified.
