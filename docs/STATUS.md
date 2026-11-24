@@ -1744,6 +1744,7 @@ Percentages are scoped to the described implementation or acceptance phase. They
 | Persistent annotation schema/API | 0% | **90% authored** | **+90 pp** | Create/list, firm/case/document/chunk binding, source digest and compare-and-swap committed; annotation editing/deletion and threaded replies are not included; migration/runtime/API tests not run |
 | Bilingual annotation interaction | 0% | **85% authored** | **+85 pp** | Text selection capture, code-point offsets, note/highlight save and stale-anchor UI committed; edit/reply controls and browser/keyboard/RTL acceptance remain |
 | Export, ownership preflight and route inventory | 0% | **100% authored** | **+100 pp** | Export tables, preflight checks and route inventory tests committed; tests not run |
-| Arabic/Unicode search excerpt mapping | 0% | **100% authored** | **+100 pp** | Original-text offset mapping and safe NFKC fallback committed; stress integration fixture not executed |\n| Annotation end-to-end acceptance | 0% | **0%** | **0 pp** | Requires Python 3.12 runtime, migration execution, authenticated API tests and browser validation |
+| Arabic/Unicode search excerpt mapping | 0% | **100% authored** | **+100 pp** | Original-text offset mapping and safe NFKC fallback committed; stress integration fixture not executed |
+| Annotation end-to-end acceptance | 0% | **0%** | **0 pp** | Requires Python 3.12 runtime, migration execution, authenticated API tests and browser validation |
 
 **Validation boundary:** GitHub file/commit operations and static source inspection succeeded. No application test, migration execution, endpoint request, or browser interaction was run. No test pass or pilot-readiness increase is claimed. Annotation implementation is authored, not yet runtime-verified.
