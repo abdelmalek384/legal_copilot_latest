@@ -3439,12 +3439,12 @@ function documentIntelligencePanel(caseId,documents){
    for(const chunk of item.chunks){
     if(normalize(chunk.text).includes(needle)){
      hits.push({doc:item.doc,chunk});
-     if(hits.length>=50){truncated=true;break}
+     if(hits.length>50){truncated=true;break}
     }
    }
    if(truncated)break;
   }
-  searchResults.replaceChildren(...hits.map((hit,index)=>h('article',{className:'card'},h('b',{textContent:(index+1)+'. '+hit.doc.name}),h('p',{className:'mut',textContent:[hit.chunk.ref,hit.chunk.page?uiText('صفحة ','Page ')+hit.chunk.page:uiText('رقم الصفحة غير مسجل','Page not recorded')].filter(Boolean).join(' · ')}),h('p',{textContent:String(hit.chunk.text||'').slice(0,420)}))));
+  searchResults.replaceChildren(...hits.slice(0,50).map((hit,index)=>h('article',{className:'card'},h('b',{textContent:(index+1)+'. '+hit.doc.name}),h('p',{className:'mut',textContent:[hit.chunk.ref,hit.chunk.page?uiText('صفحة ','Page ')+hit.chunk.page:uiText('رقم الصفحة غير مسجل','Page not recorded')].filter(Boolean).join(' · ')}),h('p',{textContent:String(hit.chunk.text||'').slice(0,420)}))));
   if(truncated)searchResults.append(h('p',{className:'notice',role:'note',textContent:uiText('تم عرض أول 50 نتيجة فقط؛ قد توجد مطابقات إضافية في المستندات المحملة.','Only the first 50 matches are shown; additional matches may exist in the loaded documents.')}));
   status.textContent=hits.length?uiText('نتائج البحث: ','Search results: ')+hits.length+(truncated?uiText(' (تم بلوغ حد العرض)',' (display limit reached)'):''):uiText('لا توجد مطابقات في النصوص المحملة.','No matches in the loaded extracted text.');
  };
