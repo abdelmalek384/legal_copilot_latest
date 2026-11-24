@@ -9316,14 +9316,14 @@ def list_document_annotations(cid: int, document_id: int, u: dict = Depends(user
     author_ids = sorted({int(row["author_user_id"]) for row in rows})
     author_names = {}
     if author_ids:
-        placeholders = ",".join("?" for _ in author_ids)
-        author_names = {
-            int(row["id"]): row["name"]
-            for row in control_conn().execute(
-                f"SELECT id,name FROM users WHERE id IN ({placeholders})",
-                author_ids,
-            ).fetchall()
-        }
+        identity_db = control_conn()
+        for author_id in author_ids:
+            author = identity_db.execute(
+                "SELECT id,name FROM users WHERE id=?",
+                (author_id,),
+            ).fetchone()
+            if author:
+                author_names[int(author["id"])] = author["name"]
     annotations = []
     for row in rows:
         item = dict(row)
