@@ -3453,13 +3453,35 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             "/login", json={"email": "OWNER@example.test", "password": self.password}
         )
         self.assertEqual(login.status_code, 200, login.text)
-        case_a = self._mutate("post", "/cases", json={"title": "Annotation source matter"})
-        case_b = self._mutate("post", "/cases", json={"title": "Unrelated annotation matter"})
+        client_profile = self._mutate(
+            "post", "/clients", json={"name": "Synthetic Annotation Client"}
+        )
+        self.assertEqual(client_profile.status_code, 200, client_profile.text)
+        client_id = client_profile.json()["id"]
+        other_client_profile = self._mutate(
+            "post", "/clients", json={"name": "Unrelated Synthetic Client"}
+        )
+        self.assertEqual(other_client_profile.status_code, 200, other_client_profile.text)
+        case_a = self._mutate(
+            "post", "/cases",
+            json={"title": "Annotation source matter", "client_id": client_id},
+        )
+        case_b = self._mutate(
+            "post", "/cases",
+            json={"title": "Second matter for same client", "client_id": client_id},
+        )
+        case_c = self._mutate(
+            "post", "/cases",
+            json={"title": "Different client's matter", "client_id": other_client_profile.json()["id"]},
+        )
         self.assertEqual(case_a.status_code, 200, case_a.text)
         self.assertEqual(case_b.status_code, 200, case_b.text)
-        case_id, other_case_id = case_a.json()["id"], case_b.json()["id"]
+        self.assertEqual(case_c.status_code, 200, case_c.text)
+        case_id, other_case_id, unrelated_case_id = (
+            case_a.json()["id"], case_b.json()["id"], case_c.json()["id"]
+        )
 
-        original_text = "مقدمة عربية 🧑‍⚖️ ORIGINAL-PASSAGE-SENTINEL This is immutable extracted evidence."
+        original_text = "مقدمة عربية 🧑‍⚖️ ORIGINAL-PASSAGE-SENTINEL CLIENT-WIDE-SEARCH-SENTINEL This is immutable extracted evidence."
         source = Document()
         source.add_paragraph(original_text)
         buffer = io.BytesIO()
@@ -3473,6 +3495,17 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             )
         self.assertEqual(uploaded.status_code, 200, uploaded.text)
         document_id = uploaded.json()["document_id"]
+        second_document = self._mutate(
+            "post", f"/cases/{other_case_id}/docs",
+            json={"name": "same-client-second-matter.txt", "text": "CLIENT-WIDE-SEARCH-SENTINEL Second matter source text."},
+        )
+        unrelated_document = self._mutate(
+            "post", f"/cases/{unrelated_case_id}/docs",
+            json={"name": "other-client-private.txt", "text": "OTHER-CLIENT-SECRET-SENTINEL Private unrelated client source."},
+        )
+        self.assertEqual(second_document.status_code, 200, second_document.text)
+        self.assertEqual(unrelated_document.status_code, 200, unrelated_document.text)
+        second_document_id = second_document.json()["document_id"]
 
         tenant = self.runtime.firm_connection(self.runtime.resolve_context(self.user_id, self.firm_a))
         chunk = tenant.execute(
@@ -3540,6 +3573,42 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         )
         self.assertEqual(listed.status_code, 200, listed.text)
         self.assertEqual([row["id"] for row in listed.json()["items"]], [annotation_id])
+
+        # Client-wide extracted-text search spans both linked matters but does
+        # not cross the client boundary.
+        client_search = self.client.get(
+            f"/documents/search-text?q=CLIENT-WIDE-SEARCH-SENTINEL&client_id={client_id}"
+        )
+        self.assertEqual(client_search.status_code, 200, client_search.text)
+        self.assertEqual(client_search.json()["total"], 2, client_search.text)
+        self.assertEqual(
+            {item["case_id"] for item in client_search.json()["items"]},
+            {case_id, other_case_id},
+        )
+        other_client_search = self.client.get(
+            f"/documents/search-text?q=OTHER-CLIENT-SECRET-SENTINEL&client_id={client_id}"
+        )
+        self.assertEqual(other_client_search.status_code, 200, other_client_search.text)
+        self.assertEqual(other_client_search.json()["total"], 0, other_client_search.text)
+
+        # Opening the other matter and its review history must not discard
+        # the first matter's saved passage work.
+        second_chunks = self.client.get(
+            f"/cases/{other_case_id}/docs/{second_document_id}/chunks"
+        )
+        self.assertEqual(second_chunks.status_code, 200, second_chunks.text)
+        second_history = self.client.get(
+            f"/cases/{other_case_id}/docs/{second_document_id}/reviews"
+        )
+        self.assertEqual(second_history.status_code, 200, second_history.text)
+        returned_to_first = self.client.get(
+            f"/cases/{case_id}/docs/{document_id}/chunks/{chunk_id}/annotations"
+        )
+        self.assertEqual(returned_to_first.status_code, 200, returned_to_first.text)
+        self.assertEqual(
+            [row["id"] for row in returned_to_first.json()["items"]], [annotation_id]
+        )
+
         chunk_response = self.client.get(f"/cases/{case_id}/docs/{document_id}/chunks")
         self.assertEqual(chunk_response.status_code, 200, chunk_response.text)
         self.assertEqual(chunk_response.json()["chunks"][0]["annotations"][0]["id"], annotation_id)
@@ -3577,6 +3646,11 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             )
             self.assertEqual(outsider_firm.status_code, 200, outsider_firm.text)
             outsider_headers = {"X-CSRF-Token": outsider.cookies.get("lc_csrf") or ""}
+            outsider_search = outsider.get(
+                f"/documents/search-text?q=CLIENT-WIDE-SEARCH-SENTINEL&client_id={client_id}"
+            )
+            self.assertEqual(outsider_search.status_code, 200, outsider_search.text)
+            self.assertEqual(outsider_search.json()["total"], 0, outsider_search.text)
             denied = outsider.get(
                 f"/cases/{case_id}/docs/{document_id}/chunks/{chunk_id}/annotations"
             )
