@@ -7,6 +7,28 @@ on:
     branches: [main, 'pilot/**']
 
 jobs:
+  ai1-source-trust-focused:
+    runs-on: ubuntu-latest
+    env:
+      COPILOT_ENV: development
+      # Synthetic fixtures use a test-only reviewer identity; no real lawyer approval is implied.
+      LEGAL_QUALIFIED_EGYPTIAN_COUNSEL_USER_IDS: "42"
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Install hash-locked dependencies
+        run: python -m pip install --require-hashes -r requirements-py312.lock
+      - name: Test conservative document intelligence helpers
+        run: PYTHONPATH=. python tests/test_document_intelligence.py
+      - name: Test research inspector status and evidence helpers
+        run: PYTHONPATH=. python tests/test_research_inspector.py
+      - name: Test firm-test source-matched answer tier
+        run: PYTHONPATH=. python tests/test_firm_test_source_matched_mode.py
+
   test:
     runs-on: ubuntu-latest
     env:

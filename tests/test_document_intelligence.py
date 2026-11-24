@@ -41,6 +41,21 @@ class DocumentIntelligenceTests(unittest.TestCase):
         self.assertTrue(result["candidates"])
         self.assertTrue(all(item["page"] is None for item in result["candidates"]))
 
+    def test_invalid_candidate_limits_fail_closed(self):
+        for value in (True, 0, -1, "10", 1001, None):
+            with self.subTest(max_candidates=value):
+                with self.assertRaises(ValueError):
+                    extract_review_candidates("text", max_candidates=value)
+
+    def test_candidate_limit_retains_early_occurrences_and_marks_truncation(self):
+        result = extract_review_candidates("01/01/2025 " * 30, max_candidates=5)
+        self.assertEqual(result["candidate_count"], 5)
+        self.assertTrue(result["truncated"])
+        self.assertEqual([item["start"] for item in result["candidates"]],
+                         sorted(item["start"] for item in result["candidates"]))
+        self.assertTrue(all(item["kind"] == "date" and item["value"] == "01/01/2025"
+                          for item in result["candidates"]))
+
     def test_text_size_is_bounded(self):
         with self.assertRaises(ValueError):
             extract_review_candidates("x" * 1_000_001)
@@ -94,6 +109,20 @@ class DocumentIntelligenceTests(unittest.TestCase):
         self.assertEqual(event["date_mentions"], [date_evidence["mention"]])
         self.assertEqual(event["party_mentions"], [party_evidence["mention"]])
 
+    def test_structured_candidates_bound_sentence_scan_and_report_truncation(self):
+        text = "جلسة بتاريخ 01/01/2025. " * 8
+        result = extract_structured_candidates(text, max_sentences=3)
+        self.assertEqual(result["sentences_inspected"], 3)
+        self.assertLessEqual(len(result["events"]), 3)
+        self.assertTrue(result["truncated"])
+        self.assertTrue(any("max_sentences" in item for item in result["limitations"]))
+
+    def test_structured_candidates_reject_invalid_sentence_limits(self):
+        for value in (0, -1, True, "10", 50001):
+            with self.subTest(max_sentences=value):
+                with self.assertRaises(ValueError):
+                    extract_structured_candidates("جلسة.", max_sentences=value)
+
     def test_structured_candidates_link_english_event_date_and_relation(self):
         text = (
             "[[PDF_PAGE:7]]\n"
@@ -141,6 +170,16 @@ class DocumentIntelligenceTests(unittest.TestCase):
         self.assertLessEqual(len(result["events"]), 3)
         self.assertLessEqual(len(result["relationships"]), 3)
 
+    def test_review_candidate_extraction_rejects_excessive_page_markers(self):
+        text = "[[PDF_PAGE:1]]" * 20001 + " القضية رقم ١٢٣/٢٠٢٥"
+        with self.assertRaisesRegex(ValueError, "page markers"):
+            extract_review_candidates(text)
+
+    def test_structured_extraction_rejects_excessive_page_markers(self):
+        text = "[[PDF_PAGE:1]]" * 20001 + " القضية رقم ١٢٣/٢٠٢٥"
+        with self.assertRaisesRegex(ValueError, "page markers"):
+            extract_structured_candidates(text)
+
     def test_comparison_reports_literal_changes_for_review(self):
         changes = compare_extracted_text("قيمة العقد ١٠٠٠ جنيه", "قيمة العقد ٢٠٠٠ جنيه")
         self.assertEqual(len(changes), 1)
@@ -148,6 +187,12 @@ class DocumentIntelligenceTests(unittest.TestCase):
         self.assertIn("١٠٠٠", changes[0]["before"])
         self.assertIn("٢٠٠٠", changes[0]["after"])
         self.assertEqual(changes[0]["review_status"], "requires_lawyer_review")
+
+    def test_comparison_rejects_more_than_segment_limit_instead_of_silently_truncating(self):
+        before = "".join(chr(0x1000 + index) for index in range(205))
+        after = "!".join(before)
+        with self.assertRaisesRegex(ValueError, "change segments"):
+            compare_extracted_text(before, after, context_chars=0)
 
     def test_comparison_rejects_invalid_context(self):
         with self.assertRaises(ValueError):
@@ -181,6 +226,75 @@ class DocumentIntelligenceTests(unittest.TestCase):
         self.assertEqual(group["review_status"], "possible_repeat_mention_requires_human_review")
         self.assertEqual({member["role_label"] for member in group["members"]}, {"Plaintiff", "Defendant"})
         self.assertIn("do not establish identity", result["warning"])
+
+    def test_candidate_entity_grouping_caps_documents_and_marks_incomplete_results(self):
+        documents = [
+            {"firm_id": "firm-a", "matter_id": "matter-1", "document_id": "doc-1",
+             "entities": [{"entity_type": "legal_reference", "mention": "Article 10"}]},
+            {"firm_id": "firm-a", "matter_id": "matter-1", "document_id": "doc-2",
+             "entities": [{"entity_type": "legal_reference", "mention": "Article 11"}]},
+            {"firm_id": "firm-a", "matter_id": "matter-1", "document_id": "doc-3",
+             "entities": [{"entity_type": "legal_reference", "mention": "Article 10"}]},
+        ]
+        result = group_candidate_entity_mentions(documents, max_documents=2)
+        self.assertEqual(result["candidate_count"], 2)
+        self.assertEqual(result["documents_inspected"], 2)
+        self.assertEqual(result["entity_records_inspected"], 2)
+        self.assertEqual(result["groups"], [])
+        self.assertTrue(result["truncated"])
+        self.assertIn("first max_documents", " ".join(result["limitations"]))
+
+    def test_candidate_entity_grouping_caps_entities_per_document_and_marks_incomplete(self):
+        documents = [{
+            "firm_id": "firm-a", "matter_id": "matter-1", "document_id": "doc-1",
+            "entities": [
+                {"entity_type": "unrelated", "mention": "ignored"},
+                {"entity_type": "legal_reference", "mention": "Article 10"},
+                {"entity_type": "legal_reference", "mention": "Article 11"},
+            ],
+        }]
+        result = group_candidate_entity_mentions(
+            documents, max_entities_per_document=2
+        )
+        self.assertEqual(result["candidate_count"], 1)
+        self.assertEqual(result["documents_inspected"], 1)
+        self.assertEqual(result["entity_records_inspected"], 2)
+        self.assertTrue(result["truncated"])
+
+    def test_candidate_entity_grouping_enforces_global_scan_budget_even_for_ignored_entities(self):
+        documents = [{
+            "firm_id": "firm-a", "matter_id": "matter-1", "document_id": "doc-1",
+            "entities": [
+                {"entity_type": "ignored", "mention": "x"},
+                {"entity_type": "ignored", "mention": "y"},
+                {"entity_type": "legal_reference", "mention": "Article 10"},
+            ],
+        }]
+        result = group_candidate_entity_mentions(
+            documents, max_entity_records=2
+        )
+        self.assertEqual(result["candidate_count"], 0)
+        self.assertEqual(result["documents_inspected"], 1)
+        self.assertEqual(result["entity_records_inspected"], 2)
+        self.assertTrue(result["truncated"])
+
+    def test_candidate_entity_grouping_rejects_invalid_global_scan_budgets(self):
+        for value in (True, 0, -1, "10", 500001, None):
+            with self.subTest(max_entity_records=value):
+                with self.assertRaises(ValueError):
+                    group_candidate_entity_mentions([], max_entity_records=value)
+
+    def test_candidate_entity_grouping_rejects_invalid_per_document_entity_limits(self):
+        for value in (True, 0, -1, "10", 20001, None):
+            with self.subTest(max_entities_per_document=value):
+                with self.assertRaises(ValueError):
+                    group_candidate_entity_mentions([], max_entities_per_document=value)
+
+    def test_candidate_entity_grouping_rejects_invalid_document_limits(self):
+        for value in (True, 0, -1, "10", 5001, None):
+            with self.subTest(max_documents=value):
+                with self.assertRaises(ValueError):
+                    group_candidate_entity_mentions([], max_documents=value)
 
     def test_candidate_entity_grouping_ignores_other_entity_types_and_caps_work(self):
         documents = [{
@@ -222,7 +336,7 @@ class DocumentIntelligenceTests(unittest.TestCase):
         ))
 
     def test_legal_reference_extraction_supports_english_sections_and_laws(self):
-        text = "Article 5. Section 3.2. Law No. 10/2020. المادة 101."
+        text = "Article 5. Section 3.2. Law No. 10/2020. Law 12 of 2021. Act 3 dated 2022. المادة 101."
         result = extract_review_candidates(text)
         references = [
             item["value"] for item in result["candidates"]
@@ -230,7 +344,19 @@ class DocumentIntelligenceTests(unittest.TestCase):
         ]
         self.assertEqual(
             references,
-            ["Article 5", "Section 3.2", "Law No. 10/2020", "المادة 101"],
+            ["Article 5", "Section 3.2", "Law No. 10/2020", "Law 12 of 2021",
+             "Act 3 dated 2022", "المادة 101"],
+        )
+        extra = extract_review_candidates(
+            "Regulation No. 7 dated 2024. Decree 4 of 2023. Law 15/2022."
+        )
+        extra_refs = [
+            item["value"] for item in extra["candidates"]
+            if item["kind"] == "legal_reference"
+        ]
+        self.assertEqual(
+            extra_refs,
+            ["Regulation No. 7 dated 2024", "Decree 4 of 2023", "Law 15/2022"],
         )
 
     def test_case_reference_extraction_supports_english_and_arabic_labels(self):
@@ -324,6 +450,49 @@ class DocumentIntelligenceTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             build_date_mention_timeline([{"filename": "x.pdf", "candidates": []}])
 
+    def test_timeline_bounds_document_candidate_and_global_scans(self):
+        documents = [
+            {"document_id": "doc-1", "filename": "one.pdf", "candidates": [
+                {"kind": "date", "value": "2025-01-01"},
+                {"kind": "date", "value": "2025-01-02"},
+            ]},
+            {"document_id": "doc-2", "filename": "two.pdf", "candidates": [
+                {"kind": "date", "value": "2025-01-03"},
+            ]},
+        ]
+        per_document = build_date_mention_timeline(
+            documents, max_candidates_per_document=1
+        )
+        self.assertEqual(per_document["documents_inspected"], 2)
+        self.assertEqual(per_document["candidate_records_inspected"], 2)
+        self.assertEqual(len(per_document["dated_mentions"]), 2)
+        self.assertTrue(per_document["truncated"])
+
+        global_limit = build_date_mention_timeline(
+            documents, max_candidate_records=1
+        )
+        self.assertEqual(global_limit["candidate_records_inspected"], 1)
+        self.assertEqual(len(global_limit["dated_mentions"]), 1)
+        self.assertTrue(global_limit["truncated"])
+
+        document_limit = build_date_mention_timeline(
+            documents, max_documents=1
+        )
+        self.assertEqual(document_limit["documents_inspected"], 1)
+        self.assertTrue(document_limit["truncated"])
+
+    def test_timeline_rejects_invalid_processing_limits(self):
+        for name, value in (
+            ("max_documents", True),
+            ("max_documents", 5001),
+            ("max_candidates_per_document", 0),
+            ("max_candidates_per_document", "5"),
+            ("max_candidate_records", 500001),
+        ):
+            with self.subTest(name=name, value=value):
+                with self.assertRaises(ValueError):
+                    build_date_mention_timeline([], **{name: value})
+
 
     def test_duplicate_groups_are_scoped_to_same_firm_and_matter(self):
         digest = "a" * 64
@@ -350,6 +519,32 @@ class DocumentIntelligenceTests(unittest.TestCase):
                 "firm_id": "firm", "matter_id": "matter", "document_id": "doc",
                 "original_sha256": "not-a-hash",
             }])
+
+    def test_duplicate_group_rejects_document_and_hash_record_overflow(self):
+        with self.assertRaisesRegex(ValueError, "max_documents"):
+            group_same_matter_duplicates([
+                {"firm_id": "f", "matter_id": "m", "document_id": f"d{i}"}
+                for i in range(2)
+            ], max_documents=1)
+
+        with self.assertRaisesRegex(ValueError, "max_hash_records"):
+            group_same_matter_duplicates([
+                {"firm_id": "f", "matter_id": "m", "document_id": "d1",
+                 "original_sha256": "a" * 64},
+                {"firm_id": "f", "matter_id": "m", "document_id": "d2",
+                 "extracted_text_sha256": "b" * 64},
+            ], max_hash_records=1)
+
+    def test_duplicate_group_rejects_invalid_limits(self):
+        for name, value in (
+            ("max_documents", True),
+            ("max_documents", 20001),
+            ("max_hash_records", 0),
+            ("max_hash_records", "100"),
+        ):
+            with self.subTest(name=name, value=value):
+                with self.assertRaises(ValueError):
+                    group_same_matter_duplicates([], **{name: value})
 
 
     def test_extracts_legal_references_and_event_mentions_as_unverified_candidates(self):

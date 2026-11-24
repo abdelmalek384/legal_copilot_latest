@@ -8,8 +8,11 @@ from collections.abc import Mapping
 import re
 from urllib.parse import urlsplit
 
+from tools.answer_trust_tier import source_match_evidence_ready
+
 
 STATUS_VERIFIED = "verified_operative_text"
+STATUS_SOURCE_MATCHED = "source_matched_unreviewed"
 STATUS_SECONDARY = "secondary_copy"
 STATUS_USER_SUPPLIED = "user_supplied_unverified"
 STATUS_METADATA_ONLY = "metadata_only"
@@ -181,18 +184,119 @@ def source_status(source, as_of=None):
         if as_of_date is None:
             return STATUS_REVIEW
 
+    provenance = source.get("provenance")
+    if not isinstance(provenance, Mapping):
+        return STATUS_REVIEW
+
+    # A dedicated non-production test scope may expose a source-matched label,
+    # but only when the complete machine evidence package and reuse permissions
+    # are present. This does not imply lawyer approval or current law.
+    if source.get("scope") == "firm_test_source_matched":
+        if source.get("verified") is not False or source.get("case_id") is not None:
+            return STATUS_REVIEW
+        if provenance.get("status") != "registry_linked":
+            return STATUS_REVIEW
+        # The evidence must be bound to the exact corpus row/version being labelled.
+        # Matching evidence from another source or another version must never be reusable.
+        source_id = source.get("source_id")
+        version_id = source.get("document_version_id")
+        # Corpus document-version primary keys are positive integers. In Python,
+        # bool is an int subclass (True == 1), so reject booleans explicitly;
+        # otherwise malformed IDs can bind provenance to a different row.
+        if (not isinstance(source_id, str) or not source_id.strip()
+                or source_id != source_id.strip()
+                or isinstance(version_id, bool) or not isinstance(version_id, int)
+                or version_id <= 0
+                or provenance.get("source_id") != source_id
+                or isinstance(provenance.get("version_id"), bool)
+                or not isinstance(provenance.get("version_id"), int)
+                or provenance.get("version_id") != version_id):
+            return STATUS_REVIEW
+        document_type = provenance.get("document_type")
+        if not isinstance(document_type, str) or not document_type.strip():
+            return STATUS_REVIEW
+        source_type = source.get("source_type")
+        if source_type is not None and not isinstance(source_type, str):
+            return STATUS_REVIEW
+        source_type_label = source_type.strip().casefold() if isinstance(source_type, str) else ""
+        if (
+            document_type.strip().casefold() in {"secondary", "commentary", "guide", "summary"}
+            or any(marker in source_type_label for marker in (
+                "secondary", "commentary", "guide", "summary", "transcription",
+            ))
+        ):
+            return STATUS_SECONDARY
+        if not isinstance(provenance.get("official_title"), str) or not provenance["official_title"].strip():
+            return STATUS_REVIEW
+        if not _valid_review_evidence_url(provenance.get("source_url")):
+            return STATUS_REVIEW
+        original_sha256 = provenance.get("original_sha256")
+        if not isinstance(original_sha256, str) or not re.fullmatch(r"[0-9a-fA-F]{64}", original_sha256):
+            return STATUS_REVIEW
+        if provenance.get("review_status") not in {"pending_source_review", "pending_lawyer_review"}:
+            return STATUS_REVIEW
+        if provenance.get("legal_status") not in {"unknown", "under_review"}:
+            return STATUS_REVIEW
+        if any(provenance.get(key) is not False for key in (
+            "authenticity_verified", "status_verified", "amendment_history_verified"
+        )):
+            return STATUS_REVIEW
+        if not source_permission_evidence_ready(provenance):
+            return STATUS_REVIEW
+        if not str(provenance.get("permission_evidence") or "").strip():
+            return STATUS_REVIEW
+        evidence = provenance.get("source_match_evidence")
+        if not isinstance(evidence, Mapping) or evidence.get("original_capture_sha256") != original_sha256:
+            return STATUS_REVIEW
+        if not source_match_evidence_ready(provenance):
+            return STATUS_REVIEW
+        publication = _calendar_date(evidence.get("publication_date"))
+        effective = _calendar_date(evidence.get("effective_date"))
+        # The machine-match packet must agree with the row's own bibliographic
+        # dates; otherwise a valid packet can be rebound to stale/altered dates.
+        row_publication = _calendar_date(provenance.get("publication_date"))
+        row_effective = _calendar_date(provenance.get("effective_date"))
+        if (publication is None or effective is None
+                or row_publication is None or row_effective is None
+                or publication != row_publication or effective != row_effective
+                or publication > as_of_date or effective > as_of_date):
+            return STATUS_REVIEW
+        if effective < publication:
+            return STATUS_REVIEW
+        if not isinstance(provenance.get("gazette_issue"), str) or not provenance["gazette_issue"].strip():
+            return STATUS_REVIEW
+        if not isinstance(provenance.get("gazette_pages"), str) or not provenance["gazette_pages"].strip():
+            return STATUS_REVIEW
+        reviews = provenance.get("review_evidence", [])
+        if not isinstance(reviews, list) or any(not isinstance(event, Mapping) for event in reviews):
+            return STATUS_REVIEW
+        # Any recorded lawyer decision means the source has left the pending
+        # machine-match state. A failed/rejected decision is not a source match.
+        if any(
+            event.get("review_type") == "lawyer_approval"
+            or event.get("outcome") == "fail"
+            for event in reviews
+        ):
+            return STATUS_REVIEW
+        return STATUS_SOURCE_MATCHED
+
     # Only an explicitly selected verified-corpus scope may pass the legal-status gates.
     # Missing, malformed, or future scope values must not inherit a verified label.
     if source.get("scope") != "verified_corpus":
         return STATUS_REVIEW
-
-    provenance = source.get("provenance")
-    if not isinstance(provenance, Mapping):
-        return STATUS_REVIEW
     document_type = provenance.get("document_type")
     if not isinstance(document_type, str) or not document_type.strip():
         return STATUS_REVIEW
-    if document_type in {"secondary", "commentary", "guide", "summary"} or source.get("source_type") == "secondary_copy":
+    source_type = source.get("source_type")
+    if source_type is not None and not isinstance(source_type, str):
+        return STATUS_REVIEW
+    source_type_label = source_type.strip().casefold() if isinstance(source_type, str) else ""
+    if (
+        document_type.strip().casefold() in {"secondary", "commentary", "guide", "summary"}
+        or any(marker in source_type_label for marker in (
+            "secondary", "commentary", "guide", "summary", "transcription",
+        ))
+    ):
         return STATUS_SECONDARY
     if provenance.get("status") != "registry_linked":
         return STATUS_REVIEW

@@ -544,3 +544,12 @@ The owner has explicitly requested a non-production firm-test implementation. Th
 - Local execution attempt: a shallow Git clone could not resolve github.com from this environment. No repository test modules were executed. GitHub Actions latest exact-head jobs continue to fail with runner_id=0 and zero steps; this is infrastructure allocation failure, not test evidence.
 
 - Exact-head runner recheck after AI-1 follow-up commits: main `a202cc6bee4bb6de192feaa57d0206c1c27409f4`; Tests run `43948912741` and Browser acceptance `43948912737` each failed with a single job reporting `runner_id=0` and zero steps. CodeQL `43948912966` has zero-step jobs (one job not yet allocated); dependency audit `43948912813` returned no jobs at inspection. This is not test execution and does not establish code failure/pass.
+
+## Source-matched status gate — 2026-11-23
+
+- Draft PR [#1902](https://github.com/abdelmalek384/legal_copilot_latest/pull/1902) adds a distinct `source_matched_unreviewed` status for the isolated non-production test scope.
+- The status requires the evidence package and permission gates already used by the answer trust-tier classifier. It now also binds the provenance `source_id` and `version_id` to the exact retrieved corpus row; evidence from a different source/version is rejected. Any recorded lawyer-approval event, failed review event, or malformed review record leaves this machine-only status and requires review.
+- Focused regression cases cover missing/incomplete evidence, original-capture hash mismatch, permission loss, source/version mismatch, future effective dates, secondary material, lawyer decisions, and attempts to set `verified=true`.
+- **Still blocked:** `app.search(..., scope="firm_test_source_matched")` intentionally returns no candidates; the corpus schema/adapter does not yet expose a version-bound `source_match_evidence` package to the search path. AI-2 integration is tracked in [issue #1903](https://github.com/abdelmalek384/legal_copilot_latest/issues/1903). Law 14/2025 remains ineligible while reuse rights are unknown.
+- The tests are registered in the existing Python 3.12 workflow but have not been executed in this session. No test pass, lawyer review, verified status, or pilot acceptance is claimed.
+

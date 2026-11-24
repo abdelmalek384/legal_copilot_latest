@@ -6,7 +6,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from tools.research_inspector import (
-    STATUS_METADATA_ONLY, STATUS_REVIEW, STATUS_USER_SUPPLIED, STATUS_VERIFIED,
+    STATUS_METADATA_ONLY, STATUS_REVIEW, STATUS_SOURCE_MATCHED, STATUS_USER_SUPPLIED, STATUS_VERIFIED,
     citation_text, research_memo, source_permission_evidence_ready, source_status,
     has_current_review_evidence, _valid_review_evidence_url,
 )
@@ -87,6 +87,178 @@ class ResearchInspectorTests(unittest.TestCase):
             candidate["provenance"][key] = value
             self.assertEqual(source_status(candidate, "2026-10-24"), STATUS_REVIEW, key)
 
+    def _source_matched_candidate(self):
+        source = valid_source()
+        source["scope"] = "firm_test_source_matched"
+        source["verified"] = False
+        source["source_id"] = "primary-source-1"
+        source["document_version_id"] = 77
+        provenance = source["provenance"]
+        provenance.update({
+            "source_id": "primary-source-1",
+            "version_id": 77,
+            "review_status": "pending_source_review",
+            "legal_status": "under_review",
+            "authenticity_verified": False,
+            "status_verified": False,
+            "amendment_history_verified": False,
+            "review_evidence": [],
+            "source_match_evidence": {
+                "validator_passed": True,
+                "original_capture_sha256": "a" * 64,
+                "independent_copy_sha256": "b" * 64,
+                "independent_copy_source_id": "independent-copy-1",
+                "publication_date": "2019-12-15",
+                "effective_date": "2020-01-01",
+                "reuse_rights_evidence": "Explicit collection and commercial reuse grant",
+                "reuse_rights_evidence_url": "https://example.gov/rights/grant",
+                "approved_uses": [
+                    "collection", "storage", "text_extraction", "indexing",
+                    "commercial_product_use", "excerpt_display",
+                ],
+                "article_inventory_complete": True,
+                "differences_resolved_against_primary": True,
+                "publication_and_effective_dates_verified": True,
+                "reuse_rights_allowed": True,
+            },
+        })
+        return source
+
+    def test_source_matched_scope_requires_complete_non_lawyer_evidence(self):
+        source = self._source_matched_candidate()
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_SOURCE_MATCHED)
+
+        source = self._source_matched_candidate()
+        source["provenance"]["source_match_evidence"]["article_inventory_complete"] = False
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+
+        source = self._source_matched_candidate()
+        source["provenance"]["source_match_evidence"]["original_capture_sha256"] = "c" * 64
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+
+        # A different source label does not make a byte-identical copy independent.
+        source = self._source_matched_candidate()
+        source["provenance"]["source_match_evidence"]["independent_copy_sha256"] = "a" * 64
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+
+        source = self._source_matched_candidate()
+        source["provenance"]["commercial_reuse_permission"] = "unknown"
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+
+        source = self._source_matched_candidate()
+        source["provenance"]["review_evidence"] = [{
+            "review_type": "lawyer_approval", "outcome": "pass",
+        }]
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+
+        source = self._source_matched_candidate()
+        source["verified"] = True
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+
+        source = self._source_matched_candidate()
+        source["case_id"] = 9
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_USER_SUPPLIED)
+
+        for label in ("secondary", " Secondary ", "SECONDARY", "Commentary", " GUIDE ", "Summary"):
+            source = self._source_matched_candidate()
+            source["provenance"]["document_type"] = label
+            self.assertEqual(source_status(source, "2026-10-24"), "secondary_copy", label)
+
+        source = self._source_matched_candidate()
+        source["provenance"]["document_type"] = []
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+
+        # The explicit source type must also block the source-matched tier,
+        # even when the provenance document_type claims a primary statute.
+        source = self._source_matched_candidate()
+        source["source_type"] = "secondary_copy"
+        self.assertEqual(source_status(source, "2026-10-24"), "secondary_copy")
+
+        # Registry source_type is descriptive text in older records, not a
+        # closed enum. Reject common secondary-copy descriptions, not only one
+        # exact machine token, even when document_type claims primary legislation.
+        for label in (
+            "secondary legal text copy",
+            "public secondary transcription",
+            "Official Gazette PDF + secondary transcription",
+            "COMMENTARY source",
+        ):
+            source = self._source_matched_candidate()
+            source["source_type"] = label
+            self.assertEqual(source_status(source, "2026-10-24"), "secondary_copy", label)
+
+        source = self._source_matched_candidate()
+        source["source_type"] = {"kind": "secondary_copy"}
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+
+        source = self._source_matched_candidate()
+        source["source_type"] = "official_publisher_text_page"
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_SOURCE_MATCHED)
+
+        # A complete package from another source/version cannot be rebound.
+        source = self._source_matched_candidate()
+        source["provenance"]["source_id"] = "different-source"
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+
+        source = self._source_matched_candidate()
+        source["provenance"]["version_id"] = 78
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+
+        # bool compares equal to integer 1 in Python; malformed IDs must not
+        # pass exact source/version binding through that coercion.
+        for outer_id, provenance_id in (
+            (True, True), (1, True), (True, 1),
+            (0, 0), (-1, -1), ("77", "77"),
+        ):
+            source = self._source_matched_candidate()
+            source["document_version_id"] = outer_id
+            source["provenance"]["version_id"] = provenance_id
+            self.assertEqual(
+                source_status(source, "2026-10-24"), STATUS_REVIEW,
+                (outer_id, provenance_id),
+            )
+
+        source = self._source_matched_candidate()
+        source["provenance"]["review_evidence"] = [{
+            "review_type": "lawyer_approval", "outcome": "fail",
+        }]
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+
+        source = self._source_matched_candidate()
+        source["provenance"]["review_evidence"] = [None]
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+
+        source = self._source_matched_candidate()
+        source["provenance"]["review_evidence"] = [{
+            "review_type": "extraction_quality", "outcome": "fail",
+        }]
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+
+    def test_source_matched_scope_does_not_claim_currentness(self):
+        source = self._source_matched_candidate()
+        source["provenance"]["source_match_evidence"]["effective_date"] = "2027-01-01"
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+
+    def test_source_matched_evidence_dates_must_match_row_dates(self):
+        for field, mismatched_value in (
+            ("publication_date", "2019-12-16"),
+            ("effective_date", "2020-01-02"),
+        ):
+            source = self._source_matched_candidate()
+            source["provenance"]["source_match_evidence"][field] = mismatched_value
+            self.assertEqual(
+                source_status(source, "2026-10-24"), STATUS_REVIEW, field
+            )
+        for field, mismatched_value in (
+            ("publication_date", "2019-12-16"),
+            ("effective_date", "2020-01-02"),
+        ):
+            source = self._source_matched_candidate()
+            source["provenance"][field] = mismatched_value
+            self.assertEqual(
+                source_status(source, "2026-10-24"), STATUS_REVIEW, field
+            )
+
     def test_malformed_review_type_and_document_type_fail_closed_without_crashing(self):
         for value in ([], {}, 7, None):
             source = valid_source()
@@ -116,6 +288,15 @@ class ResearchInspectorTests(unittest.TestCase):
         source = valid_source()
         source["provenance"]["official_title"] = " "
         self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+
+        for label in (
+            "secondary legal text copy",
+            "public secondary transcription",
+            "commentary",
+        ):
+            source = valid_source()
+            source["source_type"] = label
+            self.assertEqual(source_status(source, "2026-10-24"), "secondary_copy", label)
 
     def test_publication_date_and_gazette_pinpoint_are_required_for_verified_status(self):
         for field, value in (

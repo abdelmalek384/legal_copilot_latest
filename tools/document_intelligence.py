@@ -17,6 +17,7 @@ from typing import Any
 MAX_ANALYSIS_CHARS = 1_000_000
 MAX_COMPARE_CHARS = 100_000
 MAX_DIFF_SEGMENTS = 200
+MAX_PAGE_MARKERS = 20000
 _PAGE_MARKER = re.compile(r"\[\[PDF_PAGE:(\d+)\]\]")
 _DIGITS = r"0-9٠-٩"
 _MONTH_TOKEN = (
@@ -117,6 +118,19 @@ def classify_document(filename: str, text: str) -> dict[str, Any]:
     return {"category": category, "signal_strength": "multiple_keyword_matches" if count >= 2 else "single_keyword_match",
             "matched_terms": matched, "requires_review": True}
 
+def _collect_page_markers(text: str) -> list[tuple[int, int]]:
+    """Collect bounded page offsets; never silently lose page provenance."""
+    markers = []
+    for match in _PAGE_MARKER.finditer(text):
+        if len(markers) >= MAX_PAGE_MARKERS:
+            raise ValueError(
+                f"document exceeds {MAX_PAGE_MARKERS} page markers; "
+                "page provenance was not partially extracted"
+            )
+        markers.append((match.start(), int(match.group(1))))
+    return markers
+
+
 def _candidate(kind: str, match: re.Match, text: str,
                page_markers: list[tuple[int, int]]) -> dict[str, Any]:
     start, end = match.span()
@@ -133,8 +147,9 @@ _LEGAL_REFERENCE_PATTERN = re.compile(
     re.IGNORECASE,
 )
 _ENGLISH_LEGAL_REFERENCE_PATTERN = re.compile(
-    rf"(?:Section|Subsection|Paragraph|Clause|Chapter|Act|Law|Regulation|Decree|Code|Rule)\\s*"
-    rf"(?:No\\.?|Number)?\\s*[:：#]?\\s*([{_DIGITS}A-Za-z]+(?:\\s*[./-]\\s*[{_DIGITS}A-Za-z]+){{0,2}})",
+    rf"(?:Section|Subsection|Paragraph|Clause|Chapter|Act|Law|Regulation|Decree|Code|Rule)\s*"
+    rf"(?:No\.?|Number)?\s*[:：#]?\s*([{_DIGITS}A-Za-z]+(?:[./-][{_DIGITS}A-Za-z]+){{0,2}})"
+    rf"(?:\s+(?:of|dated)\s+([{_DIGITS}]{{4}}))?",
     re.IGNORECASE,
 )
 _EVENT_MENTION_PATTERN = re.compile(
@@ -152,7 +167,7 @@ def extract_review_candidates(text: str, max_candidates: int = 250) -> dict[str,
     if isinstance(max_candidates, bool) or not isinstance(max_candidates, int) or not 1 <= max_candidates <= 1000:
         raise ValueError("max_candidates must be an integer between 1 and 1000")
     candidates = []
-    page_markers = [(match.start(), int(match.group(1))) for match in _PAGE_MARKER.finditer(text)]
+    page_markers = _collect_page_markers(text)
     patterns = [
         ("date", pattern) for pattern in _DATE_PATTERNS
     ] + [
@@ -186,7 +201,11 @@ def extract_review_candidates(text: str, max_candidates: int = 250) -> dict[str,
 
 
 
-def group_same_matter_duplicates(documents: list[dict[str, Any]]) -> list[dict[str, Any]]:
+def group_same_matter_duplicates(
+    documents: list[dict[str, Any]],
+    max_documents: int = 5000,
+    max_hash_records: int = 100000,
+) -> list[dict[str, Any]]:
     """Group duplicate candidates only inside identical firm/matter scopes.
 
     Each record requires firm_id, matter_id, document_id and may include
@@ -194,9 +213,27 @@ def group_same_matter_duplicates(documents: list[dict[str, Any]]) -> list[dict[s
     uppercase 64-character SHA-256 hex strings. The caller must still enforce
     authorization before supplying records. Groups are review candidates;
     matching extracted text does not mean the original files are identical.
+
+    Unlike candidate extractors, this API returns a list rather than a
+    truncation envelope. It therefore rejects over-limit inputs instead of
+    silently returning incomplete duplicate groups.
     """
     if not isinstance(documents, list):
         raise TypeError("documents must be a list")
+    for name, value, maximum in (
+        ("max_documents", max_documents, 20000),
+        ("max_hash_records", max_hash_records, 500000),
+    ):
+        if isinstance(value, bool) or not isinstance(value, int) or not 1 <= value <= maximum:
+            raise ValueError(f"{name} must be an integer between 1 and {maximum}")
+    if len(documents) > max_documents:
+        raise ValueError("documents exceed max_documents; duplicate grouping was not performed")
+    hash_records = sum(
+        sum(item.get(basis) is not None for basis in ("original_sha256", "extracted_text_sha256"))
+        for item in documents if isinstance(item, dict)
+    )
+    if hash_records > max_hash_records:
+        raise ValueError("hash records exceed max_hash_records; duplicate grouping was not performed")
     buckets: dict[tuple[str, str, str, str], list[dict[str, str]]] = {}
     for item in documents:
         if not isinstance(item, dict):
@@ -235,6 +272,9 @@ def group_candidate_entity_mentions(
     documents: list[dict[str, Any]],
     max_candidates: int = 5000,
     max_groups: int = 500,
+    max_documents: int = 1000,
+    max_entities_per_document: int = 5000,
+    max_entity_records: int = 100000,
 ) -> dict[str, Any]:
     """Group exact normalized party/reference mentions within firm/matter scope.
 
@@ -247,15 +287,22 @@ def group_candidate_entity_mentions(
     for name, value, maximum in (
         ("max_candidates", max_candidates, 10000),
         ("max_groups", max_groups, 2000),
+        ("max_documents", max_documents, 5000),
+        ("max_entities_per_document", max_entities_per_document, 20000),
+        ("max_entity_records", max_entity_records, 500000),
     ):
         if isinstance(value, bool) or not isinstance(value, int) or not 1 <= value <= maximum:
             raise ValueError(f"{name} must be an integer between 1 and {maximum}")
 
     buckets: dict[tuple[str, str, str, str], list[dict[str, Any]]] = {}
     candidate_count = 0
+    documents_inspected = 0
+    entity_records_inspected = 0
     truncated = False
+    documents_truncated = len(documents) > max_documents
     allowed_types = {"labelled_party", "case_reference", "legal_reference"}
-    for document in documents:
+    for document in documents[:max_documents]:
+        documents_inspected += 1
         if not isinstance(document, dict):
             raise TypeError("each document must be a mapping")
         firm_id, matter_id, document_id = (
@@ -270,7 +317,13 @@ def group_candidate_entity_mentions(
         entities = document.get("entities", [])
         if not isinstance(entities, list):
             raise ValueError("entities must be a list")
-        for entity in entities:
+        if len(entities) > max_entities_per_document:
+            truncated = True
+        for entity in entities[:max_entities_per_document]:
+            if entity_records_inspected >= max_entity_records:
+                truncated = True
+                break
+            entity_records_inspected += 1
             if not isinstance(entity, dict) or entity.get("entity_type") not in allowed_types:
                 continue
             literal = entity.get("name_mention") if entity.get("entity_type") == "labelled_party" else entity.get("mention")
@@ -299,6 +352,9 @@ def group_candidate_entity_mentions(
         if truncated:
             break
 
+    # Document truncation is independent of candidate truncation: still inspect
+    # every document within the configured bound before reporting partial results.
+    truncated = truncated or documents_truncated
     groups = []
     for (firm_id, matter_id, entity_type, normalized), members in buckets.items():
         unique_documents = {member["document_id"] for member in members}
@@ -325,6 +381,8 @@ def group_candidate_entity_mentions(
         "groups": groups,
         "group_count": len(groups),
         "candidate_count": candidate_count,
+        "documents_inspected": documents_inspected,
+        "entity_records_inspected": entity_records_inspected,
         "truncated": truncated,
         "requires_review": True,
         "warning": (
@@ -332,6 +390,7 @@ def group_candidate_entity_mentions(
             "common ownership, party equivalence, case linkage or legal relationship."
         ),
         "limitations": [
+            "Only the first max_documents caller-supplied documents are examined. Processing is also capped at max_entities_per_document entities per document and max_entity_records entity records overall; truncated results are incomplete.",
             "Only labelled-party, case-reference and legal-reference mentions are grouped.",
             "Normalization applies Unicode NFKC, case-folding and whitespace collapse only; no fuzzy or transliteration matching is performed.",
             "Common names and repeated reference strings may belong to different people, entities or matters.",
@@ -341,20 +400,35 @@ def group_candidate_entity_mentions(
     }
 
 
-def build_date_mention_timeline(documents: list[dict[str, Any]]) -> dict[str, Any]:
-    """Build a review queue of parseable date mentions from caller-scoped documents.
+def build_date_mention_timeline(
+    documents: list[dict[str, Any]],
+    max_documents: int = 1000,
+    max_candidates_per_document: int = 5000,
+    max_candidate_records: int = 100000,
+) -> dict[str, Any]:
+    """Build a bounded review queue of date mentions from caller-scoped documents.
 
-    Each input item must contain document_id, filename and the candidates list
-    returned by extract_review_candidates. Dates are mentions, not events or
-    deadlines. Numeric day-first dates follow the Egyptian DD/MM/YYYY convention;
-    ISO year-first dates are parsed separately. Two-digit years are not guessed.
+    Dates are mentions, not events or deadlines. Numeric day-first dates follow
+    the Egyptian DD/MM/YYYY convention; ISO year-first dates are parsed
+    separately. Two-digit years are not guessed. Truncation is explicit.
     """
     if not isinstance(documents, list):
         raise TypeError("documents must be a list")
+    for name, value, maximum in (
+        ("max_documents", max_documents, 5000),
+        ("max_candidates_per_document", max_candidates_per_document, 20000),
+        ("max_candidate_records", max_candidate_records, 500000),
+    ):
+        if isinstance(value, bool) or not isinstance(value, int) or not 1 <= value <= maximum:
+            raise ValueError(f"{name} must be an integer between 1 and {maximum}")
     dated = []
     unparsed = []
+    documents_inspected = 0
+    candidate_records_inspected = 0
+    truncated = len(documents) > max_documents
     arabic_digits = str.maketrans("٠١٢٣٤٥٦٧٨٩", "0123456789")
-    for document in documents:
+    for document in documents[:max_documents]:
+        documents_inspected += 1
         if not isinstance(document, dict):
             raise TypeError("each document must be a mapping")
         document_id = document.get("document_id")
@@ -364,7 +438,13 @@ def build_date_mention_timeline(documents: list[dict[str, Any]]) -> dict[str, An
             raise ValueError("each document requires a non-empty document_id")
         if not isinstance(filename, str) or not isinstance(candidates, list):
             raise ValueError("each document requires filename and candidates")
-        for candidate in candidates:
+        if len(candidates) > max_candidates_per_document:
+            truncated = True
+        for candidate in candidates[:max_candidates_per_document]:
+            if candidate_records_inspected >= max_candidate_records:
+                truncated = True
+                break
+            candidate_records_inspected += 1
             if not isinstance(candidate, dict) or candidate.get("kind") != "date":
                 continue
             raw = candidate.get("value")
@@ -430,11 +510,18 @@ def build_date_mention_timeline(documents: list[dict[str, Any]]) -> dict[str, An
                 unparsed.append(item)
             else:
                 dated.append(item)
+        if truncated and candidate_records_inspected >= max_candidate_records:
+            break
     dated.sort(key=lambda item: (item["normalized_date"], item["document_id"], item["date_mention"]))
     return {
         "dated_mentions": dated,
         "unparsed_mentions": unparsed,
+        "documents_inspected": documents_inspected,
+        "candidate_records_inspected": candidate_records_inspected,
+        "truncated": truncated,
         "limitations": [
+            "Only the first max_documents caller-supplied documents and max_candidates_per_document candidates per document are examined; max_candidate_records is a global scan ceiling.",
+            "When truncated is true, the returned timeline is incomplete and must not be treated as exhaustive.",
             "A date mention is not necessarily an event date, filing date, or legal deadline.",
             "Context and legal effect must be confirmed by a lawyer.",
             "Only documents supplied by the caller are considered; callers must enforce firm and matter scope.",
@@ -474,7 +561,7 @@ def _page_at(position: int, page_markers: list[tuple[int, int]]):
     return page_markers[marker_index][1] if marker_index >= 0 else None
 
 
-def extract_structured_candidates(text: str, max_items: int = 250) -> dict[str, Any]:
+def extract_structured_candidates(text: str, max_items: int = 250, max_sentences: int = 10000) -> dict[str, Any]:
     """Build provenance-linked entity, event and explicit-relationship candidates.
 
     This is a conservative rule-based structuring pass over extracted text. It
@@ -488,8 +575,10 @@ def extract_structured_candidates(text: str, max_items: int = 250) -> dict[str, 
         raise ValueError("document text exceeds analysis limit")
     if isinstance(max_items, bool) or not isinstance(max_items, int) or not 1 <= max_items <= 500:
         raise ValueError("max_items must be an integer between 1 and 500")
+    if isinstance(max_sentences, bool) or not isinstance(max_sentences, int) or not 1 <= max_sentences <= 50000:
+        raise ValueError("max_sentences must be an integer between 1 and 50000")
 
-    page_markers = [(match.start(), int(match.group(1))) for match in _PAGE_MARKER.finditer(text)]
+    page_markers = _collect_page_markers(text)
     # Collect each signal family independently, then interleave families before
     # applying the shared cap. A dense date list must not starve party/legal IDs.
     entity_patterns = (
@@ -567,7 +656,12 @@ def extract_structured_candidates(text: str, max_items: int = 250) -> dict[str, 
 
     events = []
     relationships = []
+    sentences_inspected = 0
     for sentence_start, sentence_end in _sentence_spans(text):
+        if sentences_inspected >= max_sentences:
+            truncated = True
+            break
+        sentences_inspected += 1
         sentence = text[sentence_start:sentence_end].strip()
         if not sentence:
             continue
@@ -640,6 +734,7 @@ def extract_structured_candidates(text: str, max_items: int = 250) -> dict[str, 
         "entity_count": len(entities),
         "event_count": len(events),
         "relationship_count": len(relationships),
+        "sentences_inspected": sentences_inspected,
         "truncated": truncated,
         "requires_review": True,
         "limitations": [
@@ -648,12 +743,13 @@ def extract_structured_candidates(text: str, max_items: int = 250) -> dict[str, 
             "Relationships are emitted only for explicit relation phrases; direction and legal effect require human confirmation.",
             "All values retain source offsets and available PDF page markers but may reflect extraction or OCR errors.",
             "A missing candidate does not prove that an entity, event or relationship is absent.",
+            "Only the first max_sentences sentence-like spans are inspected; truncated results may omit later events and relationships.",
         ],
     }
 
 
 def compare_extracted_text(before: str, after: str, context_chars: int = 100) -> list[dict[str, str]]:
-    """Return reviewable text changes; never labels a change as legally significant."""
+    """Return reviewable text changes; reject overflow rather than hide later changes."""
     if not isinstance(before, str) or not isinstance(after, str):
         raise TypeError("before and after must be strings")
     if len(before) > MAX_COMPARE_CHARS or len(after) > MAX_COMPARE_CHARS:
@@ -661,14 +757,18 @@ def compare_extracted_text(before: str, after: str, context_chars: int = 100) ->
     if isinstance(context_chars, bool) or not isinstance(context_chars, int) or not 0 <= context_chars <= 1000:
         raise ValueError("context_chars must be an integer between 0 and 1000")
     matcher = difflib.SequenceMatcher(a=before, b=after, autojunk=True)
+    changed_opcodes = [
+        opcode for opcode in matcher.get_opcodes() if opcode[0] != "equal"
+    ]
+    if len(changed_opcodes) > MAX_DIFF_SEGMENTS:
+        raise ValueError(
+            f"text comparison exceeds {MAX_DIFF_SEGMENTS} change segments; "
+            "narrow the comparison before reviewing"
+        )
     changes = []
-    for tag, i1, i2, j1, j2 in matcher.get_opcodes():
-        if tag == "equal":
-            continue
+    for tag, i1, i2, j1, j2 in changed_opcodes:
         changes.append({"change_type": tag,
                         "before": before[max(0, i1-context_chars):min(len(before), i2+context_chars)],
                         "after": after[max(0, j1-context_chars):min(len(after), j2+context_chars)],
                         "review_status": "requires_lawyer_review"})
-        if len(changes) >= MAX_DIFF_SEGMENTS:
-            break
     return changes
