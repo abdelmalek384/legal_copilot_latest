@@ -9563,9 +9563,21 @@ def list_document_chunks(cid: int, document_id: int, u: dict = Depends(user)):
         "ORDER BY chunk_id,start_offset,id",
         (int(u["firm_id"]), cid, document_id),
     ).fetchall()
+    annotation_user_ids = sorted({int(row["created_by_user_id"]) for row in annotation_rows})
+    annotation_names = {}
+    if annotation_user_ids:
+        placeholders = ",".join("?" for _ in annotation_user_ids)
+        annotation_names = {
+            int(row["id"]): row["name"]
+            for row in control_conn().execute(
+                f"SELECT id,name FROM users WHERE id IN ({placeholders})", annotation_user_ids
+            ).fetchall()
+        }
     annotations_by_chunk = {}
     for annotation in annotation_rows:
-        annotations_by_chunk.setdefault(int(annotation["chunk_id"]), []).append(dict(annotation))
+        item = dict(annotation)
+        item["created_by_name"] = annotation_names.get(int(item["created_by_user_id"]), "")
+        annotations_by_chunk.setdefault(int(item["chunk_id"]), []).append(item)
     rows = c.execute(
         "SELECT id,ref,page,text FROM chunks WHERE document_id=? AND case_id=? ORDER BY id",
         (document_id, cid),
