@@ -66,7 +66,7 @@ Creation requires current matter access and resolves the chunk through the reque
 
 Database triggers independently reject inconsistent firm/matter/document/chunk combinations and prevent ordinary updates to annotation content. The only permitted update is the initial soft-delete transition. The uploaded original file and extracted source text are not rewritten. If an extraction correction exists, it remains a separate working copy; highlights stay anchored to the original extracted text and are not silently moved when the source digest changes.
 
-The document review interface provides Arabic/English text selection, four highlight colors, a required note, annotation listing and removal, and an explicit warning when a previously annotated passage no longer matches the current source digest. This work is in draft PR #1910 and is not yet on `main`.
+The document review interface provides Arabic/English text selection, four highlight colors, a required note, annotation listing and removal, and an explicit warning when a previously annotated passage no longer matches the current source digest. This implementation remains on the unmerged branch `ai2/passage-annotations-mainline-20261124`; draft PR #1910 was closed without merging. The branch is not on `main`.
 
 **Acceptance still required:** run the focused test and full migration/profile suites on the exact PR head; verify author/admin/matter-lead deletion permissions and cross-firm/cross-matter denial; exercise the two-case client workflow; inspect Arabic RTL and English LTR behavior on desktop and mobile; verify the original uploaded file checksum and source chunk remain unchanged.
 
