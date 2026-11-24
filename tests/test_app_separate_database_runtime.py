@@ -1494,6 +1494,11 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(downloaded.content, original)
         self.assertEqual(downloaded.headers["content-type"], "application/octet-stream")
         self.assertEqual(downloaded.headers["cache-control"], "no-store")
+        self.assertEqual(downloaded.headers["pragma"], "no-cache")
+        self.assertEqual(downloaded.headers["expires"], "0")
+        self.assertEqual(downloaded.headers["x-content-type-options"], "nosniff")
+        self.assertEqual(downloaded.headers["x-frame-options"], "DENY")
+        self.assertEqual(downloaded.headers["referrer-policy"], "no-referrer")
         # End the older snapshot before checking the newly committed audit row.
         firm_db.commit()
         self.assertTrue(firm_db.execute(
@@ -1519,6 +1524,9 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
                 f"/cases/{case_id}/docs/{document_id}/original"
             )
         self.assertEqual(audit_failure.status_code, 503, audit_failure.text)
+        self.assertEqual(audit_failure.headers["cache-control"], "no-store")
+        self.assertEqual(audit_failure.headers["pragma"], "no-cache")
+        self.assertEqual(audit_failure.headers["x-content-type-options"], "nosniff")
         self.assertIn("download was not released", audit_failure.text)
         self.assertEqual(
             firm_db.execute(
