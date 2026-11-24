@@ -113,8 +113,9 @@ class DocumentAnnotationAPITests(unittest.TestCase):
         app = (ROOT / "app.py").read_text(encoding="utf-8")
         model = app[app.index("class DocumentAnnotationIn"):app.index('@app.get("/cases/{cid}/docs/{document_id}/annotations")')]
         self.assertIn('Field(pattern=r"^(highlight|note)$")', model)
-        self.assertIn("return value", model)
-        self.assertNotIn('return value.strip()', model)
+        quote_validator = model[model.index('@field_validator("quoted_text")'):]
+        self.assertIn("return value", quote_validator)
+        self.assertNotIn('return value.strip()', quote_validator)
 
     def test_bilingual_ui_captures_and_saves_selected_passage_annotations(self):
         html = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
