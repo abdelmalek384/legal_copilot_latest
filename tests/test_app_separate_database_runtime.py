@@ -3485,6 +3485,24 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         start = extracted_text.index(selected)
         digest = hashlib.sha256(extracted_text.encode("utf-8")).hexdigest()
         create_path = f"/cases/{case_id}/docs/{document_id}/chunks/{chunk_id}/annotations"
+        stale_digest = self._mutate(
+            "post", create_path,
+            json={
+                "start_offset": start, "end_offset": start + len(selected),
+                "selected_text": selected, "source_text_sha256": "0" * 64,
+                "note": "Stale source must be rejected", "color": "yellow",
+            },
+        )
+        self.assertEqual(stale_digest.status_code, 409, stale_digest.text)
+        mismatched_selection = self._mutate(
+            "post", create_path,
+            json={
+                "start_offset": start + 1, "end_offset": start + len(selected),
+                "selected_text": selected, "source_text_sha256": digest,
+                "note": "Wrong offsets must be rejected", "color": "yellow",
+            },
+        )
+        self.assertEqual(mismatched_selection.status_code, 422, mismatched_selection.text)
         created = self._mutate(
             "post", create_path,
             json={
