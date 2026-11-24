@@ -204,6 +204,6 @@ This folder contains free/public source discovery, metadata registers and extrac
 
 95. [Decision 75/2026 — women’s work, maternity and night work](../legal_evidence/labour_decision_75_2026_women_work_maternity_night_work_complete_arabic_text_2026-11-23.md) — 15-article secondary transcription; official Amiri Press indexed text corroborates Articles 1–10 and 12–15, while Article 11 remains secondary-only. The possible issue-108 correction notice has not been obtained; no correction has been applied.
 
-96. [Decisions 289–291/2025 — working hours, intermittent work and night/overtime inspection](../legal_evidence/labour_decisions_289_291_2025_complete_secondary_arabic_text_2026-11-23.md) — full operative texts for Decisions 289, 290 and 291 are documented in the acquisition tranche; Gazette image matching and item-specific reuse review remain outstanding.
+96. [Labour and employment 2026-11-20/23 incremental acquisition tranche](labour_employment_new_text_acquisition_tranche_2026-11-20.md) — full operative texts for Decisions 289, 290 and 291 are documented in the acquisition tranche; Gazette image matching and item-specific reuse review remain outstanding.
 
 [Labour and employment 2026-11-20/23 incremental acquisition tranche](labour_employment_new_text_acquisition_tranche_2026-11-20.md) records additional issue-290/291 leads and captured Decisions 259, 260, 264, 267, 270, 292, 294, 299, 300, 301, 319 and 320/2025. It is a research acquisition record, not a verified consolidated corpus. Preserve lawyer_reviewed=false and verified=false.
