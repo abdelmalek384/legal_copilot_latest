@@ -5,18 +5,19 @@
 **Publication:** الوقائع المصرية, issue 290 supplement (B), 24 December 2025  
 **Parent law:** Labour Law 14/2025, especially the occupational skill-measurement and licensing provisions  
 **Schedule:** جدول المهن الخاضعة لقياس مستوى المهارة  
-**Status:** Gazette-layout reproduction located; selected entries visually compared; complete schedule not transcribed into this file  
+**Status:** Gazette-layout reproduction located; all 19 schedule page images (printed pages 12–30) visually inspected, showing numbered entries 1–435; selected entries compared with the secondary HTML transcription; complete schedule not transcribed into this file  
 **Source tier:** Secondary-hosted reproduction of Gazette pages (VetoGate CDN); not the Amiri Press original PDF binary  
 **Legal verification:** Not lawyer-reviewed; verified=0; source-matched=false; currentness-reviewed=false; production/search eligibility=false
 
 ## Sources and page map
 
 1. **Gazette-layout PDF reproduction:** https://cdn.vetogate.com/UploadCache/libfiles/570/2/0x0o/22.pdf  
-   The PDF displays the masthead for Egyptian Proceedings issue 290 supplement (B), date 24 December 2025, and its contents list Decision 266 beginning at printed page 3. The occupational schedule begins at printed page 12. The first pages of the schedule were visually inspected as follows:
+   The PDF displays the masthead for Egyptian Proceedings issue 290 supplement (B), date 24 December 2025, and its contents list Decision 266 beginning at printed page 3. The occupational schedule begins at printed page 12 and ends at printed page 30. All 19 schedule pages were visually inspected; their printed serial ranges cover entries 1–435:
    - PDF page index 11 / printed page 12: schedule rows 1–23.
    - PDF page index 12 / printed page 13: rows 24–47.
    - PDF page index 13 / printed page 14: rows 48–70.
    - PDF page index 14 / printed page 15: rows 71–94.
+   - PDF page indexes 15–29 / printed pages 16–30: remaining rows 95–435.
 2. **Official Gazette catalogue metadata:** https://dspace.id.com.eg/items/033c8f3f-7774-4290-9d2d-0de2060bd596/full  
    Metadata identifies the Amiri Press as publisher, issue date 24 December 2025, and Decision 266/2025 among the Ministry of Labour instruments. The catalogue file is access-restricted/request-copy; no original official bytes or hash were acquired.
 3. **Secondary HTML transcription:** https://lawhub.info/eg/?p=17073  
@@ -40,11 +41,11 @@ The following values were read from the Gazette-layout page images, not copied f
 
 These are source discrepancies, not editorial corrections. Do not silently overwrite either source. For a candidate transcription of the schedule, preserve both values and the image-page locator until the Amiri Press original or an independently authenticated copy is obtained and a qualified reviewer resolves them.
 
-The inspected image pages also show several matching examples (including rows 1–2, 7–17, 22–47, 48–52 and 54–70), but this sample is not a full row-by-row validation of the complete schedule.
+All 19 schedule page images, printed pages 12–30, have now been visually inspected and show serial entries 1–435. This is full page-image coverage, not a complete row-by-row comparison of every occupation code against the secondary HTML text; only the nine discrepancies above have been individually recorded so far.
 
 ## Schedule count reconciliation
 
-The secondary HTML transcription and the Gazette-layout PDF show the serial numbering reaching **435** at the final entry. Earlier repository notes described the annex as a “434-occupation” schedule. Treat the count as unresolved until the full table is parsed, unique rows are counted, duplicate serials/codes are checked, and the original Gazette page images are reviewed. A highest serial number is not by itself proof of the number of distinct entries.
+The Gazette-layout page images show a continuous printed serial sequence from **1 through 435**, with the final entry numbered 435 on printed page 30. The earlier repository description of a “434-occupation” schedule is inconsistent with the complete page-image sequence and should be corrected to **435 numbered schedule entries**. This does not yet establish that all 435 occupation names/codes are unique; duplicate code/name checks and official-original comparison remain outstanding.
 
 ## OCR and transcription cautions
 
@@ -56,9 +57,9 @@ The secondary HTML transcription and the Gazette-layout PDF show the serial numb
 ## Required next steps
 
 1. Acquire the official Amiri Press / DSpace PDF through its request-copy process or locate a freely accessible official copy.
-2. Inspect all schedule pages visually and reconcile every row against the text layer and secondary transcriptions.
+2. Parse the complete 435-row schedule into a machine-readable comparison file only when the acquisition/reuse basis permits; retain the original Arabic names, codes, printed serials and page locators.
 3. Resolve the nine discrepancies above against the official source; preserve source-specific values and image locators.
-4. Reconcile the stated 434 count against the printed serial sequence ending at 435.
+4. Check all 435 entries for duplicate serials, duplicate codes, missing values and cross-source differences.
 5. Search for later amendments, replacement schedules, and Ministry decisions updating the National Occupational Classification.
 6. Have qualified Egyptian labour counsel review the schedule, its legal effect, exceptions, and currentness before any row is marked lawyer-reviewed or used to advise a client.
 
