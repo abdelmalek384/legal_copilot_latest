@@ -46,10 +46,10 @@ jobs:
         run: PYTHONPATH=. python tests/test_document_review_workflow.py
       - name: Test conservative document intelligence helpers
         run: PYTHONPATH=. python tests/test_document_intelligence.py
-      - name: Test persistent document classification contract
-        run: PYTHONPATH=. python tests/test_document_classifications.py
       - name: Test immutable passage annotation contract
         run: PYTHONPATH=. python tests/test_document_annotations.py
+      - name: Test persistent document classification contract
+        run: PYTHONPATH=. python tests/test_document_classifications.py
       - name: Test unapproved Law 14 machine-proposed evaluation draft structure
         run: PYTHONPATH=. python tests/test_law14_machine_proposed_eval_set.py
       - name: Test frontend UX and accessibility contract
