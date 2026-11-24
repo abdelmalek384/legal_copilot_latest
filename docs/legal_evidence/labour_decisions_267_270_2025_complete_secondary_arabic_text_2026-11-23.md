@@ -232,3 +232,10 @@ The two transcriptions below reproduce secondary HTML text, not an authenticated
 - Decision 267 contains a potentially important old-decision replacement lead (175/2003 and 414/2015); not verified as an operative repeal until primary text is checked.
 - Decision 270 requires privacy/data-governance review before product implementation.
 - Both instruments remain source/reuse-rights pending, lawyer-review pending and currentness-unverified. Do not import into production answer generation as verified law.
+
+## Explicit machine trust flags
+
+- `lawyer_reviewed: false`
+- `verified: false`
+- `rights_cleared: false`
+- This capture is research material only. It must not be treated as a lawyer-approved operative text or imported into production legal answering until the stated primary-source comparison, rights review and qualified Egyptian lawyer review are completed.
