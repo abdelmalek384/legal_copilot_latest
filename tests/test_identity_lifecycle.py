@@ -88,6 +88,18 @@ class IdentityLifecycleTests(unittest.TestCase):
             self.assertEqual(response.headers.get("Cache-Control"), "no-store")
             self.assertEqual(response.headers.get("Referrer-Policy"), "no-referrer")
 
+    def test_identity_pages_offer_bilingual_rtl_and_ltr_controls(self):
+        for path in ("/invite/accept", "/account/recovery"):
+            response = self.client.get(path)
+            self.assertEqual(response.status_code, 200)
+            self.assertIn('id="language"', response.text)
+            self.assertIn('data-en=', response.text)
+            self.assertIn('data-ar=', response.text)
+            self.assertIn('dir="ltr"', response.text)
+            self.assertIn('next==="ar"?"rtl":"ltr"', response.text)
+            self.assertIn('next==="ar"?"English":"العربية"', response.text)
+            self.assertIn('role="status" aria-live="polite"', response.text)
+
     def test_public_identity_pages_are_registered_from_identity_router(self):
         app_source = (ROOT / "app.py").read_text(encoding="utf-8")
         router_source = (ROOT / "routers" / "identity.py").read_text(encoding="utf-8")
