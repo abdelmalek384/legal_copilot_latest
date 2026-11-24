@@ -81,3 +81,22 @@ WHEN EXISTS (SELECT 1 FROM docs WHERE id=OLD.document_id)
 BEGIN
   SELECT RAISE(ABORT, 'document passage annotations require soft deletion');
 END;
+
+-- Overlapping active highlights render ambiguously in a linear text view. Reject
+-- overlaps at the database boundary as well as in the API to close concurrent inserts.
+CREATE TRIGGER document_passage_annotations_no_overlap_insert
+BEFORE INSERT ON document_passage_annotations
+WHEN NEW.deleted_at IS NULL
+ AND EXISTS (
+   SELECT 1 FROM document_passage_annotations existing
+   WHERE existing.firm_id=NEW.firm_id
+     AND existing.case_id=NEW.case_id
+     AND existing.document_id=NEW.document_id
+     AND existing.chunk_id=NEW.chunk_id
+     AND existing.deleted_at IS NULL
+     AND existing.start_offset < NEW.end_offset
+     AND existing.end_offset > NEW.start_offset
+ )
+BEGIN
+  SELECT RAISE(ABORT, 'overlaps an active passage annotation');
+END;
