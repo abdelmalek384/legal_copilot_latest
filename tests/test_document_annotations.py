@@ -73,6 +73,12 @@ class DocumentAnnotationSchemaTests(unittest.TestCase):
         with self.assertRaisesRegex(sqlite3.IntegrityError, "scope mismatch"):
             self.create_annotation(chunk_id=999)
 
+    def test_schema_rejects_malformed_digest_and_blank_note(self):
+        with self.assertRaises(sqlite3.IntegrityError):
+            self.create_annotation(text_sha256="z" * 64)
+        with self.assertRaises(sqlite3.IntegrityError):
+            self.create_annotation(annotation_type="note", body="")
+
     def test_parent_document_deletion_cascades_annotations_and_events(self):
         cursor = self.create_annotation()
         annotation_id = cursor.lastrowid
@@ -114,6 +120,17 @@ class DocumentAnnotationAPITests(unittest.TestCase):
         self.assertIn("document_annotation_created", endpoint)
         self.assertIn('bucket = "document_annotations"', app)
         self.assertIn("limit = (30, 60)", app)
+
+    def test_list_api_joins_firm_parents_and_marks_stale_source_anchors(self):
+        app = (ROOT / "app.py").read_text(encoding="utf-8")
+        endpoint = app[app.index("def list_document_annotations("):app.index('@app.post("/cases/{cid}/docs/{document_id}/annotations"')]
+        self.assertIn("need(c, u, cid)", endpoint)
+        self.assertIn("JOIN docs d ON d.id=a.document_id", endpoint)
+        self.assertIn("JOIN cases c ON c.id=a.case_id", endpoint)
+        self.assertIn("JOIN chunks ch ON ch.id=a.chunk_id", endpoint)
+        self.assertIn("a.firm_id=? AND c.firm_id=?", endpoint)
+        self.assertIn('item["stale_anchor"]', endpoint)
+        self.assertIn('item["author_name"]', endpoint)
 
     def test_quote_is_preserved_exactly_for_unicode_source_offsets(self):
         app = (ROOT / "app.py").read_text(encoding="utf-8")
