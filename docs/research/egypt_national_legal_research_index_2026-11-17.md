@@ -135,3 +135,11 @@ This is the cross-domain research entry point for the Legal Copilot national Egy
 - [Gazette issue 258 Dakahlia Decisions 457, 458 and 463/2026](../legal_evidence/november_2026_gazette_258_dakahlia_planning_decisions_457_458_463.md) and [Housing Decision 994/2026](../legal_evidence/november_2026_gazette_258_housing_decision_994_2026_arabic_text.md) — secondary text captures; original issue 258 pages and integral planning maps remain outstanding.
 
 All newly recovered entries remain provisional. Preserve `lawyer_reviewed=false`, `verified=false`, and `rights_cleared=false` until the required source, permission and qualified-lawyer review gates are actually met.
+
+
+## 36. Labour and employment implementing instruments — 2025–2026 acquisition recovery
+
+- [Incremental labour and employment Arabic-text acquisition tranche](labour_employment_new_text_acquisition_tranche_2026-11-20.md) — recovers issue-290/291 and issue-64/108 source leads and text captures, including Decisions 259–301/2025, 319/2025, 320/2025 and later 2026 instruments. Per-instrument source quality varies; this is not a verified consolidated collection.
+- New standalone captures include Decision 266/2025 (25 articles; 435 occupation rows identified but not transcribed/verified), Decision 272/2025 (selected extracts), Decision 279/2025 (selected extracts/topic map), Decision 288/2025 (six articles), Decisions 267/270/2025 (complete secondary texts), Decision 346/2025 (two articles), and Decisions 48–50/2026 (with both Decision 50 annex text layers captured).
+- Later 2026 captures include Decision 74/2026 (17-article secondary text), Decision 75/2026 (15 articles; official indexed text corroborates most but not all), and the full Decision 50 annex extraction. See [labour harvest index](README_labour_law_harvest.md) items 87–96 for per-instrument source and gap notes.
+- All recovered texts remain research-only: no lawyer approval, no production verification, and no source-reuse clearance.
