@@ -167,6 +167,7 @@ class DocumentAnnotationAPITests(unittest.TestCase):
         self.assertIn("stale_anchor", html)
         self.assertIn("annotationError", html)
         self.assertIn("Could not load saved annotations", html)
+        self.assertIn("#main .document-annotation-controls .row button{flex:1 1 140px}", html)
         self.assertIn("item.annotations=Array.isArray(annotationData.annotations)?annotationData.annotations:[]", html)
 
 
