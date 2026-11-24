@@ -71,6 +71,43 @@ class MFAAccountSecurityTests(unittest.TestCase):
         headers["X-CSRF-Token"] = self.client.cookies.get("lc_csrf") or ""
         return getattr(self.client, method)(path, headers=headers, **kwargs)
 
+    def test_login_rotates_untrusted_pre_auth_session_and_csrf_cookies(self):
+        # A client-controlled pre-auth cookie must never become the authenticated
+        # session. Login must mint fresh independent session and CSRF secrets.
+        supplied_session = "attacker-chosen-pre-auth-session"
+        supplied_csrf = "attacker-chosen-pre-auth-csrf"
+        self.client.cookies.set("lc_session", supplied_session)
+        self.client.cookies.set("lc_csrf", supplied_csrf)
+
+        response = self.login()
+        self.assertEqual(response.status_code, 200, response.text)
+        issued_session = response.cookies.get("lc_session")
+        issued_csrf = response.cookies.get("lc_csrf")
+        self.assertTrue(issued_session)
+        self.assertTrue(issued_csrf)
+        self.assertNotEqual(issued_session, supplied_session)
+        self.assertNotEqual(issued_csrf, supplied_csrf)
+        self.assertNotEqual(issued_session, issued_csrf)
+
+        control = self.runtime.control_connection()
+        self.assertIsNotNone(control.execute(
+            "SELECT 1 FROM auth_sessions WHERE token_hash=? AND user_id=?",
+            (app.sha(issued_session), self.user_id),
+        ).fetchone())
+        self.assertIsNone(control.execute(
+            "SELECT 1 FROM auth_sessions WHERE token_hash=?",
+            (app.sha(supplied_session),),
+        ).fetchone())
+
+        set_cookies = response.headers.get_list("set-cookie")
+        session_header = next(value for value in set_cookies if value.startswith("lc_session="))
+        csrf_header = next(value for value in set_cookies if value.startswith("lc_csrf="))
+        self.assertIn("httponly", session_header.lower())
+        self.assertIn("samesite=lax", session_header.lower())
+        self.assertIn("httponly", csrf_header.lower() if "httponly" in csrf_header.lower() else "csrf-cookie-readable")
+        self.assertNotIn("httponly", csrf_header.lower())
+        self.assertIn("samesite=lax", csrf_header.lower())
+
     def login(self):
         return self.client.post(
             "/login", json={"email": "MFA-OWNER@example.test", "password": self.password}
