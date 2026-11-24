@@ -151,3 +151,10 @@ The preamble states that the decision follows review of:
 6. Gazette page-image QA and Egyptian environmental lawyer review.
 
 No legal instrument register IDs were created in this research supplement. This file records acquisition evidence and extracted text only.
+
+## Explicit machine trust flags
+
+- `lawyer_reviewed: false`
+- `verified: false`
+- `rights_cleared: false`
+- This acquisition is research-only. Preserve source-specific completeness, Gazette-image and amendment/currentness limitations; do not use as a verified/current consolidated legal source until primary-source comparison, reuse-rights review and qualified Egyptian lawyer approval are complete.
