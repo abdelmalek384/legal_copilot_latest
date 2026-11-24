@@ -4,6 +4,7 @@
 **Decision:** **NOT READY** for lawyer pilot or production. This is an engineering checkpoint, not legal, security or operational certification. Historical tracker detail is archived at [STATUS history](archive/STATUS_history_through_2026-11-13.md).
 
 ## Manual checkpoint — 2026-11-24
+- Tenant storage review: catalog path validation rejects symlink roots/files and enforces firm-ID filenames; residual race between path checks and file access is documented as not tested against a local directory-writer attacker. Commit `f797b59`.
 - Tenant-context regression: added `test_rejects_noncanonical_membership_status_values` for case/whitespace/type-invalid status values (ACTIVE, padded active, bool, numeric, null). Commit `ce579b4`. Tests are added but not executed in this environment; no security PASS claim.
 
 
