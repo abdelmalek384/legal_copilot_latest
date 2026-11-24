@@ -88,6 +88,13 @@ class IdentityLifecycleTests(unittest.TestCase):
             self.assertEqual(response.headers.get("Cache-Control"), "no-store")
             self.assertEqual(response.headers.get("Referrer-Policy"), "no-referrer")
 
+    def test_identity_pages_remove_one_time_tokens_from_browser_history(self):
+        router_source = (ROOT / "routers" / "identity.py").read_text(encoding="utf-8")
+        self.assertEqual(
+            router_source.count('history.replaceState(null,"",location.pathname+location.search);'),
+            2,
+        )
+
     def test_public_identity_pages_are_registered_from_identity_router(self):
         app_source = (ROOT / "app.py").read_text(encoding="utf-8")
         router_source = (ROOT / "routers" / "identity.py").read_text(encoding="utf-8")
