@@ -125,3 +125,10 @@ Source: official EEAA Gazette PDF linked in checkpoint 38 and above.
 6. Lawyer validation and rights review remain required.
 
 No legal instrument IDs were created or duplicated in the instrument register in this pass.
+
+## Explicit machine trust flags
+
+- `lawyer_reviewed: false`
+- `verified: false`
+- `rights_cleared: false`
+- This acquisition is research-only. Preserve source-specific completeness, Gazette-image and amendment/currentness limitations; do not use as a verified/current consolidated legal source until primary-source comparison, reuse-rights review and qualified Egyptian lawyer approval are complete.
