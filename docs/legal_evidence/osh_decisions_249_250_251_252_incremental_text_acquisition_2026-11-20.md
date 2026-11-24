@@ -121,3 +121,10 @@ This is a source-acquisition status, not a claim that the five instruments are c
 6. Preserve all alternate-source text as secondary_transcription_pending; no legal rule from the LinkedIn post, Scribd draft or search snippet should enter authoritative retrieval.
 
 **Status controls:** verified=0; lawyer_reviewed=0; official Gazette PDF hash absent; rights/permission clearance remains pending.
+
+## Explicit machine trust flags
+
+- `lawyer_reviewed: false`
+- `verified: false`
+- `rights_cleared: false`
+- This acquisition note is research-only. Preserve source distinctions and missing-text limitations; do not use as a verified/current consolidated legal instrument or production answer source until primary-source comparison, rights review and qualified Egyptian lawyer approval are complete.
