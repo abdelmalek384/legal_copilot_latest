@@ -29,3 +29,10 @@ The official Cabinet document identifies the second edition as a 2026–2030 pol
 - Policy annex should be ingested separately as its own corpus document after full extraction and integrity check; do not treat this three-article decision as the full policy.
 - Check subsequent amendments, implementation decisions and currentness.
 - No lawyer review; no `verified` flag changed.
+
+## Explicit trust and reuse status
+
+- `lawyer_reviewed: false`
+- `verified: false`
+- `rights_cleared: false`
+- The captured wording is a research aid only. Do not present it as an authoritative consolidated text or use it to make legal conclusions without Gazette-page comparison and qualified Egyptian lawyer review.
