@@ -3538,11 +3538,13 @@ function documentIntelligencePanel(caseId,documents){
     const passage=h('p',{className:'extraction-review-text',textContent:String(latest&&latest.outcome==='corrected'?latest.reviewed_text:chunk.text||''),tabIndex:0});
     const annotationStatus=h('p',{className:'mut',role:'status','aria-live':'polite',textContent:uiText('حدد نصاً من المقطع ثم التقط التحديد لإضافة تعليق محفوظ.','Select text in this passage, then capture the selection to save an annotation.')});
     const annotationBody=h('textarea',{rows:2,maxLength:5000,placeholder:uiText('ملاحظة مرتبطة بالتحديد (اختيارية للتظليل)','Note attached to the selection (optional for highlights)'),'aria-label':uiText('نص التعليق على المقطع ','Annotation note for chunk ')+chunk.id,style:'width:100%'});
-    let selectedAnchor=null;
+    let selectedAnchor=null,pendingSelectionRange=null;
     const captureSelection=btn(uiText('التقاط التحديد','Capture selection'),()=>{
      const selection=window.getSelection();
-     if(!selection||selection.rangeCount!==1){annotationStatus.textContent=uiText('حدد جزءاً واحداً من نص المقطع أولاً.','Select one continuous passage first.');selectedAnchor=null;return}
-     const range=selection.getRangeAt(0),node=passage.firstChild,quote=range.toString();
+     const range=pendingSelectionRange||(selection&&selection.rangeCount===1?selection.getRangeAt(0):null);
+     pendingSelectionRange=null;
+     if(!range){annotationStatus.textContent=uiText('حدد جزءاً واحداً من نص المقطع أولاً.','Select one continuous passage first.');selectedAnchor=null;return}
+     const node=passage.firstChild,quote=range.toString();
      if(!node||range.startContainer!==node||range.endContainer!==node||!quote.trim()){
       annotationStatus.textContent=uiText('يجب أن يكون التحديد داخل نص المقطع نفسه.','The selection must be entirely within this passage text.');selectedAnchor=null;return
      }
@@ -3571,7 +3573,10 @@ function documentIntelligencePanel(caseId,documents){
      }catch(error){annotationStatus.textContent=String(error.message||uiText('تعذر حفظ التعليق. أعد تحميل النص وحاول مجدداً.','Could not save annotation. Reload the passage and retry.'))}
      finally{controls.forEach(control=>control.disabled=false)}
     };
-    captureSelection.onmousedown=event=>event.preventDefault();
+    captureSelection.onmousedown=()=>{
+     const selection=window.getSelection();
+     pendingSelectionRange=selection&&selection.rangeCount===1?selection.getRangeAt(0).cloneRange():null;
+    };
     const saveHighlight=btn(uiText('حفظ التظليل','Save highlight'),()=>saveAnnotation('highlight'),'g');
     const saveNote=btn(uiText('حفظ الملاحظة','Save note'),()=>saveAnnotation('note'),'primary');
     const savedAnnotations=(Array.isArray(item.annotations)?item.annotations:[]).filter(annotation=>Number(annotation.chunk_id)===Number(chunk.id));
