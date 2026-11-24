@@ -2827,6 +2827,14 @@ class CaseIn(BaseModel):
     case_number: str = Field("", max_length=100); case_year: str = Field("", max_length=20)
     court: str = Field("", max_length=200); circuit: str = Field("", max_length=200); opposing_party: str = Field("", max_length=200)
 
+    @field_validator("title")
+    @classmethod
+    def normalize_case_title(cls, value):
+        value = value.strip()
+        if not value:
+            raise ValueError("case title cannot be blank")
+        return value
+
     @field_validator("client", mode="before")
     @classmethod
     def validate_case_client_name(cls, value):
@@ -3026,10 +3034,33 @@ class FeeIn(BaseModel):
     title: str = Field(min_length=1, max_length=200); amount: float = Field(ge=0, le=1_000_000_000_000); paid: float = Field(ge=0, le=1_000_000_000_000)
     due: str | None = Field(None, pattern=r"^\d{4}-\d{2}-\d{2}$"); note: str = Field("", max_length=1000)
     _valid_due = field_validator("due")(validate_calendar_date)
+
+    @field_validator("title")
+    @classmethod
+    def trim_fee_title(cls, value):
+        value = value.strip()
+        if not value:
+            raise ValueError("fee title cannot be blank")
+        return value
+
+    @field_validator("note")
+    @classmethod
+    def trim_fee_note(cls, value):
+        return value.strip()
+
+
 class InvoiceLineIn(BaseModel):
     description: str = Field(min_length=1, max_length=500)
     quantity_milli: int = Field(1000, strict=True, ge=1, le=1_000_000)
     unit_price_piasters: int = Field(strict=True, ge=0, le=1_000_000_000_000)
+
+    @field_validator("description")
+    @classmethod
+    def trim_invoice_line_description(cls, value):
+        value = value.strip()
+        if not value:
+            raise ValueError("invoice line description cannot be blank")
+        return value
 
 
 class InvoiceDraftIn(BaseModel):
@@ -3053,7 +3084,24 @@ class InvoiceVoidIn(BaseModel):
     reason: str = Field(min_length=5, max_length=1000)
 
 
-class DocIn(BaseModel): name: str = Field(min_length=1, max_length=200); text: str = Field(min_length=1, max_length=300_000)
+class DocIn(BaseModel):
+    name: str = Field(min_length=1, max_length=200)
+    text: str = Field(min_length=1, max_length=300_000)
+
+    @field_validator("name")
+    @classmethod
+    def trim_document_name(cls, value):
+        value = value.strip()
+        if not value:
+            raise ValueError("document name cannot be blank")
+        return value
+
+    @field_validator("text")
+    @classmethod
+    def validate_document_text(cls, value):
+        if not value.strip():
+            raise ValueError("document text cannot be blank")
+        return value
 class SessIn(BaseModel):
     date: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$"); note: str = Field("", max_length=500)
     _valid_date = field_validator("date")(validate_calendar_date)
