@@ -233,3 +233,11 @@ All newly recovered entries remain provisional. Preserve `lawyer_reviewed=false`
 ## 57. NFSA Board Decision 11/2020 — food-establishment safety requirements
 
 - [NFSA Board Decision 11/2020 Gazette research-copy capture](../legal_evidence/nfsa_board_decision_11_2020_food_establishment_food_safety_requirements_gazette_capture_2026-11-24.md) — full PDF text layer located on the NFSA official domain for Proceedings issue 141 supplement (A), 24 June 2021. Includes the decision and its integral basic food-safety requirements annex, covering PRPs/HACCP, licensing/operator duties, hygiene, personnel, storage, packaging, water, records, transport, withdrawal/recall and labelling. The PDF itself warns that its electronic image is not valid for circulation; OCR/RTL numbering and currentness remain to be checked. Not a certified copy or verified checklist.
+
+## 58. NFSA Board Decision 6/2020 — food-import licensing
+
+- [Decision 6/2020 Arabic Gazette-text capture](../legal_evidence/nfsa_board_decision_6_2020_food_import_licensing_gazette_text_capture_2026-11-24.md) — all 11 articles located in Appendix II of USDA FAS GAIN report EG2020-0044. Covers importer licensing, documentary requirements, traceability/quality obligations, NFSA review, historical fees, suspension/revocation and confidentiality. The publication issue/date conflicts between the report and extracted Arabic masthead; original NFSA/Amiri Press page image is still required.
+
+## 59. NFSA Board Decision 7/2020 — risk-based food-import control
+
+- [Decision 7/2020 Arabic text capture](../legal_evidence/nfsa_board_decision_7_2020_risk_based_food_import_control_gazette_capture_2026-11-24.md) — complete 21-article Arabic Gazette-text reproduction located in FAOLEX, issue 180 (تابع), 13 August 2020. Covers risk assessment, pre-arrival notice, green/yellow/orange/red channels, sampling, release and post-release action. Article 21 commencement must be checked against the USDA report's differing date and any Board renewal.
