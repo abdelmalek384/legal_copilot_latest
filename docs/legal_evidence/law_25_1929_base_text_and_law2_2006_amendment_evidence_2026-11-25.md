@@ -30,3 +30,8 @@ Secondary consolidated sources report that the Supreme Constitutional Court decl
 - Lawyer review: no.
 - Rights assessment: no.
 - Production/search eligibility: not established.
+
+
+## 1996 constitutional judgment — exact partial invalidation scope
+
+The official SCC judgment in Case 5/8 (constitutional), dated 6 January 1996, is available at https://www.sccourt.gov.eg/DjangoPortalResources/Rules_Html/592_8_5_1_2.html. It invalidates only two specified portions of Article 18 bis 3 of Law 25/1929, not the whole article. Those portions concern (1) requiring the father to provide suitable housing even when the children have sufficient funds or the custodian has a dwelling, and (2) the time limit tied to the former wife's idda where the marital home is rented. The original Gazette issue 3 page image remains outstanding; see EG-0557 / FT-0233 / EV-0368.
