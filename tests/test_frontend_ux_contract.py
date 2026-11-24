@@ -271,6 +271,8 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("correction.setAttribute('data-review-draft','1')", panel)
         self.assertIn("window.DOCUMENT_REVIEW_DRAFT_DIRTY=true", panel)
         self.assertIn("noteClearReviewDrafts(note,correction)", panel)
+        self.assertIn("const submitChunkReview=async(item,chunk,outcome,correctedText,note,correction,controls)=>", panel)
+        self.assertIn("submitChunkReview(item,chunk,'accepted','',note.value,correction,[accepted,recheck,edit])", panel)
         self.assertIn("window.DOCUMENT_REVIEW_DRAFT_DIRTY=Array.from(document.querySelectorAll('[data-review-draft=\"1\"]')).some(field=>String(field.value||'').trim().length>0)", panel)
         self.assertIn("await api('/cases/'+caseId+'/docs/'+item.doc.document_id+'/chunks/'+chunk.id+'/review','POST',payload);\n   noteClearReviewDrafts(note,correction);", panel)
 
