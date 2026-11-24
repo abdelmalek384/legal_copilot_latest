@@ -9199,6 +9199,157 @@ class ExtractionReviewIn(BaseModel):
     note: str = Field(default="", max_length=2000)
 
 
+class PassageAnnotationIn(BaseModel):
+    start_offset: int = Field(ge=0, le=1_000_000)
+    end_offset: int = Field(gt=0, le=1_000_000)
+    selected_text: str = Field(min_length=1, max_length=2000)
+    source_text_sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
+    note: str = Field(min_length=1, max_length=2000)
+    color: str = Field(default="yellow", pattern=r"^(yellow|blue|green|pink)$")
+
+    @field_validator("selected_text")
+    @classmethod
+    def validate_selected_annotation_text(cls, value):
+        if not value.strip():
+            raise ValueError("selected_text must contain visible text")
+        return value
+
+    @field_validator("note")
+    @classmethod
+    def normalize_annotation_note(cls, value):
+        value = value.strip()
+        if not value:
+            raise ValueError("annotation note cannot be blank")
+        return value
+
+
+
+@app.get("/cases/{cid}/docs/{document_id}/chunks/{chunk_id}/annotations")
+def list_document_passage_annotations(
+    cid: int,
+    document_id: int,
+    chunk_id: int,
+    u: dict = Depends(user),
+):
+    c = conn()
+    need(c, u, cid)
+    chunk = c.execute(
+        "SELECT 1 FROM chunks ch JOIN docs d ON d.id=ch.document_id AND d.case_id=ch.case_id "
+        "WHERE ch.id=? AND ch.document_id=? AND ch.case_id=? AND d.firm_id=?",
+        (chunk_id, document_id, cid, int(u["firm_id"])),
+    ).fetchone()
+    if chunk is None:
+        raise HTTPException(404, "document chunk not found")
+    rows = c.execute(
+        "SELECT id,start_offset,end_offset,selected_text,source_text_sha256,note,color,"
+        "created_by_user_id,created_at FROM document_passage_annotations "
+        "WHERE firm_id=? AND case_id=? AND document_id=? AND chunk_id=? AND deleted_at IS NULL "
+        "ORDER BY start_offset,id",
+        (int(u["firm_id"]), cid, document_id, chunk_id),
+    ).fetchall()
+    return {"items": [dict(row) for row in rows]}
+
+
+@app.post("/cases/{cid}/docs/{document_id}/chunks/{chunk_id}/annotations", status_code=201)
+@rollback_tenant_transaction_on_error
+def create_document_passage_annotation(
+    cid: int,
+    document_id: int,
+    chunk_id: int,
+    b: PassageAnnotationIn,
+    u: dict = Depends(user),
+):
+    c = conn()
+    need(c, u, cid)
+    chunk = c.execute(
+        "SELECT ch.text FROM chunks ch "
+        "JOIN docs d ON d.id=ch.document_id AND d.case_id=ch.case_id "
+        "WHERE ch.id=? AND ch.document_id=? AND ch.case_id=? AND d.firm_id=?",
+        (chunk_id, document_id, cid, int(u["firm_id"])),
+    ).fetchone()
+    if chunk is None:
+        raise HTTPException(404, "document chunk not found")
+    source_text = str(chunk["text"] or "")
+    actual_digest = hashlib.sha256(source_text.encode("utf-8")).hexdigest()
+    if b.source_text_sha256 != actual_digest:
+        raise HTTPException(409, "passage text changed; reload the document before annotating")
+    if b.end_offset <= b.start_offset or b.end_offset > len(source_text):
+        raise HTTPException(422, "annotation offsets are outside the current passage")
+    if source_text[b.start_offset:b.end_offset] != b.selected_text:
+        raise HTTPException(422, "selected_text does not match the source passage at the supplied offsets")
+    overlap = c.execute(
+        "SELECT id FROM document_passage_annotations "
+        "WHERE firm_id=? AND case_id=? AND document_id=? AND chunk_id=? AND deleted_at IS NULL "
+        "AND start_offset < ? AND end_offset > ? LIMIT 1",
+        (int(u["firm_id"]), cid, document_id, chunk_id, b.end_offset, b.start_offset),
+    ).fetchone()
+    if overlap is not None:
+        raise HTTPException(409, "this passage overlaps an existing active highlight")
+    try:
+        cursor = c.execute(
+        "INSERT INTO document_passage_annotations("
+        "document_id,case_id,firm_id,chunk_id,created_by_user_id,start_offset,end_offset,"
+        "selected_text,source_text_sha256,note,color) VALUES(?,?,?,?,?,?,?,?,?,?,?)",
+        (document_id, cid, int(u["firm_id"]), chunk_id, int(u["id"]),
+         b.start_offset, b.end_offset, b.selected_text, actual_digest, b.note, b.color),
+        )
+    except sqlite3.IntegrityError as exc:
+        if "overlaps an active passage annotation" in str(exc):
+            raise HTTPException(409, "this passage overlaps an existing active highlight") from exc
+        raise
+    annotation_id = int(cursor.lastrowid)
+    c.execute(
+        "INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
+        (int(u["firm_id"]), int(u["id"]), f"document_passage_annotation_created:{annotation_id}"),
+    )
+    c.commit()
+    return {
+        "id": annotation_id,
+        "document_id": document_id,
+        "case_id": cid,
+        "chunk_id": chunk_id,
+        "start_offset": b.start_offset,
+        "end_offset": b.end_offset,
+        "selected_text": b.selected_text,
+        "source_text_sha256": actual_digest,
+        "note": b.note,
+        "color": b.color,
+        "created_by_user_id": int(u["id"]),
+    }
+
+
+@app.delete("/cases/{cid}/docs/{document_id}/annotations/{annotation_id}")
+@rollback_tenant_transaction_on_error
+def delete_document_passage_annotation(
+    cid: int,
+    document_id: int,
+    annotation_id: int,
+    u: dict = Depends(user),
+):
+    c = conn()
+    need(c, u, cid)
+    row = c.execute(
+        "SELECT id,created_by_user_id FROM document_passage_annotations "
+        "WHERE id=? AND document_id=? AND case_id=? AND firm_id=? AND deleted_at IS NULL",
+        (annotation_id, document_id, cid, int(u["firm_id"])),
+    ).fetchone()
+    if row is None:
+        raise HTTPException(404, "annotation not found")
+    if int(row["created_by_user_id"]) != int(u["id"]) and u["role"] != "admin" and not is_lead(c, u, cid):
+        raise HTTPException(403, "only the annotation author or a matter lead may remove this annotation")
+    c.execute(
+        "UPDATE document_passage_annotations SET deleted_at=datetime('now'),deleted_by_user_id=? "
+        "WHERE id=? AND document_id=? AND case_id=? AND firm_id=? AND deleted_at IS NULL",
+        (int(u["id"]), annotation_id, document_id, cid, int(u["firm_id"])),
+    )
+    c.execute(
+        "INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
+        (int(u["firm_id"]), int(u["id"]), f"document_passage_annotation_deleted:{annotation_id}"),
+    )
+    c.commit()
+    return {"deleted": True, "annotation_id": annotation_id}
+
+
 @app.get("/cases/{cid}/docs/{document_id}/reviews")
 def list_document_reviews(cid: int, document_id: int, u: dict = Depends(user)):
     c = conn(); need(c, u, cid)
@@ -9456,10 +9607,21 @@ def list_document_chunks(cid: int, document_id: int, u: dict = Depends(user)):
         (document_id, cid, u["firm_id"], document_id, cid, u["firm_id"]),
     ).fetchall()
     latest = {int(review["chunk_id"]): dict(review) for review in review_rows}
+    annotation_rows = c.execute(
+        "SELECT id,chunk_id,start_offset,end_offset,selected_text,source_text_sha256,note,color,"
+        "created_by_user_id,created_at FROM document_passage_annotations "
+        "WHERE firm_id=? AND case_id=? AND document_id=? AND deleted_at IS NULL "
+        "ORDER BY chunk_id,start_offset,id",
+        (int(u["firm_id"]), cid, document_id),
+    ).fetchall()
+    annotations_by_chunk = {}
+    for annotation in annotation_rows:
+        annotations_by_chunk.setdefault(int(annotation["chunk_id"]), []).append(dict(annotation))
     chunks = []
     for row in rows:
         item = dict(row)
         item["text_sha256"] = hashlib.sha256(item["text"].encode("utf-8")).hexdigest()
+        item["annotations"] = annotations_by_chunk.get(int(item["id"]), [])
         item["latest_review"] = latest.get(item["id"])
         if item["latest_review"] and item["latest_review"].get("outcome") == "corrected":
             try:
