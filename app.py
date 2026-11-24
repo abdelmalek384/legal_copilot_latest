@@ -2524,9 +2524,17 @@ def _rate_limit(request: Request):
         and path.endswith("/messages")
         and request.method == "POST"
     )
+    is_document_annotation_write = (
+        path.startswith("/cases/")
+        and path.endswith("/annotations")
+        and request.method == "POST"
+    )
     if is_upload:
         limit = _UPLOAD_RATE_LIMIT
         bucket = "upload"
+    elif is_document_annotation_write:
+        limit = (30, 60)
+        bucket = "document_annotations"
     elif is_research_message:
         limit = _RATE_LIMITS["__research_message__"]
         bucket = "__research_message__"
