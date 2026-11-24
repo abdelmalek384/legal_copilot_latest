@@ -37,9 +37,6 @@ class DocumentReviewWorkflowTests(unittest.TestCase):
         self.assertIn('"page_reference": b.page_reference.strip() or None', endpoint)
 
 
-if __name__ == "__main__":
-    unittest.main()
-
     def test_reviewer_page_reference_input_does_not_prefill_from_extraction_page(self):
         html = (ROOT / "static/index.html").read_text(encoding="utf-8")
         self.assertIn("value:chunk.latest_review&&chunk.latest_review.page_reference?chunk.latest_review.page_reference:''", html)
@@ -53,3 +50,7 @@ if __name__ == "__main__":
         self.assertIn("note,pageReference,correction,h('div'", html)
         self.assertIn("correction.value,note.value,pageReference.value", html)
         self.assertIn("note.value,pageReference.value,[accepted,recheck,edit]", html)
+
+
+if __name__ == "__main__":
+    unittest.main()
