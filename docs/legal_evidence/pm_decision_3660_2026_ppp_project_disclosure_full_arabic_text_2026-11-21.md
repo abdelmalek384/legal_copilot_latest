@@ -76,3 +76,11 @@
 4. No annex was indicated in the searchable text.
 5. Do not infer that the decision displaces Law 67/2010 or its Executive Regulation; it creates a project-data disclosure and quarterly reporting mechanism alongside that framework.
 6. Keep the source as acquired, not lawyer-reviewed or fully verified against the signed Gazette image.
+
+
+## Explicit machine trust flags
+
+- `lawyer_reviewed: false`
+- `verified: false`
+- `rights_cleared: false`
+- This material is a research capture, not an approved production legal source. Preserve all source-quality, missing-annex and Gazette-image limitations above. Do not use it as a verified/current consolidated legal text until the original source is matched, reuse rights are cleared and a qualified Egyptian lawyer approves it.
