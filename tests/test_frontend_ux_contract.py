@@ -9,6 +9,11 @@ HTML = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
 
 class FrontendUXContractTests(unittest.TestCase):
 
+    def test_legal_research_workspace_names_egyptian_jurisdiction(self):
+        self.assertIn("Research Egyptian law with source-backed AI assistance.", HTML)
+        self.assertIn("ابحث في القانون المصري بمساعدة ذكية مدعومة بالمصادر", HTML)
+        self.assertNotIn("Research UK law with source-backed AI assistance.", HTML)
+
     def test_matter_csv_import_uses_strict_utf8_decoder(self):
         self.assertIn("new TextDecoder('utf-8',{fatal:true}).decode(await file.arrayBuffer())", HTML)
         self.assertIn("The file must use valid UTF-8 encoding", HTML)
