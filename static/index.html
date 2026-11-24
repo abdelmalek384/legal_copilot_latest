@@ -3980,7 +3980,7 @@ async function view(id){if(window.DOCUMENT_REVIEW_TARGET&&Number(window.DOCUMENT
     const original=h('textarea',{value:chunk.text||'',rows:5,style:'width:100%;direction:rtl',readOnly:true,'aria-label':uiText('النص المستخرج الأصلي','Original extracted text')});
     card.append(h('label',{},h('span',{className:'mut',textContent:uiText('النص المستخرج — للقراءة فقط','Extracted text — read only')}),original));
     const corrected=h('textarea',{value:chunk.text||'',rows:5,style:'width:100%;direction:rtl',maxLength:20000,'aria-label':uiText('النص المصحح','Corrected text')});
-    const pageRef=h('input',{value:chunk.page!==undefined&&chunk.page!==null&&chunk.page!==''?chunk.page:(chunk.page_number??''),placeholder:uiText('مرجع الصفحة (اختياري)','Page reference (optional)'),maxLength:100});
+    const pageRef=h('input',{value:chunk.latest_review&&chunk.latest_review.page_reference?chunk.latest_review.page_reference:'',placeholder:uiText('مرجع الصفحة (اختياري)','Page reference (optional)'),maxLength:100});
     const note=h('input',{placeholder:uiText('ملاحظة المراجع (اختياري)','Reviewer note (optional)'),maxLength:2000,style:'width:100%'});
     const actions=h('div',{className:'row'});
     actions.append(btn(uiText('اعتماد النص المستخرج','Accept extracted text'),async()=>{
