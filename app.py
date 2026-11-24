@@ -9236,10 +9236,17 @@ class DocumentAnnotationIn(BaseModel):
     page_reference: str = Field(default="", max_length=100)
     text_sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
 
-    @field_validator("quoted_text", "body", "page_reference")
+    @field_validator("body", "page_reference")
     @classmethod
-    def trim_annotation_text(cls, value):
+    def trim_annotation_metadata(cls, value):
         return value.strip()
+
+    @field_validator("quoted_text")
+    @classmethod
+    def validate_annotation_quote(cls, value):
+        if not value.strip():
+            raise ValueError("quoted_text cannot be blank")
+        return value
 
 
 @app.get("/cases/{cid}/docs/{document_id}/reviews")
