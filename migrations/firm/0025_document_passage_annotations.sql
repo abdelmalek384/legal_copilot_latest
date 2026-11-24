@@ -70,3 +70,14 @@ WHEN NOT (
 BEGIN
   SELECT RAISE(ABORT, 'document passage annotations are immutable except for soft deletion');
 END;
+
+-- Prevent bypassing the audited soft-delete route with direct SQL DELETE.
+-- Parent-driven retention cascades remain possible after the owning row disappears.
+CREATE TRIGGER document_passage_annotations_no_physical_delete
+BEFORE DELETE ON document_passage_annotations
+WHEN EXISTS (SELECT 1 FROM docs WHERE id=OLD.document_id)
+ AND EXISTS (SELECT 1 FROM cases WHERE id=OLD.case_id)
+ AND EXISTS (SELECT 1 FROM chunks WHERE id=OLD.chunk_id)
+BEGIN
+  SELECT RAISE(ABORT, 'document passage annotations require soft deletion');
+END;
