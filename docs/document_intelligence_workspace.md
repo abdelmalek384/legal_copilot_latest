@@ -23,7 +23,7 @@ This is the document-management and review workspace for uploaded matter files. 
 - Preserve the document name, chunk reference and page number when the extraction endpoint supplies them. A missing page number is shown as not recorded; the UI does not infer one.
 - Show possible duplicates based on exact original-file SHA-256 and normalized extracted-text equality, limited to documents returned for the selected matter.
 - Offer an original-file download through the existing audited, integrity-checking endpoint when a private retained original exists.
-- Compare two extracted text versions with a bounded first-difference context view.
+- Compare two distinct extracted-text documents within the same authorized matter through `GET /documents/compare`. The server assembles stored chunks in order and returns bounded literal change hunks (up to 200), with source chunk IDs/references, recorded page numbers and character offsets for both versions. This is a textual comparison aid, not a semantic/legal redline; every difference requires lawyer review.
 - Keep all candidate results visibly unverified and require lawyer review. Date mentions are not automatically converted into hearings, filing dates or deadlines.
 
 ## Access and resource limits
@@ -52,7 +52,8 @@ This is the document-management and review workspace for uploaded matter files. 
 
 - Semantic cross-matter retrieval and multi-document synthesis. Current full-text search returns literal FTS matches only; it does not make legal findings or synthesize across matters.
 - Structured extraction of named entities and events beyond the literal candidate rules described above.
-- Multi-hunk semantic/version comparison. The current comparison is a bounded first-difference view only.
+- Semantic/legal redlining, clause-level interpretation and significance ranking of version changes. The existing cross-document comparison returns bounded literal text hunks and provenance only; it does not determine legal meaning.
 - Document retention/legal-hold workflow controls in this panel.
+- Persistent lawyer-authored highlights, margin annotations and threaded comments anchored to a document page/text range. Existing extraction-review notes are audit notes attached to accept/correct/recheck decisions; they are not general-purpose document annotations. Do not use browser-local storage as a substitute for tenant-scoped, auditable persistence.
 
 These gaps must remain explicit. Do not describe this UI layer as a complete firm-wide document-management system or verified legal extraction. Saved categories are lawyer workflow metadata, not proof of authenticity, accuracy or legal effect.
