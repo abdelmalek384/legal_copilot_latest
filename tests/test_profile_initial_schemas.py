@@ -585,7 +585,12 @@ class ProfileInitialSchemaTests(unittest.TestCase):
             db.commit()
 
             applied = apply_profile_migrations(db, "control_plane", ROOT)
-            self.assertEqual(applied, [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23])
+            expected_versions = sorted(
+                version
+                for migration in (ROOT / "control_plane").glob("*.sql")
+                if (version := int(migration.name.split("_", 1)[0])) > 5
+            )
+            self.assertEqual(applied, expected_versions)
             previous = db.execute(
                 "SELECT event_type,detail_json FROM platform_security_events"
             ).fetchone()
