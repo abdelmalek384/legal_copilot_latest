@@ -17,7 +17,6 @@ class StreamingDocumentAnalysisTests(unittest.TestCase):
     def test_comparison_iterates_chunk_cursor_under_character_cap(self):
         block = self._function("def compare_accessible_document_versions(", '@app.get("/documents/search-text")')
         self.assertIn("rows = c.execute(", block)
-        self.assertNotIn("rows = c.execute(", block.replace("rows = c.execute(", "", 1) if False else "rows = c.execute(")
         self.assertIn("for row in rows:", block)
         self.assertNotIn("rows = c.execute(\n            \"SELECT id,ref,page,text \"\n            \"FROM chunks \"\n            \"WHERE case_id=? AND document_id=? ORDER BY id\",\n            (case_id, document_id),\n        ).fetchall()", block)
 
