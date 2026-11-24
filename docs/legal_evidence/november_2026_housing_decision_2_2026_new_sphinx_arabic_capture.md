@@ -24,3 +24,11 @@
 - `verified: false`
 - `rights_cleared: false`
 - The captured wording is a research aid only. Do not present it as an authoritative consolidated text or use it to make legal conclusions without Gazette-page comparison and qualified Egyptian lawyer review.
+
+
+## Explicit machine trust flags
+
+- `lawyer_reviewed: false`
+- `verified: false`
+- `rights_cleared: false`
+- This material is a research capture, not an approved production legal source. Preserve all source-quality, missing-annex and Gazette-image limitations above. Do not use it as a verified/current consolidated legal text until the original source is matched, reuse rights are cleared and a qualified Egyptian lawyer approves it.
