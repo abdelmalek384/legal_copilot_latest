@@ -1776,3 +1776,8 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - The regression verifies that only the new session hash is persisted, the attacker-controlled session value is not accepted, the authenticated session cookie is HttpOnly, the CSRF cookie remains script-readable for the double-submit pattern, and both cookies use SameSite=Lax.
 - Test source was read back and all eight static contract checks passed. The repository test module and browser flow were not executed; GitHub Actions are not used because runner billing is blocked, and local checkout/runtime remains unavailable.
 - **Bounded implementation task: 100%.** **Runtime validation: 0%** until the exact-head test is run in a supported local environment. No authentication implementation changed and no pilot/security acceptance is implied.
+### Additional authentication-cookie integration contract — 2026-11-25
+
+- Added a login-response regression using the explicit proxy TLS setting and asserts that `lc_session`, `lc_csrf`, and `lc_firm` all carry the Secure attribute.
+- The same test confirms that only the session and firm cookies are HttpOnly, preserving the browser-readable CSRF double-submit cookie.
+- Static read-back confirms the new test and all six cookie-attribute assertions are present. The test remains unexecuted.
