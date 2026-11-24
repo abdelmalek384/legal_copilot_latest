@@ -62,6 +62,7 @@ def _https_url(value: object) -> bool:
             and parsed.password is None
             and not parsed.netloc.endswith(":")
             and not parsed.fragment
+            and "#" not in value
             and not (query_keys & sensitive_query_keys)
             and not any(ord(char) < 32 for char in value)
         )
