@@ -17,7 +17,7 @@ class FrontendUXContractTests(unittest.TestCase):
     def test_legacy_verified_tier_does_not_create_lawyer_verified_badge(self):
         badge = HTML[HTML.index("const trustTierBadge="):HTML.index("const resetInspector=")]
         self.assertIn("lawyer_verified:", badge)
-        self.assertNotIn("verified:[LANG===", badge)
+        self.assertNotIn("verified:[", badge)
         self.assertIn("const item=labels[tier]||labels.unverified", badge)
 
     def test_lawyer_verified_badge_requires_verified_status_and_counsel_attestation(self):
