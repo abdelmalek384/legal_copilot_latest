@@ -257,3 +257,11 @@ All newly recovered entries remain provisional. Preserve `lawyer_reviewed=false`
 ## 63. NFSA Decision 270/2024 — fast release of production inputs
 
 - [Decision 270/2024 Gazette capture](../legal_evidence/nfsa_decision_270_2024_fast_release_production_inputs_post_market_control_official_gazette_capture_2026-11-24.md) — complete 10-article Arabic text from Ministry of Finance-hosted Official Gazette issue195 (5 September 2024), all seven pages visually inspected. Defines white-list eligibility, prior notice, sampling/risk factors, three release routes, recordkeeping, technical committee and suspension. Ministry of Finance repository currently labels it in force; independent amendment/currentness review remains open.
+
+## 64. NFSA Board Decision 9/2021 — temporary release of imported food
+
+- [Decision 9/2021 Gazette capture](../legal_evidence/nfsa_board_decision_9_2021_temporary_release_imported_food_shipments_gazette_capture_2026-11-24.md) — nine Arabic articles in Gazette issue285 supplement (A), 19 December 2021, pages3–15. Covers orange/red consignments, importer custody and storage, 72-hour transfer, NFSA sampling/monitoring, non-compliance, re-export/destruction and licence sanctions. Article9 contains a delayed commencement for Article3(c) and possible Board renewals that require verification.
+
+## 65. NFSA Board Decision 10/2021 — recognition of exporting-country control performance
+
+- [Decision 10/2021 Gazette capture](../legal_evidence/nfsa_board_decision_10_2021_recognition_exporting_country_food_control_performance_gazette_capture_2026-11-24.md) — 12 Arabic articles and integral Annex1 in Gazette issue285 supplement (A), pages16–31. Establishes equivalence assessment and recognition memoranda for competent authorities in exporting countries, including acceptance of certificates, publication of recognised authorities, suspension and evaluation criteria. Current country/product-specific recognition status remains to be acquired.
