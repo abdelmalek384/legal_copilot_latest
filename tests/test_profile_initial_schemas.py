@@ -130,6 +130,7 @@ class ProfileInitialSchemaTests(unittest.TestCase):
                 "document_passage_annotations_scope_insert",
                 "document_passage_annotations_scope_update",
                 "document_passage_annotations_immutable",
+                "document_passage_annotations_initially_active",
                 "document_passage_annotations_no_physical_delete",
                 "document_passage_annotations_no_overlap_insert",
             },
