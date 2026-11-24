@@ -131,6 +131,15 @@ def duplicate_ids(values: list[Any]) -> list[str]:
     return sorted(value for value, count in Counter(normalized).items() if count > 1)
 
 
+def invalid_identifier_rows(records: list[dict[str, Any]], field: str) -> list[int]:
+    """Return 1-based record positions whose stable identifier is absent or malformed."""
+    return [
+        index for index, record in enumerate(records, start=1)
+        if not isinstance(record.get(field), str) or not record[field].strip()
+        or record[field] != record[field].strip()
+    ]
+
+
 def counts(values: list[Any]) -> dict[str, int]:
     return dict(sorted(Counter(str(v or "unknown") for v in values).items()))
 
@@ -173,6 +182,29 @@ def build_report(paths: dict[str, Path]) -> dict[str, Any]:
         if isinstance(doc_id, str)
     }
     issues: list[dict[str, Any]] = []
+    for label, rows in (
+        ("manifest_sources_invalid_id_rows", invalid_identifier_rows(manifest_sources, "id")),
+        ("permission_sources_invalid_id_rows", invalid_identifier_rows(permission_sources, "source_id")),
+        ("candidate_sources_invalid_id_rows", invalid_identifier_rows(candidate_sources, "source_id")),
+        ("candidate_documents_invalid_id_rows", invalid_identifier_rows(documents, "document_id")),
+        ("evidence_sources_invalid_id_rows", invalid_identifier_rows(evidence_sources, "source_id")),
+        ("acquisition_queue_items_invalid_id_rows", invalid_identifier_rows(queue_items, "queue_item_id")),
+    ):
+        if rows:
+            issues.append({"code": label, "count": len(rows), "ids": [str(row) for row in rows]})
+
+    malformed_queue_doc_rows = [
+        index for index, item in enumerate(queue_items, start=1)
+        if not isinstance(item.get("document_ids"), list)
+        or any(not isinstance(value, str) or not value.strip() for value in item["document_ids"])
+    ]
+    if malformed_queue_doc_rows:
+        issues.append({
+            "code": "acquisition_queue_items_malformed_document_ids",
+            "count": len(malformed_queue_doc_rows),
+            "ids": [str(row) for row in malformed_queue_doc_rows],
+        })
+
     for label, duplicates in (
         ("duplicate_manifest_source_ids", duplicate_ids([s.get("id") for s in manifest_sources])),
         ("duplicate_permission_source_ids", duplicate_ids([s.get("source_id") for s in permission_sources])),
