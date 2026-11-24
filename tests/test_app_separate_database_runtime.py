@@ -6416,14 +6416,35 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             "/login", json={"email": "OWNER@example.test", "password": self.password}
         )
         self.assertEqual(login.status_code, 200, login.text)
-        first = self._mutate("post", "/cases", json={"title": "Accessible Alpha Matter"})
-        second = self._mutate("post", "/cases", json={"title": "Private Beta Matter"})
+
+        shared_client = self._mutate("post", "/clients", json={"name": "Shared Search Client"})
+        private_client = self._mutate("post", "/clients", json={"name": "Private Search Client"})
+        self.assertEqual(shared_client.status_code, 200, shared_client.text)
+        self.assertEqual(private_client.status_code, 200, private_client.text)
+        shared_client_id = shared_client.json()["id"]
+        private_client_id = private_client.json()["id"]
+
+        first = self._mutate(
+            "post", "/cases",
+            json={"title": "Accessible Alpha Matter", "client_id": shared_client_id},
+        )
+        second = self._mutate(
+            "post", "/cases",
+            json={"title": "Accessible Beta Matter", "client_id": shared_client_id},
+        )
+        private = self._mutate(
+            "post", "/cases",
+            json={"title": "Private Gamma Matter", "client_id": private_client_id},
+        )
         self.assertEqual(first.status_code, 200, first.text)
         self.assertEqual(second.status_code, 200, second.text)
-        alpha_case, beta_case = first.json()["id"], second.json()["id"]
+        self.assertEqual(private.status_code, 200, private.text)
+        alpha_case, beta_case, private_case = first.json()["id"], second.json()["id"], private.json()["id"]
+
         for case_id, filename, body in (
             (alpha_case, "alpha-accessible-contract.txt", "Alpha source. التزام قانوني. رقم ١٢٣"),
-            (beta_case, "beta-private-contract.txt", "Beta source. التزام سري."),
+            (beta_case, "beta-accessible-contract.txt", "Beta source. التزام قانوني. رقم ٤٥٦"),
+            (private_case, "gamma-private-contract.txt", "Private source. التزام سري."),
         ):
             uploaded = self._mutate(
                 "post", f"/cases/{case_id}/docs",
@@ -6431,12 +6452,10 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             )
             self.assertEqual(uploaded.status_code, 200, uploaded.text)
 
-        alpha_document = self._mutate(
-            "get", f"/cases/{alpha_case}"
-        )
-        self.assertEqual(alpha_document.status_code, 200, alpha_document.text)
+        alpha_detail = self._mutate("get", f"/cases/{alpha_case}")
+        self.assertEqual(alpha_detail.status_code, 200, alpha_detail.text)
         alpha_document_id = next(
-            item["document_id"] for item in alpha_document.json()["docs"]
+            item["document_id"] for item in alpha_detail.json()["docs"]
             if item["name"] == "alpha-accessible-contract.txt"
         )
         classified = self._mutate(
@@ -6449,11 +6468,12 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             "Document Search Junior", "document-search-junior@example.test", app.hash_pw(self.password)
         )
         self.runtime.create_firm_membership(junior_id, self.firm_a, "lawyer")
-        added = self._mutate(
-            "post", f"/cases/{alpha_case}/members",
-            json={"user_id": junior_id, "role": "junior"},
-        )
-        self.assertEqual(added.status_code, 200, added.text)
+        for case_id in (alpha_case, beta_case):
+            added = self._mutate(
+                "post", f"/cases/{case_id}/members",
+                json={"user_id": junior_id, "role": "junior"},
+            )
+            self.assertEqual(added.status_code, 200, added.text)
 
         junior = TestClient(app.app)
         try:
@@ -6470,11 +6490,29 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             self.assertEqual(results.json()["items"][0]["name"], "alpha-accessible-contract.txt")
             self.assertEqual(results.json()["items"][0]["saved_classification"], "contract")
             self.assertEqual(results.json()["items"][0]["classification_reviewer_name"], "First Owner")
+
             arabic_hits = junior.get("/documents/search-text?q=قَانوني")
             self.assertEqual(arabic_hits.status_code, 200, arabic_hits.text)
-            self.assertEqual(arabic_hits.json()["total"], 1)
-            self.assertIn("قانوني", arabic_hits.json()["items"][0]["excerpt"])
-            self.assertEqual(arabic_hits.json()["items"][0]["case_id"], alpha_case)
+            self.assertEqual(arabic_hits.json()["total"], 2)
+            self.assertEqual(
+                {item["case_id"] for item in arabic_hits.json()["items"]},
+                {alpha_case, beta_case},
+            )
+            client_hits = junior.get(
+                f"/documents/search-text?q=قَانوني&client_id={shared_client_id}"
+            )
+            self.assertEqual(client_hits.status_code, 200, client_hits.text)
+            self.assertEqual(client_hits.json()["total"], 2)
+            self.assertEqual(
+                {item["case_id"] for item in client_hits.json()["items"]},
+                {alpha_case, beta_case},
+            )
+            hidden_client_hits = junior.get(
+                f"/documents/search-text?q=سري&client_id={private_client_id}"
+            )
+            self.assertEqual(hidden_client_hits.status_code, 200, hidden_client_hits.text)
+            self.assertEqual(hidden_client_hits.json()["total"], 0)
+
             digit_hits = junior.get("/documents/search-text?q=١٢٣")
             self.assertEqual(digit_hits.status_code, 200, digit_hits.text)
             self.assertEqual(digit_hits.json()["total"], 1)
@@ -6482,7 +6520,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             self.assertEqual(hidden_text.status_code, 200, hidden_text.text)
             self.assertEqual(hidden_text.json()["total"], 0)
 
-            hidden = junior.get(f"/documents/search?case_id={beta_case}")
+            hidden = junior.get(f"/documents/search?case_id={private_case}")
             self.assertEqual(hidden.status_code, 404, hidden.text)
             invalid = junior.get("/documents/search?classification=verified")
             self.assertEqual(invalid.status_code, 422, invalid.text)

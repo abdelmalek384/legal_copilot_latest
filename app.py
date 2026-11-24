@@ -7241,9 +7241,13 @@ def search_accessible_document_text(
     q: str = Query(default="", min_length=1, max_length=200),
     limit: int = Query(default=40, ge=1, le=100),
     offset: int = Query(default=0, ge=0, le=100000),
+    client_id: int | None = Query(default=None, ge=1),
     u: dict = Depends(user),
 ):
-    """Search extracted chunks only in matters visible to the current firm user."""
+    """Search extracted chunks only in matters visible to the current firm user.
+
+    An optional client filter narrows results without changing matter authorization.
+    """
     needle = norm(q.strip())
     tokens = re.findall(r"[\w]+", needle, flags=re.UNICODE)
     tokens = [token for token in tokens if token][:20]
@@ -7254,7 +7258,9 @@ def search_accessible_document_text(
     access = (
         "chunks.case_id IN (SELECT cs.id FROM cases cs WHERE cs.firm_id=? "
         "AND (?='admin' OR EXISTS(SELECT 1 FROM members m "
-        "WHERE m.case_id=cs.id AND m.user_id=?)))"
+        "WHERE m.case_id=cs.id AND m.user_id=?)) "
+        "AND (? IS NULL OR cs.client_id=?)"
+        ")"
     )
     c = conn()
     joins = (
@@ -7265,7 +7271,7 @@ def search_accessible_document_text(
     where = " WHERE chunks_fts MATCH ? AND " + access
     total = int(c.execute(
         "SELECT COUNT(*)" + joins + where,
-        (int(u["firm_id"]), fts_query, int(u["firm_id"]), u["role"], int(u["id"])),
+        (int(u["firm_id"]), fts_query, int(u["firm_id"]), u["role"], int(u["id"]), client_id, client_id),
     ).fetchone()[0])
     rows = c.execute(
         "SELECT chunks.id AS chunk_id,chunks.case_id,chunks.document_id,chunks.ref,"
@@ -7273,7 +7279,7 @@ def search_accessible_document_text(
         "d.name AS document_name,cs.title AS case_title,cs.case_number,cs.case_year,"
         "bm25(chunks_fts) AS rank"
         + joins + where + " ORDER BY rank LIMIT ? OFFSET ?",
-        (tokens[0], int(u["firm_id"]), fts_query, int(u["firm_id"]), u["role"], int(u["id"]), limit, offset),
+        (tokens[0], int(u["firm_id"]), fts_query, int(u["firm_id"]), u["role"], int(u["id"]), client_id, client_id, limit, offset),
     ).fetchall()
     items = [dict(row) for row in rows]
     c.execute(
