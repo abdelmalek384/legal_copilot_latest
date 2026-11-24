@@ -1,5 +1,6 @@
 """Firm-scoped, audited ZIP export of CSV data."""
 import csv
+import hashlib
 import io
 import unittest
 import zipfile
@@ -136,6 +137,26 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
             "previous_category,new_category,version,note) VALUES(?,?,?, ?,NULL,'pleading',1,?)",
             (doc.lastrowid, self.case_id, self.firm_a, owner_id, "Reviewed pleading"),
         )
+        source_text = "Synthetic pleading extracted passage."
+        chunk = tenant.execute(
+            "INSERT INTO chunks(ref,page,text,norm,case_id,document_id) VALUES(?,?,?,?,?,?)",
+            ("pleading-p1", "1", source_text, "synthetic pleading extracted passage", self.case_id, doc.lastrowid),
+        )
+        quote = "extracted"
+        start_offset = source_text.index(quote)
+        annotation = tenant.execute(
+            "INSERT INTO document_annotations(document_id,case_id,firm_id,chunk_id,author_user_id,"
+            "annotation_type,start_offset,end_offset,quoted_text,body,page_reference,text_sha256) "
+            "VALUES(?,?,?,?,?,'note',?,?,?,?,?,?)",
+            (doc.lastrowid, self.case_id, self.firm_a, chunk.lastrowid, owner_id,
+             start_offset, start_offset + len(quote), quote, "Check this phrase", "1",
+             hashlib.sha256(source_text.encode("utf-8")).hexdigest()),
+        )
+        tenant.execute(
+            "INSERT INTO document_annotation_events(annotation_id,firm_id,case_id,document_id,actor_user_id,action) "
+            "VALUES(?,?,?,?,?,'created')",
+            (annotation.lastrowid, self.firm_a, self.case_id, doc.lastrowid, owner_id),
+        )
         tenant.commit()
 
         draft = self.create_draft().json()
@@ -191,6 +212,13 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
         self.assertEqual(self._zip_csv(response, "reminder_preferences.csv")[0]["deadline_3_days"], "0")
         self.assertEqual(self._zip_csv(response, "original_file_objects.csv")[0]["sha256"], staged.sha256)
         self.assertEqual(self._zip_csv(response, "original_file_deletion_requests.csv"), [])
+        annotation_rows = self._zip_csv(response, "document_annotations.csv")
+        self.assertEqual(len(annotation_rows), 1)
+        self.assertEqual(annotation_rows[0]["quoted_text"], "extracted")
+        self.assertEqual(annotation_rows[0]["body"], "Check this phrase")
+        annotation_events = self._zip_csv(response, "document_annotation_events.csv")
+        self.assertEqual(len(annotation_events), 1)
+        self.assertEqual(annotation_events[0]["action"], "created")
         self.assertEqual(self._zip_csv(response, "answer_correction_suggestions.csv"), [])
         invitation_header = zipfile.ZipFile(io.BytesIO(response.content)).read(
             "firm_invitations.csv"
