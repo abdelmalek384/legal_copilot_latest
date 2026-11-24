@@ -537,6 +537,10 @@ class SourcePermissionRegisterTests(unittest.TestCase):
             self.assertEqual(source["collection_permission"], "unknown")
             self.assertEqual(source["commercial_reuse_permission"], "unknown")
             self.assertIn("labour.gov.eg", source["source_page"])
+        decision_16 = by_id["EG-LAWEG-DECISION16-2012"]
+        self.assertEqual(decision_16["collection_permission"], "unknown")
+        self.assertEqual(decision_16["commercial_reuse_permission"], "unknown")
+        self.assertIn("ItemID=76003", decision_16["source_page"])
         secondary = by_id["EG-RAAFATELSHAER-LEGACY-LABOUR-FUNDS-PDF-2018"]
         self.assertEqual(secondary["collection_permission"], "unknown")
         self.assertEqual(secondary["commercial_reuse_permission"], "unknown")
