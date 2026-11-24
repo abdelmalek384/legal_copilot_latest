@@ -3434,13 +3434,19 @@ function documentIntelligencePanel(caseId,documents){
   const needle=normalize(query.value.trim());
   if(!needle){status.textContent=uiText('اكتب كلمة أو عبارة للبحث.','Enter a word or phrase to search.');return}
   if(!cache.size){status.textContent=uiText('حلّل المستندات أولاً لتحميل النصوص المصرح بها.','Analyze documents first to load authorized extracted text.');return}
-  const hits=[];
+  const hits=[];let truncated=false;
   for(const item of cache.values()){
-   for(const chunk of item.chunks){if(normalize(chunk.text).includes(needle))hits.push({doc:item.doc,chunk});if(hits.length>=50)break}
-   if(hits.length>=50)break;
+   for(const chunk of item.chunks){
+    if(normalize(chunk.text).includes(needle)){
+     hits.push({doc:item.doc,chunk});
+     if(hits.length>=50){truncated=true;break}
+    }
+   }
+   if(truncated)break;
   }
   searchResults.replaceChildren(...hits.map((hit,index)=>h('article',{className:'card'},h('b',{textContent:(index+1)+'. '+hit.doc.name}),h('p',{className:'mut',textContent:[hit.chunk.ref,hit.chunk.page?uiText('صفحة ','Page ')+hit.chunk.page:uiText('رقم الصفحة غير مسجل','Page not recorded')].filter(Boolean).join(' · ')}),h('p',{textContent:String(hit.chunk.text||'').slice(0,420)}))));
-  status.textContent=hits.length?uiText('نتائج البحث: ','Search results: ')+hits.length:uiText('لا توجد مطابقات في النصوص المحملة.','No matches in the loaded extracted text.');
+  if(truncated)searchResults.append(h('p',{className:'notice',role:'note',textContent:uiText('تم عرض أول 50 نتيجة فقط؛ قد توجد مطابقات إضافية في المستندات المحملة.','Only the first 50 matches are shown; additional matches may exist in the loaded documents.')}));
+  status.textContent=hits.length?uiText('نتائج البحث: ','Search results: ')+hits.length+(truncated?uiText(' (تم بلوغ حد العرض)',' (display limit reached)'):''):uiText('لا توجد مطابقات في النصوص المحملة.','No matches in the loaded extracted text.');
  };
  const renderComparison=async()=>{
   compareResults.replaceChildren();
