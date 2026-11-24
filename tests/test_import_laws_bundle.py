@@ -454,6 +454,9 @@ class LegalImportBundleTests(unittest.TestCase):
                 return b"png-bytes"
 
         class Page:
+            # The OCR geometry guard reads page.rect before allocating a pixmap.
+            rect = SimpleNamespace(width=612.0, height=792.0)
+
             def get_pixmap(self, *, dpi):
                 self.dpi = dpi
                 return Pixmap()
