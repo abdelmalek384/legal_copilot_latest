@@ -531,9 +531,9 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("api('/answers/corrections','POST'", HTML)
         self.assertIn("api('/admin/corrections')", HTML)
         self.assertIn("trustTierBadge", HTML)
-        self.assertIn("Source-matched — not verified", HTML)
+        self.assertIn("Source-matched, not lawyer-reviewed", HTML)
         self.assertIn("Unreviewed", HTML)
-        self.assertIn("Verified", HTML)
+        self.assertIn("Lawyer-verified", HTML)
 
     def test_case_notes_surface_safe_arabic_drafting_skeletons(self):
         self.assertIn("/draft-skeleton?document_type=", HTML)
@@ -1257,7 +1257,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("globalOffset", page)
         self.assertIn("doc.case_id", page)
         self.assertIn("Open matter", page)
-        self.assertIn("Metadata results only", page)
+        self.assertIn("These results cover document metadata only", page)
 
     def test_global_document_open_matter_adds_paged_case_to_selector(self):
         page = HTML[HTML.index("async function documentsPage(){"):HTML.index("\\nasync function law(){")]
