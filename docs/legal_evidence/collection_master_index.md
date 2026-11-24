@@ -2625,3 +2625,9 @@ Added Law75/2026 (annual raises/special allowance/EGP750 incentive), Law77/2026 
 - Law 1/2000: acquisition EG-0549 / inventory FT-0224. MKSEgypt provides the Arabic base text under CC BY 4.0; LAWEG identifies Official Gazette issue 4 bis, 29 Jan 2000. The base page shows 79 operative articles, while a separate consolidated source reports 86 through 2020; this is explicitly unresolved.
 - Law 91/2000: acquisition EG-0550 / inventory FT-0225. A two-article Arabic text capture is included in `text_captures/law_91_2000_personal_status_amendment_ar.md` under CC BY 4.0 attribution. It inserts Article 9(1) item 9 and Article 76 bis; provisional events EV-0357 and EV-0358 effective 19 May 2000. Gazette issue number and page-image comparison remain outstanding.
 - [Evidence note](law_1_2000_and_law_91_2000_personal_status_procedure_evidence_2026-11-25.md).
+
+### Law 33/1992 — historical amendment to Law 25/1929 (25 November 2026)
+
+- Acquisition EG-0551 / inventory FT-0226; [four-article Arabic text capture](text_captures/law_33_1992_personal_status_amendment_ar.md), transcribed from MKSEgypt under CC BY 4.0.
+- Replaces Articles 21 and 22 of Law 25/1929; also amends Article 38 of Armed Forces Pension Law 90/1975. Secondary consolidated annotation identifies Official Gazette issue 22 bis (B), 1 Jun 1992. Provisional article-version event EV-0359 effective 2 Jun 1992.
+- This is a historical version superseded in part by Law 140/2017; no primary Gazette page image, lawyer review or currentness certification yet.
