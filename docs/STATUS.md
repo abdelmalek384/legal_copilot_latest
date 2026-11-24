@@ -1,7 +1,13 @@
 # Legal Copilot — release-candidate status
 
-**Updated:** 2026-11-16  
+**Updated:** 2026-11-24  
 **Decision:** **NOT READY** for lawyer pilot or production. This is an engineering checkpoint, not legal, security or operational certification. Historical tracker detail is archived at [STATUS history](archive/STATUS_history_through_2026-11-13.md).
+
+## Manual checkpoint — 2026-11-24
+
+- Static JSON audit of `docs/source_permission_register.json` (199 source records): all records have non-empty unique `source_id` values; all inspected `source_page`, `terms_url`, and `related_source_pages` entries passed a simple HTTPS/whitespace check. This was a content-level audit only; no repository test was executed.
+- No GitHub Actions runs were returned for the direct requirements rollback commit. Dependency upgrade PRs remain pending and are not merged because the Python 3.12 hash lock was not regenerated or tested. Billing-related CI unavailable is not treated as pass.
+- Two AI-2 drafts (#1911, #1912) are closed unmerged; runtime, migration and browser acceptance remain outstanding.
 
 ## AI-1 delivery
 
