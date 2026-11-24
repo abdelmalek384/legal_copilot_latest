@@ -1862,7 +1862,8 @@ class FrontendUXContractTests(unittest.TestCase):
         start = HTML.index(" const renderSearch=()=>{", HTML.index("function documentIntelligencePanel("))
         search = HTML[start:HTML.index(" const renderComparison=", start)]
         self.assertIn("const hits=[];let truncated=false", search)
-        self.assertIn("if(hits.length>=50){truncated=true;break}", search)
+        self.assertIn("if(hits.length>50){truncated=true;break}", search)
+        self.assertIn("hits.slice(0,50).map", search)
         self.assertIn("if(truncated)break", search)
         self.assertIn("Only the first 50 matches are shown", search)
         self.assertIn("(display limit reached)", search)
