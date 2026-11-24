@@ -65,3 +65,10 @@ Executive Regulation Decision 1613/2008 (published Egyptian Proceedings issue 20
 - Verified: `false`.
 - No new instrument ID created because Law 66/1973 and amendments are already registered in prior project records.
 - Next acquisition step: capture full Arabic Decision 1613/2008 and its amendment decisions, then complete the 2024 amendment's page-by-page Gazette comparison and the 66/1973 amendment chain. If a scan is blocked, use another public transcription and mark it secondary.
+
+## Explicit machine trust flags
+
+- `lawyer_reviewed: false`
+- `verified: false`
+- `rights_cleared: false`
+- This acquisition note is research-only. Preserve source distinctions and missing-text limitations; do not use as a verified/current consolidated legal instrument or production answer source until primary-source comparison, rights review and qualified Egyptian lawyer approval are complete.
