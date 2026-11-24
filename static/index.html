@@ -3492,10 +3492,14 @@ function documentIntelligencePanel(caseId,documents){
     payload.expected_text_sha256=chunk.text_sha256;
    }
    await api('/cases/'+caseId+'/docs/'+item.doc.document_id+'/chunks/'+chunk.id+'/review','POST',payload);
-   const refreshed=await api('/cases/'+caseId+'/docs/'+item.doc.document_id+'/chunks');
+   const [refreshed,annotationData]=await Promise.all([
+    api('/cases/'+caseId+'/docs/'+item.doc.document_id+'/chunks'),
+    api('/cases/'+caseId+'/docs/'+item.doc.document_id+'/annotations'),
+   ]);
    item.chunks=Array.isArray(refreshed.chunks)?refreshed.chunks:[];
    item.text=item.chunks.map(part=>String(part.text||'')).join('\n');
    item.intelligence=refreshed.intelligence||item.intelligence;
+   item.annotations=Array.isArray(annotationData.annotations)?annotationData.annotations:[];
    renderAnalysis();
    status.textContent=uiText('تم حفظ قرار مراجعة الاستخراج في سجل التدقيق.','Extraction review decision saved to the audit history.');
   }catch(error){
@@ -3507,6 +3511,8 @@ function documentIntelligencePanel(caseId,documents){
      item.chunks=Array.isArray(latest.chunks)?latest.chunks:[];
      item.text=item.chunks.map(part=>String(part.text||'')).join('\n');
      item.intelligence=latest.intelligence||item.intelligence;
+     const annotationData=await api('/cases/'+caseId+'/docs/'+item.doc.document_id+'/annotations');
+     item.annotations=Array.isArray(annotationData.annotations)?annotationData.annotations:[];
      renderAnalysis();
      status.textContent=uiText('تغير النص المستخرج منذ فتح المراجعة. تم تحديث المقطع؛ راجعه قبل إعادة المحاولة.','The extracted text changed since this review was opened. The passage was refreshed; review it before retrying.');
      sourceChanged=true;
