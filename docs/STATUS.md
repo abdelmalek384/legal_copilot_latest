@@ -1583,3 +1583,15 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Substantive retrieval crosswalk now connects NFSA licensing, food-trading controls, import/export inspection, rejected-food powers, grievances and enforcement with the September 2026 EEAA rejected-consignment operational report and the waste-law instrument chain.
 - These are primary-text acquisition records, not consolidated current law. Gazette page-image QA, later amendments/Board technical rules, qualified lawyer review and commercial reuse clearance remain outstanding. No record was promoted to `verified`.
 - No Python suite, importer or browser test was run; GitHub Actions billing remains unavailable. These changes were committed directly to `main`; no PR or CI pass is claimed.
+
+### 2026-11-24 manual open-PR cleanup
+
+- Rechecked the user's recent open PRs after direct-main evidence work and found four draft PRs that were not recorded in the earlier zero-open snapshot: #1913, #1918, #1921 and #1929.
+- Closed all four **unmerged** to restore the no-pending-PR state without force-merging changes whose exact-head Python/frontend/browser acceptance had not run or whose branch was reported non-mergeable.
+- Preserved their branches and reviewable work; closure does not mean the code is integrated:
+  - #1913 — empty URL-fragment rejection in source-permission validation; narrow fix, but test and validator were not run.
+  - #1918 — document-review draft navigation guard; broad frontend navigation changes, V8 syntax/static assertions only.
+  - #1921 — review-history scope/truncation disclosure; frontend source assertions only.
+  - #1929 — partial document-analysis recovery; frontend source assertions only.
+- No AI-2 code from these branches was copied to `main`. Do not report these changes as shipped. Reconsider individually only after rebasing and running exact-head focused tests plus relevant browser/two-firm acceptance.
+- GitHub Actions were not triggered. No test pass is claimed.
