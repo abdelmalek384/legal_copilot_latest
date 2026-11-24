@@ -18,19 +18,25 @@ class StreamingDocumentAnalysisTests(unittest.TestCase):
         block = self._function("def compare_accessible_document_versions(", '@app.get("/documents/search-text")')
         self.assertIn("rows = c.execute(", block)
         self.assertIn("for row in rows:", block)
-        self.assertEqual(block.count(".fetchall()"), 1)  # only the bounded document list is materialized\n\n    def test_timeline_iterates_chunk_cursor_and_retains_global_budget(self):
+        self.assertEqual(block.count(".fetchall()"), 1)  # only the bounded document list is materialized
+
+    def test_timeline_iterates_chunk_cursor_and_retains_global_budget(self):
         block = self._function("def matter_document_timeline(", "def matter_document_entity_mentions(")
         self.assertIn("rows = c.execute(", block)
         self.assertIn("for row in rows:", block)
         self.assertIn("remaining_chars = MAX_ANALYSIS_CHARS", block)
         self.assertIn("if remaining_chars <= 0:", block)
-        self.assertEqual(block.count(".fetchall()"), 1)  # only the bounded document list is materialized\n\n    def test_entity_mentions_iterates_chunk_cursor_and_retains_global_budget(self):
+        self.assertEqual(block.count(".fetchall()"), 1)  # only the bounded document list is materialized
+
+    def test_entity_mentions_iterates_chunk_cursor_and_retains_global_budget(self):
         block = self._function("def matter_document_entity_mentions(", '@app.get("/cases/{cid}/docs/{document_id}/chunks")')
         self.assertIn("rows = c.execute(", block)
         self.assertIn("for row in rows:", block)
         self.assertIn("remaining_chars = MAX_ANALYSIS_CHARS", block)
         self.assertIn("if remaining_chars <= 0:", block)
-        self.assertEqual(block.count(".fetchall()"), 1)  # only the bounded document list is materialized\n\n    def test_sqlite_cursor_can_be_consumed_only_until_budget_is_exhausted(self):
+        self.assertEqual(block.count(".fetchall()"), 1)  # only the bounded document list is materialized
+
+    def test_sqlite_cursor_can_be_consumed_only_until_budget_is_exhausted(self):
         db = sqlite3.connect(":memory:")
         db.execute("CREATE TABLE chunks (id INTEGER PRIMARY KEY, text TEXT)")
         db.executemany("INSERT INTO chunks(text) VALUES(?)", [("x" * 10,) for _ in range(1000)])
