@@ -3546,6 +3546,9 @@ function documentIntelligencePanel(caseId,documents){
      if(!node||range.startContainer!==node||range.endContainer!==node||!quote.trim()){
       annotationStatus.textContent=uiText('يجب أن يكون التحديد داخل نص المقطع نفسه.','The selection must be entirely within this passage text.');selectedAnchor=null;return
      }
+     if(Array.from(quote).length>2000){
+      annotationStatus.textContent=uiText('حدد مقطعاً أقصر من 2000 حرف.','Select a shorter passage of at most 2,000 characters.');selectedAnchor=null;return
+     }
      const fullText=String(passage.textContent||'');
      const start=Array.from(fullText.slice(0,range.startOffset)).length;
      const end=start+Array.from(quote).length;
@@ -3567,6 +3570,7 @@ function documentIntelligencePanel(caseId,documents){
      }catch(error){annotationStatus.textContent=String(error.message||uiText('تعذر حفظ التعليق. أعد تحميل النص وحاول مجدداً.','Could not save annotation. Reload the passage and retry.'))}
      finally{controls.forEach(control=>control.disabled=false)}
     };
+    captureSelection.onmousedown=event=>event.preventDefault();
     const saveHighlight=btn(uiText('حفظ التظليل','Save highlight'),()=>saveAnnotation('highlight'),'g');
     const saveNote=btn(uiText('حفظ الملاحظة','Save note'),()=>saveAnnotation('note'),'primary');
     const savedAnnotations=(Array.isArray(item.annotations)?item.annotations:[]).filter(annotation=>Number(annotation.chunk_id)===Number(chunk.id));
