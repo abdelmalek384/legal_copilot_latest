@@ -118,6 +118,7 @@ class DocumentAnnotationAPITests(unittest.TestCase):
         self.assertIn("INSERT INTO document_annotations(", endpoint)
         self.assertIn("AND ch.text=?", endpoint)
         self.assertIn("cursor.rowcount != 1", endpoint)
+        self.assertIn("requested_page_reference != page_reference", endpoint)
         self.assertIn("document_annotation_events", endpoint)
         self.assertIn("document_annotation_created", endpoint)
         self.assertIn("WHERE a.firm_id=? AND c.firm_id=?", app)
