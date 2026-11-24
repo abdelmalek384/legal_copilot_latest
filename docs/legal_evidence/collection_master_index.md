@@ -2638,3 +2638,5 @@ Added Law75/2026 (annual raises/special allowance/EGP750 incentive), Law77/2026 
 - **EG-0553 / FT-0228:** Law 100/1985 (Official Gazette issue 27 supplement, 4 Jul 1985). Events EV-0362/0363 record its insertions/replacements from 16 May 1985 as stated in Article 7; EV-0364 records the separate 5 Jul 1985 commencement for Article 23 bis.
 - **EG-0554 / FT-0229:** Official Gazette erratum, issue 33, 15 Aug 1985. Eastlaws exposes corrected final texts for Articles 1–3 and LAWEG footnotes correction markers, but the erratum itself has not been acquired. EV-0365 is provisional; exact correction scope is unknown.
 - [Evidence note](law_44_1979_law_100_1985_and_1985_erratum_transition_2026-11-25.md).
+
+- **Law 100/1985 page-image evidence update:** Manshurat-hosted scan of Gazette issue 27 supplement inspected 8/8 pages (Gazette pp. 4–11); text transcription/word-match and issue 33 erratum remain outstanding.
