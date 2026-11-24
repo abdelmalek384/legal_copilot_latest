@@ -532,6 +532,8 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("api('/admin/corrections')", HTML)
         self.assertIn("trustTierBadge", HTML)
         self.assertIn("Source-matched, not lawyer-reviewed", HTML)
+        self.assertIn("verified:[LANG==='ar'?'مراجع من محامٍ مؤهل':'Lawyer-verified'", HTML)
+        self.assertIn("source_matched:[LANG==='ar'?'مطابق للمصدر، غير مُراجع من محامٍ':'Source-matched, not lawyer-reviewed'", HTML)
         self.assertIn("Unreviewed", HTML)
         self.assertIn("Lawyer-verified", HTML)
 
