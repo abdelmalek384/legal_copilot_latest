@@ -80,6 +80,27 @@ class LegalCorpusInventoryTests(unittest.TestCase):
         self.assertGreater(report["counts"]["candidate_documents"], 0)
         self.assertIn("collection_permission", report["statuses"])
 
+    def test_duplicate_document_ids_are_reported_instead_of_hidden_by_sets(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            paths = {}
+            for name, original in MODULE.DEFAULTS.items():
+                target = root / original.name
+                target.write_bytes(original.read_bytes())
+                paths[name] = target
+            candidates = MODULE.read_json(paths["candidates"])
+            candidates["documents"].append(dict(candidates["documents"][0]))
+            paths["candidates"].write_text(
+                json.dumps(candidates, ensure_ascii=False), encoding="utf-8"
+            )
+            report = MODULE.build_report(paths)
+            issue = next(
+                item for item in report["cross_registry_issues"]
+                if item["code"] == "duplicate_candidate_document_ids"
+            )
+            self.assertEqual(issue["count"], 1)
+            self.assertEqual(issue["ids"], [candidates["documents"][0]["document_id"]])
+
     def test_cross_register_mismatch_is_reported(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
