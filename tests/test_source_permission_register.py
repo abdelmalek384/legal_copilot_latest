@@ -302,7 +302,7 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         self.assertIn("license.txt", source["permission_evidence"])
         self.assertIn("request-a-copy", source["permission_evidence"])
         self.assertIn("no bytes or license text", source["permission_evidence"])
-        self.assertIn("Do not bypass", source["required_next_action"])
+        self.assertIn("Do not bypass request-copy restrictions", source["required_next_action"])
         self.assertEqual(MODULE.validate(data), [])
 
 
