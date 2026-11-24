@@ -3536,6 +3536,10 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             )
             self.assertEqual(outsider_login.status_code, 200, outsider_login.text)
             outsider_headers = {"X-CSRF-Token": outsider.cookies.get("lc_csrf") or ""}
+            outsider_firm = outsider.post(
+                "/session/firm", json={"firm_id": self.firm_a}, headers=outsider_headers
+            )
+            self.assertEqual(outsider_firm.status_code, 200, outsider_firm.text)
             denied = outsider.get(
                 f"/cases/{case_id}/docs/{document_id}/chunks/{chunk_id}/annotations"
             )
@@ -3604,7 +3608,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             ("get", f"/cases/{case_id}/docs/{document_id}/chunks/{chunk_id}/annotations"),
             ("delete", f"/cases/{case_id}/docs/{document_id}/annotations/{annotation_id}"),
         ):
-            response = getattr(self.client, method)(path)
+            response = self._mutate(method, path) if method == "delete" else self.client.get(path)
             self.assertEqual(response.status_code, 404, response.text)
         switched_back = self._mutate("post", "/session/firm", json={"firm_id": self.firm_a})
         self.assertEqual(switched_back.status_code, 200, switched_back.text)
