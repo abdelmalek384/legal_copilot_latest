@@ -191,6 +191,10 @@ class ResearchInspectorTests(unittest.TestCase):
         source["source_type"] = {"kind": "secondary_copy"}
         self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
 
+        source = self._source_matched_candidate()
+        source["source_type"] = "official_publisher_text_page"
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_SOURCE_MATCHED)
+
         # A complete package from another source/version cannot be rebound.
         source = self._source_matched_candidate()
         source["provenance"]["source_id"] = "different-source"
