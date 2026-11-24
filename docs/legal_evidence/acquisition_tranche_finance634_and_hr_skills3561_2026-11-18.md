@@ -94,3 +94,10 @@ The Cabinet's 28 October 2026 project announcement separately describes the coun
 - **Repeal:** secondary reports say PM Decision 705/2014 is repealed; verify the exact repeal clause against the Gazette page.
 - **Acquisition status:** the repository now contains additional article-level Arabic excerpts for Articles 5, 8 and 10, plus secondary reporting of membership duration and meeting frequency. It still does **not** contain a complete verbatim 10-article transcription, the full final text of Article 2, the complete secretariat provisions (if any), or a Gazette-page-matched scan.
 - **Do not mark complete:** keep `verified=0`, `lawyer_reviewed=0`; obtain issue 46 bis (C) through the ordinary request-copy workflow or a licensed library/Amiri Press copy and compare every article.
+
+## Explicit machine trust flags
+
+- `lawyer_reviewed: false`
+- `verified: false`
+- `rights_cleared: false`
+- This capture is research-only. It is not a current consolidated text or legal opinion; preserve the missing-text, source and commencement limitations above until primary-source comparison, rights review and qualified Egyptian lawyer approval are complete.
