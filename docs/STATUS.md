@@ -1633,3 +1633,14 @@ Percentages are scoped to the described implementation or acceptance phase. They
 | Small-firm pilot readiness | ~35% | Unchanged; external pilot acceptance and release gates remain open |
 
 **Repository state:** 0 open PRs at final check. PR #1932 manually merged and verified on main; PRs #1913, #1918, #1921 and #1929 closed unmerged. GitHub Actions remain blocked by billing. Register structure is 513 statute rows / 12 columns and 188 full-text rows / 11 columns, with zero ragged rows but 15 duplicated statute IDs and 4 duplicated full-text IDs still requiring controlled remapping.
+
+### 2026-11-24 follow-up — national research identifier and event-ledger repair
+
+- Completed a controlled cross-file reconciliation of the national instrument register, full-text inventory, instrument classification and historical article-version events. Full mapping and limits are recorded in `docs/research/instrument_id_collision_reconciliation_2026-11-24.md`.
+- Preserved EG-0395–EG-0405 for the real-estate amendment chain and EG-0406–EG-0409 for PM Decision 3660/2026 and FRA Decisions 3195/2026, 3303/2026 and 3132/2026. Restored missing register rows for EG-0407–EG-0409.
+- Reassigned the five labour/worker-priority collisions to EG-0515–EG-0519 and the later state-property/public-business/water/biosafety/tax collisions to EG-0520–EG-0533. The PM Decision 3660/2026 duplicate was folded into canonical EG-0406. Updated Law 76/2026's cross-reference to EG-0531.
+- Reassigned the duplicate later full-text inventory keys FT-0112–FT-0115 to FT-0205–FT-0208.
+- Repaired a malformed triple-quoted FT-0109 CSV row; its acquisition key now resolves to EG-0335.
+- Repaired four historical-event rows EV-0110–EV-0113 that had each been wrapped as one quoted CSV field. Normalized 203 additional event rows that lacked the `text_status` field by inserting the explicit placeholder `not separately recorded in source row` while preserving the existing notes.
+- Post-write structural checks: register **516 rows / 12 columns / 0 ragged / 0 duplicate IDs**; full-text inventory **188 / 11 / 0 / 0**; classification **412 / 5 / 0 / 0**; historical-event ledger **350 / 12 / 0 ragged**. Inventory and classification have zero orphan keys; historical events have zero orphan national IDs after excluding seven intentional `EG-CASE-*` fixtures.
+- These are data-integrity improvements only. No legal verification, currentness, rights clearance, lawyer sign-off or retrieval-quality improvement is claimed.
