@@ -3553,22 +3553,31 @@ function documentIntelligencePanel(caseId,documents){
   const historyButton=btn(uiText('عرض سجل المراجعة','View review history'),async()=>{
    historyButton.disabled=true;historyResults.replaceChildren(h('p',{className:'mut',textContent:uiText('جارٍ تحميل سجل المراجعة...','Loading review history...')}));
    try{
-    const records=[];
+    const records=[];let combinedCapReached=false,documentCapReached=false;
     for(const item of cache.values()){
-     if(records.length>=100)break;
      const result=await api('/cases/'+caseId+'/docs/'+item.doc.document_id+'/reviews');
-     for(const review of (Array.isArray(result.reviews)?result.reviews:[])){if(records.length>=100)break;records.push({...review,filename:item.doc.name})}
+     const reviews=Array.isArray(result.reviews)?result.reviews:[];
+     if(reviews.length>=200)documentCapReached=true;
+     for(const review of reviews){
+      if(records.length>=100){combinedCapReached=true;break}
+      records.push({...review,filename:item.doc.name});
+     }
+     if(combinedCapReached)break;
     }
     records.sort((a,b)=>String(b.created_at||'').localeCompare(String(a.created_at||'')));
     const rows=records.slice(0,100).map((review,index)=>h('article',{className:'card'},h('div',{className:'row'},h('b',{textContent:(index+1)+'. '+review.filename+' · '+uiText('المقطع ','Chunk ')+review.chunk_id}),pill(({accepted:uiText('مقبول','Accepted'),corrected:uiText('تم التصحيح','Corrected'),needs_recheck:uiText('إعادة فحص','Needs recheck')}[review.outcome]||review.outcome),review.outcome==='needs_recheck'?'soon':'done')),h('p',{className:'mut',textContent:[review.created_at,review.page_reference?uiText('صفحة ','Page ')+review.page_reference:'',uiText('المراجع: ','Reviewer: ')+(review.reviewer_name||uiText('مستخدم رقم ','User ID ')+review.reviewer_user_id)].filter(Boolean).join(' · ')}),review.note?h('p',{textContent:uiText('ملاحظة: ','Note: ')+review.note}):null,review.outcome==='corrected'?h('div',{},h('p',{className:'mut',textContent:uiText('النص قبل التصحيح','Text before correction')}),h('p',{textContent:String(review.original_text||'').slice(0,800)}),h('p',{className:'mut',textContent:uiText('النص بعد التصحيح','Corrected text')}),h('p',{textContent:String(review.reviewed_text||'').slice(0,800)})):null));
-    historyResults.replaceChildren(...(rows.length?rows:[h('p',{className:'mut',textContent:uiText('لا يوجد سجل مراجعة لهذا المستند.','No review history exists for these documents.')})]));
+    const historyWarnings=[];
+    if(docs.length>cache.size)historyWarnings.push(h('p',{className:'notice',role:'note',textContent:uiText('سجل المراجعة هنا يقتصر على المستندات التي تم تحميلها في التحليل الحالي؛ توجد مستندات أخرى لم يشملها هذا العرض.','This history view covers only documents loaded in the current analysis; other matter documents are not included in this view.')}));
+    if(combinedCapReached)historyWarnings.push(h('p',{className:'notice',role:'note',textContent:uiText('تم بلوغ حد العرض البالغ 100 حدث؛ قد توجد أحداث مراجعة إضافية.','The 100-event display limit was reached; additional review events may exist.')}));
+    if(documentCapReached)historyWarnings.push(h('p',{className:'notice',role:'note',textContent:uiText('بلغ سجل مستند واحد على الأقل حد 200 حدث في استجابة الخادم؛ قد توجد أحداث أقدم غير معروضة.','At least one document reached the server response limit of 200 events; older events may not be shown.')}));
+    historyResults.replaceChildren(...historyWarnings,...(rows.length?rows:[h('p',{className:'mut',textContent:uiText('لا يوجد سجل مراجعة لهذا المستند.','No review history exists for these documents.')})]));
    }catch(_){historyResults.replaceChildren(h('p',{className:'mut',role:'status',textContent:uiText('تعذر تحميل سجل المراجعة. تحقق من صلاحية الوصول وحاول مجدداً.','Could not load review history. Check access and try again.')}))}
    finally{historyButton.disabled=false}
   },'g');
   const pendingCount=[...cache.values()].reduce((sum,item)=>sum+item.chunks.filter(chunk=>!chunk.latest_review||chunk.latest_review.outcome==='needs_recheck').length,0);
   const filterButton=btn(needsAttentionOnly?uiText('عرض جميع المقاطع','Show all passages'):uiText('عرض المقاطع التي تحتاج مراجعة','Show passages needing attention'),()=>{needsAttentionOnly=!needsAttentionOnly;renderAnalysis()},'g');
   filterButton.setAttribute('aria-pressed',String(needsAttentionOnly));
-  return h('section',{className:'card extraction-review-section'},h('b',{textContent:uiText('مراجعة النص المستخرج','Extracted text review')}),h('p',{className:'mut',textContent:uiText('راجع كل مقطع مقابل المستند الأصلي. قرارات الاعتماد والتصحيح وإعادة الفحص تُحفظ مع هوية المراجع والتوقيت؛ لا تعتمد على النص المستخرج دون التحقق من الأصل.','Check each chunk against the original document. Accept, correction and recheck decisions are audited with reviewer identity and timestamp; do not rely on extracted text without checking the original.')}),h('div',{className:'row'},filterButton,h('span',{className:'mut',textContent:pendingCount+' '+uiText('مقاطع تحتاج مراجعة','passages needing attention')})),historyButton,historyResults,...cards,h('p',{className:'mut',textContent:uiText('تُعرض حتى 100 مقطع في كل مرة. استخدم صفحات المستند ومراجع المقاطع لتحديد مواضع المراجعة.','Up to 100 passages are shown at a time. Use page and chunk references to locate the source passages.')}));
+  return h('section',{className:'card extraction-review-section'},h('b',{textContent:uiText('مراجعة النص المستخرج','Extracted text review')}),h('p',{className:'mut',textContent:uiText('راجع كل مقطع مقابل المستند الأصلي. قرارات الاعتماد والتصحيح وإعادة الفحص تُحفظ مع هوية المراجع والتوقيت؛ لا تعتمد على النص المستخرج دون التحقق من الأصل.','Check each chunk against the original document. Accept, correction and recheck decisions are audited with reviewer identity and timestamp; do not rely on extracted text without checking the original.')}),h('div',{className:'row'},filterButton,h('span',{className:'mut',textContent:pendingCount+' '+uiText('مقاطع تحتاج مراجعة','passages needing attention')})),h('p',{className:'mut',textContent:uiText('سجل المراجعة أدناه يغطي المستندات المحملة في التحليل الحالي، ويعرض حتى 100 حدث إجمالاً؛ استجابة الخادم محدودة بآخر 200 حدث لكل مستند.','The review history below covers documents loaded in the current analysis, displays up to 100 events combined, and the server response is limited to the latest 200 events per document.')}),historyButton,historyResults,...cards,h('p',{className:'mut',textContent:uiText('تُعرض حتى 100 مقطع في كل مرة. استخدم صفحات المستند ومراجع المقاطع لتحديد مواضع المراجعة.','Up to 100 passages are shown at a time. Use page and chunk references to locate the source passages.')}));
  };
  const renderAnalysis=()=>{
   analysisResults.replaceChildren();
