@@ -3483,6 +3483,7 @@ function documentIntelligencePanel(caseId,documents){
  const noteClearReviewDrafts=(note,correction,draftKey)=>{note.value='';correction.value='';draftOverrides.delete(draftKey);window.DOCUMENT_REVIEW_DRAFT_DIRTY=draftOverrides.size>0};
  const submitChunkReview=async(item,chunk,outcome,correctedText,note,correction,draftKey,controls)=>{
   controls.forEach(control=>control.disabled=true);
+  let reviewSaved=false;
   try{
    const payload={outcome,page_reference:chunk.page==null?'':String(chunk.page),note:String(note||'').trim()};
    if(outcome==='corrected'){
@@ -3493,6 +3494,7 @@ function documentIntelligencePanel(caseId,documents){
     payload.expected_text_sha256=chunk.text_sha256;
    }
    await api('/cases/'+caseId+'/docs/'+item.doc.document_id+'/chunks/'+chunk.id+'/review','POST',payload);
+   reviewSaved=true;
    noteClearReviewDrafts(note,correction,draftKey);
    const refreshed=await api('/cases/'+caseId+'/docs/'+item.doc.document_id+'/chunks');
    item.chunks=Array.isArray(refreshed.chunks)?refreshed.chunks:[];
@@ -3501,6 +3503,10 @@ function documentIntelligencePanel(caseId,documents){
    renderAnalysis();
    status.textContent=uiText('تم حفظ قرار مراجعة الاستخراج في سجل التدقيق.','Extraction review decision saved to the audit history.');
   }catch(error){
+   if(reviewSaved){
+    status.textContent=uiText('تم حفظ قرار المراجعة، لكن تعذر تحديث النص المعروض. أعد تحليل المستند للتحقق.','The review decision was saved, but the displayed passages could not be refreshed. Analyze the document again to verify it.');
+    return;
+   }
    let sourceChanged=false;
    try{
     const latest=await api('/cases/'+caseId+'/docs/'+item.doc.document_id+'/chunks');
