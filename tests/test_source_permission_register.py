@@ -528,6 +528,10 @@ class SourcePermissionRegisterTests(unittest.TestCase):
             self.assertEqual(source["collection_permission"], "unknown")
             self.assertEqual(source["commercial_reuse_permission"], "unknown")
             self.assertIn("labour.gov.eg/media/", source["source_page"])
+        decision_215 = by_id["EG-HRDISCUSSION-DECISION215-2003"]
+        self.assertEqual(decision_215["collection_permission"], "unknown")
+        self.assertEqual(decision_215["commercial_reuse_permission"], "unknown")
+        self.assertIn("preamble", decision_215["access_status"])
         secondary = by_id["EG-RAAFATELSHAER-LEGACY-LABOUR-FUNDS-PDF-2018"]
         self.assertEqual(secondary["collection_permission"], "unknown")
         self.assertEqual(secondary["commercial_reuse_permission"], "unknown")
