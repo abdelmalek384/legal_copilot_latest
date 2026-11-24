@@ -104,6 +104,77 @@ class MFAAccountSecurityTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200, response.text)
         return response.json()["recovery_codes"]
 
+    def test_firm_switch_returns_mfa_state_for_the_destination_firm(self):
+        # Firm A has optional MFA; Firm B explicitly requires it for everyone.
+        # The account is an admin only in A and a lawyer in B, so this proves
+        # the switch response uses the destination firm's policy.
+        os.environ["MFA_ENFORCEMENT"] = "optional"
+        try:
+            login = self.login()
+            self.assertEqual(login.status_code, 200, login.text)
+            self.assertFalse(login.json()["mfa_required"])
+            self.assertFalse(login.json()["mfa_enabled"])
+            self.assertFalse(login.json()["mfa_verified"])
+            self.assertFalse(login.json()["mfa_verification_required"])
+            self.assertFalse(self.client.get("/session").json()["mfa_verified"])
+            # Simulate a pre-fix session that was marked verified merely because
+            # Firm A did not require MFA; the active credential check must mask it.
+            control = self.runtime.control_connection()
+            control.execute(
+                "UPDATE auth_sessions SET mfa_verified=1,mfa_verified_at=? WHERE token_hash=?",
+                (int(time.time()), app.sha(self.client.cookies.get("lc_session") or "")),
+            )
+            control.commit()
+            secondary_firm_id, _ = self.runtime.provision_firm("MFA Secondary Firm")
+            control = self.runtime.control_connection()
+            control.execute(
+                "INSERT INTO firm_memberships(user_id,firm_id,firm_role,status) "
+                "VALUES(?,?,'lawyer','active')",
+                (self.user_id, secondary_firm_id),
+            )
+            control.execute(
+                "INSERT INTO firm_security_policies(firm_id,require_mfa_for_everyone,updated_at) "
+                "VALUES(?,1,?)",
+                (secondary_firm_id, int(time.time())),
+            )
+            control.commit()
+
+            switched = self.mutate(
+                "post", "/session/firm", json={"firm_id": secondary_firm_id},
+            )
+            self.assertEqual(switched.status_code, 200, switched.text)
+            payload = switched.json()
+            self.assertEqual(payload["firm_id"], secondary_firm_id)
+            self.assertTrue(payload["mfa_required"])
+            self.assertTrue(payload["mfa_policy_required"])
+            self.assertFalse(payload["mfa_enabled"])
+            self.assertTrue(payload["mfa_enrollment_required"])
+            self.assertFalse(payload["mfa_verification_required"])
+            # A no-MFA session admitted under Firm A must not be represented as
+            # factor-verified after entering Firm B, which requires enrollment.
+            self.assertFalse(payload["mfa_verified"])
+            self.assertEqual(payload["mfa_verified_at"], 0)
+
+            current = self.client.get("/session")
+            self.assertEqual(current.status_code, 200, current.text)
+            self.assertTrue(current.json()["mfa_enrollment_required"])
+            self.assertFalse(current.json()["mfa_verified"])
+            self.assertEqual(current.json()["mfa_verified_at"], 0)
+            self.assertEqual(self.client.get("/cases").status_code, 403)
+
+            # The account can still switch back to its optional-policy firm
+            # to regain ordinary access without falsely claiming MFA proof.
+            switched_back = self.mutate(
+                "post", "/session/firm", json={"firm_id": self.firm_id},
+            )
+            self.assertEqual(switched_back.status_code, 200, switched_back.text)
+            self.assertFalse(switched_back.json()["mfa_required"])
+            self.assertFalse(switched_back.json()["mfa_enrollment_required"])
+            self.assertFalse(switched_back.json()["mfa_verified"])
+            self.assertEqual(self.client.get("/cases").status_code, 200)
+        finally:
+            os.environ["MFA_ENFORCEMENT"] = "admins_required"
+
     def test_admin_must_enroll_and_recovery_codes_are_shown_once_as_hashes(self):
         secret = self.enroll()
         codes = self.confirm(secret)
@@ -122,6 +193,33 @@ class MFAAccountSecurityTests(unittest.TestCase):
         self.assertTrue(all(code not in hashes for code in codes))
         self.assertTrue(all(value.startswith("scrypt$") for value in hashes))
         self.assertEqual(self.client.get("/cases").status_code, 200)
+
+    def test_voluntarily_enabled_mfa_requires_verification_even_when_firm_policy_is_optional(self):
+        secret = self.enroll()
+        self.confirm(secret)
+        second_client = TestClient(app.app)
+        try:
+            with patch.dict(os.environ, {"MFA_ENFORCEMENT": "optional"}):
+                login = second_client.post(
+                    "/login",
+                    json={"email": "MFA-OWNER@example.test", "password": self.password},
+                )
+                self.assertEqual(login.status_code, 200, login.text)
+                self.assertTrue(login.json()["mfa_enabled"])
+                self.assertTrue(login.json()["mfa_required"])
+                self.assertTrue(login.json()["mfa_verification_required"])
+                self.assertFalse(login.json()["mfa_verified"])
+                self.assertEqual(second_client.get("/cases").status_code, 403)
+
+                verified = second_client.post(
+                    "/account/mfa/verify",
+                    json={"code": totp_code(secret, (int(time.time()) // 30 + 1) * 30)},
+                    headers={"X-CSRF-Token": second_client.cookies.get("lc_csrf") or ""},
+                )
+                self.assertEqual(verified.status_code, 200, verified.text)
+                self.assertEqual(second_client.get("/cases").status_code, 200)
+        finally:
+            second_client.close()
 
     def test_login_requires_totp_and_replayed_step_is_rejected(self):
         secret = self.enroll()

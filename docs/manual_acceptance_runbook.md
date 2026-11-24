@@ -4,7 +4,7 @@
 
 ## 1. Purpose and separation of gates
 
-This runbook defines how to collect reproducible human acceptance evidence for the browser UI, accessibility, device behavior, research-inspector workflows, and legal-counsel review.
+This runbook defines how to collect reproducible human acceptance evidence for the browser UI, accessibility, device behavior, research-inspector workflows, and legal-counsel review. The [fictional-client end-to-end scenario](fictional_client_end_to_end_acceptance.md) provides a single synthetic matter journey spanning onboarding, firm isolation, uploads, document review, retrieval, legal-research handoff, collaboration, export, and device acceptance.
 
 Keep these outcomes separate:
 
