@@ -93,6 +93,7 @@ class IdentityLifecycleTests(unittest.TestCase):
             response = self.client.get(path)
             self.assertEqual(response.status_code, 200)
             self.assertIn('id="language"', response.text)
+            self.assertIn('setAttribute("aria-pressed",String(next==="ar"))', response.text)
             self.assertIn('data-en=', response.text)
             self.assertIn('data-ar=', response.text)
             self.assertIn('dir="ltr"', response.text)
