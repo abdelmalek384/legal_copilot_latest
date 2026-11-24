@@ -1490,3 +1490,15 @@ These are open because they require external acceptance evidence, not because th
 | #1903 Source-match evidence persistence | 0% integration | 0% | Shared-corpus/DB adapter ownership and source permission prerequisites; keep fail-closed and do not enable |
 
 Percentages are scoped to the described implementation or acceptance phase. They do not mean the overall product or legal corpus is ready. Do not close these issues until their listed evidence is attached.
+
+
+## 2026-11-24 — isolated passage-annotation implementation (draft PR #1909)
+
+- Recovered only the passage-annotation slice from closed PR #1905; did not copy its client-search, extraction, authentication, navigation, or broad workflow changes.
+- Draft PR: https://github.com/abdelmalek384/legal_copilot_latest/pull/1909
+- Branch: `ai2/passage-annotations-isolated-20261124`.
+- Implementation in this branch: firm migration 0025; firm/matter/document/chunk-scoped create/list/soft-delete routes; exact source-text digest and selected-text/offset validation; DB ownership and immutability triggers; audit events; active annotation inclusion in authorized chunk responses; bilingual text-selection/highlight/note UI; stale-offset warning; focused regression tests and workflow registration.
+- Original extracted text remains the annotation anchor. Corrections remain working copies; annotations do not alter the uploaded original or extracted chunk.
+- AI-1 corpus/retrieval is unchanged. Existing mainline client-wide search is unchanged.
+- **Validation:** static source wiring checked. Python test execution, exact-head workflow, migration rehearsal, browser/device acceptance and lawyer acceptance are not yet verified. No test pass is claimed. Keep PR #1909 draft until exact-head checks and the two-case/two-firm acceptance pass.
+- Main remains unchanged; passage annotations are implemented on the draft branch, not yet integrated into main.
