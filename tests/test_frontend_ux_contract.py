@@ -257,7 +257,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("uiText('PDF وDOCX فقط · 15 ميجابايت كحد أقصى لكل ملف','PDF and DOCX only · 15 MB maximum per file')", HTML)
 
     def test_document_review_history_discloses_scope_and_truncation(self):
-        panel = HTML[HTML.index("function documentIntelligencePanel(caseId,documents)"):HTML.index("\\nasync function view(id)")]
+        panel = HTML[HTML.index("function documentIntelligencePanel(caseId,documents)"):HTML.index("\nasync function view(id)")]
         self.assertIn("let combinedCapReached=false,documentCapReached=false", panel)
         self.assertIn("if(reviews.length>=200)documentCapReached=true", panel)
         self.assertIn("if(records.length>=100){combinedCapReached=true;break}", panel)
