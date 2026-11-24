@@ -2649,6 +2649,10 @@ async def security_headers(request: Request, call_next):
             response = JSONResponse(status_code=500, content={"detail": "internal server error"})
     finally:
         _active_firm_context.reset(context_token)
+    # Dependency-raised HTTPExceptions are converted to a new response above;
+    # reapply cookie expiry headers to that final response, not only the injected one.
+    if getattr(request.state, "clear_auth_cookies", False):
+        _clear_auth_cookies(response, request)
     # Tenant-scoped matter, identity, audit, and error responses must not persist in caches.
     response.headers["Cache-Control"] = "no-store"
     response.headers["Pragma"] = "no-cache"
@@ -3095,6 +3099,7 @@ def _user_separate(
 ):
     token = session_cookie or ""
     if not token:
+        request.state.clear_auth_cookies = True
         _clear_auth_cookies(response, request)
         raise HTTPException(401, "unauthorized")
     c = control_conn()
@@ -3107,6 +3112,7 @@ def _user_separate(
     if not account or account["status"] != "active":
         c.execute("DELETE FROM auth_sessions WHERE token_hash=?", (sha(token),))
         c.commit()
+        request.state.clear_auth_cookies = True
         _clear_auth_cookies(response, request)
         raise HTTPException(401, "unauthorized")
     firms = _active_firms_for_user(account["id"])
@@ -3207,6 +3213,7 @@ def user(request: Request, response: Response,
     r = c.execute("SELECT u.* FROM auth_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=? AND s.expires>?", (token_hash, int(time.time()))).fetchone()
     if not r or not r["active"] or r["firm_id"] is None:
         c.execute("DELETE FROM auth_sessions WHERE token_hash=?", (token_hash,)); c.commit()
+        request.state.clear_auth_cookies = True
         _clear_auth_cookies(response, request)
         raise HTTPException(401, "unauthorized")
     if request.method not in ("GET", "HEAD", "OPTIONS"):
