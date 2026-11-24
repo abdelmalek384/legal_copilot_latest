@@ -10419,6 +10419,8 @@ def save_research_to_matter(conversation_id: int, b: ResearchSaveToMatterIn, u: 
         result = json.loads(row["message_json"] or "{}")
     except (TypeError, ValueError):
         result = {}
+    if not isinstance(result, dict):
+        result = {}
     question_message_id = result.get("question_message_id")
     prior_question = None
     if isinstance(question_message_id, int) and not isinstance(question_message_id, bool) and question_message_id > 0:
