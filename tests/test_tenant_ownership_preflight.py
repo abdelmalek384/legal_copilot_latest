@@ -113,6 +113,44 @@ class TenantOwnershipPreflightTests(unittest.TestCase):
         finally:
             db.close()
 
+    def test_detects_orphaned_document_annotation_and_event_rows(self):
+        db = sqlite3.connect(":memory:")
+        try:
+            db.executescript("""
+                CREATE TABLE firms(id INTEGER PRIMARY KEY);
+                CREATE TABLE users(id INTEGER PRIMARY KEY, firm_id INTEGER);
+                CREATE TABLE cases(id INTEGER PRIMARY KEY, firm_id INTEGER);
+                CREATE TABLE docs(id INTEGER PRIMARY KEY, case_id INTEGER, firm_id INTEGER);
+                CREATE TABLE chunks(id INTEGER PRIMARY KEY, case_id INTEGER, document_id INTEGER);
+                CREATE TABLE document_annotations(
+                    id INTEGER PRIMARY KEY, document_id INTEGER, case_id INTEGER,
+                    firm_id INTEGER, chunk_id INTEGER, author_user_id INTEGER
+                );
+                CREATE TABLE document_annotation_events(
+                    id INTEGER PRIMARY KEY, annotation_id INTEGER, firm_id INTEGER,
+                    case_id INTEGER, document_id INTEGER
+                );
+                INSERT INTO firms VALUES (1);
+                INSERT INTO users VALUES (1,1);
+                INSERT INTO cases VALUES (1,1);
+                INSERT INTO docs VALUES (10,1,1);
+                INSERT INTO chunks VALUES (20,1,10);
+                INSERT INTO document_annotations VALUES
+                    (1,999,999,2,999,999);
+                INSERT INTO document_annotation_events VALUES
+                    (1,999,2,999,999);
+            """)
+            report = audit(db)
+            codes = {item["code"]: item["count"] for item in report["findings"]}
+            self.assertEqual(codes["document_annotation_document_missing"], 1)
+            self.assertEqual(codes["document_annotation_case_missing"], 1)
+            self.assertEqual(codes["document_annotation_chunk_missing"], 1)
+            self.assertEqual(codes["document_annotation_author_missing"], 1)
+            self.assertEqual(codes["document_annotation_event_parent_missing"], 1)
+            self.assertEqual(report["status"], "review_required")
+        finally:
+            db.close()
+
     def test_empty_database_is_not_reported_as_clean(self):
         db = sqlite3.connect(":memory:")
         try:
