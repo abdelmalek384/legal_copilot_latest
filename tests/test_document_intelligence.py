@@ -571,3 +571,9 @@ class DocumentIntelligenceTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+    def test_page_markers_reject_zero_based_provenance(self):
+        for extractor in (extract_review_candidates, extract_structured_candidates):
+            with self.subTest(extractor=extractor.__name__):
+                with self.assertRaisesRegex(ValueError, "positive, one-based"):
+                    extractor("[[PDF_PAGE:0]]\\nجلسة بتاريخ 15/03/2025")
