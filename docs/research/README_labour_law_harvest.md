@@ -29,7 +29,7 @@ This folder contains free/public source discovery, metadata registers and extrac
 23. [Executive-decisions completeness gap](executive_decisions_completeness_gap_2026-11-17.md) — reconciles the Ministry’s original 87-decision estimate with the currently identified inventory.
 24. [Prime Minister Decisions 562/2025, 2402/2026 and 2403/2026](prime_minister_decisions_562_2025_2402_2403_2026.md) — Social Dialogue Council and Unorganized Workers Fund.
 25. [Prime Minister Decision 3356/2026 — Training and Qualification Fund](decision_3356_2026_training_qualification_fund.md) — fund reorganization, employer contribution formula and governance.
-26. [Ministry Decision 269/2025 — central labour-market databases](decision_269_2025_central_labour_market_databases.md) — selected-establishment data form and central database; form/manual remain missing.
+26. [Ministry Decision 269/2025 — central labour-market databases](decision_269_2025_labour_market_central_databases.md) — selected-establishment data form and central database; form/manual remain missing.
 27. [Statutory delegation gap analysis](labour_law_14_2025_statutory_delegation_gap_analysis.md) and [delegation matrix](../../data/research/labour_law_14_2025_delegation_matrix_2026-11-17.csv).
 28. [Decision 320/2025 — night and out-of-hours labour inspection](decision_320_2025_night_and_out_of_hours_labour_inspection.md).
 29. [Official Ministry legacy legislation index addendum](official_ministry_legacy_legislation_index_2026-11-17.md) — new discovery queue of older instruments and amendment lineages from the Ministry's own legislation index; index-only until each official text is acquired.
