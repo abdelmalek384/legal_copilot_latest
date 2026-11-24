@@ -3566,6 +3566,7 @@ function documentIntelligencePanel(caseId,documents){
       item.annotations=Array.isArray(saved.annotations)?saved.annotations:[];
       selectedAnchor=null;annotationBody.value='';
       annotationStatus.textContent=uiText('تم حفظ التعليق في ملف القضية مع مرجع النص الأصلي.','Annotation saved to the matter with its source-text reference.');
+      status.textContent=uiText('تم حفظ التظليل أو الملاحظة في سجل مستندات القضية.','Highlight or note saved in the matter document record.');
       renderAnalysis();
      }catch(error){annotationStatus.textContent=String(error.message||uiText('تعذر حفظ التعليق. أعد تحميل النص وحاول مجدداً.','Could not save annotation. Reload the passage and retry.'))}
      finally{controls.forEach(control=>control.disabled=false)}
@@ -3576,7 +3577,9 @@ function documentIntelligencePanel(caseId,documents){
     const savedAnnotations=(Array.isArray(item.annotations)?item.annotations:[]).filter(annotation=>Number(annotation.chunk_id)===Number(chunk.id));
     const annotationHistory=savedAnnotations.map(annotation=>h('article',{className:'card document-annotation-item'},
      h('div',{className:'row'},h('b',{textContent:annotation.annotation_type==='highlight'?uiText('تظليل محفوظ','Saved highlight'):uiText('ملاحظة محفوظة','Saved note')}),annotation.stale_anchor?pill(uiText('مرجع قديم — راجع النص','Stale anchor — recheck text'),'soon'):pill(uiText('مرجع النص ساري','Current text anchor'),'done')),
-     h('p',{className:'extraction-review-text',textContent:String(annotation.quoted_text||'')}),
+     annotation.annotation_type==='highlight'
+      ?h('p',{className:'extraction-review-text'},h('mark',{textContent:String(annotation.quoted_text||'')}))
+      :h('p',{className:'extraction-review-text',textContent:String(annotation.quoted_text||'')}),
      annotation.body?h('p',{textContent:String(annotation.body)}):null,
      h('p',{className:'mut',textContent:[annotation.author_name,annotation.created_at,annotation.page_reference?uiText('صفحة ','Page ')+annotation.page_reference:''].filter(Boolean).join(' · ')})
     ));
