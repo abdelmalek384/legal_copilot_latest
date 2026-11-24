@@ -1694,3 +1694,11 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Decision 8 is historical and expired; Decision 14/2020 is a successor/extension lead, while Decisions 269/2022 and 270/2024 form later sampling/fast-release currentness leads.
 - Decision 9 fee amounts are historical text only; later Decisions 4/2021 and 11/2021 and subsequent fee instruments must be reconciled before any current fee display.
 - Neither instrument is lawyer-reviewed, currentness-consolidated, rights-cleared or marked verified.
+
+### 2026-11-24 follow-up — NFSA reduced-sampling and fast-release instruments
+
+- Acquired the complete six-page signed Arabic scan of NFSA Chair Decision 269/2022 from the Egyptian Customs Authority, including the implementation mechanism and two forms; all page images inspected.
+- Acquired the complete 10-article Decision 270/2024 from the Ministry of Finance-hosted Official Gazette issue195 PDF; all seven page images inspected. MOF legal repository labels it in force. The decision is limited to qualifying white-list food manufacturers importing production inputs for their own production, not for market sale.
+- Added evidence notes, index sections 62–63, register IDs EG-0538/EG-0539, inventory IDs FT-0213/FT-0214 and classification rows.
+- Decision 269's exact Gazette issue/publication page is not independently verified; Decision 270's official Gazette publication is 5 September 2024, with signed decision date 11 August 2024 and commencement the following day.
+- Current operational sampling rates, later amendments and NFSA circulars remain to be audited. No lawyer review, rights clearance or verified label was granted.
