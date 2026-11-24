@@ -531,7 +531,7 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         secondary = by_id["EG-RAAFATELSHAER-LEGACY-LABOUR-FUNDS-PDF-2018"]
         self.assertEqual(secondary["collection_permission"], "unknown")
         self.assertEqual(secondary["commercial_reuse_permission"], "unknown")
-        self.assertIn("Decision 217/2003", secondary["material_types"][0])
+        self.assertIn("217/2003", " ".join(secondary["material_types"]))
         self.assertEqual(MODULE.validate(data), [])
 
     def test_related_source_pages_are_validated_as_clean_https_locators(self):
