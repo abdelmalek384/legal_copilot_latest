@@ -140,6 +140,13 @@ class DocumentAnnotationAPITests(unittest.TestCase):
         self.assertIn("return value", quote_validator)
         self.assertNotIn('return value.strip()', quote_validator)
 
+    def test_matter_deletion_audit_counts_annotation_rows_before_cascade(self):
+        app = (ROOT / "app.py").read_text(encoding="utf-8")
+        delete_case = app[app.index("def delete_case(c, u, cid):"):app.index("def _qualified_egyptian_counsel_user_ids")]
+        self.assertIn('"document_annotations", "document_annotation_events"', delete_case)
+        self.assertIn("related_counts[table]", delete_case)
+        self.assertIn("sqlite_master", delete_case)
+
     def test_bilingual_ui_captures_and_saves_selected_passage_annotations(self):
         html = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
         self.assertIn("التقاط التحديد", html)
