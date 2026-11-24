@@ -3529,6 +3529,47 @@ function documentIntelligencePanel(caseId,documents){
     const reviewLabel=latest?({accepted:uiText('تمت المراجعة','Reviewed — accepted'),corrected:uiText('تم تصحيح النص','Text corrected'),needs_recheck:uiText('يتطلب إعادة الفحص','Needs recheck')}[latest.outcome]||uiText('له سجل مراجعة','Review recorded')):uiText('لم تتم المراجعة','Not yet reviewed');
     const note=h('input',{type:'text',maxLength:2000,placeholder:uiText('ملاحظة المراجع (اختيارية)','Reviewer note (optional)'),'aria-label':uiText('ملاحظة مراجعة المقطع ','Review note for chunk ')+chunk.id});
     const correction=h('textarea',{rows:4,maxLength:20000,placeholder:uiText('أدخل النص المصحح بعد الرجوع إلى المستند الأصلي.','Enter corrected text after checking the original document.'),'aria-label':uiText('النص المصحح للمقطع ','Corrected text for chunk ')+chunk.id,style:'display:none;width:100%'});
+    const passage=h('p',{className:'extraction-review-text',textContent:String(latest&&latest.outcome==='corrected'?latest.reviewed_text:chunk.text||''),tabIndex:0});
+    const annotationStatus=h('p',{className:'mut',role:'status','aria-live':'polite',textContent:uiText('حدد نصاً من المقطع ثم التقط التحديد لإضافة تعليق محفوظ.','Select text in this passage, then capture the selection to save an annotation.')});
+    const annotationBody=h('input',{type:'text',maxLength:5000,placeholder:uiText('ملاحظة مرتبطة بالتحديد (اختيارية للتظليل)','Note attached to the selection (optional for highlights)'),'aria-label':uiText('نص التعليق على المقطع ','Annotation note for chunk ')+chunk.id});
+    let selectedAnchor=null;
+    const captureSelection=btn(uiText('التقاط التحديد','Capture selection'),()=>{
+     const selection=window.getSelection();
+     if(!selection||selection.rangeCount!==1){annotationStatus.textContent=uiText('حدد جزءاً واحداً من نص المقطع أولاً.','Select one continuous passage first.');selectedAnchor=null;return}
+     const range=selection.getRangeAt(0),node=passage.firstChild,quote=range.toString();
+     if(!node||range.startContainer!==node||range.endContainer!==node||!quote.trim()){
+      annotationStatus.textContent=uiText('يجب أن يكون التحديد داخل نص المقطع نفسه.','The selection must be entirely within this passage text.');selectedAnchor=null;return
+     }
+     const fullText=String(passage.textContent||'');
+     const start=Array.from(fullText.slice(0,range.startOffset)).length;
+     const end=start+Array.from(quote).length;
+     selectedAnchor={start_offset:start,end_offset:end,quoted_text:quote};
+     annotationStatus.textContent=uiText('تم التقاط ','Captured ')+quote.slice(0,100)+uiText(' · احفظه كتظليل أو ملاحظة.',' · save it as a highlight or note.');
+    },'g');
+    const saveAnnotation=async(type)=>{
+     if(!selectedAnchor){annotationStatus.textContent=uiText('التقط تحديد النص أولاً.','Capture a text selection first.');return}
+     if(type==='note'&&!annotationBody.value.trim()){annotationStatus.textContent=uiText('اكتب الملاحظة قبل الحفظ.','Enter a note before saving.');annotationBody.focus();return}
+     const payload={chunk_id:chunk.id,annotation_type:type,...selectedAnchor,body:annotationBody.value,page_reference:chunk.page==null?'':String(chunk.page),text_sha256:chunk.text_sha256};
+     const controls=[captureSelection,saveHighlight,saveNote];controls.forEach(control=>control.disabled=true);
+     try{
+      await api('/cases/'+caseId+'/docs/'+item.doc.document_id+'/annotations','POST',payload);
+      const saved=await api('/cases/'+caseId+'/docs/'+item.doc.document_id+'/annotations');
+      item.annotations=Array.isArray(saved.annotations)?saved.annotations:[];
+      selectedAnchor=null;annotationBody.value='';
+      annotationStatus.textContent=uiText('تم حفظ التعليق في ملف القضية مع مرجع النص الأصلي.','Annotation saved to the matter with its source-text reference.');
+      renderAnalysis();
+     }catch(error){annotationStatus.textContent=String(error.message||uiText('تعذر حفظ التعليق. أعد تحميل النص وحاول مجدداً.','Could not save annotation. Reload the passage and retry.'))}
+     finally{controls.forEach(control=>control.disabled=false)}
+    };
+    const saveHighlight=btn(uiText('حفظ التظليل','Save highlight'),()=>saveAnnotation('highlight'),'g');
+    const saveNote=btn(uiText('حفظ الملاحظة','Save note'),()=>saveAnnotation('note'),'primary');
+    const savedAnnotations=(Array.isArray(item.annotations)?item.annotations:[]).filter(annotation=>Number(annotation.chunk_id)===Number(chunk.id));
+    const annotationHistory=savedAnnotations.map(annotation=>h('article',{className:'card document-annotation-item'},
+     h('div',{className:'row'},h('b',{textContent:annotation.annotation_type==='highlight'?uiText('تظليل محفوظ','Saved highlight'):uiText('ملاحظة محفوظة','Saved note')}),annotation.stale_anchor?pill(uiText('مرجع قديم — راجع النص','Stale anchor — recheck text'),'soon'):pill(uiText('مرجع النص ساري','Current text anchor'),'done')),
+     h('p',{className:'extraction-review-text',textContent:String(annotation.quoted_text||'')}),
+     annotation.body?h('p',{textContent:String(annotation.body)}):null,
+     h('p',{className:'mut',textContent:[annotation.author_name,annotation.created_at,annotation.page_reference?uiText('صفحة ','Page ')+annotation.page_reference:''].filter(Boolean).join(' · ')})
+    ));
     const accepted=btn(uiText('اعتماد النص','Accept text'),()=>submitChunkReview(item,chunk,'accepted','',note.value,[accepted,recheck,edit]),'g');
     const recheck=btn(uiText('يحتاج إعادة فحص','Needs recheck'),()=>submitChunkReview(item,chunk,'needs_recheck','',note.value,[accepted,recheck,edit]),'g');
     const edit=btn(uiText('تصحيح النص','Correct text'),()=>{correction.style.display=correction.style.display==='none'?'block':'none';if(correction.style.display==='block')correction.focus()},'g');
@@ -3539,7 +3580,8 @@ function documentIntelligencePanel(caseId,documents){
      h('div',{className:'row'},h('b',{textContent:item.doc.name}),pill(reviewLabel,latest&&latest.outcome!=='needs_recheck'?'done':'soon')),
      h('p',{className:'mut',textContent:[chunk.ref,latest&&latest.page_reference?uiText('مرجع المراجع: ','Reviewer reference: ')+latest.page_reference:chunk.page?uiText('صفحة ','Page ')+chunk.page:''].filter(Boolean).join(' · ')}),
      latest&&latest.page_reference?h('p',{className:'mut',textContent:uiText('مرجع أدخله المراجع ولم يتم التحقق منه مقابل الملف الأصلي.','Reviewer-entered reference; not verified against the original file.')}):null,
-     h('div',{},h('b',{textContent:latest&&latest.outcome==='corrected'?uiText('النص المستخرج الأصلي','Original extracted passage'):uiText('النص المستخرج','Extracted passage')}),h('p',{className:'extraction-review-text',textContent:String(latest&&latest.outcome==='corrected'?latest.original_text:chunk.text||'')})),
+     h('div',{},h('b',{textContent:latest&&latest.outcome==='corrected'?uiText('النص المستخرج الأصلي','Original extracted passage'):uiText('النص المستخرج','Extracted passage')}),passage),
+     h('div',{className:'document-annotation-controls'},h('b',{textContent:uiText('التظليل والملاحظات المحفوظة','Saved highlights and notes')}),h('p',{className:'mut',textContent:uiText('حدد النص أعلاه بالماوس أو لوحة المفاتيح، ثم احفظه كتظليل أو أرفق به ملاحظة.','Select text above with the mouse or keyboard, then save a highlight or attach a note.')}),annotationBody,h('div',{className:'row'},captureSelection,saveHighlight,saveNote),annotationStatus,...annotationHistory),
      latest&&latest.outcome==='corrected'?h('div',{className:'reviewed-correction'},h('b',{textContent:uiText('آخر نص مصحح مسجل','Latest recorded correction')}),h('p',{className:'extraction-review-text',textContent:String(latest.reviewed_text||'')})):null,
      latest&&latest.outcome==='corrected'&&Array.isArray(latest.changes)?h('div',{className:'reviewed-change-list'},h('b',{textContent:uiText('التغييرات النصية الحرفية','Literal text changes')}),...latest.changes.map((change,index)=>h('div',{className:'reviewed-change'},h('p',{className:'mut',textContent:uiText('قبل التعديل','Before')}),h('p',{className:'extraction-review-text',textContent:String(change.before||'')}),h('p',{className:'mut',textContent:uiText('بعد التعديل','After')}),h('p',{className:'extraction-review-text',textContent:String(change.after||'')}),h('p',{className:'mut',textContent:uiText('هذا اختلاف نصي حرفي ويتطلب مراجعة قانونية.','Literal text difference; requires lawyer review.')})))):null,
      latest&&latest.comparison_warning?h('p',{className:'mut',textContent:latest.comparison_warning}):null,
@@ -3718,12 +3760,16 @@ function documentIntelligencePanel(caseId,documents){
   try{
    for(const doc of docs.slice(0,40)){
     status.textContent=uiText('جارٍ تحميل النصوص: ','Loading extracted text: ')+loaded+'/'+Math.min(docs.length,40);
-    const [data,classification]=await Promise.all([api('/cases/'+caseId+'/docs/'+doc.document_id+'/chunks'),api('/cases/'+caseId+'/docs/'+doc.document_id+'/classification').catch(()=>null)]);
+    const [data,classification,annotationData]=await Promise.all([
+     api('/cases/'+caseId+'/docs/'+doc.document_id+'/chunks'),
+     api('/cases/'+caseId+'/docs/'+doc.document_id+'/classification').catch(()=>null),
+     api('/cases/'+caseId+'/docs/'+doc.document_id+'/annotations').catch(()=>({annotations:[]})),
+    ]);
     const chunks=Array.isArray(data.chunks)?data.chunks:[];
     if(!data.intelligence||!data.intelligence.classification||!Array.isArray(data.intelligence.candidates))throw new Error('server_document_intelligence_unavailable');
     const text=chunks.map(chunk=>String(chunk.text||'')).join('\n');
     if(totalChars+text.length>1000000){skipped++;break}
-    totalChars+=text.length;cache.set(String(doc.document_id),{doc,chunks,text,intelligence:data.intelligence,classification});loaded++;
+    totalChars+=text.length;cache.set(String(doc.document_id),{doc,chunks,text,intelligence:data.intelligence,classification,annotations:Array.isArray(annotationData.annotations)?annotationData.annotations:[]});loaded++;
    }
    if(docs.length>40)skipped+=docs.length-40;
    renderAnalysis();
