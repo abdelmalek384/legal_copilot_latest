@@ -67,6 +67,16 @@ class PassageAnnotationMigrationTests(unittest.TestCase):
                 (annotation_id,),
             )
 
+    def test_physical_delete_is_blocked_but_parent_retention_cascade_works(self):
+        annotation_id = self.insert_annotation()
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "require soft deletion"):
+            self.db.execute("DELETE FROM document_passage_annotations WHERE id=?", (annotation_id,))
+        self.db.execute("DELETE FROM docs WHERE id=100")
+        remaining = self.db.execute(
+            "SELECT COUNT(*) FROM document_passage_annotations WHERE id=?", (annotation_id,)
+        ).fetchone()[0]
+        self.assertEqual(remaining, 0)
+
     def test_original_chunk_text_is_not_mutated_by_annotation_storage(self):
         self.insert_annotation()
         original = self.db.execute("SELECT text FROM chunks WHERE id=1000").fetchone()[0]
