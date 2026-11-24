@@ -55,6 +55,24 @@ class PassageAnnotationMigrationTests(unittest.TestCase):
         with self.assertRaisesRegex(sqlite3.IntegrityError, "scope mismatch"):
             self.insert_annotation()
 
+    def test_annotation_cannot_be_inserted_in_pre_deleted_state(self):
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "must be active"):
+            self.db.execute(
+                """INSERT INTO document_passage_annotations(
+                    document_id,case_id,firm_id,chunk_id,created_by_user_id,start_offset,end_offset,
+                    selected_text,source_text_sha256,note,color,deleted_at,deleted_by_user_id
+                ) VALUES(100,10,7,1000,55,0,8,'Original',?,'hidden','yellow',datetime('now'),55)""",
+                (hashlib.sha256(b"Original evidence passage").hexdigest(),),
+            )
+        with self.assertRaises(sqlite3.IntegrityError):
+            self.db.execute(
+                """INSERT INTO document_passage_annotations(
+                    document_id,case_id,firm_id,chunk_id,created_by_user_id,start_offset,end_offset,
+                    selected_text,source_text_sha256,note,color,deleted_at,deleted_by_user_id
+                ) VALUES(100,10,7,1000,55,0,8,'Original',?,'inconsistent','yellow',NULL,55)""",
+                (hashlib.sha256(b"Original evidence passage").hexdigest(),),
+            )
+
     def test_annotation_content_is_immutable_but_soft_delete_is_allowed_once(self):
         annotation_id = self.insert_annotation()
         with self.assertRaisesRegex(sqlite3.IntegrityError, "immutable"):
