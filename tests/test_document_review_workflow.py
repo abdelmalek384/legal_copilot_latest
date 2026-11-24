@@ -39,3 +39,8 @@ class DocumentReviewWorkflowTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+    def test_reviewer_page_reference_input_does_not_prefill_from_extraction_page(self):
+        html = (ROOT / "static/index.html").read_text(encoding="utf-8")
+        self.assertIn("value:chunk.latest_review&&chunk.latest_review.page_reference?chunk.latest_review.page_reference:''", html)
+        self.assertIn("const extractedPage=chunk.page", html)
