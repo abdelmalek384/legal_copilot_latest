@@ -14,6 +14,12 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("ابحث في القانون المصري بمساعدة ذكية مدعومة بالمصادر", HTML)
         self.assertNotIn("Research UK law with source-backed AI assistance.", HTML)
 
+    def test_source_inspector_uses_precise_verified_operative_label(self):
+        inspector = HTML[HTML.index("const inspectSource="):HTML.index("const suggestCorrection=")]
+        self.assertIn("verified_operative_text:LANG==='ar'?'نص ساري متحقق منه':'Verified operative text'", inspector)
+        self.assertNotIn("verified_operative_text:LANG==='ar'?'متحقق':'Verified'", inspector)
+        self.assertIn("This label reflects recorded provenance, review, and date checks; verify the official text before relying on it.", inspector)
+
     def test_matter_csv_import_uses_strict_utf8_decoder(self):
         self.assertIn("new TextDecoder('utf-8',{fatal:true}).decode(await file.arrayBuffer())", HTML)
         self.assertIn("The file must use valid UTF-8 encoding", HTML)
