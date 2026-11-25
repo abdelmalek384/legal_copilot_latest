@@ -1,3 +1,9 @@
+## Source-match evidence storage regression coverage — 2026-11-25
+
+- Added a synthetic SQLite integration test that applies the legal-corpus profile migrations, inserts a fictional source/version evidence packet, reads it through the adapter, and checks exact-version binding plus append-only protections for evidence and approved-use rows.
+- The test explicitly uses non-permissive evidence flags; it does not create legal approval, a real source record, or reuse permission.
+- The test is added but has **not** been executed locally in this environment.
+
 ## AI-2 application-layer validation attempt — 2026-11-25
 
 - Next unblocked priority reviewed: executable validation of existing application workflows and security/auth/SQL-route inventories on the exact current main revision.

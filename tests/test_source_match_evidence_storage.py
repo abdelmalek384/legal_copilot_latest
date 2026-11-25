@@ -68,5 +68,88 @@ class SourceMatchEvidenceAdapterTests(unittest.TestCase):
                 return Cursor(columns, tuple(rec[k] for k in columns))
         self.assertIsNone(load_source_match_evidence(Connection(), 1, "src"))
 
+
+    def test_store_is_append_only_and_adapter_reads_exact_version_evidence(self):
+        db = sqlite3.connect(":memory:")
+        apply_profile_migrations(
+            db, "legal_corpus", Path(__file__).resolve().parents[1] / "migrations"
+        )
+        db.execute(
+            "INSERT INTO legal_sources(source_id, authority, source_page) VALUES (?, ?, ?)",
+            ("primary", "official", "https://example.test/primary"),
+        )
+        db.execute(
+            "INSERT INTO legal_sources(source_id, authority, source_page) VALUES (?, ?, ?)",
+            ("independent", "independent_copy", "https://example.test/independent"),
+        )
+        db.execute(
+            "INSERT INTO legal_documents(document_id, source_id, official_title, document_type) "
+            "VALUES (?, ?, ?, ?)",
+            ("doc-1", "primary", "Fictional test instrument", "fictional_test"),
+        )
+        version_id = db.execute(
+            "INSERT INTO legal_document_versions("
+            "document_id, version_label, source_url, original_sha256, publication_date, effective_date"
+            ") VALUES (?, ?, ?, ?, ?, ?)",
+            ("doc-1", "test-v1", "https://example.test/text", "a" * 64,
+             "2020-01-01", "2020-01-02"),
+        ).lastrowid
+        values = (
+            version_id, "primary", 1, 0, "a" * 64, "independent", "b" * 64,
+            "2020-01-01", "2020-01-02", "synthetic rights evidence",
+            "https://example.test/rights", 1, 1, 1, 0, "synthetic-test",
+        )
+        insert = (
+            "INSERT INTO legal_source_match_evidence("
+            "version_id, source_id, evidence_revision, validator_passed, "
+            "original_capture_sha256, independent_copy_source_id, independent_copy_sha256, "
+            "publication_date, effective_date, reuse_rights_evidence, reuse_rights_evidence_url, "
+            "article_inventory_complete, differences_resolved_against_primary, "
+            "publication_and_effective_dates_verified, reuse_rights_allowed, recorded_by"
+            ") VALUES (" + ",".join("?" for _ in values) + ")"
+        )
+        evidence_id = db.execute(insert, values).lastrowid
+        db.execute(
+            "INSERT INTO legal_source_match_evidence_uses(evidence_id, approved_use) VALUES (?, ?)",
+            (evidence_id, "collection"),
+        )
+
+        packet = load_source_match_evidence(db, version_id, "primary")
+        self.assertIsNotNone(packet)
+        self.assertFalse(packet["validator_passed"])
+        self.assertFalse(packet["reuse_rights_allowed"])
+        self.assertEqual(packet["approved_uses"], ["collection"])
+
+        with self.assertRaises(sqlite3.IntegrityError):
+            db.execute(
+                "UPDATE legal_source_match_evidence SET recorded_by='changed' WHERE evidence_id=?",
+                (evidence_id,),
+            )
+        with self.assertRaises(sqlite3.IntegrityError):
+            db.execute(
+                "DELETE FROM legal_source_match_evidence WHERE evidence_id=?",
+                (evidence_id,),
+            )
+        with self.assertRaises(sqlite3.IntegrityError):
+            db.execute(
+                "UPDATE legal_source_match_evidence_uses SET approved_use='storage' "
+                "WHERE evidence_id=?",
+                (evidence_id,),
+            )
+        with self.assertRaises(sqlite3.IntegrityError):
+            db.execute(
+                "DELETE FROM legal_source_match_evidence_uses WHERE evidence_id=?",
+                (evidence_id,),
+            )
+
+        mismatched = list(values)
+        mismatched[1] = "independent"
+        mismatched[2] = 2
+        mismatched[5] = "primary"
+        with self.assertRaises(sqlite3.IntegrityError):
+            db.execute(insert, tuple(mismatched))
+        db.close()
+
+
 if __name__ == "__main__":
     unittest.main()
