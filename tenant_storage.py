@@ -328,10 +328,15 @@ class TenantSQLiteConnectionRouter:
                 raise TenantConnectionError(
                     "Tenant database file changed while opening; refusing cached connection"
                 )
-            if os.name == "posix" and stat.S_IMODE(current.st_mode) & 0o077:
-                raise TenantConnectionError(
-                    "Tenant database file permissions changed while opening"
-                )
+            if os.name == "posix":
+                if stat.S_IMODE(current.st_mode) & 0o077:
+                    raise TenantConnectionError(
+                        "Tenant database file permissions changed while opening"
+                    )
+                if current.st_nlink != 1:
+                    raise TenantConnectionError(
+                        "Tenant database file gained a hard-link alias while opening"
+                    )
             for suffix in ("-wal", "-shm", "-journal"):
                 sidecar = Path(str(path) + suffix)
                 if sidecar.is_symlink():
@@ -345,10 +350,15 @@ class TenantSQLiteConnectionRouter:
                     raise TenantConnectionError(
                         "Tenant SQLite sidecar changed to a non-regular file while opening"
                     )
-                if os.name == "posix" and stat.S_IMODE(sidecar_stat.st_mode) & 0o077:
-                    raise TenantConnectionError(
-                        "Tenant SQLite sidecar permissions changed while opening"
-                    )
+                if os.name == "posix":
+                    if stat.S_IMODE(sidecar_stat.st_mode) & 0o077:
+                        raise TenantConnectionError(
+                            "Tenant SQLite sidecar permissions changed while opening"
+                        )
+                    if sidecar_stat.st_nlink != 1:
+                        raise TenantConnectionError(
+                            "Tenant SQLite sidecar gained a hard-link alias while opening"
+                        )
         except OSError as exc:
             connection.close()
             raise TenantConnectionError(
