@@ -19,7 +19,7 @@ def _has_unsafe_url_characters(value):
     return (
         not isinstance(value, str)
         or any(
-            char == "\" or char.isspace() or ord(char) < 32 or ord(char) == 127
+            char == "\\" or char.isspace() or ord(char) < 32 or ord(char) == 127
             for char in value
         )
     )
