@@ -1,3 +1,18 @@
+## AI-1 stabilization progress checkpoint — 2026-11-25
+
+These are engineering estimates, not test pass rates, legal-quality measurements, or pilot-readiness certification.
+
+| Workstream | Previous | Current | Change |
+|---|---:|---:|---:|
+| Legal research reliability | 59% | 60% | +1 pp |
+| Arabic retrieval and matching | 54% | 54% | 0 pp |
+| Citation and trust safeguards | 74% | 75% | +1 pp |
+| Evaluation and regression tests | 48% | 49% | +1 pp |
+| Review and integration | 69% | 72% | +3 pp |
+| **Overall AI-1** | **59%** | **60%** | **+1 pp** |
+
+Evidence for this checkpoint: qualifier hardening, migration-version correction, evidence-store regression coverage, direct integration into `main`, and repository read-back verification. The added Python tests have not been executed; runtime validation, full regression, browser/two-firm acceptance, and qualified Egyptian lawyer review remain outstanding. The application remains **NOT READY** for a real firm pilot.
+
 ## Source-match evidence storage regression coverage — 2026-11-25
 
 - Added a synthetic SQLite integration test that applies the legal-corpus profile migrations, inserts a fictional source/version evidence packet, reads it through the adapter, and checks exact-version binding plus append-only protections for evidence and approved-use rows.
