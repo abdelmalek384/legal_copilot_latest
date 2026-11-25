@@ -29,3 +29,15 @@ The prior separate security-regression-source-coverage estimate remains 98%; it 
 - **Security limitation:** filesystem hard-link checks do not demonstrate race-free directory-descriptor-based SQLite opening or protection from a privileged/local filesystem attacker. Route-level tenant isolation and browser acceptance are still unverified.
 - **Pilot status:** NOT READY.
 
+
+
+## 2026-11-25 direct text-document title hardening (PR #2012)
+
+- **Gap:** the existing JSON `/cases/{cid}/docs` route accepted a title containing bidi/format/control characters, bypassing the multipart upload filename normalization.
+- **Change:** branch `ai2/sanitize-text-document-title-controls-20261125` adds a Pydantic pre-validator that strips control/surrogate and line/paragraph-separator characters plus format characters, while explicitly preserving Arabic ZWNJ/ZWJ; it rejects empty filtered titles and retains the 200-character bound.
+- **Tests:** five regression cases added to the existing `tests/test_document_extraction_budget.py` module, already included in the security regression matrix.
+- **Task implementation:** 100%; test authoring: 100%.
+- **Isolated Pydantic harness:** 5/5 passed. Repository test execution remains 0%; supported Python 3.12 checkout/runtime is unavailable and Actions are not used.
+- **Workstream estimates:** unchanged from the snapshot above; this metadata-only source/test slice does not justify broad acceptance progress.
+- **Boundary:** title metadata only; document body content, legal retrieval, browser, and pilot acceptance are unaffected and remain unverified.
+
