@@ -132,3 +132,27 @@ This procedure is a rehearsal, not proof of backup safety. Use only a disposable
 ### Closure criteria
 
 Mark PASS only if the actual backup verification, tamper/wrong-key rejection, isolated restore, baseline comparison and tenant-isolation checks all succeed and evidence is recorded. Otherwise mark FAIL or BLOCKED and log a defect. Do not claim a recovery-time or recovery-point objective unless the measured rehearsal supports it. Destroy disposable artifacts and databases according to the test environment's cleanup policy; retain only approved sanitized evidence.
+
+
+## 7. Bilingual responsive and accessibility acceptance
+
+Execute against the disposable demo firm with synthetic data in a supported browser. This checklist is manual and is not evidence of device/browser coverage until recorded.
+
+### Locale and layout
+
+- Repeat the critical paths (login, first-run/setup, dashboard, case list/detail, document preview/review, deadlines, invoices, exports and logout) in Arabic (ar-EG) and English (en-US).
+- Confirm Arabic pages use RTL direction consistently: navigation, forms, table headers/cells, dialogs, breadcrumbs, pagination, badges, dates and empty/error states. Verify mixed Arabic/Latin text, case IDs, email addresses and URLs remain legible and correctly ordered.
+- Confirm English pages remain LTR and locale changes do not silently change firm/session context or data.
+- Check a narrow mobile viewport, intermediate/tablet width and desktop viewport. Record actual dimensions and browser; inspect horizontal overflow, clipped controls, modal scrolling, fixed headers and touch-target reachability.
+- Test long synthetic names, filenames, case numbers, empty lists, large tables and validation messages for wrapping/truncation and usable access to full content.
+
+### Keyboard, focus and assistive checks
+
+- Navigate login, menus, forms, dialogs, search, tables and export controls using keyboard only. Confirm visible focus, logical focus order, no traps, and focus restoration after dialog closure.
+- Confirm controls have discernible labels, validation errors are announced/associated where supported, status changes are visible, and color is not the sole signal.
+- Check zoom/reflow at 200% without loss of critical content or actions; record exceptions.
+- Verify authentication and privacy-sensitive content does not appear in browser-visible debug logs or error messages.
+
+### Acceptance record
+
+Record browser/version, OS/device, viewport, locale, tested routes, actual results, sanitized screenshots if permitted, defects and timestamp/timezone. PASS is per route/device/locale combination only when observed; mark skipped combinations BLOCKED and avoid claims of full accessibility conformance without a formal audit.
