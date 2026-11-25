@@ -60,7 +60,7 @@ def orthographic_variants(token):
     return tuple(dict.fromkeys(variants))
 
 
-def _is_negated_at(normalized_query, start):
+def _is_negated_at(normalized_query, start, end=None):
     """Recognize nearby Arabic negators without treating discourse ما/لا as negation."""
     prefix = unicodedata.normalize("NFKC", normalized_query[:start])
     prefix = re.sub(r"[\u0640\u064b-\u065f\u0670]", "", prefix)
@@ -75,7 +75,7 @@ def _is_negated_at(normalized_query, start):
         return True
     # Standalone ما is ambiguous: in "ما هي الإجازة؟" it is interrogative,
     # while in "ما عنديش إجازة" / "ما حصلش على إجازة" it is negative.
-    return bool(re.search(
+    prefix_negated = bool(re.search(
         r"(?:^|\s)ما\s+(?:عند\w*|فيش|حصل\w*|استحق\w*|قدر\w*|طلب\w*)"
         r"\s+(?:\S+\s+){0,2}$",
         prefix,
@@ -84,6 +84,17 @@ def _is_negated_at(normalized_query, start):
         r"(?:^|\s)ما\s+\S+ش\s+(?:\S+\s+){0,2}$",
         prefix,
     ))
+    # Attached Egyptian circumfix forms (e.g. ما فصلنيش) can split the
+    # matched alias phrase from its negative suffix.
+    suffix_negated = False
+    if end is not None:
+        suffix = unicodedata.normalize("NFKC", normalized_query[end:])
+        suffix = re.sub(r"[\u0640\u064b-\u065f\u0670]", "", suffix)
+        suffix_negated = bool(
+            re.search(r"^ش(?![\u0621-\u064a])", suffix)
+            and re.search(r"(?:^|\s)ما\s+$", prefix)
+        )
+    return prefix_negated or suffix_negated
 
 
 def _phrase_occurrences(normalized_query, normalized_phrase):
@@ -96,7 +107,7 @@ def _phrase_occurrences(normalized_query, normalized_phrase):
 def _positive_occurrence_starts(normalized_query, normalized_phrase):
     return [
         match.start() for match in _phrase_occurrences(normalized_query, normalized_phrase)
-        if not _is_negated_at(normalized_query, match.start())
+        if not _is_negated_at(normalized_query, match.start(), match.end())
     ]
 
 
@@ -140,7 +151,7 @@ def expand_lexicon_hints(
                     match.start()
                     for match in re.finditer(r"\w+", normalized_query)
                     if set(token_terms).intersection(tokens_fn(match.group()))
-                    and not _is_negated_at(normalized_query, match.start())
+                    and not _is_negated_at(normalized_query, match.start(), match.end())
                 ]
             if starts:
                 expanded.extend(tokens_fn(" ".join(aliases)))
