@@ -1899,5 +1899,10 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("autocomplete:key==='email'?'email':key==='phone'?'tel':undefined", profile_form)
         self.assertIn("inputmode:key==='phone'?'tel':undefined", profile_form)
 
+    def test_case_list_search_uses_native_search_input_semantics(self):
+        cases_page = HTML[HTML.index("async function casesPage()"):HTML.index("\nasync function corpusCoverage()")]
+        self.assertIn("const q=h('input',{type:'search'", cases_page)
+        self.assertIn("Search title, client, case number or opposing party", cases_page)
+
 if __name__ == "__main__":
     unittest.main()
