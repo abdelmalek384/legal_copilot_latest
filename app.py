@@ -1242,7 +1242,7 @@ def _search_separate(c, q, case_id, k, firm_id, as_of, scope):
             rows_with_origin.append((
                 row_dict, "corpus",
                 _is_exact_corpus_article_match(
-                    origin, row_dict, article_match, statute_reference
+                    "corpus", row_dict, article_match, statute_reference
                 ),
             ))
 
