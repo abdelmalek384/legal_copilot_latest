@@ -52,7 +52,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertEqual(HTML.count("const firmSwitcher=mfaFirmSwitcher();if(firmSwitcher)card.append(firmSwitcher)"), 2)
 
     def test_client_profile_email_field_uses_native_email_input_semantics(self):
-        profile_form = HTML[HTML.index("async function clientProfileForm("):HTML.index("\\nasync function clients(initialQuery='')")]
+        profile_form = HTML[HTML.index("async function clientProfileForm("):HTML.index("\nasync function clients(initialQuery='')")]
         self.assertIn("type:key==='email'?'email':undefined", profile_form)
         self.assertIn("autocomplete:key==='email'?'email':undefined", profile_form)
 
