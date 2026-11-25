@@ -142,6 +142,18 @@ class SyntheticRetrievalTests(unittest.TestCase):
             None, query, k=10, scope="verified_corpus", as_of=as_of
         )
 
+    def test_equal_score_passages_have_stable_id_order(self):
+        first_id = self.fixture.add_passage(
+            "SYNTH-TIE-01", "نص اختبار خيالي وليس قانونا: إثبات علاقة العمل وعقد العمل."
+        )
+        second_id = self.fixture.add_passage(
+            "SYNTH-TIE-02", "نص اختبار خيالي وليس قانونا: إثبات علاقة العمل وعقد العمل."
+        )
+        first = self.search("إثبات علاقة العمل")
+        second = self.search("إثبات علاقة العمل")
+        self.assertEqual([hit["id"] for hit in first], [hit["id"] for hit in second])
+        self.assertEqual(first[0]["id"], min(first_id, second_id))
+
     def test_hamza_seat_variants_are_query_hints_not_source_rewrites(self):
         self.assertIn("مسؤول", orthographic_variants("مسئول"))
         self.assertIn("مسئول", orthographic_variants("مسؤول"))
