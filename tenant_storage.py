@@ -157,27 +157,33 @@ class TenantSQLiteConnectionRouter:
         # returning a cached connection or opening a new one.
         for suffix in ("-wal", "-shm", "-journal"):
             sidecar = Path(str(path) + suffix)
-            if sidecar.is_symlink():
+            try:
+                sidecar_metadata = os.lstat(sidecar)
+            except FileNotFoundError:
+                continue
+            except OSError as exc:
+                self._revoke_cached_connection(trusted_firm_id)
+                raise TenantConnectionError(
+                    "Tenant SQLite sidecar metadata cannot be verified"
+                ) from exc
+            if stat.S_ISLNK(sidecar_metadata.st_mode):
                 self._revoke_cached_connection(trusted_firm_id)
                 raise TenantConnectionError(
                     "Tenant SQLite sidecar must not be a symbolic link"
                 )
-            if not sidecar.exists():
-                continue
-            if not sidecar.is_file():
+            if not stat.S_ISREG(sidecar_metadata.st_mode):
                 self._revoke_cached_connection(trusted_firm_id)
                 raise TenantConnectionError(
                     "Tenant SQLite sidecar must be a regular file"
                 )
-            if os.name != "posix":
-                continue
-            try:
-                sidecar_mode = stat.S_IMODE(sidecar.stat().st_mode)
-            except OSError as exc:
+            if sidecar_metadata.st_nlink != 1:
                 self._revoke_cached_connection(trusted_firm_id)
                 raise TenantConnectionError(
-                    "Tenant SQLite sidecar permissions cannot be verified"
-                ) from exc
+                    "Tenant SQLite sidecar must not be hard-linked"
+                )
+            if os.name != "posix":
+                continue
+            sidecar_mode = stat.S_IMODE(sidecar_metadata.st_mode)
             if sidecar_mode & 0o077:
                 self._revoke_cached_connection(trusted_firm_id)
                 raise TenantConnectionError(
@@ -322,27 +328,42 @@ class TenantSQLiteConnectionRouter:
                 raise TenantConnectionError(
                     "Tenant database file changed while opening; refusing cached connection"
                 )
-            if os.name == "posix" and stat.S_IMODE(current.st_mode) & 0o077:
-                raise TenantConnectionError(
-                    "Tenant database file permissions changed while opening"
-                )
+            if os.name == "posix":
+                if stat.S_IMODE(current.st_mode) & 0o077:
+                    raise TenantConnectionError(
+                        "Tenant database file permissions changed while opening"
+                    )
+                if current.st_nlink != 1:
+                    raise TenantConnectionError(
+                        "Tenant database file gained a hard-link alias while opening"
+                    )
             for suffix in ("-wal", "-shm", "-journal"):
                 sidecar = Path(str(path) + suffix)
-                if sidecar.is_symlink():
+                try:
+                    sidecar_stat = os.lstat(sidecar)
+                except FileNotFoundError:
+                    continue
+                except OSError as exc:
+                    raise TenantConnectionError(
+                        "Tenant SQLite sidecar metadata cannot be verified after opening"
+                    ) from exc
+                if stat.S_ISLNK(sidecar_stat.st_mode):
                     raise TenantConnectionError(
                         "Tenant SQLite sidecar changed to a symbolic link while opening"
                     )
-                if not sidecar.exists():
-                    continue
-                sidecar_stat = sidecar.stat()
                 if not stat.S_ISREG(sidecar_stat.st_mode):
                     raise TenantConnectionError(
                         "Tenant SQLite sidecar changed to a non-regular file while opening"
                     )
-                if os.name == "posix" and stat.S_IMODE(sidecar_stat.st_mode) & 0o077:
-                    raise TenantConnectionError(
-                        "Tenant SQLite sidecar permissions changed while opening"
-                    )
+                if os.name == "posix":
+                    if stat.S_IMODE(sidecar_stat.st_mode) & 0o077:
+                        raise TenantConnectionError(
+                            "Tenant SQLite sidecar permissions changed while opening"
+                        )
+                    if sidecar_stat.st_nlink != 1:
+                        raise TenantConnectionError(
+                            "Tenant SQLite sidecar gained a hard-link alias while opening"
+                        )
         except OSError as exc:
             connection.close()
             raise TenantConnectionError(
