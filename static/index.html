@@ -3228,7 +3228,7 @@ async function law(){
            answerable.value=saved.answerable===null?'':String(saved.answerable);
            notes.value=saved.notes||'';
            ratingStatus.textContent=LANG==='ar'?'لديك تقييم محفوظ؛ يمكنك تحديثه.':'Your rating is saved; you can update it.';
-         }).catch(()=>{});
+         }).catch(()=>{ratingStatus.textContent=LANG==='ar'?'تعذر تحميل التقييم المحفوظ. يمكنك متابعة المراجعة ثم إعادة المحاولة.':'Could not load the saved rating. You can continue reviewing and retry.';});
        }
        if(!(m.sources||[]).length){
          const messageScope=(m.result&&m.result.scope)||m.scope||'unknown';
