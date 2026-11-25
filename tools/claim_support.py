@@ -300,6 +300,7 @@ def _numeric_markers(text):
     markers = set()
     index = 0
     while index < len(parts):
+        number_start = index
         part = parts[index]
         compound = None
         number_end = index
@@ -324,10 +325,8 @@ def _numeric_markers(text):
         unit = None
         if number_end + 1 < len(parts):
             unit = _NUMERIC_UNITS.get(parts[number_end + 1])
-        if unit is None and number_end == index - 2 and index >= 2:
-            unit = _NUMERIC_UNITS.get(parts[index - 2])
-        elif unit is None and number_end == index - 1 and number_end > 0:
-            unit = _NUMERIC_UNITS.get(parts[number_end - 1])
+        if unit is None and number_start > 0:
+            unit = _NUMERIC_UNITS.get(parts[number_start - 1])
         markers.add((number, unit))
     return values, markers
 
