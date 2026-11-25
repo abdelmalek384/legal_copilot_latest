@@ -3347,12 +3347,18 @@ async function law(){
      return;
    }
    if(scopeSelect.value==='firm_documents'&&!matterSelect.value){toast(LANG==='ar'?'اختر ملف قضية للبحث في مستندات المكتب':'Select a matter to search firm documents');matterSelect.focus();return}
-   if(!activeId){const c=await api('/research/conversations','POST',{});activeId=c.id}
    sending=true;send.disabled=true;composer.disabled=true;composer.value='';researchStatus.textContent=LANG==='ar'?'جارٍ البحث في المصادر…':'Searching sources…';
-   const optimistic=[...((await api('/research/conversations/'+activeId)).messages||[]),{role:'user',content:current},{role:'assistant',content:LANG==='ar'?'جارٍ البحث في المصادر…':'Searching sources…',sources:[]}];
-   renderMessages(optimistic);
-   try{await api('/research/conversations/'+activeId+'/messages','POST',{message:current,scope:scopeSelect.value,case_id:scopeSelect.value==='firm_documents'?Number(matterSelect.value):null});await loadConversation(activeId);researchStatus.textContent=LANG==='ar'?'اكتمل البحث. راجع الإجابة والمصادر.':'Research complete. Review the answer and sources.'}
-   catch(error){composer.value=current;const detail=String(error?.message||'').trim();researchStatus.textContent=(LANG==='ar'?'تعذر إكمال البحث؛ تمت استعادة السؤال. ':'Research failed; your question was restored. ')+(detail&&detail!=='api'?detail:'')}
+   let submitted=false;
+   try{
+    if(!activeId){const c=await api('/research/conversations','POST',{});activeId=c.id}
+    const existing=await api('/research/conversations/'+activeId);
+    const optimistic=[...(Array.isArray(existing.messages)?existing.messages:[]),{role:'user',content:current},{role:'assistant',content:LANG==='ar'?'جارٍ البحث في المصادر…':'Searching sources…',sources:[]}];
+    renderMessages(optimistic);
+    await api('/research/conversations/'+activeId+'/messages','POST',{message:current,scope:scopeSelect.value,case_id:scopeSelect.value==='firm_documents'?Number(matterSelect.value):null});
+    submitted=true;
+    try{await loadConversation(activeId);researchStatus.textContent=LANG==='ar'?'اكتمل البحث. راجع الإجابة والمصادر.':'Research complete. Review the answer and sources.'}
+    catch(refreshError){const detail=String(refreshError?.message||'').trim();researchStatus.textContent=(LANG==='ar'?'تم حفظ الإجابة، لكن تعذر تحديث المحادثة. أعد فتحها من السجل. ':'The answer was saved, but the conversation could not be refreshed. Reopen it from history. ')+(detail&&detail!=='api'?detail:'')}
+   }catch(error){if(!submitted)composer.value=current;const detail=String(error?.message||'').trim();researchStatus.textContent=(submitted?(LANG==='ar'?'تم إرسال السؤال، لكن تعذر تحديث العرض. ':'The question was submitted, but the view could not be refreshed. '):(LANG==='ar'?'تعذر إكمال البحث؛ تمت استعادة السؤال. ':'Research failed; your question was restored. '))+(detail&&detail!=='api'?detail:'')}
    finally{sending=false;send.disabled=false;composer.disabled=false;composer.focus()}
  },'primary');
  composer.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send.click()}});
