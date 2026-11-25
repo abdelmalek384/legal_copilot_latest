@@ -413,9 +413,17 @@ def conflict_name_matches(query, candidate):
 
 
 def conflict_case_number_matches(query, candidate):
-    """Require an exact normalized numeric sequence for case-number screening."""
-    query_numbers = re.findall(r"\d+", norm(query))
-    candidate_numbers = re.findall(r"\d+", norm(candidate))
+    """Require an exact numeric sequence, normalizing Arabic and Persian digits."""
+    def numeric_tokens(value):
+        normalized = norm(value)
+        ascii_digits = "".join(
+            str(unicodedata.decimal(character)) if character.isdecimal() else character
+            for character in normalized
+        )
+        return re.findall(r"\d+", ascii_digits)
+
+    query_numbers = numeric_tokens(query)
+    candidate_numbers = numeric_tokens(candidate)
     return bool(query_numbers and query_numbers == candidate_numbers)
 
 
