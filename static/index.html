@@ -3239,7 +3239,7 @@ async function law(){
                : (LANG==='ar'?'لم تُسجل مصادر لهذا البحث ولم يُسجل نطاقه.':'No source records were returned; the search scope was not recorded.');
          answerAnalysisPanel.append(pill(emptyScope,'soon'));
          const messageQuestion=messages.slice(0,messageIndex).reverse().find(x=>x.role==='user')?.content||priorQuestion||'';
-         if(messageScope!=='metadata_only')actions.append(makeBtn(LANG==='ar'?'اكتشاف بيانات وصفية للمصادر':'Discover source metadata',async()=>{if(!messageQuestion.trim())return;scopeSelect.value='metadata_only';try{renderDiscovery(await api('/research/discover','POST',{q:messageQuestion}),messageQuestion)}catch(error){researchStatus.textContent=(LANG==='ar'?'تعذر اكتشاف بيانات المصادر: ':'Source metadata discovery failed: ')+String(error?.message||'')}},'g'));
+         if(messageScope!=='metadata_only')actions.append(makeBtn(LANG==='ar'?'اكتشاف بيانات وصفية للمصادر':'Discover source metadata',async()=>{if(!messageQuestion.trim())return;scopeTabButtons.find(tab=>tab.dataset.scope==='metadata_only')?.click();try{renderDiscovery(await api('/research/discover','POST',{q:messageQuestion}),messageQuestion)}catch(error){researchStatus.textContent=(LANG==='ar'?'تعذر اكتشاف بيانات المصادر: ':'Source metadata discovery failed: ')+String(error?.message||'')}},'g'));
        }
      }
      if(m.role==='assistant'){
