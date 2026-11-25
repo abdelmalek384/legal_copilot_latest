@@ -249,7 +249,9 @@ def inspect_environment(env=None, *, require_separate=False):
                 and not parsed_origin.query
                 and not parsed_origin.fragment
             )
-            _ = parsed_origin.port
+            origin_port = parsed_origin.port
+            if origin_port is not None and not 1 <= origin_port <= 65535:
+                valid_origin = False
         except (TypeError, ValueError):
             valid_origin = False
         if valid_origin:
