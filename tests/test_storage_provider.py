@@ -77,6 +77,10 @@ class SQLiteConnectionProviderTests(unittest.TestCase):
             SQLiteConnectionProvider("")
         with self.assertRaises(ValueError):
             SQLiteConnectionProvider("copilot.db", timeout=0)
+        for invalid_timeout in (float("nan"), float("inf"), float("-inf")):
+            with self.subTest(timeout=invalid_timeout):
+                with self.assertRaises(ValueError):
+                    SQLiteConnectionProvider("copilot.db", timeout=invalid_timeout)
 
 
 if __name__ == "__main__":
