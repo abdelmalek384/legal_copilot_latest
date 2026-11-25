@@ -336,6 +336,8 @@ def run_scheduler(
     app_url: str | None = None,
     max_send: int = 100,
 ) -> dict:
+    if type(max_send) is not int or not 1 <= max_send <= 1000:
+        raise ReminderOutboxError("max_send must be between 1 and 1000")
     if send:
         if smtp_config is None:
             raise ReminderEmailError("SMTP configuration is required when delivery is enabled")
