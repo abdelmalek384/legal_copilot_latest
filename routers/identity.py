@@ -50,7 +50,7 @@ form.addEventListener("submit",async e=>{e.preventDefault();try{const r=await fe
 method:"POST",headers:{"Content-Type":"application/json"},
 body:JSON.stringify({token,new_password:document.getElementById("password").value}),credentials:"same-origin"});
 const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(d.detail||"The recovery link is invalid or expired.");
-result.textContent="Password reset successful. Sign in with your new password.";form.reset();
+result.textContent="Password reset successful. Sign in with your new password.";form.reset();form.querySelector("button[type=submit]").disabled=true;document.getElementById("password").disabled=true;
 }catch(err){result.textContent=err.message;}});
 if(!token){result.textContent="This recovery link is missing its token. Request a new recovery email.";form.querySelector("button[type=submit]").disabled=true;}
 </script></body></html>""".replace("__CSP_NONCE__", request.state.csp_nonce))
