@@ -115,6 +115,7 @@ class SourcePermissionRegisterTests(unittest.TestCase):
             "https://example.gov/law.pdf?X-Goog-Algorithm=GOOG4-RSA-SHA256",
             "https://example.gov/law.pdf?X-Goog-Date=20261116T120000Z",
             "https://example.gov/law.pdf#page=4",
+            "https://example.gov/law.pdf#",
         ):
             with self.subTest(url=url):
                 self.assertFalse(_https_url(url))
