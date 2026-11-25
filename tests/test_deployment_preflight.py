@@ -93,6 +93,42 @@ class DeploymentPreflightTests(unittest.TestCase):
                 _, _, errors = preflight.inspect_environment(dict(self.env, LLM_URL=url))
                 self.assertTrue(any("LLM_URL must use HTTPS" in item for item in errors))
 
+    def test_public_origin_rejects_parser_normalized_authority_text(self):
+        for origin in (
+            "https://legal.example.com:",
+            "https://legal.example.com\n",
+            "https://legal.example.com\\attacker",
+            "https://legal.example.com\t",
+            "https://legal.example.com:65536",
+            "https://legal.example.com:0",
+            "https://@legal.example.com",
+        ):
+            with self.subTest(origin=origin):
+                _, _, errors = preflight.inspect_environment(
+                    dict(self.env, COPILOT_PUBLIC_ORIGIN=origin)
+                )
+                self.assertTrue(any(
+                    "COPILOT_PUBLIC_ORIGIN must be an HTTPS origin" in item
+                    for item in errors
+                ), errors)
+
+    def test_llm_url_rejects_parser_normalized_authority_text(self):
+        for url in (
+            "https://llm.example.com:",
+            "https://llm.example.com\n/v1",
+            "https://llm.example.com\t/v1",
+            "https://llm.example.com\\@attacker.example/v1",
+            "https://llm.example.com:65536/v1",
+            "https://@llm.example.com/v1",
+        ):
+            with self.subTest(url=url):
+                _, _, errors = preflight.inspect_environment(
+                    dict(self.env, LLM_URL=url)
+                )
+                self.assertTrue(any(
+                    "LLM_URL must use HTTPS" in item for item in errors
+                ), errors)
+
     def test_llm_preflight_defers_dns_until_processing_is_approved(self):
         url = "https://provider.example.test/v1/chat/completions"
         with patch.object(preflight.socket, "getaddrinfo") as resolve:

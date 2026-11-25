@@ -153,3 +153,28 @@ Each gate requires an owner, exact candidate commit, reproducible command/config
 - `tenant_catalog.py` rejects symlink storage-root components and symlink tenant files and enforces a firm-ID-bound filename format before resolving paths. This is useful path validation, but it uses pathname checks followed by later file operations; the source review did not establish race-resistant open semantics (e.g. directory-descriptor-relative opens with no-follow flags). Treat this as **NOT TESTED / deployment-dependent** against a local attacker able to modify the tenant storage directory. Restrict that directory to the application service account and administrators; do not grant firm users or unrelated processes write access. This is not a confirmed exploitable vulnerability, but it is not proof of TOCTOU safety either.
 ### Legacy login throttling privacy — source fix committed
 - The legacy `/login` handler previously persisted normalized email and raw client IP in `login_attempts`. It now derives purpose-separated HMAC pseudonyms using the dedicated identity rate-limit key; production/staging returns 503 if that key is unavailable, while the raw-identifier fallback is development-only. Commit `a2ec1f9`. This addresses the source-level PII persistence issue but still requires runtime regression and production configuration verification.
+
+
+## Manual outbound URL authority validation — 2026-11-25
+
+- Hardened deployment preflight URL parsing for `LLM_URL` and `COPILOT_PUBLIC_ORIGIN`. Raw backslashes, whitespace/control characters, empty explicit ports, malformed ports and invalid parsed authorities now fail closed before `urlsplit` can silently normalize the input.
+- Added regression cases to `tests/test_deployment_preflight.py` for malformed LLM endpoints and public origins.
+- Exact committed source logic was exercised in isolated Python harnesses: 5/5 malformed LLM endpoint cases rejected and 3/3 valid syntax/loopback cases accepted; 6/6 malformed public-origin cases rejected (including port 0) and 2 valid public origins accepted.
+- The repository test module and full test suite were **not executed**: this environment has no local repository checkout and Python 3.12 is unavailable. GitHub Actions were not invoked. This is helper-level validation only; it is not a production egress test or pilot acceptance.
+- Branch: `ai2/strict-outbound-url-authority-20261125`; draft PR [#2001](https://github.com/abdelmalek384/legal_copilot_latest/pull/2001) opened for manual review. Commits: `2551015` (initial URL hardening), `d482539` (backslash predicate correction), `e24f740` (single-backslash handling), `f6f9687` (regression cases), `ef40c8a` (public-origin port range), `6073da6` (zero-port regression).
+
+
+## AI-2 progress delta — 2026-11-25
+
+| Assignment workstream | Previous documented estimate | Current estimate | Delta this session | Evidence / remaining gate |
+|---|---:|---:|---:|---|
+| Backend and existing workflows | Not separately measured | Not re-scored | 0 pp | No end-to-end firm/client/case/task/session workflow executed in this session. |
+| Frontend and usability | Not separately measured | Not re-scored | 0 pp | No browser runtime available; no UI behavior is claimed. |
+| Mobile and Arabic/English UI | Not separately measured | Not re-scored | 0 pp | No device/browser acceptance performed. |
+| Security and tenant isolation | 84.7% (16 Nov engineering estimate) | 84.7% | 0 pp | New outbound URL-preflight subtask implementation completed; isolated helper harnesses passed. Repository regression module and route-level tenant tests remain unexecuted, so the broader estimate is not increased. |
+| Documents and file handling | 99.1% (16 Nov engineering estimate) | 99.1% | 0 pp | No new document workflow execution or storage acceptance. |
+| Deployment, backup and recovery | 46.7% (16 Nov engineering estimate) | 46.7% | 0 pp | URL configuration validation improved; no production preflight, S3/KMS acceptance, backup or witnessed restore drill. |
+| Local testing and regression | No current-session repository test baseline | Not re-scored | 0 pp | 0 repository test modules executed; 2 isolated helper harnesses executed. Python 3.12 and a local checkout are unavailable. |
+| Overall AI-2 assignment | 76% (16 Nov engineering estimate) | 76% | 0 pp | Narrow security improvement does not justify increasing the overall estimate without full test and workflow evidence. |
+
+**Task-level delta:** outbound URL authority preflight hardening moved from 0% to 100% implementation in this session (+100 percentage points). Isolated helper validation moved from 0% to 100% for the listed malformed/valid input cases. Repository regression execution remains 0%; production acceptance remains 0%. These task-level figures are not additive to the broader workstream percentages.
