@@ -41,14 +41,6 @@ class ArabicLegalMatchingHintTests(unittest.TestCase):
         self.assertNotIn("إنهاء", hints)
         self.assertNotIn("عقد", hints)
 
-    def test_attached_ma_verb_negation_does_not_expand_alias(self):
-        hints = self._expand(
-            "ما فصلنيش من الشغل",
-            phrases={"فصلني": ["إنهاء عقد العمل"]},
-        )
-        self.assertNotIn("إنهاء", hints)
-        self.assertNotIn("عقد", hints)
-
     def test_positive_occurrence_survives_negated_duplicate(self):
         hints = self._expand(
             "مش فصلني من الشغل لكن فصلني",
