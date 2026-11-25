@@ -93,6 +93,12 @@ def enqueue_plan(
             raise ReminderOutboxError(f"reminder {index} has an invalid due date") from exc
         if not isinstance(window, str) or window not in _WINDOWS:
             raise ReminderOutboxError(f"reminder {index} has an unsupported window")
+        if (window == "due_soon" and not 1 <= lead_days <= 30) or (
+            window in {"due_today", "overdue"} and lead_days != 0
+        ):
+            raise ReminderOutboxError(f"reminder {index} has a lead_days value inconsistent with its window")
+        if kind == "session" and window != "due_today":
+            raise ReminderOutboxError(f"reminder {index} has an unsupported session reminder window")
         if item.get("scope_id") != str(firm_id) or item.get("recipient_id") != str(recipient_user_id):
             raise ReminderOutboxError(f"reminder {index} scope or recipient does not match the trusted firm/user")
         identity = ["case-reminder-v1", str(firm_id), str(recipient_user_id), kind,
