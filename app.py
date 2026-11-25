@@ -1185,6 +1185,16 @@ def _row_matches_statute_reference(c, row, reference):
     return bool(title_row and statute_title_matches(title_row["official_title"], reference))
 
 
+def _is_exact_corpus_article_match(origin, row, article_match, statute_reference):
+    """Only a statute-qualified corpus article may receive the exact-match boost."""
+    return bool(
+        origin == "corpus"
+        and article_match
+        and statute_reference
+        and str(row.get("article") or "") == article_match.group(1)
+    )
+
+
 def _search_separate(c, q, case_id, k, firm_id, as_of, scope):
     expanded_qt = expanded_tokens(q)
     if not expanded_qt:
@@ -1231,7 +1241,9 @@ def _search_separate(c, q, case_id, k, firm_id, as_of, scope):
             row_dict = dict(row)
             rows_with_origin.append((
                 row_dict, "corpus",
-                bool(article_match and str(row_dict.get("article") or "") == article_match.group(1)),
+                _is_exact_corpus_article_match(
+                    origin, row_dict, article_match, statute_reference
+                ),
             ))
 
     if not rows_with_origin:
