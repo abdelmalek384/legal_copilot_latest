@@ -87,7 +87,7 @@ class ManualCaptureRecordTests(unittest.TestCase):
                       "commercial_reuse_evidence_url"):
             with self.subTest(field=field):
                 original = self.record[field]
-                self.record[field] = "https://example.gov\\\\rights/source"
+                self.record[field] = "https://example.gov\\rights/source"
                 result = validate_capture_record(self.record, self.record_path)
                 self.assertFalse(result["valid"])
                 self.assertTrue(any(field in error for error in result["errors"]))
