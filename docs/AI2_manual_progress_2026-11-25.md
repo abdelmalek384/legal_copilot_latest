@@ -94,3 +94,26 @@ The narrow documentation correction is complete, but it does not justify raising
 | **Overall AI-2 assignment** | **20%** | **21%** | **+1 pp** | One user-visible date consistency defect corrected, regression authored, and commits read back |
 
 These remain conservative implementation estimates, not test pass rates or pilot-readiness claims. Browser/device execution, Python 3.12 regression, two-firm acceptance, production deployment, and witnessed recovery remain NOT RUN/BLOCKED or outstanding.
+
+
+## Follow-up checkpoint — document upload reliability — 2026-11-25
+
+Implemented directly on `main` without GitHub Actions:
+
+- Hardened the compact matter-document upload button against repeated submission and unhandled fetch/network failures; added explicit handling for authentication expiry and common server rejection statuses.
+- Fixed the successful-upload refresh path: the old `again()` call was undefined in `documentIntelligencePanel`. The panel now fetches the selected matter through `api('/cases/'+caseId)` and replaces itself with a fresh document-intelligence panel. Refresh failure is distinguished from upload failure.
+- Added `test_document_intelligence_upload_prevents_duplicate_submissions_and_refreshes` as a source-contract regression test.
+- Commits: `51ad5022eac225aa6a819c9bd621002a67d732b8`, `2ef759118cc0edcdb1fde1a20202fe7d9fa97059`, `b14778637ddb52d976c485476e89525ab76d4c96`. The latest frontend and test blobs were read back successfully.
+
+| Workstream | Previous | Current | Change | Evidence |
+|---|---:|---:|---:|---|
+| Backend and existing workflows | 25% | 25% | 0 pp | No backend or retrieval changes |
+| Frontend and usability | 22% | 23% | +1 pp | Upload action now guards duplicate clicks, reports failures, and handles expired sessions |
+| Mobile and Arabic/English UI | 15% | 15% | 0 pp | No device/viewport validation added |
+| Security and tenant isolation | 30% | 30% | 0 pp | No new security verification; existing authenticated API/CSRF conventions retained |
+| Documents and file handling | 30% | 32% | +2 pp | Removed undefined post-upload callback; reloads selected matter and re-renders document panel |
+| Deployment and recovery | 15% | 15% | 0 pp | No deployment/recovery evidence added |
+| Local testing and regression | 6% | 7% | +1 pp | Added focused source-contract regression; not executed |
+| **Overall AI-2 assignment** | **21%** | **22%** | **+1 pp** | One user-visible upload workflow corrected and regression contract added; direct commits read back |
+
+These are conservative implementation/evidence estimates, not test pass rates. Python suite, browser upload, mobile, two-firm acceptance, production deployment, and backup/restore rehearsal remain unrun/outstanding. The undefined callback was confirmed by source inspection; no claim is made that storage integration or production upload behavior has been runtime-validated.
