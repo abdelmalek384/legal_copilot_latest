@@ -32,7 +32,7 @@ result.textContent="Invitation accepted. You can now sign in.";document.getEleme
 document.getElementById("existing-account").addEventListener("click",async()=>{try{
 await send("/invitations/accept-existing",{token},true);result.textContent="Invitation accepted for your existing account.";
 }catch(err){result.textContent=err.message;}});
-if(!token)result.textContent="This invitation link is missing its token. Request a new invitation.";
+if(!token){result.textContent="This invitation link is missing its token. Request a new invitation.";document.querySelector("#new-account button[type=submit]").disabled=true;document.getElementById("existing-account").disabled=true;}
 </script></body></html>""".replace("__CSP_NONCE__", request.state.csp_nonce))
 
 
