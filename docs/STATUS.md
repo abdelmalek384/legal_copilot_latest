@@ -2027,3 +2027,10 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Hardened invoice issue and void state transitions. Both conditional updates now check `rowcount` and abort with HTTP 409 before writing an audit event if the invoice state changed concurrently. The existing tenant rollback decorator rolls back the allocated invoice sequence when issuance loses the state race.
 - Added `test_invoice_issue_and_void_emit_only_one_transition_event`: verifies successful first transition, 409 on repeat, and exactly one corresponding audit event for issue and void.
 - Commits: `06b632a3a26a0d3a63bf167b4832e676411ff2a9` (backend), `03e6e892761109b02bcd821172a7647ad6068c72` (test). Source/test read-back only; no Python test execution.
+
+
+## AI-2 guarded invoice issue/void UI controls — 2026-11-25
+
+- Reused the shared duplicate-request action helper for invoice issue and void controls. The helper now accepts a preflight callback and optional button style; issue confirmation and the required void reason are preserved, and the control is disabled while the request and refresh run.
+- Added `test_invoice_issue_and_void_controls_share_duplicate_request_guard` to the frontend source-contract tests.
+- Commits: `43ea40b8f3ca672e26b7e88924e1f61243dcccfa` (frontend), `f3f6029ef230b11aa63078710076989f351c3c23` (test). Read-back verification only; no browser/Python execution.
