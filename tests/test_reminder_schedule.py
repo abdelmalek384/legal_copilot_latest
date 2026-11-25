@@ -91,6 +91,12 @@ class ReminderScheduleTests(unittest.TestCase):
             build_reminder_plan(self.events, "user-7", datetime(2026, 10, 26), "Africa/Cairo", "firm-1")
         with self.assertRaises(ReminderScheduleError):
             build_reminder_plan(self.events, "user-7", self.now, "Not/A_Timezone", "firm-1")
+        for invalid_timezone in ("", "../etc/passwd", "/etc/passwd"):
+            with self.subTest(timezone=invalid_timezone):
+                with self.assertRaises(ReminderScheduleError):
+                    build_reminder_plan(
+                        self.events, "user-7", self.now, invalid_timezone, "firm-1"
+                    )
         with self.assertRaises(ReminderScheduleError):
             build_reminder_plan([dict(self.events[0], is_complete="false")], "user-7", self.now, "Africa/Cairo", "firm-1")
         with self.assertRaises(ReminderScheduleError):
