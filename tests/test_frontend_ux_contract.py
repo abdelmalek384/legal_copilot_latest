@@ -2001,5 +2001,18 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("paymentKey=null;paymentFingerprint=null", invoices)
         self.assertIn("finally{paymentBusy=false;paymentButton.disabled=false}", invoices)
 
+    def test_global_search_keeps_successful_sections_when_another_section_fails(self):
+        search_start = HTML.index("async function runGlobalSearch()")
+        search_end = HTML.index("globalSearchInput.oninput", search_start)
+        search = HTML[search_start:search_end]
+        self.assertIn("await Promise.allSettled([", search)
+        self.assertIn("matterResult.status==='fulfilled'", search)
+        self.assertIn("clientResult.status==='fulfilled'", search)
+        self.assertIn("documentResult.status==='fulfilled'", search)
+        self.assertIn("filter(result=>result.status==='rejected').length", search)
+        self.assertIn("Some search sections are temporarily unavailable; the results shown are partial.", search)
+        self.assertIn("Search is temporarily unavailable. Check your connection and try again.", search)
+        self.assertNotIn("await Promise.all([", search)
+
 if __name__ == "__main__":
     unittest.main()
