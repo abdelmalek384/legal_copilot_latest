@@ -106,6 +106,33 @@ class LegalSourceReviewQueueTests(unittest.TestCase):
                     MODULE.qualified_counsel_user_ids(),
                 ))
 
+    def test_latest_review_uses_absolute_time_across_timezone_offsets(self):
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "legal.db"
+            make_db(path)
+            db = sqlite3.connect(path)
+            db.execute("ALTER TABLE legal_review_events ADD COLUMN notes TEXT")
+            # 12:00+03:00 is 09:00Z, so the 10:00Z approval is newer,
+            # even though a lexical SQL sort would put the older event first.
+            db.execute(
+                "INSERT INTO legal_review_events(version_id,review_type,outcome,evidence_url,reviewer,reviewed_at,notes) "
+                "VALUES(1,'lawyer_approval','fail','https://example.gov/old','Reviewer',"
+                "'2026-10-25T12:00:00+03:00','Approval withdrawn')"
+            )
+            db.execute(
+                "INSERT INTO legal_review_events(version_id,review_type,outcome,evidence_url,reviewer,reviewed_at,notes) "
+                "VALUES(1,'lawyer_approval','pass','https://example.gov/new','Counsel',"
+                "'2026-10-25T10:00:00Z','[qualified_egyptian_counsel_attested:user_id=42] approved')"
+            )
+            db.commit()
+            db.close()
+
+            report = MODULE.review_queue(path)
+            reasons = report["records"][0]["review_reasons"]
+            self.assertNotIn("review_evidence_missing:lawyer_approval", reasons)
+            self.assertNotIn("lawyer_approval_counsel_attestation_missing", reasons)
+            self.assertNotIn("review_event_history_invalid_or_future", reasons)
+
     def test_newer_failed_lawyer_review_supersedes_older_counsel_approval(self):
         with tempfile.TemporaryDirectory() as td:
             path = Path(td) / "legal.db"
