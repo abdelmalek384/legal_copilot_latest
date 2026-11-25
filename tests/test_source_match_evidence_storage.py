@@ -13,7 +13,7 @@ class SourceMatchEvidenceAdapterTests(unittest.TestCase):
         applied = apply_profile_migrations(
             db, "legal_corpus", Path(__file__).resolve().parents[1] / "migrations"
         )
-        self.assertIn(4, applied)
+        self.assertIn(5, applied)
         tables = {
             row[0] for row in db.execute(
                 "SELECT name FROM sqlite_master WHERE type='table'"
