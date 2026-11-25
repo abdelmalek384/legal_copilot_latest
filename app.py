@@ -2089,6 +2089,8 @@ def _answer_has_uncited_claims(answer):
     return False
 
 def ask(c, q, case_id=None, firm_id=1, as_of=None, conversation_context=None, scope="all_permitted"):
+    # Freeze one Cairo-local evaluation date for retrieval, prompting, and response metadata.
+    as_of = as_of or _cairo_today().isoformat()
     # Context helps resolve follow-ups, but the current question remains explicit in the answer prompt.
     retrieval_query = ((conversation_context.strip() + "\n") if conversation_context else "") + q
     hits = search(c, retrieval_query, case_id, firm_id=firm_id, as_of=as_of, scope=scope)
