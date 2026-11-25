@@ -13,7 +13,7 @@ class SourceMatchEvidenceAdapterTests(unittest.TestCase):
         applied = apply_profile_migrations(
             db, "legal_corpus", Path(__file__).resolve().parents[1] / "migrations"
         )
-        self.assertIn(5, applied)
+        self.assertIn(6, applied)
         tables = {
             row[0] for row in db.execute(
                 "SELECT name FROM sqlite_master WHERE type='table'"
@@ -109,15 +109,29 @@ class SourceMatchEvidenceAdapterTests(unittest.TestCase):
             ") VALUES (" + ",".join("?" for _ in values) + ")"
         )
         evidence_id = db.execute(insert, values).lastrowid
-        db.execute(
-            "INSERT INTO legal_source_match_evidence_uses(evidence_id, approved_use) VALUES (?, ?)",
-            (evidence_id, "collection"),
-        )
+        with self.assertRaises(sqlite3.IntegrityError):
+            db.execute(
+                "INSERT INTO legal_source_match_evidence_uses(evidence_id, approved_use) VALUES (?, ?)",
+                (evidence_id, "collection"),
+            )
 
         packet = load_source_match_evidence(db, version_id, "primary")
         self.assertIsNotNone(packet)
         self.assertFalse(packet["validator_passed"])
         self.assertFalse(packet["reuse_rights_allowed"])
+        self.assertEqual(packet["approved_uses"], [])
+
+        # A later, explicitly permissive synthetic revision may carry scoped uses.
+        permissive = list(values)
+        permissive[2] = 2
+        permissive[14] = 1
+        permissive_id = db.execute(insert, tuple(permissive)).lastrowid
+        db.execute(
+            "INSERT INTO legal_source_match_evidence_uses(evidence_id, approved_use) VALUES (?, ?)",
+            (permissive_id, "collection"),
+        )
+        packet = load_source_match_evidence(db, version_id, "primary")
+        self.assertTrue(packet["reuse_rights_allowed"])
         self.assertEqual(packet["approved_uses"], ["collection"])
 
         with self.assertRaises(sqlite3.IntegrityError):

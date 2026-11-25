@@ -1,3 +1,10 @@
+## Source-match approved-use rights guard — 2026-11-25
+
+- Found an inconsistency in the evidence store: an approved-use row could be inserted even when its parent evidence packet explicitly set `reuse_rights_allowed=0`. The adapter then returned that use alongside a negative rights flag, creating a risk that downstream code could consume contradictory scope metadata.
+- Added migration `0006_source_match_evidence_use_rights_guard.sql` to reject approved-use inserts unless the referenced immutable evidence revision affirmatively records reuse rights as allowed.
+- Updated the synthetic SQLite regression test: a non-permissive packet rejects `collection`; a separate permissive revision accepts its scoped use. Migration expectation updated to version 6.
+- The Python test has **not** been executed in this environment. No real source, legal text, permission, or trust status was added or changed.
+
 ## AI-1 stabilization progress checkpoint — 2026-11-25
 
 These are engineering estimates, not test pass rates, legal-quality measurements, or pilot-readiness certification.
