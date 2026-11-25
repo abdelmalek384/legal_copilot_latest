@@ -1973,7 +1973,8 @@ async function feedbackPage(){
   ['usability',ar?'سهولة الاستخدام':'Usability'],
   ['other',ar?'أخرى':'Other']
  ].map(([value,label])=>h('option',{value,textContent:label})));
- const categoryField=h('label',{style:'display:block'},h('span',{className:'mut',textContent:ar?'فئة الملاحظة':'Feedback category'}),category);\n const title=h('input',{required:true,minLength:3,maxLength:160,placeholder:ar?'عنوان مختصر للملاحظة':'Short feedback title'});
+ const categoryField=h('label',{style:'display:block'},h('span',{className:'mut',textContent:ar?'فئة الملاحظة':'Feedback category'}),category);
+ const title=h('input',{required:true,minLength:3,maxLength:160,placeholder:ar?'عنوان مختصر للملاحظة':'Short feedback title'});
  const message=h('textarea',{required:true,minLength:10,maxLength:4000,rows:5,placeholder:ar?'اشرح الملاحظة أو الفكرة دون إدراج بيانات عملاء سرية.':'Describe the issue or idea. Do not include confidential client information.'});
  const titleError=h('span',{id:'feedback-title-error',className:'bad',role:'alert',hidden:true,textContent:ar?'أدخل عنواناً من 3 أحرف على الأقل.':'Enter a title with at least 3 characters.'});
  const messageError=h('span',{id:'feedback-message-error',className:'bad',role:'alert',hidden:true,textContent:ar?'اكتب وصفاً من 10 أحرف على الأقل.':'Enter a description with at least 10 characters.'});
