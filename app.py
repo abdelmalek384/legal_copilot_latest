@@ -7941,7 +7941,11 @@ def claim_task(tid: int, u: dict = Depends(user)):
 def finish(tid: int, u: dict = Depends(user)):
     c = conn(); t = c.execute("SELECT * FROM tasks WHERE id=?", (tid,)).fetchone()
     if not t: raise HTTPException(404, "task not found")
-    need(c, u, t["case_id"]); c.execute("UPDATE tasks SET status='done' WHERE id=?", (tid,)); log(c, t["case_id"], u["name"], "تم إنجاز: " + t["title"]); c.commit(); return {"ok": True}
+    need(c, u, t["case_id"])
+    changed = c.execute("UPDATE tasks SET status='done' WHERE id=? AND status!='done'", (tid,)).rowcount
+    if changed:
+        log(c, t["case_id"], u["name"], "تم إنجاز: " + t["title"])
+    c.commit(); return {"ok": True}
 
 
 @app.post("/cases/{cid}/sessions")
