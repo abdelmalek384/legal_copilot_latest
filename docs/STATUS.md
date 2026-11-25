@@ -33,6 +33,8 @@ The following existing-functionality corrections were manually integrated onto m
 
 - Review-queue timestamp correction (2026-11-25): latest review events are now ordered by parsed UTC instants rather than lexicographic timestamp text, so mixed-offset ISO-8601 records cannot cause the reviewer queue to select a stale outcome. Added a regression for an older `+03:00` failure followed by a newer `Z` counsel approval. **Not executed**; source-reviewed only.
 
+- Test-firm trust-tier gate correction (2026-11-25): the non-production source-matched allowlist now requires canonical decimal firm IDs, rejecting leading-zero aliases such as `042` for configured firm `42` instead of relying on integer coercion. Added regressions for both the request ID and configured ID. **Not executed**; source-reviewed only.
+
 ## AI-1 implementation estimates
 
 - Added focused Arabic legal retrieval-hint regressions (`tests/test_arabic_legal_matching_hints.py`) for positive/negated aliases, positive-occurrence handling, preservation of original terms under hint limits, and narrow orthographic variants. These tests are committed but **not executed** in this environment.
@@ -41,10 +43,10 @@ The following existing-functionality corrections were manually integrated onto m
 |---|---:|---:|---:|
 | Legal Research reliability | 56% | 56% | — |
 | Arabic retrieval and matching | 51% | 52% | +1 pp |
-| Citation and trust safeguards | 70% | 71% | +1 pp |
+| Citation and trust safeguards | 71% | 72% | +1 pp |
 | Existing evaluation and tests | 43% | 44% | +1 pp |
 | PR review and integration | 62% | 62% | — |
-| **Overall AI-1 assignment** | **53%** | **54%** | **+1 pp** |
+| **Overall AI-1 assignment** | **54%** | **55%** | **+1 pp** |
 
 These are engineering implementation estimates, not test pass rates or legal-quality measurements. The repository's Python 3.12 test modules, browser acceptance, and full release checker remain unexecuted in this environment. No GitHub Actions runs were used because runner billing is unavailable. The local runtime does not currently provide a repository checkout or Python 3.12.
 
