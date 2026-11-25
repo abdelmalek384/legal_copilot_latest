@@ -227,7 +227,8 @@ class TenantSQLiteConnectionRouterTests(unittest.TestCase):
     @unittest.skipUnless(os.name == "posix", "POSIX hard links are required")
     def test_hardlinked_sqlite_sidecar_revokes_cached_tenant_connection(self):
         connection = self.router.connection_for_firm(101)
-        path = self.paths[101]
+        with self._catalog() as catalog:
+            path = resolve_tenant_database(catalog, 101, self.root)
         sidecar = Path(str(path) + "-wal")
         sidecar.unlink(missing_ok=True)
         sidecar.write_text("synthetic WAL sidecar", encoding="utf-8")
