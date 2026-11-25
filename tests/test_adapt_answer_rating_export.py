@@ -7,7 +7,7 @@ import unittest
 from pathlib import Path
 
 from tools.adapt_answer_rating_export import adapt_file, adapt_rows
-from tools.validate_answer_ratings import EXPECTED_HEADER
+from tools.validate_answer_ratings import EXPECTED_HEADER, validate_rows
 
 
 def firm_row(**overrides):
@@ -62,6 +62,25 @@ class AnswerRatingExportAdapterTests(unittest.TestCase):
             adapt_rows([firm_row(cited_article_accuracy=["right"])])
         with self.assertRaisesRegex(ValueError, "notes must be a string"):
             adapt_rows([firm_row(notes=None)])
+
+    def test_validator_rejects_unhashable_enum_values_without_crashing(self):
+        base = {
+            "answer_id": "ans-0001",
+            "answer_rating": "correct",
+            "cited_article_rating": "right",
+            "notes": "",
+            "rater": "reviewer-1",
+            "timestamp": "2026-11-14T12:30:00Z",
+            "trust_tier": "unverified",
+        }
+        for field, malformed in (("answer_rating", []), ("cited_article_rating", {}), ("trust_tier", [])):
+            with self.subTest(field=field):
+                row = dict(base)
+                row[field] = malformed
+                result = validate_rows([row])
+                self.assertEqual(result["valid_rows"], 0)
+                self.assertEqual(result["invalid_rows"], 1)
+                self.assertTrue(result["errors"][0]["errors"])
 
     def test_naive_timestamp_is_rejected(self):
         with self.assertRaisesRegex(ValueError, "explicit timezone"):

@@ -40,11 +40,14 @@ def validate_rows(rows):
                       "cited_article_rating", "trust_tier"):
             if not isinstance(row.get(field), str) or not row[field].strip():
                 row_errors.append(f"{field} is required")
-        if row.get("answer_rating") not in ANSWER_RATINGS:
+        answer_rating = row.get("answer_rating")
+        if not isinstance(answer_rating, str) or answer_rating not in ANSWER_RATINGS:
             row_errors.append("answer_rating must be correct, partial, or wrong")
-        if row.get("cited_article_rating") not in CITED_ARTICLE_RATINGS:
+        cited_article_rating = row.get("cited_article_rating")
+        if not isinstance(cited_article_rating, str) or cited_article_rating not in CITED_ARTICLE_RATINGS:
             row_errors.append("cited_article_rating must be right or wrong")
-        if row.get("trust_tier") not in TRUST_TIERS:
+        trust_tier = row.get("trust_tier")
+        if not isinstance(trust_tier, str) or trust_tier not in TRUST_TIERS:
             row_errors.append("trust_tier must be verified, source_matched, or unverified")
         if not isinstance(row.get("notes"), str):
             row_errors.append("notes must be a string (empty is allowed)")
