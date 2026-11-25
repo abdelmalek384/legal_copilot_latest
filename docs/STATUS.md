@@ -1,3 +1,9 @@
+## Approved-use allowlist hardening — 2026-11-25
+
+- Tightened the persisted-evidence adapter and answer trust classifier to reject unknown approved-use labels and duplicate entries, including malformed legacy or alternate-backend records.
+- Added synthetic regressions at both boundaries. Database CHECK/primary-key constraints remain the persistence guard; these checks add read/classification defense in depth.
+- No permissions, legal content, trust tiers, or lawyer-review states were changed. Repository tests are authored but not executed in the supported Python 3.12 environment.
+
 ## Source-match adapter read-boundary hardening — 2026-11-25
 
 - Added a second fail-closed check in `load_source_match_evidence`: if an evidence packet has any approved-use rows while `reuse_rights_allowed` is false or missing, the adapter now returns no packet rather than exposing contradictory scope metadata.

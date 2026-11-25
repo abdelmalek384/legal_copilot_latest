@@ -109,6 +109,30 @@ class SourceMatchEvidenceAdapterTests(unittest.TestCase):
         self.assertIsNone(load_source_match_evidence(Connection(), 1, "src"))
 
 
+    def test_adapter_rejects_unknown_or_duplicate_approved_uses(self):
+        record = {
+            "registry_source_id": "src", "registry_publication_date": "2020-01-01",
+            "registry_effective_date": "2020-01-02", "registry_original_sha256": "a" * 64,
+            "original_capture_sha256": "a" * 64, "publication_date": "2020-01-01",
+            "effective_date": "2020-01-02", "evidence_id": 7, "reuse_rights_allowed": 1,
+        }
+        class Cursor:
+            def __init__(self, description, row=None, rows=None):
+                self.description = [(name,) for name in description]
+                self.row, self.rows = row, rows or []
+            def fetchone(self): return self.row
+            def fetchall(self): return self.rows
+        class Connection:
+            def __init__(self, uses): self.uses = uses
+            def execute(self, sql, params):
+                if "legal_source_match_evidence_uses" in sql:
+                    return Cursor(["approved_use"], rows=[(value,) for value in self.uses])
+                return Cursor(list(record), tuple(record.values()))
+        for uses in (["collection", "unknown_use"], ["collection", "collection"]):
+            with self.subTest(uses=uses):
+                self.assertIsNone(load_source_match_evidence(Connection(uses), 1, "src"))
+
+
     def test_store_is_append_only_and_adapter_reads_exact_version_evidence(self):
         db = sqlite3.connect(":memory:")
         apply_profile_migrations(

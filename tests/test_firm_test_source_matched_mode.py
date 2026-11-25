@@ -135,6 +135,25 @@ class FirmTestSourceMatchedModeTests(unittest.TestCase):
         self.assertEqual(classify()["trust_tier"], "unreviewed")
         self.assertEqual(classify()["reason_codes"], ["source_evidence_incomplete"])
 
+    def test_source_match_evidence_rejects_unknown_and_duplicate_approved_uses(self):
+        evidence = synthetic_source_match_evidence()
+        source = {"source_id": "SYNTHETIC-SOURCE-1",
+                  "source_status": "source_matched_unreviewed",
+                  "source_match_evidence": evidence}
+        def classify():
+            return classify_answer_trust_tier(
+                [source], claims_supported=True, citations_complete=True,
+                contradictory_sources=False, source_matched_policy_approved=True,
+                source_matched_feature_enabled=True,
+            )
+        self.assertEqual(classify()["trust_tier"], "source_matched")
+        evidence["approved_uses"].append("unapproved_extra_scope")
+        self.assertEqual(classify()["trust_tier"], "unreviewed")
+        evidence["approved_uses"].pop()
+        evidence["approved_uses"].append("collection")
+        self.assertEqual(classify()["trust_tier"], "unreviewed")
+
+
     def test_source_match_evidence_url_rejects_raw_backslash(self):
         evidence = synthetic_source_match_evidence()
         source = {

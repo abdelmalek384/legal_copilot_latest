@@ -121,9 +121,10 @@ def source_match_evidence_ready(source: Mapping) -> bool:
         "collection", "storage", "text_extraction", "indexing",
         "commercial_product_use", "excerpt_display",
     }
-    if not isinstance(approved_uses, list) or not required_uses.issubset(
-        {item for item in approved_uses if isinstance(item, str)}
-    ):
+    if (not isinstance(approved_uses, list)
+            or any(not isinstance(item, str) or item not in required_uses for item in approved_uses)
+            or len(approved_uses) != len(set(approved_uses))
+            or not required_uses.issubset(set(approved_uses))):
         return False
     required = (
         "article_inventory_complete",
