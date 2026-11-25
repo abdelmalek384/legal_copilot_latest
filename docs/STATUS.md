@@ -1832,3 +1832,13 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - These tests are committed but **not executed**. The inventory is still metadata-only and makes no legal corpus, authenticity, permission, currentness, or lawyer-review certification.
 
 - Final wording correction: the clean Markdown inventory now explicitly says it found no missing, malformed, or duplicate identifiers, rather than referring only to missing identifiers. Commit: `bc6b2b69351188afaa56e0a7959b3a039a8e1215`.
+
+
+## Document-review contract correction — 2026-11-25
+
+- Investigated the main test job's first failure: `tests/test_document_review_workflow.py::test_ui_can_accept_correct_and_flag_extraction` asserted an obsolete inline `page_reference:chunk.latest_review...` expression from the earlier review UI.
+- The current compact review queue correctly initializes the reviewer page-reference input from `latest.page_reference` with explicit string conversion, then submits the trimmed value through `submitChunkReview`. The existing dedicated compact-queue contract already covers this current path.
+- Updated the stale assertion to match the current rendered control: `value:latest&&latest.page_reference?String(latest.page_reference):''`. No application behavior, extracted page metadata, reviewer data, legal data, or trust labels were changed.
+- Commit: `d8dd2f6b457c5eb04d4e9fe640af26658654fb87`.
+- Validation: inspected the exact failing runner traceback and current frontend implementation; the corrected assertion matches the source. Local execution is not yet possible in this environment (GitHub DNS resolution failed during clone), and no claim of a local test pass is made. The next test execution must include this test file before wider regression runs.
+- Release remains **not ready** pending local/runtime regression execution, browser acceptance, and the outstanding legal and firm-isolation gates.
