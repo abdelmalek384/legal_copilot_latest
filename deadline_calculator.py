@@ -175,7 +175,7 @@ def _compute_deadline_internal(trigger: dt.date, amount: int, unit: str, *, rule
         raise DeadlineError("trigger must be a date, not a datetime")
     if today is not None and (isinstance(today, dt.datetime) or not isinstance(today, dt.date)):
         raise DeadlineError("today must be a date")
-    if unit not in UNITS:
+    if not isinstance(unit, str) or unit not in UNITS:
         raise DeadlineError("unit must be days, months, or years")
     if isinstance(amount, bool) or not isinstance(amount, int) or not 1 <= amount <= 3650:
         raise DeadlineError("amount must be a positive integer no greater than 3650")
@@ -331,7 +331,10 @@ def estimate_rule_deadline(rule_id: str, trigger: dt.date, *, distance_days: int
                 raise DeadlineError("invalid firm holiday date") from exc
             if parsed.isoformat() != date_text:
                 raise DeadlineError("firm holiday date must use YYYY-MM-DD")
-            holidays[parsed] = name.strip()
+            clean_name = name.strip()
+            if parsed in holidays and holidays[parsed] != clean_name:
+                raise DeadlineError("conflicting names for the same firm holiday date")
+            holidays[parsed] = clean_name
     result = compute_from_rule(
         rule, trigger, allow_unverified=True, holidays=holidays,
         complete_holiday_years=complete, distance_days=distance_days, today=today,

@@ -142,6 +142,37 @@ class DeadlineCalculatorTests(unittest.TestCase):
         with self.assertRaises(dc.DeadlineError):
             self.calc(D(2026, 10, 26), 3, "weeks")
 
+    def test_invalid_unit_types_raise_deadline_error(self):
+        for unit in (None, [], {}, True, 1):
+            with self.subTest(unit=unit), self.assertRaises(dc.DeadlineError):
+                self.calc(D(2026, 10, 26), 3, unit)
+
+    def test_firm_holiday_override_rejects_conflicting_date_names(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            holidays_path = Path(tmp) / "holidays.json"
+            holidays_path.write_text(json.dumps({
+                "fixed_holidays": [],
+                "dated_holidays": [{"date": "2026-12-25", "name_ar": "العطلة الأصلية"}],
+                "complete_years": [],
+                "status": "partial_draft_unverified",
+            }), encoding="utf-8")
+            with self.assertRaises(dc.DeadlineError):
+                dc.estimate_rule_deadline(
+                    "civil_cassation_60d", D(2026, 10, 26),
+                    holidays_path=holidays_path,
+                    additional_dated_holidays=[{
+                        "date": "2026-12-25", "name_ar": "اسم متعارض"
+                    }],
+                )
+            accepted = dc.estimate_rule_deadline(
+                "civil_cassation_60d", D(2026, 10, 26),
+                holidays_path=holidays_path,
+                additional_dated_holidays=[{
+                    "date": "2026-12-25", "name_ar": "العطلة الأصلية"
+                }],
+            )
+            self.assertIn("2026-12-25", [x["from"] for x in accepted["extensions"]])
+
     def test_fixed_holidays_validated_even_without_requested_years(self):
         for month, day in ((13, 1), (2, 30), (0, 1)):
             with self.subTest(month=month, day=day), tempfile.TemporaryDirectory() as tmp:
