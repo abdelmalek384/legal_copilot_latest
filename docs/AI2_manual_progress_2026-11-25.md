@@ -286,3 +286,29 @@ These are implementation/evidence estimates, not test pass rates or pilot-readin
 | **Overall AI-2 assignment** | **29%** | **30%** | **+1 pp** | Fixed an overwrite defect and made the regression detect this class of false-positive source check |
 
 These are implementation/evidence estimates, not test pass rates or pilot-readiness claims. Python 3.12 tests, browser acceptance, two-firm validation, production deployment, and backup/restore rehearsal remain outstanding.
+
+
+## Follow-up checkpoint — global search integrated; baseline failures isolated — 2026-11-26
+
+- Manually reviewed the PR #2035 head and its three-file diff against `main`. The branch was 10 commits ahead and 0 behind; the changes were limited to global-search behavior, its frontend contract test, and this progress record.
+- Merged PR #2035 by squash after inspecting the failed workflow logs and checking the base-branch JavaScript independently. Merge commit: `e01034b459606938ed218bb400821f56144d88c1`.
+- The workflow failures were not introduced by this PR:
+  - The two document-classification failures assert source fragments that do not match the current `app.py` implementation; neither `app.py` nor those tests were changed in this PR.
+  - The two legal release-readiness failures concern duplicate/ragged coverage-matrix handling and a stale expected message; neither the validator nor its tests were changed in this PR.
+  - The browser acceptance suite reports `missing ) after argument list`. Compiled the inline script using the available JavaScript runtime for both the base `main` file and the PR branch: both fail with the same parse error. The defect therefore predates PR #2035 and remains a release blocker; no claim of browser acceptance is made.
+  - Dependency security audit and CodeQL passed. The focused AI-1 source-trust workflow passed.
+- The merged global-search implementation preserves successful matter/client/document sections when one endpoint fails, distinguishes partial from total failure, and suppresses stale responses. The final/effective input handler now invalidates requests and refreshes command-palette results. The regression contract checks the final handler assignment.
+- The focused frontend regression was authored but not executed in a local Python 3.12 environment. The merge is a reviewed integration decision, not a claim that the full test suite or browser acceptance passed.
+
+| Workstream | Previous | Current | Change | Evidence |
+|---|---:|---:|---:|---|
+| Backend and existing workflows | 28% | 28% | 0 pp | No backend changes |
+| Frontend and usability | 28% | 29% | +1 pp | Resilient partial search and stale-response suppression integrated into main |
+| Mobile and Arabic/English UI | 15% | 15% | 0 pp | No device/viewport acceptance |
+| Security and tenant isolation | 30% | 30% | 0 pp | CodeQL and dependency audit passed; no new tenant-boundary evidence |
+| Documents and file handling | 32% | 32% | 0 pp | No document workflow change |
+| Deployment and recovery | 15% | 15% | 0 pp | No deployment/restore rehearsal |
+| Local testing and regression | 15% | 16% | +1 pp | Failure causes isolated; baseline parse defect independently reproduced; focused contract still needs local execution |
+| **Overall AI-2 assignment** | **30%** | **31%** | **+1 pp** | A focused existing workflow fix was integrated and the unrelated baseline release blockers were separated |
+
+These are conservative implementation/evidence estimates, not test pass rates or pilot-readiness claims. Browser acceptance remains blocked by the pre-existing inline JavaScript syntax error. The document and legal coverage-matrix contract failures remain open. Two-firm acceptance, production deployment, and witnessed backup/restore rehearsal remain outstanding.
