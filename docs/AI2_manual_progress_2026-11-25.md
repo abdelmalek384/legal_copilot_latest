@@ -312,3 +312,25 @@ These are implementation/evidence estimates, not test pass rates or pilot-readin
 | **Overall AI-2 assignment** | **30%** | **31%** | **+1 pp** | A focused existing workflow fix was integrated and the unrelated baseline release blockers were separated |
 
 These are conservative implementation/evidence estimates, not test pass rates or pilot-readiness claims. Browser acceptance remains blocked by the pre-existing inline JavaScript syntax error. The document and legal coverage-matrix contract failures remain open. Two-firm acceptance, production deployment, and witnessed backup/restore rehearsal remain outstanding.
+
+
+## Follow-up checkpoint — repair stale regression contracts — 2026-11-26
+
+- Reviewed the exact failing test logs and source on `main`; repaired the test contracts without changing application behavior or relaxing legal/security assertions.
+- `tests/test_document_classifications.py` now checks the actual qualified review-column sequence (`r.original_text,r.reviewed_text`) and the actual firm-scoped SQL parameter tuples, including the optional client filter. The old assertions expected outdated source fragments and omitted the new client-filter parameters.
+- `tests/test_legal_release_readiness.py` had duplicate-header and ragged-row CSV fixtures containing literal backslash-n text rather than line breaks. Corrected both fixtures to contain actual CSV records. Updated the diagnostic assertion to match the validator's existing explicit message that requires unique headers and the three mandatory columns.
+- Changes were committed directly to `main` in `22c5cad`, `53ff27f`, and `8541ab2`. Read-back of `app.py`, both tests, and the validator was used to check the changed assertion fragments against the actual implementation. A small independent source-contract check confirmed all five revised expectations match the retrieved source.
+- Important limitation: the Python test modules were not executed in the supported Python 3.12 environment, so these are corrected test contracts, not claimed passing test runs. No application runtime, database, legal evidence, permission state, or production data changed.
+
+| Workstream | Previous | Current | Change | Evidence |
+|---|---:|---:|---:|---|
+| Backend and existing workflows | 28% | 28% | 0 pp | No backend behavior changed |
+| Frontend and usability | 29% | 29% | 0 pp | No frontend behavior changed |
+| Mobile and Arabic/English UI | 15% | 15% | 0 pp | No device acceptance |
+| Security and tenant isolation | 30% | 30% | 0 pp | No security control changed |
+| Documents and file handling | 32% | 32% | 0 pp | Only stale source-contract assertions corrected |
+| Deployment and recovery | 15% | 15% | 0 pp | No deployment/recovery evidence |
+| Local testing and regression | 16% | 18% | +2 pp | Corrected two failing document contract assertions, two malformed CSV fixture assertions, and one stale diagnostic expectation; source fragments independently checked, runtime tests still unexecuted |
+| **Overall AI-2 assignment** | **31%** | **32%** | **+1 pp** | Five failing regression expectations corrected against current source; no runtime pass claimed |
+
+The browser acceptance syntax error remains a separate pre-existing blocker. It was reproduced on both the PR branch and base main. It is not counted as fixed by these test-only changes. AI-2 remains not pilot-ready pending execution of the corrected suites, browser acceptance, two-firm workflow checks, and restore rehearsal.
