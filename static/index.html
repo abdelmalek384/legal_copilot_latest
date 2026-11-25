@@ -3725,22 +3725,31 @@ function documentIntelligencePanel(caseId,documents){
  const loadButton=btn(uiText('تحليل المستندات','Analyze documents'),async()=>{
   if(!docs.length){status.textContent=uiText('لا توجد مستندات لتحليلها.','There are no documents to analyze.');return}
   loadButton.disabled=true;cache.clear();analysisResults.replaceChildren();searchResults.replaceChildren();compareResults.replaceChildren();
-  let totalChars=0,loaded=0,skipped=0;
+  let totalChars=0,loaded=0,skipped=0,failed=0;
+  const failures=[];
   try{
    for(const doc of docs.slice(0,40)){
     status.textContent=uiText('جارٍ تحميل النصوص: ','Loading extracted text: ')+loaded+'/'+Math.min(docs.length,40);
-    const [data,classification]=await Promise.all([api('/cases/'+caseId+'/docs/'+doc.document_id+'/chunks'),api('/cases/'+caseId+'/docs/'+doc.document_id+'/classification').catch(()=>null)]);
-    const chunks=Array.isArray(data.chunks)?data.chunks:[];
-    if(!data.intelligence||!data.intelligence.classification||!Array.isArray(data.intelligence.candidates))throw new Error('server_document_intelligence_unavailable');
-    const text=chunks.map(chunk=>String(chunk.text||'')).join('\n');
-    if(totalChars+text.length>1000000){skipped++;break}
-    totalChars+=text.length;cache.set(String(doc.document_id),{doc,chunks,text,intelligence:data.intelligence,classification});loaded++;
+    try{
+     const [data,classification]=await Promise.all([api('/cases/'+caseId+'/docs/'+doc.document_id+'/chunks'),api('/cases/'+caseId+'/docs/'+doc.document_id+'/classification').catch(()=>null)]);
+     const chunks=Array.isArray(data.chunks)?data.chunks:[];
+     if(!data.intelligence||!data.intelligence.classification||!Array.isArray(data.intelligence.candidates))throw new Error('server_document_intelligence_unavailable');
+     const text=chunks.map(chunk=>String(chunk.text||'')).join('\n');
+     if(totalChars+text.length>1000000){skipped++;break}
+     totalChars+=text.length;cache.set(String(doc.document_id),{doc,chunks,text,intelligence:data.intelligence,classification});loaded++;
+    }catch(error){failed++;if(failures.length<5)failures.push(String(doc.name||uiText('مستند غير مسمى','Unnamed document')));}
    }
    if(docs.length>40)skipped+=docs.length-40;
    renderAnalysis();
-   if(skipped)status.textContent+=uiText(' تم تجاوز بعض المستندات/النصوص بسبب حدود التحليل.',' Some documents/text were skipped due to analysis limits.');
-  }catch(error){status.textContent=uiText('تعذر تحميل بعض المستندات؛ راجع صلاحية الوصول وحاول مجدداً.','Some documents could not be loaded; check access and try again.')}
-  finally{loadButton.disabled=false}
+   if(failed||skipped){
+    status.textContent=uiText('اكتمل التحميل الجزئي: ','Partial load completed: ')+loaded+'/'+docs.length+uiText(' مستندات محملة. ',' documents loaded. ')+(failed?uiText('فشل تحميل ','Failed to load ')+failed+uiText(' مستندات',' documents')+(failures.length?': '+failures.join('، '):'')+'. ':'')+(skipped?uiText('تم تجاوز ','Skipped ')+skipped+uiText(' مستندات/نصوص بسبب حدود التحليل.',' documents/text due to analysis limits.'):'');
+   }else{
+    status.textContent=uiText('اكتمل التحليل الأولي لـ ','Initial analysis completed for ')+loaded+uiText(' مستندات. جميع النتائج مرشحات غير متحققة.',' documents. All results are unverified candidates.');
+   }
+  }catch(error){
+   renderAnalysis();
+   status.textContent=uiText('تعذر إكمال تحميل المستندات. ','Could not complete document loading. ')+String(error.message||uiText('تحقق من صلاحية الوصول وحاول مجدداً.','Check access and try again.'))+(loaded?uiText(' تم الاحتفاظ بالمستندات التي تم تحميلها بالفعل.',' Successfully loaded documents were retained.'): '');
+  }finally{loadButton.disabled=false}
  });
  const searchButton=btn(uiText('بحث','Search'),renderSearch,'g');
  const compareButton=btn(uiText('مقارنة النصوص','Compare text versions'),renderComparison,'g');
