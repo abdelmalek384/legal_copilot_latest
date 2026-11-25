@@ -1,7 +1,8 @@
+import json
 import unittest
 from datetime import datetime, timezone
 
-from tools.reminder_schedule import ReminderScheduleError, build_reminder_plan
+from tools.reminder_schedule import ReminderScheduleError, build_reminder_plan, _reject_duplicate_json_keys
 
 
 class ReminderScheduleTests(unittest.TestCase):
@@ -98,6 +99,15 @@ class ReminderScheduleTests(unittest.TestCase):
         first = build_reminder_plan(event, "shared-user", self.now, "Africa/Cairo", "firm-1")
         second = build_reminder_plan(event, "shared-user", self.now, "Africa/Cairo", "firm-2")
         self.assertNotEqual(first["reminders"][0]["idempotency_key"], second["reminders"][0]["idempotency_key"])
+
+    def test_reminder_input_json_rejects_duplicate_keys_at_every_depth(self):
+        for raw in (
+            '{"events": [], "events": [1]}',
+            '{"events": [{"kind": "task", "kind": "deadline"}]}',
+        ):
+            with self.subTest(raw=raw):
+                with self.assertRaisesRegex(ValueError, "duplicate JSON object key"):
+                    json.loads(raw, object_pairs_hook=_reject_duplicate_json_keys)
 
     def test_rejects_missing_scope_and_wrong_sent_key_container(self):
         event = [self.events[0]]
