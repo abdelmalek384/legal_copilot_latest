@@ -78,6 +78,27 @@ class ReminderOutboxTests(unittest.TestCase):
             enqueue_plan(self.db, wrong_key, firm_id=self.firm_id, recipient_user_id=7)
         self.assertEqual(self.db.execute("SELECT COUNT(*) FROM reminder_deliveries").fetchone()[0], 0)
 
+    def test_lead_days_must_match_reminder_window_and_session_semantics(self):
+        for window, lead_days, event_type in (
+            ("due_soon", 0, "deadline"),
+            ("due_today", 2, "deadline"),
+            ("overdue", 1, "task"),
+            ("overdue", 0, "session"),
+        ):
+            with self.subTest(window=window, lead_days=lead_days, event_type=event_type):
+                malformed = dict(self.plan)
+                malformed["reminders"] = [dict(
+                    self.plan["reminders"][0],
+                    event_type=event_type,
+                    window=window,
+                    lead_days=lead_days,
+                )]
+                with self.assertRaisesRegex(ReminderOutboxError, "lead_days value inconsistent|session reminder window"):
+                    enqueue_plan(
+                        self.db, malformed, firm_id=self.firm_id, recipient_user_id=7
+                    )
+        self.assertEqual(self.db.execute("SELECT COUNT(*) FROM reminder_deliveries").fetchone()[0], 0)
+
     def test_accepted_smtp_result_is_durable_and_not_claimed_again(self):
         enqueue_plan(self.db, self.plan, firm_id=self.firm_id, recipient_user_id=7)
         claimed = claim_next(self.db, now=self.now)
