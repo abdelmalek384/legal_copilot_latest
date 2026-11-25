@@ -176,7 +176,7 @@ def _validate_reviewed_question(row, approved_reviewers):
         raise EvaluationError(f"{qid}: reviewer_id must match a valid approved reviewer registry entry")
     if row.get("reviewer_name") != reviewer.get("display_name"):
         raise EvaluationError(f"{qid}: reviewer_name must match the approved reviewer registry display_name")
-    if row.get("practice_area") not in reviewer.get("practice_areas", []):
+    if practice_area not in reviewer.get("practice_areas", []):
         raise EvaluationError(f"{qid}: reviewer is not approved for this practice_area")
     reviewer_role = row.get("reviewer_role")
     if not isinstance(reviewer_role, str) or reviewer_role not in {"egyptian_lawyer", "qualified_egyptian_counsel"}:
