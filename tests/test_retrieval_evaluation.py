@@ -2,6 +2,7 @@ import contextlib
 import io
 import json
 import os
+import subprocess
 from unittest.mock import patch
 import sys
 import tempfile
@@ -67,6 +68,19 @@ def run_main(args, registry=None):
 
 
 class RetrievalEvaluationTests(unittest.TestCase):
+    def test_direct_script_mode_loads_regular_file_helper_from_fallback_import(self):
+        script = ROOT / "tools" / "evaluate_retrieval_quality.py"
+        with tempfile.TemporaryDirectory() as td:
+            missing_registry = Path(td) / "missing-reviewers.json"
+            result = subprocess.run(
+                [sys.executable, str(script), "--reviewer-registry", str(missing_registry)],
+                cwd=td, env={**os.environ, "PYTHONPATH": str(ROOT / "tools")},
+                capture_output=True, text=True, check=False,
+            )
+        self.assertEqual(result.returncode, 2)
+        self.assertIn("invalid reviewer registry", result.stderr)
+        self.assertNotIn("NameError", result.stderr)
+
     def test_report_writer_creates_new_file_and_never_overwrites_existing_evidence(self):
         with tempfile.TemporaryDirectory() as td:
             report = Path(td) / "evaluation-report.json"
