@@ -128,3 +128,26 @@ This is a source-acquisition status, not a claim that the five instruments are c
 - `verified: false`
 - `rights_cleared: false`
 - This acquisition note is research-only. Preserve source distinctions and missing-text limitations; do not use as a verified/current consolidated legal instrument or production answer source until primary-source comparison, rights review and qualified Egyptian lawyer approval are complete.
+
+
+## Decision 250/2026 — exact Article 1–2 capture from an additional secondary page (25 November 2026)
+
+**Page opened and text read:** A7wal Egypt, article https://www.a7walegypt.com/38832, published 19 October 2026. This is a secondary page, not the Gazette image itself. Its visible article text explicitly identifies Decision 250/2026, Egyptian Gazette issue 225 supplement (A), 12 October 2026.
+
+### Recovered Arabic excerpt (verbatim from the opened page)
+
+**المادة الأولى**
+
+يعمل بأحكام هذا القرار، والجداول ونماذج السجلات المرافقة له في شأن قواعد ومعايير وبيان حدود الأمان في أماكن العمل، والاشتراطات والاحتياطات اللازمة لدرء المخاطر بكافة أنواعها، وتوفير بيئة عمل آمنة.
+
+**المادة الثانية**
+
+يُنشر هذا القرار في الوقائع المصرية، ويُعمل به من اليوم التالي لتاريخ نشره.
+
+### What this establishes — and what it does not
+
+- Confirms the scope sentence and the publication/commencement sentence in a readable secondary article.
+- Article 2 would indicate a 13 October 2026 start if Gazette publication on 12 October is confirmed from the original issue. Do not treat the computed date as Gazette-image-verified.
+- The page contains a long gallery of images, but the first sampled image URL failed with HTTP 404 during this capture; the images were not treated as text, OCR, or page evidence.
+- No technical limits, exposure values, tables, appendices, or detailed obligations were captured in this update. The 781-entry table/sequence remains unreconciled and must not be used as authoritative data.
+- This excerpt is discovery-only. No reuse license was confirmed, no legal corpus ingestion, no source-match/currentness/lawyer-review status changes, and verified remains zero.
