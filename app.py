@@ -8549,11 +8549,13 @@ def issue_invoice(invoice_id: int, u: dict = Depends(user)):
         (year,),
     ).fetchone()[0]
     number = f"INV-{year}-{int(sequence):06d}"
-    c.execute(
+    changed = c.execute(
         "UPDATE invoices SET status='issued',invoice_number=?,issue_date=?,issued_at=datetime('now') "
         "WHERE id=? AND status='draft'",
         (number, today_date.isoformat(), invoice_id),
-    )
+    ).rowcount
+    if changed != 1:
+        raise HTTPException(409, "invoice state changed; reload and retry")
     _invoice_event(c, invoice_id, int(u["id"]), "issued", {"invoice_number": number})
     c.execute("RELEASE SAVEPOINT invoice_write")
     c.commit()
@@ -8694,11 +8696,13 @@ def void_invoice(invoice_id: int, b: InvoiceVoidIn, u: dict = Depends(user)):
     ).fetchone()[0])
     if paid:
         raise HTTPException(409, "an invoice with recorded payments cannot be voided; refund policy is not configured")
-    c.execute(
+    changed = c.execute(
         "UPDATE invoices SET status='void',void_reason=?,voided_by=?,voided_at=datetime('now') "
         "WHERE id=? AND status='issued'",
         (b.reason.strip(), u["id"], invoice_id),
-    )
+    ).rowcount
+    if changed != 1:
+        raise HTTPException(409, "invoice state changed; reload and retry")
     _invoice_event(c, invoice_id, int(u["id"]), "voided", {"reason": b.reason.strip()})
     c.execute("RELEASE SAVEPOINT invoice_write")
     c.commit()
