@@ -1948,3 +1948,11 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Commits: `d001633` (Arabic unit normalization), `e56f841` (regressions).
 - GitHub read-back and an isolated normalization probe confirmed the relevant forms normalize as intended. The repository test module was **not executed**.
 - No legal data, product features, or trust-label changes. Pilot remains NOT READY.
+
+
+## AI-1 retrieval release-gate denominator correction — 2026-11-25
+
+- Static audit found the per-practice-area top-3 recall and MRR thresholds were evaluated by the release-gate function but omitted from three CLI guard lists: finite 0–1 range validation, mandatory non-empty reviewed-sample gating, and practice-area/case denominator requirements. With only one of these thresholds configured, an empty benchmark could therefore pass the CLI gate because there were no practice-area rows to fail.
+- Added both thresholds to all three validation/guard lists and to the consolidated quality-threshold set. Added synthetic CLI regressions for missing reviewed-case count, missing practice-area denominators, and out-of-range values.
+- No legal corpus, legal answers, source permissions, or trust labels changed. The new repository tests are committed but not yet executed in this environment; no test-suite pass is claimed.
+- Release remains NOT READY pending supported-runtime regression execution, browser acceptance, firm-isolation validation, and qualified Egyptian counsel review.

@@ -967,6 +967,33 @@ class RetrievalEvaluationTests(unittest.TestCase):
                         ])
                     self.assertEqual(raised.exception.code, 2)
 
+    def test_top3_per_area_thresholds_require_gate_denominators_and_valid_ranges(self):
+        with tempfile.TemporaryDirectory() as td:
+            questions_path = Path(td) / "questions.jsonl"
+            runs_path = Path(td) / "runs.jsonl"
+            questions_path.write_text("", encoding="utf-8")
+            runs_path.write_text("", encoding="utf-8")
+            for flag in (
+                "--min-recall-at-3-per-practice-area",
+                "--min-mrr-at-3-per-practice-area",
+            ):
+                with self.subTest(flag=flag, missing="reviewed_cases"):
+                    with self.assertRaises(SystemExit) as raised:
+                        run_main(["--questions", str(questions_path), "--runs", str(runs_path),
+                                  flag, "0.8"])
+                    self.assertEqual(raised.exception.code, 2)
+                with self.subTest(flag=flag, missing="practice_area_denominators"):
+                    with self.assertRaises(SystemExit) as raised:
+                        run_main(["--questions", str(questions_path), "--runs", str(runs_path),
+                                  "--min-reviewed-cases", "1", flag, "0.8"])
+                    self.assertEqual(raised.exception.code, 2)
+                with self.subTest(flag=flag, invalid="out_of_range"):
+                    with self.assertRaises(SystemExit) as raised:
+                        run_main(["--questions", str(questions_path), "--runs", str(runs_path),
+                                  "--min-reviewed-cases", "1", "--min-practice-areas", "1",
+                                  "--min-cases-per-practice-area", "1", flag, "1.1"])
+                    self.assertEqual(raised.exception.code, 2)
+
     def test_retrieval_release_gate_fails_on_low_recall_missing_citations_and_unsafe_abstention(self):
         with tempfile.TemporaryDirectory() as td:
             questions_path = Path(td) / "questions.jsonl"
