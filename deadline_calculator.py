@@ -331,7 +331,10 @@ def estimate_rule_deadline(rule_id: str, trigger: dt.date, *, distance_days: int
                 raise DeadlineError("invalid firm holiday date") from exc
             if parsed.isoformat() != date_text:
                 raise DeadlineError("firm holiday date must use YYYY-MM-DD")
-            holidays[parsed] = name.strip()
+            clean_name = name.strip()
+            if parsed in holidays and holidays[parsed] != clean_name:
+                raise DeadlineError("conflicting names for the same firm holiday date")
+            holidays[parsed] = clean_name
     result = compute_from_rule(
         rule, trigger, allow_unverified=True, holidays=holidays,
         complete_holiday_years=complete, distance_days=distance_days, today=today,
