@@ -1938,6 +1938,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("timeZone:'Africa/Cairo'", HTML)
         self.assertIn("function cairoDateKey(date=new Date(),dayOffset=0)", HTML)
         self.assertIn("today=cairoDateKey()", HTML)
+        self.assertEqual(HTML.count("requested_as_of:cairoDateKey()"), 2)
         reminder = HTML[HTML.index("function localReminderToday()"):HTML.index("function sendLocalReminderSummary(")]
         self.assertIn("function localReminderToday(){return cairoDateKey()}", reminder)
         self.assertIn("tomorrow=cairoDateKey(new Date(),1)", HTML)
