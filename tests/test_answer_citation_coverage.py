@@ -37,6 +37,10 @@ class CitationCoverageTests(unittest.TestCase):
         self.assertEqual(app._answer_citation_indices("Rule [1].\n```text\n[4]\n```"), {1})
         self.assertEqual(app._answer_citation_indices("```text\n[1]"), set())
 
+    def test_oversized_numeric_citation_fails_closed_without_integer_conversion(self):
+        oversized = "9" * 5000
+        self.assertEqual(app._answer_citation_indices(f"Rule [{oversized}]."), {-1})
+
     def test_citation_inside_hidden_html_comment_does_not_support_a_claim(self):
         self.assertTrue(app._answer_has_uncited_claims(
             "The deadline is 30 days. <!-- [1] -->"
