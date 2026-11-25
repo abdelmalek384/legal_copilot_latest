@@ -164,6 +164,8 @@ def _safe_database_path(root: Path, firm_id: int, filename: str) -> Path:
         return raw_candidate
     except OSError as exc:
         raise TenantCatalogError("Tenant database reference cannot be inspected safely") from exc
+    if stat.S_ISLNK(metadata.st_mode):
+        raise TenantCatalogError("Tenant database reference must not be a symlink")
     if not stat.S_ISREG(metadata.st_mode):
         raise TenantCatalogError("Tenant database reference must be a regular file")
     if metadata.st_nlink != 1:
