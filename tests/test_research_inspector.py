@@ -1,5 +1,7 @@
 import sys
 import unittest
+from datetime import date
+from unittest.mock import patch
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -581,6 +583,21 @@ class ResearchInspectorTests(unittest.TestCase):
         source = valid_source()
         source["provenance"]["status_verified"] = 1.0
         self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+
+
+    def test_current_date_gates_use_cairo_local_calendar(self):
+        source = valid_source()
+        with patch("tools.research_inspector._cairo_today", return_value=date(2019, 12, 31)):
+            self.assertEqual(source_status(source), STATUS_REVIEW)
+        with patch("tools.research_inspector._cairo_today", return_value=date(2026, 10, 24)):
+            self.assertEqual(source_status(source), STATUS_VERIFIED)
+
+        provenance = valid_source()["provenance"]
+        with patch("tools.research_inspector._cairo_today", return_value=date(2026, 10, 19)):
+            from tools.research_inspector import central_permission_register_ready
+            self.assertFalse(central_permission_register_ready(provenance))
+        with patch("tools.research_inspector._cairo_today", return_value=date(2026, 10, 20)):
+            self.assertTrue(central_permission_register_ready(provenance))
 
 
 if __name__ == "__main__":
