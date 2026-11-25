@@ -78,5 +78,28 @@ class DocumentExtractionBudgetTests(unittest.TestCase):
         self.assertEqual(caught.exception.status_code, 415)
 
 
+class DocumentTitleSanitizationTests(unittest.TestCase):
+    def test_bidi_and_zero_width_format_controls_are_removed(self):
+        result = app.DocIn(name="matter\\u202e\\u200b.pdf", text="synthetic text")
+        self.assertEqual(result.name, "matter.pdf")
+
+    def test_control_and_line_separators_are_removed(self):
+        result = app.DocIn(name="matter\\x01\\u2028report\\u2029.pdf", text="synthetic text")
+        self.assertEqual(result.name, "matterreport.pdf")
+
+    def test_arabic_joiners_are_preserved(self):
+        name = "مكتب\\u200cمحاماة\\u200d"
+        result = app.DocIn(name=name, text="synthetic text")
+        self.assertEqual(result.name, name)
+
+    def test_name_filtered_to_empty_is_rejected(self):
+        with self.assertRaises(ValueError):
+            app.DocIn(name="\\u202e\\u200b\\u2028", text="synthetic text")
+
+    def test_document_title_still_obeys_200_character_limit(self):
+        with self.assertRaises(ValueError):
+            app.DocIn(name="x" * 201, text="synthetic text")
+
+
 if __name__ == "__main__":
     unittest.main()
