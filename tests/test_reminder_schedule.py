@@ -131,7 +131,7 @@ class ReminderScheduleTests(unittest.TestCase):
             self.assertEqual(result, 2)
             self.assertEqual(
                 stderr.getvalue(),
-                "Reminder dry-run failed: duplicate JSON object key: 'events'\\n",
+                "Reminder dry-run failed: duplicate JSON object key: 'events'\n",
             )
             self.assertNotIn("Traceback", stderr.getvalue())
 
