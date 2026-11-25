@@ -3734,7 +3734,7 @@ function documentIntelligencePanel(caseId,documents){
      const [data,classification]=await Promise.all([api('/cases/'+caseId+'/docs/'+doc.document_id+'/chunks'),api('/cases/'+caseId+'/docs/'+doc.document_id+'/classification').catch(()=>null)]);
      const chunks=Array.isArray(data.chunks)?data.chunks:[];
      if(!data.intelligence||!data.intelligence.classification||!Array.isArray(data.intelligence.candidates))throw new Error('server_document_intelligence_unavailable');
-     const text=chunks.map(chunk=>String(chunk.text||'')).join('\\n');
+     const text=chunks.map(chunk=>String(chunk.text||'')).join('\n');
      if(totalChars+text.length>1000000){skipped++;break}
      totalChars+=text.length;cache.set(String(doc.document_id),{doc,chunks,text,intelligence:data.intelligence,classification});loaded++;
     }catch(error){failed++;if(failures.length<5)failures.push(String(doc.name||uiText('مستند غير مسمى','Unnamed document')));}
