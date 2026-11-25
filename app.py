@@ -870,10 +870,12 @@ def add_session(c, u, cid, date, note=""):
 
 
 def upcoming(c, u, days=14):
+    today = _cairo_today()
+    horizon = today + timedelta(days=days)
     return [dict(r) for r in c.execute(
         "SELECT s.*, c.title FROM sessions s JOIN cases c ON c.id=s.case_id WHERE s.done=0 AND c.status='open' "
-        "AND s.date BETWEEN date('now') AND date('now', ?) AND c.firm_id=? AND (?='admin' OR s.case_id IN (SELECT case_id FROM members WHERE user_id=?)) "
-        "ORDER BY s.date", ("+%d days" % days, u["firm_id"], u["role"], u["id"]))]
+        "AND s.date BETWEEN ? AND ? AND c.firm_id=? AND (?='admin' OR s.case_id IN (SELECT case_id FROM members WHERE user_id=?)) "
+        "ORDER BY s.date", (today.isoformat(), horizon.isoformat(), u["firm_id"], u["role"], u["id"]))]
 
 
 def delete_case(c, u, cid):
@@ -6697,10 +6699,11 @@ def dashboard(u: dict = Depends(user)):
         "ORDER BY t.due IS NULL, t.due, t.id",
         (u["id"], u["firm_id"], u["role"], u["id"]),
     )
+    deadline_horizon = (_cairo_today() + timedelta(days=30)).isoformat()
     d = c.execute("SELECT d.id,d.title,d.due,d.status,cs.title AS case_title FROM deadlines d JOIN cases cs ON cs.id=d.case_id "
-                  "WHERE cs.firm_id=? AND cs.status='open' AND d.status='open' AND d.due<=date('now','+30 day') "
+                  "WHERE cs.firm_id=? AND cs.status='open' AND d.status='open' AND d.due<=? "
                   "AND (?='admin' OR d.case_id IN (SELECT case_id FROM members WHERE user_id=?)) ORDER BY d.due",
-                  (u["firm_id"], u["role"], u["id"]))
+                  (u["firm_id"], deadline_horizon, u["role"], u["id"]))
     unassigned = c.execute(
         "SELECT t.id,t.title,t.due,cs.title AS case_title FROM tasks t "
         "JOIN cases cs ON cs.id=t.case_id "
@@ -6736,8 +6739,9 @@ def _ics_event(kind, item_id, firm_id, case_id, day, summary, description):
 def export_calendar(u: dict = Depends(user)):
     """Export accessible tasks, hearings, and open deadlines as all-day calendar events."""
     c = conn()
-    today = date.today().isoformat()
-    horizon = (date.today() + timedelta(days=90)).isoformat()
+    today_date = _cairo_today()
+    today = today_date.isoformat()
+    horizon = (today_date + timedelta(days=90)).isoformat()
     events = []
 
     tasks = c.execute(
@@ -8149,7 +8153,8 @@ def deadline_done(did: int, u: dict = Depends(user)):
     return {"ok": True}
 
 
-def _invoice_today() -> date:
+def _cairo_today() -> date:
+    """Return the current calendar date in the firm's configured Cairo operating timezone."""
     return datetime.now(ZoneInfo("Africa/Cairo")).date()
 
 
@@ -8185,7 +8190,7 @@ def _invoice_record(c, row):
     paid = sum(int(item["amount_piasters"]) for item in payments)
     total = int(row["total_piasters"])
     balance = max(0, total - paid)
-    as_of = _invoice_today().isoformat()
+    as_of = _cairo_today().isoformat()
     if row["status"] == "draft":
         payment_state = "draft"
     elif row["status"] == "void":
@@ -8295,7 +8300,7 @@ def list_invoices(
     result = [_invoice_record(c, row) for row in rows]
     if payment_state:
         result = [item for item in result if item["payment_state"] == payment_state]
-    return {"invoices": result, "as_of_date": _invoice_today().isoformat()}
+    return {"invoices": result, "as_of_date": _cairo_today().isoformat()}
 
 
 def _invoice_csv_text(value):
@@ -8388,7 +8393,7 @@ def issue_invoice(invoice_id: int, u: dict = Depends(user)):
         raise HTTPException(409, "only draft invoices can be issued")
     if int(row["total_piasters"]) <= 0:
         raise HTTPException(422, "invoice total must be greater than zero")
-    today_date = _invoice_today()
+    today_date = _cairo_today()
     year = today_date.year
     sequence = c.execute(
         "INSERT INTO invoice_sequences(issue_year,next_sequence) VALUES(?,2) "
@@ -8424,7 +8429,7 @@ def invoice_finance_overview(u: dict = Depends(user)):
             "WHERE m.case_id=i.case_id AND m.user_id=? AND m.role='lead') ORDER BY i.id",
             (u["firm_id"], u["id"]),
         ).fetchall()
-    today_date = _invoice_today()
+    today_date = _cairo_today()
     case_totals = {}
     client_totals = {}
     total_issued = total_paid = total_outstanding = 0
