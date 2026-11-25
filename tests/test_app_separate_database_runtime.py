@@ -5861,10 +5861,10 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
 
             calendar = self.client.get("/calendar.ics")
             self.assertEqual(calendar.status_code, 200, calendar.text)
-            self.assertIn("Synthetic hearing 2030-01-01", calendar.text)
-            self.assertIn("Synthetic hearing 2030-01-15", calendar.text)
-            self.assertNotIn("Synthetic hearing 2029-12-31", calendar.text)
-            self.assertNotIn("Synthetic hearing 2030-01-16", calendar.text)
+            self.assertIn("DTSTART;VALUE=DATE:20300101", calendar.text)
+            self.assertIn("DTSTART;VALUE=DATE:20300115", calendar.text)
+            self.assertNotIn("DTSTART;VALUE=DATE:20291231", calendar.text)
+            self.assertNotIn("DTSTART;VALUE=DATE:20300116", calendar.text)
             self.assertIn("Task: Synthetic task 2030-04-01", calendar.text)
             self.assertNotIn("Synthetic task 2030-04-02", calendar.text)
 
