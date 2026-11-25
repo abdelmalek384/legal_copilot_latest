@@ -402,7 +402,7 @@ def _obligation_clauses(text):
         r"\b(?:and|or)\s+(?=(?:must|mustn['’]t|shall|shan['’]t|is\s+required\s+to|are\s+required\s+to|"
         r"is\s+obliged\s+to|are\s+obliged\s+to|is\s+obligated\s+to|are\s+obligated\s+to|"
         r"have\s+to|has\s+to|need\s+not|needn['’]t)\b)|"
-        r"(?<!\S)(?:و|أو|او)(?=(?:لا\s*)?(?:يجب|يلتزم|يلزم|يتعين|يتوجب|تجب|تلتزم|تلزم|تتعين|تتوجب|ملزم|ملزمة))",
+        r"(?<!\S)(?:و|أو|او)\\s*(?=(?:لا\s*)?(?:يجب|يلتزم|يلزم|يتعين|يتوجب|تجب|تلتزم|تلزم|تتعين|تتوجب|ملزم|ملزمة))",
             text,
             flags=re.IGNORECASE,
         ) if part.strip()
