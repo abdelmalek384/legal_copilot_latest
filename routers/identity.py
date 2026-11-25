@@ -52,7 +52,7 @@ body:JSON.stringify({token,new_password:document.getElementById("password").valu
 const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(d.detail||"The recovery link is invalid or expired.");
 result.textContent="Password reset successful. Sign in with your new password.";form.reset();
 }catch(err){result.textContent=err.message;}});
-if(!token)result.textContent="This recovery link is missing its token. Request a new recovery email.";
+if(!token){result.textContent="This recovery link is missing its token. Request a new recovery email.";form.querySelector("button[type=submit]").disabled=true;}
 </script></body></html>""".replace("__CSP_NONCE__", request.state.csp_nonce))
 
 
