@@ -116,6 +116,13 @@ class ReminderScheduleTests(unittest.TestCase):
             build_reminder_plan(event, "user-7", self.now, "Africa/Cairo", "")
         with self.assertRaises(ReminderScheduleError):
             build_reminder_plan(event, "user-7", self.now, "Africa/Cairo", "firm-1", already_sent=[])
+        for invalid_keys in ({"x"}, {"A" * 64}, {"g" * 64}):
+            with self.subTest(already_sent=invalid_keys):
+                with self.assertRaisesRegex(ReminderScheduleError, "64-character lowercase SHA-256"):
+                    build_reminder_plan(
+                        event, "user-7", self.now, "Africa/Cairo", "firm-1",
+                        already_sent=invalid_keys,
+                    )
 
 
     def test_multiple_deadline_lead_windows_and_session_day_of_only(self):
