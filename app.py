@@ -8645,7 +8645,19 @@ def doc(cid: int, b: DocIn, u: dict = Depends(user)):
     return {"document_id": document_id, "sha256": row["sha256"], "chunks": chunks}
 
 
-def _sanitize_uploaded_filename(filename):\n    """Normalize upload names, removing path components and Unicode control/format characters."""\n    import unicodedata\n    raw_name = (filename or "doc").replace("\\\\", "/").split("/")[-1]\n    cleaned = "".join(\n        ch for ch in raw_name\n        if ord(ch) >= 32 and ch not in "\\x7f"\n        and unicodedata.category(ch) not in {"Cc", "Cf", "Cs"}\n    )\n    return cleaned.strip()[:200] or "doc"\n\n\n@app.post("/cases/{cid}/upload")
+def _sanitize_uploaded_filename(filename):
+    """Normalize upload names, removing path components and Unicode control/format characters."""
+    import unicodedata
+    raw_name = (filename or "doc").replace("\\", "/").split("/")[-1]
+    cleaned = "".join(
+        ch for ch in raw_name
+        if ord(ch) >= 32 and ch not in "\x7f"
+        and unicodedata.category(ch) not in {"Cc", "Cf", "Cs"}
+    )
+    return cleaned.strip()[:200] or "doc"
+
+
+@app.post("/cases/{cid}/upload")
 @rollback_tenant_transaction_on_error
 def upload(cid: int, file: UploadFile, u: dict = Depends(user)):
     c = conn(); need(c, u, cid); data = file.file.read(15_000_001)
