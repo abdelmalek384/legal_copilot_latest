@@ -2020,3 +2020,10 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Replaced the completion controls in the task list and calendar agenda for both tasks and legal deadlines. Backend idempotency remains the final protection against concurrent/retried requests.
 - Added `test_task_and_calendar_completion_actions_prevent_duplicate_requests` to the frontend source-contract suite.
 - Commits: `cf2eb516c4c09a3ffe113e3c01a43f5e7b3bebd6` (frontend), `ca93d5c55a2c3afa5c6daf830f58351cefe165dc` (test). Read-back verified the source and test. No browser or Python test execution.
+
+
+## AI-2 invoice transition audit guard — 2026-11-25
+
+- Hardened invoice issue and void state transitions. Both conditional updates now check `rowcount` and abort with HTTP 409 before writing an audit event if the invoice state changed concurrently. The existing tenant rollback decorator rolls back the allocated invoice sequence when issuance loses the state race.
+- Added `test_invoice_issue_and_void_emit_only_one_transition_event`: verifies successful first transition, 409 on repeat, and exactly one corresponding audit event for issue and void.
+- Commits: `06b632a3a26a0d3a63bf167b4832e676411ff2a9` (backend), `03e6e892761109b02bcd821172a7647ad6068c72` (test). Source/test read-back only; no Python test execution.
