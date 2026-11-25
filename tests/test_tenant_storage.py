@@ -240,6 +240,93 @@ class TenantSQLiteConnectionRouterTests(unittest.TestCase):
         with self.assertRaises(sqlite3.ProgrammingError):
             connection.execute("SELECT 1")
 
+    @unittest.skipUnless(os.name == "posix", "POSIX hard links are required")
+    def test_database_hardlink_created_during_open_is_rejected(self):
+        with self._catalog() as catalog:
+            path = resolve_tenant_database(catalog, 101, self.root)
+        external_alias = Path(self.temp.name) / "outside-database-race"
+        original_connect = sqlite3.connect
+        opened = []
+        injected = {"done": False}
+
+        class InjectHardlinkConnection(sqlite3.Connection):
+            def execute(self, sql, parameters=()):
+                result = super().execute(sql, parameters)
+                if sql.strip().lower() == "pragma journal_mode" and not injected["done"]:
+                    os.link(path, external_alias)
+                    injected["done"] = True
+                return result
+
+        def connect_with_injection(database, *args, **kwargs):
+            if str(database) == str(path):
+                kwargs["factory"] = InjectHardlinkConnection
+            connection = original_connect(database, *args, **kwargs)
+            if str(database) == str(path):
+                opened.append(connection)
+            return connection
+
+        try:
+            with patch("tenant_storage.sqlite3.connect", side_effect=connect_with_injection):
+                with self.assertRaisesRegex(
+                    TenantConnectionError, "gained a hard-link alias while opening"
+                ):
+                    self.router.connection_for_firm(101)
+            self.assertTrue(injected["done"])
+            self.assertEqual(external_alias.stat().st_nlink, 2)
+            self.assertEqual(len(opened), 1)
+            with self.assertRaises(sqlite3.ProgrammingError):
+                opened[0].execute("SELECT 1")
+        finally:
+            external_alias.unlink(missing_ok=True)
+            self.router.close_current_thread()
+
+    @unittest.skipUnless(os.name == "posix", "POSIX hard links are required")
+    def test_sidecar_hardlink_created_during_open_is_rejected(self):
+        with self._catalog() as catalog:
+            path = resolve_tenant_database(catalog, 101, self.root)
+        sidecar = Path(str(path) + "-wal")
+        external_alias = Path(self.temp.name) / "outside-wal-race"
+        original_connect = sqlite3.connect
+        opened = []
+        injected = {"done": False}
+
+        class InjectHardlinkConnection(sqlite3.Connection):
+            def execute(self, sql, parameters=()):
+                result = super().execute(sql, parameters)
+                if sql.strip().lower() == "pragma journal_mode" and not injected["done"]:
+                    self.assert_sidecar_ready()
+                    os.link(sidecar, external_alias)
+                    injected["done"] = True
+                return result
+
+            @staticmethod
+            def assert_sidecar_ready():
+                if not sidecar.exists():
+                    raise AssertionError("SQLite WAL sidecar was not created by the journal-mode check")
+
+        def connect_with_injection(database, *args, **kwargs):
+            if str(database) == str(path):
+                kwargs["factory"] = InjectHardlinkConnection
+            connection = original_connect(database, *args, **kwargs)
+            if str(database) == str(path):
+                opened.append(connection)
+            return connection
+
+        try:
+            with patch("tenant_storage.sqlite3.connect", side_effect=connect_with_injection):
+                with self.assertRaisesRegex(
+                    TenantConnectionError, "sidecar gained a hard-link alias while opening"
+                ):
+                    self.router.connection_for_firm(101)
+            self.assertTrue(injected["done"])
+            self.assertEqual(external_alias.stat().st_nlink, 2)
+            self.assertEqual(len(opened), 1)
+            with self.assertRaises(sqlite3.ProgrammingError):
+                opened[0].execute("SELECT 1")
+        finally:
+            external_alias.unlink(missing_ok=True)
+            self.router.close_current_thread()
+
     def test_unreadable_sqlite_sidecar_metadata_revokes_cached_connection(self):
         connection = self.router.connection_for_firm(101)
         with self._catalog() as catalog:
