@@ -83,6 +83,7 @@ def _has_current_review_evidence(provenance):
     if not isinstance(records, list):
         return False
     latest = {}
+    seen_event_ids = set()
     for record in records:
         if not isinstance(record, Mapping):
             return False
@@ -94,6 +95,11 @@ def _has_current_review_evidence(provenance):
         event_id = record.get("review_event_id")
         if isinstance(event_id, bool) or not isinstance(event_id, int) or event_id <= 0:
             return False
+        # Review event IDs identify immutable records. Duplicate IDs make the
+        # history ambiguous, even when timestamps tie and one record says pass.
+        if event_id in seen_event_ids:
+            return False
+        seen_event_ids.add(event_id)
         reviewed_at = _parse_reviewed_at(record.get("reviewed_at"))
         if reviewed_at is None:
             return False

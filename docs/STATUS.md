@@ -1966,3 +1966,10 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Added both thresholds to all three validation/guard lists and to the consolidated quality-threshold set. Added synthetic CLI regressions for missing reviewed-case count, missing practice-area denominators, and out-of-range values.
 - No legal corpus, legal answers, source permissions, or trust labels changed. The new repository tests are committed but not yet executed in this environment; no test-suite pass is claimed.
 - Release remains NOT READY pending supported-runtime regression execution, browser acceptance, firm-isolation validation, and qualified Egyptian counsel review.
+
+
+## AI-1 duplicate legal review-event identity guard — 2026-11-25
+
+- Static audit found that the current-review selector accepted duplicate positive review event IDs. When two records shared the same timestamp and ID, input order could decide which outcome was retained; a conflicting failed lawyer-approval record could be ignored behind a passing record.
+- The review-evidence reader now rejects duplicate event IDs across all required review types before selecting the latest record. Added synthetic regressions for conflicting duplicate lawyer-approval events and duplicate IDs reused across review types.
+- This is a fail-closed evidence-integrity correction only. It adds no legal data and does not mark any law verified. Repository tests were added but not executed in this environment; no suite pass is claimed. Pilot remains NOT READY.

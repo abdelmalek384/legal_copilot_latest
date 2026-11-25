@@ -566,6 +566,22 @@ class ResearchInspectorTests(unittest.TestCase):
             source["provenance"]["review_evidence"][0]["review_event_id"] = value
             self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW, repr(value))
 
+    def test_duplicate_review_event_ids_make_review_history_ambiguous(self):
+        source = valid_source()
+        approval = next(
+            item for item in source["provenance"]["review_evidence"]
+            if item["review_type"] == "lawyer_approval"
+        )
+        source["provenance"]["review_evidence"].append(dict(approval, outcome="fail"))
+        self.assertFalse(has_current_review_evidence(source["provenance"]))
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+
+        source = valid_source()
+        duplicate_id = source["provenance"]["review_evidence"][0]["review_event_id"]
+        source["provenance"]["review_evidence"][-1]["review_event_id"] = duplicate_id
+        self.assertFalse(has_current_review_evidence(source["provenance"]))
+        self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW)
+
     def test_review_evidence_urls_reject_controls_backslashes_and_query_data(self):
         self.assertTrue(_valid_review_evidence_url("https://example.gov/review-record"))
         for value in (
