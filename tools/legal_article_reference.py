@@ -37,7 +37,7 @@ def extract_statute_reference(question: object) -> tuple[str, str] | None:
         return None
     normalized = _normalized_words(question)
     match = re.search(
-        r"(?<!\w)(?:law|(?:و|ب|ل)?القانون|قانون)[^0-9]{0,80}?"
+        r"(?<!\w)(?:law|(?:و|ب)?القانون|لل?قانون|قانون)[^0-9]{0,80}?"
         r"(?:no\.?|number|رقم)?\s*"
         r"(\d{1,4})\s*(?:of|لسنة|/)\s*(\d{4})(?!\d)",
         normalized,
