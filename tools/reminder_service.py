@@ -107,6 +107,15 @@ def _date_only(value: object) -> str | None:
     try:
         if datetime.strptime(candidate, "%Y-%m-%d").date().isoformat() != candidate:
             return None
+        # Date-only values are canonical. If a time is supplied, require a
+        # complete ISO-8601 datetime instead of silently accepting arbitrary
+        # suffixes after a valid-looking date prefix.
+        if len(value) > 10:
+            if value[10] not in {"T", " "}:
+                return None
+            parsed_datetime = datetime.fromisoformat(value)
+            if parsed_datetime.date().isoformat() != candidate:
+                return None
     except ValueError:
         return None
     return candidate
