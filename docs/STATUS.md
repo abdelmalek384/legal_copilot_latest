@@ -1,5 +1,13 @@
 # Legal Copilot — release-candidate status
 
+## Manual correction — 2026-11-25 (AI-2 PR #2030 follow-up)
+
+- Post-merge inspection found literal backslash-n sequences in the billing validation JavaScript and in the newly added frontend contract methods. The JavaScript sequences were invalid source separators; the test section also contained escaped line breaks/quotes instead of Python statements.
+- Corrected `static/index.html` and repaired the billing, task-filter, task/calendar-search, and document-upload frontend contract section in `tests/test_frontend_ux_contract.py`.
+- Commits: `21bb7d4` (JavaScript correction), `418ec6f` (test-source repair).
+- Verified through GitHub read-back that the billing JavaScript now contains real line breaks and that the four frontend contract methods are normal Python source. This is static verification only; JavaScript parsing, Python tests, browser acceptance, and full regression tests were not executed.
+- The correction does not change legal-source status, retrieval behavior, or pilot readiness. Application remains NOT READY pending executable local regression and browser/two-firm acceptance.
+
 ## Manual integration checkpoint — 2026-11-25 (PR #2030)
 
 - **PR #2030 (a83239c) merged:** billing payment amount and transfer-reference fields now have explicit accessible names; invalid submission sets aria-invalid, focuses the relevant control, and correction clears invalid state. Added frontend source-contract regression coverage.
