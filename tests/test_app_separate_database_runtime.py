@@ -5845,7 +5845,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         for day in ("2030-01-01", "2030-04-01", "2030-04-02"):
             response = self._mutate(
                 "post", f"/cases/{case_id}/tasks",
-                json={"title": f"Synthetic task {day}", "due": day},
+                json={"title": f"Synthetic task {day}", "assignee": self.user_id, "due": day},
             )
             self.assertEqual(response.status_code, 200, response.text)
 
