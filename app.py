@@ -17,6 +17,7 @@ from tools.arabic_drafting_skeletons import build_arabic_skeleton
 from tools.claim_support import claim_support_enabled, has_unsupported_claims, has_negated_obligation_conflicts
 from tools.answer_trust_tier import classify_answer_trust_tier, firm_test_source_matched_enabled
 from tools.document_intelligence import MAX_ANALYSIS_CHARS, classify_document, extract_review_candidates, extract_structured_candidates, build_date_mention_timeline, group_candidate_entity_mentions, compare_extracted_text
+from tools.legal_article_reference import extract_statute_reference, statute_title_matches
 from tools.mfa_primitives import (
     MFAPrimitivesError, build_totp_uri, generate_recovery_codes,
     generate_totp_secret, hash_recovery_code, verify_recovery_code, verify_totp,
@@ -1153,7 +1154,7 @@ _CORPUS_SEARCH_SQL = (
 )
 
 _CORPUS_EXACT_ARTICLE_SQL = (
-    "SELECT chunks.*, 0.0 AS r FROM chunks WHERE article=? AND verified=1 AND EXISTS ("
+    "SELECT chunks.*, 0.0 AS r, (SELECT d.official_title FROM legal_document_versions title_v JOIN legal_documents d ON d.document_id=title_v.document_id WHERE title_v.version_id=chunks.document_version_id) AS _statute_title FROM chunks WHERE article=? AND verified=1 AND EXISTS ("
     "SELECT 1 FROM legal_document_versions v "
     "JOIN legal_documents d ON d.document_id=v.document_id "
     "JOIN legal_sources s ON s.source_id=d.source_id "
@@ -1180,6 +1181,7 @@ def _search_separate(c, q, case_id, k, firm_id, as_of, scope):
     qg = grams(q)
     expanded_qg = grams(" ".join(expanded_qt))
     article_match = re.search(r"(?:ماده|الماده|article|art)\s*\.?\s*(\d+)", norm(q))
+    statute_reference = extract_statute_reference(q)
     counsel_allowlist_json = json.dumps(sorted(_qualified_egyptian_counsel_user_ids()))
     rows_with_origin = []
 
@@ -1193,11 +1195,17 @@ def _search_separate(c, q, case_id, k, firm_id, as_of, scope):
             _CORPUS_SEARCH_SQL, (fts_query, counsel_allowlist_json, as_of, as_of)
         ).fetchall()
         seen = {row["id"] for row in corpus_rows}
-        if article_match:
+        # Exact article-number fallback is permitted only when the question names
+        # a statute by both number and year and the official registry title matches.
+        # Otherwise Article 5 could be silently borrowed from an unrelated instrument.
+        if article_match and statute_reference:
             for row in corpus.execute(
                 _CORPUS_EXACT_ARTICLE_SQL,
                 (article_match.group(1), counsel_allowlist_json, as_of, as_of),
             ).fetchall():
+                row_dict = dict(row)
+                if not statute_title_matches(row_dict.get("_statute_title"), statute_reference):
+                    continue
                 if row["id"] not in seen:
                     corpus_rows.append(row)
                     seen.add(row["id"])
@@ -1288,14 +1296,17 @@ def search(c, q, case_id=None, k=5, firm_id=1, as_of=None, scope="all_permitted"
         params = (" OR ".join('"%s"' % t.replace('"', '""') for t in expanded_qt), case_id, firm_id, int(allow_legacy), scope, scope, scope, counsel_allowlist_json, as_of, as_of)
         for r in c.execute(SQL, params): cand[r["id"]] = (r, -r["r"])
     am = re.search(r"(?:ماده|الماده|article|art)\s*\.?\s*(\d+)", norm(q))
-    if am and scope != "firm_documents":
-        exact_sql = ("SELECT * FROM chunks WHERE article=? AND case_id IS NULL AND verified=1 AND (in_force=1 OR document_version_id IS NOT NULL) "
+    statute_reference = extract_statute_reference(q)
+    if am and statute_reference and scope != "firm_documents":
+        exact_sql = ("SELECT chunks.*, (SELECT d.official_title FROM legal_document_versions title_v JOIN legal_documents d ON d.document_id=title_v.document_id WHERE title_v.version_id=chunks.document_version_id) AS _statute_title FROM chunks WHERE article=? AND case_id IS NULL AND verified=1 AND (in_force=1 OR document_version_id IS NOT NULL) "
                      "AND (document_version_id IS NOT NULL OR ?=1) AND (document_version_id IS NULL OR EXISTS (SELECT 1 FROM legal_document_versions v "
                      "WHERE v.version_id=chunks.document_version_id AND v.review_status='verified' "
                      "AND v.authenticity_verified=1 AND v.status_verified=1 AND v.amendment_history_verified=1 AND EXISTS (SELECT 1 FROM legal_documents d JOIN legal_sources s ON s.source_id=d.source_id WHERE d.document_id=v.document_id AND s.collection_permission='allowed' AND s.commercial_reuse_permission='allowed' AND TRIM(COALESCE(s.permission_evidence,''))<>'' AND TRIM(COALESCE(v.permission_evidence,''))<>'') AND (v.legal_status='in_force' OR (v.legal_status IN ('repealed','historical') AND v.repeal_date IS NOT NULL)) "
                      + _REQUIRED_REVIEW_EVENTS_SQL
                      + "AND v.effective_date IS NOT NULL AND v.effective_date<=? AND (v.repeal_date IS NULL OR v.repeal_date>?)) )")
         for r in c.execute(exact_sql, (am.group(1), int(allow_legacy), counsel_allowlist_json, as_of, as_of)):
+            if not statute_title_matches(r["_statute_title"], statute_reference):
+                continue
             exact.add(r["id"]); cand.setdefault(r["id"], (r, 0))
     if not cand: return []
     top, qg, expanded_qg, out = (max(b for _, b in cand.values()) or 1), grams(q), grams(" ".join(expanded_qt)), []

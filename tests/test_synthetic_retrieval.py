@@ -59,6 +59,7 @@ class SyntheticCorpus:
         self, source_id, text, *, verified=True, collection="allowed",
         commercial="allowed", effective="2020-01-01", repeal=None,
         review_status="verified", article="12",
+        official_title="Fictional test instrument — not law",
     ):
         version_id = self.db.execute(
             "SELECT COALESCE(MAX(version_id), 0) + 1 FROM legal_document_versions"
@@ -70,7 +71,7 @@ class SyntheticCorpus:
         )
         self.db.execute(
             "INSERT INTO legal_documents VALUES (?, ?, ?)",
-            (document_id, source_id, "Fictional test instrument — not law"),
+            (document_id, source_id, official_title),
         )
         self.db.execute(
             """INSERT INTO legal_document_versions
@@ -141,6 +142,21 @@ class SyntheticRetrievalTests(unittest.TestCase):
         return app.search(
             None, query, k=10, scope="verified_corpus", as_of=as_of
         )
+
+    def test_exact_article_fallback_requires_matching_explicit_statute_number_and_year(self):
+        matching_id = self.fixture.add_passage(
+            "SYNTH-LAW-14-2025", "نص اختبار خيالي لا يتضمن رقم المادة أو اسم القانون.",
+            article="5", official_title="قانون رقم 14 لسنة 2025",
+        )
+        self.fixture.add_passage(
+            "SYNTH-LAW-20-2024", "نص اختبار خيالي لا يتضمن رقم المادة أو اسم القانون.",
+            article="5", official_title="قانون رقم 20 لسنة 2024",
+        )
+
+        matching = self.search("Article 5 of Law No. 14 of 2025")
+        self.assertEqual([hit["id"] for hit in matching], [matching_id])
+        self.assertEqual(self.search("Article 5"), [])
+        self.assertEqual(self.search("Article 5 of Law No. 99 of 2099"), [])
 
     def test_equal_score_passages_have_stable_id_order(self):
         first_id = self.fixture.add_passage(
