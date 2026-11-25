@@ -5,6 +5,7 @@ firms, authorize users, or select tenant databases. The application currently
 uses one configured database path; tenant routing must be implemented separately
 only after the identity and shared-corpus model is reviewed.
 """
+import math
 import sqlite3
 import threading
 from pathlib import Path
@@ -22,8 +23,8 @@ class SQLiteConnectionProvider:
             raise ValueError("database_path must be a non-empty path")
         self.database_path = str(database_path)
         self.timeout = float(timeout)
-        if self.timeout <= 0:
-            raise ValueError("timeout must be positive")
+        if not math.isfinite(self.timeout) or self.timeout <= 0:
+            raise ValueError("timeout must be a finite positive number")
         self._local = threading.local()
 
     def connection(self) -> sqlite3.Connection:
