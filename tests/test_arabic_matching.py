@@ -4,7 +4,14 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from app import SYS, conflict_case_number_matches, conflict_name_matches, expanded_tokens, matched_surface_terms, tokens
+from app import (
+    SYS,
+    conflict_case_number_matches,
+    conflict_name_matches,
+    expanded_tokens,
+    matched_surface_terms,
+    tokens,
+)
 import tools.arabic_legal_matching as MATCHING
 from tools.arabic_legal_matching import orthographic_variants
 
