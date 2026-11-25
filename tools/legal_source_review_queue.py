@@ -11,7 +11,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from tools.research_inspector import has_current_review_evidence
+from tools.research_inspector import has_current_review_evidence, _parse_reviewed_at
 from tools.output_path_safety import ensure_output_paths_safe
 
 def tables(db):
@@ -149,7 +149,18 @@ def review_queue(db_path: Path) -> dict:
         notes_select = "notes" if "notes" in event_columns else "NULL AS notes"
         for version in versions:
             row=dict(version)
-            events=[dict(e) for e in db.execute(f"SELECT review_event_id,review_type,outcome,evidence_url,reviewer,{notes_select},reviewed_at FROM legal_review_events WHERE version_id=? ORDER BY reviewed_at DESC,review_event_id DESC",(row["version_id"],)).fetchall()]
+            events=[dict(e) for e in db.execute(f"SELECT review_event_id,review_type,outcome,evidence_url,reviewer,{notes_select},reviewed_at FROM legal_review_events WHERE version_id=?",(row["version_id"],)).fetchall()]
+            # ISO-8601 timestamps with different offsets are not chronologically
+            # sortable as strings (e.g. 12:00+03:00 precedes 10:00Z). Normalize
+            # to UTC before selecting the latest event, matching the runtime gate.
+            def review_order(event):
+                parsed = _parse_reviewed_at(event.get("reviewed_at"))
+                return (
+                    parsed is not None,
+                    parsed or datetime.min.replace(tzinfo=timezone.utc),
+                    event.get("review_event_id") if isinstance(event.get("review_event_id"), int) else 0,
+                )
+            events.sort(key=review_order, reverse=True)
             reasons=[]
             if row["official_title"] is None:
                 reasons.append("document_missing_from_registry")
