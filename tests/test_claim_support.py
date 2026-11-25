@@ -23,6 +23,20 @@ class ClaimSupportTests(unittest.TestCase):
             hits, tokens, norm, _mask_markdown_code
         ))
 
+    def test_compound_english_number_matches_numeric_source_value(self):
+        evidence = [{"text": "The fictional period is 25 days."}]
+        self.assertFalse(has_unsupported_claims(
+            "The fictional period is twenty-five days [1].",
+            evidence, tokens, norm, _mask_markdown_code
+        ))
+
+    def test_compound_arabic_number_matches_numeric_source_value(self):
+        evidence = [{"text": "المدة الافتراضية 25 يوما."}]
+        self.assertFalse(has_unsupported_claims(
+            "المدة الافتراضية خمسة وعشرون يوما [1].",
+            evidence, tokens, norm, _mask_markdown_code
+        ))
+
     def test_comma_grouped_thousands_cannot_collapse_to_decimal_one(self):
         evidence = [{"text": "The limitation period is one year."}]
         self.assertTrue(has_unsupported_claims(
