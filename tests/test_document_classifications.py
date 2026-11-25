@@ -121,8 +121,8 @@ class DocumentClassificationContractTests(unittest.TestCase):
         self.assertIn("needle = norm(q.strip())", endpoint)
         self.assertIn('re.findall(r"[\\w]+", needle, flags=re.UNICODE)', endpoint)
         self.assertIn('chunks_fts MATCH ?', endpoint)
-        self.assertIn('(int(u["firm_id"]), fts_query, int(u["firm_id"]), u["role"], int(u["id"]))', endpoint)
-        self.assertIn('(tokens[0], int(u["firm_id"]), fts_query, int(u["firm_id"]), u["role"], int(u["id"]), limit, offset)', endpoint)
+        self.assertIn('(int(u["firm_id"]), fts_query, int(u["firm_id"]), u["role"], int(u["id"]), client_id, client_id)', endpoint)
+        self.assertIn('(tokens[0], int(u["firm_id"]), fts_query, int(u["firm_id"]), u["role"], int(u["id"]), client_id, client_id, limit, offset)', endpoint)
         self.assertIn('fts_query = " AND ".join', endpoint)
         self.assertIn('token.replace', endpoint)
         self.assertIn("chunks.case_id IN (SELECT cs.id FROM cases cs WHERE cs.firm_id=?", endpoint)
@@ -207,7 +207,7 @@ class DocumentClassificationContractTests(unittest.TestCase):
     def test_chunk_review_api_returns_original_and_corrected_text_for_ui(self):
         app = (ROOT / "app.py").read_text(encoding="utf-8")
         endpoint = app[app.index("def list_document_chunks"):app.index('@app.post("/cases/{cid}/docs/{document_id}/chunks/{chunk_id}/review"')]
-        self.assertIn("original_text,reviewed_text", endpoint)
+        self.assertIn("r.original_text,r.reviewed_text", endpoint)
         html = (ROOT / "static" / "index.html").read_text(encoding="utf-8")
         self.assertIn("latest.original_text", html)
         self.assertIn("latest.reviewed_text", html)
