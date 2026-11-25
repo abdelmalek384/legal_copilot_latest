@@ -3268,7 +3268,7 @@ async function law(){
    updateEvidenceCoverage();
    thread.scrollTop=thread.scrollHeight;
  };
- const loadConversation=async id=>{const data=await api('/research/conversations/'+id);activeId=id;renderMessages(Array.isArray(data.messages)?data.messages:[]);try{await drawList()}catch(error){const detail=String(error?.message||'').trim();researchStatus.textContent=(LANG==='ar'?'تم فتح المحادثة، لكن تعذر تحديث سجل المحادثات. ':'Conversation opened, but the history list could not be refreshed. ')+(detail&&detail!=='api'?detail:'')}};
+ const loadConversation=async(id,refreshList=true)=>{const data=await api('/research/conversations/'+id);activeId=id;renderMessages(Array.isArray(data.messages)?data.messages:[]);if(refreshList){try{await drawList()}catch(error){const detail=String(error?.message||'').trim();researchStatus.textContent=(LANG==='ar'?'تم فتح المحادثة، لكن تعذر تحديث سجل المحادثات. ':'Conversation opened, but the history list could not be refreshed. ')+(detail&&detail!=='api'?detail:'')}}else renderList()};
  const renderList=()=>{
    const filterHadFocus=document.activeElement===conversationFilter;
    const filterSelectionStart=filterHadFocus?conversationFilter.selectionStart:null;
@@ -3386,12 +3386,12 @@ async function law(){
  try{
   await drawList();
   await loadResearchCorpusStatus();
-  if(activeId)await loadConversation(activeId);
-  else {const list=await api('/research/conversations');if(list.length)await loadConversation(list[0].id);else await newChat(false)}
+  if(activeId)await loadConversation(activeId,false);
+  else {const list=conversationItems;if(list.length)await loadConversation(list[0].id,false);else await newChat(false)}
   researchStatus.textContent=LANG==='ar'?'البحث القانوني جاهز.':'Legal research is ready.';
  }catch(error){
   const detail=String(error?.message||'').trim();
-  researchStatus.replaceChildren(h('span',{textContent:uiText('تعذر تحميل سجل المحادثات. يمكنك بدء محاولة جديدة أو إعادة تحميل الصفحة.','Could not load conversation history. You can retry or reload the page.')}),h('p',{className:'mut',textContent:detail&&detail!=='api'?detail:''}),makeBtn(uiText('إعادة المحاولة','Retry'),async()=>{researchStatus.textContent=uiText('جارٍ إعادة الاتصال…','Retrying…');try{await drawList();const list=await api('/research/conversations');if(list.length)await loadConversation(list[0].id);else await newChat(false);researchStatus.textContent=uiText('البحث القانوني جاهز.','Legal research is ready.')}catch(retryError){researchStatus.textContent=String(retryError.message||retryError)}},'g'));
+  researchStatus.replaceChildren(h('span',{textContent:uiText('تعذر تحميل سجل المحادثات. يمكنك بدء محاولة جديدة أو إعادة تحميل الصفحة.','Could not load conversation history. You can retry or reload the page.')}),h('p',{className:'mut',textContent:detail&&detail!=='api'?detail:''}),makeBtn(uiText('إعادة المحاولة','Retry'),async()=>{researchStatus.textContent=uiText('جارٍ إعادة الاتصال…','Retrying…');try{await drawList();const list=conversationItems;if(list.length)await loadConversation(list[0].id,false);else await newChat(false);researchStatus.textContent=uiText('البحث القانوني جاهز.','Legal research is ready.')}catch(retryError){researchStatus.textContent=String(retryError.message||retryError)}},'g'));
  }
  // Focus the visible research composer after the interface is mounted.
  composer.focus({preventScroll:true});
