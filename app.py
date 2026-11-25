@@ -2586,24 +2586,49 @@ def _secure_cookie_transport(request):
 def _origin_matches_request(origin, request):
     """Compare browser Origin to request origin or an explicit public HTTPS origin."""
     from urllib.parse import urlsplit
+
+    def has_unsafe_origin_text(value):
+        return (
+            not isinstance(value, str)
+            or not value
+            or value != value.strip()
+            or "\\" in value
+            or any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in value)
+        )
+
     try:
-        parsed = urlsplit(origin)
-        if (parsed.scheme not in {"http", "https"} or not parsed.netloc
-                or parsed.username or parsed.password or parsed.path not in {"", "/"}
-                or parsed.query or parsed.fragment):
+        # urlsplit intentionally strips some control characters; reject them
+        # before parsing so malformed header/config text cannot be normalized
+        # into an apparently valid origin.
+        if has_unsafe_origin_text(origin):
             return False
-        public_origin = os.environ.get("COPILOT_PUBLIC_ORIGIN", "").strip()
+        parsed = urlsplit(origin)
+        # Access hostname/port to force validation of malformed authorities and ports.
+        if (parsed.scheme not in {"http", "https"} or not parsed.netloc
+                or not parsed.hostname or parsed.netloc.endswith(":")
+                or parsed.username or parsed.password
+                or parsed.path not in {"", "/"} or parsed.query or parsed.fragment):
+            return False
+        parsed_port = parsed.port
+        if parsed_port is not None and not 1 <= parsed_port <= 65535:
+            return False
+        public_origin = os.environ.get("COPILOT_PUBLIC_ORIGIN", "")
         if public_origin:
+            if has_unsafe_origin_text(public_origin):
+                return False
             expected = urlsplit(public_origin)
-            if (expected.scheme != "https" or not expected.netloc
+            if (expected.scheme != "https" or not expected.netloc or not expected.hostname
+                    or expected.netloc.endswith(":")
                     or expected.username or expected.password or expected.path not in {"", "/"}
                     or expected.query or expected.fragment):
+                return False
+            expected_port = expected.port
+            if expected_port is not None and not 1 <= expected_port <= 65535:
                 return False
             return parsed.scheme == expected.scheme and parsed.netloc.lower() == expected.netloc.lower()
         return parsed.netloc.lower() == request.url.netloc.lower() and parsed.scheme == request.url.scheme
     except (TypeError, ValueError):
         return False
-
 
 def _declared_body_size_error(request):
     """Reject malformed or oversized declared request bodies before route parsing."""
