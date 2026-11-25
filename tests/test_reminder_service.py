@@ -99,6 +99,22 @@ class ReminderServiceTests(unittest.TestCase):
         )
         self.assertEqual(report["reminders_planned"], 0)
 
+    def test_scheduler_rejects_invalid_send_limits_before_database_or_smtp_work(self):
+        for limit in (0, -1, 1001, True, 1.5):
+            with self.subTest(max_send=limit):
+                with patch("tools.reminder_service.send_reminder_email") as sender:
+                    with self.assertRaisesRegex(Exception, "max_send must be between 1 and 1000"):
+                        run_scheduler(
+                            self.runtime, now=self.now, timezone_name="Africa/Cairo",
+                            send=True, smtp_config=self.smtp,
+                            app_url="https://app.example.test", max_send=limit,
+                        )
+                sender.assert_not_called()
+                self.assertEqual(
+                    self.tenant.execute("SELECT COUNT(*) FROM reminder_deliveries").fetchone()[0],
+                    0,
+                )
+
     def test_send_fails_closed_when_reminder_preferences_schema_is_missing(self):
         self.tenant.execute("DROP TABLE reminder_preferences")
         self.tenant.commit()
