@@ -3389,8 +3389,8 @@ async function law(){
   const detail=String(error?.message||'').trim();
   researchStatus.replaceChildren(h('span',{textContent:uiText('تعذر تحميل سجل المحادثات. يمكنك بدء محاولة جديدة أو إعادة تحميل الصفحة.','Could not load conversation history. You can retry or reload the page.')}),h('p',{className:'mut',textContent:detail&&detail!=='api'?detail:''}),makeBtn(uiText('إعادة المحاولة','Retry'),async()=>{researchStatus.textContent=uiText('جارٍ إعادة الاتصال…','Retrying…');try{await drawList();const list=await api('/research/conversations');if(list.length)await loadConversation(list[0].id);else await newChat(false);researchStatus.textContent=uiText('البحث القانوني جاهز.','Legal research is ready.')}catch(retryError){researchStatus.textContent=String(retryError.message||retryError)}},'g'));
  }
- // Focus remains in the research composer after the interface is mounted.
- scopeSelect.focus({preventScroll:true});
+ // Focus the visible research composer after the interface is mounted.
+ composer.focus({preventScroll:true});
 }
 function documentIntelligencePanel(caseId,documents){
  const docs=Array.isArray(documents)?documents.filter(d=>d&&d.document_id):[];
