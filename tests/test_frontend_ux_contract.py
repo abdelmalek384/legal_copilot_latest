@@ -1987,5 +1987,19 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("actionButton(uiText('إلغاء الفاتورة','Void invoice')", invoices)
         self.assertIn("'/invoices/'+item.id+'/void',loadInvoices", invoices)
 
+
+    def test_invoice_payment_ui_reuses_idempotency_key_for_ambiguous_retry(self):
+        invoices_start = HTML.index("function renderInvoices")
+        invoices_end = HTML.index("async function loadInvoices", invoices_start)
+        invoices = HTML[invoices_start:invoices_end]
+        self.assertIn("let paymentBusy=false,paymentKey=null,paymentFingerprint=null,paymentButton", invoices)
+        self.assertIn("if(paymentBusy)return", invoices)
+        self.assertIn("paymentButton.disabled=true", invoices)
+        self.assertIn("const fingerprint=JSON.stringify(payload)", invoices)
+        self.assertIn("if(!paymentKey||paymentFingerprint!==fingerprint)", invoices)
+        self.assertIn("idempotency_key:paymentKey", invoices)
+        self.assertIn("paymentKey=null;paymentFingerprint=null", invoices)
+        self.assertIn("finally{paymentBusy=false;paymentButton.disabled=false}", invoices)
+
 if __name__ == "__main__":
     unittest.main()
