@@ -333,6 +333,10 @@ class ArabicMatchingTests(unittest.TestCase):
         self.assertFalse(conflict_name_matches("شركة", "شركة النيل"))
         self.assertFalse(conflict_name_matches("شركة", "شركة أخرى"))
 
+    def test_conflict_name_match_does_not_match_inside_unrelated_word(self):
+        self.assertFalse(conflict_name_matches("عمر", "عمرو حسن"))
+        self.assertFalse(conflict_name_matches("Ali", "Malik"))
+
     def test_empty_names_never_match(self):
         self.assertFalse(conflict_name_matches("", "عمر فتحي"))
         self.assertFalse(conflict_name_matches("عمر فتحي", ""))
