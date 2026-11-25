@@ -1,3 +1,11 @@
+## Arabic evaluation scorer default-area alignment — 2026-11-25
+
+- Found a mismatch between the lawyer-review evaluator's unspecified practice-area default and the Arabic retrieval scorer: scorer rejected reviewed questions that omit `practice_area`, even when the approved reviewer registry authorizes `unspecified`.
+- Updated `tools/score_arabic_retrieval.py` to apply the same `unspecified` default during reviewer practice-area authorization.
+- Added `test_omitted_practice_area_uses_unspecified_default` in `tests/test_score_arabic_retrieval.py`.
+- Changes were committed directly to `main` as `db9b715` and `c9a397e`; GitHub read-back verified the production expression and regression test.
+- Python tests were **not executed** (runner/billing issue). This is a source-level integration only; it does not establish scorer correctness or legal accuracy.
+
 ## AI-2 Cairo-local frontend date correction — 2026-11-25
 
 - Found a cross-time-zone consistency defect in the application shell: task overdue labels and deadline comparisons, browser reminder summaries, and the calendar's current-day marker derived dates from the browser's local timezone, while the application workflow and backend defaults are Cairo-local.
