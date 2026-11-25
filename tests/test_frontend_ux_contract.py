@@ -1948,7 +1948,7 @@ class FrontendUXContractTests(unittest.TestCase):
     def test_document_intelligence_upload_prevents_duplicate_submissions_and_refreshes(self):
         start = HTML.index("async function view(id)")
         docs_start = HTML.index("if(TAB==='docs')", start)
-        docs_end = HTML.index("\\n if(window.DOCUMENT_REVIEW_TARGET", docs_start)
+        docs_end = HTML.index("\n if(window.DOCUMENT_REVIEW_TARGET", docs_start)
         upload = HTML[docs_start:docs_end]
         self.assertIn("(()=>{let uploadBusy=false;return btn(", upload)
         self.assertIn("if(!f.files[0]||uploadBusy)return", upload)
