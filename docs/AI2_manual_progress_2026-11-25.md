@@ -249,7 +249,8 @@ These are implementation/evidence estimates, not test pass rates. Runtime paymen
 - Found a user-facing failure mode in the shared workspace search: it queried matters, clients, and documents with one `Promise.all`, so a single unavailable endpoint rejected the entire operation and hid successful results from the other two sections.
 - Changed the three independent searches to `Promise.allSettled`. Each successful section now renders its results even if another section fails. The UI reports when results are partial, distinguishes total search unavailability from a genuine empty result, and keeps the status message accessible with `role=status` and `aria-live=polite`.
 - Added `test_global_search_keeps_successful_sections_when_another_section_fails` to the frontend UX contract suite. It checks independent result handling and the partial/total failure messages. Test is authored but **not executed**; no browser or runtime pass is claimed.
-- Commits on `ai2/global-search-partial-results`: `b7872ce` (frontend) and `88b3c96` (regression contract). GitHub read-back verification is pending at this checkpoint.
+- Added a monotonically increasing search-request token. Typing a new query invalidates older in-flight requests, stale responses cannot overwrite newer results, and stale requests cannot re-enable the search button while a newer request is active. The same regression now checks this race guard.
+- Commits on `ai2/global-search-partial-results`: `b7872ce`, `88b3c96`, `9569e49`, and `f2ab7eb`. GitHub read-back verification is pending at this checkpoint.
 
 | Workstream | Previous | Current | Change | Evidence |
 |---|---:|---:|---|
