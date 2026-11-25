@@ -6,7 +6,7 @@ from unittest import mock
 
 import app
 from app import norm, tokens, _mask_markdown_code
-from tools.claim_support import (_ARABIC_FINITE_PERIOD, _ENGLISH_FINITE_PERIOD, _has_modal_mismatch, _has_negated_obligation_mismatch, _sentences, claim_support_enabled, has_unsupported_claims, has_negated_obligation_conflicts)
+from tools.claim_support import (_ARABIC_FINITE_PERIOD, _ARABIC_MODAL_PATTERNS, _ENGLISH_FINITE_PERIOD, _has_modal_mismatch, _has_negated_obligation_mismatch, _modal_classes, _sentences, claim_support_enabled, has_unsupported_claims, has_negated_obligation_conflicts)
 
 
 class ClaimSupportTests(unittest.TestCase):
@@ -168,6 +168,23 @@ class ClaimSupportTests(unittest.TestCase):
     def test_faithful_egyptian_colloquial_lazim_negation_is_not_flagged(self):
         evidence = "الشركة مش لازم تقدم الإخطار."
         self.assertFalse(_has_modal_mismatch(evidence, evidence))
+        self.assertFalse(has_unsupported_claims(
+            evidence + " [1].", [{"text": evidence}],
+            tokens, norm, _mask_markdown_code
+        ))
+
+    def test_egyptian_ma_verb_sh_obligation_is_classified_as_non_obligation(self):
+        evidence = "ما يلزمش صاحب العمل بتقديم الإخطار."
+        self.assertEqual(
+            _modal_classes(evidence, _ARABIC_MODAL_PATTERNS),
+            {"non_obligation"},
+        )
+        self.assertTrue(_has_negated_obligation_mismatch(
+            "يلزم صاحب العمل بتقديم الإخطار.", evidence
+        ))
+        self.assertFalse(_has_modal_mismatch(
+            "يجوز لصاحب العمل تقديم الإخطار.", evidence
+        ))
         self.assertFalse(has_unsupported_claims(
             evidence + " [1].", [{"text": evidence}],
             tokens, norm, _mask_markdown_code
