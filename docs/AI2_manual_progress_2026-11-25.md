@@ -199,3 +199,24 @@ These are implementation/evidence estimates only. Python tests, browser/mobile a
 | **Overall AI-2 assignment** | **25%** | **26%** | **+1 pp** | One financial state-transition race guard with focused test coverage |
 
 These remain implementation/evidence estimates, not test pass rates. The Python suite, browser/device acceptance, two-firm runtime acceptance, production deployment and backup/restore rehearsal remain outstanding.
+
+
+## Follow-up checkpoint — guarded invoice controls — 2026-11-25
+
+- Updated the shared UI action helper to support preflight confirmation/payload generation and button variants while retaining the repeat-click lock.
+- Applied it to invoice issue and void controls. Issue confirmation and required void reason remain in place; both controls disable during request plus invoice-list refresh.
+- Added frontend source-contract regression assertions for helper lock/unlock, prepare callback, and issue/void call sites.
+- Commits: `43ea40b8f3ca672e26b7e88924e1f61243dcccfa`, `f3f6029ef230b11aa63078710076989f351c3c23`. Read-back only; tests not executed.
+
+| Workstream | Previous | Current | Change | Evidence |
+|---|---:|---:|---:|---|
+| Backend and existing workflows | 28% | 28% | 0 pp | Backend invoice transition row-count guard completed in prior checkpoint |
+| Frontend and usability | 24% | 25% | +1 pp | Invoice issue/void controls now prevent repeat clicks while request and refresh run |
+| Mobile and Arabic/English UI | 15% | 15% | 0 pp | No device/viewport acceptance added |
+| Security and tenant isolation | 30% | 30% | 0 pp | No new isolation claims |
+| Documents and file handling | 32% | 32% | 0 pp | No document change |
+| Deployment and recovery | 15% | 15% | 0 pp | No deployment/recovery evidence added |
+| Local testing and regression | 11% | 12% | +1 pp | Added invoice issue/void frontend contract assertions; not executed |
+| **Overall AI-2 assignment** | **26%** | **27%** | **+1 pp** | Invoice transitions now guarded in backend and UI with authored regression checks |
+
+These percentages measure implementation/evidence progress, not runtime verification or pilot readiness. Python suite, browser/mobile, two-firm acceptance, deployment, and backup/restore remain outstanding.
