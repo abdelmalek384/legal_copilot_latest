@@ -399,10 +399,10 @@ def _obligation_clauses(text):
     return [
         part.strip() for part in re.split(
             r"(?<=[.!?؟؛;,:،])\s*|\b(?:but|however|whereas|except|unless)\b|(?:لكن|ولكن|بينما|غير أن|إلا أن)|"
-        r"\band\s+(?=(?:must|mustn['’]t|shall|shan['’]t|is\s+required\s+to|are\s+required\s+to|"
+        r"\b(?:and|or)\s+(?=(?:must|mustn['’]t|shall|shan['’]t|is\s+required\s+to|are\s+required\s+to|"
         r"is\s+obliged\s+to|are\s+obliged\s+to|is\s+obligated\s+to|are\s+obligated\s+to|"
         r"have\s+to|has\s+to|need\s+not|needn['’]t)\b)|"
-        r"(?<!\S)و(?=(?:لا\s*)?(?:يجب|يلتزم|يلزم|يتعين|يتوجب|تجب|تلتزم|تلزم|تتعين|تتوجب|ملزم|ملزمة))",
+        r"(?<!\S)(?:و|أو|او)(?=(?:لا\s*)?(?:يجب|يلتزم|يلزم|يتعين|يتوجب|تجب|تلتزم|تلزم|تتعين|تتوجب|ملزم|ملزمة))",
             text,
             flags=re.IGNORECASE,
         ) if part.strip()
