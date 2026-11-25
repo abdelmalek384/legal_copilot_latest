@@ -14,14 +14,26 @@ from urllib.parse import urlsplit
 from cryptography.fernet import Fernet
 
 
+def _has_unsafe_url_characters(value):
+    """Reject raw URL characters that urlsplit may silently strip or normalize."""
+    return (
+        not isinstance(value, str)
+        or any(
+            char == "\\\\" or char.isspace() or ord(char) < 32 or ord(char) == 127
+            for char in value
+        )
+    )
+
+
 def valid_llm_endpoint(value, resolve_dns=True):
     """Require public-address HTTPS endpoints; plain HTTP is allowed only for loopback."""
-    if not isinstance(value, str) or not value.strip():
+    if not isinstance(value, str) or not value or _has_unsafe_url_characters(value):
         return False
     try:
-        parsed = urlsplit(value.strip())
+        parsed = urlsplit(value)
         host = parsed.hostname
-        if (parsed.scheme not in {"https", "http"} or not host or parsed.username or parsed.password
+        if (parsed.scheme not in {"https", "http"} or not parsed.netloc or not host
+                or parsed.netloc.endswith(":") or parsed.username or parsed.password
                 or parsed.query or parsed.fragment):
             return False
         parsed_port = parsed.port
@@ -220,14 +232,25 @@ def inspect_environment(env=None, *, require_separate=False):
                 "empty entries, malformed values, wildcard-all, and /0 networks are not allowed."
             )
 
-    public_origin = env.get("COPILOT_PUBLIC_ORIGIN", "").strip()
+    public_origin = env.get("COPILOT_PUBLIC_ORIGIN", "")
     if public_origin:
         try:
+            if _has_unsafe_url_characters(public_origin):
+                raise ValueError("unsafe raw URL characters")
             parsed_origin = urlsplit(public_origin)
-            valid_origin = (parsed_origin.scheme == "https" and bool(parsed_origin.netloc)
-                            and not parsed_origin.username and not parsed_origin.password
-                            and parsed_origin.path in {"", "/"} and not parsed_origin.query and not parsed_origin.fragment)
-        except ValueError:
+            valid_origin = (
+                parsed_origin.scheme == "https"
+                and bool(parsed_origin.netloc)
+                and bool(parsed_origin.hostname)
+                and not parsed_origin.netloc.endswith(":")
+                and not parsed_origin.username
+                and not parsed_origin.password
+                and parsed_origin.path in {"", "/"}
+                and not parsed_origin.query
+                and not parsed_origin.fragment
+            )
+            _ = parsed_origin.port
+        except (TypeError, ValueError):
             valid_origin = False
         if valid_origin:
             passed.append("COPILOT_PUBLIC_ORIGIN is a fixed HTTPS origin suitable for reverse-proxy origin checks.")
@@ -238,7 +261,7 @@ def inspect_environment(env=None, *, require_separate=False):
     elif env.get("COPILOT_SECURE_COOKIES", "").strip() == "1":
         warnings.append("COPILOT_PUBLIC_ORIGIN is unset; if the app sees internal HTTP behind a TLS proxy, browser Origin checks may reject HTTPS requests.")
 
-    llm_url = env.get("LLM_URL", "").strip()
+    llm_url = env.get("LLM_URL", "")
     if llm_url:
         processing_approved = env.get("LLM_DATA_PROCESSING_APPROVED", "").strip() == "1"
         if valid_llm_endpoint(llm_url, resolve_dns=processing_approved):
