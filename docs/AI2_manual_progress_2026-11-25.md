@@ -265,3 +265,24 @@ These are implementation/evidence estimates, not test pass rates. Runtime paymen
 | **Overall AI-2 assignment** | **28%** | **29%** | **+1 pp** | Improved an existing lawyer-facing workflow and added focused regression coverage |
 
 These are implementation/evidence estimates, not test pass rates or pilot-readiness claims. Python tests, browser acceptance, two-firm validation, production deployment, and backup/restore rehearsal remain outstanding.
+
+
+## Follow-up correction — effective global-search input handler — 2026-11-26
+
+- A second assignment to `globalSearchInput.oninput` later in the same initialization block overwrote the earlier handler. The earlier handler invalidated stale requests and refreshed the command palette, but the final effective handler only cleared results. This made the source-level race assertion insufficient to prove the actual last assignment retained the behavior.
+- Corrected the final/effective handler so every input change increments the request token, re-enables the button after invalidating an in-flight search, and refreshes command-palette suggestions for `>` queries. Normal search input still clears old results.
+- Strengthened the frontend contract test to inspect the **last** `oninput` assignment, not merely search the file for the presence of the token string. It now asserts both invalidation and command-palette refresh in the effective handler.
+- Commits: `d2c5a449c3bd2f165e035cde8a88d2bd2a585470` (frontend) and `1083af7a1d79a7c986a350c2010cdecac08bda4f` (regression). GitHub file read-back and runtime checks remain pending; Python/browser tests were not executed.
+
+| Workstream | Previous | Current | Change | Evidence |
+|---|---:|---:|---:|---|
+| Backend and existing workflows | 28% | 28% | 0 pp | No backend change |
+| Frontend and usability | 27% | 28% | +1 pp | Final input handler now actually preserves stale-request invalidation and command suggestions |
+| Mobile and Arabic/English UI | 15% | 15% | 0 pp | No device/viewport acceptance |
+| Security and tenant isolation | 30% | 30% | 0 pp | No new isolation evidence |
+| Documents and file handling | 32% | 32% | 0 pp | No document change |
+| Deployment and recovery | 15% | 15% | 0 pp | No deployment/recovery evidence |
+| Local testing and regression | 14% | 15% | +1 pp | Regression now checks the last/effective handler; test not executed |
+| **Overall AI-2 assignment** | **29%** | **30%** | **+1 pp** | Fixed an overwrite defect and made the regression detect this class of false-positive source check |
+
+These are implementation/evidence estimates, not test pass rates or pilot-readiness claims. Python 3.12 tests, browser acceptance, two-firm validation, production deployment, and backup/restore rehearsal remain outstanding.
