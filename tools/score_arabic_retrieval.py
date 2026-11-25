@@ -141,7 +141,7 @@ def _valid_reviewed(row, approved_reviewers):
         raise ValueError(f"{row.get('id')}: reviewer_id must match a valid approved reviewer registry entry")
     if row["reviewer_name"] != reviewer.get("display_name"):
         raise ValueError(f"{row.get('id')}: reviewer_name must match the approved reviewer registry display_name")
-    if row.get("practice_area") not in reviewer.get("practice_areas", []):
+    if row.get("practice_area", "unspecified") not in reviewer.get("practice_areas", []):
         raise ValueError(f"{row.get('id')}: reviewer is not approved for this practice_area")
     if row.get("reviewer_role") != reviewer.get("professional_role"):
         raise ValueError(f"{row.get('id')}: reviewer_role must match the approved reviewer registry professional_role")
