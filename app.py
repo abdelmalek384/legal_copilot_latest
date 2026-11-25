@@ -8291,8 +8291,12 @@ def deadline_done(did: int, u: dict = Depends(user)):
                     (did, u["firm_id"])).fetchone()
     if not row: raise HTTPException(404, "deadline not found")
     need(c, u, row["case_id"], lead=True)
-    c.execute("UPDATE deadlines SET status='done' WHERE id=?", (did,))
-    log(c, row["case_id"], u["name"], "إكمال موعد قانوني"); c.commit()
+    changed = c.execute(
+        "UPDATE deadlines SET status='done' WHERE id=? AND status!='done'", (did,)
+    ).rowcount
+    if changed:
+        log(c, row["case_id"], u["name"], "إكمال موعد قانوني")
+    c.commit()
     return {"ok": True}
 
 
