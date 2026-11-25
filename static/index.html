@@ -3268,7 +3268,7 @@ async function law(){
    updateEvidenceCoverage();
    thread.scrollTop=thread.scrollHeight;
  };
- const loadConversation=async(id,refreshList=true)=>{const data=await api('/research/conversations/'+id);activeId=id;renderMessages(Array.isArray(data.messages)?data.messages:[]);if(refreshList)try{await drawList()}catch(error){const detail=String(error?.message||'').trim();researchStatus.textContent=(LANG==='ar'?'تم فتح المحادثة، لكن تعذر تحديث سجل المحادثات. ':'Conversation opened, but the history list could not be refreshed. ')+(detail&&detail!=='api'?detail:'')}};
+ const loadConversation=async(id,refreshList=true)=>{const data=await api('/research/conversations/'+id);activeId=id;renderMessages(Array.isArray(data.messages)?data.messages:[]);if(refreshList){try{await drawList()}catch(error){const detail=String(error?.message||'').trim();researchStatus.textContent=(LANG==='ar'?'تم فتح المحادثة، لكن تعذر تحديث سجل المحادثات. ':'Conversation opened, but the history list could not be refreshed. ')+(detail&&detail!=='api'?detail:'')}}else renderList()};
  const renderList=()=>{
    const filterHadFocus=document.activeElement===conversationFilter;
    const filterSelectionStart=filterHadFocus?conversationFilter.selectionStart:null;
