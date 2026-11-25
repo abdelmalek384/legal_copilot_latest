@@ -52,6 +52,10 @@ These are engineering implementation estimates, not test pass rates or legal-qua
 - No GitHub Actions runs were returned for the direct requirements rollback commit. Dependency upgrade PRs remain pending and are not merged because the Python 3.12 hash lock was not regenerated or tested. Billing-related CI unavailable is not treated as pass.
 - Two AI-2 drafts (#1911, #1912) are closed unmerged; runtime, migration and browser acceptance remain outstanding.
 
+
+
+- 2026-11-25 legal-answer provenance trace added at `docs/legal_answer_provenance_trace_2026-11-25.md`: registry-backed source/version and permission/review evidence is traced through citation provenance; the actual corpus adapter does not populate the full `source_match_evidence` package, so the dedicated source-matched test retrieval path remains intentionally fail-closed. Synthetic stubs only test the response-tier label. No new percentage claimed; no tests executed.
+
 ## AI-1 delivery
 
 | Workstream | Current state |
