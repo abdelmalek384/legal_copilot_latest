@@ -227,7 +227,10 @@ def _compute_deadline_internal(trigger: dt.date, amount: int, unit: str, *, rule
             if end.weekday() not in weekend and end not in holidays:
                 break
             reason = f"عطلة رسمية: {holidays[end]}" if end in holidays else "عطلة أسبوعية"
-            nxt = end + dt.timedelta(days=1)
+            try:
+                nxt = end + dt.timedelta(days=1)
+            except OverflowError as exc:
+                raise DeadlineError("holiday extension is outside the supported date range") from exc
             extensions.append({"from": end.isoformat(), "reason": reason, "to": nxt.isoformat()})
             steps.append(f"{end.isoformat()} يوم غير عامل ({reason})؛ يمتد الحساب إلى {nxt.isoformat()}.")
             end = nxt
