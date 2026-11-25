@@ -1852,3 +1852,11 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Commits: \`acbd237a87684ba97024bf214391802644f92d39\` (initial clause-boundary extension), \`0961a3452d1fbc585ea8c1acc6dce78146ccb947\` (Arabic marker spacing), \`aaafd20d4d9c76c36e59fa12c3a1d67025f6cf3f\` (attached conjunction and alternative boundary correction), \`f6b102805776f8034d9f68c315807745b34f9597\` (corrected grouping), \`93858d2381104e4f96180ea5ad7de923b7ad0f3f\` (regex argument separator).
 - Validation performed: fetched the committed function and test file; manually compiled and exercised an equivalent clause-splitting regex in Python against English \`and/or\`, Arabic attached \`و\`, and Arabic \`أو\` examples. These checks confirmed the intended clause boundaries. The complete repository unit test was **not executed**; local checkout remains unavailable, and GitHub Actions is not treated as proof.
 - No legal text, corpus records, source status, or trust labels changed. Release remains not ready pending supported-runtime tests and pilot gates.
+
+## AI-1 Arabic obligation classification correction — 2026-11-25
+
+- Corrected a false-positive modality classification in the optional claim-support guard: Egyptian colloquial negative-obligation forms such as `ما يلزمش` were recognized by the direct polarity guard, but the broader Arabic modality classifier could also match the embedded positive verb `يلزم`. It now classifies the construction as `non_obligation` and removes the complete negative construction before positive-obligation matching.
+- Added a synthetic regression asserting the exact modality class, preservation of the direct positive/negative conflict, no false permission-versus-obligation conflict, and faithful-source acceptance.
+- Commits: `454027e` (guard correction), `9028aa3` (regression).
+- GitHub read-back confirmed both edits. An isolated Python regex probe confirmed the new negative-obligation expression matches and the positive-obligation matcher no longer sees the embedded verb. The repository test module was **not executed**; this is not a test-suite pass.
+- No legal data, corpus rows, trust labels, or product features were added. Pilot status remains NOT READY.
