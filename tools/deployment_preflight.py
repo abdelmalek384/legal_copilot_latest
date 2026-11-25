@@ -33,7 +33,7 @@ def valid_llm_endpoint(value, resolve_dns=True):
         parsed = urlsplit(value)
         host = parsed.hostname
         if (parsed.scheme not in {"https", "http"} or not parsed.netloc or not host
-                or parsed.netloc.endswith(":") or parsed.username or parsed.password
+                or parsed.netloc.endswith(":") or parsed.username is not None or parsed.password is not None
                 or parsed.query or parsed.fragment):
             return False
         parsed_port = parsed.port
@@ -243,8 +243,8 @@ def inspect_environment(env=None, *, require_separate=False):
                 and bool(parsed_origin.netloc)
                 and bool(parsed_origin.hostname)
                 and not parsed_origin.netloc.endswith(":")
-                and not parsed_origin.username
-                and not parsed_origin.password
+                and parsed_origin.username is None
+                and parsed_origin.password is None
                 and parsed_origin.path in {"", "/"}
                 and not parsed_origin.query
                 and not parsed_origin.fragment
