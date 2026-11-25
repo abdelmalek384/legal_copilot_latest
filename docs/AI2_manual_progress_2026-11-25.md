@@ -220,3 +220,23 @@ These remain implementation/evidence estimates, not test pass rates. The Python 
 | **Overall AI-2 assignment** | **26%** | **27%** | **+1 pp** | Invoice transitions now guarded in backend and UI with authored regression checks |
 
 These percentages measure implementation/evidence progress, not runtime verification or pilot readiness. Python suite, browser/mobile, two-firm acceptance, deployment, and backup/restore remain outstanding.
+
+
+## Follow-up checkpoint — invoice payment retry safety — 2026-11-25
+
+- Added a payment-button busy lock and stable idempotency-key lifecycle. The same payment payload retains its key after ambiguous failure, preventing a network retry from becoming a second distinct ledger payment; changing the payload rotates the key; success clears it.
+- Added source-contract regression assertions for duplicate-click lock, payload fingerprint, key reuse, success reset, and unlock.
+- Commits: `560c70a951044c35fe4a1b7702eca95813d7e2eb`, `3cc3a7d04cb9939fb6dae6b81118144c19b0b5b5`. Source/test read-back only; test not executed.
+
+| Workstream | Previous | Current | Change | Evidence |
+|---|---:|---:|---:|---|
+| Backend and existing workflows | 28% | 28% | 0 pp | No backend change in this checkpoint |
+| Frontend and usability | 25% | 26% | +1 pp | Payment submission now guards repeat clicks and reuses idempotency key for same-payload retries |
+| Mobile and Arabic/English UI | 15% | 15% | 0 pp | No device/viewport acceptance added |
+| Security and tenant isolation | 30% | 30% | 0 pp | No new isolation claim |
+| Documents and file handling | 32% | 32% | 0 pp | No document change |
+| Deployment and recovery | 15% | 15% | 0 pp | No deployment/recovery evidence added |
+| Local testing and regression | 12% | 13% | +1 pp | Added invoice payment retry contract test; not executed |
+| **Overall AI-2 assignment** | **27%** | **28%** | **+1 pp** | Financial UI now pairs backend idempotency with retry-stable client keys |
+
+These are implementation/evidence estimates, not test pass rates. Runtime payment behavior, browser acceptance, Python tests, two-firm validation, production deployment and backup/restore remain outstanding.
