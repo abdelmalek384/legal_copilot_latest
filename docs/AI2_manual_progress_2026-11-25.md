@@ -75,10 +75,10 @@ The narrow documentation correction is complete, but it does not justify raising
 ## Follow-up continuation — Cairo-local frontend date consistency (25 November 2026)
 
 - Identified and corrected a concrete application-layer defect rather than repeating the blocked test/clone work: the frontend's shared `today` key, local reminder summary, and calendar current-day marker used the browser's local timezone, while backend workflow dates are Cairo-local. Users operating the browser in a different timezone could see overdue/today/tomorrow labels that disagree with the server's dashboard/deadline date interpretation.
-- Added a single IANA `Africa/Cairo` date-key helper with calendar-day offset arithmetic. Rewired shared overdue date comparisons, reminder today/tomorrow keys, and the calendar's current-day calculation. No persisted dates, legal calculations, backend API contracts, or database state changed.
+- Added a single IANA `Africa/Cairo` date-key helper with calendar-day offset arithmetic. Rewired shared overdue date comparisons, reminder today/tomorrow keys, the calendar's current-day calculation, and both research-memo fallback `requested_as_of` values. No persisted dates, legal calculations, backend API contracts, or database state changed.
 - Added source-contract regression `test_frontend_deadline_and_reminder_dates_use_cairo_calendar_day`.
 - Manually ran the helper logic in the available JavaScript runtime for three representative instants, including one second before Cairo midnight and exactly at Cairo midnight. All expected Cairo date and next-day values matched. This is helper-level evidence only.
-- Commits: `8e49f5e` frontend change; `4440fbf` regression; `2560310` status evidence. Read-back verified the frontend and test blobs. No repository Python test or browser session was run.
+- Commits: `8e49f5e` frontend date change; `4440fbf` initial regression; `2a41f9d` research-memo fallback correction; `86a3df7` fallback regression assertion; `2560310` initial status evidence; `2344935` initial progress evidence; `525a166` expanded status evidence. Read-back verified the frontend/test blobs and absence of the former UTC fallback expression. No repository Python test or browser session was run.
 
 ### Updated progress accounting
 
