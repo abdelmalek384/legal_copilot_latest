@@ -8654,7 +8654,10 @@ def _sanitize_uploaded_filename(filename):
         if ord(ch) >= 32 and ch not in "\x7f"
         and unicodedata.category(ch) not in {"Cc", "Cf", "Cs", "Zl", "Zp"}
     )
-    return cleaned.strip()[:200] or "doc"
+    cleaned = cleaned.strip().rstrip(" .")
+    if cleaned in {"", ".", ".."}:
+        return "doc"
+    return cleaned[:200].rstrip(" .") or "doc"
 
 
 @app.post("/cases/{cid}/upload")
