@@ -20,6 +20,12 @@ class LegalArticleReferenceTests(unittest.TestCase):
             ("14", "2025"),
         )
 
+    def test_extracts_arabic_descriptive_law_title_number_and_year(self):
+        self.assertEqual(
+            extract_statute_reference("المادة ٥ من قانون العمل رقم ١٤ لسنة ٢٠٢٥"),
+            ("14", "2025"),
+        )
+
     def test_rejects_article_number_without_explicit_statute(self):
         self.assertIsNone(extract_statute_reference("Article 5"))
 
