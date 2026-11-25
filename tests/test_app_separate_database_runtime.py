@@ -5451,6 +5451,20 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             for item in dashboard_after_claim.json()["unassigned_tasks"]
         ))
 
+        completed = self._mutate("post", f"/tasks/{task_id}/done")
+        repeated_completion = self._mutate("post", f"/tasks/{task_id}/done")
+        self.assertEqual(completed.status_code, 200, completed.text)
+        self.assertEqual(repeated_completion.status_code, 200, repeated_completion.text)
+        task_state = db.execute(
+            "SELECT status FROM tasks WHERE id=?", (task_id,)
+        ).fetchone()
+        self.assertEqual(task_state["status"], "done")
+        completion_events = db.execute(
+            "SELECT COUNT(*) FROM events WHERE case_id=? AND text=?",
+            (case_id, "تم إنجاز: Claimable workflow task"),
+        ).fetchone()[0]
+        self.assertEqual(completion_events, 1)
+
         deadline = self._mutate(
             "post", f"/cases/{case_id}/deadlines",
             json={"title": "Workflow appeal deadline", "due": due, "note": "Verify source"},
