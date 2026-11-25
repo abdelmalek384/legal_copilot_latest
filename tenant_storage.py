@@ -164,15 +164,32 @@ class TenantSQLiteConnectionRouter:
                 )
             if not sidecar.exists():
                 continue
-            if not sidecar.is_file():
+            try:
+                sidecar_metadata = os.lstat(sidecar)
+            except OSError as exc:
+                self._revoke_cached_connection(trusted_firm_id)
+                raise TenantConnectionError(
+                    "Tenant SQLite sidecar metadata cannot be verified"
+                ) from exc
+            if stat.S_ISLNK(sidecar_metadata.st_mode):
+                self._revoke_cached_connection(trusted_firm_id)
+                raise TenantConnectionError(
+                    "Tenant SQLite sidecar must not be a symbolic link"
+                )
+            if not stat.S_ISREG(sidecar_metadata.st_mode):
                 self._revoke_cached_connection(trusted_firm_id)
                 raise TenantConnectionError(
                     "Tenant SQLite sidecar must be a regular file"
                 )
+            if sidecar_metadata.st_nlink != 1:
+                self._revoke_cached_connection(trusted_firm_id)
+                raise TenantConnectionError(
+                    "Tenant SQLite sidecar must not be hard-linked"
+                )
             if os.name != "posix":
                 continue
             try:
-                sidecar_mode = stat.S_IMODE(sidecar.stat().st_mode)
+                sidecar_mode = stat.S_IMODE(sidecar_metadata.st_mode)
             except OSError as exc:
                 self._revoke_cached_connection(trusted_firm_id)
                 raise TenantConnectionError(
