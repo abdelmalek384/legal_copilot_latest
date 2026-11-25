@@ -23,6 +23,20 @@ class ClaimSupportTests(unittest.TestCase):
             hits, tokens, norm, _mask_markdown_code
         ))
 
+    def test_comma_grouped_thousands_cannot_collapse_to_decimal_one(self):
+        evidence = [{"text": "The limitation period is one year."}]
+        self.assertTrue(has_unsupported_claims(
+            "The limitation period is 1,000 years [1].",
+            evidence, tokens, norm, _mask_markdown_code
+        ))
+
+    def test_comma_grouped_thousands_match_the_same_source_value(self):
+        evidence = [{"text": "The limitation period is 1,000 years."}]
+        self.assertFalse(has_unsupported_claims(
+            "The limitation period is 1,000 years [1].",
+            evidence, tokens, norm, _mask_markdown_code
+        ))
+
     def test_arabic_no_expiry_claim_is_blocked_by_finite_limitation_period(self):
         hits = [{"text": "مدة التقادم خمس سنوات."}]
         for claim in ("الحق لا يتقادم أبدا [1].", "الدعوى لا تسقط مطلقا [1]."):
