@@ -80,21 +80,24 @@ class DocumentExtractionBudgetTests(unittest.TestCase):
 
 class DocumentTitleSanitizationTests(unittest.TestCase):
     def test_bidi_and_zero_width_format_controls_are_removed(self):
-        result = app.DocIn(name="matter\\u202e\\u200b.pdf", text="synthetic text")
+        name = "matter" + chr(0x202e) + chr(0x200b) + ".pdf"
+        result = app.DocIn(name=name, text="synthetic text")
         self.assertEqual(result.name, "matter.pdf")
 
     def test_control_and_line_separators_are_removed(self):
-        result = app.DocIn(name="matter\\x01\\u2028report\\u2029.pdf", text="synthetic text")
+        name = "matter" + chr(0x01) + chr(0x2028) + "report" + chr(0x2029) + ".pdf"
+        result = app.DocIn(name=name, text="synthetic text")
         self.assertEqual(result.name, "matterreport.pdf")
 
     def test_arabic_joiners_are_preserved(self):
-        name = "مكتب\\u200cمحاماة\\u200d"
+        name = "مكتب" + chr(0x200c) + "محاماة" + chr(0x200d)
         result = app.DocIn(name=name, text="synthetic text")
         self.assertEqual(result.name, name)
 
     def test_name_filtered_to_empty_is_rejected(self):
+        name = chr(0x202e) + chr(0x200b) + chr(0x2028)
         with self.assertRaises(ValueError):
-            app.DocIn(name="\\u202e\\u200b\\u2028", text="synthetic text")
+            app.DocIn(name=name, text="synthetic text")
 
     def test_document_title_still_obeys_200_character_limit(self):
         with self.assertRaises(ValueError):
