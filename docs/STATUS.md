@@ -1,3 +1,9 @@
+## Manual claim-support qualifier correction — 2026-11-25
+
+- Hardened the existing fail-closed claim-support qualifier check: English scope/finality terms are now matched case-insensitively, and Arabic diacritics/tatweel are normalized before qualifier comparison. This closes simple bypasses such as uppercase `ONLY` and vocalized `دائماً` / `حَصْرًا` when the cited passage does not support that stronger wording.
+- Added focused synthetic regression tests for unsupported and faithfully evidenced forms. These tests are **added but not executed**; this is source-level correction, not a semantic-entailment guarantee.
+- No corpus, legal source, trust tier, or product feature was added or changed.
+
 # Legal Copilot — release-candidate status
 
 ## Manual correction — 2026-11-25 (AI-2 PR #2030 follow-up)
