@@ -588,7 +588,7 @@ class LegalReleaseReadinessTests(unittest.TestCase):
         malformed.write_text("practice_area,priority" + chr(10) + "Civil law,P0" + chr(10), encoding="utf-8")
         report = MODULE.summarize_coverage_matrix(malformed)
         self.assertFalse(report["available"])
-        self.assertIn("must include", report["error"])
+        self.assertIn("must have unique headers and include", report["error"])
 
     def test_report_summarizes_blockers_status_and_practice_area_without_claiming_coverage(self):
         self.candidate["document"]["practice_areas"] = ["Labour", "Employment"]
