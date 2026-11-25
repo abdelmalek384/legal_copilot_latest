@@ -803,6 +803,13 @@ class BrowserAcceptanceTests(unittest.TestCase):
         history_toggle.click()
         self.assertEqual(history_toggle.get_attribute("aria-expanded"), "true")
         self.assertTrue(history_filter.is_visible())
+        history_filter.fill("research-filter-focus-check")
+        self.assertEqual(history_filter.input_value(), "research-filter-focus-check")
+        self.assertTrue(
+            history_filter.evaluate("(el) => document.activeElement === el"),
+            "filtering the history list must not drop focus from the search field",
+        )
+        history_filter.fill("")
 
         scope = self.page.locator(".research-controls select").nth(0)
         matter = self.page.locator(".research-controls select").nth(1)

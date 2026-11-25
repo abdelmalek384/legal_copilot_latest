@@ -3270,6 +3270,9 @@ async function law(){
  };
  const loadConversation=async id=>{const data=await api('/research/conversations/'+id);activeId=id;renderMessages(Array.isArray(data.messages)?data.messages:[]);try{await drawList()}catch(error){const detail=String(error?.message||'').trim();researchStatus.textContent=(LANG==='ar'?'تم فتح المحادثة، لكن تعذر تحديث سجل المحادثات. ':'Conversation opened, but the history list could not be refreshed. ')+(detail&&detail!=='api'?detail:'')}};
  const renderList=()=>{
+   const filterHadFocus=document.activeElement===conversationFilter;
+   const filterSelectionStart=filterHadFocus?conversationFilter.selectionStart:null;
+   const filterSelectionEnd=filterHadFocus?conversationFilter.selectionEnd:null;
    const head=h('div',{className:'research-list-head'},h('b',{textContent:LANG==='ar'?'جلسات البحث':'Research sessions'}),h('div',{className:'research-list-head-actions'},historyToggle,makeBtn(LANG==='ar'?'محادثة جديدة':'New conversation',newChat,'primary')));
    sidebar.replaceChildren(head,conversationFilter);
    const needle=conversationFilter.value.trim().toLocaleLowerCase();
@@ -3327,6 +3330,7 @@ async function law(){
    };
    renderSavedSearches();
    sidebar.append(h('section',{className:'research-saved-searches'},h('div',{className:'research-saved-searches-heading'},h('b',{textContent:LANG==='ar'?'عمليات بحث محفوظة':'Saved searches'}),btn(uiText('حفظ السؤال الحالي','Save current query'),addSavedSearch,'g')),savedSearchList));
+   if(filterHadFocus){conversationFilter.focus({preventScroll:true});if(Number.isInteger(filterSelectionStart)&&Number.isInteger(filterSelectionEnd))conversationFilter.setSelectionRange(filterSelectionStart,filterSelectionEnd)}
  };
  conversationFilter.oninput=renderList;
  const drawList=async()=>{conversationItems=await api('/research/conversations');renderList()};
