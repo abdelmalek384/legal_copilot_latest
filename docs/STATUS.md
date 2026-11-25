@@ -2034,3 +2034,10 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Reused the shared duplicate-request action helper for invoice issue and void controls. The helper now accepts a preflight callback and optional button style; issue confirmation and the required void reason are preserved, and the control is disabled while the request and refresh run.
 - Added `test_invoice_issue_and_void_controls_share_duplicate_request_guard` to the frontend source-contract tests.
 - Commits: `43ea40b8f3ca672e26b7e88924e1f61243dcccfa` (frontend), `f3f6029ef230b11aa63078710076989f351c3c23` (test). Read-back verification only; no browser/Python execution.
+
+
+## AI-2 invoice payment retry safety — 2026-11-25
+
+- Hardened the invoice payment control against repeated clicks and ambiguous network retries. The button is disabled while the request runs. A generated idempotency key is retained after failure for the same payment payload, so retrying the same amount/date/method/reference reuses the same server key; editing the payload generates a new key. The key resets only after a confirmed successful response.
+- Added `test_invoice_payment_ui_reuses_idempotency_key_for_ambiguous_retry` to the frontend source-contract suite.
+- Commits: `560c70a951044c35fe4a1b7702eca95813d7e2eb` (frontend), `3cc3a7d04cb9939fb6dae6b81118144c19b0b5b5` (test). Read-back verification only; no browser/Python execution.
