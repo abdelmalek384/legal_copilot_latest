@@ -3288,7 +3288,7 @@ async function law(){
        const title=window.prompt(LANG==='ar'?'اكتب عنواناً جديداً للمحادثة':'Enter a new conversation title',c.title);
        if(title===null)return;
        if(!title.trim()){toast(LANG==='ar'?'لا يمكن أن يكون العنوان فارغاً':'Conversation title cannot be blank');return}
-       try{await api('/research/conversations/'+c.id,'PATCH',{title:title.trim()});await drawList()}catch(_){}
+       try{await api('/research/conversations/'+c.id,'PATCH',{title:title.trim()});await drawList();toast(LANG==='ar'?'تم تحديث عنوان المحادثة':'Conversation title updated')}catch(error){toast((LANG==='ar'?'تعذر إعادة تسمية المحادثة: ':'Could not rename conversation: ')+String(error?.message||''))}
      }});
      const deleteButton=h('button',{className:'research-delete',type:'button',textContent:'×',title:copy('حذف المحادثة'), 'aria-label':(LANG==='ar'?'حذف المحادثة: ':'Delete conversation: ')+c.title,onclick:async()=>{
        const promptText=LANG==='ar'?'هل تريد حذف هذه المحادثة وكل رسائلها؟':'Delete this conversation and all its messages?';
@@ -3297,7 +3297,7 @@ async function law(){
          await api('/research/conversations/'+c.id,'DELETE');
          if(activeId===c.id){activeId=null;renderMessages([])}
          await drawList();
-       }catch(_){}
+       }catch(error){toast((LANG==='ar'?'تعذر حذف المحادثة: ':'Could not delete conversation: ')+String(error?.message||''))}
      }});
      sidebar.append(h('div',{className:'research-conversation-row'},openButton,renameButton,deleteButton));
    }
