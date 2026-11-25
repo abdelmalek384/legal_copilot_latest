@@ -288,6 +288,7 @@ def provision_tenant_database(
     created = False
     try:
         descriptor = os.open(path, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600)
+        created = True
         try:
             created_metadata = os.fstat(descriptor)
             if not stat.S_ISREG(created_metadata.st_mode) or created_metadata.st_nlink != 1:
@@ -296,7 +297,6 @@ def provision_tenant_database(
                 )
         finally:
             os.close(descriptor)
-        created = True
         try:
             os.chmod(path, 0o600)
         except OSError as exc:
