@@ -17,7 +17,7 @@ from tools.arabic_drafting_skeletons import build_arabic_skeleton
 from tools.claim_support import claim_support_enabled, has_unsupported_claims, has_negated_obligation_conflicts
 from tools.answer_trust_tier import classify_answer_trust_tier, firm_test_source_matched_enabled
 from tools.document_intelligence import MAX_ANALYSIS_CHARS, classify_document, extract_review_candidates, extract_structured_candidates, build_date_mention_timeline, group_candidate_entity_mentions, compare_extracted_text
-from tools.legal_article_reference import extract_statute_reference, statute_title_matches
+from tools.legal_article_reference import extract_statute_reference, normalize_reference_digits, statute_title_matches
 from tools.mfa_primitives import (
     MFAPrimitivesError, build_totp_uri, generate_recovery_codes,
     generate_totp_secret, hash_recovery_code, verify_recovery_code, verify_totp,
@@ -1203,7 +1203,7 @@ def _search_separate(c, q, case_id, k, firm_id, as_of, scope):
     corpus = corpus_conn()
     qg = grams(q)
     expanded_qg = grams(" ".join(expanded_qt))
-    article_match = re.search(r"(?:ماده|الماده|article|art)\s*\.?\s*(\d+)", norm(q))
+    article_match = re.search(r"(?:ماده|الماده|article|art)\s*\.?\s*(\d+)", normalize_reference_digits(norm(q)))
     statute_reference = extract_statute_reference(q)
     counsel_allowlist_json = json.dumps(sorted(_qualified_egyptian_counsel_user_ids()))
     rows_with_origin = []
@@ -1330,7 +1330,7 @@ def search(c, q, case_id=None, k=5, firm_id=1, as_of=None, scope="all_permitted"
                     and not _row_matches_statute_reference(c, r, statute_reference)):
                 continue
             cand[r["id"]] = (r, -r["r"])
-    am = re.search(r"(?:ماده|الماده|article|art)\s*\.?\s*(\d+)", norm(q))
+    am = re.search(r"(?:ماده|الماده|article|art)\s*\.?\s*(\d+)", normalize_reference_digits(norm(q)))
     if am and statute_reference and scope != "firm_documents":
         exact_sql = ("SELECT chunks.*, (SELECT d.official_title FROM legal_document_versions title_v JOIN legal_documents d ON d.document_id=title_v.document_id WHERE title_v.version_id=chunks.document_version_id) AS _statute_title FROM chunks WHERE article=? AND case_id IS NULL AND verified=1 AND (in_force=1 OR document_version_id IS NOT NULL) "
                      "AND (document_version_id IS NOT NULL OR ?=1) AND (document_version_id IS NULL OR EXISTS (SELECT 1 FROM legal_document_versions v "
