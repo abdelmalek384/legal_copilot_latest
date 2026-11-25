@@ -1868,3 +1868,11 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Commits: `da4a6e2` (compound-number normalization), `0e7d92e` (preserve prefixed-unit association), `99f06d9` (regressions).
 - GitHub read-back confirmed the source and tests. An isolated Python probe of the new parsing logic produced `25` for both English and Arabic compound forms and preserved English day units. The repository test module was **not executed**; this is not a full test pass.
 - No legal corpus data, legal labels, or product features were added. Pilot remains NOT READY.
+
+## AI-1 Arabic duration-unit normalization correction — 2026-11-25
+
+- Tightened numeric claim checking so common Arabic duration inflections are normalized before comparison. Forms such as `يوما` and `يوماً` now resolve to the same day unit, and common year/month/week/day variants are included.
+- Added synthetic regressions proving that a claim of 25 days is rejected against a source stating 25 years, while diacritic and non-diacritic spellings of the same day quantity match.
+- Commits: `d001633` (Arabic unit normalization), `e56f841` (regressions).
+- GitHub read-back and an isolated normalization probe confirmed the relevant forms normalize as intended. The repository test module was **not executed**.
+- No legal data, product features, or trust-label changes. Pilot remains NOT READY.
