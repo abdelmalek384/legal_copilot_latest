@@ -407,8 +407,9 @@ def conflict_name_matches(query, candidate):
     # Full token-set containment handles reordered words and repeated whitespace.
     if set(query_tokens).issubset(set(candidate_tokens)):
         return True
-    # Preserve the old useful substring behavior for partial names and case numbers.
-    return query_text in candidate_text
+    # Token containment above is sufficient for partial/reordered names. Avoid
+    # raw substring fallback, which can match inside unrelated words.
+    return False
 
 
 def grams(t):
