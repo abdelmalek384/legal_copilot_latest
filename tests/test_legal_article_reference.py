@@ -1,9 +1,13 @@
 import unittest
 
-from tools.legal_article_reference import extract_statute_reference, statute_title_matches
+from tools.legal_article_reference import extract_statute_reference, normalize_reference_digits, statute_title_matches
 
 
 class LegalArticleReferenceTests(unittest.TestCase):
+    def test_normalizes_arabic_and_persian_article_digits(self):
+        self.assertEqual(normalize_reference_digits("المادة ٥"), "المادة 5")
+        self.assertEqual(normalize_reference_digits("ماده ۵"), "ماده 5")
+
     def test_extracts_english_law_number_and_year(self):
         self.assertEqual(
             extract_statute_reference("Article 5 of Law No. 14 of 2025"),
