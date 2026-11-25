@@ -25,8 +25,13 @@ class LegalArticleReferenceTests(unittest.TestCase):
     def test_title_must_contain_matching_law_number_and_year(self):
         reference = ("14", "2025")
         self.assertTrue(statute_title_matches("قانون رقم 14 لسنة 2025", reference))
+        self.assertTrue(statute_title_matches("قانون العمل رقم 14 لسنة 2025", reference))
         self.assertTrue(statute_title_matches("Labour Law No. 14 of 2025", reference))
         self.assertFalse(statute_title_matches("قانون رقم 114 لسنة 2025", reference))
+        self.assertFalse(statute_title_matches("قانون رقم 2025 لسنة 14", reference))
+        self.assertFalse(statute_title_matches(
+            "قانون رقم 20 لسنة 2025؛ تعديل رقم 14 لسنة 2024", reference
+        ))
         self.assertFalse(statute_title_matches("قانون رقم 14 لسنة 2024", reference))
         self.assertFalse(statute_title_matches("قرار رقم 14 لسنة 2025", reference))
         self.assertFalse(statute_title_matches(None, reference))
