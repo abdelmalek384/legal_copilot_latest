@@ -154,10 +154,18 @@ class SyntheticRetrievalTests(unittest.TestCase):
             article="5", official_title="قانون رقم 20 لسنة 2024",
         )
 
-        matching = self.search("Article 5 of Law No. 14 of 2025")
-        self.assertEqual([hit["id"] for hit in matching], [matching_id])
-        self.assertEqual(self.search("Article 5"), [])
-        self.assertEqual(self.search("Article 5 of Law No. 99 of 2099"), [])
+        # Exercise both the standard and separate-database retrieval adapters.
+        for separate_runtime in (False, True):
+            with self.subTest(separate_runtime=separate_runtime):
+                with mock.patch.object(
+                    app, "_separate_runtime_enabled", return_value=separate_runtime
+                ):
+                    matching = self.search("Article 5 of Law No. 14 of 2025")
+                    self.assertEqual([hit["id"] for hit in matching], [matching_id])
+                    self.assertEqual(self.search("Article 5"), [])
+                    self.assertEqual(
+                        self.search("Article 5 of Law No. 99 of 2099"), []
+                    )
 
     def test_equal_score_passages_have_stable_id_order(self):
         first_id = self.fixture.add_passage(
