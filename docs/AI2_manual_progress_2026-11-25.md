@@ -117,3 +117,24 @@ Implemented directly on `main` without GitHub Actions:
 | **Overall AI-2 assignment** | **21%** | **22%** | **+1 pp** | One user-visible upload workflow corrected and regression contract added; direct commits read back |
 
 These are conservative implementation/evidence estimates, not test pass rates. Python suite, browser upload, mobile, two-firm acceptance, production deployment, and backup/restore rehearsal remain unrun/outstanding. No claim is made that storage integration or production upload behavior has been runtime-validated.
+
+
+## Follow-up checkpoint — idempotent task completion — 2026-11-25
+
+- Fixed duplicate case-history writes in `POST /tasks/{tid}/done`: the database update now changes only a task not already marked done, and the completion event is emitted only when the conditional update changes a row. This also closes the concurrent double-submit window for duplicate event creation.
+- Preserved the route response and existing authorization path; no migration, schema, deadline-calculation, or retrieval changes.
+- Extended the existing separate-database firm workflow test to call the endpoint twice and assert one completion event and a final `done` status.
+- Commits: `c95b01ae8814bd5e673418ff27bb2496ff63aa0a`, `99ddcb8b88b48e54463f50a699d38ac78eed2657`. Read-back verified both updated files. Test execution remains unavailable; this is authored regression coverage, not a passing test result.
+
+| Workstream | Previous | Current | Change | Evidence |
+|---|---:|---:|---:|---|
+| Backend and existing workflows | 25% | 26% | +1 pp | Task completion now records one event despite repeated/concurrent completion requests |
+| Frontend and usability | 22% | 23% | +1 pp | Compact document upload blocks duplicate submission and reports failures |
+| Mobile and Arabic/English UI | 15% | 15% | 0 pp | No device/viewport acceptance added |
+| Security and tenant isolation | 30% | 30% | 0 pp | No new isolation claims; existing authorization path retained |
+| Documents and file handling | 30% | 32% | +2 pp | Upload guard/error handling and correct post-success case refresh |
+| Deployment and recovery | 15% | 15% | 0 pp | No deployment/recovery evidence added |
+| Local testing and regression | 7% | 8% | +1 pp | Added repeat-completion regression assertion; not executed |
+| **Overall AI-2 assignment** | **22%** | **23%** | **+1 pp** | One additional backend workflow defect fixed with focused regression coverage |
+
+Estimates reflect implemented changes and authored evidence, not test pass rates or pilot readiness. Python 3.12 suite, browser/device acceptance, two-firm runtime acceptance, deployment, and backup/restore rehearsal remain outstanding.
