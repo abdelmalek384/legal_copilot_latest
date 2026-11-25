@@ -17,6 +17,11 @@ def _normalize_digits(value: str) -> str:
     return "".join(output)
 
 
+def normalize_reference_digits(value: str) -> str:
+    """Normalize Arabic-Indic and Persian digits in a legal reference string."""
+    return _normalize_digits(value)
+
+
 def _normalized_words(value: str) -> str:
     value = _normalize_digits(value).casefold()
     value = "".join(
