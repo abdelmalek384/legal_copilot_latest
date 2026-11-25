@@ -5481,6 +5481,59 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertIn("Hearing: Workflow acceptance matter", calendar.text)
 
 
+    def test_dashboard_calendar_and_overdue_fee_windows_use_cairo_local_date(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate("post", "/cases", json={"title": "Cairo date boundary matter"})
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+
+        cairo_today = date.today() + timedelta(days=1)
+        hearing_date = (cairo_today + timedelta(days=14)).isoformat()
+        dashboard_deadline_date = (cairo_today + timedelta(days=30)).isoformat()
+        calendar_deadline_date = (cairo_today + timedelta(days=90)).isoformat()
+        overdue_fee_date = (cairo_today - timedelta(days=1)).isoformat()
+
+        session = self._mutate(
+            "post", f"/cases/{case_id}/sessions",
+            json={"date": hearing_date, "note": "Cairo boundary hearing"},
+        )
+        self.assertEqual(session.status_code, 200, session.text)
+        deadline = self._mutate(
+            "post", f"/cases/{case_id}/deadlines",
+            json={"title": "Cairo 30-day dashboard deadline", "due": dashboard_deadline_date},
+        )
+        self.assertEqual(deadline.status_code, 200, deadline.text)
+        calendar_deadline = self._mutate(
+            "post", f"/cases/{case_id}/deadlines",
+            json={"title": "Cairo 90-day calendar deadline", "due": calendar_deadline_date},
+        )
+        self.assertEqual(calendar_deadline.status_code, 200, calendar_deadline.text)
+        fee = self._mutate(
+            "post", f"/cases/{case_id}/fees",
+            json={"title": "Cairo boundary overdue fee", "amount": 1250, "paid": 0, "due": overdue_fee_date},
+        )
+        self.assertEqual(fee.status_code, 200, fee.text)
+
+        with patch.object(app, "_invoice_today", return_value=cairo_today):
+            dashboard = self.client.get("/dashboard")
+            self.assertEqual(dashboard.status_code, 200, dashboard.text)
+            self.assertTrue(any(x["date"] == hearing_date for x in dashboard.json()["sessions"]))
+            self.assertTrue(any(x["due"] == dashboard_deadline_date for x in dashboard.json()["deadlines"]))
+
+            finance = self.client.get("/finance/overview")
+            self.assertEqual(finance.status_code, 200, finance.text)
+            self.assertEqual(finance.json()["overdue_count"], 1)
+            self.assertEqual(finance.json()["overdue_amount"], 1250)
+
+            calendar = self.client.get("/calendar.ics")
+            self.assertEqual(calendar.status_code, 200, calendar.text)
+            self.assertIn(f"DTSTART;VALUE=DATE:{calendar_deadline_date.replace('-', '')}", calendar.text)
+            self.assertIn("Cairo 90-day calendar deadline", calendar.text)
+
+
     def test_calendar_text_escaping_prevents_crlf_line_injection(self):
         self.assertEqual(
             app._ics_escape("a\\b,c;d\r\ne\rf\ng"),
