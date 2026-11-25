@@ -153,3 +153,12 @@ Each gate requires an owner, exact candidate commit, reproducible command/config
 - `tenant_catalog.py` rejects symlink storage-root components and symlink tenant files and enforces a firm-ID-bound filename format before resolving paths. This is useful path validation, but it uses pathname checks followed by later file operations; the source review did not establish race-resistant open semantics (e.g. directory-descriptor-relative opens with no-follow flags). Treat this as **NOT TESTED / deployment-dependent** against a local attacker able to modify the tenant storage directory. Restrict that directory to the application service account and administrators; do not grant firm users or unrelated processes write access. This is not a confirmed exploitable vulnerability, but it is not proof of TOCTOU safety either.
 ### Legacy login throttling privacy — source fix committed
 - The legacy `/login` handler previously persisted normalized email and raw client IP in `login_attempts`. It now derives purpose-separated HMAC pseudonyms using the dedicated identity rate-limit key; production/staging returns 503 if that key is unavailable, while the raw-identifier fallback is development-only. Commit `a2ec1f9`. This addresses the source-level PII persistence issue but still requires runtime regression and production configuration verification.
+
+
+## Manual reminder date parsing hardening — 2026-11-25
+
+- `tools/reminder_service.py::_date_only` previously accepted any string whose first ten characters formed a date, silently ignoring malformed suffixes (for example, `2026-01-02garbage`). That could turn corrupt task/deadline/session data into a seemingly valid reminder date.
+- The helper now accepts canonical date-only values or a complete ISO-8601 datetime (with `T` or space separator); malformed suffixes fail closed. Existing date-only scheduling semantics are preserved.
+- Added a regression covering date-only input, ISO datetimes with and without offsets, arbitrary suffixes, malformed times, newline suffixes and slash suffixes.
+- An isolated Python harness against the committed helper logic passed 7/7 cases. The repository reminder-service test module and full suite were **not executed** because the local checkout and Python 3.12 environment are unavailable. No reminder delivery, browser, or production workflow is claimed as tested.
+- Branch: `ai2/strict-reminder-date-parsing-20261125`. Commits: `63924c0` (strict parser), `065007e` (regression).
