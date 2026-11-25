@@ -798,11 +798,19 @@ class ClaimSupportTests(unittest.TestCase):
                 "The employer must provide notice [1].",
             ),
             (
+                "The employer must not deduct wages or must provide notice.",
+                "The employer must provide notice [1].",
+            ),
+            (
                 "لا يجب على صاحب العمل خصم الأجر ويجب عليه تقديم الإخطار.",
                 "يجب على صاحب العمل تقديم الإخطار [1].",
             ),
             (
                 "لا يجب على صاحب العمل خصم الأجر، ويجب عليه تقديم الإخطار.",
+                "يجب على صاحب العمل تقديم الإخطار [1].",
+            ),
+            (
+                "لا يجب على صاحب العمل خصم الأجر أو يجب عليه تقديم الإخطار.",
                 "يجب على صاحب العمل تقديم الإخطار [1].",
             ),
         )
