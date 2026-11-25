@@ -1,3 +1,9 @@
+## Source-match approved-use guard manual check — 2026-11-25
+
+- Executed an isolated in-memory SQLite check of the new trigger: inserting an approved use against `reuse_rights_allowed=0` was rejected; inserting a scoped use against a separate `reuse_rights_allowed=1` evidence row succeeded.
+- This validates the trigger condition in isolation only. It does **not** execute the repository migration runner or the full `tests/test_source_match_evidence_storage.py` suite.
+- AI-1 progress percentages remain unchanged pending execution of the repository regression tests and broader validation.
+
 ## Source-match approved-use rights guard — 2026-11-25
 
 - Found an inconsistency in the evidence store: an approved-use row could be inserted even when its parent evidence packet explicitly set `reuse_rights_allowed=0`. The adapter then returned that use alongside a negative rights flag, creating a risk that downstream code could consume contradictory scope metadata.
