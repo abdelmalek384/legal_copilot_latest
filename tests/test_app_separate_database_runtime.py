@@ -5470,6 +5470,10 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             json={"title": "Workflow appeal deadline", "due": due, "note": "Verify source"},
         )
         self.assertEqual(deadline.status_code, 200, deadline.text)
+        deadline_id = db.execute(
+            "SELECT id FROM deadlines WHERE case_id=? AND title=?",
+            (case_id, "Workflow appeal deadline"),
+        ).fetchone()["id"]
         hearing = self._mutate(
             "post", f"/cases/{case_id}/sessions",
             json={"date": due, "note": "Workflow hearing"},
@@ -5506,12 +5510,12 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertIn("Legal deadline: Workflow appeal deadline", calendar.text)
         self.assertIn("Hearing: Workflow acceptance matter", calendar.text)
 
-        completed_deadline = self._mutate("post", f"/deadlines/{deadline.json()['id']}/done")
+        completed_deadline = self._mutate("post", f"/deadlines/{deadline_id}/done")
         repeated_deadline_completion = self._mutate("post", f"/deadlines/{deadline.json()['id']}/done")
         self.assertEqual(completed_deadline.status_code, 200, completed_deadline.text)
         self.assertEqual(repeated_deadline_completion.status_code, 200, repeated_deadline_completion.text)
         deadline_state = db.execute(
-            "SELECT status FROM deadlines WHERE id=?", (deadline.json()["id"],)
+            "SELECT status FROM deadlines WHERE id=?", (deadline_id,)
         ).fetchone()
         self.assertEqual(deadline_state["status"], "done")
         deadline_events = db.execute(
