@@ -82,6 +82,16 @@ class ManualCaptureRecordTests(unittest.TestCase):
                 self.assertTrue(any(field in error for error in result["errors"]))
                 self.record[field] = original
 
+    def test_source_and_permission_urls_reject_single_raw_backslash(self):
+        for field in ("source_url", "terms_url", "collection_permission_evidence_url",
+                      "commercial_reuse_evidence_url"):
+            with self.subTest(field=field):
+                original = self.record[field]
+                self.record[field] = "https://example.gov\\rights/source"
+                result = validate_capture_record(self.record, self.record_path)
+                self.assertFalse(result["valid"])
+                self.assertTrue(any(field in error for error in result["errors"]))
+                self.record[field] = original
     def test_source_and_permission_urls_reject_fragments_empty_userinfo_and_signed_queries(self):
         unsafe_urls = (
             "https://example.gov/source#section",

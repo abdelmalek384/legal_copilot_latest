@@ -57,7 +57,7 @@ def _reject_duplicate_json_keys(pairs):
 def _https_url(value: object) -> bool:
     if not isinstance(value, str) or not value or value != value.strip():
         return False
-    if "\\\\" in value or any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in value):
+    if "\\" in value or any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in value):
         return False
     try:
         parsed = urlsplit(value)
