@@ -2297,8 +2297,8 @@ async function clientProfileForm(profile=null){
  const inputs={};
  const nameError=h('span',{id:'client-profile-name-error',className:'bad',role:'alert',hidden:true,textContent:uiText('اسم العميل مطلوب.','A client name is required.')});
  fields.forEach(([key,label,required])=>inputs[key]=h(key==='notes'?'textarea':'input',{
-  name:key,placeholder:label,required,type:key==='email'?'email':undefined,
-  autocomplete:key==='email'?'email':undefined,rows:key==='notes'?3:undefined,
+  name:key,placeholder:label,required,type:key==='email'?'email':key==='phone'?'tel':undefined,
+  autocomplete:key==='email'?'email':key==='phone'?'tel':undefined,inputmode:key==='phone'?'tel':undefined,rows:key==='notes'?3:undefined,
   value:profile?.[key]||'',style:'width:100%'
  }));
  inputs.name.setAttribute('aria-describedby',nameError.id);
