@@ -9,10 +9,10 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 
 ## Manual integration checkpoint — 2026-11-25
 
-- Mainline now includes manually reviewed corrections in PRs #2010, #2012, #2001, #2016, #2018, #2019, #2020, #2021, #2022 and #2023. Current summary and AI-1 implementation estimates are recorded in docs/STATUS.md.
+- Mainline now includes manually reviewed corrections in PRs #2010, #2012, #2001, #2016, #2018, #2019, #2020, #2021, #2022, #2023 and #2026. Current summary and AI-1 implementation estimates are recorded in docs/STATUS.md.
 - Corresponding stale drafts were closed as superseded after their changes were consolidated onto current main. Dependency update drafts #1873, #1874, #1876 and #1877 remain unmerged pending Python 3.12 lock reconciliation and clean-install/audit evidence.
 - No repository test modules were executed in this work session. Added regression tests are authored but not passed until run in a supported Python 3.12 environment. GitHub Actions remain excluded due runner billing.
-- Tenant database and SQLite sidecar hard-link checks are defense in depth. Pathname-based SQLite opening is not descriptor-to-path identity proof; the storage root must remain writable only by the application service account and administrators. See docs/manual_tenant_storage_review_2026-11-25.md.
+- Legal source-status and permission-register date checks now use Africa/Cairo (PR #2026). Tenant database and SQLite sidecar hard-link checks are defense in depth. Pathname-based SQLite opening is not descriptor-to-path identity proof; the storage root must remain writable only by the application service account and administrators. See docs/manual_tenant_storage_review_2026-11-25.md.
 - Lawyer pilot remains NOT READY. Legal verification, source-currentness review, supported-runtime execution, two-firm authorization acceptance, and witnessed backup/restore remain separate gates.
 
 
