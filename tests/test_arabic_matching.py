@@ -4,7 +4,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from app import SYS, conflict_name_matches, expanded_tokens, matched_surface_terms, tokens
+from app import SYS, conflict_case_number_matches, conflict_name_matches, expanded_tokens, matched_surface_terms, tokens
 import tools.arabic_legal_matching as MATCHING
 from tools.arabic_legal_matching import orthographic_variants
 
@@ -332,6 +332,17 @@ class ArabicMatchingTests(unittest.TestCase):
     def test_generic_descriptor_alone_does_not_match_every_company(self):
         self.assertFalse(conflict_name_matches("شركة", "شركة النيل"))
         self.assertFalse(conflict_name_matches("شركة", "شركة أخرى"))
+
+    def test_conflict_name_match_does_not_match_inside_unrelated_word(self):
+        self.assertFalse(conflict_name_matches("عمر", "عمرو حسن"))
+        self.assertFalse(conflict_name_matches("Ali", "Malik"))
+
+    def test_case_number_conflict_match_requires_exact_numeric_sequence(self):
+        self.assertTrue(conflict_case_number_matches("123/2024", "123/2024"))
+        self.assertTrue(conflict_case_number_matches("١٢٣/٢٠٢٤", "123/2024"))
+        self.assertFalse(conflict_case_number_matches("2024", "123/2024"))
+        self.assertFalse(conflict_case_number_matches("123", "123/2024"))
+        self.assertFalse(conflict_case_number_matches("123/2024", "123/2025"))
 
     def test_empty_names_never_match(self):
         self.assertFalse(conflict_name_matches("", "عمر فتحي"))
