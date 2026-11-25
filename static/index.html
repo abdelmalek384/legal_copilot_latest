@@ -3267,7 +3267,7 @@ async function law(){
    updateEvidenceCoverage();
    thread.scrollTop=thread.scrollHeight;
  };
- const loadConversation=async id=>{const data=await api('/research/conversations/'+id);activeId=id;renderMessages(data.messages||[]);drawList()};
+ const loadConversation=async id=>{const data=await api('/research/conversations/'+id);activeId=id;renderMessages(Array.isArray(data.messages)?data.messages:[]);try{await drawList()}catch(error){const detail=String(error?.message||'').trim();researchStatus.textContent=(LANG==='ar'?'تم فتح المحادثة، لكن تعذر تحديث سجل المحادثات. ':'Conversation opened, but the history list could not be refreshed. ')+(detail&&detail!=='api'?detail:'')}};
  const renderList=()=>{
    const head=h('div',{className:'research-list-head'},h('b',{textContent:LANG==='ar'?'جلسات البحث':'Research sessions'}),h('div',{className:'research-list-head-actions'},historyToggle,makeBtn(LANG==='ar'?'محادثة جديدة':'New conversation',newChat,'primary')));
    sidebar.replaceChildren(head,conversationFilter);
@@ -3283,7 +3283,7 @@ async function law(){
    if(!conversationItems.length)sidebar.append(h('p',{className:'mut',textContent:copy('لا توجد محادثات بعد')}));
    else if(!list.length)sidebar.append(h('p',{className:'mut',textContent:LANG==='ar'?'لا توجد محادثات مطابقة.':'No matching conversations.'}));
    for(const c of list){
-     const openButton=h('button',{className:'research-conversation '+(c.id===activeId?'active':''),textContent:c.title,onclick:()=>loadConversation(c.id)});
+     const openButton=h('button',{className:'research-conversation '+(c.id===activeId?'active':''),textContent:c.title,onclick:async()=>{try{await loadConversation(c.id)}catch(error){const detail=String(error?.message||'').trim();researchStatus.textContent=(LANG==='ar'?'تعذر فتح المحادثة. ':'Could not open the conversation. ')+(detail&&detail!=='api'?detail:'')}}});
      const renameButton=h('button',{className:'research-delete',type:'button',textContent:'✎',title:LANG==='ar'?'إعادة تسمية المحادثة':'Rename conversation','aria-label':(LANG==='ar'?'إعادة تسمية المحادثة: ':'Rename conversation: ')+c.title,onclick:async()=>{
        const title=window.prompt(LANG==='ar'?'اكتب عنواناً جديداً للمحادثة':'Enter a new conversation title',c.title);
        if(title===null)return;
