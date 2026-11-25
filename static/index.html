@@ -1778,8 +1778,11 @@ async function billingPage(){
   (!sub||sub.status==='trial')?h('div',{className:'row'},planSelect,btn(sub?uiText('تغيير الخطة','Change plan'):uiText('بدء تجربة مجانية لمدة 14 يوماً','Start 14-day free trial'),async()=>{try{await api('/billing/subscribe','POST',{plan_code:planSelect.value});toast(uiText('تم تحديث الاشتراك','Subscription updated'));billingPage()}catch(e){toast(String(e.message||e))}},'g')):null);
  const amount=h('input',{type:'text',inputMode:'decimal',placeholder:uiText('المبلغ بالجنيه المصري مثل 500.00','Amount in EGP, e.g. 500.00')});
  const method=h('select',{'aria-label':uiText('طريقة الدفع','Payment method')},new Option(uiText('تحويل بنكي','Bank transfer'),'bank_transfer'),new Option('InstaPay','instapay'));
- const reference=h('input',{placeholder:uiText('رقم مرجع التحويل','Transfer reference'), 'aria-label':uiText('رقم مرجع التحويل','Transfer reference')});\n amount.setAttribute('aria-label',uiText('المبلغ بالجنيه المصري','Amount in EGP'));
- reference.setAttribute('aria-label',uiText('رقم مرجع التحويل','Transfer reference'));\n amount.addEventListener('input',()=>amount.removeAttribute('aria-invalid'));\n reference.addEventListener('input',()=>reference.removeAttribute('aria-invalid'));
+ const reference=h('input',{placeholder:uiText('رقم مرجع التحويل','Transfer reference'), 'aria-label':uiText('رقم مرجع التحويل','Transfer reference')});
+ amount.setAttribute('aria-label',uiText('المبلغ بالجنيه المصري','Amount in EGP'));
+ reference.setAttribute('aria-label',uiText('رقم مرجع التحويل','Transfer reference'));
+ amount.addEventListener('input',()=>amount.removeAttribute('aria-invalid'));
+ reference.addEventListener('input',()=>reference.removeAttribute('aria-invalid'));
  const paymentButton=btn(uiText('إرسال إثبات التحويل للمراجعة','Submit transfer for review'),async()=>{
   let piasters;
   try{piasters=egpToPiasters(amount.value)}catch(e){toast(String(e.message||e));return}
