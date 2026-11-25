@@ -323,9 +323,11 @@ def group_candidate_entity_mentions(
         document_truncated = len(entities) > max_entities_per_document
         if document_truncated:
             truncated = True
+        stop_scan = False
         for entity in entities[:max_entities_per_document]:
             if entity_records_inspected >= max_entity_records:
                 truncated = True
+                stop_scan = True
                 break
             entity_records_inspected += 1
             if not isinstance(entity, dict) or entity.get("entity_type") not in allowed_types:
@@ -335,6 +337,7 @@ def group_candidate_entity_mentions(
                 continue
             if candidate_count >= max_candidates:
                 truncated = True
+                stop_scan = True
                 break
             normalized = " ".join(unicodedata.normalize("NFKC", literal).casefold().split())
             if not normalized:
@@ -356,7 +359,7 @@ def group_candidate_entity_mentions(
         # A per-document cap makes this document partial, but must not prevent
         # later documents from contributing. Stop only when a global scan budget
         # is exhausted; document-level truncation is reported separately.
-        if entity_records_inspected >= max_entity_records or candidate_count >= max_candidates:
+        if stop_scan:
             break
 
     # Document truncation is independent of candidate truncation: still inspect
