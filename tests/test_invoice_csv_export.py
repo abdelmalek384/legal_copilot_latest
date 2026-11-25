@@ -88,6 +88,10 @@ class InvoiceCsvExportTests(InvoiceTestSupport, unittest.TestCase):
         self.assertEqual(app_safe("=HYPERLINK(\"https://bad.example\")"),
                          "'=HYPERLINK(\"https://bad.example\")")
         self.assertEqual(app_safe("  @SUM(1,1)"), "'  @SUM(1,1)")
+        self.assertEqual(app_safe("\u00a0=HYPERLINK(\"https://bad.example\")"),
+                         "'\u00a0=HYPERLINK(\"https://bad.example\")")
+        self.assertEqual(app_safe("\u2003+CMD|/C calc!A0"),
+                         "'\u2003+CMD|/C calc!A0")
         self.assertEqual(app_safe("Client Snapshot"), "Client Snapshot")
 
 
