@@ -168,7 +168,7 @@ class SyntheticRetrievalTests(unittest.TestCase):
                     )
 
     def test_exact_article_boost_is_reserved_for_statute_qualified_corpus_rows(self):
-        article_match = app.re.search(r"(\\d+)", "5")
+        article_match = app.re.search(r"(\d+)", "5")
         reference = ("14", "2025")
         row = {"article": "5"}
 
