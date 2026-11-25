@@ -189,6 +189,8 @@ class ReminderOutboxTests(unittest.TestCase):
             finish_attempt(self.db, claimed["id"], result_status="failed", error_code="private provider response")
         with self.assertRaises(ReminderOutboxError):
             finish_attempt(self.db, claimed["id"], result_status="accepted_by_smtp", provider_message_id="x\nBcc: bad")
+        with self.assertRaisesRegex(ReminderOutboxError, "result_status is invalid"):
+            finish_attempt(self.db, claimed["id"], result_status=[])
 
 
 if __name__ == "__main__":
