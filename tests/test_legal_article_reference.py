@@ -30,6 +30,15 @@ class LegalArticleReferenceTests(unittest.TestCase):
             ("14", "2025"),
         )
 
+    def test_extracts_arabic_statute_reference_with_attached_prepositions(self):
+        for question in (
+            "المادة ٥ بالقانون رقم ١٤ لسنة ٢٠٢٥",
+            "المادة ٥ للقانون رقم ١٤ لسنة ٢٠٢٥",
+            "المادة ٥ والقانون رقم ١٤ لسنة ٢٠٢٥",
+        ):
+            with self.subTest(question=question):
+                self.assertEqual(extract_statute_reference(question), ("14", "2025"))
+
     def test_rejects_article_number_without_explicit_statute(self):
         self.assertIsNone(extract_statute_reference("Article 5"))
 
