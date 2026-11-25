@@ -161,4 +161,4 @@ Each gate requires an owner, exact candidate commit, reproducible command/config
 - The helper now accepts canonical date-only values or a complete ISO-8601 datetime (with `T` or space separator); malformed suffixes fail closed. Existing date-only scheduling semantics are preserved.
 - Added a regression covering date-only input, ISO datetimes with and without offsets, arbitrary suffixes, malformed times, newline suffixes and slash suffixes.
 - An isolated Python harness against the committed helper logic passed 7/7 cases. The repository reminder-service test module and full suite were **not executed** because the local checkout and Python 3.12 environment are unavailable. No reminder delivery, browser, or production workflow is claimed as tested.
-- Branch: `ai2/strict-reminder-date-parsing-20261125`. Commits: `63924c0` (strict parser), `065007e` (regression).
+- Branch: `ai2/strict-reminder-date-parsing-20261125`; draft PR [#2002](https://github.com/abdelmalek384/legal_copilot_latest/pull/2002) opened for manual review. Commits: `63924c0` (strict parser), `065007e` (regression).
