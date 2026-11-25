@@ -1,3 +1,13 @@
+## AI-2 Cairo-local frontend date correction — 2026-11-25
+
+- Found a cross-time-zone consistency defect in the application shell: task overdue labels and deadline comparisons, browser reminder summaries, and the calendar's current-day marker derived dates from the browser's local timezone, while the application workflow and backend defaults are Cairo-local.
+- Added one `cairoDateKey` helper using the IANA `Africa/Cairo` timezone. The helper applies day offsets using UTC calendar arithmetic after resolving the Cairo date, avoiding reliance on the browser timezone and avoiding 23/25-hour local-day arithmetic for the next-day reminder key.
+- Updated the shared frontend `today` key, local reminder today/tomorrow calculation, and calendar current-day calculation to use the Cairo date. No backend deadline values, persisted dates, database rows, or legal calculations were changed.
+- Added `test_frontend_deadline_and_reminder_dates_use_cairo_calendar_day` to `tests/test_frontend_ux_contract.py`.
+- Manually exercised the exact date helper in the available JavaScript runtime against instants immediately before and at Cairo midnight, plus an April date case. All three expected Cairo-day and next-day outputs matched.
+- Commits integrated into `main`: `8e49f5e` (frontend correction) and `4440fbf` (source-contract regression). GitHub read-back verified both updated blobs and all seven authored source-presence checks.
+- Evidence limits: the repository Python test suite, browser, device, and full app were not executed. The isolated helper checks validate the date-key function only, not the whole UI lifecycle.
+
 ## Strict source-evidence flag validation — 2026-11-25
 
 - The source-match evidence adapter now accepts persisted boolean flags only as SQLite integer values 0 or 1. Truthy malformed values such as 2, -1, strings, nulls, and booleans from alternate adapters fail closed instead of being coerced with `bool()` into affirmative evidence.
