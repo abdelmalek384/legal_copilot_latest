@@ -392,6 +392,14 @@ class LegalAnswerEvaluationTests(unittest.TestCase):
         self.assertEqual(report["unreviewed_questions_excluded"], 0)
 
 
+    def test_missing_practice_area_uses_unspecified_default_for_reviewer_scope(self):
+        q = approved()
+        q.pop("practice_area")
+        registry = reviewer_registry()
+        registry["reviewers"][0]["practice_areas"].append("unspecified")
+        report = evaluate([q], [result()], registry)
+        self.assertEqual(report["results"][0]["practice_area"], "unspecified")
+
     def test_stable_answer_id_is_propagated_and_coverage_is_reported(self):
         report = score([approved()], [result()])
         self.assertEqual(report["schema_version"], 2)
