@@ -23,12 +23,16 @@ class ReminderScheduleError(ValueError):
     """Raised when normalized reminder input is invalid."""
 
 
+class DuplicateReminderJSONKeyError(ReminderScheduleError):
+    """Raised when reminder JSON contains an ambiguous repeated object key."""
+
+
 def _reject_duplicate_json_keys(pairs):
     """Reject ambiguous reminder input instead of silently keeping the last value."""
     result = {}
     for key, value in pairs:
         if key in result:
-            raise ValueError(f"duplicate JSON object key: {key!r}")
+            raise DuplicateReminderJSONKeyError(f"duplicate JSON object key: {key!r}")
         result[key] = value
     return result
 
