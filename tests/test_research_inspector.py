@@ -407,11 +407,21 @@ class ResearchInspectorTests(unittest.TestCase):
             ("collection_permission", "unknown"),
             ("commercial_reuse_permission", "unknown"),
             ("source_permission_evidence", ""),
+            ("source_permission_evidence", ["not evidence"]),
+            ("source_permission_evidence", {"reference": "not evidence"}),
+            ("source_permission_evidence", 123),
+            ("source_permission_evidence", True),
         ):
             with self.subTest(field=field):
                 candidate = dict(provenance)
                 candidate[field] = value
                 self.assertFalse(source_permission_evidence_ready(candidate))
+
+    def test_permission_evidence_fields_must_be_nonempty_strings(self):
+        for value in ([], {"reference": "not evidence"}, 123, True, None, " "):
+            source = valid_source()
+            source["provenance"]["permission_evidence"] = value
+            self.assertEqual(source_status(source, "2026-10-24"), STATUS_REVIEW, repr(value))
 
     def test_current_permission_review_dates_do_not_override_historical_legal_as_of_date(self):
         source = valid_source()

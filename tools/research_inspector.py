@@ -172,7 +172,8 @@ def source_permission_evidence_ready(provenance):
         return False
     if provenance.get("commercial_reuse_permission") != "allowed":
         return False
-    if not str(provenance.get("source_permission_evidence") or "").strip():
+    source_permission_evidence = provenance.get("source_permission_evidence")
+    if not isinstance(source_permission_evidence, str) or not source_permission_evidence.strip():
         return False
     return central_permission_register_ready(provenance)
 
@@ -255,7 +256,8 @@ def source_status(source, as_of=None):
             return STATUS_REVIEW
         if not source_permission_evidence_ready(provenance):
             return STATUS_REVIEW
-        if not str(provenance.get("permission_evidence") or "").strip():
+        if (not isinstance(provenance.get("permission_evidence"), str)
+                or not provenance["permission_evidence"].strip()):
             return STATUS_REVIEW
         evidence = provenance.get("source_match_evidence")
         if not isinstance(evidence, Mapping) or evidence.get("original_capture_sha256") != original_sha256:
@@ -332,7 +334,8 @@ def source_status(source, as_of=None):
         return STATUS_REVIEW
     if not source_permission_evidence_ready(provenance):
         return STATUS_REVIEW
-    if not str(provenance.get("permission_evidence") or "").strip():
+    if (not isinstance(provenance.get("permission_evidence"), str)
+                or not provenance["permission_evidence"].strip()):
         return STATUS_REVIEW
     if not _has_current_review_evidence(provenance):
         return STATUS_REVIEW
