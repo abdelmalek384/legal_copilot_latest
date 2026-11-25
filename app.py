@@ -1172,6 +1172,19 @@ _CORPUS_EXACT_ARTICLE_SQL = (
 )
 
 
+def _row_matches_statute_reference(c, row, reference):
+    """Fail closed unless a corpus row's registry title matches the explicit law reference."""
+    version_id = row["document_version_id"]
+    if version_id is None:
+        return False
+    title_row = c.execute(
+        "SELECT d.official_title FROM legal_document_versions v "
+        "JOIN legal_documents d ON d.document_id=v.document_id WHERE v.version_id=?",
+        (version_id,),
+    ).fetchone()
+    return bool(title_row and statute_title_matches(title_row["official_title"], reference))
+
+
 def _search_separate(c, q, case_id, k, firm_id, as_of, scope):
     expanded_qt = expanded_tokens(q)
     if not expanded_qt:
@@ -1194,6 +1207,11 @@ def _search_separate(c, q, case_id, k, firm_id, as_of, scope):
         corpus_rows = corpus.execute(
             _CORPUS_SEARCH_SQL, (fts_query, counsel_allowlist_json, as_of, as_of)
         ).fetchall()
+        if statute_reference:
+            corpus_rows = [
+                row for row in corpus_rows
+                if _row_matches_statute_reference(corpus, row, statute_reference)
+            ]
         seen = {row["id"] for row in corpus_rows}
         # Exact article-number fallback is permitted only when the question names
         # a statute by both number and year and the official registry title matches.
@@ -1294,7 +1312,11 @@ def search(c, q, case_id=None, k=5, firm_id=1, as_of=None, scope="all_permitted"
         allow_legacy = os.environ.get("ALLOW_UNLINKED_LEGACY_LAW_SEARCH", "").strip() == "1"
         counsel_allowlist_json = json.dumps(sorted(_qualified_egyptian_counsel_user_ids()))
         params = (" OR ".join('"%s"' % t.replace('"', '""') for t in expanded_qt), case_id, firm_id, int(allow_legacy), scope, scope, scope, counsel_allowlist_json, as_of, as_of)
-        for r in c.execute(SQL, params): cand[r["id"]] = (r, -r["r"])
+        for r in c.execute(SQL, params):
+            if (statute_reference and r["case_id"] is None
+                    and not _row_matches_statute_reference(c, r, statute_reference)):
+                continue
+            cand[r["id"]] = (r, -r["r"])
     am = re.search(r"(?:ماده|الماده|article|art)\s*\.?\s*(\d+)", norm(q))
     statute_reference = extract_statute_reference(q)
     if am and statute_reference and scope != "firm_documents":

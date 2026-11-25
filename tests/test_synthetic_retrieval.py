@@ -149,7 +149,8 @@ class SyntheticRetrievalTests(unittest.TestCase):
             article="5", official_title="قانون رقم 14 لسنة 2025",
         )
         self.fixture.add_passage(
-            "SYNTH-LAW-20-2024", "نص اختبار خيالي لا يتضمن رقم المادة أو اسم القانون.",
+            "SYNTH-LAW-20-2024",
+            "نص اختبار خيالي يشير عرضا إلى قانون رقم 14 لسنة 2025 لكنه تابع لقانون آخر.",
             article="5", official_title="قانون رقم 20 لسنة 2024",
         )
 
