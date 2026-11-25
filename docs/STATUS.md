@@ -1,5 +1,12 @@
 # Legal Copilot — release-candidate status
 
+## Manual integration checkpoint — 2026-11-25 (PR #2030)
+
+- **PR #2030 (a83239c) merged:** billing payment amount and transfer-reference fields now have explicit accessible names; invalid submission sets aria-invalid, focuses the relevant control, and correction clears invalid state. Added frontend source-contract regression coverage.
+- Static review only. Python/browser tests remain unexecuted; GitHub Actions billing is unavailable.
+
+# Legal Copilot — release-candidate status
+
 **Updated:** 2026-11-25  
 **Decision:** **NOT READY** for lawyer pilot or production. This is an engineering checkpoint, not legal, security or operational certification. Historical tracker detail is archived at [STATUS history](archive/STATUS_history_through_2026-11-13.md).
 
