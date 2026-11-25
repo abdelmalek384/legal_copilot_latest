@@ -2603,7 +2603,9 @@ def _origin_matches_request(origin, request):
                 or parsed.username or parsed.password
                 or parsed.path not in {"", "/"} or parsed.query or parsed.fragment):
             return False
-        _ = parsed.port
+        parsed_port = parsed.port
+        if parsed_port is not None and not 1 <= parsed_port <= 65535:
+            return False
         public_origin = os.environ.get("COPILOT_PUBLIC_ORIGIN", "")
         if public_origin:
             if has_unsafe_origin_text(public_origin):
@@ -2614,7 +2616,9 @@ def _origin_matches_request(origin, request):
                     or expected.username or expected.password or expected.path not in {"", "/"}
                     or expected.query or expected.fragment):
                 return False
-            _ = expected.port
+            expected_port = expected.port
+            if expected_port is not None and not 1 <= expected_port <= 65535:
+                return False
             return parsed.scheme == expected.scheme and parsed.netloc.lower() == expected.netloc.lower()
         return parsed.netloc.lower() == request.url.netloc.lower() and parsed.scheme == request.url.scheme
     except (TypeError, ValueError):
