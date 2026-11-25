@@ -6,12 +6,12 @@
 
 | AI-1 workstream | Previous | Current | Change | Evidence boundary |
 |---|---:|---:|---:|---|
-| Legal Research reliability | 47% | 53% | +6 pp | Exact-statute retrieval guard merged; runtime retrieval tests not executed |
+| Legal Research reliability | 47% | 54% | +7 pp | Exact-statute retrieval guard merged; runtime retrieval tests not executed |
 | Arabic retrieval and matching | 47% | 51% | +4 pp | Arabic/Persian digit normalization and exact case-number matching merged; benchmark performance unmeasured |
-| Citation and trust safeguards | 60% | 67% | +7 pp | Extraction-page provenance preserved; reviewer page references remain unverified |
-| Existing evaluation and tests | 26% | 40% | +14 pp | Focused regression coverage expanded; supported-runtime execution remains outstanding |
-| PR review and integration | 20% | 55% | +35 pp | Ten PR integrations recorded in docs/STATUS.md; stale duplicates closed |
-| **Overall AI-1 assignment** | **39%** | **47%** | **+8 pp** | Implementation estimate only; not runtime readiness |
+| Citation and trust safeguards | 60% | 68% | +8 pp | Extraction-page provenance preserved; reviewer page references remain unverified |
+| Existing evaluation and tests | 26% | 41% | +15 pp | Focused regression coverage expanded; supported-runtime execution remains outstanding |
+| PR review and integration | 20% | 58% | +38 pp | Ten PR integrations recorded in docs/STATUS.md; stale duplicates closed |
+| **Overall AI-1 assignment** | **39%** | **48%** | **+9 pp** | Implementation estimate only; not runtime readiness |
 
 Percentages measure implementation/evidence authoring against the assigned workstreams. They are not percentages of passing tests, legal accuracy, or production readiness.
 
