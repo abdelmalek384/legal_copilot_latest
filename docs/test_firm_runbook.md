@@ -70,3 +70,34 @@ Remove the demo firm only after exporting permitted synthetic evidence and confi
 python manage.py demo-firm remove --firm-id <DEMO_FIRM_ID> --confirm-remove
 ```
 The CLI refuses to remove a firm that is not marked as demo. Retain only sanitized test evidence under the project's restricted evidence policy.
+
+## 3A. Two-firm authorization acceptance matrix (manual, synthetic-only)
+
+Run this matrix only against an isolated local/staging deployment with two demo firms (Firm A and Firm B), distinct test accounts, and synthetic records. Record the commit SHA and sanitized evidence for each case. This is a procedure—not evidence of execution.
+
+### Seed and sentinels
+
+- Create two demo firms and at least one owner and one non-owner member per firm, where supported by the current role model.
+- Create a unique case, document, note, deadline, invoice, and client/matter record in Firm A and Firm B. Use unmistakable synthetic sentinel strings (for example, `SYNTH-A-<random>` and `SYNTH-B-<random>`); do not use real names or data.
+- Capture each firm's own record IDs using its authorized account. Do not alter cookies, tokens, or credentials between accounts except through the application's normal test login flow.
+
+### Denial and isolation checks
+
+| Surface | Firm A session attempting Firm B data | Expected |
+|---|---|---|
+| Case/matter detail | Direct navigation and API request using Firm B ID | Denied or indistinguishable not-found response; no Firm B content |
+| Document preview/download | Firm B document ID and original-file endpoint | Denied; no bytes, metadata, or revealing filename |
+| Search | Query Firm B sentinel and unique identifiers | No Firm B results or snippets |
+| Notes/activity | Firm B note/activity identifiers | Denied; no content or metadata leakage |
+| Deadline/session/fee | Firm B record IDs | Denied; no data or mutation |
+| Invoice/payment evidence | Firm B invoice IDs and export surfaces | Denied; no content or metadata leakage |
+| Bulk/export | Firm B scope or ID in export request | Denied; output contains only Firm A rows |
+| Mutation endpoints | Update/delete/review/role actions targeting Firm B | Denied; Firm B state remains unchanged |
+| Firm context switch | Missing/invalid CSRF or untrusted Origin | Denied; active firm/session context unchanged |
+| Search pagination | Follow/modify cursor while querying Firm A | No cross-tenant rows at any page |
+
+Repeat positive controls: Firm A must be able to read and mutate only its own authorized records, and Firm B must likewise access its own records. Test member-role restrictions separately from tenant boundary restrictions. For each denied action, confirm no state change by re-reading the target through Firm B's authorized account.
+
+### Result recording
+
+Use PASS only when the actual response and post-action state meet the expectation. Record endpoint/route or UI path, sanitized request parameters, status/result, response headers relevant to privacy, before/after state, tester, timestamp/timezone, browser/runtime and commit. Mark unexecuted cases BLOCKED—not PASS. Stop and log a release-blocking defect if any Firm B content, bytes, search result, or mutation is observable from Firm A.
