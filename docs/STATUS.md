@@ -1,3 +1,10 @@
+## Legal-corpus migration sequence correction — 2026-11-25
+
+- Found a duplicate migration version: both the immutable migration-history trigger migration and source-match evidence migration were numbered `0004`. The migration runner rejects duplicate versions, preventing the legal-corpus profile from migrating.
+- Renamed the source-match evidence migration to `0005_source_match_evidence.sql` and updated its storage test to expect migration version 5.
+- GitHub tree read-back confirms unique migration version numbers in `migrations/legal_corpus/`. The Python migration test has **not** been executed in this environment.
+- No database contents, legal corpus records, source evidence records, or legal trust labels were changed.
+
 ## Manual claim-support qualifier correction — 2026-11-25
 
 - Hardened the existing fail-closed claim-support qualifier check: English scope/finality terms are now matched case-insensitively, and Arabic diacritics/tatweel are normalized before qualifier comparison. This closes simple bypasses such as uppercase `ONLY` and vocalized `دائماً` / `حَصْرًا` when the cited passage does not support that stronger wording.
