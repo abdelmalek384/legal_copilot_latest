@@ -167,6 +167,24 @@ class SyntheticRetrievalTests(unittest.TestCase):
                         self.search("Article 5 of Law No. 99 of 2099"), []
                     )
 
+    def test_exact_article_boost_is_reserved_for_statute_qualified_corpus_rows(self):
+        article_match = app.re.search(r"(\\d+)", "5")
+        reference = ("14", "2025")
+        row = {"article": "5"}
+
+        self.assertTrue(app._is_exact_corpus_article_match(
+            "corpus", row, article_match, reference
+        ))
+        self.assertFalse(app._is_exact_corpus_article_match(
+            "firm", row, article_match, reference
+        ))
+        self.assertFalse(app._is_exact_corpus_article_match(
+            "corpus", row, article_match, None
+        ))
+        self.assertFalse(app._is_exact_corpus_article_match(
+            "corpus", {"article": "6"}, article_match, reference
+        ))
+
     def test_equal_score_passages_have_stable_id_order(self):
         first_id = self.fixture.add_passage(
             "SYNTH-TIE-01", "نص اختبار خيالي وليس قانونا: إثبات علاقة العمل وعقد العمل."
