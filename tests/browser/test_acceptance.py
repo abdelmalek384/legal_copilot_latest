@@ -335,7 +335,7 @@ class BrowserAcceptanceTests(unittest.TestCase):
         self.page.set_default_navigation_timeout(8000)
         self.browser_errors: list[str] = []
         self.network_errors: list[str] = []
-        self.page.on("pageerror", lambda error: self.browser_errors.append(str(error)))
+        self.page.on("pageerror", lambda error: self.browser_errors.append(str(getattr(error, "stack", None) or error)))
         self.page.on(
             "requestfailed",
             lambda request: self.network_errors.append(
