@@ -1945,5 +1945,17 @@ class FrontendUXContractTests(unittest.TestCase):
         calendar = HTML[HTML.index("async function calendarPage(){"):HTML.index("const caseRow=")]
         self.assertIn("const todayKey=cairoDateKey(),todayDate=new Date(todayKey+'T00:00:00')", calendar)
 
+    def test_document_intelligence_upload_prevents_duplicate_submissions_and_refreshes(self):
+        start = HTML.index("function documentIntelligencePanel(caseId,documents)")
+        end = HTML.index("\nasync function", start)
+        panel = HTML[start:end]
+        self.assertIn("const uploadIndexButton=btn(", panel)
+        self.assertIn("if(!f.files[0]||uploadIndexButton.disabled)return", panel)
+        self.assertIn("uploadIndexButton.disabled=true", panel)
+        self.assertIn("finally{uploadIndexButton.disabled=false}", panel)
+        self.assertIn("const refreshedMatter=await api('/cases/'+caseId)", panel)
+        self.assertIn("panel.replaceWith(documentIntelligencePanel(caseId,refreshedMatter.docs||[]))", panel)
+        self.assertNotIn("await again()", panel)
+
 if __name__ == "__main__":
     unittest.main()
