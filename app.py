@@ -6795,6 +6795,7 @@ def export_calendar(u: dict = Depends(user)):
 def finance_overview(u: dict = Depends(user)):
     """Aggregate recorded fees only for cases the signed-in user is allowed to access."""
     c = conn()
+    today = _cairo_today().isoformat()
     row = c.execute(
         """
         SELECT
@@ -6802,14 +6803,14 @@ def finance_overview(u: dict = Depends(user)):
             COALESCE(SUM(f.amount), 0) AS total_amount,
             COALESCE(SUM(f.paid), 0) AS total_paid,
             COALESCE(SUM(CASE WHEN f.amount > f.paid THEN f.amount - f.paid ELSE 0 END), 0) AS outstanding_amount,
-            COALESCE(SUM(CASE WHEN f.amount > f.paid AND f.due IS NOT NULL AND date(f.due) < date('now') THEN 1 ELSE 0 END), 0) AS overdue_count,
-            COALESCE(SUM(CASE WHEN f.amount > f.paid AND f.due IS NOT NULL AND date(f.due) < date('now') THEN f.amount - f.paid ELSE 0 END), 0) AS overdue_amount
+            COALESCE(SUM(CASE WHEN f.amount > f.paid AND f.due IS NOT NULL AND date(f.due) < ? THEN 1 ELSE 0 END), 0) AS overdue_count,
+            COALESCE(SUM(CASE WHEN f.amount > f.paid AND f.due IS NOT NULL AND date(f.due) < ? THEN f.amount - f.paid ELSE 0 END), 0) AS overdue_amount
         FROM fees f
         JOIN cases cs ON cs.id = f.case_id
         WHERE cs.firm_id = ?
           AND (? = 'admin' OR cs.id IN (SELECT case_id FROM members WHERE user_id = ? AND role = 'lead'))
         """,
-        (u["firm_id"], u["role"], u["id"]),
+        (today, today, u["firm_id"], u["role"], u["id"]),
     ).fetchone()
     return {
         "fee_count": int(row["fee_count"] or 0),
