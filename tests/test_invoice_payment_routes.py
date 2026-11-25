@@ -244,5 +244,41 @@ class InvoicePaymentRouteTests(InvoiceTestSupport, unittest.TestCase):
         self.assertIn("ليس فاتورة ضريبية إلكترونية", response.text)
         self.assertIn("Client Snapshot", response.text)
 
+
+    def test_invoice_issue_and_void_emit_only_one_transition_event(self):
+        tenant = self.runtime._tenant_router.connection_for_firm(self.firm_a)
+
+        draft = self.create_draft().json()
+        issued = self.mutate(
+            self.client_a, "post", f"/invoices/{draft['id']}/issue",
+        )
+        self.assertEqual(issued.status_code, 200, issued.text)
+        duplicate_issue = self.mutate(
+            self.client_a, "post", f"/invoices/{draft['id']}/issue",
+        )
+        self.assertEqual(duplicate_issue.status_code, 409, duplicate_issue.text)
+        issue_events = tenant.execute(
+            "SELECT COUNT(*) FROM invoice_events WHERE invoice_id=? AND event_type='issued'",
+            (draft["id"],),
+        ).fetchone()[0]
+        self.assertEqual(issue_events, 1)
+
+        voided = self.mutate(
+            self.client_a, "post", f"/invoices/{draft['id']}/void",
+            json={"reason": "Duplicate transition test"},
+        )
+        self.assertEqual(voided.status_code, 200, voided.text)
+        duplicate_void = self.mutate(
+            self.client_a, "post", f"/invoices/{draft['id']}/void",
+            json={"reason": "Repeated void test"},
+        )
+        self.assertEqual(duplicate_void.status_code, 409, duplicate_void.text)
+        void_events = tenant.execute(
+            "SELECT COUNT(*) FROM invoice_events WHERE invoice_id=? AND event_type='voided'",
+            (draft["id"],),
+        ).fetchone()[0]
+        self.assertEqual(void_events, 1)
+
+
 if __name__ == "__main__":
     unittest.main()
