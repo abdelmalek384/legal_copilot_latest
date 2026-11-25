@@ -6,7 +6,7 @@ from unittest import mock
 
 import app
 from app import norm, tokens, _mask_markdown_code
-from tools.claim_support import (_ARABIC_FINITE_PERIOD, _ARABIC_MODAL_PATTERNS, _ENGLISH_FINITE_PERIOD, _has_modal_mismatch, _has_negated_obligation_mismatch, _modal_classes, _sentences, claim_support_enabled, has_unsupported_claims, has_negated_obligation_conflicts)
+from tools.claim_support import (_has_unsupported_qualifiers, _ARABIC_FINITE_PERIOD, _ARABIC_MODAL_PATTERNS, _ENGLISH_FINITE_PERIOD, _has_modal_mismatch, _has_negated_obligation_mismatch, _modal_classes, _sentences, claim_support_enabled, has_unsupported_claims, has_negated_obligation_conflicts)
 
 
 class ClaimSupportTests(unittest.TestCase):
@@ -896,6 +896,31 @@ class ClaimSupportTests(unittest.TestCase):
                     answer + " [1].", [{"text": evidence}],
                     tokens, norm, _mask_markdown_code
                 ))
+
+
+    def test_unsupported_qualifier_guard_is_case_insensitive_for_english(self):
+        self.assertTrue(_has_unsupported_qualifiers(
+            "The worker is the ONLY eligible person.",
+            "The worker is eligible.",
+        ))
+        self.assertFalse(_has_unsupported_qualifiers(
+            "The worker is the ONLY eligible person.",
+            "The worker is the only eligible person.",
+        ))
+
+    def test_unsupported_qualifier_guard_normalizes_arabic_diacritics(self):
+        self.assertTrue(_has_unsupported_qualifiers(
+            "يستحق العامل الإجازة دائِماً.",
+            "يستحق العامل الإجازة.",
+        ))
+        self.assertTrue(_has_unsupported_qualifiers(
+            "يستحق العامل الإجازة حَصْرًا.",
+            "يستحق العامل الإجازة.",
+        ))
+        self.assertFalse(_has_unsupported_qualifiers(
+            "يستحق العامل الإجازة حَصْرًا.",
+            "يستحق العامل الإجازة حصرا.",
+        ))
 
 
 if __name__ == "__main__":

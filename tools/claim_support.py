@@ -358,9 +358,22 @@ _QUALIFIER_PATTERNS = {
 
 
 def _has_unsupported_qualifiers(claim, evidence):
-    for patterns in _QUALIFIER_PATTERNS.values():
-        claim_has = any(re.search(pattern, claim) for pattern in patterns)
-        evidence_has = any(re.search(pattern, evidence) for pattern in patterns)
+    """Reject stronger scope/finality claims absent from the cited evidence.
+
+    Normalize Arabic marks so diacritics cannot hide a qualifier, and compare
+    English qualifiers case-insensitively (legal answers may capitalize them).
+    """
+    claim = _normalize_modal_text(claim)
+    evidence = _normalize_modal_text(evidence)
+    for english_pattern, arabic_pattern in _QUALIFIER_PATTERNS.values():
+        claim_has = (
+            re.search(english_pattern, claim, re.IGNORECASE) is not None
+            or re.search(arabic_pattern, claim) is not None
+        )
+        evidence_has = (
+            re.search(english_pattern, evidence, re.IGNORECASE) is not None
+            or re.search(arabic_pattern, evidence) is not None
+        )
         if claim_has and not evidence_has:
             return True
     return False
