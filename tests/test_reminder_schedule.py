@@ -1,8 +1,12 @@
+import io
 import json
+import tempfile
 import unittest
+from pathlib import Path
+from unittest.mock import patch
 from datetime import datetime, timezone
 
-from tools.reminder_schedule import ReminderScheduleError, build_reminder_plan, _reject_duplicate_json_keys
+from tools.reminder_schedule import ReminderScheduleError, build_reminder_plan, _reject_duplicate_json_keys, main
 
 
 class ReminderScheduleTests(unittest.TestCase):
@@ -108,6 +112,28 @@ class ReminderScheduleTests(unittest.TestCase):
             with self.subTest(raw=raw):
                 with self.assertRaisesRegex(ValueError, "duplicate JSON object key"):
                     json.loads(raw, object_pairs_hook=_reject_duplicate_json_keys)
+
+    def test_cli_reports_duplicate_json_keys_without_traceback(self):
+        with tempfile.TemporaryDirectory() as directory:
+            input_path = Path(directory) / "duplicate.json"
+            input_path.write_text(
+                '{"events": [], "events": [{"kind": "task"}]}',
+                encoding="utf-8",
+            )
+            stderr = io.StringIO()
+            with patch("sys.stderr", stderr):
+                result = main([
+                    "--input", str(input_path),
+                    "--recipient-id", "user-1",
+                    "--scope-id", "firm-1",
+                    "--timezone", "Africa/Cairo",
+                ])
+            self.assertEqual(result, 2)
+            self.assertEqual(
+                stderr.getvalue(),
+                "Reminder dry-run failed: duplicate JSON object key: 'events'\\n",
+            )
+            self.assertNotIn("Traceback", stderr.getvalue())
 
     def test_rejects_missing_scope_and_wrong_sent_key_container(self):
         event = [self.events[0]]
