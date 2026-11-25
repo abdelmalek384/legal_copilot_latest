@@ -809,6 +809,7 @@ def main(argv=None):
             parser.error("--" + name.replace("_", "-") + " must be a positive integer")
     for name in ("min_recall_at_3", "min_mrr_at_3", "min_recall_at_5", "min_mrr_at_5", "min_citation_precision", "min_pin_cite_accuracy",
                  "min_citation_coverage", "min_expected_pin_cite_recall", "min_abstention_compliance",
+                 "min_recall_at_3_per_practice_area", "min_mrr_at_3_per_practice_area",
                  "min_recall_at_5_per_practice_area", "min_mrr_at_5_per_practice_area",
                  "min_citation_precision_per_practice_area", "min_citation_coverage_per_practice_area",
                  "min_abstention_compliance_per_practice_area", "min_pin_cite_accuracy_per_practice_area",
