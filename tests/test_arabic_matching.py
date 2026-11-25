@@ -340,6 +340,8 @@ class ArabicMatchingTests(unittest.TestCase):
     def test_case_number_conflict_match_requires_exact_numeric_sequence(self):
         self.assertTrue(conflict_case_number_matches("123/2024", "123/2024"))
         self.assertTrue(conflict_case_number_matches("١٢٣/٢٠٢٤", "123/2024"))
+        self.assertTrue(conflict_case_number_matches("۱۲۳/۲۰۲۴", "123/2024"))
+        self.assertTrue(conflict_case_number_matches("123/٢٠٢٤", "١٢٣/2024"))
         self.assertFalse(conflict_case_number_matches("2024", "123/2024"))
         self.assertFalse(conflict_case_number_matches("123", "123/2024"))
         self.assertFalse(conflict_case_number_matches("123/2024", "123/2025"))
