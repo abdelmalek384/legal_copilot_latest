@@ -35,6 +35,12 @@ EXPLICIT_PERMISSION_STATES = {"allowed", "allowed_limited", "prohibited",
                               "not_allowed_without_explicit_exception_or_license",
                               "prior_written_permission_required_per_published_terms"}
 
+# Optional locator fields are still security-sensitive URLs and must obey the
+# same no-credentials/no-fragments/no-signed-query contract as source_page.
+OPTIONAL_URL_FIELDS = (
+    "file_url", "item_page_url", "repository_homepage_url", "official_pdf_url",
+)
+
 
 def _https_url(value: object) -> bool:
     if (not isinstance(value, str) or not value or value != value.strip()
@@ -165,6 +171,15 @@ def validate(data: object) -> list[str]:
             related_pages = source.get("related_source_pages")
             if not isinstance(related_pages, list) or any(not _https_url(item) for item in related_pages):
                 errors.append(f"{label}.related_source_pages must be a list of clean HTTPS URLs")
+        for field in OPTIONAL_URL_FIELDS:
+            if field in source and source[field] is not None and not _https_url(source[field]):
+                errors.append(f"{label}.{field} must be a clean HTTPS URL or null")
+        if "secondary_metadata_lead" in source:
+            lead = source["secondary_metadata_lead"]
+            if (not isinstance(lead, dict) or not isinstance(lead.get("url"), str)
+                    or not _https_url(lead.get("url"))
+                    or not isinstance(lead.get("summary"), str) or not lead.get("summary", "").strip()):
+                errors.append(f"{label}.secondary_metadata_lead must contain a clean HTTPS url and non-empty summary")
         if "terms_url" in source and source["terms_url"] is not None and not _https_url(source["terms_url"]):
             errors.append(f"{label}.terms_url must be an HTTPS URL or null")
         for field in ("permission_evidence_url", "commercial_reuse_evidence_url"):
