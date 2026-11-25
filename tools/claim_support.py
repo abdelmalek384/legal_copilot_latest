@@ -243,9 +243,32 @@ _NUMBER_WORDS = {
     "ست": 6, "ستة": 6, "سته": 6, "سبع": 7, "سبعة": 7,
     "سبعه": 7, "ثمان": 8, "ثمانية": 8, "ثمانيه": 8,
     "تسع": 9, "تسعة": 9, "تسعه": 9, "عشر": 10, "عشرة": 10,
-    "عشره": 10, "عشرين": 20, "ثلاثين": 30, "اربعين": 40,
-    "أربعين": 40, "خمسين": 50, "ستين": 60, "سبعين": 70,
-    "ثمانين": 80, "تسعين": 90, "مئة": 100, "مائة": 100,
+    "عشره": 10, "عشرين": 20, "عشرون": 20, "ثلاثين": 30, "ثلاثون": 30,
+    "اربعين": 40, "أربعين": 40, "أربعون": 40, "اربعون": 40,
+    "خمسين": 50, "خمسون": 50, "ستين": 60, "ستون": 60,
+    "سبعين": 70, "سبعون": 70, "ثمانين": 80, "ثمانون": 80,
+    "تسعين": 90, "تسعون": 90, "مئة": 100, "مائة": 100,
+}
+_ENGLISH_COMPOUND_NUMBERS = {
+    (tens_word, unit_word): tens + unit
+    for tens_word, tens in _NUMBER_WORDS.items()
+    if tens in {20, 30, 40, 50, 60, 70, 80, 90} and tens_word in {
+        "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"
+    }
+    for unit_word, unit in _NUMBER_WORDS.items()
+    if unit in range(1, 10) and unit_word in {
+        "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"
+    }
+}
+_ARABIC_COMPOUND_NUMBERS = {
+    (unit_word, "و" + tens_word): tens + unit
+    for tens_word, tens in _NUMBER_WORDS.items()
+    if tens in {20, 30, 40, 50, 60, 70, 80, 90}
+       and tens_word not in {"twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"}
+    for unit_word, unit in _NUMBER_WORDS.items()
+    if unit in range(1, 10)
+       and unit_word not in {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
+                             "first", "second", "third", "fifth"}
 }
 _NUMERIC_UNITS = {
     "year": "year", "years": "year", "سنة": "year", "سنوات": "year",
@@ -275,20 +298,36 @@ def _numeric_markers(text):
     parts = re.findall(r"[a-z]+|" + numeric_token + r"|[\u0600-\u06ff]+", value)
     values = set()
     markers = set()
-    for index, part in enumerate(parts):
-        if re.fullmatch(numeric_token, part):
+    index = 0
+    while index < len(parts):
+        part = parts[index]
+        compound = None
+        number_end = index
+        if index + 1 < len(parts):
+            compound = (_ENGLISH_COMPOUND_NUMBERS.get((part, parts[index + 1]))
+                        or _ARABIC_COMPOUND_NUMBERS.get((part, parts[index + 1])))
+        if compound is not None:
+            number = str(compound)
+            number_end = index + 1
+            index += 2
+        elif re.fullmatch(numeric_token, part):
             normalized = part.replace(",", "") if re.fullmatch(r"[0-9]{1,3}(?:,[0-9]{3})+(?:\.[0-9]+)?", part) else part.replace(",", ".")
             number = format(float(normalized), ".15g")
+            index += 1
         elif part in _NUMBER_WORDS:
             number = str(_NUMBER_WORDS[part])
+            index += 1
         else:
+            index += 1
             continue
         values.add(number)
         unit = None
-        if index + 1 < len(parts):
-            unit = _NUMERIC_UNITS.get(parts[index + 1])
-        if unit is None and index > 0:
-            unit = _NUMERIC_UNITS.get(parts[index - 1])
+        if number_end + 1 < len(parts):
+            unit = _NUMERIC_UNITS.get(parts[number_end + 1])
+        if unit is None and number_end == index - 2 and index >= 2:
+            unit = _NUMERIC_UNITS.get(parts[index - 2])
+        elif unit is None and number_end == index - 1 and number_end > 0:
+            unit = _NUMERIC_UNITS.get(parts[number_end - 1])
         markers.add((number, unit))
     return values, markers
 
