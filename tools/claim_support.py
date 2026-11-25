@@ -272,11 +272,13 @@ _ARABIC_COMPOUND_NUMBERS = {
 }
 _NUMERIC_UNITS = {
     "year": "year", "years": "year", "سنة": "year", "سنوات": "year",
-    "month": "month", "months": "month", "شهر": "month",
+    "عام": "year", "عاما": "year", "أعوام": "year", "اعوام": "year",
+    "month": "month", "months": "month", "شهر": "month", "شهرا": "month",
     "أشهر": "month", "اشهر": "month", "شهور": "month",
-    "week": "week", "weeks": "week", "أسبوع": "week",
-    "اسبوع": "week", "أسابيع": "week", "اسابيع": "week",
-    "day": "day", "days": "day", "يوم": "day", "أيام": "day", "ايام": "day",
+    "week": "week", "weeks": "week", "أسبوع": "week", "أسبوعا": "week",
+    "اسبوع": "week", "اسبوعا": "week", "أسابيع": "week", "اسابيع": "week",
+    "day": "day", "days": "day", "يوم": "day", "يوما": "day",
+    "أيام": "day", "ايام": "day", "أياما": "day", "اياما": "day",
     "hour": "hour", "hours": "hour", "ساعة": "hour", "ساعات": "hour",
     "minute": "minute", "minutes": "minute", "دقيقة": "minute", "دقائق": "minute",
     "percent": "percent", "percentage": "percent", "بالمئة": "percent",
@@ -290,7 +292,8 @@ _CURRENCY_PREFIXES = {"egp", "pound", "pounds", "جنيه", "جنيهات"}
 
 def _numeric_markers(text):
     """Extract numeric values and optional units, including common Arabic/English words."""
-    value = str(text or "").translate(_ARABIC_DIGITS).lower()
+    value = unicodedata.normalize("NFKC", str(text or "")).translate(_ARABIC_DIGITS).lower()
+    value = re.sub(r"[\u0640\u064b-\u065f\u0670]", "", value)
     # Prefer comma-grouped thousands (1,000 / 1,000.5) over decimal-comma
     # interpretation. A mistaken 1,000 -> 1 conversion can hide a material
     # numerical contradiction in a legal claim.
