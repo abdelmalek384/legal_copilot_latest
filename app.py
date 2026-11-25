@@ -1708,9 +1708,15 @@ def _mask_markdown_code(answer):
 
 
 def _answer_citation_indices(answer):
-    """Return citation markers present in prose, excluding Markdown code samples."""
+    """Return citation markers in prose; malformed/oversized indices fail closed."""
     visible_answer = _mask_markdown_code(answer)
-    return {int(value) for value in re.findall(r"\[(\d+)\]", visible_answer)}
+    raw_indices = re.findall(r"\[(\d+)\]", visible_answer)
+    # Citation indices are positions in a short retrieved-hit list. Bound decimal
+    # parsing so model output cannot trigger Python's integer-string digit limit or
+    # consume excessive CPU/memory; the caller treats -1 as an invalid reference.
+    if any(len(value) > 9 for value in raw_indices):
+        return {-1}
+    return {int(value) for value in raw_indices}
 
 
 def _answer_has_unsupported_quantities(answer, hits, cited_indices):
