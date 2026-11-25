@@ -3044,14 +3044,17 @@ class DocIn(BaseModel):
         if not isinstance(value, str):
             return value
         import unicodedata
+        preserved_joiners = {chr(0x200c), chr(0x200d)}
         cleaned = "".join(
             ch for ch in value
             if unicodedata.category(ch) not in {"Cc", "Cs", "Zl", "Zp"}
-            and (unicodedata.category(ch) != "Cf" or ch in {"\\u200c", "\\u200d"})
+            and (unicodedata.category(ch) != "Cf" or ch in preserved_joiners)
         ).strip()
         if not cleaned:
             raise ValueError("document name must contain visible characters")
         return cleaned
+
+
 class SessIn(BaseModel):
     date: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$"); note: str = Field("", max_length=500)
     _valid_date = field_validator("date")(validate_calendar_date)
