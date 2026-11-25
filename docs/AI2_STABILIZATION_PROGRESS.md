@@ -24,7 +24,8 @@ The prior separate security-regression-source-coverage estimate remains 98%; it 
 - **Task implementation:** post-open hard-link validation and metadata-error handling source are committed; three regression methods added, 100% authoring completion.
 - **Isolated harness:** 2/2 synthetic SQLite checks passed for alias injection after the journal-mode query (one database-file alias and one WAL-sidecar alias). This validates the race-injection pattern and observed link-count behavior, not the tenant router itself.
 - **Repository execution:** 0%; the repository test module is not executed here. No Python 3.12 checkout/runtime is available and hosted Actions are blocked by billing.
-- **Additional isolated harness:** 1/1 simulated post-open sidecar metadata failure was observed and caught fail-closed; this is not the repository router test.\n- **Read-back:** the changed source, tests, and progress file were re-fetched and inspected after commits.
+- **Additional isolated harness:** 1/1 simulated post-open sidecar metadata failure was observed and caught fail-closed; this is not the repository router test.
+- **Read-back:** the changed source, tests, and progress file were re-fetched and inspected after commits.
 - **Security limitation:** filesystem hard-link checks do not demonstrate race-free directory-descriptor-based SQLite opening or protection from a privileged/local filesystem attacker. Route-level tenant isolation and browser acceptance are still unverified.
 - **Pilot status:** NOT READY.
 
