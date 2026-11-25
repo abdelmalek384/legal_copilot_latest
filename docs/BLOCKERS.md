@@ -17,6 +17,8 @@ A task is 100% only when its acceptance criteria are met and the evidence is rec
 
 
 
+- 2026-11-25 provenance trace: `citation_provenance` is registry-linked and returns source/version/review/permission relations, but corpus hits do not carry the full source-match evidence package. The firm-test mode remains intentionally fail-closed; do not bridge this gap by synthesizing evidence. Static trace recorded in `docs/legal_answer_provenance_trace_2026-11-25.md`; runtime remains untested.
+
 ## Highest-priority work that can reach 100% in-repository
 
 | Work item | Owner | Closure evidence | Current disposition |
