@@ -224,6 +224,177 @@ class TenantSQLiteConnectionRouterTests(unittest.TestCase):
         with self.assertRaisesRegex(sqlite3.ProgrammingError, "closed"):
             connection.execute("SELECT 1")
 
+    @unittest.skipUnless(os.name == "posix", "POSIX hard links are required")
+    def test_hardlinked_sqlite_sidecar_revokes_cached_tenant_connection(self):
+        connection = self.router.connection_for_firm(101)
+        with self._catalog() as catalog:
+            path = resolve_tenant_database(catalog, 101, self.root)
+        sidecar = Path(str(path) + "-wal")
+        sidecar.unlink(missing_ok=True)
+        sidecar.write_text("synthetic WAL sidecar", encoding="utf-8")
+        external_alias = Path(self.temp.name) / "outside-tenant-wal"
+        os.link(sidecar, external_alias)
+        self.assertEqual(sidecar.stat().st_nlink, 2)
+        with self.assertRaisesRegex(TenantConnectionError, "sidecar must not be hard-linked"):
+            self.router.connection_for_firm(101)
+        with self.assertRaises(sqlite3.ProgrammingError):
+            connection.execute("SELECT 1")
+
+    @unittest.skipUnless(os.name == "posix", "POSIX hard links are required")
+    def test_database_hardlink_created_during_open_is_rejected(self):
+        with self._catalog() as catalog:
+            path = resolve_tenant_database(catalog, 101, self.root)
+        external_alias = Path(self.temp.name) / "outside-database-race"
+        original_connect = sqlite3.connect
+        opened = []
+        injected = {"done": False}
+
+        class InjectHardlinkConnection(sqlite3.Connection):
+            def execute(self, sql, parameters=()):
+                result = super().execute(sql, parameters)
+                if sql.strip().lower() == "pragma journal_mode" and not injected["done"]:
+                    os.link(path, external_alias)
+                    injected["done"] = True
+                return result
+
+        def connect_with_injection(database, *args, **kwargs):
+            if str(database) == str(path):
+                kwargs["factory"] = InjectHardlinkConnection
+            connection = original_connect(database, *args, **kwargs)
+            if str(database) == str(path):
+                opened.append(connection)
+            return connection
+
+        try:
+            with patch("tenant_storage.sqlite3.connect", side_effect=connect_with_injection):
+                with self.assertRaisesRegex(
+                    TenantConnectionError, "gained a hard-link alias while opening"
+                ):
+                    self.router.connection_for_firm(101)
+            self.assertTrue(injected["done"])
+            self.assertEqual(external_alias.stat().st_nlink, 2)
+            self.assertEqual(len(opened), 1)
+            with self.assertRaises(sqlite3.ProgrammingError):
+                opened[0].execute("SELECT 1")
+        finally:
+            external_alias.unlink(missing_ok=True)
+            self.router.close_current_thread()
+
+    @unittest.skipUnless(os.name == "posix", "POSIX hard links are required")
+    def test_sidecar_hardlink_created_during_open_is_rejected(self):
+        with self._catalog() as catalog:
+            path = resolve_tenant_database(catalog, 101, self.root)
+        sidecar = Path(str(path) + "-wal")
+        external_alias = Path(self.temp.name) / "outside-wal-race"
+        original_connect = sqlite3.connect
+        opened = []
+        injected = {"done": False}
+
+        class InjectHardlinkConnection(sqlite3.Connection):
+            def execute(self, sql, parameters=()):
+                result = super().execute(sql, parameters)
+                if sql.strip().lower() == "pragma journal_mode" and not injected["done"]:
+                    # Force a real uncommitted WAL write so the sidecar exists
+                    # before the external alias is created.
+                    super().execute("INSERT INTO marker(value) VALUES (?)", ("hardlink-race",))
+                    self.assert_sidecar_ready()
+                    os.link(sidecar, external_alias)
+                    injected["done"] = True
+                return result
+
+            @staticmethod
+            def assert_sidecar_ready():
+                if not sidecar.exists():
+                    raise AssertionError("SQLite WAL sidecar was not created by the journal-mode check")
+
+        def connect_with_injection(database, *args, **kwargs):
+            if str(database) == str(path):
+                kwargs["factory"] = InjectHardlinkConnection
+            connection = original_connect(database, *args, **kwargs)
+            if str(database) == str(path):
+                opened.append(connection)
+            return connection
+
+        try:
+            with patch("tenant_storage.sqlite3.connect", side_effect=connect_with_injection):
+                with self.assertRaisesRegex(
+                    TenantConnectionError, "sidecar gained a hard-link alias while opening"
+                ):
+                    self.router.connection_for_firm(101)
+            self.assertTrue(injected["done"])
+            self.assertTrue(external_alias.is_file())
+            self.assertEqual(len(opened), 1)
+            with self.assertRaises(sqlite3.ProgrammingError):
+                opened[0].execute("SELECT 1")
+        finally:
+            external_alias.unlink(missing_ok=True)
+            self.router.close_current_thread()
+
+    @unittest.skipUnless(os.name == "posix", "POSIX filesystem metadata injection")
+    def test_post_open_sidecar_metadata_failure_revokes_connection(self):
+        with self._catalog() as catalog:
+            path = resolve_tenant_database(catalog, 101, self.root)
+        sidecar = Path(str(path) + "-wal")
+        original_connect = sqlite3.connect
+        original_lstat = os.lstat
+        opened = []
+        state = {"after_journal_mode": False, "failed": False}
+
+        class TriggerConnection(sqlite3.Connection):
+            def execute(self, sql, parameters=()):
+                result = super().execute(sql, parameters)
+                if sql.strip().lower() == "pragma journal_mode":
+                    state["after_journal_mode"] = True
+                return result
+
+        def connect_with_trigger(database, *args, **kwargs):
+            if str(database) == str(path):
+                kwargs["factory"] = TriggerConnection
+            connection = original_connect(database, *args, **kwargs)
+            if str(database) == str(path):
+                opened.append(connection)
+            return connection
+
+        def fail_post_open_sidecar(candidate, *args, **kwargs):
+            if Path(candidate) == sidecar and state["after_journal_mode"]:
+                state["failed"] = True
+                raise PermissionError("injected post-open sidecar metadata failure")
+            return original_lstat(candidate, *args, **kwargs)
+
+        with patch("tenant_storage.sqlite3.connect", side_effect=connect_with_trigger), \
+             patch("tenant_storage.os.lstat", side_effect=fail_post_open_sidecar):
+            with self.assertRaisesRegex(
+                TenantConnectionError, "sidecar metadata cannot be verified after opening"
+            ):
+                self.router.connection_for_firm(101)
+
+        self.assertTrue(state["after_journal_mode"])
+        self.assertTrue(state["failed"])
+        self.assertEqual(len(opened), 1)
+        with self.assertRaises(sqlite3.ProgrammingError):
+            opened[0].execute("SELECT 1")
+        self.router.close_current_thread()
+
+    def test_unreadable_sqlite_sidecar_metadata_revokes_cached_connection(self):
+        connection = self.router.connection_for_firm(101)
+        with self._catalog() as catalog:
+            path = resolve_tenant_database(catalog, 101, self.root)
+        sidecar = Path(str(path) + "-wal")
+        original_lstat = os.lstat
+
+        def fail_for_sidecar(candidate, *args, **kwargs):
+            if Path(candidate) == sidecar:
+                raise PermissionError("injected sidecar metadata failure")
+            return original_lstat(candidate, *args, **kwargs)
+
+        with patch("tenant_storage.os.lstat", side_effect=fail_for_sidecar):
+            with self.assertRaisesRegex(
+                TenantConnectionError, "sidecar metadata cannot be verified"
+            ):
+                self.router.connection_for_firm(101)
+        with self.assertRaisesRegex(sqlite3.ProgrammingError, "closed"):
+            connection.execute("SELECT 1")
+
     @unittest.skipUnless(os.name == "posix", "POSIX symlinks are required")
     def test_symlinked_sqlite_sidecar_revokes_cached_tenant_connection(self):
         connection = self.router.connection_for_firm(101)
