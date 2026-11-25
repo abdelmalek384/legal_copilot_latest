@@ -101,3 +101,34 @@ Repeat positive controls: Firm A must be able to read and mutate only its own au
 ### Result recording
 
 Use PASS only when the actual response and post-action state meet the expectation. Record endpoint/route or UI path, sanitized request parameters, status/result, response headers relevant to privacy, before/after state, tester, timestamp/timezone, browser/runtime and commit. Mark unexecuted cases BLOCKED—not PASS. Stop and log a release-blocking defect if any Firm B content, bytes, search result, or mutation is observable from Firm A.
+
+
+## 6. Backup and restore rehearsal checklist (disposable environment)
+
+This procedure is a rehearsal, not proof of backup safety. Use only a disposable demo deployment and synthetic firm data; never restore over production or a live test environment.
+
+### Preparation
+
+- Record the source commit, OS, runtime version, storage/database profile, operator and timestamp/timezone.
+- Create or confirm a demo firm with synthetic cases, documents, notes, deadlines and audit events. Record non-sensitive row counts and sentinel IDs as a baseline.
+- Identify the configured backup command and documented encryption/key-handling process for the environment. Do not put key material, credentials, or unencrypted backup contents in evidence.
+- Confirm the destination is a separate, access-controlled disposable location with adequate space.
+
+### Backup and integrity checks
+
+- Execute the documented backup process and record its exit status and sanitized output.
+- Verify the backup artifact exists, is non-empty, and passes the documented integrity/authentication verification. Record checksums where appropriate; checksums alone do not prove authenticity or confidentiality.
+- Confirm that encryption is enabled and that secrets are not embedded in logs or filenames. Verify an invalid/wrong key or tampered artifact is rejected, using a disposable copy only.
+- Confirm backup scope and retention policy, including databases, uploaded originals, tenant metadata, and required configuration. Explicitly note exclusions and dependencies.
+
+### Restore and compare
+
+- Restore into a fresh, isolated destination—not over the source environment.
+- Verify the restored application can start using the restored data and the required configuration, without using production credentials or live external providers.
+- Compare the pre-restore baseline with restored records: synthetic sentinel IDs, counts, document retrieval, notes, audit events and tenant boundaries. Investigate missing or inconsistent data.
+- Confirm Firm A cannot access Firm B records in the restored environment if both synthetic firms are present.
+- Record measured restore duration and any manual steps, warnings, or recovery gaps.
+
+### Closure criteria
+
+Mark PASS only if the actual backup verification, tamper/wrong-key rejection, isolated restore, baseline comparison and tenant-isolation checks all succeed and evidence is recorded. Otherwise mark FAIL or BLOCKED and log a defect. Do not claim a recovery-time or recovery-point objective unless the measured rehearsal supports it. Destroy disposable artifacts and databases according to the test environment's cleanup policy; retain only approved sanitized evidence.
