@@ -157,15 +157,10 @@ class TenantSQLiteConnectionRouter:
         # returning a cached connection or opening a new one.
         for suffix in ("-wal", "-shm", "-journal"):
             sidecar = Path(str(path) + suffix)
-            if sidecar.is_symlink():
-                self._revoke_cached_connection(trusted_firm_id)
-                raise TenantConnectionError(
-                    "Tenant SQLite sidecar must not be a symbolic link"
-                )
-            if not sidecar.exists():
-                continue
             try:
                 sidecar_metadata = os.lstat(sidecar)
+            except FileNotFoundError:
+                continue
             except OSError as exc:
                 self._revoke_cached_connection(trusted_firm_id)
                 raise TenantConnectionError(
