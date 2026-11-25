@@ -162,6 +162,18 @@ class FirmTestSourceMatchedModeTests(unittest.TestCase):
         self.assertFalse(firm_test_source_matched_enabled(True, environment))
         self.assertFalse(firm_test_source_matched_enabled("42x", environment))
 
+    def test_gate_rejects_noncanonical_leading_zero_firm_ids(self):
+        base = {
+            "COPILOT_ENV": "test",
+            "LEGAL_FIRM_TEST_SOURCE_MATCHED": "1",
+            "LEGAL_FIRM_TEST_SOURCE_MATCHED_FIRM_ID": "42",
+        }
+        self.assertFalse(firm_test_source_matched_enabled("042", base))
+        self.assertFalse(firm_test_source_matched_enabled(42, {
+            **base, "LEGAL_FIRM_TEST_SOURCE_MATCHED_FIRM_ID": "042",
+        }))
+        self.assertTrue(firm_test_source_matched_enabled("42", base))
+
     def test_flag_is_scoped_to_exact_test_firm_id(self):
         self.assertTrue(firm_test_source_matched_enabled(42, {
             "COPILOT_ENV": "test",
