@@ -1860,3 +1860,11 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Commits: `454027e` (guard correction), `9028aa3` (regression).
 - GitHub read-back confirmed both edits. An isolated Python regex probe confirmed the new negative-obligation expression matches and the positive-obligation matcher no longer sees the embedded verb. The repository test module was **not executed**; this is not a test-suite pass.
 - No legal data, corpus rows, trust labels, or product features were added. Pilot status remains NOT READY.
+
+## AI-1 compound-number claim guard correction — 2026-11-25
+
+- Fixed a false-rejection path in numeric claim checking: spelled compound quantities such as English `twenty-five` and Arabic `خمسة وعشرون` were tokenized as separate values instead of one value. The checker now normalizes common 21–99 compounds to a single numeric value before comparing claim and cited-source quantities.
+- Added synthetic English and Arabic regression cases comparing spelled quantities with the same source value written as `25`.
+- Commits: `da4a6e2` (compound-number normalization), `0e7d92e` (preserve prefixed-unit association), `99f06d9` (regressions).
+- GitHub read-back confirmed the source and tests. An isolated Python probe of the new parsing logic produced `25` for both English and Arabic compound forms and preserved English day units. The repository test module was **not executed**; this is not a full test pass.
+- No legal corpus data, legal labels, or product features were added. Pilot remains NOT READY.
