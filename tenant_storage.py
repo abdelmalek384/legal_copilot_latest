@@ -339,13 +339,18 @@ class TenantSQLiteConnectionRouter:
                     )
             for suffix in ("-wal", "-shm", "-journal"):
                 sidecar = Path(str(path) + suffix)
-                if sidecar.is_symlink():
+                try:
+                    sidecar_stat = os.lstat(sidecar)
+                except FileNotFoundError:
+                    continue
+                except OSError as exc:
+                    raise TenantConnectionError(
+                        "Tenant SQLite sidecar metadata cannot be verified after opening"
+                    ) from exc
+                if stat.S_ISLNK(sidecar_stat.st_mode):
                     raise TenantConnectionError(
                         "Tenant SQLite sidecar changed to a symbolic link while opening"
                     )
-                if not sidecar.exists():
-                    continue
-                sidecar_stat = sidecar.stat()
                 if not stat.S_ISREG(sidecar_stat.st_mode):
                     raise TenantConnectionError(
                         "Tenant SQLite sidecar changed to a non-regular file while opening"
