@@ -2919,19 +2919,21 @@ async function law(){
   const uploadFiles=async files=>{
     if(!matterSelect.value){uploadStatus.textContent=LANG==='ar'?'اختر ملف قضية أولاً.':'Select a matter first.';matterSelect.focus();return}
     if(uploadSubmit.dataset.busy==='1')return;
+    const targetMatterId=Number(matterSelect.value);
+    if(!Number.isSafeInteger(targetMatterId)||targetMatterId<=0){uploadStatus.textContent=LANG==='ar'?'ملف القضية المحدد غير صالح.':'The selected matter is invalid.';return}
     const queue=files.map(file=>({file,name:file.name,state:'queued',message:LANG==='ar'?'في قائمة الرفع':'Queued'}));
     const valid=queue.filter(item=>/\.(pdf|docx)$/i.test(item.name)&&item.file.size<=15000000);
     queue.forEach(item=>{if(!valid.includes(item)){item.state='error';item.message=!/\.(pdf|docx)$/i.test(item.name)?(LANG==='ar'?'نوع الملف غير مدعوم؛ استخدم PDF أو DOCX.':'Unsupported file type; use PDF or DOCX.'):(LANG==='ar'?'يتجاوز الملف حد 15 ميجابايت.':'File exceeds the 15 MB limit.')}});
     uploadWarnings.replaceChildren();renderUploadResults(queue);
     if(!valid.length){uploadStatus.textContent=LANG==='ar'?'لم يتم رفع أي ملف.':'No files were uploaded.';return}
-    uploadSubmit.dataset.busy='1';uploadSubmit.disabled=true;uploadButton.disabled=true;uploadInput.disabled=true;
+    uploadSubmit.dataset.busy='1';uploadSubmit.disabled=true;uploadButton.disabled=true;uploadInput.disabled=true;matterSelect.disabled=true;
     let succeeded=0;
     for(const item of valid){
       item.state='working';item.message=LANG==='ar'?'جارٍ الرفع واستخراج النص…':'Uploading and extracting text…';uploadStatus.textContent=item.message+' · '+item.name;renderUploadResults(queue);
       try{
         const formData=new FormData();formData.append('file',item.file,item.name);
         const csrf=csrfToken(),headers=csrf?{'X-CSRF-Token':decodeURIComponent(csrf)}:{};
-        const response=await fetch('/cases/'+encodeURIComponent(matterSelect.value)+'/upload',{method:'POST',credentials:'same-origin',headers,body:formData});
+        const response=await fetch('/cases/'+encodeURIComponent(targetMatterId)+'/upload',{method:'POST',credentials:'same-origin',headers,body:formData});
         const result=await response.json().catch(()=>({}));
         if(!response.ok){
           let message=String(result.detail||result.message||('Upload failed ('+response.status+').'));
@@ -2950,8 +2952,8 @@ async function law(){
       renderUploadResults(queue);
     }
     uploadStatus.textContent=LANG==='ar'?'اكتمل الرفع: '+succeeded+' من '+valid.length+' ملف':'Upload finished: '+succeeded+' of '+valid.length+' files';
-    uploadSubmit.dataset.busy='';uploadSubmit.disabled=true;uploadButton.disabled=false;uploadInput.disabled=false;uploadInput.value='';
-    if(succeeded){try{const matter=await api('/cases/'+matterSelect.value);documentWorkspace.replaceChildren(documentIntelligencePanel(Number(matterSelect.value),matter.docs||[]))}catch(_){uploadNotice('warning',LANG==='ar'?'تم الرفع، لكن تعذر تحديث قائمة المستندات. أعد فتح مساحة ذكاء المستندات.':'Upload succeeded, but the document list could not be refreshed. Reopen document intelligence.')}}
+    uploadSubmit.dataset.busy='';uploadSubmit.disabled=true;uploadButton.disabled=false;uploadInput.disabled=false;uploadInput.value='';matterSelect.disabled=false;
+    if(succeeded){try{const matter=await api('/cases/'+targetMatterId);if(Number(matterSelect.value)===targetMatterId)documentWorkspace.replaceChildren(documentIntelligencePanel(targetMatterId,matter.docs||[]))}catch(_){uploadNotice('warning',LANG==='ar'?'تم الرفع، لكن تعذر تحديث قائمة المستندات. أعد فتح مساحة ذكاء المستندات.':'Upload succeeded, but the document list could not be refreshed. Reopen document intelligence.')}}
   };
   uploadInput.onchange=()=>{const count=uploadInput.files?.length||0;uploadSubmit.disabled=!matterSelect.value||!count;uploadStatus.textContent=count?(LANG==='ar'?'تم اختيار '+count+' ملف. اضغط رفع وفهرسة للمتابعة.':count+' file(s) selected. Choose Upload and index to continue.'):(LANG==='ar'?'لم يتم اختيار ملفات.':'No files selected.')};
   const openDocumentWorkspace=makeBtn(uiText('فتح مساحة ذكاء المستندات','Open document intelligence'),async()=>{if(!matterSelect.value){showResearchMatterError();return}openDocumentWorkspace.disabled=true;try{const matter=await api('/cases/'+matterSelect.value);documentWorkspace.replaceChildren(documentIntelligencePanel(Number(matterSelect.value),matter.docs||[]));documentWorkspace.hidden=false}catch(error){toast(String(error.message||error))}finally{openDocumentWorkspace.disabled=false}},'g');
