@@ -412,6 +412,13 @@ def conflict_name_matches(query, candidate):
     return False
 
 
+def conflict_case_number_matches(query, candidate):
+    """Require an exact normalized numeric sequence for case-number screening."""
+    query_numbers = re.findall(r"\\d+", norm(query))
+    candidate_numbers = re.findall(r"\\d+", norm(candidate))
+    return bool(query_numbers and query_numbers == candidate_numbers)
+
+
 def grams(t):
     s = " ".join(tokens(t)); return Counter(s[i:i + 3] for i in range(max(len(s) - 2, 0)))
 
@@ -5007,7 +5014,14 @@ def conflict_check(b: Q, u: dict = Depends(user)):
     for r in rows:
         d = dict(r)
         fields = ("title", "client", "opposing_party", "case_number")
-        matches = [k for k in fields if conflict_name_matches(b.q, d.get(k) or "")]
+        matches = [
+            k for k in fields
+            if (
+                conflict_case_number_matches(b.q, d.get(k) or "")
+                if k == "case_number"
+                else conflict_name_matches(b.q, d.get(k) or "")
+            )
+        ]
         if matches and not d["visible"]:
             hidden_match = True
         elif matches and len(found) < 100:
