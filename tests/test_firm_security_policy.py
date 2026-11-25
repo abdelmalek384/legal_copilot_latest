@@ -173,5 +173,56 @@ class FirmSecurityPolicyTests(unittest.TestCase):
         self.assertEqual(client.get("/cases").status_code, 200)
 
 
+    def test_firm_switch_rejects_missing_csrf_and_untrusted_origin_without_changing_context(self):
+        email = "policy-switch-guards@example.test"
+        password = "Policy-switch-guards-password-2026!"
+        user_id = self.runtime.create_global_identity(
+            "Policy Switch Guards", email, app.hash_pw(password)
+        )
+        self.runtime.create_firm_membership(user_id, self.firm_a, "lawyer")
+        self.runtime.create_firm_membership(user_id, self.firm_b, "lawyer")
+        self._add_client("switch-guards", email, password)
+        client = self.clients["switch-guards"]
+
+        initial = client.get("/session")
+        self.assertEqual(initial.status_code, 200, initial.text)
+        self.assertEqual(initial.json()["firm_id"], self.firm_a)
+        original_firm_cookie = client.cookies.get("lc_firm")
+        csrf = client.cookies.get("lc_csrf") or ""
+        self.assertTrue(csrf)
+
+        missing_csrf = client.post(
+            "/session/firm", json={"firm_id": self.firm_b}
+        )
+        self.assertEqual(missing_csrf.status_code, 403, missing_csrf.text)
+        self.assertEqual(client.cookies.get("lc_firm"), original_firm_cookie)
+        still_a = client.get("/session")
+        self.assertEqual(still_a.status_code, 200, still_a.text)
+        self.assertEqual(still_a.json()["firm_id"], self.firm_a)
+
+        untrusted_origin = client.post(
+            "/session/firm",
+            json={"firm_id": self.firm_b},
+            headers={
+                "X-CSRF-Token": csrf,
+                "Origin": "https://attacker.example.test",
+            },
+        )
+        self.assertEqual(untrusted_origin.status_code, 403, untrusted_origin.text)
+        self.assertEqual(client.cookies.get("lc_firm"), original_firm_cookie)
+        still_a_after_origin = client.get("/session")
+        self.assertEqual(still_a_after_origin.status_code, 200, still_a_after_origin.text)
+        self.assertEqual(still_a_after_origin.json()["firm_id"], self.firm_a)
+
+        accepted = client.post(
+            "/session/firm",
+            json={"firm_id": self.firm_b},
+            headers={"X-CSRF-Token": csrf},
+        )
+        self.assertEqual(accepted.status_code, 200, accepted.text)
+        self.assertEqual(accepted.json()["firm_id"], self.firm_b)
+        self.assertEqual(client.get("/session").json()["firm_id"], self.firm_b)
+
+
 if __name__ == "__main__":
     unittest.main()
