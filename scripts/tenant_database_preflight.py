@@ -107,8 +107,14 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
     if requested_catalog.is_symlink():
         raise ValueError("tenant catalog database must not be a symlink")
     resolved_catalog = requested_catalog.resolve(strict=True)
-    if not resolved_catalog.is_file():
+    try:
+        catalog_metadata = os.lstat(resolved_catalog)
+    except OSError as exc:
+        raise ValueError("tenant catalog database metadata cannot be inspected") from exc
+    if stat.S_ISLNK(catalog_metadata.st_mode) or not stat.S_ISREG(catalog_metadata.st_mode):
         raise ValueError("tenant catalog database must be a regular file")
+    if catalog_metadata.st_nlink != 1:
+        raise ValueError("tenant catalog database must not be hard-linked")
 
     def add(code: str, firm_id: int | None, detail: str) -> None:
         findings.append({"code": code, "firm_id": firm_id, "detail": detail})
