@@ -655,6 +655,7 @@ def _retrieval_release_gate(report, args):
                    "min_reviewers_per_practice_area", "min_expected_pin_cites_per_practice_area",
                    "min_recall_at_3_per_practice_area", "min_mrr_at_3_per_practice_area",
                  "min_recall_at_3_per_practice_area", "min_mrr_at_3_per_practice_area",
+                 "min_recall_at_3_per_practice_area", "min_mrr_at_3_per_practice_area",
                  "min_recall_at_5_per_practice_area", "min_mrr_at_5_per_practice_area",
                    "min_citation_precision_per_practice_area", "min_citation_coverage_per_practice_area",
                    "min_abstention_compliance_per_practice_area", "min_pin_cite_accuracy_per_practice_area",
