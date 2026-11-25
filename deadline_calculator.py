@@ -175,7 +175,7 @@ def _compute_deadline_internal(trigger: dt.date, amount: int, unit: str, *, rule
         raise DeadlineError("trigger must be a date, not a datetime")
     if today is not None and (isinstance(today, dt.datetime) or not isinstance(today, dt.date)):
         raise DeadlineError("today must be a date")
-    if unit not in UNITS:
+    if not isinstance(unit, str) or unit not in UNITS:
         raise DeadlineError("unit must be days, months, or years")
     if isinstance(amount, bool) or not isinstance(amount, int) or not 1 <= amount <= 3650:
         raise DeadlineError("amount must be a positive integer no greater than 3650")
