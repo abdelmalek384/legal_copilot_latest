@@ -158,3 +158,24 @@ Estimates reflect implemented changes and authored evidence, not test pass rates
 | **Overall AI-2 assignment** | **23%** | **24%** | **+1 pp** | A second state-transition endpoint hardened with regression coverage |
 
 Percentages remain implementation/evidence estimates, not test pass rates. Python tests, browser/mobile acceptance, two-firm runtime validation, production deployment, and backup/restore rehearsal remain outstanding.
+
+
+## Follow-up checkpoint — guarded task/calendar actions — 2026-11-25
+
+- Added one frontend completion-action helper that disables the button during the request/refresh, ignores repeated clicks, uses the existing API helper, and catches the resulting rejection after the helper surfaces its message.
+- Applied it to the task list and calendar agenda for both task and legal-deadline completion. This complements the backend idempotency fixes; it is not a substitute for them.
+- Added a source-contract test asserting the lock/unlock behavior and all three call sites.
+- Commits: `cf2eb516c4c09a3ffe113e3c01a43f5e7b3bebd6`, `ca93d5c55a2c3afa5c6daf830f58351cefe165dc`. Source/test read-back only; no browser or Python execution.
+
+| Workstream | Previous | Current | Change | Evidence |
+|---|---:|---:|---:|---|
+| Backend and existing workflows | 27% | 27% | 0 pp | Task and deadline completion endpoints already made idempotent in preceding checkpoint |
+| Frontend and usability | 23% | 24% | +1 pp | Task and calendar completion controls now block repeat clicks while updating |
+| Mobile and Arabic/English UI | 15% | 15% | 0 pp | No device/viewport acceptance added |
+| Security and tenant isolation | 30% | 30% | 0 pp | No new isolation claims |
+| Documents and file handling | 32% | 32% | 0 pp | No document changes in this checkpoint |
+| Deployment and recovery | 15% | 15% | 0 pp | No deployment/recovery evidence added |
+| Local testing and regression | 9% | 10% | +1 pp | Added frontend source-contract assertions; not executed |
+| **Overall AI-2 assignment** | **24%** | **25%** | **+1 pp** | Task/deadline completion now guarded in UI and idempotent in backend, with authored regression coverage |
+
+These are implementation/evidence estimates only. Python tests, browser/mobile acceptance, two-firm runtime validation, production deployment, and backup/restore rehearsal remain outstanding.
