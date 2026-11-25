@@ -1997,3 +1997,10 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Changed the state update to a conditional `status!='done'` update and emit the completion event only when the update changes a row. The route still returns the existing `{"ok": true}` response and retains the existing authorization check; no schema or migration change was made.
 - Extended `test_firm_workflow_claim_calendar_and_fee_aggregates` to submit completion twice and assert the task remains done with exactly one completion event.
 - Commits: `c95b01ae8814bd5e673418ff27bb2496ff63aa0a` (backend) and `99ddcb8b88b48e54463f50a699d38ac78eed2657` (regression test). Source and test read-back confirmed. The Python test was not executed.
+
+
+## AI-2 idempotent legal-deadline completion — 2026-11-25
+
+- Applied the same duplicate-event protection to `POST /deadlines/{did}/done`: a conditional state update emits the completion event only when the deadline was not already done.
+- Extended `test_firm_workflow_claim_calendar_and_fee_aggregates` to complete the deadline twice and assert one completion event. The test obtains the deadline ID from the tenant database because the create endpoint returns only `{"ok": true}`.
+- Commits: `0162284af7f1dbc077dce26dd7037736ec65a034` (backend), `8ea6a6ef22bc408f06e2e15ecb372a7e3c09bf5e` and `ece506ee8c8792ca7ecd694f57bfb565319effb6` (test changes). Final test-ID correction: `e1af882025a67222ffcc0855e48affc01a5df956`. No test execution or Actions run.
