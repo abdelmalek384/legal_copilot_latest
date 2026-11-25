@@ -773,6 +773,43 @@ class ClaimSupportTests(unittest.TestCase):
         ))
 
 
+    def test_guard_does_not_confuse_distinct_obligations_in_one_sentence(self):
+        cases = (
+            (
+                "The employer must not deduct wages and must provide notice.",
+                "The employer must provide notice [1].",
+            ),
+            (
+                "The employer must not deduct wages, and must provide notice.",
+                "The employer must provide notice [1].",
+            ),
+            (
+                "لا يجب على صاحب العمل خصم الأجر ويجب عليه تقديم الإخطار.",
+                "يجب على صاحب العمل تقديم الإخطار [1].",
+            ),
+            (
+                "لا يجب على صاحب العمل خصم الأجر، ويجب عليه تقديم الإخطار.",
+                "يجب على صاحب العمل تقديم الإخطار [1].",
+            ),
+        )
+        for evidence, answer in cases:
+            with self.subTest(evidence=evidence):
+                self.assertFalse(has_negated_obligation_conflicts(
+                    answer, [{"text": evidence}], tokens, norm, _mask_markdown_code
+                ))
+
+        # The same clause boundary must not hide a genuine reversal.
+        self.assertTrue(has_negated_obligation_conflicts(
+            "The employer must deduct wages [1].",
+            [{"text": "The employer must not deduct wages and must provide notice."}],
+            tokens, norm, _mask_markdown_code,
+        ))
+        self.assertTrue(has_negated_obligation_conflicts(
+            "يجب على صاحب العمل خصم الأجر [1].",
+            [{"text": "لا يجب على صاحب العمل خصم الأجر ويجب عليه تقديم الإخطار."}],
+            tokens, norm, _mask_markdown_code,
+        ))
+
     def test_narrow_negated_obligation_guard_covers_arabic_legal_variants_and_spacing(self):
         cases = (
             ("لا يلتزم صاحب العمل بتقديم الإخطار.", "يلتزم صاحب العمل بتقديم الإخطار."),
