@@ -1887,5 +1887,11 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("commandItems.filter(([id,label])", navigation)
         self.assertIn("commandItems.find(([id,label])", navigation)
 
+    def test_feedback_category_selector_has_visible_associated_label(self):
+        feedback_form = HTML[HTML.index("async function feedbackPage()"):HTML.index("\nconst whatsappReminder=")]
+        self.assertIn("const categoryField=h('label'", feedback_form)
+        self.assertIn("textContent:ar?'فئة الملاحظة':'Feedback category'", feedback_form)
+        self.assertIn("}},categoryField,titleField,messageField,submit);", feedback_form)
+
 if __name__ == "__main__":
     unittest.main()
