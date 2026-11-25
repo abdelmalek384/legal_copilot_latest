@@ -138,3 +138,23 @@ These are conservative implementation/evidence estimates, not test pass rates. P
 | **Overall AI-2 assignment** | **22%** | **23%** | **+1 pp** | One additional backend workflow defect fixed with focused regression coverage |
 
 Estimates reflect implemented changes and authored evidence, not test pass rates or pilot readiness. Python 3.12 suite, browser/device acceptance, two-firm runtime acceptance, deployment, and backup/restore rehearsal remain outstanding.
+
+
+## Follow-up checkpoint — idempotent legal-deadline completion — 2026-11-25
+
+- Hardened `POST /deadlines/{did}/done` against repeated/concurrent requests: the conditional update writes the completion event only when the status transition changes a row.
+- Extended the existing separate-database workflow test to call the deadline completion endpoint twice, verify final status `done`, and assert exactly one completion event. The test uses the persisted deadline ID; the create endpoint does not return an ID.
+- Commits: `0162284af7f1dbc077dce26dd7037736ec65a034`, `8ea6a6ef22bc408f06e2e15ecb372a7e3c09bf5e`, `ece506ee8c8792ca7ecd694f57bfb565319effb6`, and `e1af882025a67222ffcc0855e48affc01a5df956`. The latter corrects the regression's ID lookup. Test not executed.
+
+| Workstream | Previous | Current | Change | Evidence |
+|---|---:|---:|---:|---|
+| Backend and existing workflows | 26% | 27% | +1 pp | Both task and legal-deadline completion routes now avoid duplicate history events on repeated requests |
+| Frontend and usability | 23% | 23% | 0 pp | No new frontend change in this checkpoint |
+| Mobile and Arabic/English UI | 15% | 15% | 0 pp | No device/viewport acceptance added |
+| Security and tenant isolation | 30% | 30% | 0 pp | Existing authorization checks preserved; no new isolation claims |
+| Documents and file handling | 32% | 32% | 0 pp | No new document change in this checkpoint |
+| Deployment and recovery | 15% | 15% | 0 pp | No deployment/recovery evidence added |
+| Local testing and regression | 8% | 9% | +1 pp | Added repeated-deadline completion assertions; not executed |
+| **Overall AI-2 assignment** | **23%** | **24%** | **+1 pp** | A second state-transition endpoint hardened with regression coverage |
+
+Percentages remain implementation/evidence estimates, not test pass rates. Python tests, browser/mobile acceptance, two-firm runtime validation, production deployment, and backup/restore rehearsal remain outstanding.
