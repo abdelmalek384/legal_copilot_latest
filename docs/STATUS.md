@@ -2004,3 +2004,11 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Applied the same duplicate-event protection to `POST /deadlines/{did}/done`: a conditional state update emits the completion event only when the deadline was not already done.
 - Extended `test_firm_workflow_claim_calendar_and_fee_aggregates` to complete the deadline twice and assert one completion event. The test obtains the deadline ID from the tenant database because the create endpoint returns only `{"ok": true}`.
 - Commits: `0162284af7f1dbc077dce26dd7037736ec65a034` (backend), `8ea6a6ef22bc408f06e2e15ecb372a7e3c09bf5e` and `ece506ee8c8792ca7ecd694f57bfb565319effb6` (test changes). Final test-ID correction: `e1af882025a67222ffcc0855e48affc01a5df956`. No test execution or Actions run.
+
+
+## AI-2 guarded task/calendar completion controls — 2026-11-25
+
+- Added a shared frontend `actionButton` helper for task/deadline completion actions. It disables the control while the request and refresh are pending, ignores repeat clicks, and contains request failures after the existing API helper reports them.
+- Replaced the completion controls in the task list and calendar agenda for both tasks and legal deadlines. Backend idempotency remains the final protection against concurrent/retried requests.
+- Added `test_task_and_calendar_completion_actions_prevent_duplicate_requests` to the frontend source-contract suite.
+- Commits: `cf2eb516c4c09a3ffe113e3c01a43f5e7b3bebd6` (frontend), `ca93d5c55a2c3afa5c6daf830f58351cefe165dc` (test). Read-back verified the source and test. No browser or Python test execution.
