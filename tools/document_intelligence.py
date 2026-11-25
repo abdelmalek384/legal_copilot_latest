@@ -320,7 +320,8 @@ def group_candidate_entity_mentions(
         entities = document.get("entities", [])
         if not isinstance(entities, list):
             raise ValueError("entities must be a list")
-        if len(entities) > max_entities_per_document:
+        document_truncated = len(entities) > max_entities_per_document
+        if document_truncated:
             truncated = True
         for entity in entities[:max_entities_per_document]:
             if entity_records_inspected >= max_entity_records:
@@ -352,7 +353,10 @@ def group_candidate_entity_mentions(
                 "start": entity.get("start"),
                 "end": entity.get("end"),
             })
-        if truncated:
+        # A per-document cap makes this document partial, but must not prevent
+        # later documents from contributing. Stop only when a global scan budget
+        # is exhausted; document-level truncation is reported separately.
+        if entity_records_inspected >= max_entity_records or candidate_count >= max_candidates:
             break
 
     # Document truncation is independent of candidate truncation: still inspect
