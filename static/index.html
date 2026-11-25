@@ -1563,19 +1563,22 @@ function shell(title,...k){applyDensityPreference();applyMotionPreference();cons
  try{
   const matterParams=new URLSearchParams({q,limit:'8',offset:'0'});
   const clientParams=new URLSearchParams({q,limit:'8'}),documentParams=new URLSearchParams({q,limit:'8',offset:'0'});
-  const [matterResult,clientResult,documentResult]=await Promise.all([
+  const [matterResult,clientResult,documentResult]=await Promise.allSettled([
    api('/cases/search?'+matterParams.toString()),
    api('/clients/search?'+clientParams.toString()),
    api('/documents/search?'+documentParams.toString())
   ]);
-  const matters=Array.isArray(matterResult.items)?matterResult.items:[];
-  const clientsFound=Array.isArray(clientResult.items)?clientResult.items:[];
-  const documentsFound=Array.isArray(documentResult.items)?documentResult.items:[];
-  const groups=[];
+  const matters=matterResult.status==='fulfilled'&&Array.isArray(matterResult.value.items)?matterResult.value.items:[];
+   const clientsFound=clientResult.status==='fulfilled'&&Array.isArray(clientResult.value.items)?clientResult.value.items:[];
+   const documentsFound=documentResult.status==='fulfilled'&&Array.isArray(documentResult.value.items)?documentResult.value.items:[];
+   const failedSearches=[matterResult,clientResult,documentResult].filter(result=>result.status==='rejected').length;
+   const groups=[];
   if(matters.length)groups.push(h('div',{className:'workspace-search-group'},h('p',{className:'mut',textContent:uiText('القضايا','Matters')}),...matters.map(item=>btn((item.title||uiText('قضية رقم ','Matter #')+item.id)+' · #'+item.id+(item.client?' · '+item.client:''),()=>{PAGE='cases';window.DOCUMENT_REVIEW_TARGET=null;globalSearchResults.replaceChildren();view(item.id)},'g'))));
   if(clientsFound.length)groups.push(h('div',{className:'workspace-search-group'},h('p',{className:'mut',textContent:uiText('العملاء','Clients')}),...clientsFound.map(item=>btn((item.name||uiText('عميل','Client'))+' · #'+item.id,()=>{globalSearchResults.replaceChildren();openPage('clients',()=>clients(item.name||q))},'g'))));
   if(documentsFound.length)groups.push(h('div',{className:'workspace-search-group'},h('p',{className:'mut',textContent:uiText('المستندات','Documents')}),...documentsFound.map(item=>btn((item.name||uiText('مستند','Document'))+' · '+(item.case_title||uiText('قضية رقم ','Matter #')+item.case_id)+' · #'+item.document_id,()=>{window.DOCUMENT_MATTER_ID=Number(item.case_id);window.DOCUMENT_REVIEW_TARGET=null;globalSearchResults.replaceChildren();openPage('documents',documentsPage)},'g'))));
-  globalSearchResults.replaceChildren(...(groups.length?groups:[h('p',{className:'mut',textContent:uiText('لا توجد نتائج مطابقة ضمن صلاحياتك.','No matching results were found within your access scope.')})]));
+  if(failedSearches)groups.push(h('p',{className:'mut',role:'status','aria-live':'polite',textContent:failedSearches===3?uiText('تعذر البحث في المصادر المتاحة. تحقق من الاتصال ثم حاول مجدداً.','Search is temporarily unavailable. Check your connection and try again.'):uiText('بعض أقسام البحث غير متاحة حالياً؛ النتائج المعروضة جزئية.','Some search sections are temporarily unavailable; the results shown are partial.')}));
+   if(!groups.length)groups.push(h('p',{className:'mut',textContent:uiText('لا توجد نتائج مطابقة ضمن صلاحياتك.','No matching results were found within your access scope.')}));
+   globalSearchResults.replaceChildren(...groups);
  }catch(_){globalSearchResults.textContent=uiText('تعذر تنفيذ البحث. حاول مجدداً.','Search failed. Please try again.')}
  finally{globalSearchButton.disabled=false}
 }globalSearchInput.oninput=()=>globalSearchResults.replaceChildren();globalSearchInput.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();runGlobalSearch()}};const globalSearchBar=h('div',{className:'workspace-topbar'},h('div',{className:'workspace-global-search'},globalSearchInput,globalSearchButton),globalSearchResults);
