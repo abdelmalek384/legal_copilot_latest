@@ -25,6 +25,113 @@ class FirmDataExportTests(InvoiceTestSupport, unittest.TestCase):
             archive.read(name).decode("utf-8-sig")
         )))
 
+    def _seed_original_for_download(self, payload=b"verified original document bytes", *, corrupt_digest=False, document_name="download-original.pdf"):
+        tenant, owner_id = self._tenant_a()
+        staged = app._original_file_store().stage(self.firm_a, payload)
+        app._original_file_store().finalize(self.firm_a, staged.object_id)
+        doc = tenant.execute(
+            "INSERT INTO docs(case_id,name,added,firm_id,uploader_user_id,sha256,"
+            "content_type,byte_size,extraction_status,ocr_used) "
+            "VALUES(?,?,datetime('now'),?,?,?,?,?,'complete',0)",
+            (
+                self.case_id, document_name, self.firm_a, owner_id,
+                staged.sha256, "application/pdf", staged.byte_size,
+            ),
+        )
+        tenant.execute(
+            "INSERT INTO original_file_objects(object_id,document_id,firm_id,"
+            "storage_backend,sha256,byte_size,content_type,state) "
+            "VALUES(?,?,?,'local',?,?,?,'ready')",
+            (
+                staged.object_id, doc.lastrowid, self.firm_a,
+                ("0" * 64) if corrupt_digest else staged.sha256,
+                staged.byte_size, "application/pdf",
+            ),
+        )
+        tenant.commit()
+        return tenant, owner_id, int(doc.lastrowid), payload
+
+    def test_authorized_original_download_is_verified_audited_and_uncached(self):
+        tenant, owner_id, document_id, payload = self._seed_original_for_download()
+        response = self.client_a.get(
+            f"/cases/{self.case_id}/docs/{document_id}/original"
+        )
+        self.assertEqual(response.status_code, 200, response.text)
+        self.assertEqual(response.content, payload)
+        self.assertEqual(response.headers["content-type"], "application/octet-stream")
+        self.assertIn("no-store", response.headers.get("cache-control", ""))
+        self.assertIn('filename="download-original.pdf"', response.headers.get("content-disposition", ""))
+        self.assertEqual(response.headers.get("x-content-type-options"), "nosniff")
+        audit = tenant.execute(
+            "SELECT user_id,event FROM security_audit_events "
+            "WHERE firm_id=? AND event=?",
+            (self.firm_a, f"original_document_download:{document_id}"),
+        ).fetchall()
+        self.assertEqual(len(audit), 1)
+        self.assertEqual(audit[0]["user_id"], owner_id)
+
+    def test_original_download_filename_is_sanitized_before_header_use(self):
+        _, _, document_id, _ = self._seed_original_for_download(
+            document_name='../../bad"\r\nname.pdf'
+        )
+        response = self.client_a.get(
+            f"/cases/{self.case_id}/docs/{document_id}/original"
+        )
+        self.assertEqual(response.status_code, 200, response.text)
+        disposition = response.headers.get("content-disposition", "")
+        self.assertIn('filename="bad_name.pdf"', disposition)
+        self.assertNotIn("\r", disposition)
+        self.assertNotIn("\n", disposition)
+        self.assertNotIn("/", disposition)
+
+    def test_cross_firm_original_download_is_not_found_and_not_audited(self):
+        tenant, _, document_id, _ = self._seed_original_for_download()
+        response = self.client_b.get(
+            f"/cases/{self.case_id}/docs/{document_id}/original"
+        )
+        self.assertEqual(response.status_code, 404)
+        audit_count = tenant.execute(
+            "SELECT COUNT(*) FROM security_audit_events "
+            "WHERE firm_id=? AND event=?",
+            (self.firm_a, f"original_document_download:{document_id}"),
+        ).fetchone()[0]
+        self.assertEqual(audit_count, 0)
+
+    def test_original_download_audit_failure_does_not_release_bytes(self):
+        tenant, _, document_id, payload = self._seed_original_for_download()
+        tenant.execute(
+            f"CREATE TRIGGER reject_original_download_audit "
+            f"BEFORE INSERT ON security_audit_events "
+            f"WHEN NEW.event='original_document_download:{document_id}' "
+            "BEGIN SELECT RAISE(ABORT, 'injected download audit failure'); END"
+        )
+        tenant.commit()
+        response = self.client_a.get(
+            f"/cases/{self.case_id}/docs/{document_id}/original"
+        )
+        self.assertEqual(response.status_code, 503)
+        self.assertNotIn(payload, response.content)
+        audit_count = tenant.execute(
+            "SELECT COUNT(*) FROM security_audit_events "
+            "WHERE firm_id=? AND event=?",
+            (self.firm_a, f"original_document_download:{document_id}"),
+        ).fetchone()[0]
+        self.assertEqual(audit_count, 0)
+
+    def test_original_download_integrity_failure_returns_no_bytes_and_no_audit(self):
+        tenant, _, document_id, payload = self._seed_original_for_download(corrupt_digest=True)
+        response = self.client_a.get(
+            f"/cases/{self.case_id}/docs/{document_id}/original"
+        )
+        self.assertEqual(response.status_code, 503)
+        self.assertNotIn(payload, response.content)
+        audit_count = tenant.execute(
+            "SELECT COUNT(*) FROM security_audit_events "
+            "WHERE firm_id=? AND event=?",
+            (self.firm_a, f"original_document_download:{document_id}"),
+        ).fetchone()[0]
+        self.assertEqual(audit_count, 0)
+
     def test_admin_export_contains_firm_data_and_audit_event_only(self):
         case_b = self.mutate(
             self.client_b, "post", "/cases",

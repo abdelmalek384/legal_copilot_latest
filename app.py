@@ -3287,7 +3287,7 @@ def _user_separate(
             raise HTTPException(403, "cross-origin request blocked")
     mfa_enabled = _mfa_is_enabled(int(account["id"]), c)
     mfa_required = _mfa_required_for_user(int(account["id"]), c, context.firm_id)
-    mfa_verified = bool(account["mfa_verified"])
+    mfa_verified = bool(account["mfa_verified"]) and mfa_enabled
     enrollment_required = mfa_required and not mfa_enabled
     verification_required = mfa_enabled and not mfa_verified
     if enrollment_required or verification_required:
@@ -3306,7 +3306,7 @@ def _user_separate(
         "can_review_legal": _user_can_review_legal({"id": account["id"], "role": context.role, "email": account["email_display"]}),
         "mfa_enabled": mfa_enabled, "mfa_required": mfa_required,
         "mfa_policy_required": _mfa_policy_requires_user(int(account["id"]), c, context.firm_id),
-        "mfa_verified": mfa_verified, "mfa_verified_at": int(account["mfa_verified_at"] or 0),
+        "mfa_verified": mfa_verified, "mfa_verified_at": int(account["mfa_verified_at"] or 0) if mfa_verified else 0,
         "mfa_enrollment_required": enrollment_required,
         "mfa_verification_required": verification_required,
     }
@@ -4378,7 +4378,7 @@ def _login_separate(b: LoginIn, request: Request, response: Response):
     token, csrf = secrets.token_urlsafe(32), secrets.token_urlsafe(32)
     mfa_enabled = _mfa_is_enabled(int(account["id"]), c)
     mfa_required = _mfa_required_for_user(int(account["id"]), c, memberships[0]["firm_id"])
-    mfa_verified = not mfa_required
+    mfa_verified = False
     c.execute("DELETE FROM auth_sessions WHERE expires<?", (now,))
     c.execute("INSERT INTO auth_sessions(token_hash,user_id,expires,mfa_verified,mfa_verified_at) VALUES(?,?,?,?,?)",
               (sha(token), account["id"], now + 43200, int(mfa_verified), now if mfa_verified else 0))
@@ -4530,6 +4530,21 @@ def switch_firm(b: FirmSwitchIn, request: Request, response: Response, u: dict =
     switched_user["can_review_legal"] = _user_can_review_legal(
         {"id": u["id"], "role": context.role, "email": u.get("email")}
     )
+    # Firm switching changes the active security context. Return the destination
+    # firm's current MFA policy rather than stale fields from the prior firm.
+    control = control_conn()
+    mfa_enabled = _mfa_is_enabled(int(u["id"]), control)
+    mfa_required = _mfa_required_for_user(int(u["id"]), control, context.firm_id)
+    mfa_verified = bool(u.get("mfa_verified")) and mfa_enabled
+    switched_user.update({
+        "mfa_enabled": mfa_enabled,
+        "mfa_required": mfa_required,
+        "mfa_policy_required": _mfa_policy_requires_user(int(u["id"]), control, context.firm_id),
+        "mfa_verified": mfa_verified,
+        "mfa_verified_at": int(u.get("mfa_verified_at") or 0) if mfa_verified else 0,
+        "mfa_enrollment_required": mfa_required and not mfa_enabled,
+        "mfa_verification_required": mfa_enabled and not mfa_verified,
+    })
     return switched_user
 
 
@@ -9724,11 +9739,12 @@ def review_document_chunk(cid: int, document_id: int, chunk_id: int, b: Extracti
         corrected = old_text
     # Compare-and-swap update prevents a stale reviewer from overwriting a newer correction.
     if b.outcome == "corrected":
+        # Keep extraction-time page provenance immutable; reviewer page
+        # references are stored only in the review audit event below.
         updated = c.execute(
-            "UPDATE chunks SET text=?,norm=?,page=CASE WHEN ?<>'' THEN ? ELSE page END "
+            "UPDATE chunks SET text=?,norm=? "
             "WHERE id=? AND document_id=? AND case_id=? AND text=?",
-            (corrected, norm(corrected), b.page_reference.strip(), b.page_reference.strip(),
-             chunk_id, document_id, cid, old_text))
+            (corrected, norm(corrected), chunk_id, document_id, cid, old_text))
         if updated.rowcount != 1:
             c.rollback()
             raise HTTPException(409, "extracted text changed during review; reload the latest text and retry")
@@ -9739,10 +9755,12 @@ def review_document_chunk(cid: int, document_id: int, chunk_id: int, b: Extracti
         # Every review outcome performs a conditional write before its audit row is inserted.
         # This closes the race where a non-correction review could be recorded against text
         # that changed after the initial SELECT.
+        # Conditional no-op write preserves the compare-and-swap check
+        # without replacing extraction-time page provenance.
         updated = c.execute(
-            "UPDATE chunks SET page=CASE WHEN ?<>'' THEN ? ELSE page END "
+            "UPDATE chunks SET text=text "
             "WHERE id=? AND document_id=? AND case_id=? AND text=?",
-            (b.page_reference.strip(), b.page_reference.strip(), chunk_id, document_id, cid, old_text))
+            (chunk_id, document_id, cid, old_text))
         if updated.rowcount != 1:
             c.rollback()
             raise HTTPException(409, "extracted text changed during review; reload the latest text and retry")
