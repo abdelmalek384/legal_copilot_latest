@@ -242,3 +242,24 @@ These percentages measure implementation/evidence progress, not runtime verifica
 These are implementation/evidence estimates, not test pass rates. Runtime payment behavior, browser acceptance, Python tests, two-firm validation, production deployment and backup/restore remain outstanding.
 
 - Follow-up test-source correction: `db6da070cf6e62cffbda0a45f3ce06d182851638` aligns the invoice frontend regression tests with the actual `const renderInvoices=` declaration. Final source-marker read-back passed; test execution remains outstanding.
+
+
+## Follow-up checkpoint — resilient global search partial results — 2026-11-25
+
+- Found a user-facing failure mode in the shared workspace search: it queried matters, clients, and documents with one `Promise.all`, so a single unavailable endpoint rejected the entire operation and hid successful results from the other two sections.
+- Changed the three independent searches to `Promise.allSettled`. Each successful section now renders its results even if another section fails. The UI reports when results are partial, distinguishes total search unavailability from a genuine empty result, and keeps the status message accessible with `role=status` and `aria-live=polite`.
+- Added `test_global_search_keeps_successful_sections_when_another_section_fails` to the frontend UX contract suite. It checks independent result handling and the partial/total failure messages. Test is authored but **not executed**; no browser or runtime pass is claimed.
+- Commits on `ai2/global-search-partial-results`: `b7872ce` (frontend) and `88b3c96` (regression contract). GitHub read-back verification is pending at this checkpoint.
+
+| Workstream | Previous | Current | Change | Evidence |
+|---|---:|---:|---|
+| Backend and existing workflows | 28% | 28% | 0 pp | No backend change |
+| Frontend and usability | 26% | 27% | +1 pp | One failed search endpoint no longer suppresses successful matter/client/document results |
+| Mobile and Arabic/English UI | 15% | 15% | 0 pp | No viewport/device acceptance added |
+| Security and tenant isolation | 30% | 30% | 0 pp | Existing endpoint authorization is unchanged |
+| Documents and file handling | 32% | 32% | 0 pp | No document storage change |
+| Deployment and recovery | 15% | 15% | 0 pp | No deployment/recovery evidence added |
+| Local testing and regression | 13% | 14% | +1 pp | Added focused frontend contract regression; not executed |
+| **Overall AI-2 assignment** | **28%** | **29%** | **+1 pp** | Improved an existing lawyer-facing workflow and added focused regression coverage |
+
+These are implementation/evidence estimates, not test pass rates or pilot-readiness claims. Python tests, browser acceptance, two-firm validation, production deployment, and backup/restore rehearsal remain outstanding.
