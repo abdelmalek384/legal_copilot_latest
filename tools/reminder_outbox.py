@@ -200,7 +200,7 @@ def finish_attempt(
     """Persist the adapter outcome without storing message bodies or provider text."""
     if isinstance(delivery_id, bool) or not isinstance(delivery_id, int) or delivery_id <= 0:
         raise ReminderOutboxError("delivery_id must be a positive integer")
-    if result_status not in {"accepted_by_smtp", "failed", "ambiguous"}:
+    if not isinstance(result_status, str) or result_status not in {"accepted_by_smtp", "failed", "ambiguous"}:
         raise ReminderOutboxError("result_status is invalid")
     if type(smtp_attempts) is not int or not 0 <= smtp_attempts <= 5:
         raise ReminderOutboxError("smtp_attempts must be an integer from 0 through 5")
