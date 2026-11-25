@@ -421,7 +421,7 @@ def conflict_case_number_matches(query, candidate):
             str(unicodedata.decimal(character)) if character.isdecimal() else character
             for character in normalized
         )
-        return re.findall(r"\\d+", ascii_digits)
+        return re.findall(r"\d+", ascii_digits)
 
     query_numbers = numeric_tokens(query)
     candidate_numbers = numeric_tokens(candidate)
