@@ -17,17 +17,18 @@ The following existing-functionality corrections were manually integrated onto m
 - PR #2021 (ca26ae1): reject hard-linked tenant databases and SQLite sidecars; revalidate after SQLite opens and revoke connections on unsafe metadata.
 - PR #2022 (e0554de): make read-only tenant preflight report/reject hard-linked catalog DBs, tenant DBs and SQLite sidecars before opening unsafe files.
 - PR #2023 (0c4b4cb): preserve extraction-time page provenance, keep reviewer page references in review events only, and correct destination-firm MFA assurance reporting.
+- PR #2026 (cb7f880): align legal source-status defaults and permission-register freshness checks with the Africa/Cairo calendar date.
 
 ### AI-1 implementation estimates
 
 | Workstream | Previous | Current | Change |
 |---|---:|---:|---:|
-| Legal Research reliability | 47% | 53% | +6 pp |
+| Legal Research reliability | 47% | 54% | +7 pp |
 | Arabic retrieval and matching | 47% | 51% | +4 pp |
-| Citation and trust safeguards | 60% | 67% | +7 pp |
-| Existing evaluation and tests | 26% | 40% | +14 pp |
-| PR review and integration | 20% | 55% | +35 pp |
-| **Overall AI-1 assignment** | **39%** | **47%** | **+8 pp** |
+| Citation and trust safeguards | 60% | 68% | +8 pp |
+| Existing evaluation and tests | 26% | 41% | +15 pp |
+| PR review and integration | 20% | 58% | +38 pp |
+| **Overall AI-1 assignment** | **39%** | **48%** | **+9 pp** |
 
 These are engineering implementation estimates, not test pass rates or legal-quality measurements. The repository's Python 3.12 test modules, browser acceptance, and full release checker remain unexecuted in this environment. No GitHub Actions runs were used because runner billing is unavailable. The local runtime does not currently provide a repository checkout or Python 3.12.
 
