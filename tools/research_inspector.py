@@ -7,6 +7,7 @@ from datetime import date, datetime, timedelta, timezone
 from collections.abc import Mapping
 import re
 from urllib.parse import urlsplit
+from zoneinfo import ZoneInfo
 
 from tools.answer_trust_tier import source_match_evidence_ready
 
@@ -18,6 +19,11 @@ STATUS_USER_SUPPLIED = "user_supplied_unverified"
 STATUS_METADATA_ONLY = "metadata_only"
 STATUS_REVIEW = "outdated_or_under_review"
 STATUS_NO_SOURCE = "no_relevant_verified_source"
+
+
+def _cairo_today():
+    """Use the application's Egypt operating timezone for current-date gates."""
+    return datetime.now(ZoneInfo("Africa/Cairo")).date()
 
 
 _REQUIRED_REVIEW_TYPES = {
@@ -144,7 +150,7 @@ def central_permission_register_ready(provenance):
         return False
     if not _valid_review_evidence_url(provenance.get("commercial_reuse_evidence_url")):
         return False
-    permission_review_today = date.today()
+    permission_review_today = _cairo_today()
     for field in ("terms_checked_on", "commercial_terms_checked_on"):
         checked = _calendar_date(provenance.get(field))
         if checked is None or checked > permission_review_today:
@@ -178,7 +184,7 @@ def source_status(source, as_of=None):
         return STATUS_USER_SUPPLIED
 
     if as_of is None:
-        as_of_date = date.today()
+        as_of_date = _cairo_today()
     else:
         as_of_date = _calendar_date(as_of)
         if as_of_date is None:
