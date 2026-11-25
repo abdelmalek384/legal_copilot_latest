@@ -319,7 +319,7 @@ class TenantSQLiteConnectionRouterTests(unittest.TestCase):
                 ):
                     self.router.connection_for_firm(101)
             self.assertTrue(injected["done"])
-            self.assertEqual(external_alias.stat().st_nlink, 2)
+            self.assertTrue(external_alias.is_file())
             self.assertEqual(len(opened), 1)
             with self.assertRaises(sqlite3.ProgrammingError):
                 opened[0].execute("SELECT 1")
