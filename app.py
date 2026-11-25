@@ -1307,6 +1307,7 @@ def search(c, q, case_id=None, k=5, firm_id=1, as_of=None, scope="all_permitted"
         return _search_separate(c, q, case_id, k, firm_id, as_of, scope)
     cand, exact = {}, set()
     qt, expanded_qt = tokens(q), expanded_tokens(q)
+    statute_reference = extract_statute_reference(q)
     if expanded_qt:
         # Expand only with a small, curated bilingual lexicon; never alter the evidence text.
         allow_legacy = os.environ.get("ALLOW_UNLINKED_LEGACY_LAW_SEARCH", "").strip() == "1"
@@ -1318,7 +1319,6 @@ def search(c, q, case_id=None, k=5, firm_id=1, as_of=None, scope="all_permitted"
                 continue
             cand[r["id"]] = (r, -r["r"])
     am = re.search(r"(?:ماده|الماده|article|art)\s*\.?\s*(\d+)", norm(q))
-    statute_reference = extract_statute_reference(q)
     if am and statute_reference and scope != "firm_documents":
         exact_sql = ("SELECT chunks.*, (SELECT d.official_title FROM legal_document_versions title_v JOIN legal_documents d ON d.document_id=title_v.document_id WHERE title_v.version_id=chunks.document_version_id) AS _statute_title FROM chunks WHERE article=? AND case_id IS NULL AND verified=1 AND (in_force=1 OR document_version_id IS NOT NULL) "
                      "AND (document_version_id IS NOT NULL OR ?=1) AND (document_version_id IS NULL OR EXISTS (SELECT 1 FROM legal_document_versions v "
