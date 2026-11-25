@@ -71,6 +71,59 @@ class MFAAccountSecurityTests(unittest.TestCase):
         headers["X-CSRF-Token"] = self.client.cookies.get("lc_csrf") or ""
         return getattr(self.client, method)(path, headers=headers, **kwargs)
 
+    def test_login_rotates_untrusted_pre_auth_session_and_csrf_cookies(self):
+        # A client-controlled pre-auth cookie must never become the authenticated
+        # session. Login must mint fresh independent session and CSRF secrets.
+        supplied_session = "attacker-chosen-pre-auth-session"
+        supplied_csrf = "attacker-chosen-pre-auth-csrf"
+        self.client.cookies.set("lc_session", supplied_session)
+        self.client.cookies.set("lc_csrf", supplied_csrf)
+
+        response = self.login()
+        self.assertEqual(response.status_code, 200, response.text)
+        issued_session = response.cookies.get("lc_session")
+        issued_csrf = response.cookies.get("lc_csrf")
+        self.assertTrue(issued_session)
+        self.assertTrue(issued_csrf)
+        self.assertNotEqual(issued_session, supplied_session)
+        self.assertNotEqual(issued_csrf, supplied_csrf)
+        self.assertNotEqual(issued_session, issued_csrf)
+
+        control = self.runtime.control_connection()
+        self.assertIsNotNone(control.execute(
+            "SELECT 1 FROM auth_sessions WHERE token_hash=? AND user_id=?",
+            (app.sha(issued_session), self.user_id),
+        ).fetchone())
+        self.assertIsNone(control.execute(
+            "SELECT 1 FROM auth_sessions WHERE token_hash=?",
+            (app.sha(supplied_session),),
+        ).fetchone())
+
+        set_cookies = response.headers.get_list("set-cookie")
+        session_header = next(value for value in set_cookies if value.startswith("lc_session="))
+        csrf_header = next(value for value in set_cookies if value.startswith("lc_csrf="))
+        self.assertIn("httponly", session_header.lower())
+        self.assertIn("samesite=lax", session_header.lower())
+        self.assertNotIn("httponly", csrf_header.lower())
+        self.assertIn("samesite=lax", csrf_header.lower())
+
+    def test_login_sets_secure_on_all_auth_cookies_when_proxy_mode_is_explicit(self):
+        with patch.dict(os.environ, {"COPILOT_SECURE_COOKIES": "1"}):
+            response = self.login()
+        self.assertEqual(response.status_code, 200, response.text)
+
+        cookies = response.headers.get_list("set-cookie")
+        for name in ("lc_session", "lc_csrf", "lc_firm"):
+            with self.subTest(cookie=name):
+                header = next(value for value in cookies if value.startswith(name + "="))
+                self.assertIn("secure", header.lower())
+        session = next(value for value in cookies if value.startswith("lc_session="))
+        csrf = next(value for value in cookies if value.startswith("lc_csrf="))
+        firm = next(value for value in cookies if value.startswith("lc_firm="))
+        self.assertIn("httponly", session.lower())
+        self.assertNotIn("httponly", csrf.lower())
+        self.assertIn("httponly", firm.lower())
+
     def login(self):
         return self.client.post(
             "/login", json={"email": "MFA-OWNER@example.test", "password": self.password}
@@ -154,6 +207,36 @@ class MFAAccountSecurityTests(unittest.TestCase):
         self.assertEqual(accepted.status_code, 200, accepted.text)
         self.assertTrue(accepted.json()["mfa_verified"])
         self.assertEqual(self.client.get("/cases").status_code, 200)
+
+    def test_wrong_recovery_attempt_does_not_consume_valid_backup_factor(self):
+        secret = self.enroll()
+        codes = self.confirm(secret)
+        login = self.login()
+        self.assertEqual(login.status_code, 200, login.text)
+        self.assertTrue(login.json()["mfa_verification_required"])
+        control = self.runtime.control_connection()
+        row = control.execute(
+            "SELECT used_at FROM mfa_recovery_codes WHERE user_id=? ORDER BY id LIMIT 1",
+            (self.user_id,),
+        ).fetchone()
+        self.assertIsNone(row["used_at"])
+        rejected = self.mutate("post", "/account/mfa/verify", json={"recovery_code": "invalid-sentinel"})
+        self.assertEqual(rejected.status_code, 401, rejected.text)
+        self.assertEqual(self.client.get("/cases").status_code, 403)
+        row = control.execute(
+            "SELECT used_at FROM mfa_recovery_codes WHERE user_id=? ORDER BY id LIMIT 1",
+            (self.user_id,),
+        ).fetchone()
+        self.assertIsNone(row["used_at"])
+        accepted = self.mutate("post", "/account/mfa/verify", json={"recovery_code": codes[0]})
+        self.assertEqual(accepted.status_code, 200, accepted.text)
+        self.assertEqual(accepted.json()["factor"], "recovery")
+        self.assertEqual(self.client.get("/cases").status_code, 200)
+        row = control.execute(
+            "SELECT used_at FROM mfa_recovery_codes WHERE user_id=? ORDER BY id LIMIT 1",
+            (self.user_id,),
+        ).fetchone()
+        self.assertIsNotNone(row["used_at"])
 
     def test_recovery_code_is_single_use(self):
         secret = self.enroll()

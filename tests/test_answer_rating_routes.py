@@ -167,5 +167,49 @@ class AnswerRatingRouteTests(unittest.TestCase):
         self.assertEqual(audit, "answer_rating_export:count=1")
 
 
+    def test_rating_csv_export_neutralizes_every_formula_prefix_after_control_whitespace(self):
+        dangerous_values = [
+            "=1+1",
+            "+1+1",
+            "-1+1",
+            "@SUM(1,1)",
+            "  =1+1",
+            "\t+1+1",
+            "\r\n-1+1",
+            "\ufeff@SUM(1,1)",
+        ]
+        for value in dangerous_values:
+            with self.subTest(value=repr(value)):
+                self.assertEqual(app._csv_safe_cell(value), "'" + value)
+
+        safe_values = ["ordinary text", "مذكرة قانونية", "123", "", None]
+        for value in safe_values:
+            with self.subTest(safe_value=repr(value)):
+                expected = "" if value is None else str(value)
+                self.assertEqual(app._csv_safe_cell(value), expected)
+
+        self.db.execute(
+            "UPDATE research_messages SET content=? WHERE id=1",
+            ("\ufeff=SUM(1,1)",),
+        )
+        self.db.execute(
+            "UPDATE research_messages SET content=? WHERE id=2",
+            ("\t+HYPERLINK(\"x\")",),
+        )
+        self.db.commit()
+        app.save_answer_rating(
+            self.answer_id,
+            self.rating(notes="\r\n@SUM(1,1)"),
+            self.user,
+        )
+        response = app.export_firm_answer_ratings_csv(self.user)
+        rows = list(csv.DictReader(io.StringIO(response.body.decode("utf-8-sig"))))
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["question"], "'\ufeff=SUM(1,1)")
+        self.assertEqual(rows[0]["answer"], "'\t+HYPERLINK(\"x\")")
+        self.assertEqual(rows[0]["notes"], "'\r\n@SUM(1,1)")
+
+
+
 if __name__ == "__main__":
     unittest.main()
