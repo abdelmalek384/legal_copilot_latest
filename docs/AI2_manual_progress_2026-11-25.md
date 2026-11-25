@@ -179,3 +179,23 @@ Percentages remain implementation/evidence estimates, not test pass rates. Pytho
 | **Overall AI-2 assignment** | **24%** | **25%** | **+1 pp** | Task/deadline completion now guarded in UI and idempotent in backend, with authored regression coverage |
 
 These are implementation/evidence estimates only. Python tests, browser/mobile acceptance, two-firm runtime validation, production deployment, and backup/restore rehearsal remain outstanding.
+
+
+## Follow-up checkpoint — invoice transition race guard — 2026-11-25
+
+- Added row-count checks to invoice issuance and voiding conditional updates. Audit events are now appended only if the requested state transition actually changed one row; stale state transitions return HTTP 409 and the tenant rollback decorator rolls back uncommitted writes.
+- Added a focused invoice route regression covering issue/void success, repeat-request conflicts, and exactly one event per transition.
+- Commits: `06b632a3a26a0d3a63bf167b4832e676411ff2a9`, `03e6e892761109b02bcd821172a7647ad6068c72`. GitHub read-back confirmed code/test. Test not executed.
+
+| Workstream | Previous | Current | Change | Evidence |
+|---|---:|---:|---:|---|
+| Backend and existing workflows | 27% | 28% | +1 pp | Invoice issue/void now guard against stale state transitions before audit append |
+| Frontend and usability | 24% | 24% | 0 pp | No UI change in this checkpoint |
+| Mobile and Arabic/English UI | 15% | 15% | 0 pp | No device/viewport acceptance added |
+| Security and tenant isolation | 30% | 30% | 0 pp | No new isolation claim |
+| Documents and file handling | 32% | 32% | 0 pp | No document change |
+| Deployment and recovery | 15% | 15% | 0 pp | No deployment/recovery evidence added |
+| Local testing and regression | 10% | 11% | +1 pp | Added issue/void transition regression; not executed |
+| **Overall AI-2 assignment** | **25%** | **26%** | **+1 pp** | One financial state-transition race guard with focused test coverage |
+
+These remain implementation/evidence estimates, not test pass rates. The Python suite, browser/device acceptance, two-firm runtime acceptance, production deployment and backup/restore rehearsal remain outstanding.
