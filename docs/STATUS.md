@@ -22,6 +22,8 @@ The following existing-functionality corrections were manually integrated onto m
 
 ### AI-1 implementation estimates
 
+- Added focused Arabic legal retrieval-hint regressions (`tests/test_arabic_legal_matching_hints.py`) for positive/negated aliases, positive-occurrence handling, preservation of original terms under hint limits, and narrow orthographic variants. These tests are committed but **not executed** in this environment.
+
 | Workstream | Previous | Current | Change |
 |---|---:|---:|---:|
 | Legal Research reliability | 55% | 56% | +1 pp |
