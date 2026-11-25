@@ -135,6 +135,11 @@ class DeadlineCalculatorTests(unittest.TestCase):
         self.assertTrue(result["warnings"])
         self.assertIn("disclaimer", result)
 
+    def test_invalid_unit_types_raise_deadline_error(self):
+        for unit in (None, [], {}, True, 1):
+            with self.subTest(unit=unit), self.assertRaises(dc.DeadlineError):
+                self.calc(D(2026, 10, 26), 3, unit)
+
     def test_manual_inputs_are_bounded(self):
         for value in (0, -1, 3651, True, 2.5, "3"):
             with self.assertRaises(dc.DeadlineError):
