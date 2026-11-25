@@ -30,6 +30,20 @@ class ClaimSupportTests(unittest.TestCase):
             evidence, tokens, norm, _mask_markdown_code
         ))
 
+    def test_arabic_inflected_day_unit_cannot_hide_year_day_mismatch(self):
+        evidence = [{"text": "المدة الافتراضية 25 سنة."}]
+        self.assertTrue(has_unsupported_claims(
+            "المدة الافتراضية خمسة وعشرون يوما [1].",
+            evidence, tokens, norm, _mask_markdown_code
+        ))
+
+    def test_arabic_inflected_day_unit_matches_diacritic_source_form(self):
+        evidence = [{"text": "المدة الافتراضية 25 يوماً."}]
+        self.assertFalse(has_unsupported_claims(
+            "المدة الافتراضية خمسة وعشرون يوما [1].",
+            evidence, tokens, norm, _mask_markdown_code
+        ))
+
     def test_compound_arabic_number_matches_numeric_source_value(self):
         evidence = [{"text": "المدة الافتراضية 25 يوما."}]
         self.assertFalse(has_unsupported_claims(
