@@ -591,3 +591,10 @@ The owner has explicitly requested a non-production firm-test implementation. Th
 - #1918, #1921 and #1929 modify the AI-2 matter-document frontend. Their branches were not mergeable in all cases and their frontend Python/browser acceptance was not run; V8 parsing/static assertions are insufficient to establish safe behavior.
 - Branches are preserved. None of these changes is present on `main`; no feature/security claim should be made as if integrated.
 - Open PRs should remain at zero. Re-open only after exact-head tests and the relevant browser/two-firm acceptance can be run.
+
+
+## Browser inline-script parse failure diagnostics — 2026-11-26
+
+- `tests/browser/test_acceptance.py` now preserves the full JavaScript `pageerror` stack (`c1d51ca`). The previous listener retained only the error message and dropped the source URL and line/column details needed to pinpoint the inline-script parse failure.
+- The current `static/index.html` inline script still fails V8 compilation with `SyntaxError: missing ) after argument list`; inspected historical mainline snapshots also fail. No speculative source edit was made without a parser location.
+- This is diagnostic instrumentation only, not a browser fix. Run browser acceptance in the supported runtime, capture the stack location, and fix the exact syntax defect. No test execution is claimed.
