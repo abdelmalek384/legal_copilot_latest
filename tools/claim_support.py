@@ -266,12 +266,17 @@ _CURRENCY_PREFIXES = {"egp", "pound", "pounds", "جنيه", "جنيهات"}
 def _numeric_markers(text):
     """Extract numeric values and optional units, including common Arabic/English words."""
     value = str(text or "").translate(_ARABIC_DIGITS).lower()
-    parts = re.findall(r"[a-z]+|[0-9]+(?:[.,][0-9]+)?|[\u0600-\u06ff]+", value)
+    # Prefer comma-grouped thousands (1,000 / 1,000.5) over decimal-comma
+    # interpretation. A mistaken 1,000 -> 1 conversion can hide a material
+    # numerical contradiction in a legal claim.
+    numeric_token = r"(?:[0-9]{1,3}(?:,[0-9]{3})+(?:\.[0-9]+)?|[0-9]+(?:[.,][0-9]+)?)"
+    parts = re.findall(r"[a-z]+|" + numeric_token + r"|[\u0600-\u06ff]+", value)
     values = set()
     markers = set()
     for index, part in enumerate(parts):
-        if re.fullmatch(r"[0-9]+(?:[.,][0-9]+)?", part):
-            number = str(float(part.replace(",", "."))).rstrip("0").rstrip(".")
+        if re.fullmatch(numeric_token, part):
+            normalized = part.replace(",", "") if re.fullmatch(r"[0-9]{1,3}(?:,[0-9]{3})+(?:\.[0-9]+)?", part) else part.replace(",", ".")
+            number = format(float(normalized), ".15g")
         elif part in _NUMBER_WORDS:
             number = str(_NUMBER_WORDS[part])
         else:
