@@ -24,12 +24,12 @@ The following existing-functionality corrections were manually integrated onto m
 
 | Workstream | Previous | Current | Change |
 |---|---:|---:|---:|
-| Legal Research reliability | 47% | 55% | +8 pp |
+| Legal Research reliability | 55% | 56% | +1 pp |
 | Arabic retrieval and matching | 47% | 51% | +4 pp |
-| Citation and trust safeguards | 60% | 68% | +8 pp |
+| Citation and trust safeguards | 68% | 69% | +1 pp |
 | Existing evaluation and tests | 26% | 42% | +16 pp |
-| PR review and integration | 20% | 60% | +40 pp |
-| **Overall AI-1 assignment** | **39%** | **49%** | **+10 pp** |
+| PR review and integration | 60% | 62% | +2 pp |
+| **Overall AI-1 assignment** | **39%** | **50%** | **+11 pp** |
 
 These are engineering implementation estimates, not test pass rates or legal-quality measurements. The repository's Python 3.12 test modules, browser acceptance, and full release checker remain unexecuted in this environment. No GitHub Actions runs were used because runner billing is unavailable. The local runtime does not currently provide a repository checkout or Python 3.12.
 
