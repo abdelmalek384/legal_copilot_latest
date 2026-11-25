@@ -247,6 +247,13 @@ class TenantDatabasePreflightTests(unittest.TestCase):
         self.assertEqual(report["tenant_databases_inspected"], 0)
 
     @unittest.skipUnless(os.name == "posix", "POSIX hard links are required")
+    def test_hardlinked_catalog_database_is_rejected_before_open(self):
+        external_alias = self.base / "outside-control-plane.sqlite3"
+        os.link(self.catalog_path, external_alias)
+        with self.assertRaisesRegex(ValueError, "tenant catalog database must not be hard-linked"):
+            audit(self.catalog_path, self.root)
+
+    @unittest.skipUnless(os.name == "posix", "POSIX hard links are required")
     def test_catalog_sqlite_sidecar_hard_link_prevents_catalog_open(self):
         sidecar = Path(str(self.catalog_path) + "-wal")
         sidecar.write_text("synthetic catalog WAL", encoding="utf-8")
