@@ -224,6 +224,21 @@ class TenantSQLiteConnectionRouterTests(unittest.TestCase):
         with self.assertRaisesRegex(sqlite3.ProgrammingError, "closed"):
             connection.execute("SELECT 1")
 
+    @unittest.skipUnless(os.name == "posix", "POSIX hard links are required")
+    def test_hardlinked_sqlite_sidecar_revokes_cached_tenant_connection(self):
+        connection = self.router.connection_for_firm(101)
+        path = self.paths[101]
+        sidecar = Path(str(path) + "-wal")
+        sidecar.unlink(missing_ok=True)
+        sidecar.write_text("synthetic WAL sidecar", encoding="utf-8")
+        external_alias = Path(self.temp.name) / "outside-tenant-wal"
+        os.link(sidecar, external_alias)
+        self.assertEqual(sidecar.stat().st_nlink, 2)
+        with self.assertRaisesRegex(TenantConnectionError, "sidecar must not be hard-linked"):
+            self.router.connection_for_firm(101)
+        with self.assertRaises(sqlite3.ProgrammingError):
+            connection.execute("SELECT 1")
+
     @unittest.skipUnless(os.name == "posix", "POSIX symlinks are required")
     def test_symlinked_sqlite_sidecar_revokes_cached_tenant_connection(self):
         connection = self.router.connection_for_firm(101)
