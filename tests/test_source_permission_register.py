@@ -548,6 +548,29 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         self.assertIn("217/2003", " ".join(secondary["material_types"]))
         self.assertEqual(MODULE.validate(data), [])
 
+    def test_optional_source_locator_urls_reject_credentials_fragments_and_signed_tokens(self):
+        import json
+        fields = ("file_url", "item_page_url", "repository_homepage_url", "official_pdf_url")
+        for field in fields:
+            with self.subTest(field=field):
+                data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+                data["sources"][0][field] = "https://user:secret@example.gov/document"
+                self.assertTrue(any(f".{field} must be a clean HTTPS URL" in error for error in MODULE.validate(data)))
+                data["sources"][0][field] = "https://example.gov/document#fragment"
+                self.assertTrue(any(f".{field} must be a clean HTTPS URL" in error for error in MODULE.validate(data)))
+                data["sources"][0][field] = "https://example.gov/document?X-Amz-Signature=secret"
+                self.assertTrue(any(f".{field} must be a clean HTTPS URL" in error for error in MODULE.validate(data)))
+
+    def test_secondary_metadata_lead_requires_safe_locator_and_summary(self):
+        import json
+        data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        source = next(item for item in data["sources"] if "secondary_metadata_lead" in item)
+        source["secondary_metadata_lead"]["url"] = "https://user:secret@example.gov/lead"
+        self.assertTrue(any("secondary_metadata_lead must contain a clean HTTPS url" in error for error in MODULE.validate(data)))
+        source["secondary_metadata_lead"]["url"] = "https://example.gov/lead"
+        source["secondary_metadata_lead"]["summary"] = ""
+        self.assertTrue(any("secondary_metadata_lead must contain a clean HTTPS url" in error for error in MODULE.validate(data)))
+
     def test_related_source_pages_are_validated_as_clean_https_locators(self):
         import json
         data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
