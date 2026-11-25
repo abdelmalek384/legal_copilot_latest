@@ -1149,7 +1149,7 @@ _CORPUS_SEARCH_SQL = (
     + "AND (v.legal_status='in_force' OR (v.legal_status IN ('repealed','historical') AND v.repeal_date IS NOT NULL)) "
     "AND v.effective_date IS NOT NULL AND v.effective_date<=? "
     "AND (v.repeal_date IS NULL OR v.repeal_date>?)"
-    ") ORDER BY r LIMIT 40"
+    ") ORDER BY r, chunks.id ASC LIMIT 40"
 )
 
 _CORPUS_EXACT_ARTICLE_SQL = (
