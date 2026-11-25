@@ -17,7 +17,7 @@ class DocumentReviewWorkflowTests(unittest.TestCase):
         app = (ROOT / "app.py").read_text(encoding="utf-8")
         endpoint = app[
             app.index("def review_document_chunk("):
-            app.index("@app.delete(\\"/cases/{cid}\\")")
+            app.index('@app.delete("/cases/{cid}")')
         ]
         self.assertIn('"UPDATE chunks SET text=?,norm=? "', endpoint)
         self.assertIn('"UPDATE chunks SET text=text "', endpoint)
