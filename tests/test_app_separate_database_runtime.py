@@ -5511,7 +5511,7 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertIn("Hearing: Workflow acceptance matter", calendar.text)
 
         completed_deadline = self._mutate("post", f"/deadlines/{deadline_id}/done")
-        repeated_deadline_completion = self._mutate("post", f"/deadlines/{deadline.json()['id']}/done")
+        repeated_deadline_completion = self._mutate("post", f"/deadlines/{deadline_id}/done")
         self.assertEqual(completed_deadline.status_code, 200, completed_deadline.text)
         self.assertEqual(repeated_deadline_completion.status_code, 200, repeated_deadline_completion.text)
         deadline_state = db.execute(
