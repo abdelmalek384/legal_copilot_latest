@@ -1989,3 +1989,11 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Added `test_document_intelligence_upload_prevents_duplicate_submissions_and_refreshes` to assert the correct view-scope guard, unlock, and refresh behavior.
 - Direct commits to `main`: `51ad502` and `2ef7591` were intermediate edits; final scope correction is `0c97426`, followed by regression-test corrections `0417d22`. GitHub read-back confirmed the current source and test blobs. No Actions/CI was used.
 - Validation remains source-level only: the Python test suite and browser upload flow were not run. This is not evidence of production upload/storage correctness.
+
+
+## AI-2 idempotent task completion — 2026-11-25
+
+- Found that `POST /tasks/{tid}/done` unconditionally updated the task and appended a case event on every request. Repeated clicks/retries could therefore create duplicate completion history entries.
+- Changed the state update to a conditional `status!='done'` update and emit the completion event only when the update changes a row. The route still returns the existing `{"ok": true}` response and retains the existing authorization check; no schema or migration change was made.
+- Extended `test_firm_workflow_claim_calendar_and_fee_aggregates` to submit completion twice and assert the task remains done with exactly one completion event.
+- Commits: `c95b01ae8814bd5e673418ff27bb2496ff63aa0a` (backend) and `99ddcb8b88b48e54463f50a699d38ac78eed2657` (regression test). Source and test read-back confirmed. The Python test was not executed.
