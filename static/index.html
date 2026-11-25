@@ -2217,7 +2217,7 @@ async function calendarPage(){
  const drawAgenda=()=>{
   const rows=filtered().filter(x=>calendarView==='agenda'?itemDay(x)>=todayKey:itemDay(x)===selectedDay);
   const dateText=calendarView==='agenda'?uiText('الأجندة القادمة','Upcoming agenda'):new Date(selectedDay+'T12:00:00').toLocaleDateString(LANG==='ar'?'ar-EG':'en-US',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
-  list.replaceChildren(h('div',{className:'calendar-agenda-heading'},h('b',{textContent:dateText}),h('span',{className:'mut',textContent:rows.length+' '+uiText('عنصر','items')})),info,...(rows.length?rows.map(x=>{
+  list.replaceChildren(h('div',{className:'calendar-agenda-heading'},h('b',{textContent:dateText}),h('span',{className:'mut',role:'status','aria-live':'polite',textContent:rows.length+' '+uiText('عنصر','items')})),info,...(rows.length?rows.map(x=>{
    const label=x.kind==='session'?uiText('جلسة','Hearing'):x.kind==='deadline'?uiText('موعد قانوني','Legal deadline'):uiText('مهمة','Task');
    const action=x.kind==='task'?btn(uiText('إنجاز','Complete'),async()=>{await api('/tasks/'+x.id+'/done','POST');calendarPage()},'g'):x.kind==='deadline'?btn(uiText('إنجاز','Complete'),async()=>{await api('/deadlines/'+x.id+'/done','POST');calendarPage()},'g'):null;
    return h('div',{className:'workspace-list-item calendar-agenda-item'},h('div',{className:'item-main'},h('b',{textContent:x.title}),h('div',{className:'item-meta',textContent:label+' · '+(x.meta||'')}),x.assignee?h('div',{className:'item-meta',textContent:uiText('المسند إليه: ','Assigned to: ')+x.assignee}):null),h('div',{className:'calendar-agenda-actions'},h('b',{textContent:fd(x.date)}),action));
