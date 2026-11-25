@@ -327,6 +327,51 @@ class TenantSQLiteConnectionRouterTests(unittest.TestCase):
             external_alias.unlink(missing_ok=True)
             self.router.close_current_thread()
 
+    @unittest.skipUnless(os.name == "posix", "POSIX filesystem metadata injection")
+    def test_post_open_sidecar_metadata_failure_revokes_connection(self):
+        with self._catalog() as catalog:
+            path = resolve_tenant_database(catalog, 101, self.root)
+        sidecar = Path(str(path) + "-wal")
+        original_connect = sqlite3.connect
+        original_lstat = os.lstat
+        opened = []
+        state = {"after_journal_mode": False, "failed": False}
+
+        class TriggerConnection(sqlite3.Connection):
+            def execute(self, sql, parameters=()):
+                result = super().execute(sql, parameters)
+                if sql.strip().lower() == "pragma journal_mode":
+                    state["after_journal_mode"] = True
+                return result
+
+        def connect_with_trigger(database, *args, **kwargs):
+            if str(database) == str(path):
+                kwargs["factory"] = TriggerConnection
+            connection = original_connect(database, *args, **kwargs)
+            if str(database) == str(path):
+                opened.append(connection)
+            return connection
+
+        def fail_post_open_sidecar(candidate, *args, **kwargs):
+            if Path(candidate) == sidecar and state["after_journal_mode"]:
+                state["failed"] = True
+                raise PermissionError("injected post-open sidecar metadata failure")
+            return original_lstat(candidate, *args, **kwargs)
+
+        with patch("tenant_storage.sqlite3.connect", side_effect=connect_with_trigger), \
+             patch("tenant_storage.os.lstat", side_effect=fail_post_open_sidecar):
+            with self.assertRaisesRegex(
+                TenantConnectionError, "sidecar metadata cannot be verified after opening"
+            ):
+                self.router.connection_for_firm(101)
+
+        self.assertTrue(state["after_journal_mode"])
+        self.assertTrue(state["failed"])
+        self.assertEqual(len(opened), 1)
+        with self.assertRaises(sqlite3.ProgrammingError):
+            opened[0].execute("SELECT 1")
+        self.router.close_current_thread()
+
     def test_unreadable_sqlite_sidecar_metadata_revokes_cached_connection(self):
         connection = self.router.connection_for_firm(101)
         with self._catalog() as catalog:
