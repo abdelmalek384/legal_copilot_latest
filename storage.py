@@ -22,7 +22,12 @@ class SQLiteConnectionProvider:
         if database_path is None or str(database_path).strip() == "":
             raise ValueError("database_path must be a non-empty path")
         self.database_path = str(database_path)
-        self.timeout = float(timeout)
+        if isinstance(timeout, bool):
+            raise ValueError("timeout must be a finite positive number")
+        try:
+            self.timeout = float(timeout)
+        except (TypeError, ValueError, OverflowError) as exc:
+            raise ValueError("timeout must be a finite positive number") from exc
         if not math.isfinite(self.timeout) or self.timeout <= 0:
             raise ValueError("timeout must be a finite positive number")
         self._local = threading.local()
