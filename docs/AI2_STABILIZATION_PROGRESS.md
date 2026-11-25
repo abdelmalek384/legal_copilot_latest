@@ -22,7 +22,7 @@ The prior separate security-regression-source-coverage estimate remains 98%; it 
 - **Task:** exercise tenant DB and SQLite sidecar hard-link checks after SQLite opens, rather than only before connection setup.
 - **Changes:** two race-injection regressions in `tests/test_tenant_storage.py` on draft PR #2007. Each uses a synthetic tenant fixture and injects an external hard-link alias after the journal-mode query creates the SQLite sidecar state; the router must fail closed and close the untracked connection.
 - **Task implementation:** regression source added, 100%.
-- **Execution:** 0%; the repository test module is not executed here. No Python 3.12 checkout/runtime is available and hosted Actions are blocked by billing.
+- **Isolated harness:** 2/2 synthetic SQLite checks passed for alias injection after the journal-mode query (one database-file alias and one WAL-sidecar alias). This validates the race-injection pattern and observed link-count behavior, not the tenant router itself.\n- **Repository execution:** 0%; the repository test module is not executed here. No Python 3.12 checkout/runtime is available and hosted Actions are blocked by billing.
 - **Read-back:** the changed test file was re-fetched and inspected after the commit.
 - **Security limitation:** filesystem hard-link checks do not demonstrate race-free directory-descriptor-based SQLite opening or protection from a privileged/local filesystem attacker. Route-level tenant isolation and browser acceptance are still unverified.
 - **Pilot status:** NOT READY.
