@@ -2370,7 +2370,7 @@ async function clients(initialQuery=''){
 }
 async function casesPage(){
  PAGE='cases';
- const q=h('input',{'aria-label':uiText('ابحث بالعنوان أو العميل أو رقم القضية أو الخصم','Search title, client, case number or opposing party'),placeholder:uiText('ابحث بالعنوان أو العميل أو رقم القضية أو الخصم','Search title, client, case number or opposing party')});
+ const q=h('input',{type:'search','aria-label':uiText('ابحث بالعنوان أو العميل أو رقم القضية أو الخصم','Search title, client, case number or opposing party'),placeholder:uiText('ابحث بالعنوان أو العميل أو رقم القضية أو الخصم','Search title, client, case number or opposing party')});
  const status=h('select',{'aria-label':uiText('تصفية القضايا حسب الحالة','Filter cases by status')},new Option(uiText('كل الحالات','All statuses'),''),new Option(uiText('مفتوحة','Open'),'open'),new Option(uiText('مغلقة','Closed'),'closed'));
  const box=h('div',{className:'card'}),summary=h('div',{className:'mut',role:'status','aria-live':'polite'}),pageLabel=h('span',{className:'mut',role:'status','aria-live':'polite'});
  const importInput=h('input',{type:'file',accept:'.csv,text/csv','aria-label':uiText('اختر ملف CSV','Choose CSV file'),style:'display:none'});
