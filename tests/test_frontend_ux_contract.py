@@ -2001,5 +2001,28 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("paymentKey=null;paymentFingerprint=null", invoices)
         self.assertIn("finally{paymentBusy=false;paymentButton.disabled=false}", invoices)
 
+    def test_global_search_keeps_successful_sections_when_another_section_fails(self):
+        search_start = HTML.index("async function runGlobalSearch()")
+        search_end = HTML.index("globalSearchInput.oninput", search_start)
+        search = HTML[search_start:search_end]
+        self.assertIn("await Promise.allSettled([", search)
+        self.assertIn("matterResult.status==='fulfilled'", search)
+        self.assertIn("clientResult.status==='fulfilled'", search)
+        self.assertIn("documentResult.status==='fulfilled'", search)
+        self.assertIn("filter(result=>result.status==='rejected').length", search)
+        self.assertIn("Some search sections are temporarily unavailable; the results shown are partial.", search)
+        self.assertIn("Search is temporarily unavailable. Check your connection and try again.", search)
+        self.assertNotIn("await Promise.all([", search)
+        self.assertIn("let globalSearchRequest=0", search)
+        self.assertIn("const requestId=++globalSearchRequest", search)
+        self.assertIn("if(requestId!==globalSearchRequest)return", search)
+        self.assertIn("if(requestId===globalSearchRequest)globalSearchButton.disabled=false", search)
+        self.assertIn("globalSearchRequest++;globalSearchButton.disabled=false", HTML)
+        effective_handler_start = HTML.rindex("globalSearchInput.oninput=")
+        effective_handler_end = HTML.index("globalSearchInput.onkeydown", effective_handler_start)
+        effective_handler = HTML[effective_handler_start:effective_handler_end]
+        self.assertIn("globalSearchRequest++;globalSearchButton.disabled=false", effective_handler)
+        self.assertIn("renderCommandPalette(value.slice(1))", effective_handler)
+
 if __name__ == "__main__":
     unittest.main()
