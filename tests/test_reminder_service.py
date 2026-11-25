@@ -10,7 +10,7 @@ from unittest.mock import patch
 
 from database_runtime import DatabaseRuntime
 from tools.reminder_email import SMTPConfig
-from tools.reminder_outbox import claim_next, enqueue_plan, finish_attempt, retry_failed
+from tools.reminder_outbox import ReminderOutboxError, claim_next, enqueue_plan, finish_attempt, retry_failed
 from tools.reminder_schedule import build_reminder_plan
 from tools.reminder_service import (
     _ReadOnlyReminderRuntime, _date_only, main, outbox_status, run_scheduler,
@@ -103,7 +103,7 @@ class ReminderServiceTests(unittest.TestCase):
         for limit in (0, -1, 1001, True, 1.5):
             with self.subTest(max_send=limit):
                 with patch("tools.reminder_service.send_reminder_email") as sender:
-                    with self.assertRaisesRegex(Exception, "max_send must be between 1 and 1000"):
+                    with self.assertRaisesRegex(ReminderOutboxError, "max_send must be between 1 and 1000"):
                         run_scheduler(
                             self.runtime, now=self.now, timezone_name="Africa/Cairo",
                             send=True, smtp_config=self.smtp,
