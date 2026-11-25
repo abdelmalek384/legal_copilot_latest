@@ -290,10 +290,10 @@ class LegalReleaseReadinessTests(unittest.TestCase):
 
     def test_coverage_matrix_rejects_duplicate_headers_and_ragged_rows(self):
         coverage_path = self.root / "coverage.csv"
-        coverage_path.write_text("practice_area,priority,status,status\\nLabour,P0,not_started,extra\\n", encoding="utf-8")
+        coverage_path.write_text("practice_area,priority,status,status\nLabour,P0,not_started,extra\n", encoding="utf-8")
         report = MODULE.summarize_coverage_matrix(coverage_path)
         self.assertFalse(report["available"])
-        coverage_path.write_text("practice_area,priority,status\\nLabour,P0\\n", encoding="utf-8")
+        coverage_path.write_text("practice_area,priority,status\nLabour,P0\n", encoding="utf-8")
         report = MODULE.summarize_coverage_matrix(coverage_path)
         self.assertFalse(report["available"])
 
