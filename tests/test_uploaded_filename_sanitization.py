@@ -15,7 +15,7 @@ class UploadedFilenameSanitizationTests(unittest.TestCase):
         self.assertEqual(app._sanitize_uploaded_filename(hostile), "matter.pdf")
 
     def test_removes_unicode_line_and_paragraph_separators(self):
-        hostile = "matter\\u2028report\\u2029.pdf"
+        hostile = "matter\u2028report\u2029.pdf"
         self.assertEqual(app._sanitize_uploaded_filename(hostile), "matterreport.pdf")
 
     def test_trims_and_caps_length(self):
