@@ -100,6 +100,7 @@ class DeploymentPreflightTests(unittest.TestCase):
             "https://legal.example.com\\attacker",
             "https://legal.example.com\t",
             "https://legal.example.com:65536",
+            "https://legal.example.com:0",
         ):
             with self.subTest(origin=origin):
                 _, _, errors = preflight.inspect_environment(
