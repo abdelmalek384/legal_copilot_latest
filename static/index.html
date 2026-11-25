@@ -3530,12 +3530,12 @@ function documentIntelligencePanel(caseId,documents){
   }
  };
  const renderChunkReviewCards=()=>{
-  const cards=[];let remaining=100;
+  const cards=[];let remaining=100,hasMore=false;
   for(const item of cache.values()){
    for(const chunk of item.chunks){
     const latest=chunk.latest_review;
     if(needsAttentionOnly&&latest&&latest.outcome!=='needs_recheck')continue;
-    if(remaining<=0)break;
+    if(remaining<=0){hasMore=true;break}
     remaining--;
     const reviewLabel=latest?({accepted:uiText('تمت المراجعة','Reviewed — accepted'),corrected:uiText('تم تصحيح النص','Text corrected'),needs_recheck:uiText('يتطلب إعادة الفحص','Needs recheck')}[latest.outcome]||uiText('له سجل مراجعة','Review recorded')):uiText('لم تتم المراجعة','Not yet reviewed');
     const note=h('input',{type:'text',maxLength:2000,placeholder:uiText('ملاحظة المراجع (اختيارية)','Reviewer note (optional)'),'aria-label':uiText('ملاحظة مراجعة المقطع ','Review note for chunk ')+chunk.id});
@@ -3561,6 +3561,7 @@ function documentIntelligencePanel(caseId,documents){
    }
    if(remaining<=0)break;
   }
+  if(hasMore)cards.unshift(h('p',{className:'notice',role:'status',textContent:uiText('يعرض هذا الملخص أول 100 مقطع فقط. افتح مراجعة المستند للوصول إلى بقية المقاطع.','This summary shows the first 100 passages only. Open the document review panel to access the remaining passages.')}));
   if(!cards.length)cards.push(h('p',{className:'mut',textContent:needsAttentionOnly?uiText('لا توجد مقاطع تحتاج مراجعة حالياً.','No passages currently need attention.'):uiText('لا توجد مقاطع نصية متاحة للمراجعة.','No extracted text chunks are available for review.')}));
   const historyResults=h('div',{});
   const historyButton=btn(uiText('عرض سجل المراجعة','View review history'),async()=>{
