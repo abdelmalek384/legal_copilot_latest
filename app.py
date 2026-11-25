@@ -2580,18 +2580,37 @@ def _secure_cookie_transport(request):
 def _origin_matches_request(origin, request):
     """Compare browser Origin to request origin or an explicit public HTTPS origin."""
     from urllib.parse import urlsplit
+
+    def has_unsafe_origin_text(value):
+        return (
+            not isinstance(value, str)
+            or not value
+            or value != value.strip()
+            or "\\" in value
+            or any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in value)
+        )
+
     try:
+        # urlsplit intentionally strips some control characters; reject them
+        # before parsing so malformed header/config text cannot be normalized
+        # into an apparently valid origin.
+        if has_unsafe_origin_text(origin):
+            return False
         parsed = urlsplit(origin)
         # Access hostname/port to force validation of malformed authorities and ports.
         if (parsed.scheme not in {"http", "https"} or not parsed.netloc
-                or not parsed.hostname or parsed.username or parsed.password
+                or not parsed.hostname or parsed.netloc.endswith(":")
+                or parsed.username or parsed.password
                 or parsed.path not in {"", "/"} or parsed.query or parsed.fragment):
             return False
         _ = parsed.port
-        public_origin = os.environ.get("COPILOT_PUBLIC_ORIGIN", "").strip()
+        public_origin = os.environ.get("COPILOT_PUBLIC_ORIGIN", "")
         if public_origin:
+            if has_unsafe_origin_text(public_origin):
+                return False
             expected = urlsplit(public_origin)
             if (expected.scheme != "https" or not expected.netloc or not expected.hostname
+                    or expected.netloc.endswith(":")
                     or expected.username or expected.password or expected.path not in {"", "/"}
                     or expected.query or expected.fragment):
                 return False
