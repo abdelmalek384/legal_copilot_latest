@@ -1979,7 +1979,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("if(payload===false)return", helper)
         self.assertIn("if(busy)return", helper)
         self.assertIn("finally{busy=false;control.disabled=false}", helper)
-        invoices_start = HTML.index("function renderInvoices")
+        invoices_start = HTML.index("const renderInvoices=")
         invoices_end = HTML.index("async function loadInvoices", invoices_start)
         invoices = HTML[invoices_start:invoices_end]
         self.assertIn("actionButton(uiText('إصدار الفاتورة','Issue invoice')", invoices)
@@ -1989,7 +1989,7 @@ class FrontendUXContractTests(unittest.TestCase):
 
 
     def test_invoice_payment_ui_reuses_idempotency_key_for_ambiguous_retry(self):
-        invoices_start = HTML.index("function renderInvoices")
+        invoices_start = HTML.index("const renderInvoices=")
         invoices_end = HTML.index("async function loadInvoices", invoices_start)
         invoices = HTML[invoices_start:invoices_end]
         self.assertIn("let paymentBusy=false,paymentKey=null,paymentFingerprint=null,paymentButton", invoices)
