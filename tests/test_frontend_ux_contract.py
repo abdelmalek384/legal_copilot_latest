@@ -2018,6 +2018,11 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("if(requestId!==globalSearchRequest)return", search)
         self.assertIn("if(requestId===globalSearchRequest)globalSearchButton.disabled=false", search)
         self.assertIn("globalSearchRequest++;globalSearchButton.disabled=false", HTML)
+        effective_handler_start = HTML.rindex("globalSearchInput.oninput=")
+        effective_handler_end = HTML.index("globalSearchInput.onkeydown", effective_handler_start)
+        effective_handler = HTML[effective_handler_start:effective_handler_end]
+        self.assertIn("globalSearchRequest++;globalSearchButton.disabled=false", effective_handler)
+        self.assertIn("renderCommandPalette(value.slice(1))", effective_handler)
 
 if __name__ == "__main__":
     unittest.main()
