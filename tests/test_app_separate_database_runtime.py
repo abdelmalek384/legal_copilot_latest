@@ -5893,6 +5893,17 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertEqual(result, [])
         self.assertEqual(answer["requested_as_of"], "2030-01-01")
 
+    def test_ask_freezes_one_cairo_local_as_of_date_for_retrieval_and_response(self):
+        with patch.object(
+            app, "_cairo_today",
+            side_effect=[date(2030, 1, 1), date(2030, 1, 2)],
+        ) as cairo_today:
+            with patch.object(app, "search", return_value=[]) as search:
+                result = app.ask(None, "synthetic legal query", scope="verified_corpus")
+        self.assertEqual(search.call_args.kwargs["as_of"], "2030-01-01")
+        self.assertEqual(result["requested_as_of"], "2030-01-01")
+        cairo_today.assert_called_once()
+
     def test_date_models_reject_impossible_calendar_dates(self):
         cases = (
             (app.SessIn, {"date": "2024-02-29"}, "date", "2025-02-29"),
