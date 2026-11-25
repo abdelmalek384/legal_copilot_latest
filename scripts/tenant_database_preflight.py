@@ -117,7 +117,19 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
         unsafe_sidecar = False
         for suffix in ("-wal", "-shm", "-journal"):
             sidecar = Path(str(database_path) + suffix)
-            if sidecar.is_symlink():
+            try:
+                metadata = os.lstat(sidecar)
+            except FileNotFoundError:
+                continue
+            except OSError:
+                add(
+                    "database_sidecar_metadata_unreadable",
+                    firm_id,
+                    f"SQLite sidecar {sidecar.name} metadata could not be inspected",
+                )
+                unsafe_sidecar = True
+                continue
+            if stat.S_ISLNK(metadata.st_mode):
                 add(
                     "database_sidecar_symlink",
                     firm_id,
@@ -125,9 +137,7 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
                 )
                 unsafe_sidecar = True
                 continue
-            if not sidecar.exists():
-                continue
-            if not sidecar.is_file():
+            if not stat.S_ISREG(metadata.st_mode):
                 add(
                     "database_sidecar_not_regular_file",
                     firm_id,
@@ -135,22 +145,22 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
                 )
                 unsafe_sidecar = True
                 continue
+            if metadata.st_nlink != 1:
+                add(
+                    "database_sidecar_hard_link",
+                    firm_id,
+                    f"SQLite sidecar {sidecar.name} must not be hard-linked",
+                )
+                unsafe_sidecar = True
+                continue
             if os.name != "posix":
                 continue
-            try:
-                sidecar_mode = stat.S_IMODE(sidecar.stat().st_mode)
-                if sidecar_mode & 0o077:
-                    add(
-                        "database_sidecar_permissions_too_open",
-                        firm_id,
-                        f"SQLite sidecar {sidecar.name} permissions {sidecar_mode:04o} allow group/other access",
-                    )
-                    unsafe_sidecar = True
-            except OSError:
+            sidecar_mode = stat.S_IMODE(metadata.st_mode)
+            if sidecar_mode & 0o077:
                 add(
-                    "database_sidecar_permissions_unreadable",
+                    "database_sidecar_permissions_too_open",
                     firm_id,
-                    f"SQLite sidecar {sidecar.name} permissions could not be inspected",
+                    f"SQLite sidecar {sidecar.name} permissions {sidecar_mode:04o} allow group/other access",
                 )
                 unsafe_sidecar = True
         return unsafe_sidecar
@@ -384,28 +394,35 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
         seen_files[filename] = firm_id
 
         candidate = root / filename
-        if candidate.is_symlink():
-            add("database_symlink", firm_id, "tenant database file is a symbolic link")
-            continue
         try:
-            resolved = candidate.resolve(strict=True)
-        except OSError:
+            database_metadata = os.lstat(candidate)
+        except FileNotFoundError:
             add("database_missing", firm_id, "catalog references a file that does not exist")
             continue
-        if resolved.parent != root or not resolved.is_file():
-            add("database_path_escape", firm_id, "resolved database is not a regular file directly under the storage root")
+        except OSError:
+            add("database_metadata_unreadable", firm_id, "tenant database file metadata could not be inspected")
+            continue
+        if stat.S_ISLNK(database_metadata.st_mode):
+            add("database_symlink", firm_id, "tenant database file is a symbolic link")
+            continue
+        if not stat.S_ISREG(database_metadata.st_mode):
+            add("database_path_escape", firm_id, "tenant database is not a regular file directly under the storage root")
+            continue
+        if database_metadata.st_nlink != 1:
+            add("database_hard_link", firm_id, "tenant database file must not be hard-linked")
+            continue
+        resolved = candidate.resolve(strict=True)
+        if resolved.parent != root:
+            add("database_path_escape", firm_id, "resolved database is not directly under the storage root")
             continue
         if os.name == "posix":
-            try:
-                database_mode = stat.S_IMODE(resolved.stat().st_mode)
-                if database_mode & 0o077:
-                    add(
-                        "database_permissions_too_open",
-                        firm_id,
-                        f"tenant database permissions {database_mode:04o} allow group/other access",
-                    )
-            except OSError:
-                add("database_permissions_unreadable", firm_id, "tenant database file permissions could not be inspected")
+            database_mode = stat.S_IMODE(database_metadata.st_mode)
+            if database_mode & 0o077:
+                add(
+                    "database_permissions_too_open",
+                    firm_id,
+                    f"tenant database permissions {database_mode:04o} allow group/other access",
+                )
         if check_sidecars(resolved, firm_id):
             # Unsafe sidecars can redirect or expose SQLite pages; never open this tenant DB.
             continue
