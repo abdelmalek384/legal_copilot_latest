@@ -5880,6 +5880,19 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             self.assertEqual(finance.json()["overdue_count"], 1)
             self.assertEqual(finance.json()["overdue_amount"], 100.0)
 
+    def test_legal_research_default_as_of_uses_cairo_local_date(self):
+        cairo_day = date(2030, 1, 1)
+        with patch.object(app, "_cairo_today", return_value=cairo_day):
+            with patch.object(app, "_separate_runtime_enabled", return_value=True):
+                with patch.object(app, "_search_separate", return_value=[]) as separate_search:
+                    result = app.search(None, "synthetic legal query", scope="verified_corpus")
+                self.assertEqual(separate_search.call_args.args[5], "2030-01-01")
+
+            with patch.object(app, "search", return_value=[]):
+                answer = app.ask(None, "synthetic legal query", scope="verified_corpus")
+        self.assertEqual(result, [])
+        self.assertEqual(answer["requested_as_of"], "2030-01-01")
+
     def test_date_models_reject_impossible_calendar_dates(self):
         cases = (
             (app.SessIn, {"date": "2024-02-29"}, "date", "2025-02-29"),
