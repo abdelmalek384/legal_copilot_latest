@@ -250,7 +250,8 @@ These are implementation/evidence estimates, not test pass rates. Runtime paymen
 - Changed the three independent searches to `Promise.allSettled`. Each successful section now renders its results even if another section fails. The UI reports when results are partial, distinguishes total search unavailability from a genuine empty result, and keeps the status message accessible with `role=status` and `aria-live=polite`.
 - Added `test_global_search_keeps_successful_sections_when_another_section_fails` to the frontend UX contract suite. It checks independent result handling and the partial/total failure messages. Test is authored but **not executed**; no browser or runtime pass is claimed.
 - Added a monotonically increasing search-request token. Typing a new query invalidates older in-flight requests, stale responses cannot overwrite newer results, and stale requests cannot re-enable the search button while a newer request is active. The same regression now checks this race guard.
-- Commits on `ai2/global-search-partial-results`: `b7872ce`, `88b3c96`, `9569e49`, and `f2ab7eb`. GitHub read-back verification is pending at this checkpoint.
+- An isolated JavaScript control-flow simulation exercised a mixed success/failure result set and a query invalidated while requests were pending: partial results remained distinguishable, the stale response was suppressed, and invalidation left the button enabled. This does not execute the application bundle or browser lifecycle.
+- Commits on `ai2/global-search-partial-results`: `b7872ce`, `88b3c96`, `9569e49`, and `f2ab7eb`. GitHub read-back verification completed for the frontend, regression contract, and this progress record.
 
 | Workstream | Previous | Current | Change | Evidence |
 |---|---:|---:|---|
