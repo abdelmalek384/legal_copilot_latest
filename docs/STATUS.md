@@ -2041,3 +2041,5 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Hardened the invoice payment control against repeated clicks and ambiguous network retries. The button is disabled while the request runs. A generated idempotency key is retained after failure for the same payment payload, so retrying the same amount/date/method/reference reuses the same server key; editing the payload generates a new key. The key resets only after a confirmed successful response.
 - Added `test_invoice_payment_ui_reuses_idempotency_key_for_ambiguous_retry` to the frontend source-contract suite.
 - Commits: `560c70a951044c35fe4a1b7702eca95813d7e2eb` (frontend), `3cc3a7d04cb9939fb6dae6b81118144c19b0b5b5` (test). Read-back verification only; no browser/Python execution.
+
+- Follow-up test-source correction: `db6da070cf6e62cffbda0a45f3ce06d182851638` aligns the invoice frontend regression tests with the actual `const renderInvoices=` declaration. Final source-marker read-back passed; test execution remains outstanding.
