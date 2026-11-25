@@ -51,10 +51,14 @@ def statute_title_matches(title: object, reference: object) -> bool:
             or not all(isinstance(part, str) and part.isdigit() for part in reference)):
         return False
     normalized = _normalized_words(title)
-    if not re.search(r"(?<!\w)(?:law|القانون|قانون)(?!\w)", normalized, re.IGNORECASE):
-        return False
     number, year = reference
-    return bool(
-        re.search(rf"(?<!\d){re.escape(number)}(?!\d)", normalized)
-        and re.search(rf"(?<!\d){re.escape(year)}(?!\d)", normalized)
+    # Require the law label to precede the exact number/year pair. Merely finding
+    # both numbers somewhere in a long title can match unrelated amendment metadata.
+    match = re.search(
+        r"(?<!\\w)(?:law|القانون|قانون)[^0-9]{0,120}"
+        r"(?:no\\.?|number|رقم)?\\s*"
+        r"(\\d{1,4})\\s*(?:of|لسنة|/)\\s*(\\d{4})(?!\\d)",
+        normalized,
+        flags=re.IGNORECASE,
     )
+    return bool(match and match.group(1) == number and match.group(2) == year)
