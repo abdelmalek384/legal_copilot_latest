@@ -223,6 +223,38 @@ class TenantDatabasePreflightTests(unittest.TestCase):
         self.assertIn("database_sidecar_permissions_too_open", {item["code"] for item in findings})
         self.assertEqual(report["tenant_databases_inspected"], 0)
 
+    @unittest.skipUnless(os.name == "posix", "POSIX hard links are required")
+    def test_tenant_database_hard_link_is_reported_without_opening_database(self):
+        filename = self.add_tenant(40)
+        database = self.root / filename
+        external_alias = self.base / "outside-tenant-database.sqlite3"
+        os.link(database, external_alias)
+        report = audit(self.catalog_path, self.root)
+        findings = [item for item in report["findings"] if item["firm_id"] == 40]
+        self.assertIn("database_hard_link", {item["code"] for item in findings})
+        self.assertEqual(report["tenant_databases_inspected"], 0)
+
+    @unittest.skipUnless(os.name == "posix", "POSIX hard links are required")
+    def test_tenant_sqlite_sidecar_hard_link_is_reported_without_opening_database(self):
+        filename = self.add_tenant(41)
+        sidecar = Path(str(self.root / filename) + "-wal")
+        sidecar.write_text("synthetic WAL sidecar", encoding="utf-8")
+        external_alias = self.base / "outside-tenant-wal"
+        os.link(sidecar, external_alias)
+        report = audit(self.catalog_path, self.root)
+        findings = [item for item in report["findings"] if item["firm_id"] == 41]
+        self.assertIn("database_sidecar_hard_link", {item["code"] for item in findings})
+        self.assertEqual(report["tenant_databases_inspected"], 0)
+
+    @unittest.skipUnless(os.name == "posix", "POSIX hard links are required")
+    def test_catalog_sqlite_sidecar_hard_link_prevents_catalog_open(self):
+        sidecar = Path(str(self.catalog_path) + "-wal")
+        sidecar.write_text("synthetic catalog WAL", encoding="utf-8")
+        external_alias = self.base / "outside-catalog-wal"
+        os.link(sidecar, external_alias)
+        with self.assertRaisesRegex(ValueError, "unsafe SQLite sidecar"):
+            audit(self.catalog_path, self.root)
+
     @unittest.skipUnless(os.name == "posix", "POSIX symlinks are required")
     def test_tenant_sqlite_sidecar_symlink_is_reported(self):
         filename = self.add_tenant(27)
