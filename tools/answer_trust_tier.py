@@ -48,6 +48,12 @@ def firm_test_source_matched_enabled(firm_id: object, env: object = None) -> boo
         allowed_firm = int(configured_firm)
     except (TypeError, ValueError, OverflowError):
         return False
+    # Compare canonical decimal identifiers, not merely their integer value:
+    # accepting "042" as "42" violates the exact-firm allowlist boundary.
+    if str(requested_firm) != (firm_id if isinstance(firm_id, str) else str(firm_id)):
+        return False
+    if str(allowed_firm) != configured_firm:
+        return False
     return requested_firm > 0 and allowed_firm > 0 and requested_firm == allowed_firm
 
 _SHA256_RE = re.compile(r"^[0-9a-fA-F]{64}$")
