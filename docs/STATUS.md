@@ -27,7 +27,9 @@ The following existing-functionality corrections were manually integrated onto m
 - PR #2026 (cb7f880): align legal source-status defaults and permission-register freshness checks with the Africa/Cairo calendar date.
 - PR #2027 (24a8e33): split mixed English/Arabic obligation clauses before comparing polarity, reducing false refusals without weakening same-clause reversal checks.
 
-#- Evaluator bug fix (2026-11-25): lawyer-approved benchmark questions that omit `practice_area` correctly validate against the evaluator’s existing `unspecified` default. Previously the report defaulted the area to `unspecified`, but reviewer-area authorization checked the missing raw field (`None`), rejecting the valid omitted-field case. Regression added; **not executed**.
+- Evaluator bug fix (2026-11-25): lawyer-approved benchmark questions that omit `practice_area` correctly validate against the evaluator’s existing `unspecified` default. Previously the report defaulted the area to `unspecified`, but reviewer-area authorization checked the missing raw field (`None`), rejecting the valid omitted-field case. Regression added; **not executed**.
+
+- Claim-support numeric correction (2026-11-25): grouped thousands such as `1,000` are now parsed as one thousand rather than decimal one, preventing a material numerical mismatch from being normalized away. Added fictional-source regressions for mismatched and matching grouped values. **Not executed**; implementation is source-reviewed only.
 
 ## AI-1 implementation estimates
 
@@ -37,10 +39,10 @@ The following existing-functionality corrections were manually integrated onto m
 |---|---:|---:|---:|
 | Legal Research reliability | 56% | 56% | — |
 | Arabic retrieval and matching | 51% | 52% | +1 pp |
-| Citation and trust safeguards | 69% | 69% | — |
+| Citation and trust safeguards | 69% | 70% | +1 pp |
 | Existing evaluation and tests | 43% | 44% | +1 pp |
 | PR review and integration | 62% | 62% | — |
-| **Overall AI-1 assignment** | **51%** | **52%** | **+1 pp** |
+| **Overall AI-1 assignment** | **52%** | **53%** | **+1 pp** |
 
 These are engineering implementation estimates, not test pass rates or legal-quality measurements. The repository's Python 3.12 test modules, browser acceptance, and full release checker remain unexecuted in this environment. No GitHub Actions runs were used because runner billing is unavailable. The local runtime does not currently provide a repository checkout or Python 3.12.
 
