@@ -70,3 +70,27 @@ A repository checkout and supported runtime are required to execute the existing
 | **Overall AI-2 assignment** | **20%** | **20%** | **0 pp** | One stale architecture document corrected; no runtime acceptance evidence added |
 
 The narrow documentation correction is complete, but it does not justify raising the overall assignment estimate. The checkout/network and Python 3.12 runtime constraints remain; no further attempt was made to repeat those blocked operations.
+
+
+## Follow-up continuation — Cairo-local frontend date consistency (25 November 2026)
+
+- Identified and corrected a concrete application-layer defect rather than repeating the blocked test/clone work: the frontend's shared `today` key, local reminder summary, and calendar current-day marker used the browser's local timezone, while backend workflow dates are Cairo-local. Users operating the browser in a different timezone could see overdue/today/tomorrow labels that disagree with the server's dashboard/deadline date interpretation.
+- Added a single IANA `Africa/Cairo` date-key helper with calendar-day offset arithmetic. Rewired shared overdue date comparisons, reminder today/tomorrow keys, and the calendar's current-day calculation. No persisted dates, legal calculations, backend API contracts, or database state changed.
+- Added source-contract regression `test_frontend_deadline_and_reminder_dates_use_cairo_calendar_day`.
+- Manually ran the helper logic in the available JavaScript runtime for three representative instants, including one second before Cairo midnight and exactly at Cairo midnight. All expected Cairo date and next-day values matched. This is helper-level evidence only.
+- Commits: `8e49f5e` frontend change; `4440fbf` regression; `2560310` status evidence. Read-back verified the frontend and test blobs. No repository Python test or browser session was run.
+
+### Updated progress accounting
+
+| Workstream | Previous | Current | Change | Evidence |
+|---|---:|---:|---:|---|
+| Backend and existing workflows | 25% | 25% | 0 pp | No backend workflow changes |
+| Frontend and usability | 20% | 22% | +2 pp | Fixed Cairo/browser timezone mismatch for task/deadline, reminder, and calendar date display |
+| Mobile and Arabic/English UI | 15% | 15% | 0 pp | Date helper is locale-independent, but no device/viewport acceptance added |
+| Security and tenant isolation | 30% | 30% | 0 pp | No new security verification |
+| Documents and file handling | 30% | 30% | 0 pp | No document workflow changes |
+| Deployment and recovery | 15% | 15% | 0 pp | No deployment/recovery evidence added |
+| Local testing and regression | 5% | 6% | +1 pp | Added a focused frontend source-contract regression and manually checked helper outputs; suite remains unexecuted |
+| **Overall AI-2 assignment** | **20%** | **21%** | **+1 pp** | One user-visible date consistency defect corrected, regression authored, and commits read back |
+
+These remain conservative implementation estimates, not test pass rates or pilot-readiness claims. Browser/device execution, Python 3.12 regression, two-firm acceptance, production deployment, and witnessed recovery remain NOT RUN/BLOCKED or outstanding.
