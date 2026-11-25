@@ -1957,5 +1957,18 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("await again()", upload)
         self.assertNotIn("const uploadIndexButton=", upload)
 
+    def test_task_and_calendar_completion_actions_prevent_duplicate_requests(self):
+        helper_start = HTML.index("const actionButton=")
+        helper_end = HTML.index("function applyMotionPreference()", helper_start)
+        helper = HTML[helper_start:helper_end]
+        self.assertIn("if(busy)return", helper)
+        self.assertIn("control.disabled=true", helper)
+        self.assertIn("finally{busy=false;control.disabled=false}", helper)
+        tasks = HTML[HTML.index("async function tasksPage"):HTML.index("async function calendarPage")]
+        calendar = HTML[HTML.index("async function calendarPage"):HTML.index("async function casesPage")]
+        self.assertIn("actionButton(uiText('إنجاز المهمة','Complete task'),'/tasks/'+t.id+'/done',tasksPage)", tasks)
+        self.assertIn("actionButton(uiText('إنجاز','Complete'),'/tasks/'+x.id+'/done',calendarPage)", calendar)
+        self.assertIn("actionButton(uiText('إنجاز','Complete'),'/deadlines/'+x.id+'/done',calendarPage)", calendar)
+
 if __name__ == "__main__":
     unittest.main()
