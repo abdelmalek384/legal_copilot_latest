@@ -249,6 +249,17 @@ class ArabicMatchingTests(unittest.TestCase):
                     f"{query!r} did not expand to {canonical!r}",
                 )
 
+    def test_long_original_query_tokens_are_never_truncated_by_hint_limit(self):
+        original = [f"original_term_{i}" for i in range(70)]
+        expanded = MATCHING.expand_lexicon_hints(
+            "long query", original, lambda value: value.split(),
+            lambda value: value.casefold(), limit=48,
+            phrase_aliases={}, token_aliases={},
+        )
+        self.assertTrue(set(original).issubset(expanded))
+        self.assertEqual(expanded[:70], original)
+        self.assertEqual(len(expanded), 70)
+
     def test_lexicon_loader_rejects_duplicate_json_keys(self):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "lexicon.json"

@@ -151,4 +151,9 @@ def expand_lexicon_hints(
     for token in tuple(expanded):
         expanded.extend(orthographic_variants(token))
 
-    return list(dict.fromkeys(expanded))[:max(1, int(limit))]
+    # The limit bounds only retrieval hints, never the user's original query terms.
+    # Long legal queries must not lose exact terms silently.
+    original = list(dict.fromkeys(existing_tokens))
+    original_set = set(original)
+    hints = [token for token in dict.fromkeys(expanded) if token not in original_set]
+    return original + hints[:max(1, int(limit))]
