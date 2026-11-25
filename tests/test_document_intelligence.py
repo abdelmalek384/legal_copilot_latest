@@ -261,6 +261,32 @@ class DocumentIntelligenceTests(unittest.TestCase):
         self.assertEqual(result["entity_records_inspected"], 2)
         self.assertTrue(result["truncated"])
 
+    def test_candidate_entity_grouping_continues_after_per_document_truncation(self):
+        documents = [
+            {
+                "firm_id": "firm-a", "matter_id": "matter-1", "document_id": "doc-1",
+                "entities": [
+                    {"entity_type": "legal_reference", "mention": "Article 10"},
+                    {"entity_type": "legal_reference", "mention": "Article 11"},
+                ],
+            },
+            {
+                "firm_id": "firm-a", "matter_id": "matter-1", "document_id": "doc-2",
+                "entities": [
+                    {"entity_type": "legal_reference", "mention": "Article 10"},
+                ],
+            },
+        ]
+        result = group_candidate_entity_mentions(
+            documents, max_entities_per_document=1
+        )
+        self.assertEqual(result["documents_inspected"], 2)
+        self.assertEqual(result["entity_records_inspected"], 2)
+        self.assertEqual(result["candidate_count"], 2)
+        self.assertTrue(result["truncated"])
+        self.assertEqual(result["group_count"], 1)
+        self.assertEqual(result["groups"][0]["document_ids"], ["doc-1", "doc-2"])
+
     def test_candidate_entity_grouping_enforces_global_scan_budget_even_for_ignored_entities(self):
         documents = [{
             "firm_id": "firm-a", "matter_id": "matter-1", "document_id": "doc-1",
