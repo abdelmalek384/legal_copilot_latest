@@ -23,6 +23,16 @@ class ReminderScheduleError(ValueError):
     """Raised when normalized reminder input is invalid."""
 
 
+def _reject_duplicate_json_keys(pairs):
+    """Reject ambiguous reminder input instead of silently keeping the last value."""
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError(f"duplicate JSON object key: {key!r}")
+        result[key] = value
+    return result
+
+
 def _parse_due_date(value: object, event_id: str) -> date:
     if not isinstance(value, str):
         raise ReminderScheduleError(f"{event_id}: due_date must be an ISO YYYY-MM-DD string")
@@ -181,7 +191,10 @@ def main(argv: list[str] | None = None) -> int:
         if args.out is not None and args.out.resolve() == args.input.resolve():
             raise ReminderScheduleError("--out must not overwrite the input file")
         try:
-            data = json.loads(args.input.read_text(encoding="utf-8"))
+            data = json.loads(
+                args.input.read_text(encoding="utf-8"),
+                object_pairs_hook=_reject_duplicate_json_keys,
+            )
         except json.JSONDecodeError as exc:
             raise ReminderScheduleError("input file is not valid JSON") from exc
         if not isinstance(data, dict):
