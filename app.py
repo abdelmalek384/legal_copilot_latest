@@ -3034,7 +3034,24 @@ class InvoiceVoidIn(BaseModel):
     reason: str = Field(min_length=5, max_length=1000)
 
 
-class DocIn(BaseModel): name: str = Field(min_length=1, max_length=200); text: str = Field(min_length=1, max_length=300_000)
+class DocIn(BaseModel):
+    name: str = Field(min_length=1, max_length=200)
+    text: str = Field(min_length=1, max_length=300_000)
+
+    @field_validator("name", mode="before")
+    @classmethod
+    def sanitize_document_title(cls, value):
+        if not isinstance(value, str):
+            return value
+        import unicodedata
+        cleaned = "".join(
+            ch for ch in value
+            if unicodedata.category(ch) not in {"Cc", "Cs", "Zl", "Zp"}
+            and (unicodedata.category(ch) != "Cf" or ch in {"\\u200c", "\\u200d"})
+        ).strip()
+        if not cleaned:
+            raise ValueError("document name must contain visible characters")
+        return cleaned
 class SessIn(BaseModel):
     date: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$"); note: str = Field("", max_length=500)
     _valid_date = field_validator("date")(validate_calendar_date)
