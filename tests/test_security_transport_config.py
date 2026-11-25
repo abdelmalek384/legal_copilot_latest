@@ -326,6 +326,7 @@ class SecureCookieTransportTests(unittest.TestCase):
         malformed = (
             "https://legal.example.com:bad",
             "https://legal.example.com:65536",
+            "https://legal.example.com:0",
             "https://legal.example.com:",
             "https://legal.example.com\n",
             "https://legal.example.com\\attacker",
@@ -343,6 +344,7 @@ class SecureCookieTransportTests(unittest.TestCase):
         for configured in (
             "https://legal.example.com:bad",
             "https://legal.example.com:65536",
+            "https://legal.example.com:0",
             "https://legal.example.com:",
             "https://legal.example.com\n",
             "https://legal.example.com\\attacker",
