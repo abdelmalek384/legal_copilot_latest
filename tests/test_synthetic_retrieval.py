@@ -164,6 +164,12 @@ class SyntheticRetrievalTests(unittest.TestCase):
                     self.assertEqual([hit["id"] for hit in matching], [matching_id])
                     arabic_matching = self.search("المادة ٥ من القانون رقم ١٤ لسنة ٢٠٢٥")
                     self.assertEqual([hit["id"] for hit in arabic_matching], [matching_id])
+                    descriptive_arabic_matching = self.search(
+                        "المادة ٥ من قانون العمل رقم ١٤ لسنة ٢٠٢٥"
+                    )
+                    self.assertEqual(
+                        [hit["id"] for hit in descriptive_arabic_matching], [matching_id]
+                    )
                     self.assertEqual(self.search("Article 5"), [])
                     self.assertEqual(
                         self.search("Article 5 of Law No. 99 of 2099"), []
