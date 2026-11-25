@@ -342,3 +342,14 @@ The browser acceptance syntax error remains a separate pre-existing blocker. It 
 - Commit: `c1d51ca7cd272910d47c876f7d4c092b029a0743`.
 - Rechecked the current inline script with the available V8 parser and confirmed it still fails with `SyntaxError: missing ) after argument list`. Historical mainline snapshots back through the inspected commit range also fail; this is not a regression introduced by the recent search work.
 - The diagnostic change is not a fix and no browser suite was run. No completion percentage is increased for this change. Next actionable step is to run browser acceptance in a supported runtime and use the preserved stack to repair the precise source location; do not guess at a 400 KB inline script.
+
+
+## AI-1 source-locator permission hygiene — 2026-11-26
+
+- Extended `tools/validate_source_permission_register.py` so optional `file_url`, `item_page_url`, `repository_homepage_url`, and `official_pdf_url` fields use the same HTTPS/no-credentials/no-fragment/no-signed-query validation as the primary source and permission-evidence locators. The nested `secondary_metadata_lead` now requires a clean HTTPS URL and a non-empty summary.
+- Added two focused tests in `tests/test_source_permission_register.py` covering credentials, fragments, signed query parameters, and malformed nested metadata. The module now contains 43 tests (41 before this change).
+- Applying the stricter contract exposed eight persisted Manshurat `file_url` values containing expiring `token=` query parameters. Cleared those transient URLs, retained the stable source-page locators, and annotated the access status to record that the tokenized locator was omitted. No source permission was upgraded and no legal text was added.
+- Commits: `8bb5285` (validator), `8ed259a` (tests), `906019a` (register cleanup).
+- Static read-back checked all 199 records and the eight optional URL fields: no credentials, fragments, non-HTTPS schemes, or recognized signed/token query parameters remain. This is a static consistency check; Python test execution is still outstanding.
+- AI-1 implementation estimate: 86% → 87% (+1 percentage point). This reflects a bounded source-registry validator/integrity improvement, not runtime validation or lawyer approval. AI-2 remains 32% (no change).
+
