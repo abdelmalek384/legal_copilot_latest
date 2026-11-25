@@ -1772,5 +1772,7 @@ Percentages are scoped to the described implementation or acceptance phase. They
 
 
 ## Manual transport-origin validation hardening — 2026-11-25
-- Origin matching now explicitly validates parsed hostname and port for both incoming Origin and configured public origin, failing closed on malformed port values, out-of-range ports, and malformed authority syntax.
-- Added focused regressions for malformed incoming authorities and malformed configured-origin ports. Source edits committed manually; test execution remains unavailable/not performed and no hosted workflow was used.
+- Origin matching explicitly validates parsed hostname and port for incoming Origin and configured public origin, failing closed on malformed port values, out-of-range ports, and malformed authority syntax.
+- Follow-up hardening rejects empty explicit ports, raw backslashes, whitespace, and control characters before URL parsing can normalize them; the same text/authority checks apply to `COPILOT_PUBLIC_ORIGIN`.
+- Added regressions for malformed incoming and configured authorities, including empty ports and parser-normalized control characters.
+- An isolated Python harness exercised the matcher logic: 7 malformed incoming values rejected, 6 malformed configured values rejected, and one valid configured origin accepted. This is helper-level evidence only. The repository test module, full suite, and browser acceptance remain unexecuted.
