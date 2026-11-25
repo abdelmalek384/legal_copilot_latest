@@ -1934,5 +1934,15 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("const q=h('input',{type:'search'", cases_page)
         self.assertIn("Search title, client, case number or opposing party", cases_page)
 
+    def test_frontend_deadline_and_reminder_dates_use_cairo_calendar_day(self):
+        self.assertIn("timeZone:'Africa/Cairo'", HTML)
+        self.assertIn("function cairoDateKey(date=new Date(),dayOffset=0)", HTML)
+        self.assertIn("today=cairoDateKey()", HTML)
+        reminder = HTML[HTML.index("function localReminderToday()"):HTML.index("function sendLocalReminderSummary(")]
+        self.assertIn("function localReminderToday(){return cairoDateKey()}", reminder)
+        self.assertIn("tomorrow=cairoDateKey(new Date(),1)", HTML)
+        calendar = HTML[HTML.index("async function calendarPage(){"):HTML.index("const caseRow=")]
+        self.assertIn("const todayKey=cairoDateKey(),todayDate=new Date(todayKey+'T00:00:00')", calendar)
+
 if __name__ == "__main__":
     unittest.main()
