@@ -69,6 +69,46 @@ class SourceMatchEvidenceAdapterTests(unittest.TestCase):
         self.assertIsNone(load_source_match_evidence(Connection(), 1, "src"))
 
 
+    def test_adapter_rejects_legacy_use_rows_without_affirmative_rights(self):
+        # Simulate a pre-guard or manually altered database: the adapter must
+        # fail closed even if an inconsistent approved-use row already exists.
+        record = {
+            "registry_source_id": "src",
+            "registry_publication_date": "2020-01-01",
+            "registry_effective_date": "2020-01-02",
+            "registry_original_sha256": "a" * 64,
+            "original_capture_sha256": "a" * 64,
+            "publication_date": "2020-01-01",
+            "effective_date": "2020-01-02",
+            "evidence_id": 7,
+            "validator_passed": 1,
+            "independent_copy_source_id": "independent",
+            "independent_copy_sha256": "b" * 64,
+            "reuse_rights_evidence": "synthetic",
+            "reuse_rights_evidence_url": "https://example.test/rights",
+            "article_inventory_complete": 1,
+            "differences_resolved_against_primary": 1,
+            "publication_and_effective_dates_verified": 1,
+            "reuse_rights_allowed": 0,
+            "evidence_revision": 1,
+            "recorded_at": "2026-11-25 00:00:00",
+        }
+        class Cursor:
+            def __init__(self, description, row=None, rows=None):
+                self.description = [(name,) for name in description]
+                self.row, self.rows = row, rows or []
+            def fetchone(self):
+                return self.row
+            def fetchall(self):
+                return self.rows
+        class Connection:
+            def execute(self, sql, params):
+                if "legal_source_match_evidence_uses" in sql:
+                    return Cursor(["approved_use"], rows=[("collection",)])
+                return Cursor(list(record), tuple(record.values()))
+        self.assertIsNone(load_source_match_evidence(Connection(), 1, "src"))
+
+
     def test_store_is_append_only_and_adapter_reads_exact_version_evidence(self):
         db = sqlite3.connect(":memory:")
         apply_profile_migrations(

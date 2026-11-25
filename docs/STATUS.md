@@ -1,3 +1,9 @@
+## Source-match adapter read-boundary hardening — 2026-11-25
+
+- Added a second fail-closed check in `load_source_match_evidence`: if an evidence packet has any approved-use rows while `reuse_rights_allowed` is false or missing, the adapter now returns no packet rather than exposing contradictory scope metadata.
+- Added a synthetic regression simulating a legacy/manually altered database containing a `collection` use on a non-permissive packet. This complements migration 0006's insert trigger; it does not assume every database has already applied that migration.
+- Source and test changes are integrated directly into `main`. The repository Python test remains unexecuted in this environment; no test-suite pass is claimed. No legal source, corpus text, permission, or lawyer-review status changed.
+
 ## Source-match approved-use guard manual check — 2026-11-25
 
 - Executed an isolated in-memory SQLite check of the new trigger: inserting an approved use against `reuse_rights_allowed=0` was rejected; inserting a scoped use against a separate `reuse_rights_allowed=1` evidence row succeeded.

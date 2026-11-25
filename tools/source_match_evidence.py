@@ -51,7 +51,10 @@ def load_source_match_evidence(connection, version_id, source_id):
         (record["evidence_id"],),
     )
     approved_uses = [row[0] for row in uses_cursor.fetchall()]
-    if any(not isinstance(value, str) for value in approved_uses):
+    if (any(not isinstance(value, str) for value in approved_uses)
+            or (approved_uses and not bool(record.get("reuse_rights_allowed")))):
+        # Defend the read boundary as well as the insert trigger: legacy or
+        # manually altered databases must never expose uses without affirmative rights.
         return None
 
     return {
