@@ -119,6 +119,32 @@ class DeadlineCalculatorTests(unittest.TestCase):
         with self.assertRaises(dc.DeadlineError):
             dc.estimate_rule_deadline("civil_cassation_60d", "2026-10-26")
 
+    def test_firm_holiday_override_rejects_conflicting_date_names(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            holidays_path = Path(tmp) / "holidays.json"
+            holidays_path.write_text(json.dumps({
+                "fixed_holidays": [],
+                "dated_holidays": [{"date": "2026-12-25", "name_ar": "العطلة الأصلية"}],
+                "complete_years": [],
+                "status": "partial_draft_unverified",
+            }), encoding="utf-8")
+            with self.assertRaises(dc.DeadlineError):
+                dc.estimate_rule_deadline(
+                    "civil_cassation_60d", D(2026, 10, 26),
+                    holidays_path=holidays_path,
+                    additional_dated_holidays=[{
+                        "date": "2026-12-25", "name_ar": "اسم متعارض"
+                    }],
+                )
+            result = dc.estimate_rule_deadline(
+                "civil_cassation_60d", D(2026, 10, 26),
+                holidays_path=holidays_path,
+                additional_dated_holidays=[{
+                    "date": "2026-12-25", "name_ar": "العطلة الأصلية"
+                }],
+            )
+            self.assertIn("2026-12-25", [x["from"] for x in result["extensions"]])
+
     def test_cli_refuses_unverified_draft_and_warns_when_overridden(self):
         import contextlib
         import io
