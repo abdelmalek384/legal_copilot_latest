@@ -1842,3 +1842,13 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Commit: `d8dd2f6b457c5eb04d4e9fe640af26658654fb87`.
 - Validation: inspected the exact failing runner traceback and current frontend implementation; the corrected assertion matches the source. Local execution is not yet possible in this environment (GitHub DNS resolution failed during clone), and no claim of a local test pass is made. The next test execution must include this test file before wider regression runs.
 - Release remains **not ready** pending local/runtime regression execution, browser acceptance, and the outstanding legal and firm-isolation gates.
+
+
+## Obligation polarity clause-boundary hardening — 2026-11-25
+
+- A static review found a false-abstention edge case in the existing English/Arabic negated-obligation guard: it split on English \`and\`, but not \`or\`, and did not reliably split Arabic attached conjunctions or the alternative marker \`أو\`. This could compare a negative obligation in one alternative against a faithful positive obligation in another alternative, especially when subject/action words overlap.
+- Updated \`tools/claim_support.py::_obligation_clauses\` to isolate English \`and/or\` clauses, Arabic attached \`و\` clauses, and standalone \`أو/او\` alternatives before checking polarity.
+- Added synthetic regression cases for English \`or\` and Arabic \`أو\` alternatives in \`tests/test_claim_support.py\`; existing attached-Arabic-conjunction coverage remains in place.
+- Commits: \`acbd237a87684ba97024bf214391802644f92d39\` (initial clause-boundary extension), \`0961a3452d1fbc585ea8c1acc6dce78146ccb947\` (Arabic marker spacing), \`aaafd20d4d9c76c36e59fa12c3a1d67025f6cf3f\` (attached conjunction and alternative boundary correction), \`f6b102805776f8034d9f68c315807745b34f9597\` (corrected grouping), \`93858d2381104e4f96180ea5ad7de923b7ad0f3f\` (regex argument separator).
+- Validation performed: fetched the committed function and test file; manually compiled and exercised an equivalent clause-splitting regex in Python against English \`and/or\`, Arabic attached \`و\`, and Arabic \`أو\` examples. These checks confirmed the intended clause boundaries. The complete repository unit test was **not executed**; local checkout remains unavailable, and GitHub Actions is not treated as proof.
+- No legal text, corpus records, source status, or trust labels changed. Release remains not ready pending supported-runtime tests and pilot gates.
