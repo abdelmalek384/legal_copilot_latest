@@ -153,14 +153,26 @@ def _safe_database_path(root: Path, firm_id: int, filename: str) -> Path:
     if not resolved_root.is_dir():
         raise TenantCatalogError("Tenant storage root must be a real directory")
     raw_candidate = resolved_root / filename
-    # Check the directory entry before resolve(): resolving first would erase
-    # evidence that the catalog filename itself is a symlink to another tenant.
-    if raw_candidate.is_symlink():
+    # Inspect the directory entry without following it. In addition to symlinks,
+    # reject hard links: a second name outside the tenant root would bypass the
+    # catalog's storage boundary and expose the same SQLite bytes.
+    try:
+        metadata = os.lstat(raw_candidate)
+    except FileNotFoundError:
+        # Provisioning validates the generated destination before exclusive
+        # creation, so a not-yet-created leaf is expected here.
+        return raw_candidate
+    except OSError as exc:
+        raise TenantCatalogError("Tenant database reference cannot be inspected safely") from exc
+    if stat.S_ISLNK(metadata.st_mode):
         raise TenantCatalogError("Tenant database reference must not be a symlink")
-    candidate = raw_candidate.resolve()
-    if candidate.parent != resolved_root:
-        raise TenantCatalogError("Tenant database path escapes its configured storage root")
-    return candidate
+    if not stat.S_ISREG(metadata.st_mode):
+        raise TenantCatalogError("Tenant database reference must be a regular file")
+    if metadata.st_nlink != 1:
+        raise TenantCatalogError("Tenant database reference must not be hard-linked")
+    # The root is already absolute/resolved and the catalog filename is a strict
+    # single-component allowlisted name; do not follow the leaf through resolve().
+    return raw_candidate
 
 
 def _bind_tenant_database(connection: sqlite3.Connection, firm_id: int) -> None:
@@ -278,8 +290,15 @@ def provision_tenant_database(
     created = False
     try:
         descriptor = os.open(path, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600)
-        os.close(descriptor)
         created = True
+        try:
+            created_metadata = os.fstat(descriptor)
+            if not stat.S_ISREG(created_metadata.st_mode) or created_metadata.st_nlink != 1:
+                raise TenantCatalogError(
+                    "New tenant database must be a single-link regular file"
+                )
+        finally:
+            os.close(descriptor)
         try:
             os.chmod(path, 0o600)
         except OSError as exc:
@@ -384,6 +403,10 @@ def provision_tenant_database(
                 )
         finally:
             tenant.close()
+
+        # Recheck the leaf immediately before publishing the catalog state.
+        # This detects a hard-link or file-type change during initialization.
+        _safe_database_path(root, firm_id, filename)
 
         catalog.execute("BEGIN IMMEDIATE")
         catalog.execute(
