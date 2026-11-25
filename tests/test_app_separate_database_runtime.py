@@ -5506,6 +5506,20 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         self.assertIn("Legal deadline: Workflow appeal deadline", calendar.text)
         self.assertIn("Hearing: Workflow acceptance matter", calendar.text)
 
+        completed_deadline = self._mutate("post", f"/deadlines/{deadline.json()['id']}/done")
+        repeated_deadline_completion = self._mutate("post", f"/deadlines/{deadline.json()['id']}/done")
+        self.assertEqual(completed_deadline.status_code, 200, completed_deadline.text)
+        self.assertEqual(repeated_deadline_completion.status_code, 200, repeated_deadline_completion.text)
+        deadline_state = db.execute(
+            "SELECT status FROM deadlines WHERE id=?", (deadline.json()["id"],)
+        ).fetchone()
+        self.assertEqual(deadline_state["status"], "done")
+        deadline_events = db.execute(
+            "SELECT COUNT(*) FROM events WHERE case_id=? AND text=?",
+            (case_id, "إكمال موعد قانوني"),
+        ).fetchone()[0]
+        self.assertEqual(deadline_events, 1)
+
 
     def test_calendar_text_escaping_prevents_crlf_line_injection(self):
         self.assertEqual(
