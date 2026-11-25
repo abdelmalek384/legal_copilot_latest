@@ -1769,3 +1769,8 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - These tests are committed but **not executed**. The inventory is still metadata-only and makes no legal corpus, authenticity, permission, currentness, or lawyer-review certification.
 
 - Final wording correction: the clean Markdown inventory now explicitly says it found no missing, malformed, or duplicate identifiers, rather than referring only to missing identifiers. Commit: `bc6b2b69351188afaa56e0a7959b3a039a8e1215`.
+
+
+## Manual transport-origin validation hardening — 2026-11-25
+- Origin matching now explicitly validates parsed hostname and port for both incoming Origin and configured public origin, failing closed on malformed port values, out-of-range ports, and malformed authority syntax.
+- Added focused regressions for malformed incoming authorities and malformed configured-origin ports. Source edits committed manually; test execution remains unavailable/not performed and no hosted workflow was used.
