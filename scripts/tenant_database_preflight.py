@@ -411,7 +411,11 @@ def audit(catalog_path: Path, storage_root: Path) -> dict[str, Any]:
         if database_metadata.st_nlink != 1:
             add("database_hard_link", firm_id, "tenant database file must not be hard-linked")
             continue
-        resolved = candidate.resolve(strict=True)
+        try:
+            resolved = candidate.resolve(strict=True)
+        except OSError:
+            add("database_missing", firm_id, "catalog references a file that does not exist")
+            continue
         if resolved.parent != root:
             add("database_path_escape", firm_id, "resolved database is not directly under the storage root")
             continue
