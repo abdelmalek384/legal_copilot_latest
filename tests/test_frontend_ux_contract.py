@@ -2013,6 +2013,11 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("Some search sections are temporarily unavailable; the results shown are partial.", search)
         self.assertIn("Search is temporarily unavailable. Check your connection and try again.", search)
         self.assertNotIn("await Promise.all([", search)
+        self.assertIn("let globalSearchRequest=0", search)
+        self.assertIn("const requestId=++globalSearchRequest", search)
+        self.assertIn("if(requestId!==globalSearchRequest)return", search)
+        self.assertIn("if(requestId===globalSearchRequest)globalSearchButton.disabled=false", search)
+        self.assertIn("globalSearchRequest++;globalSearchButton.disabled=false", HTML)
 
 if __name__ == "__main__":
     unittest.main()
