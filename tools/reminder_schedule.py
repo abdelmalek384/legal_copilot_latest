@@ -98,7 +98,7 @@ def build_reminder_plan(
         raise ReminderScheduleError("lead_days values must be integers from 1 through 30")
     try:
         local_zone = ZoneInfo(timezone_name)
-    except (ZoneInfoNotFoundError, TypeError) as exc:
+    except (ZoneInfoNotFoundError, TypeError, ValueError) as exc:
         raise ReminderScheduleError("timezone_name must be a valid IANA timezone") from exc
 
     sent = set() if already_sent is None else already_sent
