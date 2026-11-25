@@ -8154,7 +8154,7 @@ def deadline_done(did: int, u: dict = Depends(user)):
 
 
 def _cairo_today() -> date:
-    """Return the current calendar date in the firm's configured Cairo operating timezone."""
+    """Return the current calendar date in the application's Cairo operating timezone."""
     return datetime.now(ZoneInfo("Africa/Cairo")).date()
 
 
