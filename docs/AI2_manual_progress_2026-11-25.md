@@ -240,3 +240,5 @@ These percentages measure implementation/evidence progress, not runtime verifica
 | **Overall AI-2 assignment** | **27%** | **28%** | **+1 pp** | Financial UI now pairs backend idempotency with retry-stable client keys |
 
 These are implementation/evidence estimates, not test pass rates. Runtime payment behavior, browser acceptance, Python tests, two-firm validation, production deployment and backup/restore remain outstanding.
+
+- Follow-up test-source correction: `db6da070cf6e62cffbda0a45f3ce06d182851638` aligns the invoice frontend regression tests with the actual `const renderInvoices=` declaration. Final source-marker read-back passed; test execution remains outstanding.
