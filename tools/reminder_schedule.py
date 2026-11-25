@@ -102,8 +102,12 @@ def build_reminder_plan(
         raise ReminderScheduleError("timezone_name must be a valid IANA timezone") from exc
 
     sent = set() if already_sent is None else already_sent
-    if not isinstance(sent, set) or any(not isinstance(key, str) for key in sent):
-        raise ReminderScheduleError("already_sent must be a set of idempotency-key strings")
+    if not isinstance(sent, set) or any(
+        not isinstance(key, str) or len(key) != 64
+        or any(character not in "0123456789abcdef" for character in key)
+        for key in sent
+    ):
+        raise ReminderScheduleError("already_sent must be a set of 64-character lowercase SHA-256 keys")
 
     local_now = now.astimezone(local_zone)
     local_today = local_now.date()
