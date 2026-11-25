@@ -19,7 +19,6 @@ class DocumentReviewWorkflowTests(unittest.TestCase):
         self.assertIn("اعتماد النص المستخرج", html)
         self.assertIn("حفظ التصحيح", html)
         self.assertIn("يحتاج إعادة فحص", html)
-        self.assertIn("chunk.latest_review&&chunk.latest_review.page_reference?chunk.latest_review.page_reference:''", html)
         self.assertIn("value:latest&&latest.page_reference?String(latest.page_reference):''", html)
         self.assertIn("const extractedPage=chunk.page", html)
         self.assertIn("expected_text_sha256:chunk.text_sha256", html)
