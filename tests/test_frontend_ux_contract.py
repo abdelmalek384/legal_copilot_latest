@@ -1893,5 +1893,11 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("textContent:ar?'فئة الملاحظة':'Feedback category'", feedback_form)
         self.assertIn("}},categoryField,titleField,messageField,submit);", feedback_form)
 
+    def test_client_profile_phone_field_uses_native_telephone_semantics(self):
+        profile_form = HTML[HTML.index("async function clientProfileForm("):HTML.index("\nasync function clients(initialQuery='')")]
+        self.assertIn("type:key==='email'?'email':key==='phone'?'tel':undefined", profile_form)
+        self.assertIn("autocomplete:key==='email'?'email':key==='phone'?'tel':undefined", profile_form)
+        self.assertIn("inputmode:key==='phone'?'tel':undefined", profile_form)
+
 if __name__ == "__main__":
     unittest.main()
