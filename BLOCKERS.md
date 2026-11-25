@@ -159,6 +159,6 @@ Each gate requires an owner, exact candidate commit, reproducible command/config
 
 - Hardened deployment preflight URL parsing for `LLM_URL` and `COPILOT_PUBLIC_ORIGIN`. Raw backslashes, whitespace/control characters, empty explicit ports, malformed ports and invalid parsed authorities now fail closed before `urlsplit` can silently normalize the input.
 - Added regression cases to `tests/test_deployment_preflight.py` for malformed LLM endpoints and public origins.
-- Exact committed source logic was exercised in isolated Python harnesses: 5/5 malformed LLM endpoint cases rejected and 3/3 valid syntax/loopback cases accepted; 5/5 malformed public-origin cases rejected and 2 valid public origins accepted.
+- Exact committed source logic was exercised in isolated Python harnesses: 5/5 malformed LLM endpoint cases rejected and 3/3 valid syntax/loopback cases accepted; 6/6 malformed public-origin cases rejected (including port 0) and 2 valid public origins accepted.
 - The repository test module and full test suite were **not executed**: this environment has no local repository checkout and Python 3.12 is unavailable. GitHub Actions were not invoked. This is helper-level validation only; it is not a production egress test or pilot acceptance.
-- Branch: `ai2/strict-outbound-url-authority-20261125`. Commits: `2551015` (initial URL hardening), `d482539` (backslash predicate correction), `e24f740` (single-backslash handling), `f6f9687` (regression cases).
+- Branch: `ai2/strict-outbound-url-authority-20261125`. Commits: `2551015` (initial URL hardening), `d482539` (backslash predicate correction), `e24f740` (single-backslash handling), `f6f9687` (regression cases), `ef40c8a` (public-origin port range), `6073da6` (zero-port regression).
