@@ -41,6 +41,18 @@ def load_source_match_evidence(connection, version_id, source_id):
                 != str(record.get("original_capture_sha256", "")).lower()):
         return None
 
+    # SQLite CHECK constraints protect ordinary writes, but imported/legacy
+    # databases and alternate adapters must not coerce arbitrary truthy values
+    # (for example 2 or "1") into affirmative legal-rights evidence.
+    for flag in (
+        "validator_passed", "article_inventory_complete",
+        "differences_resolved_against_primary",
+        "publication_and_effective_dates_verified", "reuse_rights_allowed",
+    ):
+        value = record.get(flag)
+        if type(value) is not int or value not in (0, 1):
+            return None
+
     uses_cursor = connection.execute(
         """
         SELECT approved_use

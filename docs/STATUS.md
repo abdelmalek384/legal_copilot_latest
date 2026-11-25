@@ -1,3 +1,9 @@
+## Strict source-evidence flag validation — 2026-11-25
+
+- The source-match evidence adapter now accepts persisted boolean flags only as SQLite integer values 0 or 1. Truthy malformed values such as 2, -1, strings, nulls, and booleans from alternate adapters fail closed instead of being coerced with `bool()` into affirmative evidence.
+- Added synthetic regressions across all five validation/permission flags and updated adapter fakes so existing use-scope tests still reach their intended boundary.
+- This does not grant permissions or change legal status. Repository tests remain unexecuted; no test pass is claimed.
+
 ## Approved-use allowlist hardening — 2026-11-25
 
 - Tightened the persisted-evidence adapter and answer trust classifier to reject unknown approved-use labels and duplicate entries, including malformed legacy or alternate-backend records.

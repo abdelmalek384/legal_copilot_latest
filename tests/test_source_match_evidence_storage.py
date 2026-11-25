@@ -59,7 +59,9 @@ class SourceMatchEvidenceAdapterTests(unittest.TestCase):
         rec = {"registry_source_id":"src","registry_publication_date":"2020-01-01",
                "registry_effective_date":"2020-01-02","registry_original_sha256":"a"*64,
                "original_capture_sha256":"a"*64,"publication_date":"2020-01-01",
-               "effective_date":"2020-01-02","evidence_id":1}
+               "effective_date":"2020-01-02","evidence_id":1,"validator_passed":1,
+               "article_inventory_complete":1,"differences_resolved_against_primary":1,
+               "publication_and_effective_dates_verified":1,"reuse_rights_allowed":1}
         columns=list(rec)
         class Connection:
             def execute(self, sql, params):
@@ -115,6 +117,9 @@ class SourceMatchEvidenceAdapterTests(unittest.TestCase):
             "registry_effective_date": "2020-01-02", "registry_original_sha256": "a" * 64,
             "original_capture_sha256": "a" * 64, "publication_date": "2020-01-01",
             "effective_date": "2020-01-02", "evidence_id": 7, "reuse_rights_allowed": 1,
+            "validator_passed": 1, "article_inventory_complete": 1,
+            "differences_resolved_against_primary": 1,
+            "publication_and_effective_dates_verified": 1,
         }
         class Cursor:
             def __init__(self, description, row=None, rows=None):
@@ -131,6 +136,38 @@ class SourceMatchEvidenceAdapterTests(unittest.TestCase):
         for uses in (["collection", "unknown_use"], ["collection", "collection"]):
             with self.subTest(uses=uses):
                 self.assertIsNone(load_source_match_evidence(Connection(uses), 1, "src"))
+
+
+    def test_adapter_rejects_non_boolean_permission_and_validation_flags(self):
+        base = {
+            "registry_source_id": "src", "registry_publication_date": "2020-01-01",
+            "registry_effective_date": "2020-01-02", "registry_original_sha256": "a" * 64,
+            "original_capture_sha256": "a" * 64, "publication_date": "2020-01-01",
+            "effective_date": "2020-01-02", "evidence_id": 7,
+            "validator_passed": 1, "article_inventory_complete": 1,
+            "differences_resolved_against_primary": 1,
+            "publication_and_effective_dates_verified": 1, "reuse_rights_allowed": 1,
+        }
+        class Cursor:
+            def __init__(self, description, row=None, rows=None):
+                self.description = [(name,) for name in description]
+                self.row, self.rows = row, rows or []
+            def fetchone(self): return self.row
+            def fetchall(self): return self.rows
+        class Connection:
+            def __init__(self, record): self.record = record
+            def execute(self, sql, params):
+                if "legal_source_match_evidence_uses" in sql:
+                    return Cursor(["approved_use"], rows=[("collection",)])
+                return Cursor(list(self.record), tuple(self.record.values()))
+        for field in ("validator_passed", "article_inventory_complete",
+                      "differences_resolved_against_primary",
+                      "publication_and_effective_dates_verified", "reuse_rights_allowed"):
+            for malformed in (2, -1, "1", None, True):
+                record = dict(base)
+                record[field] = malformed
+                with self.subTest(field=field, malformed=malformed):
+                    self.assertIsNone(load_source_match_evidence(Connection(record), 1, "src"))
 
 
     def test_store_is_append_only_and_adapter_reads_exact_version_evidence(self):
