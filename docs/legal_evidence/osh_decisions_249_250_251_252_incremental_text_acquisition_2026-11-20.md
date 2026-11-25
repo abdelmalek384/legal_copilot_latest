@@ -151,3 +151,40 @@ This is a source-acquisition status, not a claim that the five instruments are c
 - The page contains a long gallery of images, but the first sampled image URL failed with HTTP 404 during this capture; the images were not treated as text, OCR, or page evidence.
 - No technical limits, exposure values, tables, appendices, or detailed obligations were captured in this update. The 781-entry table/sequence remains unreconciled and must not be used as authoritative data.
 - This excerpt is discovery-only. No reuse license was confirmed, no legal corpus ingestion, no source-match/currentness/lawyer-review status changes, and verified remains zero.
+
+
+## Decision 252/2026 — Article 1 expanded verbatim secondary capture (25 November 2026)
+
+**Source opened and read:** Almasdar print page, https://www.almasdar.com/print.aspx?id=175156, dated 19 October 2026. It states that Decision 252/2026 appeared in Egyptian Gazette issue 225 supplement (A), issued 12 October 2026. This remains a secondary transcription, not a Gazette page capture.
+
+The page exposes the opening definitions under Article 1. Verbatim text as displayed:
+
+> مادة 1
+>
+> يُقصد في تطبيق أحكام هذا القرار بالكلمات والعبارات التالية المعنى المبين كُلّ منها:
+>
+> 1- الوزارة: الوزارة المعنية بشئون العمل.
+>
+> 2- السلطة المختصة: الوزير المعني بشئون العمل.
+>
+> 3- القانون: قانون العمل الصادر بالقانون رقم 14 لسنة 2025.
+>
+> 4- الإدارة المختصة: الإدارة المركزية للسلامة والصحة المهنية وتأمين بيئة العمل.
+>
+> 5- البرامج التدريبية: البرامج الأساسية، والمتقدمة، والنوعية، والتخصصية المخصصة لتأهيل وتنمية معارف ومهارات الأخصائيين والفنيين، وأعضاء الأجهزة الوظيفية ولجان السلامة والصحة المهنية، والمرشحين لعضويتها، وغيرهم من الراغبين في الالتحاق ببرامج تدريبية في هذا المجال.
+>
+> 6- اللجنة المختصة: لجنة البت في طلبات الحصول على ترخيص مزاولة نشاط التدريب " في مجال السلامة والصحة المهنية وتأمين بيئة العمل أو طلبات الحصول على رخصة "مدرب" في المجال ذاته.
+>
+> 7- لجنة البرامج والمناهج : اللجنة المعنية بوضع معايير اعتماد البرامج والمناهج التدريبية في مجال السلامة والصحة المهنية وتأمين بيئة العمل.
+>
+> 8- جهة التدريب: كل شخص اعتباري يرخص له بمزاولة نشاط التدريب وفقًا لأحكام هذا القرار.
+>
+> 9- المدرب المعتمد: كل شخص طبيعي مؤهل علميًا وعمليًا حاصل على ترخيص من الوزارة المختصة لتقديم برامج تدريبية في مجال السلامة والصحة المهنية وفقًا لمؤهلاته وخبراته، والمقيد بسجل المدربين المعد لذلك.
+
+### Limitations and provenance
+
+- This expansion adds definitions 1–9 as readable secondary text only; it is not full-decree capture.
+- No PDF/Gazette original page or image was inspected, and no primary-source checksum exists.
+- Source rights for reuse are not established; keep this in research notes and do not ingest into a production legal corpus.
+- Do not infer detailed training-provider requirements, programme lengths, trainer eligibility thresholds, fees, exemptions, or effective dates from this excerpt.
+- Trust flags remain unchanged: `verified: false`, `lawyer_reviewed: false`, `rights_cleared: false`.
