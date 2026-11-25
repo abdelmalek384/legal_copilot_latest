@@ -414,8 +414,8 @@ def conflict_name_matches(query, candidate):
 
 def conflict_case_number_matches(query, candidate):
     """Require an exact normalized numeric sequence for case-number screening."""
-    query_numbers = re.findall(r"\\d+", norm(query))
-    candidate_numbers = re.findall(r"\\d+", norm(candidate))
+    query_numbers = re.findall(r"\d+", norm(query))
+    candidate_numbers = re.findall(r"\d+", norm(candidate))
     return bool(query_numbers and query_numbers == candidate_numbers)
 
 
