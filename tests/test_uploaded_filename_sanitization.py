@@ -18,6 +18,10 @@ class UploadedFilenameSanitizationTests(unittest.TestCase):
         hostile = "matter\u2028report\u2029.pdf"
         self.assertEqual(app._sanitize_uploaded_filename(hostile), "matterreport.pdf")
 
+    def test_removes_windows_trailing_dots_and_spaces(self):
+        self.assertEqual(app._sanitize_uploaded_filename("matter.pdf... "), "matter.pdf")
+        self.assertEqual(app._sanitize_uploaded_filename("..."), "doc")
+
     def test_trims_and_caps_length(self):
         self.assertEqual(app._sanitize_uploaded_filename("  " + "x" * 250), "x" * 200)
 
