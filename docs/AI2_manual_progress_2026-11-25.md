@@ -334,3 +334,11 @@ These are conservative implementation/evidence estimates, not test pass rates or
 | **Overall AI-2 assignment** | **31%** | **32%** | **+1 pp** | Five failing regression expectations corrected against current source; no runtime pass claimed |
 
 The browser acceptance syntax error remains a separate pre-existing blocker. It was reproduced on both the PR branch and base main. It is not counted as fixed by these test-only changes. AI-2 remains not pilot-ready pending execution of the corrected suites, browser acceptance, two-firm workflow checks, and restore rehearsal.
+
+
+## Browser failure diagnostics — 2026-11-26
+
+- Updated `tests/browser/test_acceptance.py` to retain the JavaScript `pageerror` stack trace instead of only `str(error)`. The previous failure output discarded the source URL and line/column information needed to locate the inline-script parse defect.
+- Commit: `c1d51ca7cd272910d47c876f7d4c092b029a0743`.
+- Rechecked the current inline script with the available V8 parser and confirmed it still fails with `SyntaxError: missing ) after argument list`. Historical mainline snapshots back through the inspected commit range also fail; this is not a regression introduced by the recent search work.
+- The diagnostic change is not a fix and no browser suite was run. No completion percentage is increased for this change. Next actionable step is to run browser acceptance in a supported runtime and use the preserved stack to repair the precise source location; do not guess at a 400 KB inline script.
