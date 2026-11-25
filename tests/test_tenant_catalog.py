@@ -447,6 +447,15 @@ class TenantCatalogTests(unittest.TestCase):
         with self.assertRaisesRegex(TenantCatalogError, "symlink"):
             resolve_tenant_database(self.catalog, 11, self.root)
 
+    @unittest.skipUnless(os.name == "posix", "POSIX hard links are required")
+    def test_hardlinked_tenant_database_is_rejected(self):
+        path = provision_tenant_database(self.catalog, 17, self.root, self.initialize_tenant)
+        external_alias = Path(self.temp.name) / "outside-tenant-root.sqlite3"
+        os.link(path, external_alias)
+        self.assertEqual(path.stat().st_nlink, 2)
+        with self.assertRaisesRegex(TenantCatalogError, "must not be hard-linked"):
+            resolve_tenant_database(self.catalog, 17, self.root)
+
     def test_disabled_tenant_cannot_be_resolved(self):
         provision_tenant_database(self.catalog, 10, self.root, self.initialize_tenant)
         self.catalog.execute(
