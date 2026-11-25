@@ -188,13 +188,7 @@ class TenantSQLiteConnectionRouter:
                 )
             if os.name != "posix":
                 continue
-            try:
-                sidecar_mode = stat.S_IMODE(sidecar_metadata.st_mode)
-            except OSError as exc:
-                self._revoke_cached_connection(trusted_firm_id)
-                raise TenantConnectionError(
-                    "Tenant SQLite sidecar permissions cannot be verified"
-                ) from exc
+            sidecar_mode = stat.S_IMODE(sidecar_metadata.st_mode)
             if sidecar_mode & 0o077:
                 self._revoke_cached_connection(trusted_firm_id)
                 raise TenantConnectionError(
