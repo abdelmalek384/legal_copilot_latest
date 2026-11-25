@@ -16,6 +16,7 @@ from tools.arabic_legal_matching import expand_lexicon_hints
 from tools.arabic_drafting_skeletons import build_arabic_skeleton
 from tools.claim_support import claim_support_enabled, has_unsupported_claims, has_negated_obligation_conflicts
 from tools.answer_trust_tier import classify_answer_trust_tier, firm_test_source_matched_enabled
+from tools.source_match_evidence import load_source_match_evidence
 from tools.document_intelligence import MAX_ANALYSIS_CHARS, classify_document, extract_review_candidates, extract_structured_candidates, build_date_mention_timeline, group_candidate_entity_mentions, compare_extracted_text
 from tools.legal_article_reference import extract_statute_reference, normalize_reference_digits, statute_title_matches
 from tools.mfa_primitives import (
@@ -1112,6 +1113,13 @@ def citation_provenance(c, version_id):
     data = dict(row)
     data["status"] = "registry_linked"
     data.update(_central_source_permission_evidence(data.get("source_id"), data.get("source_page")))
+    # Attach only an append-only evidence packet bound to this exact source/version.
+    # The source-status gate still enforces dates, rights, pending review and no lawyer approval.
+    source_match_evidence = load_source_match_evidence(
+        c, data.get("version_id"), data.get("source_id")
+    )
+    if source_match_evidence is not None:
+        data["source_match_evidence"] = source_match_evidence
     data["authenticity_verified"] = bool(data["authenticity_verified"])
     data["status_verified"] = bool(data["status_verified"])
     data["amendment_history_verified"] = bool(data["amendment_history_verified"])
