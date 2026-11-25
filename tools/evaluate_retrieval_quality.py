@@ -17,7 +17,7 @@ from urllib.parse import urlsplit
 try:
     from tools.evaluate_legal_answer_reviews import read_regular_file, validate_reviewer_registry
 except ModuleNotFoundError:  # direct script execution from tools/
-    from evaluate_legal_answer_reviews import validate_reviewer_registry
+    from evaluate_legal_answer_reviews import read_regular_file, validate_reviewer_registry
 
 class DuplicateJSONKeyError(ValueError):
     """Raised when an evaluation JSON object repeats a key."""
