@@ -1984,8 +1984,8 @@ Percentages are scoped to the described implementation or acceptance phase. They
 
 ## AI-2 document upload reliability correction — 2026-11-25
 
-- Corrected the compact matter-document upload action in `documentIntelligencePanel`: duplicate clicks are blocked while the request is active, request/network failures are surfaced to the user, authentication expiry is handled, and known read-only/size/type/extraction/storage failures receive actionable messages.
-- Corrected the post-upload refresh path. The prior handler invoked an undefined `again()` callback; the panel now reloads the selected matter through the existing authenticated API helper and replaces itself with the refreshed document list. A refresh failure is reported separately from the completed upload so the UI does not mislabel a successful upload as a failed upload.
-- Added `test_document_intelligence_upload_prevents_duplicate_submissions_and_refreshes` to the frontend source-contract tests.
-- Direct commits to `main`: `51ad502` (upload request guard/error handling), `2ef7591` (refresh via selected matter), `b147786` (regression contract). GitHub file read-back confirmed the updated frontend source and test file. No Actions/CI was used.
+- Corrected the compact matter-document upload action in the `view(id)` case-document workflow: an IIFE-scoped busy flag blocks duplicate clicks, request/network failures are surfaced, authentication expiry is handled, and common read-only/size/type/extraction/storage responses receive actionable messages.
+- Preserved the existing `again()` callback, which is defined by the enclosing `view(id)` function and refreshes the selected case after a successful upload. An intermediate inspection incorrectly attributed this callback to `documentIntelligencePanel`; that diagnosis was wrong and the intermediate implementation was superseded. The final implementation keeps the refresh in the correct scope and does not introduce a new callback or API contract.
+- Added `test_document_intelligence_upload_prevents_duplicate_submissions_and_refreshes` to assert the correct view-scope guard, unlock, and refresh behavior.
+- Direct commits to `main`: `51ad502` and `2ef7591` were intermediate edits; final scope correction is `0c97426`, followed by regression-test corrections `0417d22`. GitHub read-back confirmed the current source and test blobs. No Actions/CI was used.
 - Validation remains source-level only: the Python test suite and browser upload flow were not run. This is not evidence of production upload/storage correctness.
