@@ -2582,17 +2582,20 @@ def _origin_matches_request(origin, request):
     from urllib.parse import urlsplit
     try:
         parsed = urlsplit(origin)
+        # Access hostname/port to force validation of malformed authorities and ports.
         if (parsed.scheme not in {"http", "https"} or not parsed.netloc
-                or parsed.username or parsed.password or parsed.path not in {"", "/"}
-                or parsed.query or parsed.fragment):
+                or not parsed.hostname or parsed.username or parsed.password
+                or parsed.path not in {"", "/"} or parsed.query or parsed.fragment):
             return False
+        _ = parsed.port
         public_origin = os.environ.get("COPILOT_PUBLIC_ORIGIN", "").strip()
         if public_origin:
             expected = urlsplit(public_origin)
-            if (expected.scheme != "https" or not expected.netloc
+            if (expected.scheme != "https" or not expected.netloc or not expected.hostname
                     or expected.username or expected.password or expected.path not in {"", "/"}
                     or expected.query or expected.fragment):
                 return False
+            _ = expected.port
             return parsed.scheme == expected.scheme and parsed.netloc.lower() == expected.netloc.lower()
         return parsed.netloc.lower() == request.url.netloc.lower() and parsed.scheme == request.url.scheme
     except (TypeError, ValueError):
