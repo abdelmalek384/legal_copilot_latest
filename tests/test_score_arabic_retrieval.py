@@ -78,6 +78,14 @@ class ArabicRetrievalScorerTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "run row 1 must be an object"):
             score([reviewed("Q-OBJECT")], [[]], TEST_REVIEWER_REGISTRY)
 
+    def test_omitted_practice_area_uses_unspecified_default(self):
+        question = reviewed("Q-DEFAULT-AREA")
+        question.pop("practice_area")
+        self.assertTrue(MODULE._valid_reviewed(question, {
+            reviewer["reviewer_id"]: reviewer
+            for reviewer in TEST_REVIEWER_REGISTRY["reviewers"]
+        }))
+
     def test_reviewer_must_be_in_approved_registry_and_practice_area(self):
         q = reviewed("Q-REGISTRY")
         run = {"question_id": "Q-REGISTRY",
