@@ -322,5 +322,37 @@ class SecureCookieTransportTests(unittest.TestCase):
             self.assertFalse(app._origin_matches_request("https://legal.example.com", request))
 
 
+    def test_origin_malformed_ports_and_authorities_fail_closed(self):
+        request = SimpleNamespace(url=SimpleNamespace(scheme="https", netloc="legal.example.com"))
+        malformed = (
+            "https://legal.example.com:bad",
+            "https://legal.example.com:65536",
+            "https://legal.example.com:0",
+            "https://legal.example.com:",
+            "https://legal.example.com\n",
+            "https://legal.example.com\\attacker",
+            "https://[::1",
+            "https://:443",
+        )
+        with patch.dict(os.environ, {}, clear=False):
+            os.environ.pop("COPILOT_PUBLIC_ORIGIN", None)
+            for origin in malformed:
+                with self.subTest(origin=origin):
+                    self.assertFalse(app._origin_matches_request(origin, request))
+
+    def test_configured_origin_with_invalid_port_fails_closed(self):
+        request = SimpleNamespace(url=SimpleNamespace(scheme="http", netloc="internal:8000"))
+        for configured in (
+            "https://legal.example.com:bad",
+            "https://legal.example.com:65536",
+            "https://legal.example.com:0",
+            "https://legal.example.com:",
+            "https://legal.example.com\n",
+            "https://legal.example.com\\attacker",
+            "https://[::1",
+        ):
+            with self.subTest(configured=configured), patch.dict(os.environ, {"COPILOT_PUBLIC_ORIGIN": configured}):
+                self.assertFalse(app._origin_matches_request("https://legal.example.com", request))
+
 if __name__ == "__main__":
     unittest.main()
