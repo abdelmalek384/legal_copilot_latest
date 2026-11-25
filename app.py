@@ -9589,11 +9589,12 @@ def review_document_chunk(cid: int, document_id: int, chunk_id: int, b: Extracti
         corrected = old_text
     # Compare-and-swap update prevents a stale reviewer from overwriting a newer correction.
     if b.outcome == "corrected":
+        # Keep the extraction-time page provenance immutable. Reviewer-entered
+        # page references are retained only on the review event below.
         updated = c.execute(
-            "UPDATE chunks SET text=?,norm=?,page=CASE WHEN ?<>'' THEN ? ELSE page END "
+            "UPDATE chunks SET text=?,norm=? "
             "WHERE id=? AND document_id=? AND case_id=? AND text=?",
-            (corrected, norm(corrected), b.page_reference.strip(), b.page_reference.strip(),
-             chunk_id, document_id, cid, old_text))
+            (corrected, norm(corrected), chunk_id, document_id, cid, old_text))
         if updated.rowcount != 1:
             c.rollback()
             raise HTTPException(409, "extracted text changed during review; reload the latest text and retry")
@@ -9604,10 +9605,12 @@ def review_document_chunk(cid: int, document_id: int, chunk_id: int, b: Extracti
         # Every review outcome performs a conditional write before its audit row is inserted.
         # This closes the race where a non-correction review could be recorded against text
         # that changed after the initial SELECT.
+        # Conditional no-op write preserves the compare-and-swap check without
+        # replacing the extraction-time page with an unverified reviewer value.
         updated = c.execute(
-            "UPDATE chunks SET page=CASE WHEN ?<>'' THEN ? ELSE page END "
+            "UPDATE chunks SET text=text "
             "WHERE id=? AND document_id=? AND case_id=? AND text=?",
-            (b.page_reference.strip(), b.page_reference.strip(), chunk_id, document_id, cid, old_text))
+            (chunk_id, document_id, cid, old_text))
         if updated.rowcount != 1:
             c.rollback()
             raise HTTPException(409, "extracted text changed during review; reload the latest text and retry")
