@@ -1,7 +1,39 @@
 # Legal Copilot — release-candidate status
 
-**Updated:** 2026-11-24  
+**Updated:** 2026-11-25  
 **Decision:** **NOT READY** for lawyer pilot or production. This is an engineering checkpoint, not legal, security or operational certification. Historical tracker detail is archived at [STATUS history](archive/STATUS_history_through_2026-11-13.md).
+
+## Manual integration checkpoint — 2026-11-25
+
+The following existing-functionality corrections were manually integrated onto main after source review. These are implementation merges, not runtime acceptance:
+
+- PR #2010 (2d32fc7): require explicit statute number/year and registry-title match for exact-article retrieval; Arabic/Persian digit normalization; corpus-only exact boost.
+- PR #2012 (bc9caad): reject invisible/control characters in direct text-document titles while preserving Arabic shaping joiners.
+- PR #2001 (4904b2a): strict LLM/public-origin URL authority parsing, including empty user-information delimiters.
+- PR #2016 (d5bf8a8): reject malformed reminder date suffixes and duplicate JSON keys at every nesting depth.
+- PR #2018 (e3ff516): remove unsafe conflict-name substring matching, compare full normalized case-number sequences, reject invalid deadline unit types and conflicting holiday labels.
+- PR #2019 (f693429): use one Cairo-local date for dashboard, calendar, finance, invoice and legal-research defaults; freeze one as_of date per answer.
+- PR #2020 (f622016): add regression coverage for session fixation, MFA recovery, private-download headers, forwarded-protocol trust, firm-switch CSRF/Origin and CSV formula injection.
+- PR #2021 (ca26ae1): reject hard-linked tenant databases and SQLite sidecars; revalidate after SQLite opens and revoke connections on unsafe metadata.
+- PR #2022 (e0554de): make read-only tenant preflight report/reject hard-linked catalog DBs, tenant DBs and SQLite sidecars before opening unsafe files.
+- PR #2023 (0c4b4cb): preserve extraction-time page provenance, keep reviewer page references in review events only, and correct destination-firm MFA assurance reporting.
+
+### AI-1 implementation estimates
+
+| Workstream | Previous | Current | Change |
+|---|---:|---:|---:|
+| Legal Research reliability | 47% | 53% | +6 pp |
+| Arabic retrieval and matching | 47% | 51% | +4 pp |
+| Citation and trust safeguards | 60% | 67% | +7 pp |
+| Existing evaluation and tests | 26% | 40% | +14 pp |
+| PR review and integration | 20% | 55% | +35 pp |
+| **Overall AI-1 assignment** | **39%** | **47%** | **+8 pp** |
+
+These are engineering implementation estimates, not test pass rates or legal-quality measurements. The repository's Python 3.12 test modules, browser acceptance, and full release checker remain unexecuted in this environment. No GitHub Actions runs were used because runner billing is unavailable. The local runtime does not currently provide a repository checkout or Python 3.12.
+
+**Legal and pilot boundaries remain unchanged:** no Egyptian legal source is newly lawyer-verified; source-matched content remains "source-matched, not lawyer-reviewed"; Labour Law 14/2025 candidate rows retain verified=0; no legal corpus or new source data was added. The application remains **NOT READY** for a real lawyer pilot until supported local regression execution, two-firm acceptance, operational recovery evidence, and qualified Egyptian-lawyer review are complete.
+
+
 
 ## Manual checkpoint — 2026-11-24
 - Follow-up test strengthening: the identity-page regression now checks each page captures the fragment token before clearing browser history, and that invitation/recovery POST payloads still carry the in-memory token. Commit `4a02125`. Source assertion update only; test remains unexecuted because manual runtime environment is unavailable.
