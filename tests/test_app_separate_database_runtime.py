@@ -5817,6 +5817,93 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
         )
 
 
+    def test_dashboard_and_calendar_use_cairo_local_date_windows(self):
+        login = self.client.post(
+            "/login", json={"email": "OWNER@example.test", "password": self.password}
+        )
+        self.assertEqual(login.status_code, 200, login.text)
+        created = self._mutate(
+            "post", "/cases", json={"title": "Cairo date-window acceptance matter"}
+        )
+        self.assertEqual(created.status_code, 200, created.text)
+        case_id = created.json()["id"]
+
+        for day in ("2029-12-31", "2030-01-01", "2030-01-15", "2030-01-16"):
+            response = self._mutate(
+                "post", f"/cases/{case_id}/sessions",
+                json={"date": day, "note": f"Synthetic hearing {day}"},
+            )
+            self.assertEqual(response.status_code, 200, response.text)
+
+        for day in ("2029-12-31", "2030-01-31", "2030-02-01"):
+            response = self._mutate(
+                "post", f"/cases/{case_id}/deadlines",
+                json={"title": f"Synthetic deadline {day}", "due": day},
+            )
+            self.assertEqual(response.status_code, 200, response.text)
+
+        for day in ("2030-01-01", "2030-04-01", "2030-04-02"):
+            response = self._mutate(
+                "post", f"/cases/{case_id}/tasks",
+                json={"title": f"Synthetic task {day}", "assignee": self.user_id, "due": day},
+            )
+            self.assertEqual(response.status_code, 200, response.text)
+
+        for day, amount in (("2029-12-31", 100), ("2030-01-01", 200), ("2030-01-02", 300)):
+            response = self._mutate(
+                "post", f"/cases/{case_id}/fees",
+                json={"title": f"Synthetic fee {day}", "amount": amount, "paid": 0, "due": day},
+            )
+            self.assertEqual(response.status_code, 200, response.text)
+
+        with patch.object(app, "_cairo_today", return_value=date(2030, 1, 1)):
+            dashboard = self.client.get("/dashboard")
+            self.assertEqual(dashboard.status_code, 200, dashboard.text)
+            session_dates = {item["date"] for item in dashboard.json()["sessions"]}
+            self.assertEqual(session_dates, {"2030-01-01", "2030-01-15"})
+            deadline_titles = {item["title"] for item in dashboard.json()["deadlines"]}
+            self.assertIn("Synthetic deadline 2029-12-31", deadline_titles)
+            self.assertIn("Synthetic deadline 2030-01-31", deadline_titles)
+            self.assertNotIn("Synthetic deadline 2030-02-01", deadline_titles)
+
+            calendar = self.client.get("/calendar.ics")
+            self.assertEqual(calendar.status_code, 200, calendar.text)
+            self.assertIn("DTSTART;VALUE=DATE:20300101", calendar.text)
+            self.assertIn("DTSTART;VALUE=DATE:20300115", calendar.text)
+            self.assertNotIn("DTSTART;VALUE=DATE:20291231", calendar.text)
+            self.assertNotIn("DTSTART;VALUE=DATE:20300116", calendar.text)
+            self.assertIn("Task: Synthetic task 2030-04-01", calendar.text)
+            self.assertNotIn("Synthetic task 2030-04-02", calendar.text)
+
+            finance = self.client.get("/finance/overview")
+            self.assertEqual(finance.status_code, 200, finance.text)
+            self.assertEqual(finance.json()["overdue_count"], 1)
+            self.assertEqual(finance.json()["overdue_amount"], 100.0)
+
+    def test_legal_research_default_as_of_uses_cairo_local_date(self):
+        cairo_day = date(2030, 1, 1)
+        with patch.object(app, "_cairo_today", return_value=cairo_day):
+            with patch.object(app, "_separate_runtime_enabled", return_value=True):
+                with patch.object(app, "_search_separate", return_value=[]) as separate_search:
+                    result = app.search(None, "synthetic legal query", scope="verified_corpus")
+                self.assertEqual(separate_search.call_args.args[5], "2030-01-01")
+
+            with patch.object(app, "search", return_value=[]):
+                answer = app.ask(None, "synthetic legal query", scope="verified_corpus")
+        self.assertEqual(result, [])
+        self.assertEqual(answer["requested_as_of"], "2030-01-01")
+
+    def test_ask_freezes_one_cairo_local_as_of_date_for_retrieval_and_response(self):
+        with patch.object(
+            app, "_cairo_today",
+            side_effect=[date(2030, 1, 1), date(2030, 1, 2)],
+        ) as cairo_today:
+            with patch.object(app, "search", return_value=[]) as search:
+                result = app.ask(None, "synthetic legal query", scope="verified_corpus")
+        self.assertEqual(search.call_args.kwargs["as_of"], "2030-01-01")
+        self.assertEqual(result["requested_as_of"], "2030-01-01")
+        cairo_today.assert_called_once()
+
     def test_date_models_reject_impossible_calendar_dates(self):
         cases = (
             (app.SessIn, {"date": "2024-02-29"}, "date", "2025-02-29"),
