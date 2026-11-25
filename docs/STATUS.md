@@ -1980,3 +1980,12 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Found a fail-open type coercion in legal source permission checks: arbitrary JSON values such as arrays, objects, integers, or booleans could be converted to non-empty strings and satisfy required evidence-text fields.
 - Tightened both source-level and version-level permission evidence checks to require actual non-empty strings. Added synthetic regressions for malformed JSON types in both fields.
 - This changes no permission grants or source records; malformed evidence now remains under review. Tests are committed but not executed in the current environment. No legal trust labels or corpus data were changed. Pilot remains NOT READY.
+
+
+## AI-2 document upload reliability correction — 2026-11-25
+
+- Corrected the compact matter-document upload action in `documentIntelligencePanel`: duplicate clicks are blocked while the request is active, request/network failures are surfaced to the user, authentication expiry is handled, and known read-only/size/type/extraction/storage failures receive actionable messages.
+- Corrected the post-upload refresh path. The prior handler invoked an undefined `again()` callback; the panel now reloads the selected matter through the existing authenticated API helper and replaces itself with the refreshed document list. A refresh failure is reported separately from the completed upload so the UI does not mislabel a successful upload as a failed upload.
+- Added `test_document_intelligence_upload_prevents_duplicate_submissions_and_refreshes` to the frontend source-contract tests.
+- Direct commits to `main`: `51ad502` (upload request guard/error handling), `2ef7591` (refresh via selected matter), `b147786` (regression contract). GitHub file read-back confirmed the updated frontend source and test file. No Actions/CI was used.
+- Validation remains source-level only: the Python test suite and browser upload flow were not run. This is not evidence of production upload/storage correctness.
