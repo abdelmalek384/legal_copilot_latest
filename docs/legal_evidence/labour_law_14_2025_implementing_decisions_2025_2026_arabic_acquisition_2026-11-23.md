@@ -98,3 +98,35 @@ Full issue PDF is located; individual decisions and annexes still need extractio
 4. No instrument in this tranche is lawyer-reviewed or approved for current-law retrieval.
 5. Public availability, official hosting, or a DSpace download does not establish bulk collection, commercial indexing, display or redistribution permission. The candidate catalogue and source-permission register retain discovery-only status.
 6. Do not call Decision 162 a general executive regulation for Law 14/2025: it is a ministerial decision issuing general rules for workplace regulations. Do not call these decisions amendments to Law 14/2025; they are implementing/related instruments.
+
+
+## Delta capture — Decision 291/2025 full-text secondary reproduction (25 November 2026)
+
+**Instrument:** وزارة العمل، قرار رقم 291 لسنة 2025 بشأن ضوابط التشغيل الإضافي ومبرراته.
+
+**Publication evidence:** Egyptian Proceedings issue 295 supplement (D), dated 30 December 2025. The text reproduction carries the issue/date header. The issue-level Amiri Press original PDF was not obtained or visually compared in this capture.
+
+**Secondary full-text source captured:**
+- Law Hub PDF mirror: https://lawhub.info/eg/wp-content/uploads/2026/01/lawhub.info-eg-dec-291-2025.pdf
+- Law Hub HTML: https://lawhub.info/eg/?p=17302
+- Eastlaws metadata page: https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/30-12-2025/no-291?id=5064176&type=1
+
+The PDF's extracted text presents all five operative articles and issuance date (11 December 2025). The capture is a secondary reproduction, not a primary-source match.
+
+**Text status:** full five-article secondary reproduction surfaced/read; no verbatim local transcription committed. This improves the prior “full local extraction pending” status to “full text located in secondary reproduction; source-match pending.”
+
+**Operative article map (paraphrase, not quotation):**
+- Article 1: sets exceptional/abnormal-work conditions for additional work, notice to the competent Labour Directorate within seven days, duration, minimum daytime/nighttime additional remuneration (35%/70% uplift), compensatory day for weekly-rest work, and a 12-hour facility-presence ceiling.
+- Article 2: requires a paper/electronic register of ordinary and additional hours, rationale, day/night status, pay due and payment evidence.
+- Article 3: additional work should be rotated and minimized without harming health or weekly rest.
+- Article 4: directs the Social Consultation Council to set sector-specific annual overtime limits within three months, consulting worker/employer organizations.
+- Article 5: publication and commencement the day after publication.
+
+**Status fields:** instrument identified ✓; publication issue/date located ✓ (secondary page/PDF heading); full text captured ✓ (secondary reproduction); Gazette page visual/source match pending; amendment/currentness review pending; lawyer review pending; commercial reuse rights not assessed/cleared. Do not import into searchable verified corpus or mark lawyer-reviewed from this capture.
+
+**Source trace / access boundary:**
+- PDF text lines show issue header and Articles 1–5: https://lawhub.info/eg/wp-content/uploads/2026/01/lawhub.info-eg-dec-291-2025.pdf
+- HTML article reproduction: https://lawhub.info/eg/?p=17302
+- Eastlaws metadata reports the issue date and next-day commencement: https://www.eastlaws.com/legislation-full-text/ar/egypt/labor/30-12-2025/no-291?id=5064176&type=1
+- Law 14/2025 official-source text, including Article 121, is separately discoverable from government-hosted sources; this capture does not reconcile the decree's cross-references against every version of the law.
+
