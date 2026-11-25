@@ -994,7 +994,7 @@ SQL = ("SELECT chunks.*, bm25(chunks_fts) AS r FROM chunks_fts JOIN chunks ON ch
        "AND v.review_status='verified' AND v.authenticity_verified=1 AND v.status_verified=1 AND v.amendment_history_verified=1 AND EXISTS (SELECT 1 FROM legal_documents d JOIN legal_sources s ON s.source_id=d.source_id WHERE d.document_id=v.document_id AND s.collection_permission='allowed' AND s.commercial_reuse_permission='allowed' AND TRIM(COALESCE(s.permission_evidence,''))<>'' AND TRIM(COALESCE(v.permission_evidence,''))<>'') AND (v.legal_status='in_force' OR (v.legal_status IN ('repealed','historical') AND v.repeal_date IS NOT NULL)) "
        + _REQUIRED_REVIEW_EVENTS_SQL
        + "AND v.effective_date IS NOT NULL AND v.effective_date<=? AND (v.repeal_date IS NULL OR v.repeal_date>?)"
-       ")) ORDER BY r LIMIT 40")
+       ")) ORDER BY r, chunks.id ASC LIMIT 40")
 
 def _https_source_host(value):
     """Normalize an HTTPS source host for source-ID/host permission-register matching."""
@@ -1129,7 +1129,7 @@ _FIRM_SEARCH_SQL = (
     "AND original.firm_id=d.firm_id AND original.state='ready' AND original.purged_at IS NULL "
     "WHERE chunks_fts MATCH ? AND chunks.case_id=? "
     "AND chunks.case_id IN (SELECT id FROM cases WHERE firm_id=?) "
-    "ORDER BY r LIMIT 40"
+    "ORDER BY r, chunks.id ASC LIMIT 40"
 )
 
 _CORPUS_SEARCH_SQL = (
@@ -1167,7 +1167,7 @@ _CORPUS_EXACT_ARTICLE_SQL = (
     + "AND (v.legal_status='in_force' OR (v.legal_status IN ('repealed','historical') AND v.repeal_date IS NOT NULL)) "
     "AND v.effective_date IS NOT NULL AND v.effective_date<=? "
     "AND (v.repeal_date IS NULL OR v.repeal_date>?)"
-    ") LIMIT 20"
+    ") ORDER BY chunks.id ASC LIMIT 20"
 )
 
 
@@ -1253,7 +1253,7 @@ def _search_separate(c, q, case_id, k, firm_id, as_of, scope):
             item["source_status"] = source_status(item, as_of)
             item["citation"] = citation_text(item, as_of)
             ranked.append(item)
-    return sorted(ranked, key=lambda item: -item["score"])[:k]
+    return sorted(ranked, key=lambda item: (-item["score"], -item["literal_match"], item["id"]))[:k]
 
 
 def search(c, q, case_id=None, k=5, firm_id=1, as_of=None, scope="all_permitted"):
@@ -1314,7 +1314,7 @@ def search(c, q, case_id=None, k=5, firm_id=1, as_of=None, scope="all_permitted"
         item["source_id"] = (item.get("provenance") or {}).get("source_id")
         item["source_status"] = source_status(item, as_of)
         item["citation"] = citation_text(item, as_of)
-    return sorted(out, key=lambda x: -x["score"])[:k]
+    return sorted(out, key=lambda x: (-x["score"], -x["literal_match"], x["id"]))[:k]
 
 
 def _safe_llm_endpoint(value):
