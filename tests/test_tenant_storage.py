@@ -240,6 +240,26 @@ class TenantSQLiteConnectionRouterTests(unittest.TestCase):
         with self.assertRaises(sqlite3.ProgrammingError):
             connection.execute("SELECT 1")
 
+    def test_unreadable_sqlite_sidecar_metadata_revokes_cached_connection(self):
+        connection = self.router.connection_for_firm(101)
+        with self._catalog() as catalog:
+            path = resolve_tenant_database(catalog, 101, self.root)
+        sidecar = Path(str(path) + "-wal")
+        original_lstat = os.lstat
+
+        def fail_for_sidecar(candidate, *args, **kwargs):
+            if Path(candidate) == sidecar:
+                raise PermissionError("injected sidecar metadata failure")
+            return original_lstat(candidate, *args, **kwargs)
+
+        with patch("tenant_storage.os.lstat", side_effect=fail_for_sidecar):
+            with self.assertRaisesRegex(
+                TenantConnectionError, "sidecar metadata cannot be verified"
+            ):
+                self.router.connection_for_firm(101)
+        with self.assertRaisesRegex(sqlite3.ProgrammingError, "closed"):
+            connection.execute("SELECT 1")
+
     @unittest.skipUnless(os.name == "posix", "POSIX symlinks are required")
     def test_symlinked_sqlite_sidecar_revokes_cached_tenant_connection(self):
         connection = self.router.connection_for_firm(101)
