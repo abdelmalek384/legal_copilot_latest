@@ -1970,5 +1970,22 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("actionButton(uiText('إنجاز','Complete'),'/tasks/'+x.id+'/done',calendarPage)", calendar)
         self.assertIn("actionButton(uiText('إنجاز','Complete'),'/deadlines/'+x.id+'/done',calendarPage)", calendar)
 
+
+    def test_invoice_issue_and_void_controls_share_duplicate_request_guard(self):
+        helper_start = HTML.index("const actionButton=")
+        helper_end = HTML.index("function applyMotionPreference()", helper_start)
+        helper = HTML[helper_start:helper_end]
+        self.assertIn("const payload=prepare?prepare():undefined", helper)
+        self.assertIn("if(payload===false)return", helper)
+        self.assertIn("if(busy)return", helper)
+        self.assertIn("finally{busy=false;control.disabled=false}", helper)
+        invoices_start = HTML.index("function renderInvoices")
+        invoices_end = HTML.index("async function loadInvoices", invoices_start)
+        invoices = HTML[invoices_start:invoices_end]
+        self.assertIn("actionButton(uiText('إصدار الفاتورة','Issue invoice')", invoices)
+        self.assertIn("'/invoices/'+item.id+'/issue',loadInvoices", invoices)
+        self.assertIn("actionButton(uiText('إلغاء الفاتورة','Void invoice')", invoices)
+        self.assertIn("'/invoices/'+item.id+'/void',loadInvoices", invoices)
+
 if __name__ == "__main__":
     unittest.main()
