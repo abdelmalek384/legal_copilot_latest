@@ -8645,13 +8645,12 @@ def doc(cid: int, b: DocIn, u: dict = Depends(user)):
     return {"document_id": document_id, "sha256": row["sha256"], "chunks": chunks}
 
 
-@app.post("/cases/{cid}/upload")
+def _sanitize_uploaded_filename(filename):\n    """Normalize upload names, removing path components and Unicode control/format characters."""\n    import unicodedata\n    raw_name = (filename or "doc").replace("\\\\", "/").split("/")[-1]\n    cleaned = "".join(\n        ch for ch in raw_name\n        if ord(ch) >= 32 and ch not in "\\x7f"\n        and unicodedata.category(ch) not in {"Cc", "Cf", "Cs"}\n    )\n    return cleaned.strip()[:200] or "doc"\n\n\n@app.post("/cases/{cid}/upload")
 @rollback_tenant_transaction_on_error
 def upload(cid: int, file: UploadFile, u: dict = Depends(user)):
     c = conn(); need(c, u, cid); data = file.file.read(15_000_001)
     if len(data) > 15_000_000: raise HTTPException(413, "max 15 MB")
-    raw_name = (file.filename or "doc").replace("\\", "/").split("/")[-1]
-    name = "".join(ch for ch in raw_name if ord(ch) >= 32 and ch not in "\x7f").strip()[:200] or "doc"
+    name = _sanitize_uploaded_filename(file.filename)
     store = _original_file_store() if _separate_runtime_enabled() else None
     staged = None
     finalization_failed = False
