@@ -3,6 +3,9 @@
 **Updated:** 2026-11-24  
 **Decision:** **NOT READY** for lawyer pilot or production. This is an engineering checkpoint, not legal, security or operational certification. Historical tracker detail is archived at [STATUS history](archive/STATUS_history_through_2026-11-13.md).
 
+## Manual checkpoint — 2026-11-25 (continued)
+- Tenant SQLite sidecar hard-link boundary: the connection router now rejects existing `-wal`, `-shm`, and `-journal` sidecars that are non-regular or have a link count other than one, revoking the cached tenant connection on failure. Added a POSIX hard-link regression. Isolated sidecar harness passed 4/4 cases (absent, single-link, hard-link rejection, symlink rejection). The repository tenant-storage test module remains unexecuted; no local Python 3.12 checkout is available. Source/test commits: `49c7537a`, `f86c80ce`, `c85ed13d`, `90c1e1f7`.
+
 ## Manual checkpoint — 2026-11-24
 - Follow-up test strengthening: the identity-page regression now checks each page captures the fragment token before clearing browser history, and that invitation/recovery POST payloads still carry the in-memory token. Commit `4a02125`. Source assertion update only; test remains unexecuted because manual runtime environment is unavailable.
 - Identity-link browser-history hardening: invitation acceptance and password-recovery pages now read the one-time token from the URL fragment and immediately remove the fragment from the visible URL/current history entry with `history.replaceState`, while retaining the token only in the page's in-memory variable for the POST. Added a focused source regression in `tests/test_identity_lifecycle.py`. This reduces accidental exposure through copied URLs, later screenshots, and ordinary history navigation; it does not erase browser sync, extensions, memory snapshots, or previously captured URLs. Commits: `48030ca` (router), `12496f6` (regression). Test is added but not executed; no browser/runtime pass is claimed.
