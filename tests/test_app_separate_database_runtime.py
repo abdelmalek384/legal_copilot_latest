@@ -5849,6 +5849,13 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             )
             self.assertEqual(response.status_code, 200, response.text)
 
+        for day, amount in (("2029-12-31", 100), ("2030-01-01", 200), ("2030-01-02", 300)):
+            response = self._mutate(
+                "post", f"/cases/{case_id}/fees",
+                json={"title": f"Synthetic fee {day}", "amount": amount, "paid": 0, "due": day},
+            )
+            self.assertEqual(response.status_code, 200, response.text)
+
         with patch.object(app, "_cairo_today", return_value=date(2030, 1, 1)):
             dashboard = self.client.get("/dashboard")
             self.assertEqual(dashboard.status_code, 200, dashboard.text)
@@ -5867,6 +5874,11 @@ class SeparateDatabaseApplicationTests(unittest.TestCase):
             self.assertNotIn("DTSTART;VALUE=DATE:20300116", calendar.text)
             self.assertIn("Task: Synthetic task 2030-04-01", calendar.text)
             self.assertNotIn("Synthetic task 2030-04-02", calendar.text)
+
+            finance = self.client.get("/finance/overview")
+            self.assertEqual(finance.status_code, 200, finance.text)
+            self.assertEqual(finance.json()["overdue_count"], 1)
+            self.assertEqual(finance.json()["overdue_amount"], 100.0)
 
     def test_date_models_reject_impossible_calendar_dates(self):
         cases = (
