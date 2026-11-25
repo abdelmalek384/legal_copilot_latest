@@ -8652,7 +8652,7 @@ def _sanitize_uploaded_filename(filename):
     cleaned = "".join(
         ch for ch in raw_name
         if ord(ch) >= 32 and ch not in "\x7f"
-        and unicodedata.category(ch) not in {"Cc", "Cf", "Cs"}
+        and unicodedata.category(ch) not in {"Cc", "Cf", "Cs", "Zl", "Zp"}
     )
     return cleaned.strip()[:200] or "doc"
 
