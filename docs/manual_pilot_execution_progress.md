@@ -17,7 +17,7 @@
 | Document upload, extraction & review | 65% | Browser/API checks for PDF/DOCX limits, extraction, original-file retrieval, review history and rejection paths | Yes |
 | Firm/client/matter access isolation | 55% | Two synthetic firms; direct-ID/API/search/download/export denial matrix; record evidence | Yes |
 | Authentication, MFA, invitation & recovery | 65% | Clean browser checks, token lifecycle, MFA enrolment/recovery, session revocation and throttle behavior | Yes |
-| Tenant storage, DB migrations & path safety | 70% | Disposable database profiles; migration and symlink/race boundary checks on supported host | Yes |
+| Tenant storage, DB migrations & path safety | 71% | Disposable database profiles; migration and symlink/race boundary checks on supported host | Yes |
 | Backup, restore & retention | 45% | Witnessed encrypted backup/restore rehearsal, archive tamper rejection, post-restore consistency | Yes |
 | Deployment and configuration | 55% | Clean Python 3.12 install, local preflight, staging HTTPS/SMTP/S3 configuration and operator evidence | Yes, except live provider verification |
 | Mobile, RTL/LTR & usability | 45% | Responsive browser/device acceptance in Arabic and English; keyboard/accessibility/error states | Yes |
@@ -40,7 +40,7 @@
 | Date | Work | Result | Evidence |
 |---|---|---|---|
 | 2026-11-25 | Repository source/docs checkpoint; hosted CI excluded from plan | Read-only inspection completed; runtime execution not available in this session | docs/STATUS.md, docs/BLOCKERS.md, docs/test_firm_runbook.md, docs/document_intelligence_workspace.md, docs/legal_research_document_intelligence.md |
-| 2026-11-25 | Repository checkout in current tool runtime | Blocked by DNS/network resolution; no retry planned in this session | Tool-session note; not a repository test result |
+| 2026-11-25 | Repository checkout in current tool runtime | Blocked by DNS/network resolution; no retry planned in this session | Tool-session note; not a repository test result |\n| 2026-11-25 | Manual tenant-storage pathname-race source review | Bounded review completed; residual pathname-open identity race documented, no test execution or exploit demonstration | docs/manual_tenant_storage_review_2026-11-25.md; draft PR #1975 |
 
 ## Acceptance evidence template
 For each run, record:
