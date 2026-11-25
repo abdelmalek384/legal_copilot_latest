@@ -13,7 +13,7 @@ from tools.reminder_email import SMTPConfig
 from tools.reminder_outbox import claim_next, enqueue_plan, finish_attempt, retry_failed
 from tools.reminder_schedule import build_reminder_plan
 from tools.reminder_service import (
-    _ReadOnlyReminderRuntime, main, outbox_status, run_scheduler,
+    _ReadOnlyReminderRuntime, _date_only, main, outbox_status, run_scheduler,
 )
 
 
@@ -53,6 +53,19 @@ class ReminderServiceTests(unittest.TestCase):
     def tearDown(self):
         self.runtime.close_current_thread()
         self.temp.cleanup()
+
+    def test_date_only_rejects_non_iso_suffixes_but_accepts_iso_datetimes(self):
+        for value, expected in (
+            ("2026-01-02", "2026-01-02"),
+            ("2026-01-02T13:45:00+02:00", "2026-01-02"),
+            ("2026-01-02 13:45:00", "2026-01-02"),
+            ("2026-01-02garbage", None),
+            ("2026-01-02Tnot-a-time", None),
+            ("2026-01-02\\nforged", None),
+            ("2026-01-02/extra", None),
+        ):
+            with self.subTest(value=value):
+                self.assertEqual(_date_only(value), expected)
 
     def test_default_dry_run_does_not_write_outbox_or_send(self):
         report = run_scheduler(
