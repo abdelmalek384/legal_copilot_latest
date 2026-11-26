@@ -569,35 +569,36 @@ def has_unsupported_claims(answer, hits, tokens_fn, norm_fn, mask_code=None):
         claim = re.sub(r"\[\d+\]", " ", sentence)
         # Negation is legally material: compare raw text before Arabic normalization
         # can remove particles such as "لا" and invert the obligation.
-        if (_has_negated_obligation_mismatch(claim, evidence)
-                or _has_modal_mismatch(claim, evidence)):
-            return True
         normalized_claim = norm_fn(claim)
-        normalized_evidence = norm_fn(evidence)
-        if _has_modal_mismatch(normalized_claim, normalized_evidence):
-            return True
-        if _has_unsupported_numbers(normalized_claim, normalized_evidence):
-            return True
-        if _has_unsupported_qualifiers(normalized_claim, normalized_evidence):
-            return True
-        if _has_reversal_mismatch(normalized_claim, normalized_evidence):
-            return True
+        normalized_sources = [norm_fn(text) for text in cited_texts]
+        # A cited passage must independently support material numeric values and
+        # units. Concatenating citations can otherwise manufacture a quantity
+        # when one source ends in a number and another begins with its unit.
+        for source_text in normalized_sources:
+            if (_has_negated_obligation_mismatch(claim, source_text)
+                    or _has_modal_mismatch(claim, source_text)
+                    or _has_modal_mismatch(normalized_claim, source_text)
+                    or _has_unsupported_numbers(normalized_claim, source_text)
+                    or _has_unsupported_qualifiers(normalized_claim, source_text)
+                    or _has_reversal_mismatch(normalized_claim, source_text)):
+                return True
 
-        claim_says_no_expiry = bool(
-            _ENGLISH_NO_EXPIRY.search(normalized_claim)
-            or _ARABIC_NO_EXPIRY.search(normalized_claim)
-        )
-        source_has_finite_period = bool(
-            _ENGLISH_FINITE_PERIOD.search(normalized_evidence)
-            or _ARABIC_FINITE_PERIOD.search(normalized_evidence)
-        )
-        source_mentions_limitation = bool(re.search(
-            r"\b(?:limitation|prescription|time[- ]bar|expiry|expiration)\b|"
-            r"(?:تقادم|سقوط|انقضاء)",
-            normalized_evidence,
-        ))
-        if claim_says_no_expiry and source_has_finite_period and source_mentions_limitation:
-            return True
+            claim_says_no_expiry = bool(
+                _ENGLISH_NO_EXPIRY.search(normalized_claim)
+                or _ARABIC_NO_EXPIRY.search(normalized_claim)
+            )
+            source_has_finite_period = bool(
+                _ENGLISH_FINITE_PERIOD.search(source_text)
+                or _ARABIC_FINITE_PERIOD.search(source_text)
+            )
+            source_mentions_limitation = bool(re.search(
+                r"\b(?:limitation|prescription|time[- ]bar|expiry|expiration)\b|"
+                r"(?:تقادم|سقوط|انقضاء)",
+                source_text,
+            ))
+            if claim_says_no_expiry and source_has_finite_period and source_mentions_limitation:
+                return True
+        normalized_evidence = norm_fn(evidence)
 
         claim_terms = set(tokens_fn(_canonicalize_coverage_text(normalized_claim))) - _GENERIC_TERMS
         if not claim_terms:
