@@ -22,6 +22,7 @@ ROUTER_MODULES = {
 }
 ROUTER_FILES = tuple(ROUTER_MODULES.values())
 ROUTE_METHODS = {"get", "post", "put", "patch", "delete", "options", "head", "api_route"}
+DYNAMIC_ROUTE_REGISTRATION_METHODS = {"add_api_route", "add_route", "mount"}
 # Public access is granted to an exact handler, not merely to a path.
 # This prevents an unrelated route registered on a public URL from inheriting
 # the exemption.
@@ -116,6 +117,19 @@ def audit_sources(
 
     for filename, source in sources.items():
         tree = ast.parse(source, filename=filename)
+        for candidate in ast.walk(tree):
+            if not isinstance(candidate, ast.Call) or not isinstance(candidate.func, ast.Attribute):
+                continue
+            owner = candidate.func.value
+            if (
+                isinstance(owner, ast.Name)
+                and owner.id in {"app", "router"}
+                and candidate.func.attr.lower() in DYNAMIC_ROUTE_REGISTRATION_METHODS
+            ):
+                findings.append(
+                    f"cannot statically audit dynamic route registration "
+                    f"{owner.id}.{candidate.func.attr} in {filename}; use literal route decorators"
+                )
         for node in ast.walk(tree):
             if not isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
                 continue
