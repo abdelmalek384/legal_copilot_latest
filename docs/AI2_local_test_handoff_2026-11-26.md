@@ -82,7 +82,7 @@ Recovery drill is destructive only to its own temporary synthetic fixtures; conf
 
 ```sh
 python -m unittest tests.test_frontend_ux_contract
-python -m unittest tests.test_subscription_billing_audit_frontend_contract
+python -m unittest tests.test_subscription_audit_frontend_contract
 ```
 
 Browser acceptance is optional for this first pass if its pinned browser dependencies are not already available; avoid spending the test window installing browsers until Python focused tests/security are complete. If dependencies are already installed:
