@@ -2065,3 +2065,11 @@ Percentages are scoped to the described implementation or acceptance phase. They
 
 - Inspected additional portions of retrieval-quality and Arabic article-retrieval scorers, including reviewed-question validation, reviewer registry linkage, benchmark fingerprinting, citation/article ID constraints, exclusion of unlabeled records, and stable regular-file input safeguards.
 - No defect confirmed from the limited readback. No scoring runs, benchmark threshold changes, lawyer-label additions, legal corpus changes, or GitHub Actions execution. Manual local validation remains necessary.
+
+
+## AI-1 research inspector and trust-gate review — 2026-11-26 (continued)
+
+- Continued source-level review of `tools/research_inspector.py`, `tools/answer_trust_tier.py`, and `tests/test_research_inspector.py`.
+- Reviewed fail-closed source-status paths: explicit search scopes; matter-linked text stays user-supplied; secondary copies are downgraded; verified status requires recorded source/version, file hash, permissions, review evidence, publication/effective dates and Gazette pinpoints; test-only source-matched records bind to IDs/dates and are explicitly not lawyer-verified.
+- Reviewed URL/date parsing, duplicate review-event ID handling, counsel attestation marker, Cairo-local date gates, and memo behavior for malformed/empty source records.
+- No confirmed defect was identified in this pass; no speculative policy or legal-status change made. No runtime tests executed, and this source inspection is not independent legal verification.
