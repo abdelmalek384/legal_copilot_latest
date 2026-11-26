@@ -46,3 +46,11 @@ bash scripts/local_release_check.sh
 ```
 
 Run tests later, at the user's planned local-test window, not now. Do not treat the list above as executed evidence.
+
+## Follow-on regression wiring — 2026-11-26
+
+- Added the existing `tests/test_uploaded_filename_sanitization.py` regression to `scripts/security_regression_check.sh` and the explicit `.github/workflows/tests.yml` test list. This is not a new feature; it ensures the existing upload filename path/bidi/control-character defenses are included in both regression inventories.
+- Direct-main commits: security matrix `87f9c873d17ffe25f999f5a202ae628385409955`; explicit workflow registration `07307d31354d13145cadea4fe39b44fd99d6286f`.
+- Manual source check only: the module is present in both inventories. No tests were executed and no GitHub Actions were invoked.
+- Progress: security / tenant isolation remains 85.1%; documents / file handling remains 99.1%; deployment / backup / recovery remains 46.7%; test execution readiness increases conservatively from 11.0% to 11.2% for better regression coverage integration (not test execution); AI-2 overall remains 76.2%.
+- Release gates remain: execute Python 3.12 suites locally, verify browser/device workflows, complete two-firm isolation, and perform a witnessed backup/restore.
