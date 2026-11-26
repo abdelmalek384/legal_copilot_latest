@@ -22,6 +22,7 @@ ROUTER_MODULES = {
     "routers.identity": ROOT / "routers" / "identity.py",
 }
 ROUTE_METHODS = {"get", "post", "put", "patch", "delete", "options", "head", "api_route"}
+DYNAMIC_ROUTE_REGISTRATION_METHODS = {"add_api_route", "add_route", "mount"}
 BOUNDARY_CALLS = {
     "conn": "firm",
     "firm_connection": "firm",
@@ -330,6 +331,19 @@ def audit_source(source: str) -> dict[str, Any]:
             global_assignments[item.target.id] = item.value
     routes: list[tuple[dict[str, str], str]] = []
     route_declaration_errors: list[str] = []
+    for candidate in ast.walk(tree):
+        if not isinstance(candidate, ast.Call) or not isinstance(candidate.func, ast.Attribute):
+            continue
+        owner = candidate.func.value
+        if (
+            isinstance(owner, ast.Name)
+            and owner.id in {"app", "router"}
+            and candidate.func.attr.lower() in DYNAMIC_ROUTE_REGISTRATION_METHODS
+        ):
+            route_declaration_errors.append(
+                f"cannot statically audit dynamic route registration "
+                f"{owner.id}.{candidate.func.attr}; use literal route decorators"
+            )
     for node in tree.body:
         if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
             discovered, errors = _route_decorators(node)
@@ -450,13 +464,20 @@ def default_source() -> str:
     """Include every router module explicitly mounted by the application."""
     app_source = APP_FILE.read_text(encoding="utf-8")
     tree = ast.parse(app_source, filename=str(APP_FILE))
-    imported = {
-        node.module for node in ast.walk(tree)
-        if isinstance(node, ast.ImportFrom)
-        and node.module
-        and node.module.startswith("routers.")
-        and any(alias.name == "router" for alias in node.names)
-    }
+    imported: set[str] = set()
+    for node in ast.walk(tree):
+        if isinstance(node, ast.ImportFrom):
+            if (
+                node.module
+                and node.module.startswith("routers.")
+                and any(alias.name == "router" for alias in node.names)
+            ):
+                imported.add(node.module)
+            continue
+        if isinstance(node, ast.Import):
+            for alias in node.names:
+                if alias.name.startswith("routers."):
+                    imported.add(alias.name)
     unregistered = sorted(imported - set(ROUTER_MODULES))
     if unregistered:
         raise RuntimeError(
