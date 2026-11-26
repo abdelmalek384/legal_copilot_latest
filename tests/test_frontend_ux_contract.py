@@ -2040,5 +2040,14 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("className:'matter-section-nav',role:'group','aria-label':uiText('أقسام ملف القضية','Matter sections')", HTML)
         self.assertIn("className:'matter-subnav',role:'group','aria-label':uiText('صفحات القسم الحالي','Pages in current section')", HTML)
 
+
+    def test_login_password_visibility_button_controls_password_field(self):
+        login_start = HTML.index("function loginPage")
+        login_end = HTML.index("function ", login_start + 10)
+        login = HTML[login_start:login_end]
+        self.assertIn("p.id='login-password'", login)
+        self.assertIn("'aria-controls':'login-password'", login)
+        self.assertIn("p.type=p.type==='password'?'text':'password'", login)
+
 if __name__ == "__main__":
     unittest.main()
