@@ -1,4 +1,10 @@
 
+## AI-1 independent-copy registry binding — 2026-11-26
+
+- Tightened the exact-version evidence query to require the independent-copy source identity to resolve to an actual `legal_sources` registry row. A syntactically valid but orphaned independent-source ID now yields no evidence packet rather than relying only on a foreign-key declaration that may not have been enforced by a legacy/imported database.
+- Aligned the source-ID guard to the shared compiled identifier pattern and repaired the hash-mismatch regression fixture so it supplies the newly required independent-copy identity, digest, and revision. The test now reaches the intended primary-hash mismatch condition.
+- Manual GitHub read-back only; tests and GitHub Actions remain **not run**. This proves registry-row presence only, not independent-source authenticity or independence.
+
 ## AI-1 exact-version provenance packet integrity — 2026-11-26
 
 - Strengthened the source-match evidence read adapter beyond version/hash equality: it now requires canonical ISO calendar dates, 64-character hexadecimal SHA-256 values for both the primary capture and independent copy, a valid bounded independent-source identifier distinct from the primary source, and a positive integer evidence revision (excluding booleans).

@@ -22,9 +22,13 @@ def load_source_match_evidence(connection, version_id, source_id):
     This read-only adapter never synthesizes evidence, grants permissions, or
     changes verification state. Missing/mismatched records return None.
     """
-    if (isinstance(version_id, bool) or not isinstance(version_id, int)
-            or version_id <= 0 or not isinstance(source_id, str)
-            or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,127}", source_id, re.ASCII)):
+    if (
+        isinstance(version_id, bool)
+        or not isinstance(version_id, int)
+        or version_id <= 0
+        or not isinstance(source_id, str)
+        or not SOURCE_ID_PATTERN.fullmatch(source_id)
+    ):
         return None
 
     cursor = connection.execute(
@@ -32,10 +36,13 @@ def load_source_match_evidence(connection, version_id, source_id):
         SELECT e.*, d.source_id AS registry_source_id,
                v.publication_date AS registry_publication_date,
                v.effective_date AS registry_effective_date,
-               v.original_sha256 AS registry_original_sha256
+               v.original_sha256 AS registry_original_sha256,
+               independent_source.source_id AS matched_independent_copy_source_id
         FROM legal_source_match_evidence e
         JOIN legal_document_versions v ON v.version_id=e.version_id
         JOIN legal_documents d ON d.document_id=v.document_id
+        JOIN legal_sources independent_source
+          ON independent_source.source_id=e.independent_copy_source_id
         WHERE e.version_id=? AND e.source_id=? AND d.source_id=e.source_id
         ORDER BY e.evidence_revision DESC, e.evidence_id DESC
         LIMIT 1
@@ -70,6 +77,7 @@ def load_source_match_evidence(connection, version_id, source_id):
         or not isinstance(independent_source_id, str)
         or not SOURCE_ID_PATTERN.fullmatch(independent_source_id)
         or independent_source_id == source_id
+        or record.get("matched_independent_copy_source_id") != independent_source_id
         or isinstance(evidence_revision, bool)
         or not isinstance(evidence_revision, int)
         or evidence_revision <= 0

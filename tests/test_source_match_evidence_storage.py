@@ -52,9 +52,20 @@ class SourceMatchEvidenceAdapterTests(unittest.TestCase):
 
     def test_adapter_rejects_registry_hash_mismatch_before_loading_uses(self):
         class Cursor:
-            description = [(name,) for name in ("registry_source_id", "registry_publication_date", "registry_effective_date", "registry_original_sha256", "original_capture_sha256", "publication_date", "effective_date", "evidence_id")]
+            description = [(name,) for name in (
+                "registry_source_id", "registry_publication_date",
+                "registry_effective_date", "registry_original_sha256",
+                "original_capture_sha256", "independent_copy_source_id",
+                "independent_copy_sha256", "evidence_revision",
+                "publication_date", "effective_date", "evidence_id",
+                "matched_independent_copy_source_id",
+            )]
             def fetchone(self):
-                return ("src", "2020-01-01", "2020-01-02", "b" * 64, "a" * 64, "2020-01-01", "2020-01-02", 1)
+                return (
+                    "src", "2020-01-01", "2020-01-02", "b" * 64, "a" * 64,
+                    "independent", "c" * 64, 1, "2020-01-01", "2020-01-02",
+                    1, "independent",
+                )
         class Connection:
             calls = 0
             def execute(self, sql, params):
@@ -90,6 +101,7 @@ class SourceMatchEvidenceAdapterTests(unittest.TestCase):
         base = {
             "registry_source_id": "src", "registry_publication_date": "2020-01-01",
             "registry_effective_date": "2020-01-02", "registry_original_sha256": "a" * 64,
+            "matched_independent_copy_source_id": "independent",
             "original_capture_sha256": "a" * 64, "independent_copy_source_id": "independent",
             "independent_copy_sha256": "b" * 64, "publication_date": "2020-01-01",
             "effective_date": "2020-01-02", "evidence_id": 7, "evidence_revision": 1,
