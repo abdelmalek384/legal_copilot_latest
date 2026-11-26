@@ -2165,3 +2165,8 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Reviewed the S3 private storage adapter and focused fake-client test fixtures: canonical KMS-key identity checks on metadata and streaming reads, firm-scoped opaque key construction, conditional stage/copy semantics, staged-object retention until finalized-byte digest/size verification, bounded stream reads, bounded inventory pagination and token validation, and physical purge guards for bucket versioning, staged presence, digest verification, conditional ETag deletion, and post-delete checks.
 - This was static source review only. No confirmed defect suitable for a safe unvalidated direct-main patch was established from the inspected sections. The review does not validate real AWS permissions, provider behavior, bucket policy, concurrency, KMS key state, or witnessed recovery.
 - Manual Python tests and live AWS/storage acceptance remain unexecuted; GitHub Actions/CI was not run. Progress remains AI-1 overall 67%; no change to estimates from this review alone.
+
+## AI-2 calendar accessibility correction — 2026-11-26
+
+- The calendar month/agenda switch already exposed pressed state on its two buttons, but its labeled wrapper was a generic `div` without a group role. Added `role="group"` so assistive technology can identify the named control set; preserved the existing bilingual label and button state.
+- Added a frontend contract regression. Commits: `2df16bf`, `f88c303`. The frontend contract module is already in the security regression script and test workflow. No browser or Python tests were run.
