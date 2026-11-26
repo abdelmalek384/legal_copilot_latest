@@ -12,11 +12,24 @@ This is a read-only review of the public default branch, not the user's local br
 - Seed writes are transactional and fail on conflicting existing source/document metadata rather than silently overwriting.
 - Candidate registration/seeding must not be treated as a permission grant, source verification, corpus ingestion, or legal-currentness assertion.
 
+## Test coverage inspected (authored, not executed)
+
+The candidate-registry tests currently assert several important boundaries:
+- candidate-record JSON duplicate keys, non-object root and symlink rejection;
+- metadata registration creates pending/unverified version state and no article chunks;
+- repeat registration does not overwrite a human review outcome;
+- committed registration can be observed by a second database connection;
+- rollback on source conflict and preflight validation before inserts;
+- unsafe evidence/source URL rejection and refusal to grant collection/commercial rights;
+- supplied verification/status flags are ignored in favor of pending defaults.
+
+Catalog tests also cover duplicate keys, permission-register parity and mismatches, HTTPS URL validation, discovery-only status, known source/document links, and rollback behavior. These are source-level assertions only; no test execution is claimed.
+
 ## Manual acceptance checklist for the local branch
 
 1. Preserve the pre-existing worktree and all backup files; inspect diffs before any edits.
 2. Check duplicate IDs, document-to-source references, and required fields in both JSON registries.
-3. Confirm that permission parity compares collection and commercial-reuse states and does not silently upgrade unknown/restricted states.
+3. Confirm permission parity compares collection and commercial-reuse states and does not silently upgrade unknown/restricted states.
 4. Confirm host/path consistency behavior is documented and intentional; avoid introducing permission assumptions based on host matching alone.
 5. Confirm candidate registration remains metadata-only, idempotent, transactional, and non-overwriting on conflicts.
 6. Confirm candidate records do not create article chunks, source verification, review approval, or search eligibility.
@@ -29,4 +42,4 @@ This is a read-only review of the public default branch, not the user's local br
 - Local branch review: blocked because the branch is local-only/not remotely resolvable.
 - Test execution: none.
 - CI: unavailable due billing; no retry.
-- Changes: this note only; no application code or legal-source records altered.
+- Changes: documentation only; no application code or legal-source records altered.
