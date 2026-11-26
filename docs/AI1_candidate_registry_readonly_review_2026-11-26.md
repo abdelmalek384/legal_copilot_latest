@@ -48,3 +48,11 @@ Read-only inspection of available remote branches related to candidate registry 
 - `database/legal-candidate-seeder-corpus-profile`
 
 Their candidate catalog/seeder snapshots are older than current `main` and lack the current main seeder's later validation hardening (including duplicate-key/URL checks and canonical permission parity checks). They are not manually integrated; merging these stale snapshots would risk regressing the more hardened current implementation. No PR was created or left pending. The reported local branch `fix/legal-candidate-registry-consistency` remains unavailable as a remote ref and was not reviewed.
+
+## Claim-support static review extension — 2026-11-26
+
+- Inspected current `tools/claim_support.py`, `tests/test_claim_support.py`, and the app integration call site in `app.py`.
+- The broad lexical screen is opt-in for ordinary answers through `LEGAL_CLAIM_SUPPORT_CHECK=1`; source-matched experimental answers invoke the screen independently of that general flag.
+- Separate answer-path guards remain for citations, numbers/periods, source polarity, negated obligations, pinpoint citations, actor-role mismatch, and conditional source overstatement.
+- Counted 69 test methods in the fetched test module (static count only; no tests run).
+- Added `docs/AI1_claim_support_manual_verification_plan_2026-11-26.md` as a local manual testing protocol. It does not imply tests were run or passed.
