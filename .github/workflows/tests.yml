@@ -390,6 +390,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_legacy_firm_ownership_migration.py
       - name: Test manual capture validator
         run: PYTHONPATH=. python tests/test_manual_capture_validator.py
+      - name: Test uploaded filename sanitization
+        run: PYTHONPATH=. python tests/test_uploaded_filename_sanitization.py
       - name: Test original file storage
         run: PYTHONPATH=. python tests/test_original_file_storage.py
       - name: Test original file reconciliation
