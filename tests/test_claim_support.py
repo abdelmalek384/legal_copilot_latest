@@ -51,6 +51,19 @@ class ClaimSupportTests(unittest.TestCase):
             hits, tokens, norm, _mask_markdown_code
         ))
 
+    def test_arabic_واحد_عشر_variants_match_numeric_periods(self):
+        variants = ("مدة التقادم واحد عشر سنة.", "مدة التقادم واحد عشرة سنة.")
+        for claim in variants:
+            with self.subTest(claim=claim):
+                self.assertFalse(has_unsupported_claims(
+                    claim + " [1].", [{"text": "مدة التقادم 11 سنة."}],
+                    tokens, norm, _mask_markdown_code
+                ))
+                self.assertTrue(has_unsupported_claims(
+                    claim + " [1].", [{"text": "مدة التقادم 12 سنة."}],
+                    tokens, norm, _mask_markdown_code
+                ))
+
     def test_arabic_worded_teen_numbers_match_numeric_periods(self):
         cases = (
             ("مدة التقادم ستة عشر سنة.", "مدة التقادم 16 سنة.", "مدة التقادم سبعة عشر سنة."),
