@@ -2193,3 +2193,12 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Commits: `a3bd3fa` (database guard), `d7210cf` and `9a7f994` (regressions), `83fc3f2` (no-follow sidecar inspection). Source and test changes were read back from `main`; no test module or GitHub Actions job was executed in this session.
 - Updated conservative implementation estimates: security/tenant isolation **85.3%** (from 85.2%); AI-2 overall **76.6%** (from 76.5%). Documents/file handling remains **99.1%**; backup/recovery **47.1%**; test execution readiness **12.3%**. These are engineering estimates, not pass rates or production acceptance.
 - Validation status: **0 repository test modules executed**, **0 GitHub Actions jobs executed**; open PR count rechecked separately.
+
+
+## AI-2 encrypted recovery archive input hard-link guard — 2026-11-26
+
+- The S3 encrypted recovery archive uploader now rejects a POSIX source bundle with more than one hard link, after opening and validating the actual file descriptor. This prevents accepting an otherwise checksum-correct encrypted bundle whose inode is also exposed through an unexpected filesystem alias.
+- Added a synthetic regression that creates a hard-link alias, asserts upload fails before any S3 object is written, and is skipped only where POSIX hard links are unavailable. The existing `test_database_backup_archive.py` module is already present in the manual security regression script and repository test workflow.
+- Commits: `85a99c5` (uploader guard), `411e8d5` (regression). Source and test files were read back from `main`; no Python tests or GitHub Actions jobs were executed.
+- Conservative estimates: backup/recovery **47.2%** (from 47.1%); security/tenant isolation remains **85.3%**; documents/file handling **99.1%**; test execution readiness **12.3%**; AI-2 overall **76.7%** (from 76.6%). These are implementation estimates, not measured pass rates or production acceptance.
+- Validation status remains **0 repository test modules executed**, **0 GitHub Actions jobs executed**. Local Python 3.12 and browser/device checks remain for the owner's planned end-of-day session.
