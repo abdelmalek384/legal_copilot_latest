@@ -31,6 +31,8 @@ tests=(
   test_tenant_catalog.py
   test_tenant_storage.py
   test_auth_rate_limits_separate_runtime.py
+  test_identity_lifecycle.py
+  test_platform_security_audit_migrations.py
   test_mfa_account_security.py
   test_mfa_primitives.py
   test_mfa_break_glass_cli.py
