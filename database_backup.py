@@ -39,7 +39,7 @@ _MAX_ARCHIVE_BYTES = 8 * 1024 * 1024 * 1024
 _MAX_ENTRIES = 2048
 # Fernet adds a 57-byte envelope and up to 16 bytes of block padding before base64 encoding.
 _MAX_ENCRYPTED_BUNDLE_BYTES = ((_MAX_ARCHIVE_BYTES + 73 + 2) // 3) * 4
-_BACKUP_BUNDLE_FILENAME = re.compile(r"tenancy-[0-9]{8}-[0-9]{6}-[0-9]+\\.dbbundle\\.enc\\Z")
+_BACKUP_BUNDLE_FILENAME = re.compile(r"tenancy-[0-9]{8}-[0-9]{6}-[0-9]+\.dbbundle\.enc\Z")
 
 
 def _readonly(path: Path) -> sqlite3.Connection:
