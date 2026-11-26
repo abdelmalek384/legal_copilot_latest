@@ -883,6 +883,7 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
                 [
                     ("a" * 32, 12, "s3", digest, 21, "mystery", None, None, None),
                     ("b" * 32, 12, "s3", digest, 21, "ready", "2026-11-26 09:00:00", None, "   "),
+                    ("c" * 32, "not-a-firm", "s3", digest, 21, "ready", None, None, None),
                 ],
             )
             db.commit()
@@ -894,6 +895,7 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
             codes = {item.code for item in report.findings}
             self.assertIn("invalid_object_state", codes)
             self.assertIn("invalid_purge_tombstone", codes)
+            self.assertIn("invalid_metadata_binding", codes)
 
     def test_encrypted_backup_staging_copies_verified_s3_originals(self):
         with tempfile.TemporaryDirectory() as temp:
