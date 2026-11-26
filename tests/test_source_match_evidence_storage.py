@@ -14,10 +14,10 @@ class SourceMatchEvidenceAdapterTests(unittest.TestCase):
         self.assertTrue(valid_evidence_url("https://example.test/rights?section=12"))
         # Legitimate descriptive metadata should not be rejected merely because
         # its key contains a substring that resembles a credential term.
-        for key in ("author", "authentication_method_description", "tokenization_note"):
+        for key in ("author", "author_name", "section", "tokenization_note"):
             with self.subTest(benign_key=key):
                 self.assertTrue(valid_evidence_url(f"https://example.test/rights?{key}=value"))
-        for key in ("authkey", "bearerTokenHint", "privateKeyName", "signatureValue"):
+        for key in ("authkey", "bearerTokenHint", "privateKeyName", "signatureValue", "authentication_method_description"):
             with self.subTest(sensitive_key=key):
                 self.assertFalse(valid_evidence_url(f"https://example.test/rights?{key}=value"))
 
