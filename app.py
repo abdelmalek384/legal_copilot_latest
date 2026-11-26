@@ -4731,9 +4731,9 @@ def logout(request: Request, response: Response, u: dict = Depends(user)):
     audit_warning = False
     try:
         c.execute(
-            "INSERT INTO platform_security_events(actor_user_id,target_user_id,event_type,detail_json) "
-            "VALUES(?,?,'logout',?)",
-            (u["id"], u["id"], json.dumps({"method": "web", "session_revoked": True}, sort_keys=True)),
+            "INSERT INTO platform_security_events(actor_user_id,target_user_id,firm_id,event_type,detail_json) "
+            "VALUES(?,?,?,'logout',?)",
+            (u["id"], u["id"], u["firm_id"], json.dumps({"method": "web", "session_revoked": True}, sort_keys=True)),
         )
         c.commit()
     except sqlite3.Error:
