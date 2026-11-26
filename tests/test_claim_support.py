@@ -10,6 +10,20 @@ from tools.claim_support import (_has_unsupported_qualifiers, _ARABIC_FINITE_PER
 
 
 class ClaimSupportTests(unittest.TestCase):
+    def test_invalid_cited_hit_is_not_ignored_when_another_citation_is_valid(self):
+        hits = [None, {"text": "The fictional deadline is five days."}]
+        self.assertTrue(has_unsupported_claims(
+            "The fictional deadline is five days [1] [2].",
+            hits, tokens, norm, _mask_markdown_code
+        ))
+
+    def test_empty_cited_hit_is_not_ignored_when_another_citation_is_valid(self):
+        hits = [{"text": ""}, {"text": "The fictional deadline is five days."}]
+        self.assertTrue(has_unsupported_claims(
+            "The fictional deadline is five days [1] [2].",
+            hits, tokens, norm, _mask_markdown_code
+        ))
+
     def test_never_expires_is_blocked_against_a_five_year_limitation_source(self):
         hits = [{"text": "The limitation period is five years."}]
         self.assertTrue(has_unsupported_claims(
