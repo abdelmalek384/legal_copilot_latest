@@ -2097,3 +2097,11 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Continued manual source inspection of `tools/run_legal_eval.py`, including question-file parsing, authenticated request flow, result extraction, and output handling. The runner rejects duplicate JSON keys, bounds input and response reads, requires loopback by default (remote HTTPS only with explicit opt-in), refuses redirects, uses a CSRF token, avoids overwriting existing output, and masks code/comment citation markers when extracting visible citations.
 - No confirmed defect identified in the reviewed portion; therefore no speculative code changes were made.
 - This remains static source review: repository Python tests, full app/API runtime, and browser acceptance have not been run. GitHub Actions/CI was not invoked.
+
+
+## Arabic retrieval scorer output and benchmark review — 2026-11-26
+
+- Continued static review of `tools/score_arabic_retrieval.py`: reviewed benchmark fingerprint stability, question/run ID uniqueness, citation-index consistency, cited/retrieved article ID binding, reviewed-label validation, and report output/input alias protection including symlinks and hard links.
+- Reviewed report publication via temporary file and atomic replacement, phase replacement guard, benchmark-hash consistency, and threshold validation.
+- No confirmed defect identified in these inspected paths; no speculative production change made.
+- These are manual source-review findings only. No repository test suite or GitHub Actions/CI execution occurred; local execution and lawyer-reviewed data remain required.
