@@ -30,6 +30,20 @@ class ClaimSupportTests(unittest.TestCase):
             "The claim never expires [1].", hits, tokens, norm, _mask_markdown_code
         ))
 
+    def test_english_sixteen_and_seventeen_worded_periods_are_recognized(self):
+        for source in ("The limitation period is sixteen years.",
+                       "The limitation period is seventeen years."):
+            with self.subTest(source=source):
+                self.assertTrue(has_unsupported_claims(
+                    "The claim never expires [1].", [{"text": source}],
+                    tokens, norm, _mask_markdown_code
+                ))
+                self.assertFalse(has_unsupported_claims(
+                    source.replace("The limitation period is", "The limitation period lasts")
+                    + " [1].", [{"text": source}],
+                    tokens, norm, _mask_markdown_code
+                ))
+
     def test_faithful_five_year_paraphrase_passes(self):
         hits = [{"text": "The limitation period is five years."}]
         self.assertFalse(has_unsupported_claims(
