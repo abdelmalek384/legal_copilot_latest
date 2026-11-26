@@ -75,3 +75,31 @@ Run tests later, at the user's planned local-test window, not now. Do not treat 
 - Manual source review only. The new tests, repository test suite, archive restore drill, and GitHub Actions were not executed.
 - Updated estimates: deployment / backup / recovery 46.7% to 46.9% (+0.2 pp); test execution readiness 11.6% to 11.8% (+0.2 pp); AI-2 overall 76.2% to 76.3% (+0.1 pp). Security / tenant isolation remains 85.1%; documents / file handling remains 99.1%. These are conservative implementation estimates, not pass rates or release acceptance.
 - Remaining recovery gates: Python 3.12 local backup-bundle tests, real encrypted archive round-trip, isolated restore, and a witnessed recovery drill. Production backup acceptance remains 0% until the drill is completed.
+
+
+## Backup retention candidate filtering — 2026-11-26
+
+- **Gap:** backup cleanup previously used a broad `tenancy-*.dbbundle.enc` glob and `Path.stat()`. A symlink with a future-dated target could consume a retention slot and cause a genuine older encrypted bundle to be pruned; matching directories could also make cleanup fail after publication.
+- **Source change:** only the exact generated timestamp/nonce filename shape is considered. Candidate metadata is read without following symlinks; only single-link regular files count toward `keep`. On POSIX, the backup directory is opened with `O_DIRECTORY|O_NOFOLLOW`, checked against its pre-open device/inode, enumerated and unlinked relative to that descriptor. Before unlink, each candidate is rechecked as the same single-link regular inode. Unsupported platforms use an `lstat`-based fallback.
+- **Regression:** added `test_backup_retention_prunes_only_generated_single_link_regular_files` in `tests/test_database_backup_bundle.py`. It uses synthetic files and verifies ordinary retention while ignoring symlinks, hardlinks, directories and noncanonical names. The module was already present in the security regression script and explicit workflow inventory; no workflow was invoked.
+- **Commits:** source `2c83271f1ace7be7fccb91b30cdd8d88ff14d6c6`; regex correction `a3063489680baeaecd5fc6743f2aeef74e4244da`; regression `a752ff284bf03ffb46a569aaff63a2a7cf806b4d`.
+- **Task completion:** source implementation 100%; regression authoring 100%; repository test execution 0%. An isolated POSIX directory-descriptor harness passed 6/6 checks; a separate fallback `lstat` harness passed 4/4. These are helper-logic simulations, not execution of the repository test module or encrypted backup/restore workflow.
+- **Validation limits:** `python3.12 -m pytest tests/test_database_backup_bundle.py -q`, full local regression, encrypted archive round-trip, restore drill, browser/device tests, production deployment and witnessed recovery were not run. GitHub Actions were not invoked.
+- **Pilot:** NOT READY. Retention code does not establish a deployment-approved retention schedule, live storage policy, backup completeness, or witnessed restore/rollback.
+
+### Eight-workstream progress snapshot
+
+Implementation estimates only; not pass rates or release acceptance. Backend/frontend/mobile values are carried forward from the last eight-workstream report; the other unchanged baselines use the latest repository checkpoint values.
+
+| Workstream | Previous | Current | Delta (pp) |
+|---|---:|---:|---:|
+| Backend / existing workflows | 90.0% | 90.0% | 0.0 |
+| Frontend / usability | 95.0% | 95.0% | 0.0 |
+| Mobile / Arabic-English UI | 83.0% | 83.0% | 0.0 |
+| Security / tenant isolation | 85.1% | 85.1% | 0.0 |
+| Documents / file handling | 99.1% | 99.1% | 0.0 |
+| Deployment / backup / recovery | 46.9% | 47.1% | +0.2 |
+| Local testing / regression readiness | 11.8% | 12.0% | +0.2 |
+| **Overall AI-2** | **76.3%** | **76.4%** | **+0.1** |
+
+The deployment increase reflects one narrow source-level backup-cleanup safeguard; the regression-readiness increase reflects authored and inventoried coverage only. No test execution, browser acceptance, two-firm isolation, or operational recovery gate was completed.
