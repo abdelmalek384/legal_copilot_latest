@@ -14,17 +14,19 @@
 
 | Workstream | Previous | Current | Change |
 |---|---:|---:|---:|
-| Security / tenant isolation | 84.7% | 84.9% | +0.2 pp |
+| Security / tenant isolation | 84.7% | 85.1% | +0.4 pp |
 | Documents / file handling | 99.1% | 99.1% | 0.0 pp |
 | Deployment / backup / recovery | 46.7% | 46.7% | 0.0 pp |
-| Test execution readiness | 10% | 10% | 0.0 pp |
-| AI-2 overall | 76.0% | 76.1% | +0.1 pp |
+| Test execution readiness | 10% | 11% | +1.0 pp |
+| AI-2 overall | 76.0% | 76.2% | +0.2 pp |
 
 The progress increase is only a small source-level implementation estimate. The tests are **added but not executed**. GitHub Actions were not invoked. No local checkout/runtime was available in this work session, so no repository tests, browser acceptance, two-firm test, or backup/restore drill are claimed as passing.
 
 - Follow-up after source review: the event table CHECK constraint originally rejected the new `logout` event. Added migration `0009_platform_security_events_logout.sql` preserving existing audit IDs/rows and append-only triggers, and a migration test covering the preserved history, new event, integrity checks, and trigger behavior. Direct-main commits: migration `7ed1e29`, migration test `121593f`, blocker follow-up `de9646a`. Tests are still not executed.
 
 - Last refinement: logout audit rows include the active firm ID, and the success regression checks that tenant context is retained (`9222b59`, `fb80572`, checkpoint `bb37549`).
+
+- Additional manual-gate integration: added `test_identity_lifecycle.py` and `test_platform_security_audit_migrations.py` to the security regression script, so the new logout behavior and schema migration are included in the documented local security run. This improves test discoverability/integration, not test execution evidence (`9441f7a`, `982237d`).
 
 ## Remaining release blockers
 
