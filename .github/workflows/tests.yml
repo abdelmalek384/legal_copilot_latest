@@ -392,6 +392,8 @@ jobs:
         run: PYTHONPATH=. python tests/test_manual_capture_validator.py
       - name: Test uploaded filename sanitization
         run: PYTHONPATH=. python tests/test_uploaded_filename_sanitization.py
+      - name: Test bounded original-file audit history
+        run: PYTHONPATH=. python tests/test_bounded_original_file_audit_history.py
       - name: Test original file storage
         run: PYTHONPATH=. python tests/test_original_file_storage.py
       - name: Test original file reconciliation
