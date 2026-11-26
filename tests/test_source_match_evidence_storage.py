@@ -3,10 +3,17 @@ import unittest
 from pathlib import Path
 
 from schema_profiles import apply_profile_migrations
-from tools.source_match_evidence import load_source_match_evidence
+from tools.source_match_evidence import load_source_match_evidence, valid_evidence_url
 
 
 class SourceMatchEvidenceAdapterTests(unittest.TestCase):
+    def test_evidence_url_rejects_credential_parameter_variants(self):
+        for key in ("bearer_token", "client_secret", "refresh-token", "authkey", "private_key", "apiKey"):
+            with self.subTest(key=key):
+                self.assertFalse(valid_evidence_url(f"https://example.test/rights?{key}=value"))
+        self.assertTrue(valid_evidence_url("https://example.test/rights?section=12"))
+
+
     def test_legal_corpus_migration_creates_append_only_evidence_store(self):
         db = sqlite3.connect(":memory:")
         db.execute("PRAGMA foreign_keys=ON")
