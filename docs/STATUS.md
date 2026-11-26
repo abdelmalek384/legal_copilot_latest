@@ -2043,3 +2043,11 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Commits: `560c70a951044c35fe4a1b7702eca95813d7e2eb` (frontend), `3cc3a7d04cb9939fb6dae6b81118144c19b0b5b5` (test). Read-back verification only; no browser/Python execution.
 
 - Follow-up test-source correction: `db6da070cf6e62cffbda0a45f3ce06d182851638` aligns the invoice frontend regression tests with the actual `const renderInvoices=` declaration. Final source-marker read-back passed; test execution remains outstanding.
+
+
+## AI-1 legal research trust and citation review — 2026-11-26
+
+- Continued source-level inspection of `tools/answer_trust_tier.py`, `tools/research_inspector.py`, statute-reference parsing, Arabic retrieval matching, claim-support screening, and citation coverage/quantity/polarity/actor/conditional-scope regression modules.
+- The reviewed trust-tier and provenance code retains fail-closed checks; source-matched mode remains constrained by explicit evidence and non-production policy. Citation safeguards reviewed include citation coverage, inline quantity binding, polarity, legal actor and conditional-scope checks.
+- No confirmed defect suitable for an unvalidated direct-main code change was identified in the excerpts reviewed. This is a partial source review, not an exhaustive audit or runtime validation. No legal corpus, legal-source records, feature scope, thresholds, or trust status was changed.
+- GitHub Actions were not run. Repository test execution and manual browser acceptance remain blocked pending local Python 3.12/device execution. This record documents review activity only; it does not claim tests passed.
