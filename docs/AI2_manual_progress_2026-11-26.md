@@ -65,3 +65,13 @@ Run tests later, at the user's planned local-test window, not now. Do not treat 
 
 - Follow-up consistency correction: the manual inventory comparison caught that `test_bounded_original_file_audit_history.py` had not yet been added to the explicit workflow. Added it immediately; commit `cd38dc4b5309a9685fa888d959293e48ca8e98e3`. The full 100-module security matrix now has explicit workflow entries (to be rechecked after this commit).
 - Test execution readiness: 11.5% to 11.6% (+0.1 pp) for closing the workflow-registration gap. This is integration readiness only; no test or CI run is claimed.
+
+## Backup archive extraction hardening — 2026-11-26
+
+- Source review found that ZIP member names were checked for exact raw duplicates, but not for distinct raw names resolving to the same extraction path (for example `folder` and `folder/`) or file/directory prefix collisions (for example a regular file `folder` alongside `folder/item.sqlite3`). Those ambiguous archives can make extraction behavior order-dependent.
+- Updated `_safe_archive_members` to track canonical extraction names, reject duplicate canonical names, and reject a regular file used as a parent of another member. Added focused regression cases to `tests/test_database_backup_bundle.py`.
+- Direct-main commits: source `5bc54707c73f11e5a10577174b52cba240b5f43e`; regression `aa21e4b176cccf7bdea7b95368b24866f92f7054`.
+- The existing backup bundle test module is already included in both the manual security regression script and explicit workflow. No new test registration was needed.
+- Manual source review only. The new tests, repository test suite, archive restore drill, and GitHub Actions were not executed.
+- Updated estimates: deployment / backup / recovery 46.7% to 46.9% (+0.2 pp); test execution readiness 11.6% to 11.8% (+0.2 pp); AI-2 overall 76.2% to 76.3% (+0.1 pp). Security / tenant isolation remains 85.1%; documents / file handling remains 99.1%. These are conservative implementation estimates, not pass rates or release acceptance.
+- Remaining recovery gates: Python 3.12 local backup-bundle tests, real encrypted archive round-trip, isolated restore, and a witnessed recovery drill. Production backup acceptance remains 0% until the drill is completed.
