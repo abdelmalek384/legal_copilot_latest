@@ -51,6 +51,22 @@ class ClaimSupportTests(unittest.TestCase):
             hits, tokens, norm, _mask_markdown_code
         ))
 
+    def test_arabic_worded_teen_numbers_match_numeric_periods(self):
+        cases = (
+            ("مدة التقادم ستة عشر سنة.", "مدة التقادم 16 سنة.", "مدة التقادم سبعة عشر سنة."),
+            ("مدة التقادم سبعة عشر سنة.", "مدة التقادم 17 سنة.", "مدة التقادم ثمانية عشر سنة."),
+        )
+        for claim, evidence, mismatch in cases:
+            with self.subTest(claim=claim):
+                self.assertFalse(has_unsupported_claims(
+                    claim + " [1].", [{"text": evidence}],
+                    tokens, norm, _mask_markdown_code
+                ))
+                self.assertTrue(has_unsupported_claims(
+                    mismatch + " [1].", [{"text": evidence}],
+                    tokens, norm, _mask_markdown_code
+                ))
+
     def test_compound_english_number_matches_numeric_source_value(self):
         evidence = [{"text": "The fictional period is 25 days."}]
         self.assertFalse(has_unsupported_claims(
