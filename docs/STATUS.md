@@ -2184,3 +2184,12 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Latest conservative estimates: security/tenant-isolation implementation **85.2%**; documents/file handling **99.1%**; deployment/backup/recovery **47.1%**; test execution readiness **12.3%**; AI-2 overall implementation **76.5%**.
 - Compared with the prior communicated checkpoint: security +0.1 percentage point; documents unchanged; backup/recovery +0.2 points; test readiness +0.3 points; AI-2 overall +0.1 point. Estimates are engineering judgments, not measured pass rates.
 - Validation: source/test readbacks completed; targeted route mapping checks performed manually; **0 repository test modules executed**, **0 GitHub Actions jobs executed**, **0 open PRs**. Local Python 3.12/browser/device acceptance remains in the owner's planned end-of-day session.
+
+
+## AI-2 profile database hard-link boundary — 2026-11-26
+
+- Tightened the existing control-plane and legal-corpus filesystem boundary: on POSIX, the runtime now rejects database files with more than one hard link, and applies the same check to SQLite sidecars. This closes an alias path that could expose sensitive database bytes outside the configured storage location despite restrictive file modes.
+- Added synthetic regression coverage for both control-plane and legal-corpus cached connections: adding a hard-link alias must make the next access fail closed and revoke the cached SQLite handle. The existing `test_database_runtime.py` module is already present in both the manual security regression script and repository test workflow.
+- Commits: `a3bd3fa` (runtime guard), `d7210cf` (regressions). Source and test changes were read back from `main`; no test module or GitHub Actions job was executed in this session.
+- Updated conservative implementation estimates: security/tenant isolation **85.3%** (from 85.2%); AI-2 overall **76.6%** (from 76.5%). Documents/file handling remains **99.1%**; backup/recovery **47.1%**; test execution readiness **12.3%**. These are engineering estimates, not pass rates or production acceptance.
+- Validation status: **0 repository test modules executed**, **0 GitHub Actions jobs executed**; open PR count rechecked separately.
