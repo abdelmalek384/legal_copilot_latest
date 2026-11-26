@@ -864,6 +864,37 @@ class S3PrivateObjectStoreTests(unittest.TestCase):
             )
             self.assertIn("missing_object", {item.code for item in report.findings})
 
+    def test_s3_reconciliation_rejects_invalid_states_and_incomplete_purge_tombstones(self):
+        with tempfile.TemporaryDirectory() as temp:
+            path = Path(temp) / "firm.sqlite3"
+            db = sqlite3.connect(path)
+            db.executescript("""
+                CREATE TABLE tenant_database_binding(singleton INTEGER PRIMARY KEY, firm_id INTEGER NOT NULL);
+                CREATE TABLE original_file_objects(
+                    object_id TEXT PRIMARY KEY, firm_id INTEGER NOT NULL, storage_backend TEXT NOT NULL,
+                    sha256 TEXT NOT NULL, byte_size INTEGER NOT NULL, state TEXT NOT NULL, purged_at TEXT,
+                    purged_by_user_id INTEGER, purge_reason TEXT
+                );
+                INSERT INTO tenant_database_binding(singleton,firm_id) VALUES(1,12);
+            """)
+            digest = hashlib.sha256(b"metadata-only fixture").hexdigest()
+            db.executemany(
+                "INSERT INTO original_file_objects VALUES(?,?,?,?,?,?,?,?,?)",
+                [
+                    ("a" * 32, 12, "s3", digest, 21, "mystery", None, None, None),
+                    ("b" * 32, 12, "s3", digest, 21, "ready", "2026-11-26 09:00:00", None, "   "),
+                ],
+            )
+            db.commit()
+            db.close()
+
+            report = reconcile_s3_original_file_storage(
+                self.store, [TenantDatabase(firm_id=12, path=path)]
+            )
+            codes = {item.code for item in report.findings}
+            self.assertIn("invalid_object_state", codes)
+            self.assertIn("invalid_purge_tombstone", codes)
+
     def test_encrypted_backup_staging_copies_verified_s3_originals(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
