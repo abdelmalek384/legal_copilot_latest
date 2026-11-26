@@ -20,3 +20,9 @@ This is a **potential consistency issue, not a confirmed defect**. Date fields m
 
 ## Safe disposition
 No production code change made: the semantics are not sufficiently specified to justify altering a fail-closed legal release gate based on source review alone. Tests remain manual/local and unexecuted; GitHub Actions is not used.
+
+
+## Additional cross-check
+- Repeal-date validation also mixes date-only helpers and host-local `date.today()`: historical/repealed status requires a non-future date via `valid_date`, and an `in_force` status with a reached repeal date is blocked using host-local today. This reinforces that the timezone/date-only convention should be made explicit before code changes.
+- Source-to-register linkage currently requires matching source_id and normalized hostname, rather than exact URL path. This is not inherently incorrect: rights may apply to a domain or portal. It is an unresolved policy choice; review whether evidence scopes to the host, path, portal, or individual item before tightening the comparison. Host matching should not be interpreted as independent permission verification.
+- Existing synthetic tests appear to exercise many fail-closed cases, including malformed JSON, unsafe URLs, permission parity, counsel-attestation markers, symlink swaps and FIFOs. They are source-inspected only and remain unexecuted.
