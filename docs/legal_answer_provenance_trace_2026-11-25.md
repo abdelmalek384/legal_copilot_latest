@@ -53,3 +53,12 @@ This audit does not establish legal accuracy, currentness, licensing, security, 
 - Added a fictional regression where one citation ends with a number and the next begins with its unit; the claim must be rejected.
 - Direct main commits: implementation `83f7321`, regression `5579126`. Both files were read back from main. Tests remain unexecuted; no Actions/CI or runtime validation was performed.
 - This is a conservative lexical safeguard only. It does not establish semantic entailment, legal currentness, or lawyer review.
+
+
+## Follow-up citation-index parser hardening — 2026-11-26
+
+- Bounded citation-index parsing in the optional claim-support module. Oversized numeric markers now return a fail-closed result instead of risking Python's integer-string conversion limit in direct guard use.
+- Added a synthetic regression exercising both the broad claim-support and negated-obligation guards with an oversized citation marker.
+- Direct main commits: implementation `222ac52`, regression `abdfc35`. Files were read back from main; no tests or CI were executed.
+- During review of concurrent Arabic numeral parser changes, a literal escaped newline was found in the parser source and corrected in commit `9cf10a8`. The corrected file was read back; no runtime syntax check was run.
+- These changes are bounded input-hardening and lexical safeguards, not semantic legal validation.
