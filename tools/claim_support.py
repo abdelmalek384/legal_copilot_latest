@@ -260,6 +260,21 @@ _ENGLISH_COMPOUND_NUMBERS = {
         "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"
     }
 }
+_ARABIC_TEEN_NUMBERS = {
+    ("أحد", "عشر"): 11, ("احد", "عشر"): 11, ("إحدى", "عشرة"): 11,
+    ("احدى", "عشرة"): 11, ("اثنا", "عشر"): 12, ("اثني", "عشر"): 12,
+    ("اثنتا", "عشرة"): 12, ("اثنتي", "عشرة"): 12,
+    ("ثلاثة", "عشر"): 13, ("ثلاث", "عشر"): 13,
+    ("ثلاثة", "عشرة"): 13, ("ثلاث", "عشرة"): 13,
+    ("أربعة", "عشر"): 14, ("اربعة", "عشر"): 14, ("أربع", "عشر"): 14, ("اربع", "عشر"): 14,
+    ("أربعة", "عشرة"): 14, ("اربعة", "عشرة"): 14, ("أربع", "عشرة"): 14, ("اربع", "عشرة"): 14,
+    ("خمسة", "عشر"): 15, ("خمس", "عشر"): 15, ("خمسة", "عشرة"): 15, ("خمس", "عشرة"): 15,
+    ("ستة", "عشر"): 16, ("ست", "عشر"): 16, ("ستة", "عشرة"): 16, ("ست", "عشرة"): 16,
+    ("سبعة", "عشر"): 17, ("سبع", "عشر"): 17, ("سبعة", "عشرة"): 17, ("سبع", "عشرة"): 17,
+    ("ثمانية", "عشر"): 18, ("ثمان", "عشر"): 18, ("ثمانية", "عشرة"): 18, ("ثمان", "عشرة"): 18,
+    ("تسعة", "عشر"): 19, ("تسع", "عشر"): 19, ("تسعة", "عشرة"): 19, ("تسع", "عشرة"): 19,
+}
+
 _ARABIC_COMPOUND_NUMBERS = {
     (unit_word, "و" + tens_word): tens + unit
     for tens_word, tens in _NUMBER_WORDS.items()
@@ -309,7 +324,8 @@ def _numeric_markers(text):
         number_end = index
         if index + 1 < len(parts):
             compound = (_ENGLISH_COMPOUND_NUMBERS.get((part, parts[index + 1]))
-                        or _ARABIC_COMPOUND_NUMBERS.get((part, parts[index + 1])))
+                        or _ARABIC_COMPOUND_NUMBERS.get((part, parts[index + 1]))
+                        or _ARABIC_TEEN_NUMBERS.get((part, parts[index + 1])))
         if compound is not None:
             number = str(compound)
             number_end = index + 1
