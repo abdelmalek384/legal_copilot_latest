@@ -44,6 +44,29 @@ class LocalPrivateObjectStoreTests(unittest.TestCase):
                                            expected_sha256="0" * 64,
                                            expected_size=len(payload)))
 
+    def test_finalize_rolls_back_final_link_when_staging_unlink_fails(self):
+        staged = self.store.stage(7, b"keep staged until publication completes")
+        namespace = self.root / "firm-7"
+        staged_path = namespace / (staged.object_id + ".staged")
+        final_path = namespace / (staged.object_id + ".blob")
+        real_unlink = os.unlink
+
+        def fail_staged_unlink(path, *args, **kwargs):
+            if path == staged_path.name and kwargs.get("dir_fd") is not None:
+                raise PermissionError("synthetic staging unlink failure")
+            return real_unlink(path, *args, **kwargs)
+
+        with patch("original_file_storage.os.unlink", side_effect=fail_staged_unlink):
+            with self.assertRaisesRegex(ObjectStorageError, "staging name after publication"):
+                self.store.finalize(7, staged.object_id)
+
+        self.assertTrue(staged_path.is_file())
+        self.assertFalse(final_path.exists())
+        self.assertEqual(self.store.object_presence(7, staged.object_id), (True, False))
+        self.assertTrue(self.store.verify_staged(
+            7, staged.object_id, expected_sha256=staged.sha256, expected_size=staged.byte_size
+        ))
+
     def test_firm_namespaces_are_isolated(self):
         staged = self.store.stage(7, b"firm seven")
         self.store.finalize(7, staged.object_id)
