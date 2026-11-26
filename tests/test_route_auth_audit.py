@@ -96,6 +96,28 @@ def home():
         self.assertTrue(any("public allowlist entry is no longer a registered route" in item
                             for item in report["missing_authentication"]))
 
+    def test_public_path_does_not_exempt_a_different_handler(self):
+        source = '''
+@app.get("/")
+def unrelated_handler():
+    return {"private": True}
+'''
+        report = audit_source(source)
+        self.assertEqual(report["public_route_count"], 0)
+        self.assertEqual(report["missing_authentication"], [
+            "GET / (unrelated_handler) in app.py has no Depends(user) authentication"
+        ])
+
+    def test_exact_public_handler_is_exempted(self):
+        source = '''
+@app.get("/")
+def home():
+    return "ok"
+'''
+        report = audit_source(source)
+        self.assertEqual(report["public_route_count"], 1)
+        self.assertEqual(report["missing_authentication"], [])
+
     def test_dynamic_api_route_methods_fail_closed(self):
         source = '''
 def user():
