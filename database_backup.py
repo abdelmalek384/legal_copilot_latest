@@ -851,6 +851,7 @@ def _safe_archive_members(archive: zipfile.ZipFile) -> set[str]:
         raise DatabaseBundleError("Backup bundle contains too many entries")
     total = 0
     names = set()
+    file_names: set[str] = set()
     for info in infos:
         raw_name = info.filename
         is_directory = info.is_dir()
@@ -883,9 +884,19 @@ def _safe_archive_members(archive: zipfile.ZipFile) -> set[str]:
             raise DatabaseBundleError("Backup bundle uses an unsupported compression method")
         if info.flag_bits & 0x1:
             raise DatabaseBundleError("Backup bundle may not contain encrypted ZIP members")
-        if info.filename in names:
+        if canonical_name in names:
             raise DatabaseBundleError("Backup bundle contains duplicate paths")
-        names.add(info.filename)
+        # ZIP permits distinct raw names such as "folder" and "folder/".
+        # They refer to the same extraction path and can make extractall()
+        # order-dependent. Also reject a regular file used as an ancestor of
+        # another member (for example "folder" and "folder/item.db").
+        if any("/".join(parts[:index]) in file_names for index in range(1, len(parts))):
+            raise DatabaseBundleError("Backup bundle contains conflicting file and directory paths")
+        if not is_directory and any(existing.startswith(canonical_name + "/") for existing in names):
+            raise DatabaseBundleError("Backup bundle contains conflicting file and directory paths")
+        names.add(canonical_name)
+        if not is_directory:
+            file_names.add(canonical_name)
         total += info.file_size
         if total > _MAX_ARCHIVE_BYTES:
             raise DatabaseBundleError("Backup bundle exceeds the supported expanded size")
