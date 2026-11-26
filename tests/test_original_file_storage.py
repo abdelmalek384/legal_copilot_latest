@@ -67,6 +67,12 @@ class LocalPrivateObjectStoreTests(unittest.TestCase):
             7, staged.object_id, expected_sha256=staged.sha256, expected_size=staged.byte_size
         ))
 
+        # A transient filesystem failure must leave a retryable staged object.
+        self.store.finalize(7, staged.object_id)
+        self.assertEqual(self.store.object_presence(7, staged.object_id), (False, True))
+        with self.store.open(7, staged.object_id) as handle:
+            self.assertEqual(handle.read(), b"keep staged until publication completes")
+
     def test_firm_namespaces_are_isolated(self):
         staged = self.store.stage(7, b"firm seven")
         self.store.finalize(7, staged.object_id)
