@@ -327,18 +327,31 @@ def _copy_original_objects(
             row[1] for row in db.execute("PRAGMA table_info(original_file_objects)")
         }
         has_purged_at = "purged_at" in columns
+        has_purge_audit = {"purged_by_user_id", "purge_reason"}.issubset(columns)
         select = "object_id,firm_id,storage_backend,sha256,byte_size,state"
         if has_purged_at:
             select += ",purged_at"
+        if has_purge_audit:
+            select += ",purged_by_user_id,purge_reason"
         rows = db.execute(
             f"SELECT {select} FROM original_file_objects ORDER BY object_id"
         ).fetchall()
     finally:
         db.close()
 
-    # A purged row is an intentional database tombstone, not a live object.
-    # Keep the metadata in the database snapshot but never require or archive
-    # the physically erased original bytes.
+    # Tombstones are retained in the database snapshot, but their audit
+    # provenance must be complete before a backup can be accepted.
+    for row in rows:
+        if has_purged_at and row["purged_at"] is not None:
+            if (
+                not has_purge_audit
+                or row["purged_by_user_id"] is None
+                or not str(row["purge_reason"] or "").strip()
+            ):
+                raise DatabaseBundleError(
+                    f"Firm {firm_id} has an invalid original-file purge tombstone"
+                )
+    # A valid purged row is not a live object and its erased bytes are not archived.
     active_rows = [
         row for row in rows
         if not (has_purged_at and row["purged_at"] is not None)
@@ -429,9 +442,12 @@ def _copy_s3_original_objects(
         if not required.issubset(columns):
             raise DatabaseBundleError(f"Tenant {firm_id} has incomplete original-object metadata")
         has_purged_at = "purged_at" in columns
+        has_purge_audit = {"purged_by_user_id", "purge_reason"}.issubset(columns)
         select = "object_id,firm_id,storage_backend,sha256,byte_size,state"
         if has_purged_at:
             select += ",purged_at"
+        if has_purge_audit:
+            select += ",purged_by_user_id,purge_reason"
         rows = db.execute(f"SELECT {select} FROM original_file_objects ORDER BY object_id").fetchall()
     finally:
         db.close()
@@ -442,6 +458,14 @@ def _copy_s3_original_objects(
         if row["firm_id"] != firm_id or row["storage_backend"] != "s3" or not isinstance(object_id, str) or not re.fullmatch(r"[0-9a-f]{32}", object_id):
             raise DatabaseBundleError(f"Original-object metadata is invalid for firm {firm_id}")
         if has_purged_at and row["purged_at"] is not None:
+            if (
+                not has_purge_audit
+                or row["purged_by_user_id"] is None
+                or not str(row["purge_reason"] or "").strip()
+            ):
+                raise DatabaseBundleError(
+                    f"Firm {firm_id} has an invalid original-file purge tombstone"
+                )
             continue
         if row["state"] not in {"ready", "quarantined"}:
             raise DatabaseBundleError(f"Firm {firm_id} has unfinished original-object metadata; reconcile before backup")
