@@ -118,6 +118,32 @@ class CandidateCatalogTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "collection_permission differs"):
                 MODULE.validate_permission_parity(data, path)
 
+    def test_candidate_permission_register_accepts_explicit_related_source_host(self):
+        import json
+        import tempfile
+        data = {
+            "sources": [{
+                "source_id": "SRC-1",
+                "source_page": "https://portal.example.gov/law.pdf",
+                "collection_permission": "unknown",
+                "commercial_reuse_permission": "unknown",
+            }],
+            "documents": [],
+        }
+        register = {
+            "sources": [{
+                "source_id": "SRC-1",
+                "source_page": "https://www.example.gov/",
+                "related_source_pages": ["https://portal.example.gov/law.pdf"],
+                "collection_permission": "unknown",
+                "commercial_reuse_permission": "unknown",
+            }]
+        }
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "permission-register.json"
+            path.write_text(json.dumps(register), encoding="utf-8")
+            self.assertTrue(MODULE.validate_permission_parity(data, path))
+
     def test_candidate_permission_register_host_mismatch_fails_closed(self):
         import json
         import tempfile
@@ -150,6 +176,13 @@ class CandidateCatalogTests(unittest.TestCase):
         self.assertGreaterEqual(len(data["documents"]),20)
         self.assertTrue(all(d["source_id"] in known for d in data["documents"]))
         self.assertTrue(all(d["candidate_status"]=="discovery_only" for d in data["documents"]))
+
+    def test_mksegypt_displayed_cc_notice_does_not_upgrade_candidate_reuse_permissions(self):
+        data = MODULE.load_catalog()
+        source = next(item for item in data["sources"] if item["source_id"] == "EG-MKSEGYPT")
+        self.assertEqual(source["collection_permission"], "unknown")
+        self.assertEqual(source["commercial_reuse_permission"], "unknown")
+        self.assertIn("does not by itself establish permission for bulk extraction", source["permission_evidence"])
 
     def test_labour_law_pdf_mirror_sources_remain_permission_unknown(self):
         data = MODULE.load_catalog()

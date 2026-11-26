@@ -182,9 +182,16 @@ def validate_permission_parity(data, register_path=ROOT / "docs" / "source_permi
             errors.append(f"{source_id}: source_page must be a clean HTTPS URL in both candidate and permission register")
             continue
         candidate_host = urlparse(candidate_page).hostname
-        register_host = urlparse(registered_page).hostname
-        if not candidate_host or not register_host or candidate_host.lower() != register_host.lower():
-            errors.append(f"{source_id}: source_page host differs from canonical permission register")
+        registered_hosts = {urlparse(registered_page).hostname}
+        related_pages = registered.get("related_source_pages", [])
+        if not isinstance(related_pages, list) or any(
+                not _valid_source_page_url(page) for page in related_pages):
+            errors.append(f"{source_id}: related_source_pages must contain only clean HTTPS URLs")
+            continue
+        registered_hosts.update(urlparse(page).hostname for page in related_pages)
+        if not candidate_host or candidate_host.lower() not in {
+                host.lower() for host in registered_hosts if host}:
+            errors.append(f"{source_id}: source_page host is not listed in the canonical permission register")
     if errors:
         raise ValueError("; ".join(errors))
     return True

@@ -560,10 +560,10 @@
         "Arabic full-text transcriptions of Egyptian statutes, executive decisions and court judgments"
       ],
       "access_status": "Full searchable Arabic decision and judgment texts observed; pages display Creative Commons Attribution 4.0 notice.",
-      "collection_permission": "cc_by_4_0_attributed_use_subject_to_license_scope",
-      "commercial_reuse_permission": "cc_by_4_0_applies_to_site_text_as_displayed_only; embedded_third_party_scans_and_materials_not_cleared",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
       "terms_url": "https://creativecommons.org/licenses/by/4.0/",
-      "permission_evidence": "Pages for SCC Cases 2/16 (1996) and 36/18 (1998), SAC Appeal 2566/34 (1990), PM Decisions 1543/1993 and 2718/1996 display a CC BY 4.0 attribution notice. License applies to page text as displayed, not embedded Gazette scans or third-party materials.",
+      "permission_evidence": "Pages for SCC Cases 2/16 (1996) and 36/18 (1998), SAC Appeal 2566/34 (1990), PM Decisions 1543/1993 and 2718/1996 display a CC BY 4.0 attribution notice. License applies to page text as displayed, not embedded Gazette scans or third-party materials. The displayed attribution notice does not by itself establish permission for bulk extraction, corpus ingestion, or unrestricted commercial reuse; retain both permission states as unknown until the license scope and applicable materials are reviewed.",
       "terms_checked_on": "2026-11-23",
       "bulk_download_or_api": "No bulk/API permission established; individual page access only",
       "required_next_action": "Preserve attribution and license notice; verify page-specific license scope before reusing embedded scans or third-party material."
