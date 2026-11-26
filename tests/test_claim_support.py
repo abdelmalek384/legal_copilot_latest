@@ -95,6 +95,16 @@ class ClaimSupportTests(unittest.TestCase):
             evidence, tokens, norm, _mask_markdown_code
         ))
 
+    def test_number_and_unit_cannot_be_assembled_from_separate_citations(self):
+        hits = [
+            {"text": "The fictional period is 30"},
+            {"text": "days."},
+        ]
+        self.assertTrue(has_unsupported_claims(
+            "The fictional period is 30 days [1] [2].",
+            hits, tokens, norm, _mask_markdown_code
+        ))
+
     def test_comma_grouped_thousands_cannot_collapse_to_decimal_one(self):
         evidence = [{"text": "The limitation period is one year."}]
         self.assertTrue(has_unsupported_claims(
