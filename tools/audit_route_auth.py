@@ -217,10 +217,18 @@ def imported_router_modules(source: str) -> set[str]:
     tree = ast.parse(source, filename=str(APP_FILE))
     modules = set()
     for node in ast.walk(tree):
-        if not isinstance(node, ast.ImportFrom) or not node.module:
+        if isinstance(node, ast.ImportFrom):
+            if (
+                node.module
+                and node.module.startswith("routers.")
+                and any(alias.name == "router" for alias in node.names)
+            ):
+                modules.add(node.module)
             continue
-        if node.module.startswith("routers.") and any(alias.name == "router" for alias in node.names):
-            modules.add(node.module)
+        if isinstance(node, ast.Import):
+            for alias in node.names:
+                if alias.name.startswith("routers."):
+                    modules.add(alias.name)
     return modules
 
 
