@@ -105,7 +105,8 @@ class SourceMatchEvidenceAdapterTests(unittest.TestCase):
             "original_capture_sha256": "a" * 64, "independent_copy_source_id": "independent",
             "independent_copy_sha256": "b" * 64, "publication_date": "2020-01-01",
             "effective_date": "2020-01-02", "evidence_id": 7, "evidence_revision": 1,
-            "reuse_rights_allowed": 1, "validator_passed": 1, "article_inventory_complete": 1,
+            "reuse_rights_allowed": 1, "reuse_rights_evidence_url": "https://example.test/rights",
+            "validator_passed": 1, "article_inventory_complete": 1,
             "differences_resolved_against_primary": 1, "publication_and_effective_dates_verified": 1,
         }
         class Cursor:
@@ -134,6 +135,11 @@ class SourceMatchEvidenceAdapterTests(unittest.TestCase):
             ("evidence_id", 0),
             ("evidence_id", True),
             ("evidence_id", "7"),
+            ("reuse_rights_evidence_url", "http://example.test/rights"),
+            ("reuse_rights_evidence_url", "https://user:secret@example.test/rights"),
+            ("reuse_rights_evidence_url", "https://example.test/rights#fragment"),
+            ("reuse_rights_evidence_url", "https://example.test/rights?X-Amz-Signature=secret"),
+            ("reuse_rights_evidence_url", "https://example.test:99999/rights"),
         ]
         for field, value in malformed:
             record = dict(base)

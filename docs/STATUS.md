@@ -1,4 +1,9 @@
 
+## AI-1 rights-evidence locator safety — 2026-11-26
+
+- The source-match adapter now rejects rights-evidence URLs that are not stable HTTPS locators or that contain credentials, fragments, malformed ports, control/whitespace characters, or known signed/session/token query parameters. The migration's simple `https://` prefix CHECK is not treated as sufficient protection at the read boundary.
+- Added malformed-locator cases to the synthetic packet regression matrix. This is URL-shape validation only: a safe URL does not establish that its contents are authentic, current, legally sufficient, or permission-granting. Tests remain **not executed**.
+
 ## AI-1 evidence-row identity validation — 2026-11-26
 
 - The source-match adapter now validates the evidence row's primary key as a positive integer (explicitly rejecting booleans and string coercion) before using it to query approved-use scope rows. This keeps malformed legacy/alternate-adapter row identities from reaching the second database lookup.
