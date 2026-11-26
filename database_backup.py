@@ -852,7 +852,6 @@ def _safe_archive_members(archive: zipfile.ZipFile) -> set[str]:
         raise DatabaseBundleError("Backup bundle contains too many entries")
     total = 0
     names = set()
-    file_names: set[str] = set()
     # Backups may be restored on case-insensitive and Unicode-normalizing
     # filesystems (notably common macOS/Windows configurations). Track a
     # portable key as well as the archive spelling so extraction cannot make
@@ -905,7 +904,6 @@ def _safe_archive_members(archive: zipfile.ZipFile) -> set[str]:
         names.add(canonical_name)
         portable_names.add(portable_name)
         if not is_directory:
-            file_names.add(canonical_name)
             portable_file_names.add(portable_name)
         total += info.file_size
         if total > _MAX_ARCHIVE_BYTES:
