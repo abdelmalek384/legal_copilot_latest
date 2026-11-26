@@ -12,6 +12,21 @@ class CitationQuantityBindingTests(unittest.TestCase):
             {"text": "The applicable tax rate is 14%."},
         ]
 
+    def test_numeric_value_and_unit_cannot_be_assembled_from_separate_sources(self):
+        hits = [
+            {"text": "The deadline is 30."},
+            {"text": "The procedure must be completed within days."},
+            {"text": "The deadline is 30 days."},
+        ]
+        # Neither citation independently supports the value+unit pair.
+        self.assertTrue(app._answer_has_unsupported_quantities(
+            "The deadline is 30 days [1] [2].", hits, {1, 2}
+        ))
+        # A single source that states the complete quantity is sufficient.
+        self.assertFalse(app._answer_has_unsupported_quantities(
+            "The deadline is 30 days [3].", hits, {3}
+        ))
+
     def test_quantity_is_supported_by_its_own_inline_citation(self):
         answer = "The deadline is 30 days [1]. The fee is 500 pounds [3]."
         self.assertFalse(app._answer_has_unsupported_quantities(answer, self.hits, {1, 3}))
