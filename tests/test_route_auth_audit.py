@@ -130,6 +130,21 @@ def home():
             "GET / (home) in routers/rogue.py has no Depends(user) authentication"
         ])
 
+    def test_external_app_file_cannot_inherit_repository_public_exemption(self):
+        source = '''
+@app.get("/")
+def home():
+    return {"private": True}
+'''
+        with tempfile.TemporaryDirectory() as directory:
+            external_app = Path(directory) / "app.py"
+            report = audit_sources(
+                {str(external_app): source}, require_public_routes=False
+            )
+        self.assertEqual(report["public_route_count"], 0)
+        self.assertEqual(len(report["missing_authentication"]), 1)
+        self.assertIn("has no Depends(user) authentication", report["missing_authentication"][0])
+
     def test_dynamic_api_route_methods_fail_closed(self):
         source = '''
 def user():
