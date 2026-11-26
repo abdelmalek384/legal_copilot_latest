@@ -2149,3 +2149,12 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - The current app's mapped router imports remain the two explicitly registered modules. No runtime or test execution was performed; both static-audit modules remain in the local end-of-day test list and existing security workflow.
 
 - Regression-fixture correction: the two aliased-router-import tests now use a real Python newline escape when writing their synthetic source files, rather than a literal backslash-plus-`n` sequence. Commits: `11b995d`, `abc9d52`. The diff was checked to confirm only those two fixture lines changed.
+
+
+## AI-2 static route inventory checkpoint — 2026-11-26
+
+- Tightened both route-authentication and route-to-SQL static audits: public exemptions are exact handler/module matches; duplicate public registrations fail closed; dynamic route registration APIs are reported as uninventoryable; router modules imported with either `from` or `import` syntax are discovered.
+- Added synthetic regression cases for handler/path collisions, module and external-file collisions, duplicate public routes, dynamic registration APIs, and aliased router imports. Both test modules are already registered in the manual security regression script and repository test workflow.
+- Manual readback verified all 13 current public allowlist entries map to the expected route/handler/module; no dynamic registration calls were found in the mapped app/router source files. This is a source inventory check only.
+- Updated engineering estimates: security/tenant-isolation implementation 85.2% (previous 85.1%); test execution readiness 12.2% (previous 12.0%); backup/recovery implementation 47.1% (unchanged); documents/file handling 99.1% (unchanged); AI-2 overall implementation 76.5% (previous 76.4%). These are conservative estimates, not test pass rates or production acceptance.
+- Validation status remains: 0 repository test modules executed in this session; 0 GitHub Actions jobs run; 0 open PRs. Run the focused route-audit modules and complete matrix in the planned local Python 3.12 session.
