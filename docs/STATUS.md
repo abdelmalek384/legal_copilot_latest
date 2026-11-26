@@ -2174,3 +2174,5 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Additional bilingual navigation semantics: labeled calendar month dates, matter-section navigation, and matter-subsection navigation now expose explicit group roles. Added frontend contract coverage; existing buttons and their selected/pressed state are unchanged. Commits: `d3dff31`, `9e4d388`.
 
 - Sign-in password visibility control now references its password input through `aria-controls="login-password"`; the field receives that stable ID. Added a frontend contract. The contract's source slice was corrected to target the actual `login(mode='signin')` function. Commits: `6fb5f1a`, `175bed8`, `12a3617`.
+
+- Sign-in contract boundary corrected after source readback: it now slices from the actual `login(mode='signin')` function to the next top-level function using a real newline escape. The one-line test-only correction is commit `9bd6dbf`; it does not change application behavior.
