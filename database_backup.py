@@ -39,6 +39,7 @@ _MAX_ARCHIVE_BYTES = 8 * 1024 * 1024 * 1024
 _MAX_ENTRIES = 2048
 # Fernet adds a 57-byte envelope and up to 16 bytes of block padding before base64 encoding.
 _MAX_ENCRYPTED_BUNDLE_BYTES = ((_MAX_ARCHIVE_BYTES + 73 + 2) // 3) * 4
+_BACKUP_BUNDLE_FILENAME = re.compile(r"tenancy-[0-9]{8}-[0-9]{6}-[0-9]+\\.dbbundle\\.enc\\Z")
 
 
 def _readonly(path: Path) -> sqlite3.Connection:
@@ -647,6 +648,106 @@ def _validate_original_object_inventory(
     return expected
 
 
+def _prune_backup_bundles(destination: Path, keep: int) -> None:
+    """Prune only generated, single-link regular backups without following entries."""
+    try:
+        directory_before = destination.lstat()
+    except OSError as exc:
+        raise DatabaseBundleError("Backup destination cannot be inspected for retention") from exc
+    if not stat.S_ISDIR(directory_before.st_mode):
+        raise DatabaseBundleError("Backup destination must be a real directory for retention")
+
+    supports_dir_fd = (
+        os.name == "posix"
+        and bool(getattr(os, "O_DIRECTORY", 0))
+        and bool(getattr(os, "O_NOFOLLOW", 0))
+        and os.scandir in getattr(os, "supports_fd", set())
+        and os.stat in getattr(os, "supports_dir_fd", set())
+        and os.stat in getattr(os, "supports_follow_symlinks", set())
+        and os.unlink in getattr(os, "supports_dir_fd", set())
+    )
+    directory_fd = None
+    if supports_dir_fd:
+        flags = os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | getattr(os, "O_CLOEXEC", 0)
+        try:
+            directory_fd = os.open(destination, flags)
+            opened = os.fstat(directory_fd)
+            if (
+                not stat.S_ISDIR(opened.st_mode)
+                or (opened.st_dev, opened.st_ino)
+                != (directory_before.st_dev, directory_before.st_ino)
+            ):
+                raise DatabaseBundleError("Backup destination changed during retention inspection")
+        except DatabaseBundleError:
+            if directory_fd is not None:
+                os.close(directory_fd)
+            raise
+        except OSError as exc:
+            if directory_fd is not None:
+                os.close(directory_fd)
+            raise DatabaseBundleError("Backup destination could not be opened safely for retention") from exc
+
+    try:
+        candidates = []
+        scan_target = directory_fd if directory_fd is not None else destination
+        with os.scandir(scan_target) as entries:
+            for entry in entries:
+                if not _BACKUP_BUNDLE_FILENAME.fullmatch(entry.name):
+                    continue
+                try:
+                    metadata = entry.stat(follow_symlinks=False)
+                except FileNotFoundError:
+                    continue
+                except OSError as exc:
+                    raise DatabaseBundleError(
+                        "Existing backup metadata cannot be verified for retention"
+                    ) from exc
+                if not stat.S_ISREG(metadata.st_mode) or metadata.st_nlink != 1:
+                    continue
+                candidates.append((
+                    metadata.st_mtime_ns, entry.name, metadata.st_dev, metadata.st_ino
+                ))
+
+        candidates.sort(key=lambda item: (item[0], item[1]), reverse=True)
+        for _modified, name, device, inode in candidates[keep:]:
+            try:
+                current = (
+                    os.stat(name, dir_fd=directory_fd, follow_symlinks=False)
+                    if directory_fd is not None
+                    else (destination / name).lstat()
+                )
+            except FileNotFoundError:
+                continue
+            except OSError as exc:
+                raise DatabaseBundleError(
+                    "Backup candidate changed or cannot be inspected during retention"
+                ) from exc
+            if (
+                not stat.S_ISREG(current.st_mode)
+                or current.st_nlink != 1
+                or (current.st_dev, current.st_ino) != (device, inode)
+            ):
+                continue
+            try:
+                if directory_fd is not None:
+                    os.unlink(name, dir_fd=directory_fd)
+                else:
+                    (destination / name).unlink()
+            except FileNotFoundError:
+                continue
+            except OSError as exc:
+                raise DatabaseBundleError(
+                    "An obsolete encrypted backup could not be pruned safely"
+                ) from exc
+    except DatabaseBundleError:
+        raise
+    except OSError as exc:
+        raise DatabaseBundleError("Backup retention inventory could not be read safely") from exc
+    finally:
+        if directory_fd is not None:
+            os.close(directory_fd)
+
+
 def create_backup_bundle(
     runtime: DatabaseRuntime,
     cipher: Fernet,
@@ -873,13 +974,7 @@ def create_backup_bundle(
             if os.path.exists(temp_path):
                 os.unlink(temp_path)
 
-    old = sorted(
-        destination.glob("tenancy-*.dbbundle.enc"),
-        key=lambda path: path.stat().st_mtime_ns,
-        reverse=True,
-    )
-    for obsolete in old[keep:]:
-        obsolete.unlink()
+    _prune_backup_bundles(destination, keep)
     return final_path
 
 
