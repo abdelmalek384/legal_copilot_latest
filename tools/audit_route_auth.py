@@ -140,11 +140,13 @@ def audit_sources(
                     _contains_user_dependency(node.args)
                     or _contains_user_dependency(decorator)
                 )
-                source_path = Path(filename).as_posix()
+                source_path = Path(filename)
+                if not source_path.is_absolute():
+                    source_path = ROOT / source_path
                 try:
-                    source_key = Path(source_path).resolve().relative_to(ROOT).as_posix()
+                    source_key = source_path.resolve().relative_to(ROOT).as_posix()
                 except ValueError:
-                    source_key = Path(source_path).name
+                    source_key = source_path.name
                 for method in methods:
                     key = (method, path, node.name, source_key)
                     is_public = key in PUBLIC_ROUTES
