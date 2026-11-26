@@ -2059,3 +2059,9 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Reviewed regression coverage for negated query aliases, preservation of original query tokens, explicit instrument matching, and exclusion of unreviewed benchmark questions from scored legal-quality metrics.
 - No confirmed defect was identified in this targeted readback that justifies a direct-main code change without supported-runtime validation. No tests executed, no legal corpus expansion, no lawyer-review labels fabricated, and no GitHub Actions invoked.
 - Partial source review only; does not establish correctness or release readiness.
+
+
+## AI-1 evaluation scorer boundary review — 2026-11-26 (continued)
+
+- Inspected additional portions of retrieval-quality and Arabic article-retrieval scorers, including reviewed-question validation, reviewer registry linkage, benchmark fingerprinting, citation/article ID constraints, exclusion of unlabeled records, and stable regular-file input safeguards.
+- No defect confirmed from the limited readback. No scoring runs, benchmark threshold changes, lawyer-label additions, legal corpus changes, or GitHub Actions execution. Manual local validation remains necessary.
