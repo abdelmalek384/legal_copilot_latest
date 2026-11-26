@@ -46,11 +46,26 @@ def valid_evidence_url(value):
             "token", "secret", "password", "credential", "signature",
             "auth", "api_key", "apikey", "private_key",
         )
-        sensitive_query = any(
-            key in SENSITIVE_EVIDENCE_QUERY_KEYS
-            or any(fragment in key for fragment in sensitive_fragments)
-            for key in query_keys
-        )
+        def credential_key(key):
+            # Avoid substring false positives (e.g. "author" contains "auth").
+            # Match sensitive words as delimited components, or common compact
+            # compound forms, while keeping ordinary metadata keys usable.
+            components = re.split(r"[^a-z0-9]+", key)
+            compact = "".join(components)
+            if key in SENSITIVE_EVIDENCE_QUERY_KEYS:
+                return True
+            if any(component in sensitive_fragments for component in components):
+                return True
+            compact_fragments = (
+                "token", "secret", "password", "credential", "signature",
+                "apikey", "privatekey",
+            )
+            return any(
+                compact.startswith(fragment) or compact.endswith(fragment)
+                for fragment in compact_fragments
+            ) and key != "author"
+
+        sensitive_query = any(credential_key(key) for key in query_keys)
         return (
             parsed.scheme.lower() == "https"
             and bool(parsed.hostname)
