@@ -17,6 +17,15 @@ class CitedActorRoleBindingTests(unittest.TestCase):
         self.assertTrue(app._answer_has_cited_actor_role_mismatch(
             "يجوز للزوج طلب فسخ عقد الزواج والتعويض عن الضرر [1].", hits
         ))
+    def test_second_citation_cannot_mask_opposite_actor_in_first_source(self):
+        hits = [
+            {"text": "يجوز لصاحب العمل إنهاء العقد في الحالة المحددة."},
+            {"text": "يجوز للعامل طلب التعويض عن الضرر."},
+        ]
+        self.assertTrue(app._answer_has_cited_actor_role_mismatch(
+            "يجوز للعامل إنهاء العقد في الحالة المحددة [1] [2].", hits
+        ))
+
     def test_same_actor_and_same_action_pass(self):
         hits = [{"text": "يجوز لصاحب العمل إنهاء العقد في الحالة المحددة."}]
         self.assertFalse(app._answer_has_cited_actor_role_mismatch(
