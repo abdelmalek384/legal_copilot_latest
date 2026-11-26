@@ -750,7 +750,7 @@ class DatabaseBackupBundleTests(unittest.TestCase):
             (("Folder", b"file"), ("folder/item.sqlite3", b"nested")),
             (("folder/item.sqlite3", b"nested"), ("Folder", b"file")),
             (("Folder", b"first"), ("folder", b"second")),
-            (("évidence.txt", b"first"), ("e\\u0301vidence.txt", b"second")),
+            (("évidence.txt", b"first"), ("e\u0301vidence.txt", b"second")),
         )
         for members in invalid_cases:
             with self.subTest(invalid_members=tuple(name for name, _ in members)):
@@ -760,7 +760,7 @@ class DatabaseBackupBundleTests(unittest.TestCase):
                         archive.writestr(name, data)
                 with zipfile.ZipFile(io.BytesIO(payload.getvalue()), "r") as archive:
                     with self.assertRaisesRegex(
-                        DatabaseBundleError, "conflicting file and directory paths|duplicate paths"
+                        DatabaseBundleError, "conflicting file and directory paths|duplicate paths|filesystem-alias paths"
                     ):
                         _safe_archive_members(archive)
 
