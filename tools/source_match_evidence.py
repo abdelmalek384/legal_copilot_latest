@@ -40,6 +40,17 @@ def valid_evidence_url(value):
         query_keys = {
             key.casefold() for key, _ in parse_qsl(parsed.query, keep_blank_values=True)
         }
+        # Reject credential-bearing parameters even when providers use undocumented
+        # variants (e.g. bearer_token, client_secret, authkey, or refresh-token).
+        sensitive_fragments = (
+            "token", "secret", "password", "credential", "signature",
+            "auth", "api_key", "apikey", "private_key",
+        )
+        sensitive_query = any(
+            key in SENSITIVE_EVIDENCE_QUERY_KEYS
+            or any(fragment in key for fragment in sensitive_fragments)
+            for key in query_keys
+        )
         return (
             parsed.scheme.lower() == "https"
             and bool(parsed.hostname)
@@ -47,7 +58,7 @@ def valid_evidence_url(value):
             and parsed.password is None
             and not parsed.netloc.endswith(":")
             and (port is None or 1 <= port <= 65535)
-            and not (query_keys & SENSITIVE_EVIDENCE_QUERY_KEYS)
+            and not sensitive_query
         )
     except (ValueError, TypeError):
         return False
