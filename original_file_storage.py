@@ -260,7 +260,30 @@ class LocalPrivateObjectStore:
                 except OSError:
                     pass
                 raise ObjectStorageError("staged object changed while finalizing")
-            os.unlink(staged_name, dir_fd=namespace_fd)
+            try:
+                os.unlink(staged_name, dir_fd=namespace_fd)
+            except OSError as exc:
+                # Publication is not complete until the staging name is removed.
+                # Roll back only the final link we just created, and only when it
+                # still identifies the original staged inode. Otherwise leave
+                # unexpected filesystem state untouched for operator recovery.
+                current_final = self._stat_at(namespace_fd, final_name)
+                current_staged = self._stat_at(namespace_fd, staged_name)
+                if (
+                    current_final is not None
+                    and current_staged is not None
+                    and stat.S_ISREG(current_final.st_mode)
+                    and stat.S_ISREG(current_staged.st_mode)
+                    and current_final.st_nlink == 2
+                    and current_staged.st_nlink == 2
+                    and (current_final.st_dev, current_final.st_ino) == (before.st_dev, before.st_ino)
+                    and (current_staged.st_dev, current_staged.st_ino) == (before.st_dev, before.st_ino)
+                ):
+                    try:
+                        os.unlink(final_name, dir_fd=namespace_fd)
+                    except OSError:
+                        pass
+                raise ObjectStorageError("could not remove staging name after publication") from exc
             published = self._stat_at(namespace_fd, final_name)
             if published is None or not stat.S_ISREG(published.st_mode) or published.st_nlink != 1:
                 try:
