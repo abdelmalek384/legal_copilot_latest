@@ -740,6 +740,26 @@ class DatabaseBackupBundleTests(unittest.TestCase):
             with self.assertRaisesRegex(DatabaseBundleError, "special filesystem entries"):
                 _safe_archive_members(archive)
 
+    def test_archive_preflight_rejects_file_directory_name_collisions(self):
+        from database_backup import _safe_archive_members
+
+        cases = (
+            (("folder", b"file"), ("folder/", b"directory")),
+            (("folder", b"file"), ("folder/item.sqlite3", b"nested")),
+            (("folder/", b"directory"), ("folder/item.sqlite3", b"nested")),
+        )
+        for members in cases:
+            with self.subTest(members=tuple(name for name, _ in members)):
+                payload = io.BytesIO()
+                with zipfile.ZipFile(payload, "w") as archive:
+                    for name, data in members:
+                        archive.writestr(name, data)
+                with zipfile.ZipFile(io.BytesIO(payload.getvalue()), "r") as archive:
+                    with self.assertRaisesRegex(
+                        DatabaseBundleError, "conflicting file and directory paths|duplicate paths"
+                    ):
+                        _safe_archive_members(archive)
+
     def test_restore_rejects_traversal_symlink_and_duplicate_zip_members(self):
         import warnings
 
