@@ -2140,3 +2140,10 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Dynamic registration boundary added: `app.add_api_route`, `router.add_api_route`, `add_route`, and `mount` calls now produce a fail-closed audit finding instead of silently escaping decorator inventory. Added synthetic regressions for all four APIs. Manual source scan found no such calls in the currently mapped app/router modules. Commits: `f57cfaa`, `0e5b126`.
 
 - Router discovery now also detects `import routers.module` / aliased module imports, not only `from routers.module import router`. An unregistered imported router therefore cannot silently escape the route-auth source map through a different import form. Added a regression for aliased module imports. Commits: `6172497`, `89e3ae8`.
+
+## AI-2 route-to-SQL inventory boundary hardening — 2026-11-26
+
+- Mirrored the route-auth audit's fail-closed boundary in the route-to-SQL inventory: dynamic `add_api_route`, `add_route`, and `mount` calls now become route-declaration errors, so strict SQL audit cannot silently omit them.
+- Router source discovery now recognizes aliased `import routers.module` statements in addition to `from routers.module import router`; unknown modules still fail before producing an incomplete inventory.
+- Added synthetic regressions for the four dynamic registration forms and an aliased unknown router import. Source/test commits: `3ec459f`, `a89ec8f`.
+- The current app's mapped router imports remain the two explicitly registered modules. No runtime or test execution was performed; both static-audit modules remain in the local end-of-day test list and existing security workflow.
