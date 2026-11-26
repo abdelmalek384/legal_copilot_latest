@@ -191,3 +191,11 @@ Each gate requires an owner, exact candidate commit, reproducible command/config
 - Added regressions in `tests/test_database_backup_bundle.py`. This module is already registered in both `scripts/security_regression_check.sh` and `.github/workflows/tests.yml`.
 - Commits: `5bc54707c73f11e5a10577174b52cba240b5f43e` and `aa21e4b176cccf7bdea7b95368b24866f92f7054`.
 - Source review only; tests and GitHub Actions not run. Do not treat this as archive restore acceptance.
+
+## Backup retention pruning — 2026-11-26
+
+- Replaced broad backup-name globbing and symlink-following `stat()` retention ordering with strict generated-filename matching, no-follow metadata inspection, single-link regular-file filtering, POSIX directory-descriptor anchoring, and inode revalidation before unlink. Symlink, hardlink, directory, and noncanonical lookalikes no longer consume retention slots or become prune targets.
+- Added `test_backup_retention_prunes_only_generated_single_link_regular_files` to the existing `tests/test_database_backup_bundle.py` module. The module is already listed in `scripts/security_regression_check.sh` and `.github/workflows/tests.yml`; no test-inventory change was needed.
+- Branch: `ai2/harden-backup-retention-pruning-20261126`. Source commits: `2c83271f` and regex correction `a3063489`; test commit: `a752ff28`; progress commit: `7edc3410`.
+- Isolated harnesses: POSIX directory-descriptor path 6/6 checks; fallback `lstat` path 4/4 checks. Repository `tests/test_database_backup_bundle.py` and full suite remain **not executed** because the supported Python 3.12 checkout/runtime is unavailable. GitHub Actions were not invoked.
+- No encrypted backup/restore drill, browser/device acceptance, live S3/KMS check, deployment rehearsal, or production operation was performed. Approved retention policy and witnessed recovery remain external blockers. Pilot remains **NOT READY**.
