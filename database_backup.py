@@ -15,6 +15,7 @@ import sqlite3
 import stat
 import tempfile
 import time
+import unicodedata
 import zipfile
 from pathlib import Path, PurePosixPath
 from typing import Any
@@ -852,6 +853,12 @@ def _safe_archive_members(archive: zipfile.ZipFile) -> set[str]:
     total = 0
     names = set()
     file_names: set[str] = set()
+    # Backups may be restored on case-insensitive and Unicode-normalizing
+    # filesystems (notably common macOS/Windows configurations). Track a
+    # portable key as well as the archive spelling so extraction cannot make
+    # two distinct ZIP names alias to one filesystem path.
+    portable_names: set[str] = set()
+    portable_file_names: set[str] = set()
     for info in infos:
         raw_name = info.filename
         is_directory = info.is_dir()
@@ -884,19 +891,22 @@ def _safe_archive_members(archive: zipfile.ZipFile) -> set[str]:
             raise DatabaseBundleError("Backup bundle uses an unsupported compression method")
         if info.flag_bits & 0x1:
             raise DatabaseBundleError("Backup bundle may not contain encrypted ZIP members")
-        if canonical_name in names:
-            raise DatabaseBundleError("Backup bundle contains duplicate paths")
+        portable_name = unicodedata.normalize("NFC", canonical_name).casefold()
+        portable_parts = portable_name.split("/")
+        if canonical_name in names or portable_name in portable_names:
+            raise DatabaseBundleError("Backup bundle contains duplicate or filesystem-alias paths")
         # ZIP permits distinct raw names such as "folder" and "folder/".
-        # They refer to the same extraction path and can make extractall()
-        # order-dependent. Also reject a regular file used as an ancestor of
-        # another member (for example "folder" and "folder/item.db").
-        if any("/".join(parts[:index]) in file_names for index in range(1, len(parts))):
+        # Also reject a regular file used as an ancestor of another member,
+        # including case/Unicode aliases on common desktop filesystems.
+        if any("/".join(portable_parts[:index]) in portable_file_names for index in range(1, len(portable_parts))):
             raise DatabaseBundleError("Backup bundle contains conflicting file and directory paths")
-        if not is_directory and any(existing.startswith(canonical_name + "/") for existing in names):
+        if not is_directory and any(existing.startswith(portable_name + "/") for existing in portable_names):
             raise DatabaseBundleError("Backup bundle contains conflicting file and directory paths")
         names.add(canonical_name)
+        portable_names.add(portable_name)
         if not is_directory:
             file_names.add(canonical_name)
+            portable_file_names.add(portable_name)
         total += info.file_size
         if total > _MAX_ARCHIVE_BYTES:
             raise DatabaseBundleError("Backup bundle exceeds the supported expanded size")
