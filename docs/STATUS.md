@@ -2176,3 +2176,11 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Sign-in password visibility control now references its password input through `aria-controls="login-password"`; the field receives that stable ID. Added a frontend contract. The contract's source slice was corrected to target the actual `login(mode='signin')` function. Commits: `6fb5f1a`, `175bed8`, `12a3617`.
 
 - Sign-in contract boundary corrected after source readback: it now slices from the actual `login(mode='signin')` function to the next top-level function using a real newline escape. The one-line test-only correction is commit `9bd6dbf`; it does not change application behavior.
+
+
+## AI-2 continuation progress — 2026-11-26 (latest)
+
+- Completed source-level hardening of both route inventory gates and three small existing-workflow accessibility corrections (calendar view switch, matter navigation groups, sign-in password visibility association).
+- Latest conservative estimates: security/tenant-isolation implementation **85.2%**; documents/file handling **99.1%**; deployment/backup/recovery **47.1%**; test execution readiness **12.3%**; AI-2 overall implementation **76.5%**.
+- Compared with the prior communicated checkpoint: security +0.1 percentage point; documents unchanged; backup/recovery +0.2 points; test readiness +0.3 points; AI-2 overall +0.1 point. Estimates are engineering judgments, not measured pass rates.
+- Validation: source/test readbacks completed; targeted route mapping checks performed manually; **0 repository test modules executed**, **0 GitHub Actions jobs executed**, **0 open PRs**. Local Python 3.12/browser/device acceptance remains in the owner's planned end-of-day session.
