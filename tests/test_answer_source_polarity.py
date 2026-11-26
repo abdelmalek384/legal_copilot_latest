@@ -62,6 +62,38 @@ class AnswerSourcePolarityTests(unittest.TestCase):
             "يجوز ذلك [1].", hits
         ))
 
+    def test_conflicting_polarity_in_one_of_multiple_citations_is_not_masked(self):
+        hits = [
+            {"text": "يجوز لصاحب العمل إنهاء العقد دون إخطار."},
+            {"text": "لا يجوز لصاحب العمل إنهاء العقد دون إخطار."},
+        ]
+        self.assertTrue(app._answer_has_source_polarity_conflict(
+            "يجوز لصاحب العمل إنهاء العقد دون إخطار [1][2].", hits
+        ))
+
+    def test_ask_abstains_when_one_of_multiple_citations_reverses_polarity(self):
+        hits = [
+            {
+                "cos": 1.0, "score": 1, "ref": "SYNTHETIC-POSITIVE",
+                "text": "يجوز لصاحب العمل إنهاء العقد دون إخطار.",
+                "verified": True, "in_force": True, "applies_as_of": True,
+                "case_id": None, "source_status": app.STATUS_VERIFIED, "provenance": {},
+            },
+            {
+                "cos": 1.0, "score": 1, "ref": "SYNTHETIC-NEGATIVE",
+                "text": "لا يجوز لصاحب العمل إنهاء العقد دون إخطار.",
+                "verified": True, "in_force": True, "applies_as_of": True,
+                "case_id": None, "source_status": app.STATUS_VERIFIED, "provenance": {},
+            },
+        ]
+        with patch.object(app, "search", return_value=hits), patch.object(
+            app, "LLM", return_value="يجوز لصاحب العمل إنهاء العقد دون إخطار [1][2]."
+        ):
+            result = app.ask(None, "هل يجوز إنهاء العقد دون إخطار؟", scope="verified_corpus")
+        self.assertIsNone(result["answer"])
+        self.assertTrue(result["abstained"])
+        self.assertIn("تعكس صياغة صريحة", result["message"])
+
     def test_code_sample_cannot_trigger_a_polarity_conflict(self):
         hits = [{"text": "لا يجوز إنهاء العقد دون إخطار."}]
         self.assertFalse(app._answer_has_source_polarity_conflict(
