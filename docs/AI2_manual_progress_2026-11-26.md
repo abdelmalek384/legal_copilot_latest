@@ -62,3 +62,6 @@ Run tests later, at the user's planned local-test window, not now. Do not treat 
 - Manual inventory comparison: all modules named by the security script exist in the repository and are explicitly present in `.github/workflows/tests.yml`; no duplicate entries were found. This is source-list inspection only, not test execution.
 - Test execution readiness: 11.2% to 11.5% (+0.3 pp) for broader focused coverage. Security / tenant isolation remains 85.1%; documents / file handling remains 99.1%; deployment / backup / recovery remains 46.7%; AI-2 overall remains 76.2%.
 - No GitHub Actions were run. No repository tests were executed. Browser/device acceptance, two-firm isolation, and witnessed restore remain release gates.
+
+- Follow-up consistency correction: the manual inventory comparison caught that `test_bounded_original_file_audit_history.py` had not yet been added to the explicit workflow. Added it immediately; commit `cd38dc4b5309a9685fa888d959293e48ca8e98e3`. The full 100-module security matrix now has explicit workflow entries (to be rechecked after this commit).
+- Test execution readiness: 11.5% to 11.6% (+0.1 pp) for closing the workflow-registration gap. This is integration readiness only; no test or CI run is claimed.
