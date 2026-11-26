@@ -28,6 +28,15 @@ class ConditionalScopeBindingTests(unittest.TestCase):
         self.assertTrue(app._answer_has_unqualified_claim_against_conditional_source(
             "يجوز للمؤجر إنهاء العقد في جميع الحالات [1].", hits
         ))
+    def test_universal_wording_in_second_citation_cannot_mask_conditional_first_source(self):
+        hits = [
+            {"text": "يجوز لصاحب العمل إنهاء العقد إذا ارتكب العامل مخالفة جسيمة."},
+            {"text": "يجوز لصاحب العمل إنهاء العقد في جميع الحالات الأخرى."},
+        ]
+        self.assertTrue(app._answer_has_unqualified_claim_against_conditional_source(
+            "يجوز لصاحب العمل إنهاء العقد في جميع الحالات [1] [2].", hits
+        ))
+
     def test_answer_that_preserves_the_condition_passes(self):
         hits = [{"text": "يجوز لصاحب العمل إنهاء العقد إذا ارتكب العامل مخالفة جسيمة."}]
         self.assertFalse(app._answer_has_unqualified_claim_against_conditional_source(
