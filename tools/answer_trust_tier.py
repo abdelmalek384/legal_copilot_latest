@@ -80,9 +80,19 @@ def source_match_evidence_ready(source: Mapping) -> bool:
     if independent_copy_sha256.lower() == evidence.get("original_capture_sha256").lower():
         return False
     source_id = source.get("source_id")
-    independent_source_id = evidence.get("independent_copy_source_id")
+    packet_source_id = evidence.get("source_id")
+    version_id = evidence.get("version_id")
+    evidence_id = evidence.get("evidence_id")
+    evidence_revision = evidence.get("evidence_revision")
     if (not isinstance(source_id, str) or not source_id.strip() or source_id != source_id.strip()
-            or not isinstance(independent_source_id, str) or not independent_source_id.strip()
+            or packet_source_id != source_id
+            or isinstance(version_id, bool) or not isinstance(version_id, int) or version_id <= 0
+            or isinstance(evidence_id, bool) or not isinstance(evidence_id, int) or evidence_id <= 0
+            or isinstance(evidence_revision, bool) or not isinstance(evidence_revision, int)
+            or evidence_revision <= 0):
+        return False
+    independent_source_id = evidence.get("independent_copy_source_id")
+    if (not isinstance(independent_source_id, str) or not independent_source_id.strip()
             or independent_source_id != independent_source_id.strip()
             or independent_source_id == source_id):
         return False

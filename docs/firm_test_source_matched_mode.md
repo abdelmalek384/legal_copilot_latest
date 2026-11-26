@@ -50,3 +50,7 @@ PYTHONPATH=. python -m unittest tests.test_firm_test_source_matched_mode -v
 ```
 
 The tests cover flag-on answer labeling, flag-off source-only behavior, exact firm scoping, and unconditional production denial. A test result is not established until this command is actually run in the supported Python 3.12 environment.
+
+## Exact evidence packet identity (2026-11-26)
+
+The read adapter carries the exact source_id, positive version_id, positive evidence_id, and positive evidence_revision into the answer-tier classifier. The classifier independently requires these fields and requires the packet source ID to equal the source record ID. Missing, boolean-as-integer, string-coerced, zero, or mismatched identity fields fail closed to unreviewed. This is an additional hand-off integrity check, not a legal verification or a production enablement.

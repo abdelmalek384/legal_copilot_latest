@@ -159,6 +159,12 @@ def load_source_match_evidence(connection, version_id, source_id):
         return None
 
     return {
+        # Preserve the exact immutable evidence-row identity across the
+        # adapter boundary; downstream policy must not infer or synthesize it.
+        "source_id": source_id,
+        "version_id": version_id,
+        "evidence_id": record["evidence_id"],
+        "evidence_revision": record["evidence_revision"],
         "validator_passed": bool(record["validator_passed"]),
         "original_capture_sha256": record["original_capture_sha256"],
         "independent_copy_source_id": record["independent_copy_source_id"],
