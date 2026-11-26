@@ -1931,10 +1931,13 @@ def _answer_has_unanchored_citations(answer, hits):
                 claim_terms.update(tokens("deadline period time limit"))
             if not claim_terms:
                 continue
-            evidence = " ".join(str(hits[index - 1].get("text") or "") for index in cited)
-            evidence_terms = set(tokens(evidence))
-            if not (claim_terms & evidence_terms):
-                return True
+            # Validate every cited source independently. A relevant passage must not
+            # make an unrelated extra citation appear supported merely because both
+            # passages are concatenated before the lexical-anchor check.
+            for index in cited:
+                evidence_terms = set(tokens(str(hits[index - 1].get("text") or "")))
+                if not (claim_terms & evidence_terms):
+                    return True
     return False
 
 
