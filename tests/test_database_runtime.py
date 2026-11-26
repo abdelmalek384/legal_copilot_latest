@@ -402,6 +402,27 @@ class DatabaseRuntimeTests(unittest.TestCase):
         finally:
             alias.unlink(missing_ok=True)
 
+    def test_control_connection_is_revoked_when_sqlite_sidecar_gains_hard_link_alias(self):
+        if os.name != "posix" or not hasattr(os, "link"):
+            self.skipTest("POSIX hard links are not supported")
+        connection = self.runtime.control_connection()
+        sidecar = Path(str(self.runtime.paths.control_plane) + "-journal")
+        alias = self.root / "outside-control-plane-journal"
+        try:
+            os.link(self.runtime.paths.control_plane, sidecar)
+            os.link(sidecar, alias)
+        except OSError as exc:
+            sidecar.unlink(missing_ok=True)
+            self.skipTest(f"Hard-link creation is unavailable: {exc}")
+        try:
+            with self.assertRaisesRegex(DatabaseRuntimeError, "sidecar must not have hard-link aliases"):
+                self.runtime.control_connection()
+            with self.assertRaises(sqlite3.ProgrammingError):
+                connection.execute("SELECT 1")
+        finally:
+            sidecar.unlink(missing_ok=True)
+            alias.unlink(missing_ok=True)
+
     def test_corpus_connection_is_revoked_when_database_gains_hard_link_alias(self):
         if os.name != "posix" or not hasattr(os, "link"):
             self.skipTest("POSIX hard links are not supported")
