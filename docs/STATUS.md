@@ -1,3 +1,10 @@
+## AI-1 candidate identity and permission-register parity — 2026-11-26
+
+- Manual static comparison found 21 source IDs present in `docs/legal_document_candidates.json` but absent from the canonical `docs/source_permission_register.json`. The candidate seeder's parity check would fail closed for those records, and the existing catalog regression requiring every candidate ID to be registered would fail.
+- Added the 21 source-family records to the canonical permission register using the already-recorded authority, source-page locator, and access-status metadata. Collection and commercial reuse remain `unknown` for every added record; no licence, legal status, currentness, or bulk/API permission is inferred.
+- Tightened `tools/seed_legal_candidates.py` to require source/document IDs to be trimmed 1–128 character ASCII identifiers (`[A-Za-z0-9][A-Za-z0-9._-]*`), preventing whitespace and delimiter variants from bypassing stable identity checks. Added regression cases in `tests/test_legal_candidate_catalog.py`.
+- Manual static read-back verified 43 candidate source IDs, 548 document candidates, no malformed IDs, no duplicate IDs, and complete candidate-to-register ID coverage after the metadata repair. The Python validator and tests were **not executed**; no test pass is claimed.
+
 ## Arabic evaluation scorer default-area alignment — 2026-11-25
 
 - Found a mismatch between the lawyer-review evaluator's unspecified practice-area default and the Arabic retrieval scorer: scorer rejected reviewed questions that omit `practice_area`, even when the approved reviewer registry authorizes `unspecified`.

@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
-  "assessment_date": "2026-11-23",
-  "note": "A register of source candidates and permission questions, not a claim that rights have been granted. Public accessibility and open access do not by themselves establish bulk collection, commercial reuse, or redistribution rights. Agent 8 river-transport and railway acquisition tranche (2026-11-23): four source-family records added; all collection and commercial reuse permissions remain unknown pending terms review or written authorization. Agent 8 metro/tunnels tranche (2026-11-23): Lawyer Egypt secondary source family added; collection and commercial reuse permissions unknown. Agent 8 maritime/ports/inland-navigation tranche (2026-11-23): three official authority-source records added; all reuse permissions remain unknown. Agent 8 environment, waste-management, Nile/water-pollution and health-sector tranches (2026-11-23): six additional government/FAOLEX source-family assessments added (EEAA, IDA, MWRI, SIS Gazette repository, EDA and FAOLEX water/waste texts). All collection and commercial reuse permissions remain unknown; official hosting and public accessibility are not reuse licences.",
+  "assessment_date": "2026-11-26",
+  "note": "A register of source candidates and permission questions, not a claim that rights have been granted. Public accessibility and open access do not by themselves establish bulk collection, commercial reuse, or redistribution rights. Agent 8 river-transport and railway acquisition tranche (2026-11-23): four source-family records added; all collection and commercial reuse permissions remain unknown pending terms review or written authorization. Agent 8 metro/tunnels tranche (2026-11-23): Lawyer Egypt secondary source family added; collection and commercial reuse permissions unknown. Agent 8 maritime/ports/inland-navigation tranche (2026-11-23): three official authority-source records added; all reuse permissions remain unknown. Agent 8 environment, waste-management, Nile/water-pollution and health-sector tranches (2026-11-23): six additional government/FAOLEX source-family assessments added (EEAA, IDA, MWRI, SIS Gazette repository, EDA and FAOLEX water/waste texts). All collection and commercial reuse permissions remain unknown; official hosting and public accessibility are not reuse licences. Manual metadata parity repair (2026-11-26): 21 source-family records already present in the discovery candidate catalog were added here with collection and commercial reuse both explicitly unknown. This reconciles source identity coverage only; it does not grant rights, verify operative text, or authorize collection/indexing.",
   "sources": [
     {
       "source_id": "EG-ADNANLAWYER-LEGAL-TEXTS",
@@ -3834,6 +3834,321 @@
         "https://lawegypt.net/وزارة-القوى-العاملة-والهجرة-قرار-رقم-16/",
         "https://www.labour.gov.eg/ar/القوانين-والتشريعات/"
       ]
+    },
+    {
+      "source_id": "EG-IDSC-ELP",
+      "authority": "Egyptian Legislation Portal, Information and Decision Support Center, Cabinet of Egypt",
+      "source_page": "https://elpai.idsc.gov.eg/GeneralSearch/LegalDatabases?tab=legislation",
+      "material_types": [
+        "Official legal and regulatory source discovery metadata; individual operative instruments require separate verification"
+      ],
+      "access_status": "official_portal_and_about_page_observed_2026-11-17; searchable legislation and multiple judicial databases; individual record acquisition and bulk access terms not established",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": "The portal About page describes a database established in 1998 with Egyptian judicial rulings dating from 1828, more than 290,000 legislative records and more than 100,000 varied judgments. The search interface exposes legislation, Supreme Constitutional Court, Court of Cassation, Supreme Administrative Court, Administrative Judiciary, economic court, and State Council opinion databases. These are portal-level institutional claims and search categories, not an inventory of individually acquired records, and do not grant permission for bulk extraction, indexing, storage, or commercial reuse. Treat as a priority discovery and manual lookup source until its terms and permissions are established.",
+      "required_next_action": "Review the source's current terms and obtain written authorization before bulk collection, indexing, storage or commercial reuse; verify individual instruments against Official Gazette originals."
+    },
+    {
+      "source_id": "EG-FRA-REGULATIONS",
+      "authority": "Financial Regulatory Authority of Egypt",
+      "source_page": "https://fra.gov.eg/تشريعات-عامة-للهيئة1/",
+      "material_types": [
+        "Official legal and regulatory source discovery metadata; individual operative instruments require separate verification"
+      ],
+      "access_status": "official regulatory index observed 2026-11-17; category-specific listings and linked updated texts; bulk access and reuse terms not established",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": "Official FRA pages list board, chairperson and Prime Minister decisions and updated regulatory texts. Public listing does not establish bulk collection, indexing, storage or commercial reuse permission. Gazette publication and amendments must be checked independently.",
+      "required_next_action": "Review the source's current terms and obtain written authorization before bulk collection, indexing, storage or commercial reuse; verify individual instruments against Official Gazette originals."
+    },
+    {
+      "source_id": "EG-CUSTOMS-LEGISLATIONS",
+      "authority": "Egyptian Customs Authority, Ministry of Finance",
+      "source_page": "https://customs.gov.eg/Legislations/Documents",
+      "material_types": [
+        "Official legal and regulatory source discovery metadata; individual operative instruments require separate verification"
+      ],
+      "access_status": "official searchable legislation, import/export circular and customs publication indexes observed 2026-11-17; individual document downloads and historical coverage require enumeration",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": "The Authority's portal lists customs legislation and numbered import/export circulars with issue dates, including 2026 entries. Portal discovery does not establish Gazette status, complete coverage, bulk extraction rights or commercial reuse permission. Distinguish binding legislation from administrative circulars and operational notices.",
+      "required_next_action": "Review the source's current terms and obtain written authorization before bulk collection, indexing, storage or commercial reuse; verify individual instruments against Official Gazette originals."
+    },
+    {
+      "source_id": "EG-CBE-REGULATIONS",
+      "authority": "Central Bank of Egypt",
+      "source_page": "https://www.cbe.org.eg/ar/laws-regulations/regulations/circulars",
+      "material_types": [
+        "Official legal and regulatory source discovery metadata; individual operative instruments require separate verification"
+      ],
+      "access_status": "official Arabic circular index observed 2026-11-17: 404 circulars; English index displays 405; regulations book has 19 results; banking laws index lists core statute and related instruments",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": "Official CBE portal exposes searchable circulars, topic filters and downloadable circular PDFs; it describes ongoing review and update of banking regulations. Public availability does not establish bulk extraction or commercial reuse permission. Preserve each circular's authority, recipient scope, date, attachment and supersession status.",
+      "required_next_action": "Review the source's current terms and obtain written authorization before bulk collection, indexing, storage or commercial reuse; verify individual instruments against Official Gazette originals."
+    },
+    {
+      "source_id": "EG-MCIT-LEGISLATION",
+      "authority": "Ministry of Communications and Information Technology",
+      "source_page": "https://mcit.gov.eg/ar/TeleCommunications/Regulations/Laws_and_Legislations",
+      "material_types": [
+        "Official legal and regulatory source discovery metadata; individual operative instruments require separate verification"
+      ],
+      "access_status": "official laws and legislation index observed 2026-11-17; core telecommunications law and ministerial decisions listed",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": "Official Ministry index lists Telecommunications Regulation Law 10/2003, ministerial decisions 258/2003, 259/2003, 128/2006, 667/2017, Cybercrime Law 175/2018 and its executive regulations. NTRA licensing materials are adjacent regulatory material. No bulk extraction/reuse grant established.",
+      "required_next_action": "Review the source's current terms and obtain written authorization before bulk collection, indexing, storage or commercial reuse; verify individual instruments against Official Gazette originals."
+    },
+    {
+      "source_id": "EG-IDA-INDUSTRIAL-LAWS",
+      "authority": "Industrial Development Authority of Egypt",
+      "source_page": "https://www.ida.gov.eg/ar/laws",
+      "material_types": [
+        "Official legal and regulatory source discovery metadata; individual operative instruments require separate verification"
+      ],
+      "access_status": "official industrial legislation index observed 2026-11-17; lists core industrial, environmental, building and licensing statutes and executive decisions",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": "Official IDA page lists laws and decisions relevant to industrial licensing, industrial registry, environmental compliance and building reconciliation. It is a discovery index; Gazette originals, amendments, currentness and bulk reuse rights require independent review.",
+      "required_next_action": "Review the source's current terms and obtain written authorization before bulk collection, indexing, storage or commercial reuse; verify individual instruments against Official Gazette originals."
+    },
+    {
+      "source_id": "EG-EEAA-ENVIRONMENT-LAWS",
+      "authority": "Egyptian Environmental Affairs Agency",
+      "source_page": "https://www.eeaa.gov.eg/laws/55/index",
+      "material_types": [
+        "Official legal and regulatory source discovery metadata; individual operative instruments require separate verification"
+      ],
+      "access_status": "official law page with Arabic original, English translation and amendment attachments observed 2026-11-17",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": "EEAA page identifies Arabic original as official version and lists Law 4/1994 as amended by Law 9/2009 and Law 105/2015. The page is useful for discovery and version relations; full Gazette page verification and reuse terms remain outstanding.",
+      "required_next_action": "Review the source's current terms and obtain written authorization before bulk collection, indexing, storage or commercial reuse; verify individual instruments against Official Gazette originals."
+    },
+    {
+      "source_id": "EG-EDA-REGULATORY-REFERENCE",
+      "authority": "Egyptian Drug Authority, Arab Republic of Egypt",
+      "source_page": "https://www.edaegypt.gov.eg/en/the-regulatory-reference-of-the-egyptian-drug-authority-eda/laws-and-executive-regulations/",
+      "material_types": [
+        "Official legal and regulatory source discovery metadata; individual operative instruments require separate verification"
+      ],
+      "access_status": "official regulatory-reference index observed 2026-11-17; lists establishing law, related health/pharmaceutical laws and executive/ministerial decrees; individual primary texts and full currentness not independently checked",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": "Public official index is a discovery source only. No affirmative bulk collection, indexing, or commercial reuse licence established.",
+      "required_next_action": "Review the source's current terms and obtain written authorization before bulk collection, indexing, storage or commercial reuse; verify individual instruments against Official Gazette originals."
+    },
+    {
+      "source_id": "EG-UHIA-LEGISLATION",
+      "authority": "Universal Health Insurance Authority, Arab Republic of Egypt",
+      "source_page": "https://uhia.gov.eg/",
+      "material_types": [
+        "Official legal and regulatory source discovery metadata; individual operative instruments require separate verification"
+      ],
+      "access_status": "official authority site and official-hosted Law 2/2018 Gazette PDF locator observed; FAQ identifies law and executive regulations; amendment Law 155/2026 separately reported by SIS",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": "Official-hosted PDF locator and authority FAQ are discovery evidence only. Confirm all instruments against Official Gazette and review reuse rights; no bulk or commercial reuse permission established.",
+      "required_next_action": "Review the source's current terms and obtain written authorization before bulk collection, indexing, storage or commercial reuse; verify individual instruments against Official Gazette originals."
+    },
+    {
+      "source_id": "EG-EGYPTERA-REGULATIONS",
+      "authority": "Egyptian Electric Utility and Consumer Protection Regulatory Agency (EgyptERA)",
+      "source_page": "https://egyptera.org/en/Rules.aspx",
+      "material_types": [
+        "Official legal and regulatory source discovery metadata; individual operative instruments require separate verification"
+      ],
+      "access_status": "official regulatory rules index observed 2026-11-17; electricity-law framework, periodic books and regulatory rules listed; individual document currentness varies",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": "Public official index only; no affirmative bulk collection, indexing or commercial reuse licence established.",
+      "required_next_action": "Review the source's current terms and obtain written authorization before bulk collection, indexing, storage or commercial reuse; verify individual instruments against Official Gazette originals."
+    },
+    {
+      "source_id": "EG-EEHC-IMPORTANT-LAWS",
+      "authority": "Egyptian Electricity Holding Company",
+      "source_page": "https://www.eehc.gov.eg/CMSEehc/en/important-laws/electricity-law/",
+      "material_types": [
+        "Official legal and regulatory source discovery metadata; individual operative instruments require separate verification"
+      ],
+      "access_status": "official page links Electricity Law 87/2015 and Executive Regulations Decree 230/2016; Gazette originals still required",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": "Official-hosted legal text locators do not establish commercial reuse rights.",
+      "required_next_action": "Review the source's current terms and obtain written authorization before bulk collection, indexing, storage or commercial reuse; verify individual instruments against Official Gazette originals."
+    },
+    {
+      "source_id": "EG-PDPC-LAWS",
+      "authority": "Personal Data Protection Center, Arab Republic of Egypt",
+      "source_page": "https://pdpc.gov.eg/en/laws-regulations",
+      "material_types": [
+        "Official legal and regulatory source discovery metadata; individual operative instruments require separate verification"
+      ],
+      "access_status": "official centre law-and-regulations page located 2026-11-17; exact downloadable legislative records and currentness require inspection",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://pdpc.gov.eg/",
+      "terms_checked_on": null,
+      "permission_evidence": "Site footer states all rights reserved; no affirmative licence for bulk extraction, indexing, commercial use or redistribution identified.",
+      "required_next_action": "Review the source's current terms and obtain written authorization before bulk collection, indexing, storage or commercial reuse; verify individual instruments against Official Gazette originals."
+    },
+    {
+      "source_id": "EG-MOSS-LEGISLATION",
+      "authority": "Ministry of Social Solidarity, Arab Republic of Egypt",
+      "source_page": "https://www.moss.gov.eg/الاصدارات/القوانين-والتشريعات/?page=1",
+      "material_types": [
+        "Official legal and regulatory source discovery metadata; individual operative instruments require separate verification"
+      ],
+      "access_status": "official laws-and-legislation index observed 2026-11-17; lists social insurance, social guarantee, family, child and related legislation; linked full texts not yet inspected",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": "Public index is a discovery source only. No affirmative bulk collection, indexing, commercial use or redistribution licence established.",
+      "required_next_action": "Review the source's current terms and obtain written authorization before bulk collection, indexing, storage or commercial reuse; verify individual instruments against Official Gazette originals."
+    },
+    {
+      "source_id": "EG-MTS-MARITIME-LEGISLATION",
+      "authority": "Maritime Transport and Logistics Sector, Ministry of Transport, Arab Republic of Egypt",
+      "source_page": "https://www.mts.gov.eg/ar/الخدمات-المقدمة-من-خلال-قطاع-النقل-البحري/التشريعات-البحرية/",
+      "material_types": [
+        "Official legal and regulatory source discovery metadata; individual operative instruments require separate verification"
+      ],
+      "access_status": "official maritime legislation database/index located; claims to classify effective maritime legislation and related international agreements using Official Gazette and Egyptian Gazette sources; individual records not yet downloaded",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": "Public availability does not establish bulk collection or commercial reuse permission.",
+      "required_next_action": "Review the source's current terms and obtain written authorization before bulk collection, indexing, storage or commercial reuse; verify individual instruments against Official Gazette originals."
+    },
+    {
+      "source_id": "EG-CIVIL-AVIATION-LAWS",
+      "authority": "Egyptian Civil Aviation Authority / Ministry of Civil Aviation, Arab Republic of Egypt",
+      "source_page": "https://www.civilaviation.gov.eg/ECAA/Laws",
+      "material_types": [
+        "Official legal and regulatory source discovery metadata; individual operative instruments require separate verification"
+      ],
+      "access_status": "official laws index observed 2026-11-17; lists Civil Aviation Law 28/1981 and amendments 92/2003 and 136/2010, plus Law 3/1997",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": "Official index locator only; Gazette originals and reuse rights not yet checked.",
+      "required_next_action": "Review the source's current terms and obtain written authorization before bulk collection, indexing, storage or commercial reuse; verify individual instruments against Official Gazette originals."
+    },
+    {
+      "source_id": "EG-MHUC-HOUSING-LEGISLATION",
+      "authority": "Ministry of Housing, Utilities and Urban Communities, Arab Republic of Egypt",
+      "source_page": "https://mhuc.gov.eg/قطاع_الإسكان_والمرافق",
+      "material_types": [
+        "Official legal and regulatory source discovery metadata; individual operative instruments require separate verification"
+      ],
+      "access_status": "official housing legislation index observed; lists Building Law 119/2008, amendment 23/2015, executive regulations and ministerial decisions",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": "Official index locator only; no affirmative bulk or commercial reuse permission established.",
+      "required_next_action": "Review the source's current terms and obtain written authorization before bulk collection, indexing, storage or commercial reuse; verify individual instruments against Official Gazette originals."
+    },
+    {
+      "source_id": "EG-EMRA-MINERAL-LEGISLATION",
+      "authority": "Egyptian Mineral Resources and Mining Industries Authority (EMRA), Arab Republic of Egypt",
+      "source_page": "https://emra.gov.eg/ar/mineral-resources-law",
+      "material_types": [
+        "Official legal and regulatory source discovery metadata; individual operative instruments require separate verification"
+      ],
+      "access_status": "official law-and-regulations index observed 2026-11-17; lists Mineral Resources Law 198/2014, amendment 145/2019, Executive Regulations 108/2020, Law 87/2025 and Prime Minister Decision 1440/2026",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": "Official public index and official-hosted Gazette copies are discovery sources; no affirmative bulk extraction, indexing or commercial reuse licence established.",
+      "required_next_action": "Review the source's current terms and obtain written authorization before bulk collection, indexing, storage or commercial reuse; verify individual instruments against Official Gazette originals."
+    },
+    {
+      "source_id": "INT-WIPO-LEX-EGYPT",
+      "authority": "World Intellectual Property Organization (WIPO), WIPO Lex legal database",
+      "source_page": "https://www.wipo.int/wipolex/en/legislation/details/8334",
+      "material_types": [
+        "Official legal and regulatory source discovery metadata; individual operative instruments require separate verification"
+      ],
+      "access_status": "Egypt Arbitration Law 27/1994 Arabic and English texts indexed; consolidated version covers amendments through Law 8/2000",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": "https://www.wipo.int/about-wipo/en/",
+      "terms_checked_on": null,
+      "permission_evidence": "Intergovernmental legal-information database; public access does not itself establish permission for bulk copying or commercial redistribution.",
+      "required_next_action": "Review the source's current terms and obtain written authorization before bulk collection, indexing, storage or commercial reuse; verify individual instruments against Official Gazette originals."
+    },
+    {
+      "source_id": "EG-STATE-COUNCIL-CASELAW",
+      "authority": "Egyptian State Council, Arab Republic of Egypt",
+      "source_page": "https://esc.gov.eg/",
+      "material_types": [
+        "Official legal and regulatory source discovery metadata; individual operative instruments require separate verification"
+      ],
+      "access_status": "official judicial portal located; court structure, jurisdiction, Administrative Supreme Court and administrative judiciary information available; bulk judgment access and completeness not established",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": "Public official portal; no affirmative bulk extraction or commercial reuse permission established.",
+      "required_next_action": "Review the source's current terms and obtain written authorization before bulk collection, indexing, storage or commercial reuse; verify individual instruments against Official Gazette originals."
+    },
+    {
+      "source_id": "EG-SCC-JUDGMENTS-PORTAL",
+      "authority": "Supreme Constitutional Court of Egypt",
+      "source_page": "https://www.sccourt.gov.eg/newportal",
+      "material_types": [
+        "Official legal and regulatory source discovery metadata; individual operative instruments require separate verification"
+      ],
+      "access_status": "official judgments portal supports free search by legislation, case status, principles, merits, procedural rulings, jurisdiction conflicts and execution disputes; latest decisions visible through November 2026",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": "Public court portal; access does not establish permission for bulk copying or commercial redistribution.",
+      "required_next_action": "Review the source's current terms and obtain written authorization before bulk collection, indexing, storage or commercial reuse; verify individual instruments against Official Gazette originals."
+    },
+    {
+      "source_id": "EG-COURT-OF-CASSATION-JUDGMENTS",
+      "authority": "Court of Cassation of Egypt, Technical Office / judgments platform",
+      "source_page": "https://cc.gov.eg/judgments_search/",
+      "material_types": [
+        "Official legal and regulatory source discovery metadata; individual operative instruments require separate verification"
+      ],
+      "access_status": "official platform supports advanced search of civil and criminal judgments and principles, including economic, labour, tenancy and personal-status circuits; recent principles visible in October 2026",
+      "collection_permission": "unknown",
+      "commercial_reuse_permission": "unknown",
+      "terms_url": null,
+      "terms_checked_on": null,
+      "permission_evidence": "Official court platform and technical-office publications; no affirmative bulk extraction or commercial reuse permission established.",
+      "required_next_action": "Review the source's current terms and obtain written authorization before bulk collection, indexing, storage or commercial reuse; verify individual instruments against Official Gazette originals."
     }
   ]
 }

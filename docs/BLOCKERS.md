@@ -614,3 +614,11 @@ The owner has explicitly requested a non-production firm-test implementation. Th
 - Added synthetic regression `test_finalize_rolls_back_final_link_when_staging_unlink_fails` in `tests/test_original_file_storage.py`. It injects a staging-unlink failure and asserts that the staged object remains intact, the final object is absent, and staged integrity verification still succeeds; it then retries finalization and verifies that the object becomes readable.
 - Commits: `0dd2a8a` (implementation), `e9419d3` (initial regression), `6de1544` (retry/recovery assertion). GitHub read-back confirmed both changes are on `main`.
 - Test execution: **not run** in this environment. The regression is authored, not passed. Run `python -m unittest tests.test_original_file_storage` under the supported Python 3.12 environment. No tenant-isolation or production-storage claim is made by this local-adapter correction.
+
+
+## Candidate catalogue / canonical permission-register identity parity — 2026-11-26
+
+- Static comparison found 21 discovery-catalog source IDs without canonical permission-register rows. The candidate seeder's permission-parity gate would reject the catalog; the existing regression requiring every candidate ID to have a register record would also fail.
+- Reconciled by adding 21 source-family metadata rows to `docs/source_permission_register.json`. Every added row retains `collection_permission=unknown` and `commercial_reuse_permission=unknown`; source-page locators and access observations are copied from the existing candidate catalog only. No permission or legal verification was inferred.
+- Candidate seeder now rejects surrounding whitespace and non-ASCII/delimiter characters in source/document identifiers; focused regression cases were added.
+- Manual JSON/static read-back: 43 candidate sources and 548 document candidates; source IDs unique and present in the canonical register; source/document IDs conform to the bounded identifier contract. Python validator and test modules remain unexecuted. Do not describe these checks as a test pass.
