@@ -2333,3 +2333,10 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Added recognition for common Arabic wording variants `واحد عشر` and `واحد عشرة` in the optional numeric claim-support teen parser, and finite-duration pattern. Added synthetic regressions matching 11 against numeric evidence and rejecting 12 mismatches.
 - Changes committed directly to main: parser/pattern commits `53dc9b7`, `8a9c728`; regression commit `7b28ea2`. Manual readback pending; tests and GitHub Actions were not run.
 - This narrow lexical numeric refinement does not validate legal accuracy, entailment, or production readiness.
+
+
+## AI-1 currency unit lexical consistency refinement — 2026-11-26
+
+- Extended the optional claim-support numeric unit dictionary to recognize additional currency spellings and codes (USD, EUR, GBP, SAR, AED, KWD and common Arabic/English forms) as currency markers, including prefix/postfix placement handled by the existing marker parser.
+- Added synthetic regressions for currency prefix/suffix placement and mismatched numeric values. Implementation commit `ff9a7c9`; regression commit `53035db`. Manual readback pending. No tests or Actions/CI executed.
+- The screen treats these as generic currency units; it does not distinguish currency denominations, establish exchange equivalence, or provide legal advice.
