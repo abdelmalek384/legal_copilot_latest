@@ -42,15 +42,41 @@ _MAX_ENCRYPTED_BUNDLE_BYTES = ((_MAX_ARCHIVE_BYTES + 73 + 2) // 3) * 4
 
 
 def _readonly(path: Path) -> sqlite3.Connection:
-    if path.is_symlink() or not path.is_file():
-        raise DatabaseBundleError(f"Required database is missing or is a symlink: {path.name}")
-    uri = path.resolve().as_uri() + "?mode=ro"
+    try:
+        before = path.lstat()
+    except OSError as exc:
+        raise DatabaseBundleError(f"Required database is missing or unsafe: {path.name}") from exc
+    if (
+        not stat.S_ISREG(before.st_mode)
+        or (os.name == "posix" and before.st_nlink != 1)
+    ):
+        raise DatabaseBundleError(
+            f"Required database must be a single-link regular file: {path.name}"
+        )
+    resolved = path.resolve()
+    uri = resolved.as_uri() + "?mode=ro"
+    connection = None
     try:
         connection = sqlite3.connect(uri, uri=True, timeout=30)
+        after = path.lstat()
+        if (
+            not stat.S_ISREG(after.st_mode)
+            or (os.name == "posix" and after.st_nlink != 1)
+            or (before.st_dev, before.st_ino) != (after.st_dev, after.st_ino)
+        ):
+            raise DatabaseBundleError(
+                f"Database path changed or gained a hard-link alias: {path.name}"
+            )
         connection.row_factory = sqlite3.Row
         connection.execute("PRAGMA foreign_keys=ON")
         return connection
-    except sqlite3.Error as exc:
+    except DatabaseBundleError:
+        if connection is not None:
+            connection.close()
+        raise
+    except (OSError, sqlite3.Error) as exc:
+        if connection is not None:
+            connection.close()
         raise DatabaseBundleError(f"Cannot open database read-only: {path.name}") from exc
 
 
@@ -127,8 +153,19 @@ def _safe_tenant_path(root: Path, firm_id: int, filename: str) -> Path:
         raise DatabaseBundleError("Tenant storage root must be a real directory")
     resolved_root = root.resolve()
     candidate = resolved_root / filename
-    if candidate.is_symlink() or not candidate.is_file():
-        raise DatabaseBundleError(f"Tenant database is missing or is a symlink for firm {firm_id}")
+    try:
+        candidate_info = candidate.lstat()
+    except OSError as exc:
+        raise DatabaseBundleError(
+            f"Tenant database is missing or unsafe for firm {firm_id}"
+        ) from exc
+    if (
+        not stat.S_ISREG(candidate_info.st_mode)
+        or (os.name == "posix" and candidate_info.st_nlink != 1)
+    ):
+        raise DatabaseBundleError(
+            f"Tenant database must be a single-link regular file for firm {firm_id}"
+        )
     resolved = candidate.resolve()
     if resolved.parent != resolved_root:
         raise DatabaseBundleError("Tenant database path escapes the configured storage root")
