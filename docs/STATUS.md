@@ -2202,3 +2202,11 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Commits: `85a99c5` (uploader guard), `411e8d5` (regression). Source and test files were read back from `main`; no Python tests or GitHub Actions jobs were executed.
 - Conservative estimates: backup/recovery **47.2%** (from 47.1%); security/tenant isolation remains **85.3%**; documents/file handling **99.1%**; test execution readiness **12.3%**; AI-2 overall **76.7%** (from 76.6%). These are implementation estimates, not measured pass rates or production acceptance.
 - Validation status remains **0 repository test modules executed**, **0 GitHub Actions jobs executed**. Local Python 3.12 and browser/device checks remain for the owner's planned end-of-day session.
+
+## AI-2 backup database hard-link boundary — 2026-11-26
+
+- Backup read-only database opening now requires a regular file with exactly one hard link on POSIX, checks the file identity and link count again after SQLite opens it, and closes the connection if the path changes or gains an alias during that window. Tenant catalog path validation applies the same single-link regular-file requirement before resolving the database path.
+- Added synthetic regressions for a hard-linked control-plane database and a hard-linked tenant database. The existing `test_database_backup_bundle.py` module is already included in both the manual security regression script and repository test workflow.
+- Commits: `3c2dc41` (backup guard), `09b6049` (regressions). Source and test files were read back from `main`; tests were not executed in this session.
+- Conservative implementation estimates: security/tenant isolation **85.4%** (from 85.3%); backup/recovery **47.3%** (from 47.2%); documents/file handling **99.1%**; test execution readiness **12.3%**; AI-2 overall **76.8%** (from 76.7%). These are engineering estimates, not measured test-pass rates or production acceptance.
+- Validation: **0 repository test modules executed**, **0 GitHub Actions jobs executed**, **0 open PRs**. The owner’s planned local Python 3.12/browser/device acceptance remains outstanding.
