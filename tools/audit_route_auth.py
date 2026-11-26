@@ -22,19 +22,23 @@ ROUTER_MODULES = {
 }
 ROUTER_FILES = tuple(ROUTER_MODULES.values())
 ROUTE_METHODS = {"get", "post", "put", "patch", "delete", "options", "head", "api_route"}
+# Public access is granted to an exact handler, not merely to a path.
+# This prevents an unrelated route registered on a public URL from inheriting
+# the exemption.
 PUBLIC_ROUTES = {
-    ("GET", "/"),
-    ("GET", "/manifest.webmanifest"),
-    ("GET", "/service-worker.js"),
-    ("GET", "/offline.html"),
-    ("GET", "/app-icon.svg"),
-    ("GET", "/apple-touch-icon.png"),
-    ("GET", "/invite/accept"),
-    ("GET", "/account/recovery"),
-    ("POST", "/login"),
-    ("POST", "/invitations/accept/new"),
-    ("POST", "/account/recovery/request"),
-    ("POST", "/account/recovery/consume"),
+    ("GET", "/", "home"),
+    ("GET", "/manifest.webmanifest", "pwa_manifest"),
+    ("GET", "/service-worker.js", "pwa_service_worker"),
+    ("GET", "/offline.html", "pwa_offline_page"),
+    ("GET", "/app-icon.svg", "pwa_app_icon"),
+    ("GET", "/app-icon.svg", "app_icon"),
+    ("GET", "/apple-touch-icon.png", "pwa_apple_touch_icon"),
+    ("GET", "/invite/accept", "invitation_accept_page"),
+    ("GET", "/account/recovery", "password_recovery_page"),
+    ("POST", "/login", "login"),
+    ("POST", "/invitations/accept/new", "accept_invitation_new_identity"),
+    ("POST", "/account/recovery/request", "request_account_recovery"),
+    ("POST", "/account/recovery/consume", "consume_account_recovery"),
 }
 
 
@@ -108,7 +112,7 @@ def audit_sources(
 ) -> dict[str, Any]:
     routes: list[dict[str, Any]] = []
     findings: list[str] = []
-    seen_public: set[tuple[str, str]] = set()
+    seen_public: set[tuple[str, str, str]] = set()
 
     for filename, source in sources.items():
         tree = ast.parse(source, filename=filename)
@@ -137,7 +141,7 @@ def audit_sources(
                     or _contains_user_dependency(decorator)
                 )
                 for method in methods:
-                    key = (method, path)
+                    key = (method, path, node.name)
                     is_public = key in PUBLIC_ROUTES
                     if is_public:
                         seen_public.add(key)
@@ -153,8 +157,8 @@ def audit_sources(
                         "authentication": "public_allowlist" if is_public else ("Depends(user)" if authenticated else "missing"),
                     })
 
-    expected_public = {f"{method} {path}" for method, path in PUBLIC_ROUTES}
-    observed_public = {f"{method} {path}" for method, path in seen_public}
+    expected_public = {f"{method} {path} ({handler})" for method, path, handler in PUBLIC_ROUTES}
+    observed_public = {f"{method} {path} ({handler})" for method, path, handler in seen_public}
     stale_public = sorted(expected_public - observed_public)
     if require_public_routes and stale_public:
         findings.extend(f"public allowlist entry is no longer a registered route: {item}" for item in stale_public)
