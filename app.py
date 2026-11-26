@@ -1820,8 +1820,18 @@ def _answer_has_unsupported_quantities(answer, hits, cited_indices):
             sentence_cites = {int(value) for value in re.findall(r"\[(\d+)\]", sentence)}
             if not sentence_cites or any(index < 1 or index > len(hits) for index in sentence_cites):
                 return True
-            evidence = " ".join(str(hits[index - 1].get("text") or "") for index in sentence_cites)
-            if not claims.issubset(_legal_quantities(evidence)):
+            # A numeric value and its unit must be supported together by at
+            # least one cited source. Concatenating passages can fabricate a
+            # quantity from fragments split across unrelated citations.
+            supported_by_one_source = False
+            for index in sentence_cites:
+                hit = hits[index - 1]
+                if not isinstance(hit, dict) or not isinstance(hit.get("text"), str):
+                    continue
+                if claims.issubset(_legal_quantities(hit["text"])):
+                    supported_by_one_source = True
+                    break
+            if not supported_by_one_source:
                 return True
     return False
 
