@@ -672,3 +672,5 @@ The owner has explicitly requested a non-production firm-test implementation. Th
 - Manual read-back verified zero candidate/register parity mismatches, 43 unique candidate source IDs, 548 discovery-only document records, and 220 unique permission-register source IDs. No Python test or validator was executed.
 
 - Follow-up test-fixture maintenance: updated adapter fakes to provide valid independent-copy identity/digest and positive evidence revision, ensuring existing approved-use and boolean-flag regressions still exercise their intended downstream checks after stricter packet-shape validation. Tests remain unexecuted.
+
+- 2026-11-26 follow-up: retrieval previously nested the source-match packet under citation provenance while the firm-test preflight read only a top-level hit field. The source projection and preflight now carry/read the same packet without reconstructing it. Regression authored, not executed. Remaining: runtime verification of actual corpus search, exact-version DB adapter, answer abstention behavior, and counsel/legal review.

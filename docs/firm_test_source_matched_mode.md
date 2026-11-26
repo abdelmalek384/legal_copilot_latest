@@ -54,3 +54,7 @@ The tests cover flag-on answer labeling, flag-off source-only behavior, exact fi
 ## Exact evidence packet identity (2026-11-26)
 
 The read adapter carries the exact source_id, positive version_id, positive evidence_id, and positive evidence_revision into the answer-tier classifier. The classifier independently requires these fields and requires the packet source ID to equal the source record ID. Missing, boolean-as-integer, string-coerced, zero, or mismatched identity fields fail closed to unreviewed. This is an additional hand-off integrity check, not a legal verification or a production enablement.
+
+## Retrieval-to-answer evidence hand-off (2026-11-26)
+
+Corpus retrieval now projects the exact-version source-match packet from citation provenance onto the retrieved hit, and the answer-tier preflight reads the packet from that explicit field with a provenance fallback for older hit shapes. The hand-off does not synthesize evidence: the packet still originates from the append-only evidence adapter and exact version/source registry joins. A synthetic response-path regression covers a hit that carries the packet only inside citation provenance. This source-level change has not been runtime-tested.

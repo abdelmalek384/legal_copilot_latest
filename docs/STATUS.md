@@ -2267,3 +2267,5 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Validation: **0 repository test modules executed**, **0 GitHub Actions jobs executed**, **0 open PRs**. The owner’s planned local Python 3.12/browser/device acceptance remains outstanding.
 
 - Follow-up test-fixture maintenance: updated adapter fakes to provide valid independent-copy identity/digest and positive evidence revision, ensuring existing approved-use and boolean-flag regressions still exercise their intended downstream checks after stricter packet-shape validation. Tests remain unexecuted.
+
+- 2026-11-26: Closed a source-level retrieval-to-answer hand-off gap for exact-version source-match evidence. Corpus hits now expose the packet from citation provenance, and the firm-test trust preflight has a defensive provenance fallback. Added a synthetic answer-path regression for provenance-nested packets. Manual source read-back only; tests/runtime not executed. No trust tier, legal status, permission, or production eligibility is promoted by this change.

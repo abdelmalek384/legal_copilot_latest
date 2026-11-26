@@ -91,6 +91,25 @@ class FirmTestSourceMatchedModeTests(unittest.TestCase):
         self.assertNotEqual(result["trust_tier"], "verified")
         self.assertNotEqual(result["sources"][0]["trust_tier"], "verified")
 
+    def test_enabled_test_firm_accepts_packet_nested_in_citation_provenance(self):
+        hit = source_hit()
+        hit.pop("source_match_evidence")
+        with patch.dict(os.environ, {
+            "COPILOT_ENV": "test",
+            "LEGAL_FIRM_TEST_SOURCE_MATCHED": "1",
+            "LEGAL_FIRM_TEST_SOURCE_MATCHED_FIRM_ID": "42",
+        }, clear=True):
+            with patch.object(app, "search", return_value=[hit]), patch.object(
+                app, "LLM",
+                return_value="The fictional employer must give written notice [1].",
+            ):
+                result = app.ask(
+                    None, "What notice must the fictional employer give?",
+                    firm_id=42, scope="firm_test_source_matched",
+                )
+        self.assertEqual(result["trust_tier"], "source_matched")
+        self.assertEqual(result["answer"], "The fictional employer must give written notice [1].")
+
     def test_flag_off_returns_sources_only_and_unreviewed_label(self):
         result, hit = self._ask_with_environment({
             "COPILOT_ENV": "development",

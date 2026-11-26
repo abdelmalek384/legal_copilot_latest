@@ -1314,6 +1314,9 @@ def _search_separate(c, q, case_id, k, firm_id, as_of, scope):
                 ),
             }
             item["source_id"] = (item.get("provenance") or {}).get("source_id")
+            # Keep the exact-version packet visible on the retrieved hit as well
+            # as inside provenance; the answer gate consumes this explicit field.
+            item["source_match_evidence"] = (item.get("provenance") or {}).get("source_match_evidence")
             item["source_status"] = source_status(item, as_of)
             item["citation"] = citation_text(item, as_of)
             ranked.append(item)
@@ -2186,7 +2189,12 @@ def ask(c, q, case_id=None, firm_id=1, as_of=None, conversation_context=None, sc
         {
             "source_id": hit.get("source_id"),
             "source_status": hit.get("source_status"),
-            "source_match_evidence": hit.get("source_match_evidence"),
+            "source_match_evidence": (
+                hit.get("source_match_evidence")
+                if isinstance(hit.get("source_match_evidence"), dict)
+                else (hit.get("provenance") or {}).get("source_match_evidence")
+                if isinstance(hit.get("provenance"), dict) else None
+            ),
         }
         for hit in hits
     ]
