@@ -2105,3 +2105,11 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Reviewed report publication via temporary file and atomic replacement, phase replacement guard, benchmark-hash consistency, and threshold validation.
 - No confirmed defect identified in these inspected paths; no speculative production change made.
 - These are manual source-review findings only. No repository test suite or GitHub Actions/CI execution occurred; local execution and lawyer-reviewed data remain required.
+
+
+## Route-auth and SQL static-audit limitation review — 2026-11-26
+
+- Reviewed the route authentication audit implementation and its focused regression tests: literal-path/method parsing, exact public allowlist, imported router mapping, and fail-closed handling for dynamic route definitions.
+- Reviewed the route-to-SQL static inventory parser's early handling of SQL expression resolution, finite identifier choices, dynamic SQL, and connection-boundary classification. These audits are expressly static review aids and do not establish route-level authorization or tenant isolation.
+- No confirmed exploit or code defect identified in the portion inspected; no production code change justified.
+- Runtime security tests, full route execution, tenant-isolation acceptance and Python 3.12 test suite remain manually pending. CI/Actions not invoked.
