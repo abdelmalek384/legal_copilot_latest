@@ -17,3 +17,12 @@ Keep existing verified-corpus retrieval unchanged. A future adapter/schema chang
 ## Scope and limitations
 
 This audit does not establish legal accuracy, currentness, licensing, security, or runtime behavior. No Python tests, browser tests, or supported Python 3.12 execution were performed.
+
+
+## Follow-up citation-alignment hardening — 2026-11-26
+
+- The answer citation relevance guard previously concatenated all passages cited by one sentence before checking for lexical anchors. A relevant passage could therefore mask an unrelated additional citation.
+- The guard now checks each cited passage independently and abstains if any cited passage has no meaningful lexical anchor in that sentence.
+- Regression coverage includes both an unrelated extra citation (must abstain) and complementary cited passages (must pass the lexical relevance check).
+- Commits: `05c13aac94d47f50c840df18c75175ea4a3e851a` and `d6edf36158c1fbb4a979af4128e024fecf240563`.
+- Tests are committed but have not been executed on this remote branch. This lexical check is not semantic entailment or legal review; broader answer quality and end-to-end research acceptance remain open.
