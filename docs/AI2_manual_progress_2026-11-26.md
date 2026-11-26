@@ -22,6 +22,8 @@
 
 The progress increase is only a small source-level implementation estimate. The tests are **added but not executed**. GitHub Actions were not invoked. No local checkout/runtime was available in this work session, so no repository tests, browser acceptance, two-firm test, or backup/restore drill are claimed as passing.
 
+- Follow-up after source review: the event table CHECK constraint originally rejected the new `logout` event. Added migration `0009_platform_security_events_logout.sql` preserving existing audit IDs/rows and append-only triggers, and a migration test covering the preserved history, new event, integrity checks, and trigger behavior. Direct-main commits: migration `7ed1e29`, migration test `121593f`, blocker follow-up `de9646a`. Tests are still not executed.
+
 ## Remaining release blockers
 
 - Run the focused identity lifecycle tests and the complete test/security/release suites on exact main in the documented Python 3.12 environment.
