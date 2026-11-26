@@ -145,6 +145,15 @@ def source_match_evidence_ready(source: Mapping) -> bool:
     return all(evidence.get(key) is True for key in required)
 
 
+def firm_test_source_matched_policy_approved(env: object = None) -> bool:
+    """Require a distinct explicit policy approval switch; fail closed on malformed env."""
+    values = os.environ if env is None else env
+    if not isinstance(values, Mapping):
+        return False
+    value = values.get("LEGAL_FIRM_TEST_SOURCE_MATCHED_POLICY_APPROVED", "")
+    return isinstance(value, str) and value.strip() == "1"
+
+
 # Backward-compatible private alias for earlier internal callers.
 _source_matched_evidence_ready = source_match_evidence_ready
 

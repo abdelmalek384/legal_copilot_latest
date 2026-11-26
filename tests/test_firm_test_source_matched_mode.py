@@ -7,7 +7,7 @@ import unittest
 from unittest.mock import patch
 
 import app
-from tools.answer_trust_tier import classify_answer_trust_tier, firm_test_source_matched_enabled
+from tools.answer_trust_tier import classify_answer_trust_tier, firm_test_source_matched_enabled, firm_test_source_matched_policy_approved
 
 
 def synthetic_source_match_evidence():
@@ -111,6 +111,17 @@ class FirmTestSourceMatchedModeTests(unittest.TestCase):
                 )
         self.assertEqual(result["trust_tier"], "source_matched")
         self.assertEqual(result["answer"], "The fictional employer must give written notice [1].")
+
+    def test_policy_approval_helper_fails_closed_on_malformed_values(self):
+        for value in (None, True, 1, "true", "yes", " 0 ", ""):
+            with self.subTest(value=value):
+                self.assertFalse(firm_test_source_matched_policy_approved({
+                    "LEGAL_FIRM_TEST_SOURCE_MATCHED_POLICY_APPROVED": value,
+                }))
+        self.assertTrue(firm_test_source_matched_policy_approved({
+            "LEGAL_FIRM_TEST_SOURCE_MATCHED_POLICY_APPROVED": " 1 ",
+        }))
+        self.assertFalse(firm_test_source_matched_policy_approved([]))
 
     def test_policy_approval_is_separate_from_feature_flag(self):
         result, hit = self._ask_with_environment({

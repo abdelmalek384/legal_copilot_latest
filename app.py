@@ -15,7 +15,7 @@ from tools.research_inspector import (STATUS_REVIEW, STATUS_VERIFIED, central_pe
 from tools.arabic_legal_matching import expand_lexicon_hints
 from tools.arabic_drafting_skeletons import build_arabic_skeleton
 from tools.claim_support import claim_support_enabled, has_unsupported_claims, has_negated_obligation_conflicts
-from tools.answer_trust_tier import classify_answer_trust_tier, firm_test_source_matched_enabled
+from tools.answer_trust_tier import classify_answer_trust_tier, firm_test_source_matched_enabled, firm_test_source_matched_policy_approved
 from tools.source_match_evidence import load_source_match_evidence
 from tools.document_intelligence import MAX_ANALYSIS_CHARS, classify_document, extract_review_candidates, extract_structured_candidates, build_date_mention_timeline, group_candidate_entity_mentions, compare_extracted_text
 from tools.legal_article_reference import extract_statute_reference, normalize_reference_digits, statute_title_matches
@@ -2209,7 +2209,7 @@ def ask(c, q, case_id=None, firm_id=1, as_of=None, conversation_context=None, sc
         scope == "firm_test_source_matched"
         and source_matched_only
         and firm_test_source_matched_enabled(firm_id)
-        and os.environ.get("LEGAL_FIRM_TEST_SOURCE_MATCHED_POLICY_APPROVED", "").strip() == "1"
+        and firm_test_source_matched_policy_approved()
     )
     source_matched_preflight = (
         classify_answer_trust_tier(

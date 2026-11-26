@@ -680,3 +680,10 @@ The owner has explicitly requested a non-production firm-test implementation. Th
 - Source-matched test-mode answering now requires a distinct `LEGAL_FIRM_TEST_SOURCE_MATCHED_POLICY_APPROVED=1` environment setting in addition to the existing test environment, feature flag, and exact firm-ID gate. The previously implicit code-path policy approval is no longer enough to activate the answer tier.
 - Updated the synthetic response-path regressions to model the explicit approval setting and added a fail-closed case when policy approval is absent. Regression files remain unexecuted; manual code review only.
 - This is a test-only experimental tier; production remains blocked, and the approval flag does not establish legal correctness, rights, or readiness.
+
+
+## AI-1 explicit policy-approval helper hardening — 2026-11-26
+
+- Extracted the source-matched test policy-approval switch into a small fail-closed helper that accepts only mapping-like configuration and the trimmed string value `1`. Integers, booleans, nulls, malformed values, and non-mapping inputs are denied.
+- Updated the application gate to call this helper and added synthetic malformed-setting regressions. Tests are authored, not executed; GitHub Actions are not run.
+- This is defensive configuration parsing only; no source evidence, legal content, permissions, or production eligibility changed.
