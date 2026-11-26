@@ -2024,5 +2024,15 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("globalSearchRequest++;globalSearchButton.disabled=false", effective_handler)
         self.assertIn("renderCommandPalette(value.slice(1))", effective_handler)
 
+
+    def test_calendar_view_switch_exposes_its_group_label(self):
+        start = HTML.index("const monthMode=btn")
+        end = HTML.index("const monthNav=", start)
+        view_switch = HTML[start:end]
+        self.assertIn("role:'group'", view_switch)
+        self.assertIn("'aria-label':uiText('طريقة عرض التقويم','Calendar view')", view_switch)
+        self.assertIn("aria-pressed','true'", view_switch)
+        self.assertIn("aria-pressed','false'", view_switch)
+
 if __name__ == "__main__":
     unittest.main()
