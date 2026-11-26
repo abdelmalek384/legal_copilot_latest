@@ -49,7 +49,7 @@ def _path_has_symlink_component(path: str | Path) -> bool:
     if (
         os.name == "posix"
         and Path("/private/var").is_dir()
-        and candidate == var_alias or candidate.is_relative_to(var_alias)
+        and (candidate == var_alias or candidate.is_relative_to(var_alias))
     ):
         try:
             var_mode = os.lstat(var_alias).st_mode
