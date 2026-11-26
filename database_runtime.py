@@ -136,11 +136,16 @@ class DatabaseRuntime:
             raise DatabaseRuntimeError(f"{profile} database file is missing or not a regular file")
         if os.name == "posix":
             try:
-                mode = stat.S_IMODE(path.stat().st_mode)
+                metadata = path.stat()
+                mode = stat.S_IMODE(metadata.st_mode)
             except OSError as exc:
                 raise DatabaseRuntimeError(
-                    f"{profile} database permissions cannot be verified"
+                    f"{profile} database permissions and file identity cannot be verified"
                 ) from exc
+            if metadata.st_nlink != 1:
+                raise DatabaseRuntimeError(
+                    f"{profile} database file must not have hard-link aliases"
+                )
             if mode & 0o077:
                 raise DatabaseRuntimeError(
                     f"{profile} database file permissions allow group/other access"
@@ -155,11 +160,16 @@ class DatabaseRuntime:
                 raise DatabaseRuntimeError(f"{profile} SQLite sidecar must be a regular file")
             if os.name == "posix":
                 try:
-                    sidecar_mode = stat.S_IMODE(sidecar.stat().st_mode)
+                    sidecar_metadata = sidecar.stat()
+                    sidecar_mode = stat.S_IMODE(sidecar_metadata.st_mode)
                 except OSError as exc:
                     raise DatabaseRuntimeError(
-                        f"{profile} SQLite sidecar permissions cannot be verified"
+                        f"{profile} SQLite sidecar permissions and file identity cannot be verified"
                     ) from exc
+                if sidecar_metadata.st_nlink != 1:
+                    raise DatabaseRuntimeError(
+                        f"{profile} SQLite sidecar must not have hard-link aliases"
+                    )
                 if sidecar_mode & 0o077:
                     raise DatabaseRuntimeError(
                         f"{profile} SQLite sidecar permissions allow group/other access"
