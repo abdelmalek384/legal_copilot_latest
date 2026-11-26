@@ -353,3 +353,13 @@ The browser acceptance syntax error remains a separate pre-existing blocker. It 
 - Static read-back checked all 199 records and the eight optional URL fields: no credentials, fragments, non-HTTPS schemes, or recognized signed/token query parameters remain. This is a static consistency check; Python test execution is still outstanding.
 - AI-1 implementation estimate: 86% → 87% (+1 percentage point). This reflects a bounded source-registry validator/integrity improvement, not runtime validation or lawyer approval. AI-2 remains 32% (no change).
 
+
+
+## AI-1 claim-polarity guard continuation — 26 November 2026
+
+- Static review identified a specific omission in the optional lexical claim-support screen: English `shalln't` was not treated as a negated obligation, and the positive-obligation matcher could classify the token `shall` inside that contraction as positive.
+- Updated the positive obligation matcher to exclude `shall not` and `shalln't`; added the contraction to negated-obligation and prohibition matching.
+- Added a fictional regression covering positive claim versus `shalln't` evidence and faithful negative wording. The test is committed but not executed.
+- Commits: `c296694` (guard) and `cd8b291` (regression).
+- AI-1 estimate: 87% → 88% (+1 pp) for a concrete claim-polarity defect and focused regression added. AI-2 remains 32%.
+- Validation limit: GitHub file read-back only; Python test suite, runtime and browser are not available. This optional lexical guard is not semantic legal validation.
