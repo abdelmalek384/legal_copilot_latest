@@ -176,6 +176,18 @@ class RecoveryArchiveTransportTests(unittest.TestCase):
                 **self.config,
             )
 
+    def test_upload_rejects_hard_link_input(self):
+        if os.name != "posix" or not hasattr(os, "link"):
+            self.skipTest("POSIX hard links are not supported")
+        alias = self.root / "backup-hardlink.dbundle.enc"
+        try:
+            os.link(self.bundle, alias)
+        except OSError as exc:
+            self.skipTest(f"Hard-link creation is unavailable: {exc}")
+        with self.assertRaisesRegex(DatabaseBundleError, "hard-link aliases"):
+            self.upload()
+        self.assertEqual(self.s3.objects, {})
+
     def test_upload_rejects_symlink_input(self):
         link = self.root / "backup-link.dbundle.enc"
         try:
