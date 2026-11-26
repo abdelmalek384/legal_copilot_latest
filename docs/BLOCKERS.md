@@ -622,3 +622,11 @@ The owner has explicitly requested a non-production firm-test implementation. Th
 - Reconciled by adding 21 source-family metadata rows to `docs/source_permission_register.json`. Every added row retains `collection_permission=unknown` and `commercial_reuse_permission=unknown`; source-page locators and access observations are copied from the existing candidate catalog only. No permission or legal verification was inferred.
 - Candidate seeder now rejects surrounding whitespace and non-ASCII/delimiter characters in source/document identifiers; focused regression cases were added.
 - Manual JSON/static read-back: 43 candidate sources and 548 document candidates; source IDs unique and present in the canonical register; source/document IDs conform to the bounded identifier contract. Python validator and test modules remain unexecuted. Do not describe these checks as a test pass.
+
+
+## Candidate source-register parity follow-up — 2026-11-26
+
+- Follow-up manual parity review identified two existing edge cases after the 21-row identity repair: the Egyptian Tax Authority's candidate locator uses an explicitly related `portal.eta.gov.eg` host while the canonical source record uses other ETA hosts; MKSEgypt's candidate record carried custom CC BY strings outside the seeder's accepted permission-state vocabulary while the canonical register correctly remained unknown.
+- Added the ETA candidate PDF locator to the canonical record's `related_source_pages`; the parity validator now accepts only the canonical host or a clean HTTPS host explicitly listed in that field. Arbitrary host mismatches remain fail-closed.
+- Reset the MKSEgypt candidate collection/commercial permission fields to `unknown`, retaining the observed CC BY notice as evidence but explicitly declining to infer bulk ingestion or unrestricted commercial rights.
+- Manual read-back verified zero candidate/register parity mismatches, 43 unique candidate source IDs, 548 discovery-only document records, and 220 unique permission-register source IDs. No Python test or validator was executed.

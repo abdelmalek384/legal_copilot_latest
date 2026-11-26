@@ -1,3 +1,11 @@
+## AI-1 manual candidate-registry hardening checkpoint — 2026-11-26
+
+- Reconciled 21 missing candidate source identities into the canonical permission register. Candidate-to-register parity now covers all 43 candidate sources; all 548 candidate documents retain `discovery_only`.
+- Added strict bounded identifier syntax to the candidate seeder and explicit related-host handling for source URLs listed in the canonical register. Corrected the MKSEgypt candidate permission fields to `unknown`: the observed CC BY 4.0 footer is not treated as blanket permission for bulk extraction, ingestion, embedded Gazette scans, or unrestricted commercial reuse.
+- Manual GitHub read-back checks: 43/43 candidate source IDs found in the 220-row canonical register; zero duplicate source IDs in either file; zero candidate/register permission-state or registered-host mismatches; all candidate permission values conform to the seeder's accepted enum. This is static inspection, not execution of the Python validator or test suite.
+- Engineering progress estimate: legal research reliability **61%** (from 60%); review/integration **73%** (from 72%); overall AI-1 **61%** (from 60%). Other workstreams unchanged: Arabic retrieval 54%, citation/trust safeguards 75%, evaluation/regression 49%.
+- Validation limits: no Python tests, application, browser, or GitHub Actions were run. Regression tests are authored but unexecuted. No legal source was promoted, no operative text was imported, and no collection/commercial reuse permission was granted.
+
 ## AI-1 candidate identity and permission-register parity — 2026-11-26
 
 - Manual static comparison found 21 source IDs present in `docs/legal_document_candidates.json` but absent from the canonical `docs/source_permission_register.json`. The candidate seeder's parity check would fail closed for those records, and the existing catalog regression requiring every candidate ID to be registered would fail.
