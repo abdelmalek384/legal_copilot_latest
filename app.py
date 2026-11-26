@@ -2066,19 +2066,29 @@ def _answer_has_cited_actor_role_mismatch(answer, hits):
                 continue
             if any(index < 1 or index > len(hits) for index in cited):
                 return True
-            evidence = " ".join(str(hits[index - 1].get("text") or "") for index in cited)
             answer_terms = set(tokens(re.sub(r"\[\d+\]", " ", sentence)))
-            evidence_terms = set(tokens(evidence))
-            for left, right in _LEGAL_ACTOR_ROLE_PAIRS:
-                source_left, source_right = has_phrase(evidence, left), has_phrase(evidence, right)
-                answer_left, answer_right = has_phrase(sentence, left), has_phrase(sentence, right)
-                if source_left == source_right or answer_left == answer_right:
-                    continue
-                if source_left == answer_left:
-                    continue
-                excluded = set(tokens(left)) | set(tokens(right)) | _ACTOR_ROLE_GENERIC_TERMS
-                if len((answer_terms & evidence_terms) - excluded) >= 2:
+            answer_roles = {
+                (left, right): (has_phrase(sentence, left), has_phrase(sentence, right))
+                for left, right in _LEGAL_ACTOR_ROLE_PAIRS
+            }
+            # Evaluate every cited source independently. A second source mentioning
+            # the answer's actor must not mask a role substitution in the first.
+            for index in cited:
+                hit = hits[index - 1]
+                if not isinstance(hit, dict) or not isinstance(hit.get("text"), str) or not hit.get("text", "").strip():
                     return True
+                evidence = hit["text"]
+                evidence_terms = set(tokens(evidence))
+                for left, right in _LEGAL_ACTOR_ROLE_PAIRS:
+                    source_left, source_right = has_phrase(evidence, left), has_phrase(evidence, right)
+                    answer_left, answer_right = answer_roles[(left, right)]
+                    if source_left == source_right or answer_left == answer_right:
+                        continue
+                    if source_left == answer_left:
+                        continue
+                    excluded = set(tokens(left)) | set(tokens(right)) | _ACTOR_ROLE_GENERIC_TERMS
+                    if len((answer_terms & evidence_terms) - excluded) >= 2:
+                        return True
     return False
 
 _LEGAL_CONDITION_MARKERS = (
@@ -2121,24 +2131,30 @@ def _answer_has_unqualified_claim_against_conditional_source(answer, hits):
                 continue
             if any(index < 1 or index > len(hits) for index in cited):
                 return True
-            evidence = " ".join(str(hits[index - 1].get("text") or "") for index in cited)
-            normalized_evidence = norm(evidence)
             normalized_sentence = norm(sentence)
-            if any(re.search(marker, normalized_evidence, re.IGNORECASE) for marker in _LEGAL_UNIVERSAL_CLAIM_MARKERS):
-                continue
             if not any(re.search(marker, normalized_sentence, re.IGNORECASE) for marker in _LEGAL_UNIVERSAL_CLAIM_MARKERS):
                 continue
             answer_terms = set(tokens(re.sub(r"\[\d+\]", " ", sentence)))
-            # A conditional in a different sentence of the same passage must not
-            # taint an otherwise unconditional rule. Require the condition and
-            # the shared action anchors to occur in the same source sentence/clause.
-            for evidence_sentence in re.split(r"(?<=[.!?؟؛;])\s+", evidence):
-                normalized_segment = norm(evidence_sentence)
-                if not any(re.search(marker, normalized_segment, re.IGNORECASE) for marker in _LEGAL_CONDITION_MARKERS):
-                    continue
-                evidence_terms = set(tokens(evidence_sentence))
-                if len((answer_terms & evidence_terms) - _CONDITION_SCOPE_GENERIC_TERMS - _CITATION_SUPPORT_GENERIC_TERMS) >= 2:
+            # Check each cited source separately: an unconditional or universally
+            # qualified second source must not mask a conditional first source.
+            for index in cited:
+                hit = hits[index - 1]
+                if not isinstance(hit, dict) or not isinstance(hit.get("text"), str) or not hit.get("text", "").strip():
                     return True
+                evidence = hit["text"]
+                normalized_evidence = norm(evidence)
+                if any(re.search(marker, normalized_evidence, re.IGNORECASE) for marker in _LEGAL_UNIVERSAL_CLAIM_MARKERS):
+                    continue
+                # A conditional in a different sentence of the same passage must not
+                # taint an otherwise unconditional rule. Require the condition and
+                # the shared action anchors to occur in the same source sentence/clause.
+                for evidence_sentence in re.split(r"(?<=[.!?؟؛;])\s+", evidence):
+                    normalized_segment = norm(evidence_sentence)
+                    if not any(re.search(marker, normalized_segment, re.IGNORECASE) for marker in _LEGAL_CONDITION_MARKERS):
+                        continue
+                    evidence_terms = set(tokens(evidence_sentence))
+                    if len((answer_terms & evidence_terms) - _CONDITION_SCOPE_GENERIC_TERMS - _CITATION_SUPPORT_GENERIC_TERMS) >= 2:
+                        return True
     return False
 
 
