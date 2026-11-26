@@ -50,9 +50,13 @@ def reconcile_s3_original_file_storage(
             tables = {row[0] for row in db.execute("SELECT name FROM sqlite_master WHERE type='table'")}
             if "original_file_objects" not in tables:
                 continue
+            columns = {row[1] for row in db.execute("PRAGMA table_info(original_file_objects)")}
+            audit_columns_present = {"purged_by_user_id", "purge_reason"}.issubset(columns)
+            selected = "object_id,firm_id,storage_backend,sha256,byte_size,state,purged_at"
+            if audit_columns_present:
+                selected += ",purged_by_user_id,purge_reason"
             rows = db.execute(
-                "SELECT object_id,firm_id,storage_backend,sha256,byte_size,state,purged_at "
-                "FROM original_file_objects ORDER BY object_id"
+                f"SELECT {selected} FROM original_file_objects ORDER BY object_id"
             ).fetchall()
             for row in rows:
                 checked_rows += 1
@@ -63,11 +67,17 @@ def reconcile_s3_original_file_storage(
                 if row["storage_backend"] != "s3":
                     findings.append(ReconciliationFinding("backend_mismatch", tenant.firm_id, object_id, "metadata does not identify the S3 backend"))
                     continue
-                if not re.fullmatch(r"[0-9a-f]{64}", str(row["sha256"])) or int(row["byte_size"]) < 0:
+                if not re.fullmatch(r"[0-9a-f]{64}", str(row["sha256"])) or isinstance(row["byte_size"], bool) or not isinstance(row["byte_size"], int) or row["byte_size"] < 0:
                     findings.append(ReconciliationFinding("invalid_integrity_metadata", tenant.firm_id, object_id, "digest or size metadata is invalid"))
                     continue
+                if row["state"] not in {"staged", "ready", "quarantined"}:
+                    findings.append(ReconciliationFinding("invalid_object_state", tenant.firm_id, object_id, "metadata contains an unsupported storage state"))
+                    continue
+                if row["purged_at"] is not None and audit_columns_present:
+                    if row["purged_by_user_id"] is None or not str(row["purge_reason"] or "").strip():
+                        findings.append(ReconciliationFinding("invalid_purge_tombstone", tenant.firm_id, object_id, "purged metadata is missing its actor or reason"))
                 expected[(tenant.firm_id, object_id)] = (
-                    row["sha256"], int(row["byte_size"]), row["state"], row["purged_at"]
+                    row["sha256"], row["byte_size"], row["state"], row["purged_at"]
                 )
         finally:
             db.close()
