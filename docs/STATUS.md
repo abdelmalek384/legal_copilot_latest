@@ -2170,3 +2170,5 @@ Percentages are scoped to the described implementation or acceptance phase. They
 
 - The calendar month/agenda switch already exposed pressed state on its two buttons, but its labeled wrapper was a generic `div` without a group role. Added `role="group"` so assistive technology can identify the named control set; preserved the existing bilingual label and button state.
 - Added a frontend contract regression. Commits: `2df16bf`, `f88c303`. The frontend contract module is already in the security regression script and test workflow. No browser or Python tests were run.
+
+- Additional bilingual navigation semantics: labeled calendar month dates, matter-section navigation, and matter-subsection navigation now expose explicit group roles. Added frontend contract coverage; existing buttons and their selected/pressed state are unchanged. Commits: `d3dff31`, `9e4d388`.
