@@ -2219,7 +2219,7 @@ async function calendarPage(){
  let shownMonth=new Date(todayDate.getFullYear(),todayDate.getMonth(),1),selectedDay=todayKey;
  const monthLabel=()=>shownMonth.toLocaleDateString(LANG==='ar'?'ar-EG':'en-US',{month:'long',year:'numeric'});
  const monthTitle=h('b',{className:'calendar-month-title',textContent:monthLabel()});
- const grid=h('div',{className:'calendar-month-grid','aria-label':uiText('التقويم الشهري','Monthly calendar')});
+ const grid=h('div',{className:'calendar-month-grid',role:'group','aria-label':uiText('التقويم الشهري','Monthly calendar')});
  const weekdays=(LANG==='ar'?['الأحد','الإثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت']:['Sun','Mon','Tue','Wed','Thu','Fri','Sat']);
  let calendarView='month';const filtered=()=>{const needle=q.value.trim().toLocaleLowerCase();return items.filter(x=>(!kind.value||x.kind===kind.value)&&(!matterFilter.value||x.caseTitle===matterFilter.value)&&(x.title+' '+x.meta).toLocaleLowerCase().includes(needle))};
  const drawAgenda=()=>{
@@ -3763,8 +3763,8 @@ async function view(id){if(window.DOCUMENT_REVIEW_TARGET&&Number(window.DOCUMENT
   {id:'team',label:uiText('الفريق والسجل','Team & activity'),items:[['team',uiText('الفريق','Team')],['log',uiText('السجل','Activity log')]]}
  ];
  const selectedTabGroup=tabGroups.find(group=>group.items.some(([key])=>key===TAB))||tabGroups[0];
- const tabGroupNav=h('div',{className:'matter-section-nav','aria-label':uiText('أقسام ملف القضية','Matter sections')},...tabGroups.map(group=>h('button',{type:'button',className:selectedTabGroup.id===group.id?'on':'','aria-pressed':String(selectedTabGroup.id===group.id),textContent:group.label,onclick:()=>{window.DOCUMENT_REVIEW_TARGET=null;TAB=group.items[0][0];again()}})));
- const tabDetailNav=h('div',{className:'matter-subnav','aria-label':uiText('صفحات القسم الحالي','Pages in current section')},...selectedTabGroup.items.map(([key,label])=>h('button',{type:'button',className:TAB===key?'on':'','aria-current':TAB===key?'page':null,textContent:label,onclick:()=>{window.DOCUMENT_REVIEW_TARGET=null;TAB=key;again()}})));
+ const tabGroupNav=h('div',{className:'matter-section-nav',role:'group','aria-label':uiText('أقسام ملف القضية','Matter sections')},...tabGroups.map(group=>h('button',{type:'button',className:selectedTabGroup.id===group.id?'on':'','aria-pressed':String(selectedTabGroup.id===group.id),textContent:group.label,onclick:()=>{window.DOCUMENT_REVIEW_TARGET=null;TAB=group.items[0][0];again()}})));
+ const tabDetailNav=h('div',{className:'matter-subnav',role:'group','aria-label':uiText('صفحات القسم الحالي','Pages in current section')},...selectedTabGroup.items.map(([key,label])=>h('button',{type:'button',className:TAB===key?'on':'','aria-current':TAB===key?'page':null,textContent:label,onclick:()=>{window.DOCUMENT_REVIEW_TARGET=null;TAB=key;again()}})));
  let body;
  if(TAB==='sum'){
   const fields=[['case_number',uiText('رقم القضية','Case number')],['case_year',uiText('السنة','Year')],['court',uiText('المحكمة','Court')],['circuit',uiText('الدائرة','Circuit')],['opposing_party',uiText('الخصم','Opposing party')],['stage',uiText('المرحلة','Stage')]];
