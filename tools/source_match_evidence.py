@@ -59,6 +59,7 @@ def load_source_match_evidence(connection, version_id, source_id):
     capture_hash = record.get("original_capture_sha256")
     independent_hash = record.get("independent_copy_sha256")
     evidence_revision = record.get("evidence_revision")
+    evidence_id = record.get("evidence_id")
     publication_date = record.get("publication_date")
     effective_date = record.get("effective_date")
     if (
@@ -81,6 +82,9 @@ def load_source_match_evidence(connection, version_id, source_id):
         or isinstance(evidence_revision, bool)
         or not isinstance(evidence_revision, int)
         or evidence_revision <= 0
+        or isinstance(evidence_id, bool)
+        or not isinstance(evidence_id, int)
+        or evidence_id <= 0
     ):
         return None
 

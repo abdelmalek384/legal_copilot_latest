@@ -131,6 +131,9 @@ class SourceMatchEvidenceAdapterTests(unittest.TestCase):
             ("effective_date", "2020-1-02"),
             ("evidence_revision", 0),
             ("evidence_revision", True),
+            ("evidence_id", 0),
+            ("evidence_id", True),
+            ("evidence_id", "7"),
         ]
         for field, value in malformed:
             record = dict(base)

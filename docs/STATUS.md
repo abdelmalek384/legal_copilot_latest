@@ -1,4 +1,9 @@
 
+## AI-1 evidence-row identity validation — 2026-11-26
+
+- The source-match adapter now validates the evidence row's primary key as a positive integer (explicitly rejecting booleans and string coercion) before using it to query approved-use scope rows. This keeps malformed legacy/alternate-adapter row identities from reaching the second database lookup.
+- Added synthetic regressions for zero, boolean, and string evidence IDs. The repository test module remains **not executed**; this is source review and manual GitHub read-back only.
+
 - Added explicit orphan/mismatched independent-source registry join cases to the malformed-packet regression matrix, including absent and wrong join identities. These are source-authored regressions only; they have not been executed.
 
 - Regression-fixture alignment follow-up: all synthetic evidence packets that proceed to approved-use or boolean-flag checks now explicitly model the independent-source registry join result. This prevents the new orphan-source guard from causing unrelated tests to pass for the wrong reason. Tests remain unexecuted.
