@@ -44,3 +44,12 @@ This audit does not establish legal accuracy, currentness, licensing, security, 
 - Added focused regressions for multi-source actor masking, conditional masking, and split-source numeric quantities.
 - Commits: `5bab6a32392ef293d836150e78e41835b6c5ebaf`, `dadba963e80206be30585e548da9166104073636`, `cc0eace8f1b7d4cf64f28b19d909499599d572eb`, `7d6448452d63ea9130e800c6f7129ef74a494703`, `94d418e952c931e0a76b60730e696703762ee47f`, and `8214d2ecf3695e0c485960ccecc24fa4f7c3e588`.
 - These tests are committed but have not been executed in this remote-only workflow. The checks are conservative lexical/quantity safeguards, not semantic entailment, currentness verification, or qualified Egyptian lawyer review.
+
+
+## Follow-up claim-support citation isolation — 2026-11-26
+
+- The optional broad claim-support screen previously concatenated cited passage text before checking numeric value/unit consistency. A number and its unit could therefore be assembled across separate citations.
+- Numeric, modality, qualifier, reversal, and finite-limitation contradiction checks now run against each cited passage independently. The existing combined lexical-coverage check remains unchanged.
+- Added a fictional regression where one citation ends with a number and the next begins with its unit; the claim must be rejected.
+- Direct main commits: implementation `83f7321`, regression `5579126`. Both files were read back from main. Tests remain unexecuted; no Actions/CI or runtime validation was performed.
+- This is a conservative lexical safeguard only. It does not establish semantic entailment, legal currentness, or lawyer review.
