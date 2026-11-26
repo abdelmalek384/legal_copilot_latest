@@ -82,6 +82,7 @@ class FirmTestSourceMatchedModeTests(unittest.TestCase):
             "COPILOT_ENV": "test",
             "LEGAL_FIRM_TEST_SOURCE_MATCHED": "1",
             "LEGAL_FIRM_TEST_SOURCE_MATCHED_FIRM_ID": "42",
+            "LEGAL_FIRM_TEST_SOURCE_MATCHED_POLICY_APPROVED": "1",
         })
         self.assertEqual(result["answer"], "The fictional employer must give written notice [1].")
         self.assertEqual(result["trust_tier"], "source_matched")
@@ -98,6 +99,7 @@ class FirmTestSourceMatchedModeTests(unittest.TestCase):
             "COPILOT_ENV": "test",
             "LEGAL_FIRM_TEST_SOURCE_MATCHED": "1",
             "LEGAL_FIRM_TEST_SOURCE_MATCHED_FIRM_ID": "42",
+            "LEGAL_FIRM_TEST_SOURCE_MATCHED_POLICY_APPROVED": "1",
         }, clear=True):
             with patch.object(app, "search", return_value=[hit]), patch.object(
                 app, "LLM",
@@ -109,6 +111,16 @@ class FirmTestSourceMatchedModeTests(unittest.TestCase):
                 )
         self.assertEqual(result["trust_tier"], "source_matched")
         self.assertEqual(result["answer"], "The fictional employer must give written notice [1].")
+
+    def test_policy_approval_is_separate_from_feature_flag(self):
+        result, hit = self._ask_with_environment({
+            "COPILOT_ENV": "test",
+            "LEGAL_FIRM_TEST_SOURCE_MATCHED": "1",
+            "LEGAL_FIRM_TEST_SOURCE_MATCHED_FIRM_ID": "42",
+        })
+        self.assertIsNone(result["answer"])
+        self.assertTrue(result["abstained"])
+        self.assertEqual(result["trust_tier"], "unreviewed")
 
     def test_flag_off_returns_sources_only_and_unreviewed_label(self):
         result, hit = self._ask_with_environment({

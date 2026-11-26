@@ -2209,6 +2209,7 @@ def ask(c, q, case_id=None, firm_id=1, as_of=None, conversation_context=None, sc
         scope == "firm_test_source_matched"
         and source_matched_only
         and firm_test_source_matched_enabled(firm_id)
+        and os.environ.get("LEGAL_FIRM_TEST_SOURCE_MATCHED_POLICY_APPROVED", "").strip() == "1"
     )
     source_matched_preflight = (
         classify_answer_trust_tier(

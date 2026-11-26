@@ -2269,3 +2269,9 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Follow-up test-fixture maintenance: updated adapter fakes to provide valid independent-copy identity/digest and positive evidence revision, ensuring existing approved-use and boolean-flag regressions still exercise their intended downstream checks after stricter packet-shape validation. Tests remain unexecuted.
 
 - 2026-11-26: Closed a source-level retrieval-to-answer hand-off gap for exact-version source-match evidence. Corpus hits now expose the packet from citation provenance, and the firm-test trust preflight has a defensive provenance fallback. Added a synthetic answer-path regression for provenance-nested packets. Manual source read-back only; tests/runtime not executed. No trust tier, legal status, permission, or production eligibility is promoted by this change.
+
+## AI-1 explicit test-mode policy approval boundary — 2026-11-26
+
+- Source-matched test-mode answering now requires a distinct `LEGAL_FIRM_TEST_SOURCE_MATCHED_POLICY_APPROVED=1` environment setting in addition to the existing test environment, feature flag, and exact firm-ID gate. The previously implicit code-path policy approval is no longer enough to activate the answer tier.
+- Updated the synthetic response-path regressions to model the explicit approval setting and added a fail-closed case when policy approval is absent. Regression files remain unexecuted; manual code review only.
+- This is a test-only experimental tier; production remains blocked, and the approval flag does not establish legal correctness, rights, or readiness.

@@ -674,3 +674,9 @@ The owner has explicitly requested a non-production firm-test implementation. Th
 - Follow-up test-fixture maintenance: updated adapter fakes to provide valid independent-copy identity/digest and positive evidence revision, ensuring existing approved-use and boolean-flag regressions still exercise their intended downstream checks after stricter packet-shape validation. Tests remain unexecuted.
 
 - 2026-11-26 follow-up: retrieval previously nested the source-match packet under citation provenance while the firm-test preflight read only a top-level hit field. The source projection and preflight now carry/read the same packet without reconstructing it. Regression authored, not executed. Remaining: runtime verification of actual corpus search, exact-version DB adapter, answer abstention behavior, and counsel/legal review.
+
+## AI-1 explicit test-mode policy approval boundary — 2026-11-26
+
+- Source-matched test-mode answering now requires a distinct `LEGAL_FIRM_TEST_SOURCE_MATCHED_POLICY_APPROVED=1` environment setting in addition to the existing test environment, feature flag, and exact firm-ID gate. The previously implicit code-path policy approval is no longer enough to activate the answer tier.
+- Updated the synthetic response-path regressions to model the explicit approval setting and added a fail-closed case when policy approval is absent. Regression files remain unexecuted; manual code review only.
+- This is a test-only experimental tier; production remains blocked, and the approval flag does not establish legal correctness, rights, or readiness.
