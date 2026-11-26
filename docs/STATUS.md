@@ -1,4 +1,10 @@
 
+## AI-1 exact-version provenance packet integrity — 2026-11-26
+
+- Strengthened the source-match evidence read adapter beyond version/hash equality: it now requires canonical ISO calendar dates, 64-character hexadecimal SHA-256 values for both the primary capture and independent copy, a valid bounded independent-source identifier distinct from the primary source, and a positive integer evidence revision (excluding booleans).
+- Added synthetic regressions for malformed digests, impossible/non-canonical dates, invalid or self-referential independent-source IDs, and invalid revision values. Tests are authored but **not executed**.
+- This validates packet shape only; it does not authenticate either source, establish that the independent copy is truly independent, grant rights, or certify legal accuracy. No source records or permission states changed.
+
 ## AI-1 exact-version evidence adapter identifier boundary — 2026-11-26
 
 - Applied the same bounded ASCII source-ID grammar at the source-match evidence read boundary, before any database query. This prevents malformed identifiers from reaching SQL lookups and keeps the evidence adapter consistent with the candidate seeder and permission-register validator.

@@ -86,6 +86,44 @@ class SourceMatchEvidenceAdapterTests(unittest.TestCase):
         self.assertIsNone(load_source_match_evidence(Connection(), 1, "src"))
 
 
+    def test_adapter_rejects_malformed_hashes_dates_and_independent_source_identity(self):
+        base = {
+            "registry_source_id": "src", "registry_publication_date": "2020-01-01",
+            "registry_effective_date": "2020-01-02", "registry_original_sha256": "a" * 64,
+            "original_capture_sha256": "a" * 64, "independent_copy_source_id": "independent",
+            "independent_copy_sha256": "b" * 64, "publication_date": "2020-01-01",
+            "effective_date": "2020-01-02", "evidence_id": 7, "evidence_revision": 1,
+            "reuse_rights_allowed": 1, "validator_passed": 1, "article_inventory_complete": 1,
+            "differences_resolved_against_primary": 1, "publication_and_effective_dates_verified": 1,
+        }
+        class Cursor:
+            def __init__(self, description, row=None, rows=None):
+                self.description = [(name,) for name in description]
+                self.row, self.rows = row, rows or []
+            def fetchone(self): return self.row
+            def fetchall(self): return self.rows
+        class Connection:
+            def __init__(self, record): self.record = record
+            def execute(self, sql, params):
+                if "legal_source_match_evidence_uses" in sql:
+                    return Cursor(["approved_use"], rows=[])
+                return Cursor(list(self.record), tuple(self.record.values()))
+        malformed = [
+            ("original_capture_sha256", "not-a-hash"),
+            ("independent_copy_sha256", "c" * 63),
+            ("independent_copy_source_id", "src"),
+            ("independent_copy_source_id", "bad source id"),
+            ("publication_date", "2020-02-30"),
+            ("effective_date", "2020-1-02"),
+            ("evidence_revision", 0),
+            ("evidence_revision", True),
+        ]
+        for field, value in malformed:
+            record = dict(base)
+            record[field] = value
+            with self.subTest(field=field, value=value):
+                self.assertIsNone(load_source_match_evidence(Connection(record), 1, "src"))
+
     def test_adapter_rejects_legacy_use_rows_without_affirmative_rights(self):
         # Simulate a pre-guard or manually altered database: the adapter must
         # fail closed even if an inconsistent approved-use row already exists.

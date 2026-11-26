@@ -2,7 +2,19 @@
 from __future__ import annotations
 
 import re
+from datetime import date
 
+
+SOURCE_ID_PATTERN = re.compile(r"[A-Za-z0-9][A-Za-z0-9._-]{0,127}", re.ASCII)
+SHA256_PATTERN = re.compile(r"[0-9a-f]{64}", re.IGNORECASE | re.ASCII)
+
+def _valid_iso_date(value):
+    if not isinstance(value, str):
+        return False
+    try:
+        return date.fromisoformat(value).isoformat() == value
+    except ValueError:
+        return False
 
 def load_source_match_evidence(connection, version_id, source_id):
     """Return the latest packet only when it matches the exact registry row.
@@ -35,12 +47,33 @@ def load_source_match_evidence(connection, version_id, source_id):
         return None
     record = dict(zip((column[0] for column in cursor.description), row))
 
-    if (record.get("registry_source_id") != source_id
-            or record.get("registry_publication_date") != record.get("publication_date")
-            or record.get("registry_effective_date") != record.get("effective_date")
-            or not isinstance(record.get("registry_original_sha256"), str)
-            or record.get("registry_original_sha256", "").lower()
-                != str(record.get("original_capture_sha256", "")).lower()):
+    independent_source_id = record.get("independent_copy_source_id")
+    registry_hash = record.get("registry_original_sha256")
+    capture_hash = record.get("original_capture_sha256")
+    independent_hash = record.get("independent_copy_sha256")
+    evidence_revision = record.get("evidence_revision")
+    publication_date = record.get("publication_date")
+    effective_date = record.get("effective_date")
+    if (
+        record.get("registry_source_id") != source_id
+        or record.get("registry_publication_date") != publication_date
+        or record.get("registry_effective_date") != effective_date
+        or not _valid_iso_date(publication_date)
+        or not _valid_iso_date(effective_date)
+        or not isinstance(registry_hash, str)
+        or not SHA256_PATTERN.fullmatch(registry_hash)
+        or not isinstance(capture_hash, str)
+        or not SHA256_PATTERN.fullmatch(capture_hash)
+        or registry_hash.lower() != capture_hash.lower()
+        or not isinstance(independent_hash, str)
+        or not SHA256_PATTERN.fullmatch(independent_hash)
+        or not isinstance(independent_source_id, str)
+        or not SOURCE_ID_PATTERN.fullmatch(independent_source_id)
+        or independent_source_id == source_id
+        or isinstance(evidence_revision, bool)
+        or not isinstance(evidence_revision, int)
+        or evidence_revision <= 0
+    ):
         return None
 
     # SQLite CHECK constraints protect ordinary writes, but imported/legacy
