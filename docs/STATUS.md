@@ -2082,3 +2082,11 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - CLI release-gate configuration inspected: sample-size and practice-area gates are required alongside quality thresholds; numeric thresholds must be finite and within range; reports avoid overwriting existing outputs.
 - Human-review aggregation inspected: schema and disposition checks, critical defect categorization, aggregate-only redaction of answer/reviewer details, and cautious reviewer-agreement limitations.
 - No confirmed defect from this readback justified code changes. No runtime execution, legal accuracy claims, or CI evidence is implied. Test execution remains a manual local task.
+
+
+## AI-1 citation guard regression source review — 2026-11-26 (continued)
+
+- Inspected citation-coverage and quantity-binding regressions, plus Arabic polarity, actor-role substitution, and conditional-scope guard tests.
+- Cases include citations inside code/comments not counting as evidence, unclosed code fences, oversized numeric citation markers, uncited claims/bullets, citation-index failures, quantities tied to same-sentence cited passages, Arabic number forms, and conservative abstention on explicit polarity/actor/condition conflicts.
+- Read the synthetic answer-path tests exercising abstention on these mismatches. These tests are review evidence only; they have not been executed in this session.
+- No confirmed defect found in this readback. No speculative code or corpus change.
