@@ -83,5 +83,43 @@ class PlatformSecurityAuditMigrationTests(unittest.TestCase):
                 db.close()
 
 
+    def test_logout_event_migration_preserves_existing_events_and_allows_logout(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp) / "migrations"
+            control = root / "control_plane"
+            control.mkdir(parents=True)
+            for path in sorted((ROOT / "control_plane").glob("000[1-8]_*.sql")):
+                shutil.copy(path, control / path.name)
+            db = sqlite3.connect(":memory:")
+            db.row_factory = sqlite3.Row
+            try:
+                apply_profile_migrations(db, "control_plane", root)
+                db.execute(
+                    "INSERT INTO platform_security_events(event_type,detail_json) VALUES('membership_created','{}')"
+                )
+                db.commit()
+                shutil.copy(
+                    ROOT / "control_plane" / "0009_platform_security_events_logout.sql",
+                    control / "0009_platform_security_events_logout.sql",
+                )
+                self.assertEqual(apply_profile_migrations(db, "control_plane", root), [9])
+                old = db.execute(
+                    "SELECT id,event_type,detail_json FROM platform_security_events"
+                ).fetchone()
+                self.assertEqual((old["id"], old["event_type"], old["detail_json"]), (1, "membership_created", "{}"))
+                db.execute(
+                    "INSERT INTO platform_security_events(event_type,detail_json) VALUES('logout','{\"method\":\"web\",\"session_revoked\":true}')"
+                )
+                db.commit()
+                self.assertEqual(db.execute("SELECT COUNT(*) FROM platform_security_events").fetchone()[0], 2)
+                self.assertEqual(db.execute("PRAGMA integrity_check").fetchone()[0], "ok")
+                self.assertEqual(db.execute("PRAGMA foreign_key_check").fetchall(), [])
+                with self.assertRaises(sqlite3.IntegrityError):
+                    db.execute("UPDATE platform_security_events SET detail_json='{}' WHERE id=1")
+                with self.assertRaises(sqlite3.IntegrityError):
+                    db.execute("DELETE FROM platform_security_events WHERE id=1")
+            finally:
+                db.close()
+
 if __name__ == "__main__":
     unittest.main()
