@@ -6254,11 +6254,13 @@ def accept_invitation_new_identity(b: InvitationAcceptNewIn):
             )
         except sqlite3.IntegrityError as exc:
             raise HTTPException(409, "the invited identity already has a membership") from exc
-        control.execute(
+        consumed = control.execute(
             "UPDATE identity_invitations SET status='consumed',consumed_by_user_id=?,"
             "consumed_at=?,updated_at=? WHERE id=? AND status='sent'",
             (user_id, now, now, invitation["id"]),
         )
+        if consumed.rowcount != 1:
+            raise HTTPException(409, "invitation state changed; acceptance was not committed")
         control.execute(
             "INSERT INTO platform_security_events(actor_user_id,target_user_id,firm_id,event_type,detail_json) "
             "VALUES(?,?,?,'membership_created',?)",
@@ -6332,11 +6334,13 @@ def accept_invitation_existing_identity(b: InvitationAcceptExistingIn, u: dict =
             )
         except sqlite3.IntegrityError as exc:
             raise HTTPException(409, "this identity already has a membership; invitations do not reactivate memberships") from exc
-        control.execute(
+        consumed = control.execute(
             "UPDATE identity_invitations SET status='consumed',consumed_by_user_id=?,"
             "consumed_at=?,updated_at=? WHERE id=? AND status='sent'",
             (u["id"], now, now, invitation["id"]),
         )
+        if consumed.rowcount != 1:
+            raise HTTPException(409, "invitation state changed; acceptance was not committed")
         control.execute(
             "INSERT INTO platform_security_events(actor_user_id,target_user_id,firm_id,event_type,detail_json) "
             "VALUES(?,?,?,'membership_created',?)",
