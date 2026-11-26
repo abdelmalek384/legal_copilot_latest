@@ -40,6 +40,21 @@ class SourcePermissionRegisterTests(unittest.TestCase):
         errors = MODULE.validate({"sources": [item]})
         self.assertTrue(any("permission_evidence" in error for error in errors))
 
+    def test_source_ids_require_bounded_ascii_identifier_syntax(self):
+        import json
+        base = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))
+        invalid_ids = (" leading", "trailing ", "contains space", "slash/name", "semi;colon", "", "x" * 129, "قانون")
+        for source_id in invalid_ids:
+            data = json.loads(json.dumps(base))
+            data["sources"][0]["source_id"] = source_id
+            with self.subTest(source_id=source_id):
+                self.assertTrue(any("source_id must be a 1-128 character ASCII identifier" in error
+                                    for error in MODULE.validate(data)))
+        data = json.loads(json.dumps(base))
+        data["sources"][0]["source_id"] = "EG-LAW.14_2025-A"
+        self.assertFalse(any("source_id must be a 1-128 character ASCII identifier" in error
+                             for error in MODULE.validate(data)))
+
     def test_duplicate_source_ids_rejected(self):
         import json
         data = json.loads((ROOT / "docs" / "source_permission_register.json").read_text(encoding="utf-8"))

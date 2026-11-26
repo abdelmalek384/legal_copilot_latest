@@ -5,6 +5,7 @@ from __future__ import annotations
 import datetime as dt
 import json
 import os
+import re
 import stat
 from pathlib import Path
 from urllib.parse import parse_qsl, urlparse
@@ -31,6 +32,8 @@ REQUIRED = {
     "source_id", "authority", "source_page", "material_types", "access_status",
     "collection_permission", "commercial_reuse_permission", "required_next_action",
 }
+SOURCE_ID_PATTERN = re.compile(r"[A-Za-z0-9][A-Za-z0-9._-]{0,127}\Z", re.ASCII)
+
 EXPLICIT_PERMISSION_STATES = {"allowed", "allowed_limited", "prohibited",
                               "not_allowed_without_explicit_exception_or_license",
                               "prior_written_permission_required_per_published_terms"}
@@ -154,10 +157,10 @@ def validate(data: object) -> list[str]:
             errors.append(f"{label} missing fields: {', '.join(sorted(missing))}")
 
         sid = source.get("source_id")
-        if not isinstance(sid, str) or not sid.strip():
+        if not isinstance(sid, str) or not sid:
             errors.append(f"{label} requires non-empty source_id")
-        elif sid != sid.strip():
-            errors.append(f"{label}.source_id must not have surrounding whitespace")
+        elif not SOURCE_ID_PATTERN.fullmatch(sid):
+            errors.append(f"{label}.source_id must be a 1-128 character ASCII identifier using letters, digits, dot, underscore, or hyphen")
         elif sid in seen:
             errors.append(f"duplicate source_id: {sid}")
         else:

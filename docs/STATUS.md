@@ -1,3 +1,9 @@
+
+## AI-1 permission-register identifier validation — 2026-11-26
+
+- Extended the canonical permission-register validator to enforce the same bounded ASCII source-ID grammar as the candidate seeder (`[A-Za-z0-9][A-Za-z0-9._-]{0,127}`). This closes a validator asymmetry where whitespace, delimiters, non-ASCII identifiers, or overlong IDs could be accepted by the register validator even though the seeder rejects them.
+- Added regression cases for invalid identifiers and a valid mixed-punctuation identifier. Tests are authored but **not executed**; this is a source-level/manual integration only.
+- No source rights, permissions, legal content, or candidate status changed.
 ## AI-1 manual candidate-registry hardening checkpoint — 2026-11-26
 
 - Reconciled 21 missing candidate source identities into the canonical permission register. Candidate-to-register parity now covers all 43 candidate sources; all 548 candidate documents retain `discovery_only`.
