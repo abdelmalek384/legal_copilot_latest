@@ -382,3 +382,11 @@ The browser acceptance syntax error remains a separate pre-existing blocker. It 
 - Added a regression assertion that invitation replay leaves exactly one `invitation_accepted` lifecycle event (alongside the existing single-use-token/user-count checks).
 - Commits: `dbe84be` (app guard), `0a97923` (regression assertion). GitHub read-back only; tests were not executed in this environment.
 - AI-2 overall estimate: 34% → 35% (+1 pp); backend/workflow reliability: 28% → 29% (+1 pp). Security/tenant isolation estimate: 30% → 31% (+1 pp) for invitation-state integrity. Testing/regression remains 18% because execution is unavailable.
+
+
+## AI-2 password-change audit degradation handling — 26 November 2026
+
+- Separate-database password change commits password rotation and platform security event first, then writes the tenant audit event. If the tenant audit write fails after that successful commit, the API previously could return an unhandled 500 and leave the user unaware that the password changed and sessions were revoked.
+- The endpoint now returns success with an explicit `audit_warning` flag in this degraded case, while still deleting local session cookies; the password UI displays a bilingual warning after sign-in redirect instead of falsely reporting the password change as failed.
+- Commits: `139f202` (API), `1420700` (UI). GitHub read-back only; runtime and browser tests unavailable.
+- AI-2 overall estimate: 35% → 36% (+1 pp); backend/workflow reliability: 29% → 30% (+1 pp); front-end/usability: 31% → 32% (+1 pp). Testing/regression remains 18% (no test execution).
