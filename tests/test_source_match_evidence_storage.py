@@ -125,6 +125,8 @@ class SourceMatchEvidenceAdapterTests(unittest.TestCase):
             ("independent_copy_sha256", "c" * 63),
             ("independent_copy_source_id", "src"),
             ("independent_copy_source_id", "bad source id"),
+            ("matched_independent_copy_source_id", None),
+            ("matched_independent_copy_source_id", "unregistered"),
             ("publication_date", "2020-02-30"),
             ("effective_date", "2020-1-02"),
             ("evidence_revision", 0),

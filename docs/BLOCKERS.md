@@ -1,4 +1,6 @@
 
+- Added explicit orphan/mismatched independent-source registry join cases to the malformed-packet regression matrix, including absent and wrong join identities. These are source-authored regressions only; they have not been executed.
+
 - Regression-fixture alignment follow-up: all synthetic evidence packets that proceed to approved-use or boolean-flag checks now explicitly model the independent-source registry join result. This prevents the new orphan-source guard from causing unrelated tests to pass for the wrong reason. Tests remain unexecuted.
 
 ## AI-1 independent-copy registry binding — 2026-11-26
