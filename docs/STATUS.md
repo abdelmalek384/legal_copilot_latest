@@ -2051,3 +2051,11 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - The reviewed trust-tier and provenance code retains fail-closed checks; source-matched mode remains constrained by explicit evidence and non-production policy. Citation safeguards reviewed include citation coverage, inline quantity binding, polarity, legal actor and conditional-scope checks.
 - No confirmed defect suitable for an unvalidated direct-main code change was identified in the excerpts reviewed. This is a partial source review, not an exhaustive audit or runtime validation. No legal corpus, legal-source records, feature scope, thresholds, or trust status was changed.
 - GitHub Actions were not run. Repository test execution and manual browser acceptance remain blocked pending local Python 3.12/device execution. This record documents review activity only; it does not claim tests passed.
+
+
+## AI-1 retrieval and evaluation boundary review — 2026-11-26 (continued)
+
+- Continued inspecting retrieval-hint expansion and Arabic lexicon handling, explicit law-number/year matching, answer-trust classification, source-status provenance gates, and evaluation-question review-state handling.
+- Reviewed regression coverage for negated query aliases, preservation of original query tokens, explicit instrument matching, and exclusion of unreviewed benchmark questions from scored legal-quality metrics.
+- No confirmed defect was identified in this targeted readback that justifies a direct-main code change without supported-runtime validation. No tests executed, no legal corpus expansion, no lawyer-review labels fabricated, and no GitHub Actions invoked.
+- Partial source review only; does not establish correctness or release readiness.
