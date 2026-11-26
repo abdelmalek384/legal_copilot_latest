@@ -2172,3 +2172,5 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Added a frontend contract regression. Commits: `2df16bf`, `f88c303`. The frontend contract module is already in the security regression script and test workflow. No browser or Python tests were run.
 
 - Additional bilingual navigation semantics: labeled calendar month dates, matter-section navigation, and matter-subsection navigation now expose explicit group roles. Added frontend contract coverage; existing buttons and their selected/pressed state are unchanged. Commits: `d3dff31`, `9e4d388`.
+
+- Sign-in password visibility control now references its password input through `aria-controls="login-password"`; the field receives that stable ID. Added a frontend contract. The contract's source slice was corrected to target the actual `login(mode='signin')` function. Commits: `6fb5f1a`, `175bed8`, `12a3617`.
