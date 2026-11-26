@@ -21,3 +21,24 @@
 
 ## No runtime verification
 No GitHub Actions, remote execution, application runtime, test command, database mutation, or live legal source retrieval was performed during this review.
+
+
+## Arabic paraphrase stress matrix — manual-only, synthetic
+
+Purpose: target the risk that lexical similarity or clause splitting masks a legal polarity reversal, while avoiding speculative implementation changes before local execution.
+
+### Pairwise test design
+- **Formal negation:** `لا يجب`, `لا يلزم`, `لا يتعين`, `ليس ملزما`, `غير ملزم` versus positive obligation.
+- **Egyptian colloquial negation:** `ما ... ش` variants (including joined and separated spelling) versus positive obligation.
+- **Faithful paraphrases:** equivalent negative evidence and negative answer; equivalent positive evidence and positive answer.
+- **Clause isolation:** one clause negated, a second clause positive with a distinct action; answer cites only the positive clause. Expected: no false conflict.
+- **Same-action reversal:** same actor/action with opposite polarity across evidence and answer. Expected: block.
+- **Whitespace/marks:** tabs, repeated spaces, Arabic diacritics, tatweel and punctuation around negation. Expected: normalization preserves polarity.
+- **Mixed language:** Arabic negation and English obligation in separate clauses; ensure cross-language patterns do not spuriously pair.
+- **Ambiguous constructions:** record as manual review/abstention cases rather than asserting a machine pass.
+
+### Recording format
+For every synthetic pair, record evidence, answer, citation mapping, expected block/allow, actual local result, command, exact commit and reviewer. Separate false positives from false negatives. Do not count this as semantic accuracy; do not add real legal sources or promote source status.
+
+### Manual execution
+Run the focused reproducer and claim-support test module locally under the supported environment, with Actions disabled. If a specific failing pair is observed, fix only that reproducible boundary and add a regression; otherwise avoid broad refactors.
