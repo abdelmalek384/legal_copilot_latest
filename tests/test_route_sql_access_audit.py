@@ -43,6 +43,21 @@ def private():
         self.assertEqual(len(report["route_declaration_errors"]), 1)
         self.assertIn("route path must be a literal string", report["route_declaration_errors"][0])
 
+    def test_dynamic_route_registration_apis_are_reported_as_uninventoried(self):
+        for source in (
+            'app.add_api_route("/private", private_handler, methods=["GET"])',
+            'router.add_api_route("/private", private_handler, methods=["GET"])',
+            'app.add_route("/private", private_handler)',
+            'app.mount("/static", static_files)',
+        ):
+            with self.subTest(source=source):
+                report = audit_source(source)
+                self.assertEqual(report["route_count"], 0)
+                self.assertTrue(any(
+                    "cannot statically audit dynamic route registration" in error
+                    for error in report["route_declaration_errors"]
+                ))
+
     def test_dynamic_api_route_methods_are_reported_as_uninventoried(self):
         source = '''
 METHODS = ["GET", "POST"]
@@ -236,6 +251,17 @@ def router_private():
             app_path = Path(directory) / "app.py"
             app_path.write_text(
                 "from routers.future_feature import router\n",
+                encoding="utf-8",
+            )
+            with patch("tools.audit_route_sql_access.APP_FILE", app_path):
+                with self.assertRaisesRegex(RuntimeError, "no source mapping"):
+                    default_source()
+
+    def test_default_inventory_fails_closed_for_aliased_router_module_import(self):
+        with tempfile.TemporaryDirectory() as directory:
+            app_path = Path(directory) / "app.py"
+            app_path.write_text(
+                "import routers.future_feature as future_feature\\n",
                 encoding="utf-8",
             )
             with patch("tools.audit_route_sql_access.APP_FILE", app_path):
