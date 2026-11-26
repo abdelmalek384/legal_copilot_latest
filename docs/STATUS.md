@@ -2134,3 +2134,5 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Manual source inventory verified all 13 allowlist entries map to the expected route decorator and handler in the expected module; the focused test remains registered in both the security regression script and test workflow. This is a source-level consistency check, not execution of the Python test.
 
 - Final boundary refinement: allowlist entries are module-bound as well as handler-bound; an external `app.py` path cannot inherit repository exemptions through a matching basename. CLI single-file audits now retain the resolved source path. Added regressions for same-named handlers in another module and an external `app.py`. Commits: `b9a68e7`, `cc440c6`. The existing focused test remains in the local handoff and both regression registrations.
+
+- Duplicate-registration protection added: a second registration matching an otherwise exact public allowlist tuple is now reported and is not granted the public exemption. Added a regression with duplicate `GET /` registrations. Commits: `4cf3a94`, `bfd75e6`. Static review only; no test execution claimed.
