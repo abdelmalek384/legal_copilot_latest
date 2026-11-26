@@ -743,13 +743,13 @@ class DatabaseBackupBundleTests(unittest.TestCase):
     def test_archive_preflight_rejects_file_directory_name_collisions(self):
         from database_backup import _safe_archive_members
 
-        cases = (
+        invalid_cases = (
             (("folder", b"file"), ("folder/", b"directory")),
             (("folder", b"file"), ("folder/item.sqlite3", b"nested")),
-            (("folder/", b"directory"), ("folder/item.sqlite3", b"nested")),
+            (("folder/item.sqlite3", b"nested"), ("folder", b"file")),
         )
-        for members in cases:
-            with self.subTest(members=tuple(name for name, _ in members)):
+        for members in invalid_cases:
+            with self.subTest(invalid_members=tuple(name for name, _ in members)):
                 payload = io.BytesIO()
                 with zipfile.ZipFile(payload, "w") as archive:
                     for name, data in members:
@@ -759,6 +759,17 @@ class DatabaseBackupBundleTests(unittest.TestCase):
                         DatabaseBundleError, "conflicting file and directory paths|duplicate paths"
                     ):
                         _safe_archive_members(archive)
+
+        # An explicit directory entry is a valid parent for a regular file.
+        payload = io.BytesIO()
+        with zipfile.ZipFile(payload, "w") as archive:
+            archive.writestr("folder/", b"")
+            archive.writestr("folder/item.sqlite3", b"nested")
+        with zipfile.ZipFile(io.BytesIO(payload.getvalue()), "r") as archive:
+            self.assertEqual(
+                _safe_archive_members(archive),
+                {"folder", "folder/item.sqlite3"},
+            )
 
     def test_restore_rejects_traversal_symlink_and_duplicate_zip_members(self):
         import warnings
