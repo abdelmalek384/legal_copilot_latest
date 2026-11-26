@@ -2282,3 +2282,12 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Extracted the source-matched test policy-approval switch into a small fail-closed helper that accepts only mapping-like configuration and the trimmed string value `1`. Integers, booleans, nulls, malformed values, and non-mapping inputs are denied.
 - Updated the application gate to call this helper and added synthetic malformed-setting regressions. Tests are authored, not executed; GitHub Actions are not run.
 - This is defensive configuration parsing only; no source evidence, legal content, permissions, or production eligibility changed.
+
+
+## AI-1 manual claim-support verification readiness — 2026-11-26
+
+- Added a synthetic Arabic/English paraphrase stress matrix to `docs/AI1_claim_support_manual_verification_plan_2026-11-26.md`: formal and colloquial negation, faithful paraphrases, clause isolation, same-action reversals, diacritics/tatweel/whitespace, mixed-language boundaries, and ambiguous abstention cases.
+- Re-inspected the current claim-support test module against the matrix. The existing tests already cover most core polarity cases, including Arabic colloquial forms, variable whitespace, faithful negatives, clause isolation, mixed-language modality, and reversal checks. This is a source inventory, not a claim that all matrix cases are implemented or tests passed; avoid duplicate tests without a concrete gap.
+- **No runtime verification:** no local test process, Python runtime, database, browser, or GitHub Actions was invoked. A local run by the repository owner remains the evidence gate for test outcomes.
+- **Progress accounting:** evaluation/test readiness estimate 50% and review/integration 78% are modest engineering estimates reflecting improved manual verification specificity and read-back. Overall AI-1 remains 60%; no accuracy, semantic entailment, or legal correctness gain is claimed.
+- Next safe action after local execution: address only a reproducible defect or missing case. If focused tests pass, capture exact commit, command and test output in a manual evidence record; passing heuristics still do not establish legal accuracy.
