@@ -118,6 +118,18 @@ def home():
         self.assertEqual(report["public_route_count"], 1)
         self.assertEqual(report["missing_authentication"], [])
 
+    def test_same_public_handler_name_in_another_module_is_not_exempted(self):
+        source = '''
+@router.get("/")
+def home():
+    return {"private": True}
+'''
+        report = audit_sources({"routers/rogue.py": source}, require_public_routes=False)
+        self.assertEqual(report["public_route_count"], 0)
+        self.assertEqual(report["missing_authentication"], [
+            "GET / (home) in routers/rogue.py has no Depends(user) authentication"
+        ])
+
     def test_dynamic_api_route_methods_fail_closed(self):
         source = '''
 def user():
