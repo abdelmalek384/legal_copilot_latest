@@ -56,6 +56,7 @@ tests=(
   test_security_transport_config.py
   test_trusted_proxy_client_ip.py
   test_trusted_host_middleware.py
+  test_uploaded_filename_sanitization.py
   test_original_file_storage.py
   test_original_file_reconciliation.py
   test_import_restored_originals_to_s3.py
