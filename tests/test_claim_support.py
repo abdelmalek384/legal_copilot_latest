@@ -10,6 +10,17 @@ from tools.claim_support import (_has_unsupported_qualifiers, _ARABIC_FINITE_PER
 
 
 class ClaimSupportTests(unittest.TestCase):
+    def test_oversized_citation_index_fails_closed_without_integer_parse_error(self):
+        answer = "The fictional deadline is five days [999999999999999999999999999999]."
+        self.assertTrue(has_unsupported_claims(
+            answer, [{"text": "The fictional deadline is five days."}],
+            tokens, norm, _mask_markdown_code
+        ))
+        self.assertTrue(has_negated_obligation_conflicts(
+            answer, [{"text": "The fictional deadline is five days."}],
+            tokens, norm, _mask_markdown_code
+        ))
+
     def test_invalid_cited_hit_is_not_ignored_when_another_citation_is_valid(self):
         hits = [None, {"text": "The fictional deadline is five days."}]
         self.assertTrue(has_unsupported_claims(
