@@ -467,6 +467,14 @@ def _sentences(answer, mask_code):
                 yield sentence
 
 
+def _citation_indices(sentence):
+    """Parse bounded inline citation indices; return None for oversized markers."""
+    raw = re.findall(r"\[(\d+)\]", sentence)
+    if any(len(value) > 9 for value in raw):
+        return None
+    return {int(value) for value in raw}
+
+
 def _obligation_clauses(text):
     """Split at sentence and contrast boundaries before comparing obligation polarity."""
     return [
@@ -503,7 +511,9 @@ def has_negated_obligation_conflicts(answer, hits, tokens_fn, norm_fn, mask_code
     if not isinstance(answer, str) or not answer.strip() or not isinstance(hits, (list, tuple)):
         return True
     for sentence in _sentences(answer, mask_code):
-        cited = {int(value) for value in re.findall(r"\[(\d+)\]", sentence)}
+        cited = _citation_indices(sentence)
+        if cited is None:
+            return True
         if not cited:
             continue
         if any(index < 1 or index > len(hits) for index in cited):
@@ -546,7 +556,9 @@ def has_unsupported_claims(answer, hits, tokens_fn, norm_fn, mask_code=None):
         return True
 
     for sentence in _sentences(answer, mask_code):
-        cited = {int(value) for value in re.findall(r"\[(\d+)\]", sentence)}
+        cited = _citation_indices(sentence)
+        if cited is None:
+            return True
         if not cited:
             continue  # Missing citations are handled by the existing citation guard.
         if any(index < 1 or index > len(hits) for index in cited):
