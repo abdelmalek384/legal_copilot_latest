@@ -133,3 +133,10 @@ For each failure send back:
 ## 10. Scope / release warning
 
 This handoff optimizes the owner's final local test window; it is not proof of readiness. Local tests, browser/device acceptance, two-firm security tests, supported runtime, clean migration, and witnessed backup/restore are still required before a supervised firm pilot. AI-1's legal evidence/retrieval validation remains a separate gate.
+
+
+## Follow-up added after handoff preparation
+
+- Backup archive preflight now rejects file/directory path collisions in either ZIP member order.
+- The regression test explicitly permits a valid directory entry (for example, `folder/`) with a nested file (for example, `folder/item.sqlite3`), while rejecting a regular file used as a directory or parent.
+- This is a source/test correction only. The backup-bundle test module has **not** been executed in this environment; run it in the planned local Python 3.12 session.
