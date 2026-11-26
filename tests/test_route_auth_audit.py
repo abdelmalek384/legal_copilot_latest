@@ -145,6 +145,23 @@ def home():
         self.assertEqual(len(report["missing_authentication"]), 1)
         self.assertIn("has no Depends(user) authentication", report["missing_authentication"][0])
 
+    def test_duplicate_exact_public_route_registration_fails_closed(self):
+        source = '''
+@app.get("/")
+def home():
+    return "first"
+
+@app.get("/")
+def home():
+    return "second"
+'''
+        report = audit_source(source)
+        self.assertEqual(report["public_route_count"], 1)
+        self.assertTrue(any(
+            "duplicate public route registration: GET / (home) in app.py" in item
+            for item in report["missing_authentication"]
+        ))
+
     def test_dynamic_api_route_methods_fail_closed(self):
         source = '''
 def user():
