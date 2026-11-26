@@ -54,3 +54,11 @@ Run tests later, at the user's planned local-test window, not now. Do not treat 
 - Manual source check only: the module is present in both inventories. No tests were executed and no GitHub Actions were invoked.
 - Progress: security / tenant isolation remains 85.1%; documents / file handling remains 99.1%; deployment / backup / recovery remains 46.7%; test execution readiness increases conservatively from 11.0% to 11.2% for better regression coverage integration (not test execution); AI-2 overall remains 76.2%.
 - Release gates remain: execute Python 3.12 suites locally, verify browser/device workflows, complete two-firm isolation, and perform a witnessed backup/restore.
+
+## Expanded manual security coverage — 2026-11-26
+
+- Expanded the focused security regression script with six existing high-value modules: auth-cookie expiry middleware, per-firm MFA/security policy, separate-runtime security-audit reads, bounded original-file audit history, staged-original recovery, and disposable-copy database migration rehearsal.
+- Commit: `fdad149733411b9dd298b8325c99a877d7822c68`.
+- Manual inventory comparison: all modules named by the security script exist in the repository and are explicitly present in `.github/workflows/tests.yml`; no duplicate entries were found. This is source-list inspection only, not test execution.
+- Test execution readiness: 11.2% to 11.5% (+0.3 pp) for broader focused coverage. Security / tenant isolation remains 85.1%; documents / file handling remains 99.1%; deployment / backup / recovery remains 46.7%; AI-2 overall remains 76.2%.
+- No GitHub Actions were run. No repository tests were executed. Browser/device acceptance, two-firm isolation, and witnessed restore remain release gates.
