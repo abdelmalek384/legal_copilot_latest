@@ -301,7 +301,13 @@ _NUMERIC_UNITS = {
     "percent": "percent", "unit": "unit", "units": "unit",
     "وحدة": "unit", "وحدات": "unit", "egp": "currency",
     "pound": "currency", "pounds": "currency", "جنيه": "currency",
-    "جنيهات": "currency",
+    "جنيهات": "currency", "usd": "currency", "dollar": "currency",
+    "dollars": "currency", "دولار": "currency", "دولارات": "currency",
+    "eur": "currency", "euro": "currency", "euros": "currency",
+    "يورو": "currency", "gbp": "currency", "sterling": "currency",
+    "sar": "currency", "ريال": "currency", "ريالات": "currency",
+    "aed": "currency", "درهم": "currency", "دراهم": "currency",
+    "kwd": "currency", "دينار": "currency", "دنانير": "currency",
 }
 _CURRENCY_PREFIXES = {"egp", "pound", "pounds", "جنيه", "جنيهات"}
 
