@@ -570,11 +570,12 @@ class IdentityLifecycleTests(unittest.TestCase):
         ).fetchone()[0]
         self.assertEqual(after, 0)
         event = control.execute(
-            "SELECT event_type,detail_json FROM platform_security_events "
+            "SELECT event_type,detail_json,firm_id FROM platform_security_events "
             "WHERE actor_user_id=? AND target_user_id=? AND event_type='logout' ORDER BY id DESC LIMIT 1",
             (user_id, user_id),
         ).fetchone()
         self.assertIsNotNone(event)
+        self.assertEqual(event["firm_id"], self.firm_a)
         self.assertIn('"session_revoked":true', event["detail_json"])
 
     def test_logout_audit_failure_does_not_restore_session_or_block_logout(self):
