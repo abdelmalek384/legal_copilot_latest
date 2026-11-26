@@ -30,7 +30,7 @@ class RouteAuthenticationAuditTests(unittest.TestCase):
         self.assertFalse(imported.issubset(set(ROUTER_MODULES)))
 
     def test_new_router_module_import_statement_is_detected(self):
-        source = "import routers.new_feature as feature_module\\n"
+        source = "import routers.new_feature as feature_module\n"
         imported = imported_router_modules(source)
         self.assertEqual(imported, {"routers.new_feature"})
         self.assertFalse(imported.issubset(set(ROUTER_MODULES)))
