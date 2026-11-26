@@ -220,6 +220,11 @@ class IdentityLifecycleTests(unittest.TestCase):
             "SELECT COUNT(*) FROM users WHERE email_normalized=?",
             ("new.lawyer@example.test",),
         ).fetchone()[0], 1)
+        self.assertEqual(control.execute(
+            "SELECT COUNT(*) FROM identity_lifecycle_events WHERE invitation_id=? "
+            "AND event_type='invitation_accepted'",
+            (created.json()["invitation_id"],),
+        ).fetchone()[0], 1)
 
     def test_invitation_acceptance_fails_closed_if_firm_is_disabled_after_issue(self):
         self.assertEqual(self._login(self.client, "invitation-owner@example.test", self.password).status_code, 200)
