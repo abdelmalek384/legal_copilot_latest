@@ -209,6 +209,22 @@ def private():
         self.assertEqual(report["route_count"], 0)
         self.assertIn("route path must be a literal string", report["missing_authentication"][0])
 
+    def test_dynamic_route_registration_api_fails_closed(self):
+        sources = (
+            'app.add_api_route("/private", private_handler, methods=["GET"])',
+            'router.add_api_route("/private", private_handler, methods=["GET"])',
+            'app.mount("/static", static_files)',
+            'app.add_route("/private", private_handler)',
+        )
+        for source in sources:
+            with self.subTest(source=source):
+                report = audit_source(source)
+                self.assertEqual(report["route_count"], 0)
+                self.assertTrue(any(
+                    "cannot statically audit dynamic route registration" in finding
+                    for finding in report["missing_authentication"]
+                ))
+
     def test_keyword_literal_route_path_is_audited(self):
         source = '''
 @app.get(path="/private")
