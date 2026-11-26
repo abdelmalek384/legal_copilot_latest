@@ -2305,3 +2305,10 @@ Percentages are scoped to the described implementation or acceptance phase. They
 
 - Tightened the read adapter's HTTPS evidence URL check to reject credential-bearing query-key variants (token, secret, password, credential, signature, auth, API-key, and private-key forms), not only the exact enumerated provider parameter names. This is a conservative locator hygiene guard; it does not authenticate evidence or prove reuse rights.
 - Added synthetic regressions for common undocumented parameter variants and a benign query parameter. Tests are authored, not executed. GitHub readback only; no Actions/CI or PR activity.
+
+
+## AI-1 source-match evidence URL key precision — 2026-11-26
+
+- Refined credential-bearing query-key detection to avoid a naive substring false positive (for example, ordinary metadata key `author`) while still catching compact and delimited credential-key variants such as auth, token, API-key, private-key, and signature forms.
+- Added synthetic regressions for both sensitive variants and benign metadata keys. This is a precision/robustness adjustment to the URL hygiene gate; it does not authenticate evidence or prove legal reuse rights.
+- Implementation and regression commits: `9c12550`, `4ee2475`, `033479d`, `5909095`. Read-back from `main` confirmed the implementation commit. Tests remain unexecuted; no Actions/CI, PR, or runtime validation was initiated.
