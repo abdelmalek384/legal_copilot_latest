@@ -26,3 +26,12 @@ This audit does not establish legal accuracy, currentness, licensing, security, 
 - Regression coverage includes both an unrelated extra citation (must abstain) and complementary cited passages (must pass the lexical relevance check).
 - Commits: `05c13aac94d47f50c840df18c75175ea4a3e851a` and `d6edf36158c1fbb4a979af4128e024fecf240563`.
 - Tests are committed but have not been executed on this remote branch. This lexical check is not semantic entailment or legal review; broader answer quality and end-to-end research acceptance remain open.
+
+
+## Follow-up multi-source polarity hardening — 2026-11-26
+
+- The Arabic source-polarity guard previously concatenated all passages cited by one sentence. When separate cited passages expressed opposite polarities, the combined text could be classified as ambiguous and bypass the contradiction check.
+- The guard now compares the generated sentence with each cited passage independently. An ambiguous passage remains unclassified, but it cannot mask a clear reversal in another cited passage.
+- Added a direct regression and an end-to-end `ask()` abstention regression for conflicting multi-source polarity.
+- Commits: `de1eed998bcf0af39eb138b67556ad0f8bbd1f39` and `b0e7eb11647fea8d92f4245f411ebdc0df9243dc`.
+- Tests are committed but unexecuted on this remote branch. The check remains a narrow polarity heuristic, not semantic interpretation or lawyer review.
