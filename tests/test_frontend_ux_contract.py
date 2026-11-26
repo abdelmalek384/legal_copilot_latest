@@ -2043,7 +2043,7 @@ class FrontendUXContractTests(unittest.TestCase):
 
     def test_login_password_visibility_button_controls_password_field(self):
         login_start = HTML.index("function login(mode='signin')")
-        login_end = HTML.index("\\nfunction ", login_start + 10)
+        login_end = HTML.index("\nfunction ", login_start + 10)
         login = HTML[login_start:login_end]
         self.assertIn("p.id='login-password'", login)
         self.assertIn("'aria-controls':'login-password'", login)
