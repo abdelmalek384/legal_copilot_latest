@@ -2073,3 +2073,12 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Reviewed fail-closed source-status paths: explicit search scopes; matter-linked text stays user-supplied; secondary copies are downgraded; verified status requires recorded source/version, file hash, permissions, review evidence, publication/effective dates and Gazette pinpoints; test-only source-matched records bind to IDs/dates and are explicitly not lawyer-verified.
 - Reviewed URL/date parsing, duplicate review-event ID handling, counsel attestation marker, Cairo-local date gates, and memo behavior for malformed/empty source records.
 - No confirmed defect was identified in this pass; no speculative policy or legal-status change made. No runtime tests executed, and this source inspection is not independent legal verification.
+
+
+## AI-1 legal-answer evaluator and human-review aggregator review — 2026-11-26 (continued)
+
+- Reviewed additional portions of `tools/evaluate_legal_answers.py` and `tools/evaluate_legal_answer_reviews.py`.
+- Evaluator input safeguards inspected: duplicate JSON keys rejected, bounded regular-file reads with descriptor/path identity checks, explicit counsel-approved question gates, date and practice-area reviewer qualification, answerability and expected source/pin-cite consistency, and provenance hashes for input bytes.
+- CLI release-gate configuration inspected: sample-size and practice-area gates are required alongside quality thresholds; numeric thresholds must be finite and within range; reports avoid overwriting existing outputs.
+- Human-review aggregation inspected: schema and disposition checks, critical defect categorization, aggregate-only redaction of answer/reviewer details, and cautious reviewer-agreement limitations.
+- No confirmed defect from this readback justified code changes. No runtime execution, legal accuracy claims, or CI evidence is implied. Test execution remains a manual local task.
