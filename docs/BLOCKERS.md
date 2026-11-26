@@ -1,6 +1,6 @@
 # Delivery blockers and closure register
 
-Last reviewed: 2026-11-25
+Last reviewed: 2026-11-26
 Scope: Legal Copilot release work. This register separates work that can be closed by repository changes from work that requires external execution, licensed/legal review, operational access, or real users.
 
 ## Closure policy
