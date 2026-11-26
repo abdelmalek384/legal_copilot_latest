@@ -2034,5 +2034,11 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("aria-pressed','true'", view_switch)
         self.assertIn("aria-pressed','false'", view_switch)
 
+
+    def test_named_calendar_and_matter_navigation_groups_have_group_semantics(self):
+        self.assertIn("className:'calendar-month-grid',role:'group','aria-label':uiText('التقويم الشهري','Monthly calendar')", HTML)
+        self.assertIn("className:'matter-section-nav',role:'group','aria-label':uiText('أقسام ملف القضية','Matter sections')", HTML)
+        self.assertIn("className:'matter-subnav',role:'group','aria-label':uiText('صفحات القسم الحالي','Pages in current section')", HTML)
+
 if __name__ == "__main__":
     unittest.main()
