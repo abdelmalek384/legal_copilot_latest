@@ -439,6 +439,44 @@ class DatabaseBackupBundleTests(unittest.TestCase):
             _copy_s3_original_objects(snapshot, self.firm_a, store, payload)
         self.assertEqual(store.presence_calls, 0)
 
+    def test_backup_rejects_purge_tombstones_without_actor_or_reason_for_local_and_s3(self):
+        import sqlite3
+        from database_backup import _copy_original_objects, _copy_s3_original_objects
+
+        object_id = "c" * 32
+        digest = hashlib.sha256(b"already purged").hexdigest()
+
+        class NeverReadStore:
+            def object_presence(self, *_args, **_kwargs):
+                raise AssertionError("purged tombstone must not trigger object-store reads")
+
+        for backend in ("local", "s3"):
+            snapshot = self.root / f"{backend}-invalid-purge-tombstone.sqlite3"
+            connection = sqlite3.connect(snapshot)
+            connection.execute(
+                "CREATE TABLE original_file_objects (object_id TEXT, firm_id INTEGER, "
+                "storage_backend TEXT, sha256 TEXT, byte_size INTEGER, state TEXT, "
+                "purged_at TEXT, purged_by_user_id INTEGER, purge_reason TEXT)"
+            )
+            connection.execute(
+                "INSERT INTO original_file_objects VALUES(?,?,?,?,?,'ready',?,NULL,'   ')",
+                (object_id, self.firm_a, backend, digest, len(b"already purged"), "2026-11-26 09:00:00"),
+            )
+            connection.commit()
+            connection.close()
+
+            payload = self.root / f"{backend}-invalid-purge-payload"
+            payload.mkdir()
+            with self.assertRaises(DatabaseBundleError):
+                if backend == "local":
+                    _copy_original_objects(
+                        snapshot, self.firm_a, self.root / "absent-object-root", payload
+                    )
+                else:
+                    _copy_s3_original_objects(
+                        snapshot, self.firm_a, NeverReadStore(), payload
+                    )
+
     def test_original_objects_restore_with_tenant_metadata_and_verified_bytes(self):
         import hashlib
         import app
