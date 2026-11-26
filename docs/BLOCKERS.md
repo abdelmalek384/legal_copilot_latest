@@ -1,4 +1,10 @@
 
+## AI-1 exact-version evidence adapter identifier boundary — 2026-11-26
+
+- Applied the same bounded ASCII source-ID grammar at the source-match evidence read boundary, before any database query. This prevents malformed identifiers from reaching SQL lookups and keeps the evidence adapter consistent with the candidate seeder and permission-register validator.
+- Added a focused no-database-access regression for malformed identifiers plus a valid identifier control. Test is authored but **not executed**; this is manual source review/read-back only.
+- Existing evidence packet semantics, rights flags, trust tiers, and verified-corpus retrieval are unchanged. No evidence is synthesized and no candidate source is enabled.
+
 ## AI-1 permission-register identifier validation — 2026-11-26
 
 - Extended the canonical permission-register validator to enforce the same bounded ASCII source-ID grammar as the candidate seeder (`[A-Za-z0-9][A-Za-z0-9._-]{0,127}`). This closes a validator asymmetry where whitespace, delimiters, non-ASCII identifiers, or overlong IDs could be accepted by the register validator even though the seeder rejects them.

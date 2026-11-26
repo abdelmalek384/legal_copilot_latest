@@ -29,6 +29,21 @@ class SourceMatchEvidenceAdapterTests(unittest.TestCase):
         self.assertIn("legal_source_match_evidence_no_update", triggers)
         db.close()
 
+    def test_bad_source_identifier_syntax_fails_closed_before_database_access(self):
+        class Connection:
+            calls = 0
+            def execute(self, sql, params):
+                self.calls += 1
+                raise AssertionError("database must not be queried for malformed identifiers")
+        for source_id in (" leading", "trailing ", "contains space", "slash/name", "semi;colon", "x" * 129, "قانون"):
+            db = Connection()
+            with self.subTest(source_id=source_id):
+                self.assertIsNone(load_source_match_evidence(db, 1, source_id))
+                self.assertEqual(db.calls, 0)
+        db = Connection()
+        self.assertIsNone(load_source_match_evidence(db, 1, "EG-LAW.14_2025-A"))
+        self.assertEqual(db.calls, 1)
+
     def test_bad_ids_fail_closed_before_database_access(self):
         self.assertIsNone(load_source_match_evidence(None, True, "source"))
         self.assertIsNone(load_source_match_evidence(None, 1, " source"))

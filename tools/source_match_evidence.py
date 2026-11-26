@@ -1,6 +1,8 @@
 """Read exact-version source-match evidence from the shared legal corpus."""
 from __future__ import annotations
 
+import re
+
 
 def load_source_match_evidence(connection, version_id, source_id):
     """Return the latest packet only when it matches the exact registry row.
@@ -10,7 +12,7 @@ def load_source_match_evidence(connection, version_id, source_id):
     """
     if (isinstance(version_id, bool) or not isinstance(version_id, int)
             or version_id <= 0 or not isinstance(source_id, str)
-            or not source_id or source_id != source_id.strip()):
+            or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,127}", source_id, re.ASCII)):
         return None
 
     cursor = connection.execute(
