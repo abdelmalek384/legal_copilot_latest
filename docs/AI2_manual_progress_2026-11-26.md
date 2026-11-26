@@ -24,6 +24,8 @@ The progress increase is only a small source-level implementation estimate. The 
 
 - Follow-up after source review: the event table CHECK constraint originally rejected the new `logout` event. Added migration `0009_platform_security_events_logout.sql` preserving existing audit IDs/rows and append-only triggers, and a migration test covering the preserved history, new event, integrity checks, and trigger behavior. Direct-main commits: migration `7ed1e29`, migration test `121593f`, blocker follow-up `de9646a`. Tests are still not executed.
 
+- Last refinement: logout audit rows include the active firm ID, and the success regression checks that tenant context is retained (`9222b59`, `fb80572`, checkpoint `bb37549`).
+
 ## Remaining release blockers
 
 - Run the focused identity lifecycle tests and the complete test/security/release suites on exact main in the documented Python 3.12 environment.
