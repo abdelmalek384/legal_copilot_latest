@@ -2120,3 +2120,11 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Continued manual source review of tenant SQLite connection routing and provisioning. Inspected thread-local connection revocation/revalidation, database identity and POSIX permissions, sidecar checks, WAL and FK enforcement, immutable schema-profile and firm-binding guards, provisioning catalog state transitions, exclusive file creation, integrity and FK checks, and final catalog publication.
 - Reviewed these controls as source code only. A pathname race remains explicitly documented; this review does not prove filesystem isolation or concurrency safety. No confirmed code defect was identified in the inspected paths.
 - Manual runtime tests, race cases, two-firm behavioral acceptance, and deployment filesystem review remain outstanding. No Actions or CI run was started.
+
+
+## AI-2 route-authentication public-allowlist hardening — 2026-11-26
+
+- Static review found that the route-auth audit previously exempted any handler registered on an allowlisted HTTP method/path pair. An unrelated handler could therefore inherit a public exemption merely by sharing a public URL.
+- The allowlist now binds each exemption to the exact method, path, and handler name, including the two separately registered app-icon handlers. Stale-entry detection uses the same exact tuple.
+- Added synthetic regressions proving that an unrelated handler on `GET /` is not exempted and that the exact `home` handler remains public. The existing route-auth audit test is already registered in the security regression script and test workflow.
+- Source/test commits: `e546539` and `2c01242`. Source readback confirmed the exact-handler allowlist and new tests. No Python test, application runtime, browser test, or GitHub Actions job was executed here; run the focused module during the planned local Python 3.12 session.
