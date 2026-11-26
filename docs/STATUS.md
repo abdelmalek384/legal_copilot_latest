@@ -2299,3 +2299,9 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Added two synthetic regressions for invalid and empty cited hits combined with another valid citation. Commits: implementation `20e694d`, regression tests `e085efb`.
 - Changes were committed directly to `main`; no PR created and no GitHub Actions/test execution initiated. GitHub read-back is the manual verification method; local test execution remains unavailable/not performed.
 - This closes a small citation-integrity edge case only; it does not establish semantic entailment, legal accuracy, or lawyer review.
+
+
+## AI-1 source-match rights-evidence URL credential-query hardening — 2026-11-26
+
+- Tightened the read adapter's HTTPS evidence URL check to reject credential-bearing query-key variants (token, secret, password, credential, signature, auth, API-key, and private-key forms), not only the exact enumerated provider parameter names. This is a conservative locator hygiene guard; it does not authenticate evidence or prove reuse rights.
+- Added synthetic regressions for common undocumented parameter variants and a benign query parameter. Tests are authored, not executed. GitHub readback only; no Actions/CI or PR activity.
