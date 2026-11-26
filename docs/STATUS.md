@@ -1,4 +1,6 @@
 
+- Regression-fixture alignment follow-up: all synthetic evidence packets that proceed to approved-use or boolean-flag checks now explicitly model the independent-source registry join result. This prevents the new orphan-source guard from causing unrelated tests to pass for the wrong reason. Tests remain unexecuted.
+
 ## AI-1 independent-copy registry binding — 2026-11-26
 
 - Tightened the exact-version evidence query to require the independent-copy source identity to resolve to an actual `legal_sources` registry row. A syntactically valid but orphaned independent-source ID now yields no evidence packet rather than relying only on a foreign-key declaration that may not have been enforced by a legacy/imported database.
