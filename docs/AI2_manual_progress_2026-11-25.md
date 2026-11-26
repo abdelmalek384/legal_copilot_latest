@@ -371,3 +371,6 @@ The browser acceptance syntax error remains a separate pre-existing blocker. It 
 - Commit: `87a576a`.
 - Static read-back confirmed the shared wrapper now reports errors and preserves busy-state cleanup. No runtime/browser tests were run.
 - AI-2 front-end/usability estimate: 29% → 30% (+1 pp). AI-2 overall estimate: 32% → 33% (+1 pp) for a small cross-workflow usability reliability fix. Testing/regression remains unchanged at 18%.
+
+- Follow-on logout reliability fix: the three logout controls now warn if the server-side logout POST cannot be confirmed, while still clearing the local UI/session cache. Commit: `86c1b7b`. This avoids presenting local screen closure as confirmed server invalidation. Static read-back only; no browser execution.
+- AI-2 front-end/usability estimate: 30% → 31% (+1 pp). AI-2 overall: 33% → 34% (+1 pp). Regression testing remains 18% because no test execution occurred.
