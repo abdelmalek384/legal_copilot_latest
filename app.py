@@ -2001,13 +2001,14 @@ def _answer_has_source_polarity_conflict(answer, hits):
             if any(index < 1 or index > len(hits) for index in cited):
                 return True
             claim = re.sub(r"\[\d+\]", " ", sentence)
-            evidence = " ".join(str(hits[index - 1].get("text") or "") for index in cited)
-            for positive, negative in _ARABIC_POLARITY_PREDICATES:
-                claim_polarity = _arabic_predicate_polarity(claim, positive, negative)
-                evidence_polarity = _arabic_predicate_polarity(evidence, positive, negative)
-                if (claim_polarity is not None and evidence_polarity is not None
-                        and claim_polarity != evidence_polarity):
-                    return True
+            for index in cited:
+                evidence = str(hits[index - 1].get("text") or "")
+                for positive, negative in _ARABIC_POLARITY_PREDICATES:
+                    claim_polarity = _arabic_predicate_polarity(claim, positive, negative)
+                    evidence_polarity = _arabic_predicate_polarity(evidence, positive, negative)
+                    if (claim_polarity is not None and evidence_polarity is not None
+                            and claim_polarity != evidence_polarity):
+                        return True
     return False
 
 
