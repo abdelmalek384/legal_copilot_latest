@@ -598,3 +598,10 @@ The owner has explicitly requested a non-production firm-test implementation. Th
 - `tests/browser/test_acceptance.py` now preserves the full JavaScript `pageerror` stack (`c1d51ca`). The previous listener retained only the error message and dropped the source URL and line/column details needed to pinpoint the inline-script parse failure.
 - The current `static/index.html` inline script still fails V8 compilation with `SyntaxError: missing ) after argument list`; inspected historical mainline snapshots also fail. No speculative source edit was made without a parser location.
 - This is diagnostic instrumentation only, not a browser fix. Run browser acceptance in the supported runtime, capture the stack location, and fix the exact syntax defect. No test execution is claimed.
+
+
+## AI-2 document-panel JavaScript parse correction — 2026-11-26
+
+- Current-main source review found that the existing case-document panel expression in `static/index.html` left the outer `body=h('div',...)` call unclosed after the upload row and retention note. Added the missing closing parenthesis in commit `5be1c592f12525be4e33a44b7ee077e314a91af3`.
+- This is a narrow syntax correction to an existing document workflow; no feature or UI redesign was added. The prior browser diagnostic identified a JavaScript compilation failure, but this exact source correction has **not** yet been validated by Chromium, the repository browser suite, or the Python frontend contract suite in this environment. Do not mark browser acceptance passed until those tests execute on Python 3.12.
+- Next acceptance: run `tests/browser/test_acceptance.py` and `tests/test_frontend_ux_contract.py` under the supported Python 3.12 environment; retain the full `pageerror` stack if any parse error remains.
