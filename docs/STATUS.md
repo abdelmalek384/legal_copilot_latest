@@ -2319,3 +2319,10 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Corrected a gap in the optional fail-closed claim-support heuristic: the English finite-duration detector and numeric-word parser omitted the number words **sixteen** and **seventeen**, despite recognizing surrounding number words. Worded limitation durations using these values could evade the specific no-expiry/finite-duration contradiction check.
 - Added synthetic regressions for both worded durations, checking no-expiry contradiction rejection and faithful duration acceptance. This remains heuristic coverage, not semantic entailment or legal accuracy.
 - Source and regression changes were committed directly to main. Manual read-back is pending; no tests or Actions/CI were executed.
+
+
+## AI-1 Arabic worded teen numeral safeguards — 2026-11-26
+
+- Added Arabic two-token teen numeral parsing (11–19 variants) to the optional claim-support numeric marker extraction, including alternate forms of عشر/عشرة and common gendered unit-number spellings. Parsed pairs are treated as a single numeric value instead of independently adding component numbers.
+- Added fictional regression cases for worded 16/17 durations matching numeric evidence and rejecting mismatched teen claims. This improves a narrow numeric consistency check, not legal reasoning or semantic validation.
+- Direct main commits: implementation `d7c97a9`, regression `6170c64`. Manual readback pending; no tests or Actions/CI executed.
