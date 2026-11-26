@@ -14,8 +14,8 @@ class CitationQuantityBindingTests(unittest.TestCase):
 
     def test_numeric_value_and_unit_cannot_be_assembled_from_separate_sources(self):
         hits = [
-            {"text": "The deadline is 30."},
-            {"text": "The procedure must be completed within days."},
+            {"text": "The deadline is 30"},
+            {"text": "days are allowed for filing."},
             {"text": "The deadline is 30 days."},
         ]
         # Neither citation independently supports the value+unit pair.
