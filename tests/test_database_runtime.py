@@ -385,6 +385,40 @@ class DatabaseRuntimeTests(unittest.TestCase):
         with self.assertRaises(sqlite3.ProgrammingError):
             connection.execute("SELECT 1")
 
+    def test_control_connection_is_revoked_when_database_gains_hard_link_alias(self):
+        if os.name != "posix" or not hasattr(os, "link"):
+            self.skipTest("POSIX hard links are not supported")
+        connection = self.runtime.control_connection()
+        alias = self.root / "outside-control-plane.sqlite3"
+        try:
+            os.link(self.runtime.paths.control_plane, alias)
+        except OSError as exc:
+            self.skipTest(f"Hard-link creation is unavailable: {exc}")
+        try:
+            with self.assertRaisesRegex(DatabaseRuntimeError, "hard-link aliases"):
+                self.runtime.control_connection()
+            with self.assertRaises(sqlite3.ProgrammingError):
+                connection.execute("SELECT 1")
+        finally:
+            alias.unlink(missing_ok=True)
+
+    def test_corpus_connection_is_revoked_when_database_gains_hard_link_alias(self):
+        if os.name != "posix" or not hasattr(os, "link"):
+            self.skipTest("POSIX hard links are not supported")
+        connection = self.runtime.legal_corpus_connection()
+        alias = self.root / "outside-legal-corpus.sqlite3"
+        try:
+            os.link(self.runtime.paths.legal_corpus, alias)
+        except OSError as exc:
+            self.skipTest(f"Hard-link creation is unavailable: {exc}")
+        try:
+            with self.assertRaisesRegex(DatabaseRuntimeError, "hard-link aliases"):
+                self.runtime.legal_corpus_connection()
+            with self.assertRaises(sqlite3.ProgrammingError):
+                connection.execute("SELECT 1")
+        finally:
+            alias.unlink(missing_ok=True)
+
     def test_corpus_connection_is_revoked_when_sidecar_becomes_a_symlink(self):
         if not hasattr(os, "symlink"):
             self.skipTest("Symbolic links are not supported")
