@@ -111,6 +111,16 @@ class ClaimSupportTests(unittest.TestCase):
             "The employer must not provide notice.",
         ))
 
+    def test_shallnt_is_classified_as_negated_obligation(self):
+        negative = "The employer shalln't provide notice."
+        positive = "The employer shall provide notice."
+        self.assertTrue(_has_negated_obligation_mismatch(positive, negative))
+        self.assertFalse(_has_modal_mismatch(negative, negative))
+        self.assertTrue(has_unsupported_claims(
+            positive + " [1].", [{"text": negative}],
+            tokens, norm, _mask_markdown_code
+        ))
+
     def test_arabic_diacritics_and_tatweel_do_not_hide_negated_obligation(self):
         cases = (
             ("لا يَجِبّ على صاحب العمل تقديم الإخطار.", "يجب على صاحب العمل تقديم الإخطار."),
