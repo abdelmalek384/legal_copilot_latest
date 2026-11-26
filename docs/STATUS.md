@@ -2326,3 +2326,10 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Added Arabic two-token teen numeral parsing (11–19 variants) to the optional claim-support numeric marker extraction, including alternate forms of عشر/عشرة and common gendered unit-number spellings. Parsed pairs are treated as a single numeric value instead of independently adding component numbers.
 - Added fictional regression cases for worded 16/17 durations matching numeric evidence and rejecting mismatched teen claims. This improves a narrow numeric consistency check, not legal reasoning or semantic validation.
 - Direct main commits: implementation `d7c97a9`, regression `6170c64`. Manual readback of implementation, regression, and status entry confirmed on main; no tests or Actions/CI executed.
+
+
+## AI-1 Arabic numeric claim-support refinement — 2026-11-26
+
+- Added recognition for common Arabic wording variants `واحد عشر` and `واحد عشرة` in the optional numeric claim-support teen parser, and finite-duration pattern. Added synthetic regressions matching 11 against numeric evidence and rejecting 12 mismatches.
+- Changes committed directly to main: parser/pattern commits `53dc9b7`, `8a9c728`; regression commit `7b28ea2`. Manual readback pending; tests and GitHub Actions were not run.
+- This narrow lexical numeric refinement does not validate legal accuracy, entailment, or production readiness.
