@@ -35,3 +35,12 @@ This audit does not establish legal accuracy, currentness, licensing, security, 
 - Added a direct regression and an end-to-end `ask()` abstention regression for conflicting multi-source polarity.
 - Commits: `de1eed998bcf0af39eb138b67556ad0f8bbd1f39` and `b0e7eb11647fea8d92f4245f411ebdc0df9243dc`.
 - Tests are committed but unexecuted on this remote branch. The check remains a narrow polarity heuristic, not semantic interpretation or lawyer review.
+
+## Follow-up independent-source claim checks — 2026-11-26
+
+- Actor-role attribution now evaluates each cited passage independently. A second passage that mentions the answer's actor cannot mask a role substitution in another cited passage.
+- Conditional-scope checking now evaluates each cited passage independently. A second passage with unconditional wording cannot mask a conditional rule in another cited passage.
+- Numeric support now requires the complete normalized value-and-unit quantity to appear together in at least one cited passage. Separate citations can no longer be concatenated to fabricate a quantity from a value fragment and a unit fragment.
+- Added focused regressions for multi-source actor masking, conditional masking, and split-source numeric quantities.
+- Commits: `5bab6a32392ef293d836150e78e41835b6c5ebaf`, `dadba963e80206be30585e548da9166104073636`, `cc0eace8f1b7d4cf64f28b19d909499599d572eb`, `7d6448452d63ea9130e800c6f7129ef74a494703`, `94d418e952c931e0a76b60730e696703762ee47f`, and `8214d2ecf3695e0c485960ccecc24fa4f7c3e588`.
+- These tests are committed but have not been executed in this remote-only workflow. The checks are conservative lexical/quantity safeguards, not semantic entailment, currentness verification, or qualified Egyptian lawyer review.
