@@ -2128,3 +2128,7 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - The allowlist now binds each exemption to the exact method, path, and handler name, including the two separately registered app-icon handlers. Stale-entry detection uses the same exact tuple.
 - Added synthetic regressions proving that an unrelated handler on `GET /` is not exempted and that the exact `home` handler remains public. The existing route-auth audit test is already registered in the security regression script and test workflow.
 - Source/test commits: `e546539` and `2c01242`. Source readback confirmed the exact-handler allowlist and new tests. No Python test, application runtime, browser test, or GitHub Actions job was executed here; run the focused module during the planned local Python 3.12 session.
+
+
+- Follow-up hardening: public exemptions are now also bound to the exact source module (`app.py`, `routers/platform.py`, or `routers/identity.py`), preventing a same-named handler in an unrelated router module from inheriting an exemption. Added a synthetic cross-module collision regression. Source/test commits: `6f96630`, `9b021db`, `071d820`.
+- Manual source inventory verified all 13 allowlist entries map to the expected route decorator and handler in the expected module; the focused test remains registered in both the security regression script and test workflow. This is a source-level consistency check, not execution of the Python test.
