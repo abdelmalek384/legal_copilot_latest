@@ -1056,6 +1056,32 @@ class DatabaseBackupBundleTests(unittest.TestCase):
 
         self.assertEqual(list(self.backup_dir.glob("tenancy-*.dbbundle.enc")), [])
 
+
+    @unittest.skipUnless(os.name == "posix", "POSIX hard links are required")
+    def test_backup_readonly_rejects_database_hard_link_alias(self):
+        from database_backup import _readonly
+
+        source = self.runtime.paths.control_plane
+        alias = self.root / "control-plane-alias.sqlite3"
+        os.link(source, alias)
+        with self.assertRaisesRegex(DatabaseBundleError, "single-link regular file"):
+            _readonly(source)
+
+    @unittest.skipUnless(os.name == "posix", "POSIX hard links are required")
+    def test_backup_tenant_catalog_path_rejects_hard_link_alias(self):
+        from database_backup import _safe_tenant_path
+
+        control = self.runtime.control_connection()
+        row = control.execute(
+            "SELECT database_file FROM tenant_database_catalog WHERE firm_id=?",
+            (self.firm_a,),
+        ).fetchone()
+        tenant_path = self.runtime.paths.tenant_root / row["database_file"]
+        alias = self.root / "tenant-database-alias.sqlite3"
+        os.link(tenant_path, alias)
+        with self.assertRaisesRegex(DatabaseBundleError, "single-link regular file"):
+            _safe_tenant_path(self.runtime.paths.tenant_root, self.firm_a, row["database_file"])
+
     def test_backup_rejects_cataloged_tenant_database_replaced_by_symlink(self):
         control = self.runtime.control_connection()
         row = control.execute(
