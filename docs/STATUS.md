@@ -2147,3 +2147,5 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Router source discovery now recognizes aliased `import routers.module` statements in addition to `from routers.module import router`; unknown modules still fail before producing an incomplete inventory.
 - Added synthetic regressions for the four dynamic registration forms and an aliased unknown router import. Source/test commits: `3ec459f`, `a89ec8f`.
 - The current app's mapped router imports remain the two explicitly registered modules. No runtime or test execution was performed; both static-audit modules remain in the local end-of-day test list and existing security workflow.
+
+- Regression-fixture correction: the two aliased-router-import tests now use a real Python newline escape when writing their synthetic source files, rather than a literal backslash-plus-`n` sequence. Commits: `11b995d`, `abc9d52`. The diff was checked to confirm only those two fixture lines changed.
