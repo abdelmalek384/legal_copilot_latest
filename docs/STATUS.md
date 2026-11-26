@@ -2291,3 +2291,11 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - **No runtime verification:** no local test process, Python runtime, database, browser, or GitHub Actions was invoked. A local run by the repository owner remains the evidence gate for test outcomes.
 - **Progress accounting:** evaluation/test readiness estimate 50% and review/integration 78% are modest engineering estimates reflecting improved manual verification specificity and read-back. Overall AI-1 remains 60%; no accuracy, semantic entailment, or legal correctness gain is claimed.
 - Next safe action after local execution: address only a reproducible defect or missing case. If focused tests pass, capture exact commit, command and test output in a manual evidence record; passing heuristics still do not establish legal accuracy.
+
+
+## AI-1 claim-support citation integrity follow-up — 2026-11-26
+
+- Hardened the optional claim-support screen so every cited hit must be a valid mapping with non-empty string evidence. Previously, malformed cited entries could be silently skipped when another citation in the same sentence supplied valid evidence text; now the check fails closed for malformed or empty cited hits.
+- Added two synthetic regressions for invalid and empty cited hits combined with another valid citation. Commits: implementation `20e694d`, regression tests `e085efb`.
+- Changes were committed directly to `main`; no PR created and no GitHub Actions/test execution initiated. GitHub read-back is the manual verification method; local test execution remains unavailable/not performed.
+- This closes a small citation-integrity edge case only; it does not establish semantic entailment, legal accuracy, or lawyer review.
