@@ -58,12 +58,12 @@ def valid_evidence_url(value):
                 return True
             compact_fragments = (
                 "token", "secret", "password", "credential", "signature",
-                "apikey", "privatekey",
+                "auth", "apikey", "privatekey",
             )
             return any(
                 compact.startswith(fragment) or compact.endswith(fragment)
                 for fragment in compact_fragments
-            ) and key != "author"
+            ) and not compact.startswith("author")
 
         sensitive_query = any(credential_key(key) for key in query_keys)
         return (
