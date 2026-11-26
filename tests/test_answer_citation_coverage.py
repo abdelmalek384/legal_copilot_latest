@@ -87,6 +87,46 @@ class CitationCoverageTests(unittest.TestCase):
             "يستحق العامل مقابلاً عن ساعات العمل الإضافية [1].", hits
         ))
 
+    def test_each_cited_source_must_independently_anchor_the_claim(self):
+        hits = [
+            {"text": "The tenant must pay rent on the agreed date."},
+            {"text": "The court determines local jurisdiction and venue."},
+        ]
+        self.assertTrue(app._answer_has_unanchored_citations(
+            "The tenant must pay rent on the agreed date [1][2].", hits
+        ))
+
+        complementary_hits = [
+            {"text": "The tenant must pay rent."},
+            {"text": "Rent is due on the agreed date."},
+        ]
+        self.assertFalse(app._answer_has_unanchored_citations(
+            "The tenant must pay rent on the agreed date [1][2].", complementary_hits
+        ))
+
+    def test_ask_abstains_when_one_of_multiple_citations_is_unrelated(self):
+        hits = [
+            {
+                "cos": 1.0, "score": 1, "ref": "LAW-RENT",
+                "text": "The tenant must pay rent on the agreed date.",
+                "verified": True, "in_force": True, "applies_as_of": True,
+                "case_id": None, "source_status": app.STATUS_VERIFIED, "provenance": {},
+            },
+            {
+                "cos": 1.0, "score": 1, "ref": "LAW-JURISDICTION",
+                "text": "The court determines local jurisdiction and venue.",
+                "verified": True, "in_force": True, "applies_as_of": True,
+                "case_id": None, "source_status": app.STATUS_VERIFIED, "provenance": {},
+            },
+        ]
+        with patch.object(app, "search", return_value=hits), patch.object(
+            app, "LLM", return_value="The tenant must pay rent on the agreed date [1][2]."
+        ):
+            result = app.ask(None, "What is the tenant's rent duty?", scope="verified_corpus")
+        self.assertIsNone(result["answer"])
+        self.assertTrue(result["abstained"])
+        self.assertIn("ارتباط لفظي", result["message"])
+
     def test_citation_relevance_guard_ignores_code_samples_but_fails_invalid_indices(self):
         hits = [{"text": "The tenant must pay rent on the agreed date."}]
         self.assertFalse(app._answer_has_unanchored_citations(
