@@ -550,5 +550,53 @@ class IdentityLifecycleTests(unittest.TestCase):
         ).fetchone()["status"], "sent")
 
 
+    def test_logout_revokes_session_and_records_platform_audit(self):
+        login = self._login(self.client, "invitation-owner@example.test", self.password)
+        self.assertEqual(login.status_code, 200, login.text)
+        user_id = self.owner_id
+        control = self.runtime.control_connection()
+        before = control.execute(
+            "SELECT COUNT(*) FROM auth_sessions WHERE user_id=?", (user_id,)
+        ).fetchone()[0]
+        self.assertGreater(before, 0)
+
+        response = self._mutate("post", "/logout")
+        self.assertEqual(response.status_code, 200, response.text)
+        self.assertTrue(response.json()["ok"])
+        self.assertFalse(response.json().get("audit_warning", False))
+        self.assertEqual(self.client.get("/session").status_code, 401)
+        after = control.execute(
+            "SELECT COUNT(*) FROM auth_sessions WHERE user_id=?", (user_id,)
+        ).fetchone()[0]
+        self.assertEqual(after, 0)
+        event = control.execute(
+            "SELECT event_type,detail_json FROM platform_security_events "
+            "WHERE actor_user_id=? AND target_user_id=? AND event_type='logout' ORDER BY id DESC LIMIT 1",
+            (user_id, user_id),
+        ).fetchone()
+        self.assertIsNotNone(event)
+        self.assertIn('"session_revoked":true', event["detail_json"])
+
+    def test_logout_audit_failure_does_not_restore_session_or_block_logout(self):
+        login = self._login(self.client, "invitation-owner@example.test", self.password)
+        self.assertEqual(login.status_code, 200, login.text)
+        control = self.runtime.control_connection()
+        control.executescript("""
+            CREATE TRIGGER reject_logout_audit
+            BEFORE INSERT ON platform_security_events
+            WHEN NEW.event_type='logout'
+            BEGIN SELECT RAISE(ABORT, 'injected logout audit failure'); END
+        """)
+        control.commit()
+
+        response = self._mutate("post", "/logout")
+        self.assertEqual(response.status_code, 200, response.text)
+        self.assertTrue(response.json()["ok"])
+        self.assertTrue(response.json()["audit_warning"])
+        self.assertEqual(self.client.get("/session").status_code, 401)
+        self.assertEqual(control.execute(
+            "SELECT COUNT(*) FROM auth_sessions WHERE user_id=?", (self.owner_id,)
+        ).fetchone()[0], 0)
+
 if __name__ == "__main__":
     unittest.main()
