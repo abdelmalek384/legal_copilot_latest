@@ -648,3 +648,5 @@ The owner has explicitly requested a non-production firm-test implementation. Th
 - Added the ETA candidate PDF locator to the canonical record's `related_source_pages`; the parity validator now accepts only the canonical host or a clean HTTPS host explicitly listed in that field. Arbitrary host mismatches remain fail-closed.
 - Reset the MKSEgypt candidate collection/commercial permission fields to `unknown`, retaining the observed CC BY notice as evidence but explicitly declining to infer bulk ingestion or unrestricted commercial rights.
 - Manual read-back verified zero candidate/register parity mismatches, 43 unique candidate source IDs, 548 discovery-only document records, and 220 unique permission-register source IDs. No Python test or validator was executed.
+
+- Follow-up test-fixture maintenance: updated adapter fakes to provide valid independent-copy identity/digest and positive evidence revision, ensuring existing approved-use and boolean-flag regressions still exercise their intended downstream checks after stricter packet-shape validation. Tests remain unexecuted.

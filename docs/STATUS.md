@@ -2243,3 +2243,5 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Commits: `3c2dc41` (backup guard), `09b6049` (regressions). Source and test files were read back from `main`; tests were not executed in this session.
 - Conservative implementation estimates: security/tenant isolation **85.4%** (from 85.3%); backup/recovery **47.3%** (from 47.2%); documents/file handling **99.1%**; test execution readiness **12.3%**; AI-2 overall **76.8%** (from 76.7%). These are engineering estimates, not measured test-pass rates or production acceptance.
 - Validation: **0 repository test modules executed**, **0 GitHub Actions jobs executed**, **0 open PRs**. The owner’s planned local Python 3.12/browser/device acceptance remains outstanding.
+
+- Follow-up test-fixture maintenance: updated adapter fakes to provide valid independent-copy identity/digest and positive evidence revision, ensuring existing approved-use and boolean-flag regressions still exercise their intended downstream checks after stricter packet-shape validation. Tests remain unexecuted.
