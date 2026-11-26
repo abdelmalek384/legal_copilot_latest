@@ -11,6 +11,28 @@ MODULE=importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(MODULE)
 
 class CandidateCatalogTests(unittest.TestCase):
+    def test_source_and_document_identifiers_reject_whitespace_and_unsafe_characters(self):
+        import json
+        import tempfile
+
+        invalid_catalogs = (
+            {"sources": [{"source_id": " SRC-1 ", "authority": "A", "source_page": "https://example.gov"}], "documents": []},
+            {"sources": [{"source_id": "SRC/1", "authority": "A", "source_page": "https://example.gov"}], "documents": []},
+            {"sources": [{"source_id": "SRC-1", "authority": "A", "source_page": "https://example.gov"}],
+             "documents": [{"document_id": " DOC-1", "source_id": "SRC-1", "official_title": "Title", "document_type": "law"}]},
+            {"sources": [{"source_id": "SRC-1", "authority": "A", "source_page": "https://example.gov"}],
+             "documents": [{"document_id": "DOC-1", "source_id": " SRC-1 ", "official_title": "Title", "document_type": "law"}]},
+            {"sources": [{"source_id": "SRC-1", "authority": "A", "source_page": "https://example.gov"}],
+             "documents": [{"document_id": "DOC:1", "source_id": "SRC-1", "official_title": "Title", "document_type": "law"}]},
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "catalog.json"
+            for catalog in invalid_catalogs:
+                with self.subTest(catalog=catalog):
+                    path.write_text(json.dumps(catalog), encoding="utf-8")
+                    with self.assertRaisesRegex(ValueError, "trimmed identifier"):
+                        MODULE.load_catalog(path)
+
     def test_every_candidate_source_has_a_permission_register_record(self):
         import json
         catalog = MODULE.load_catalog()

@@ -6,7 +6,7 @@ SQLite registry. Existing records are never overwritten. No legal version is cre
 until a direct document URL and collection permission evidence are established.
 """
 from __future__ import annotations
-import argparse, json, os, stat, sys
+import argparse, json, os, re, stat, sys
 from pathlib import Path
 from urllib.parse import parse_qsl, urlparse
 
@@ -78,6 +78,14 @@ def load_catalog(path=CATALOG):
             for field in ("source_id", "authority", "source_page"):
                 if not isinstance(source.get(field), str) or not source[field].strip():
                     errors.append(f"sources[{index}]: {field} must be a non-empty string")
+            source_id = source.get("source_id")
+            if isinstance(source_id, str) and (
+                    source_id != source_id.strip()
+                    or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,127}", source_id)):
+                errors.append(
+                    f"sources[{index}]: source_id must be a trimmed identifier "
+                    "of 1-128 ASCII letters, digits, dots, underscores or hyphens"
+                )
             if source.get("source_page") and not _valid_source_page_url(source["source_page"]):
                 errors.append(f"sources[{index}]: source_page must be a clean HTTPS URL without credentials or ambiguous characters")
     for index, document in enumerate(docs):
@@ -88,6 +96,15 @@ def load_catalog(path=CATALOG):
             for field in ("document_id", "source_id", "official_title", "document_type"):
                 if not isinstance(document.get(field), str) or not document[field].strip():
                     errors.append(f"documents[{index}]: {field} must be a non-empty string")
+            for field in ("document_id", "source_id"):
+                identifier = document.get(field)
+                if isinstance(identifier, str) and (
+                        identifier != identifier.strip()
+                        or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,127}", identifier)):
+                    errors.append(
+                        f"documents[{index}]: {field} must be a trimmed identifier "
+                        "of 1-128 ASCII letters, digits, dots, underscores or hyphens"
+                    )
 
     source_ids = [s["source_id"] for s in valid_sources if isinstance(s.get("source_id"), str) and s["source_id"].strip()]
     if len(source_ids) != len(set(source_ids)):
