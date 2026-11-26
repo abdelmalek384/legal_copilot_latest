@@ -363,3 +363,11 @@ The browser acceptance syntax error remains a separate pre-existing blocker. It 
 - Commits: `c296694` (guard) and `cd8b291` (regression).
 - AI-1 estimate: 87% → 88% (+1 pp) for a concrete claim-polarity defect and focused regression added. AI-2 remains 32%.
 - Validation limit: GitHub file read-back only; Python test suite, runtime and browser are not available. This optional lexical guard is not semantic legal validation.
+
+
+## AI-2 action-feedback reliability — 26 November 2026
+
+- Updated the shared `actionButton` wrapper in `static/index.html`: task/workflow POST failures no longer silently disappear; users receive a bilingual generic retry message, while the control is still re-enabled in `finally` and duplicate-click protection remains in place.
+- Commit: `87a576a`.
+- Static read-back confirmed the shared wrapper now reports errors and preserves busy-state cleanup. No runtime/browser tests were run.
+- AI-2 front-end/usability estimate: 29% → 30% (+1 pp). AI-2 overall estimate: 32% → 33% (+1 pp) for a small cross-workflow usability reliability fix. Testing/regression remains unchanged at 18%.
