@@ -109,6 +109,8 @@ def _safe_source(path_value: str | Path) -> BinaryIO:
         info = os.fstat(descriptor)
         if not stat.S_ISREG(info.st_mode):
             _fail("Backup input must be a regular file")
+        if os.name == "posix" and info.st_nlink != 1:
+            _fail("Backup input must not have hard-link aliases")
         if (info.st_dev, info.st_ino) != (initial.st_dev, initial.st_ino):
             _fail("Backup input changed while it was being opened")
         if not getattr(os, "O_NOFOLLOW", 0):
