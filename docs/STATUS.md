@@ -2325,4 +2325,4 @@ Percentages are scoped to the described implementation or acceptance phase. They
 
 - Added Arabic two-token teen numeral parsing (11–19 variants) to the optional claim-support numeric marker extraction, including alternate forms of عشر/عشرة and common gendered unit-number spellings. Parsed pairs are treated as a single numeric value instead of independently adding component numbers.
 - Added fictional regression cases for worded 16/17 durations matching numeric evidence and rejecting mismatched teen claims. This improves a narrow numeric consistency check, not legal reasoning or semantic validation.
-- Direct main commits: implementation `d7c97a9`, regression `6170c64`. Manual readback pending; no tests or Actions/CI executed.
+- Direct main commits: implementation `d7c97a9`, regression `6170c64`. Manual readback of implementation, regression, and status entry confirmed on main; no tests or Actions/CI executed.
