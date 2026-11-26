@@ -152,20 +152,20 @@ class DatabaseRuntime:
                 )
         for suffix in ("-wal", "-shm", "-journal"):
             sidecar = Path(str(path) + suffix)
-            if sidecar.is_symlink():
-                raise DatabaseRuntimeError(f"{profile} SQLite sidecar must not be a symlink")
-            if not sidecar.exists():
+            try:
+                sidecar_metadata = os.lstat(sidecar)
+            except FileNotFoundError:
                 continue
-            if not sidecar.is_file():
+            except OSError as exc:
+                raise DatabaseRuntimeError(
+                    f"{profile} SQLite sidecar metadata cannot be verified"
+                ) from exc
+            if stat.S_ISLNK(sidecar_metadata.st_mode):
+                raise DatabaseRuntimeError(f"{profile} SQLite sidecar must not be a symlink")
+            if not stat.S_ISREG(sidecar_metadata.st_mode):
                 raise DatabaseRuntimeError(f"{profile} SQLite sidecar must be a regular file")
             if os.name == "posix":
-                try:
-                    sidecar_metadata = sidecar.stat()
-                    sidecar_mode = stat.S_IMODE(sidecar_metadata.st_mode)
-                except OSError as exc:
-                    raise DatabaseRuntimeError(
-                        f"{profile} SQLite sidecar permissions and file identity cannot be verified"
-                    ) from exc
+                sidecar_mode = stat.S_IMODE(sidecar_metadata.st_mode)
                 if sidecar_metadata.st_nlink != 1:
                     raise DatabaseRuntimeError(
                         f"{profile} SQLite sidecar must not have hard-link aliases"
