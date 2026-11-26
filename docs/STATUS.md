@@ -2158,3 +2158,10 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Manual readback verified all 13 current public allowlist entries map to the expected route/handler/module; no dynamic registration calls were found in the mapped app/router source files. This is a source inventory check only.
 - Updated engineering estimates: security/tenant-isolation implementation 85.2% (previous 85.1%); test execution readiness 12.2% (previous 12.0%); backup/recovery implementation 47.1% (unchanged); documents/file handling 99.1% (unchanged); AI-2 overall implementation 76.5% (previous 76.4%). These are conservative estimates, not test pass rates or production acceptance.
 - Validation status remains: 0 repository test modules executed in this session; 0 GitHub Actions jobs run; 0 open PRs. Run the focused route-audit modules and complete matrix in the planned local Python 3.12 session.
+
+
+## AI-1 private original-file storage adapter review — 2026-11-26 (continued)
+
+- Reviewed the S3 private storage adapter and focused fake-client test fixtures: canonical KMS-key identity checks on metadata and streaming reads, firm-scoped opaque key construction, conditional stage/copy semantics, staged-object retention until finalized-byte digest/size verification, bounded stream reads, bounded inventory pagination and token validation, and physical purge guards for bucket versioning, staged presence, digest verification, conditional ETag deletion, and post-delete checks.
+- This was static source review only. No confirmed defect suitable for a safe unvalidated direct-main patch was established from the inspected sections. The review does not validate real AWS permissions, provider behavior, bucket policy, concurrency, KMS key state, or witnessed recovery.
+- Manual Python tests and live AWS/storage acceptance remain unexecuted; GitHub Actions/CI was not run. Progress remains AI-1 overall 67%; no change to estimates from this review alone.
