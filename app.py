@@ -4726,8 +4726,24 @@ def logout(request: Request, response: Response, u: dict = Depends(user)):
     c = control_conn()
     c.execute("DELETE FROM auth_sessions WHERE token_hash=? AND user_id=?", (sha(tok), u["id"]))
     c.commit()
+    # Session revocation is committed before audit: a logging failure must not
+    # leave the caller authenticated or block cookie cleanup.
+    audit_warning = False
+    try:
+        c.execute(
+            "INSERT INTO platform_security_events(actor_user_id,target_user_id,event_type,detail_json) "
+            "VALUES(?,?,'logout',?)",
+            (u["id"], u["id"], json.dumps({"method": "web", "session_revoked": True}, sort_keys=True)),
+        )
+        c.commit()
+    except sqlite3.Error:
+        c.rollback()
+        audit_warning = True
     _clear_auth_cookies(response, request)
-    return {"ok": True}
+    result = {"ok": True}
+    if audit_warning:
+        result["audit_warning"] = True
+    return result
 
 
 
