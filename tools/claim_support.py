@@ -22,7 +22,7 @@ _ARABIC_NO_EXPIRY = re.compile(
 _ENGLISH_FINITE_PERIOD = re.compile(
     r"\b(?:\d+(?:[.,]\d+)?|zero|one|two|three|four|five|six|seven|eight|"
     r"nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|"
-    r"eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|"
+    r"eighteen|nineteen|sixteen|seventeen|twenty|thirty|forty|fifty|sixty|seventy|eighty|"
     r"ninety|hundred|thousand)(?:[- ](?:one|two|three|four|five|six|seven|"
     r"eight|nine))?\s*(?:year|years|month|months|week|weeks|day|days)\b",
     re.IGNORECASE,
@@ -233,7 +233,7 @@ _NUMBER_WORDS = {
     "three": 3, "third": 3, "four": 4, "five": 5, "fifth": 5,
     "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10,
     "eleven": 11, "twelve": 12, "thirteen": 13, "fourteen": 14,
-    "fifteen": 15, "eighteen": 18, "twenty": 20, "thirty": 30,
+    "fifteen": 15, "sixteen": 16, "seventeen": 17, "eighteen": 18, "twenty": 20, "thirty": 30,
     "forty": 40, "fifty": 50, "sixty": 60, "seventy": 70,
     "eighty": 80, "ninety": 90, "hundred": 100,
     "صفر": 0, "واحد": 1, "واحدة": 1, "واحده": 1,
