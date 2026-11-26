@@ -8,11 +8,25 @@ import unittest
 from unittest.mock import patch
 from pathlib import Path
 
-from database_runtime import DatabaseRuntime, DatabaseRuntimeError
+from database_runtime import DatabaseRuntime, DatabaseRuntimeError, _path_has_symlink_component
 from tenant_context import FirmContextError
 
 
 class DatabaseRuntimeTests(unittest.TestCase):
+    def test_macos_var_folders_system_alias_is_not_treated_as_untrusted_symlink(self):
+        if os.name != "posix" or not Path("/private/var").is_dir():
+            self.skipTest("macOS /private/var alias is not available")
+        var_alias = Path("/var")
+        try:
+            mode = os.lstat(var_alias).st_mode
+        except OSError as exc:
+            self.skipTest(f"Cannot inspect /var alias: {exc}")
+        if not stat.S_ISLNK(mode) or var_alias.resolve() != Path("/private/var"):
+            self.skipTest("/var is not the exact macOS /private/var system alias")
+        if not self.root.is_relative_to(var_alias):
+            self.skipTest("Temporary test directory is not under /var/folders")
+        self.assertFalse(_path_has_symlink_component(self.root))
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.root = Path(self.temp.name)

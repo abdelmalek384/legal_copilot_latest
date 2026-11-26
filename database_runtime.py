@@ -40,6 +40,31 @@ def _path_has_symlink_component(path: str | Path) -> bool:
     candidate = Path(path).expanduser()
     if not candidate.is_absolute():
         candidate = Path.cwd() / candidate
+
+    # macOS exposes its canonical /private/var tree through the system /var
+    # symlink. Accept only that exact OS alias while continuing to reject
+    # arbitrary symlinked parents. Do not resolve the whole path: doing so
+    # would follow unrelated symlinks before the component checks.
+    var_alias = Path("/var")
+    if (
+        os.name == "posix"
+        and Path("/private/var").is_dir()
+        and candidate == var_alias or candidate.is_relative_to(var_alias)
+    ):
+        try:
+            var_mode = os.lstat(var_alias).st_mode
+        except FileNotFoundError:
+            var_mode = None
+        except OSError:
+            return True
+        if var_mode is not None and stat.S_ISLNK(var_mode):
+            try:
+                canonical_var = var_alias.resolve(strict=True)
+            except (OSError, RuntimeError):
+                return True
+            if canonical_var == Path("/private/var"):
+                candidate = canonical_var.joinpath(*candidate.parts[2:])
+
     current = Path(candidate.anchor)
     for component in candidate.parts[1:]:
         current = current / component
