@@ -535,10 +535,18 @@ def has_unsupported_claims(answer, hits, tokens_fn, norm_fn, mask_code=None):
         if any(index < 1 or index > len(hits) for index in cited):
             return True
 
-        evidence = " ".join(
-            str(hits[index - 1].get("text") or "") for index in cited
-            if isinstance(hits[index - 1], dict)
-        )
+        # Every cited hit must contribute valid evidence. Do not silently ignore
+        # malformed citations when another citation in the same sentence is valid.
+        cited_texts = []
+        for index in cited:
+            hit = hits[index - 1]
+            if not isinstance(hit, dict):
+                return True
+            text = hit.get("text")
+            if not isinstance(text, str) or not text.strip():
+                return True
+            cited_texts.append(text)
+        evidence = " ".join(cited_texts)
         if not evidence.strip():
             return True
 
