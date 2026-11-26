@@ -61,7 +61,13 @@ def reconcile_s3_original_file_storage(
             for row in rows:
                 checked_rows += 1
                 object_id = row["object_id"]
-                if int(row["firm_id"]) != tenant.firm_id or not isinstance(object_id, str) or not _OBJECT_ID.fullmatch(object_id):
+                if (
+                    isinstance(row["firm_id"], bool)
+                    or not isinstance(row["firm_id"], int)
+                    or row["firm_id"] != tenant.firm_id
+                    or not isinstance(object_id, str)
+                    or not _OBJECT_ID.fullmatch(object_id)
+                ):
                     findings.append(ReconciliationFinding("invalid_metadata_binding", tenant.firm_id, str(object_id), "object metadata does not match trusted firm context"))
                     continue
                 if row["storage_backend"] != "s3":
