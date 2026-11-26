@@ -74,7 +74,7 @@ _ENGLISH_MODAL_PATTERNS = {
         re.IGNORECASE,
     ),
     "prohibition": re.compile(
-        r"\b(?:may not|must\s+not|mustn['’]t|shall not|shan['’]t|"
+        r"\b(?:may not|must\s+not|mustn['’]t|shall not|shalln['’]t|shan['’]t|"
         r"is prohibited from|cannot|can not|can['’]t|is not permitted to|"
         r"are not permitted to|not permitted to|is not allowed to|"
         r"are not allowed to|not allowed to)\b",
@@ -146,7 +146,7 @@ def _modal_classes(text, patterns):
 
 
 _ENGLISH_NEGATED_OBLIGATION = re.compile(
-    r"\b(?:must\s+not|mustn['’]t|shall\s+not|shan['’]t|"
+    r"\b(?:must\s+not|mustn['’]t|shall\s+not|shalln['’]t|shan['’]t|"
     r"not\s+required\s+to|isn['’]t\s+required\s+to|aren['’]t\s+required\s+to|"
     r"need\s+not|needn['’]t|do\s+not\s+have\s+to|don['’]t\s+have\s+to|"
     r"does\s+not\s+have\s+to|doesn['’]t\s+have\s+to|"
@@ -157,7 +157,7 @@ _ENGLISH_NEGATED_OBLIGATION = re.compile(
     re.IGNORECASE,
 )
 _ENGLISH_POSITIVE_OBLIGATION = re.compile(
-    r"\b(?:must|shall|(?<!not )(?<!isn't )(?<!isn’t )(?<!aren't )(?<!aren’t )required\s+to|"
+    r"\b(?:must(?!\s+not|n['’]t)|shall(?!\s+not|n['’]t)|(?<!not )(?<!isn't )(?<!isn’t )(?<!aren't )(?<!aren’t )required\s+to|"
     r"is\s+required\s+to|are\s+required\s+to|is\s+obliged\s+to|are\s+obliged\s+to|"
     r"is\s+obligated\s+to|are\s+obligated\s+to|"
     r"(?<!do not )(?<!don't )(?<!don’t )(?<!does not )(?<!doesn't )(?<!doesn’t )have\s+to|has\s+to)\b",
