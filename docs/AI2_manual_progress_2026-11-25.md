@@ -374,3 +374,11 @@ The browser acceptance syntax error remains a separate pre-existing blocker. It 
 
 - Follow-on logout reliability fix: the three logout controls now warn if the server-side logout POST cannot be confirmed, while still clearing the local UI/session cache. Commit: `86c1b7b`. This avoids presenting local screen closure as confirmed server invalidation. Static read-back only; no browser execution.
 - AI-2 front-end/usability estimate: 30% → 31% (+1 pp). AI-2 overall: 33% → 34% (+1 pp). Regression testing remains 18% because no test execution occurred.
+
+
+## AI-2 invitation acceptance atomicity guard — 26 November 2026
+
+- Hardened new-identity and existing-identity invitation acceptance: the invitation consumption UPDATE now checks that exactly one pending invitation transitioned to consumed before any membership/security/lifecycle success events can commit. Unexpected zero-row transitions return HTTP 409 and roll back the surrounding transaction.
+- Added a regression assertion that invitation replay leaves exactly one `invitation_accepted` lifecycle event (alongside the existing single-use-token/user-count checks).
+- Commits: `dbe84be` (app guard), `0a97923` (regression assertion). GitHub read-back only; tests were not executed in this environment.
+- AI-2 overall estimate: 34% → 35% (+1 pp); backend/workflow reliability: 28% → 29% (+1 pp). Security/tenant isolation estimate: 30% → 31% (+1 pp) for invitation-state integrity. Testing/regression remains 18% because execution is unavailable.
