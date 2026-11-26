@@ -2138,3 +2138,5 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Duplicate-registration protection added: a second registration matching an otherwise exact public allowlist tuple is now reported and is not granted the public exemption. Added a regression with duplicate `GET /` registrations. Commits: `4cf3a94`, `bfd75e6`. Static review only; no test execution claimed.
 
 - Dynamic registration boundary added: `app.add_api_route`, `router.add_api_route`, `add_route`, and `mount` calls now produce a fail-closed audit finding instead of silently escaping decorator inventory. Added synthetic regressions for all four APIs. Manual source scan found no such calls in the currently mapped app/router modules. Commits: `f57cfaa`, `0e5b126`.
+
+- Router discovery now also detects `import routers.module` / aliased module imports, not only `from routers.module import router`. An unregistered imported router therefore cannot silently escape the route-auth source map through a different import form. Added a regression for aliased module imports. Commits: `6172497`, `89e3ae8`.
