@@ -156,6 +156,10 @@ jobs:
         run: PYTHONPATH=. python tools/audit_route_sql_access.py --strict
       - name: Test route authentication audit
         run: PYTHONPATH=. python tests/test_route_auth_audit.py
+      - name: Test identity lifecycle and logout audit behavior
+        run: PYTHONPATH=. python tests/test_identity_lifecycle.py
+      - name: Test platform security audit event migrations
+        run: PYTHONPATH=. python tests/test_platform_security_audit_migrations.py
       - name: Audit route authentication dependencies
         run: PYTHONPATH=. python tools/audit_route_auth.py --strict
       - name: Test backup restore drill path separation
