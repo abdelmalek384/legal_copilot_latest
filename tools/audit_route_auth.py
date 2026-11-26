@@ -146,7 +146,7 @@ def audit_sources(
                 try:
                     source_key = source_path.resolve().relative_to(ROOT).as_posix()
                 except ValueError:
-                    source_key = source_path.name
+                    source_key = source_path.resolve().as_posix()
                 for method in methods:
                     key = (method, path, node.name, source_key)
                     is_public = key in PUBLIC_ROUTES
@@ -228,7 +228,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--json", action="store_true", help="emit the complete JSON inventory")
     args = parser.parse_args(argv)
     sources = (
-        {args.app.name: args.app.read_text(encoding="utf-8")}
+        {str(args.app.resolve()): args.app.read_text(encoding="utf-8")}
         if args.app is not None else default_sources()
     )
     report = audit_sources(sources)
