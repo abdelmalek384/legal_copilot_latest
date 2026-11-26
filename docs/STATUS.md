@@ -1,4 +1,6 @@
 
+- Fixture maintenance after URL hardening: synthetic packets used by the non-string-use, unknown/duplicate-use, and boolean-flag tests now carry a valid neutral HTTPS rights-evidence locator. This preserves the intended test boundary rather than having those cases fail earlier on missing URL metadata. Tests remain unexecuted.
+
 ## AI-1 rights-evidence locator safety — 2026-11-26
 
 - The source-match adapter now rejects rights-evidence URLs that are not stable HTTPS locators or that contain credentials, fragments, malformed ports, control/whitespace characters, or known signed/session/token query parameters. The migration's simple `https://` prefix CHECK is not treated as sufficient protection at the read boundary.
