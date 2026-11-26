@@ -115,6 +115,54 @@ class DatabaseBackupBundleTests(unittest.TestCase):
                         quiesced=True, keep=invalid_keep,
                     )
 
+    def test_backup_retention_prunes_only_generated_single_link_regular_files(self):
+        import time
+        from database_backup import _prune_backup_bundles
+
+        older = self.backup_dir / "tenancy-20261125-120000-100.dbbundle.enc"
+        newer = self.backup_dir / "tenancy-20261125-120001-200.dbbundle.enc"
+        older.write_bytes(b"older synthetic backup")
+        newer.write_bytes(b"newer synthetic backup")
+        now = time.time_ns()
+        os.utime(older, ns=(now - 2_000_000_000, now - 2_000_000_000))
+        os.utime(newer, ns=(now - 1_000_000_000, now - 1_000_000_000))
+
+        external = self.root / "external-backup-target"
+        external.write_bytes(b"outside bytes must remain untouched")
+        future = now + 86_400_000_000_000
+        os.utime(external, ns=(future, future))
+
+        symlink = self.backup_dir / "tenancy-20261125-120002-300.dbbundle.enc"
+        try:
+            symlink.symlink_to(external)
+        except (NotImplementedError, OSError):
+            symlink = None
+
+        hardlink = self.backup_dir / "tenancy-20261125-120003-400.dbbundle.enc"
+        try:
+            os.link(external, hardlink)
+        except (NotImplementedError, OSError):
+            hardlink = None
+
+        directory = self.backup_dir / "tenancy-20261125-120004-500.dbbundle.enc"
+        directory.mkdir()
+        malformed = self.backup_dir / "tenancy-not-a-generated-name.dbbundle.enc"
+        malformed.write_bytes(b"do not classify as a generated backup")
+
+        _prune_backup_bundles(self.backup_dir, keep=1)
+
+        self.assertFalse(older.exists())
+        self.assertEqual(newer.read_bytes(), b"newer synthetic backup")
+        self.assertTrue(directory.is_dir())
+        self.assertEqual(malformed.read_bytes(), b"do not classify as a generated backup")
+        self.assertEqual(external.read_bytes(), b"outside bytes must remain untouched")
+        if symlink is not None:
+            self.assertTrue(symlink.is_symlink())
+        if hardlink is not None:
+            self.assertTrue(hardlink.is_file())
+            self.assertEqual(hardlink.stat().st_nlink, 2)
+
+
     def test_encrypted_bundle_restores_control_corpus_and_each_firm(self):
         with self.assertRaises(DatabaseBundleError):
             create_backup_bundle(self.runtime, self.cipher, self.backup_dir)
