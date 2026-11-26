@@ -605,3 +605,12 @@ The owner has explicitly requested a non-production firm-test implementation. Th
 - Current-main source review found that the existing case-document panel expression in `static/index.html` left the outer `body=h('div',...)` call unclosed after the upload row and retention note. Added the missing closing parenthesis in commit `5be1c592f12525be4e33a44b7ee077e314a91af3`.
 - This is a narrow syntax correction to an existing document workflow; no feature or UI redesign was added. The prior browser diagnostic identified a JavaScript compilation failure, but this exact source correction has **not** yet been validated by Chromium, the repository browser suite, or the Python frontend contract suite in this environment. Do not mark browser acceptance passed until those tests execute on Python 3.12.
 - Next acceptance: run `tests/browser/test_acceptance.py` and `tests/test_frontend_ux_contract.py` under the supported Python 3.12 environment; retain the full `pageerror` stack if any parse error remains.
+
+
+## AI-2 local object publication rollback — 2026-11-26
+
+- Source review found a partial-publication failure in `LocalPrivateObjectStore.finalize`: after creating the final hard link, a failure removing the staging name could leave both names linked to the same inode. The final object reader correctly rejects that two-link state, but the object could remain stuck until manual recovery.
+- Updated `original_file_storage.py` to attempt a narrowly guarded rollback of the newly created final link only when both names still identify the original staged inode with the expected two-link count. Unexpected or changed filesystem state is left untouched for operator recovery.
+- Added synthetic regression `test_finalize_rolls_back_final_link_when_staging_unlink_fails` in `tests/test_original_file_storage.py`. It injects a staging-unlink failure and asserts that the staged object remains intact, the final object is absent, and staged integrity verification still succeeds.
+- Commits: `0dd2a8a` (implementation), `e9419d3` (regression test). GitHub read-back confirmed both changes are on `main`.
+- Test execution: **not run** in this environment. The regression is authored, not passed. Run `python -m unittest tests.test_original_file_storage` under the supported Python 3.12 environment. No tenant-isolation or production-storage claim is made by this local-adapter correction.
