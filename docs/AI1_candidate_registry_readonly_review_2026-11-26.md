@@ -39,3 +39,12 @@ A separate host-parity diagnostic was inconclusive due to the review helper's UR
 
 ## Next
 Inspect the actual remote branches/commit diffs related to registry consistency and seeder validation, then make a narrowly scoped fix only if code evidence supports it and the scope freeze allows it. Otherwise keep the gap explicitly fail-closed and hand it to the owner's local testing/reconciliation process.
+
+## Remote branch review
+
+Read-only inspection of available remote branches related to candidate registry consistency found:
+- `fix/legal-candidate-catalog-validation`
+- `fix/unique-legal-candidate-ids`
+- `database/legal-candidate-seeder-corpus-profile`
+
+Their candidate catalog/seeder snapshots are older than current `main` and lack the current main seeder's later validation hardening (including duplicate-key/URL checks and canonical permission parity checks). They are not manually integrated; merging these stale snapshots would risk regressing the more hardened current implementation. No PR was created or left pending. The reported local branch `fix/legal-candidate-registry-consistency` remains unavailable as a remote ref and was not reviewed.
