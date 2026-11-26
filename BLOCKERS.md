@@ -183,3 +183,11 @@ Each gate requires an owner, exact candidate commit, reproducible command/config
 | Overall AI-2 assignment | 76% (16 Nov engineering estimate) | 76% | 0 pp | Narrow security improvement does not justify increasing the overall estimate without full test and workflow evidence. |
 
 **Task-level delta:** outbound URL authority preflight hardening moved from 0% to 100% implementation in this session (+100 percentage points). Isolated helper validation moved from 0% to 100% for the listed malformed/valid input cases. Repository regression execution remains 0%; production acceptance remains 0%. These task-level figures are not additive to the broader workstream percentages.
+
+
+## Backup archive canonical-path collision review — 2026-11-26
+
+- Hardened `database_backup._safe_archive_members` against ZIP names that are distinct as raw strings but collide during extraction (`folder` versus `folder/`) and against regular-file ancestor collisions (`folder` plus `folder/item.sqlite3`).
+- Added regressions in `tests/test_database_backup_bundle.py`. This module is already registered in both `scripts/security_regression_check.sh` and `.github/workflows/tests.yml`.
+- Commits: `5bc54707c73f11e5a10577174b52cba240b5f43e` and `aa21e4b176cccf7bdea7b95368b24866f92f7054`.
+- Source review only; tests and GitHub Actions not run. Do not treat this as archive restore acceptance.
