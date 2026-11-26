@@ -2312,3 +2312,10 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Refined credential-bearing query-key detection to avoid a naive substring false positive (for example, ordinary metadata key `author`) while still catching compact and delimited credential-key variants such as auth, token, API-key, private-key, and signature forms.
 - Added synthetic regressions for both sensitive variants and benign metadata keys. This is a precision/robustness adjustment to the URL hygiene gate; it does not authenticate evidence or prove legal reuse rights.
 - Implementation and regression commits: `9c12550`, `4ee2475`, `033479d`, `5909095`. Read-back from `main` confirmed the implementation commit. Tests remain unexecuted; no Actions/CI, PR, or runtime validation was initiated.
+
+
+## AI-1 lexical claim-support finite-duration numeral gap — 2026-11-26
+
+- Corrected a gap in the optional fail-closed claim-support heuristic: the English finite-duration detector and numeric-word parser omitted the number words **sixteen** and **seventeen**, despite recognizing surrounding number words. Worded limitation durations using these values could evade the specific no-expiry/finite-duration contradiction check.
+- Added synthetic regressions for both worded durations, checking no-expiry contradiction rejection and faithful duration acceptance. This remains heuristic coverage, not semantic entailment or legal accuracy.
+- Source and regression changes were committed directly to main. Manual read-back is pending; no tests or Actions/CI were executed.
