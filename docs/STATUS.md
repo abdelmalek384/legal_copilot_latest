@@ -2113,3 +2113,10 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Reviewed the route-to-SQL static inventory parser's early handling of SQL expression resolution, finite identifier choices, dynamic SQL, and connection-boundary classification. These audits are expressly static review aids and do not establish route-level authorization or tenant isolation.
 - No confirmed exploit or code defect identified in the portion inspected; no production code change justified.
 - Runtime security tests, full route execution, tenant-isolation acceptance and Python 3.12 test suite remain manually pending. CI/Actions not invoked.
+
+
+## Tenant database routing and provisioning source review — 2026-11-26
+
+- Continued manual source review of tenant SQLite connection routing and provisioning. Inspected thread-local connection revocation/revalidation, database identity and POSIX permissions, sidecar checks, WAL and FK enforcement, immutable schema-profile and firm-binding guards, provisioning catalog state transitions, exclusive file creation, integrity and FK checks, and final catalog publication.
+- Reviewed these controls as source code only. A pathname race remains explicitly documented; this review does not prove filesystem isolation or concurrency safety. No confirmed code defect was identified in the inspected paths.
+- Manual runtime tests, race cases, two-firm behavioral acceptance, and deployment filesystem review remain outstanding. No Actions or CI run was started.
