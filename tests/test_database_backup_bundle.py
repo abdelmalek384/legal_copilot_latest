@@ -747,6 +747,10 @@ class DatabaseBackupBundleTests(unittest.TestCase):
             (("folder", b"file"), ("folder/", b"directory")),
             (("folder", b"file"), ("folder/item.sqlite3", b"nested")),
             (("folder/item.sqlite3", b"nested"), ("folder", b"file")),
+            (("Folder", b"file"), ("folder/item.sqlite3", b"nested")),
+            (("folder/item.sqlite3", b"nested"), ("Folder", b"file")),
+            (("Folder", b"first"), ("folder", b"second")),
+            (("évidence.txt", b"first"), ("e\\u0301vidence.txt", b"second")),
         )
         for members in invalid_cases:
             with self.subTest(invalid_members=tuple(name for name, _ in members)):
