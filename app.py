@@ -5102,10 +5102,14 @@ def change_password(b: PasswordChangeIn, request: Request, response: Response, u
         except sqlite3.Error as exc:
             control.rollback()
             raise HTTPException(503, "password change was not committed because audit logging failed") from exc
-        audit = conn()
-        audit.execute("INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
-                      (u["firm_id"], u["id"], "password_changed_sessions_revoked"))
-        audit.commit()
+        audit_warning = False
+        try:
+            audit = conn()
+            audit.execute("INSERT INTO security_audit_events(firm_id,user_id,event) VALUES(?,?,?)",
+                         (u["firm_id"], u["id"], "password_changed_sessions_revoked"))
+            audit.commit()
+        except sqlite3.Error:
+            audit_warning = True
     else:
         c = conn()
         row = c.execute("SELECT pw FROM users WHERE id=? AND active=1", (u["id"],)).fetchone()
@@ -5122,7 +5126,10 @@ def change_password(b: PasswordChangeIn, request: Request, response: Response, u
     for cookie in ("lc_session", "lc_csrf", "lc_firm"):
         response.delete_cookie(cookie, path="/", httponly=(cookie != "lc_csrf"),
                                samesite="lax", secure=_secure_cookie_transport(request))
-    return {"ok": True, "sessions_revoked": True, "login_required": True}
+    result = {"ok": True, "sessions_revoked": True, "login_required": True}
+    if _separate_runtime_enabled() and audit_warning:
+        result["audit_warning"] = True
+    return result
 
 
 @app.post("/conflicts")
