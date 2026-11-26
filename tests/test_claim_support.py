@@ -119,6 +119,23 @@ class ClaimSupportTests(unittest.TestCase):
             evidence, tokens, norm, _mask_markdown_code
         ))
 
+    def test_currency_amounts_with_prefix_and_suffix_units_are_recognized(self):
+        cases = (
+            ("The fictional fee is 100 USD.", "The fictional fee is USD 100."),
+            ("الرسوم الافتراضية 100 ريال.", "الرسوم الافتراضية 100 ريال."),
+            ("The fictional fee is 100 euros.", "The fictional fee is EUR 100."),
+        )
+        for claim, evidence in cases:
+            with self.subTest(claim=claim):
+                self.assertFalse(has_unsupported_claims(
+                    claim + " [1].", [{"text": evidence}],
+                    tokens, norm, _mask_markdown_code
+                ))
+                self.assertTrue(has_unsupported_claims(
+                    claim.replace("100", "200") + " [1].", [{"text": evidence}],
+                    tokens, norm, _mask_markdown_code
+                ))
+
     def test_number_and_unit_cannot_be_assembled_from_separate_citations(self):
         hits = [
             {"text": "The fictional period is 30"},
