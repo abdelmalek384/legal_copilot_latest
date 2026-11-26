@@ -2090,3 +2090,10 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Cases include citations inside code/comments not counting as evidence, unclosed code fences, oversized numeric citation markers, uncited claims/bullets, citation-index failures, quantities tied to same-sentence cited passages, Arabic number forms, and conservative abstention on explicit polarity/actor/condition conflicts.
 - Read the synthetic answer-path tests exercising abstention on these mismatches. These tests are review evidence only; they have not been executed in this session.
 - No confirmed defect found in this readback. No speculative code or corpus change.
+
+
+## API research-evaluation runner source review — 2026-11-26
+
+- Continued manual source inspection of `tools/run_legal_eval.py`, including question-file parsing, authenticated request flow, result extraction, and output handling. The runner rejects duplicate JSON keys, bounds input and response reads, requires loopback by default (remote HTTPS only with explicit opt-in), refuses redirects, uses a CSRF token, avoids overwriting existing output, and masks code/comment citation markers when extracting visible citations.
+- No confirmed defect identified in the reviewed portion; therefore no speculative code changes were made.
+- This remains static source review: repository Python tests, full app/API runtime, and browser acceptance have not been run. GitHub Actions/CI was not invoked.
