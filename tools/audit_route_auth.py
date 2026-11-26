@@ -149,10 +149,17 @@ def audit_sources(
                     source_key = source_path.resolve().as_posix()
                 for method in methods:
                     key = (method, path, node.name, source_key)
-                    is_public = key in PUBLIC_ROUTES
-                    if is_public:
+                    is_allowlisted = key in PUBLIC_ROUTES
+                    duplicate_public = is_allowlisted and key in seen_public
+                    is_public = is_allowlisted and not duplicate_public
+                    if duplicate_public:
+                        findings.append(
+                            f"duplicate public route registration: {method} {path} "
+                            f"({node.name}) in {source_key}"
+                        )
+                    elif is_public:
                         seen_public.add(key)
-                    elif not authenticated:
+                    if not is_public and not authenticated:
                         findings.append(
                             f"{method} {path} ({node.name}) in {filename} has no Depends(user) authentication"
                         )
