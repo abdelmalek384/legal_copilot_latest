@@ -25,7 +25,7 @@ export COPILOT_CORPUS_DB="$PWD/data/legal_corpus.sqlite3"
 
 python -c "from database_runtime import DatabaseRuntime; DatabaseRuntime.from_env().initialize()"
 python manage.py init-tenancy --firm-name "Example Firm" --owner-name "First Owner" --owner-email owner@example.com
-python -m uvicorn app:app --host 127.0.0.1 --port 8000
+python -m uvicorn app:app --host 127.0.0.1 --port "${COPILOT_PORT:-8000}"
 ```
 
 ### Local verification and pilot rehearsal
@@ -152,7 +152,7 @@ python manage.py init-tenancy --firm-name "Example Firm" --owner-name "First Own
 python -m uvicorn app:app --host 127.0.0.1 --port 8000
 ```
 
-Open http://127.0.0.1:8000 on the same machine. The three database paths must remain distinct. Do not expose the development server directly to the internet.
+Open the local URL printed by the launcher (default `http://127.0.0.1:8000`) on the same machine. On Mac, if port 8000 is occupied by another local checkout, stop that server or start this launcher with `COPILOT_PORT=8001 ./start_mac.command`; the launcher validates the port and remains bound to `127.0.0.1`. The three database paths must remain distinct. Do not expose the development server directly to the internet.
 
 ### Production and model-processing gates
 
