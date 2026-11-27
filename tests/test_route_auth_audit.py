@@ -254,16 +254,18 @@ def private():
 from fastapi import FastAPI as Application, APIRouter as Router
 application = Application()
 v1 = Router()
+application_alias = application
+v1_alias = v1
 
 @application.get("/private")
 def private():
     return None
 
-@v1.websocket("/socket")
+@v1_alias.websocket("/socket")
 async def socket(websocket):
     return None
 
-application.add_api_route("/dynamic", private, methods=["GET"])
+application_alias.add_api_route("/dynamic", private, methods=["GET"])
 '''
         report = audit_source(source)
         self.assertEqual(report["route_count"], 1)
