@@ -217,10 +217,10 @@ def private():
 
     def test_unsupported_starlette_and_websocket_route_decorators_fail_closed(self):
         sources = (
-            '@app.route("/private")\\ndef private(request):\\n    return None\\n',
-            '@router.route("/private")\\ndef private(request):\\n    return None\\n',
-            '@app.websocket("/socket")\\nasync def socket(websocket):\\n    return None\\n',
-            '@router.websocket_route("/socket")\\nasync def socket(websocket):\\n    return None\\n',
+            '@app.route("/private")\ndef private(request):\n    return None\n',
+            '@router.route("/private")\ndef private(request):\n    return None\n',
+            '@app.websocket("/socket")\nasync def socket(websocket):\n    return None\n',
+            '@router.websocket_route("/socket")\nasync def socket(websocket):\n    return None\n',
         )
         for source in sources:
             with self.subTest(source=source):
