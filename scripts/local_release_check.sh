@@ -103,7 +103,7 @@ if command -v node >/dev/null 2>&1; then
     set -eu
     tmpfile=$(mktemp --suffix=.js)
     trap "rm -f \"$tmpfile\"" EXIT
-    python -c "from pathlib import Path; import re; html=Path(\"static/index.html\").read_text(encoding=\"utf-8\"); scripts=re.findall(r\"<script[^>]*>(.*?)</script>\", html, re.S); assert scripts, \"No inline JavaScript found\"; Path(\"$1\").write_text(chr(10).join(scripts), encoding=\"utf-8\")" "$tmpfile"
+    python -c "from pathlib import Path; import re, sys; html=Path(\"static/index.html\").read_text(encoding=\"utf-8\"); scripts=re.findall(r\"<script[^>]*>(.*?)</script>\", html, re.S); assert scripts, \"No inline JavaScript found\"; Path(sys.argv[1]).write_text(chr(10).join(scripts), encoding=\"utf-8\")" "$tmpfile"
     node --check "$tmpfile"
   '
 else
