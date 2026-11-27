@@ -22,7 +22,8 @@ ROUTER_MODULES = {
 }
 ROUTER_FILES = tuple(ROUTER_MODULES.values())
 ROUTE_METHODS = {"get", "post", "put", "patch", "delete", "options", "head", "api_route"}
-DYNAMIC_ROUTE_REGISTRATION_METHODS = {"add_api_route", "add_route", "mount"}
+DYNAMIC_ROUTE_REGISTRATION_METHODS = {"add_api_route", "add_route", "add_websocket_route", "mount"}
+UNSUPPORTED_ROUTE_DECORATORS = {"route", "websocket", "websocket_route"}
 # Public access is granted to an exact handler, not merely to a path.
 # This prevents an unrelated route registered on a public URL from inheriting
 # the exemption.
@@ -63,6 +64,21 @@ def _is_user_dependency(node: ast.AST) -> bool:
 
 def _contains_user_dependency(node: ast.AST) -> bool:
     return any(_is_user_dependency(item) for item in ast.walk(node))
+
+
+def _unsupported_route_decorator(decorator: ast.AST) -> tuple[str, str] | None:
+    """Identify valid framework route decorators this HTTP inventory cannot model."""
+    if (
+        not isinstance(decorator, ast.Call)
+        or not isinstance(decorator.func, ast.Attribute)
+        or not isinstance(decorator.func.value, ast.Name)
+    ):
+        return None
+    owner = decorator.func.value.id
+    method = decorator.func.attr.lower()
+    if owner in {"app", "router"} and method in UNSUPPORTED_ROUTE_DECORATORS:
+        return owner, method
+    return None
 
 
 def _route_methods(decorator: ast.AST) -> list[str]:
@@ -134,6 +150,15 @@ def audit_sources(
             if not isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
                 continue
             for decorator in node.decorator_list:
+                unsupported = _unsupported_route_decorator(decorator)
+                if unsupported is not None:
+                    owner, method = unsupported
+                    findings.append(
+                        f"cannot statically audit unsupported route decorator "
+                        f"{owner}.{method} on {node.name} in {filename}; "
+                        "use supported literal HTTP route decorators"
+                    )
+                    continue
                 try:
                     methods = _route_methods(decorator)
                 except ValueError as exc:
