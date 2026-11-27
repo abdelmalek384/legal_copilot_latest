@@ -2380,3 +2380,11 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - The existing claim-support numeric-unit map now treats Arabic percent sign `٪` as the same unit as `%`, `percent`, and `بالمئة`. Added an Arabic regression for symbol/word equivalence in both directions and rejection when cited evidence omits the percentage unit.
 - This is lexical unit consistency only; it does not establish semantic entailment, legal accuracy, or lawyer verification. Tests are authored but **not executed**; no GitHub Actions were run.
 - PR #2041 is merged; no PR remains open at this checkpoint. Overall estimate remains **76.8%** (0.0 pp change), because no repository test execution or end-to-end acceptance was added. Lawyer verification remains 0%.
+
+## Manual security matrix coverage correction — 2026-11-27
+
+- Found that `scripts/security_regression_check.sh` contained a conditional special execution path for `test_trusted_proxy_client_ip.py` (development environment) but did **not** list that module in its `tests` array, so the special branch was unreachable.
+- Registered `test_trusted_proxy_client_ip.py` in the explicit manual matrix and added it to `REQUIRED_SECURITY_MODULES` in `tests/test_security_matrix_registration.py` so future omission is caught by the registration contract.
+- Commits: matrix `d8c89116e112d53ee9feffbc7ce02a1c69f343c1`; registration `527241c2ed09af15916164508b9193fa205f9408`.
+- GitHub read-back confirms the module is now listed in both locations; registration tests and the full manual matrix were not executed. This fixes a coverage omission in the manual test runner, not a test pass or security sign-off.
+- Overall estimate remains **76.8%** (0.0 pp change); no runtime evidence. Pilot remains **NOT READY**.
