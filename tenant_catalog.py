@@ -137,9 +137,27 @@ def _storage_root_path(storage_root: str | Path, *, create: bool = False) -> Pat
     if _path_has_symlink_component(raw_root):
         raise TenantCatalogError("Tenant storage root must not contain symlink path components")
     if create:
-        raw_root.mkdir(parents=True, exist_ok=True)
+        raw_root.mkdir(parents=True, mode=0o700, exist_ok=True)
     if _path_has_symlink_component(raw_root) or not raw_root.is_dir():
         raise TenantCatalogError("Tenant storage root must be a real directory without symlink path components")
+    if os.name == "posix":
+        # Tenant database filenames and directory entries are sensitive metadata.
+        # A default mkdir mode (commonly 0755) would allow unrelated local users
+        # to enumerate the firm database catalog even though each DB is 0600.
+        try:
+            os.chmod(raw_root, 0o700)
+            root_metadata = os.lstat(raw_root)
+        except OSError as exc:
+            raise TenantCatalogError(
+                "Cannot enforce restrictive permissions on tenant storage root"
+            ) from exc
+        if (
+            not stat.S_ISDIR(root_metadata.st_mode)
+            or stat.S_IMODE(root_metadata.st_mode) & 0o077
+        ):
+            raise TenantCatalogError(
+                "Tenant storage root must be accessible only to its service account"
+            )
     return raw_root.resolve()
 
 
