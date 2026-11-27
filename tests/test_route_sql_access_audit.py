@@ -104,6 +104,48 @@ application_alias.add_api_route("/dynamic", private, methods=["GET"])
         self.assertTrue(any("application_alias.add_api_route" in error for error in report["route_declaration_errors"]))
         self.assertTrue(any("v1_alias.websocket" in error for error in report["route_declaration_errors"]))
 
+    def test_route_sql_call_graph_traces_unique_class_method(self):
+        source = '''
+def firm_connection():
+    return None
+
+class CaseRepository:
+    def read_case(self, db, case_id):
+        return db.execute("SELECT id FROM cases WHERE id=?", (case_id,)).fetchone()
+
+@app.get("/cases/{case_id}")
+def case_detail(case_id):
+    return CaseRepository().read_case(firm_connection(), case_id)
+'''
+        report = audit_source(source)
+        self.assertEqual(report["route_count"], 1)
+        route = report["routes"][0]
+        self.assertIn("read_case", route["reachable_local_functions"])
+        self.assertIn("cases", route["table_references"])
+        self.assertEqual(route["sql_call_count"], 1)
+        self.assertEqual(report["route_declaration_errors"], [])
+
+    def test_ambiguous_class_method_call_fails_closed_for_sql_inventory(self):
+        source = '''
+class FirstRepository:
+    def read_case(self, db):
+        return db.execute("SELECT id FROM cases").fetchall()
+
+class SecondRepository:
+    def read_case(self, db):
+        return db.execute("SELECT id FROM cases").fetchall()
+
+@app.get("/cases")
+def list_cases():
+    return FirstRepository().read_case(conn())
+'''
+        report = audit_source(source)
+        self.assertEqual(report["route_count"], 1)
+        self.assertTrue(any(
+            "class method read_case that is defined more than once" in error
+            for error in report["route_declaration_errors"]
+        ))
+
     def test_nested_class_route_handler_fails_closed(self):
         source = '''
 from fastapi import APIRouter
