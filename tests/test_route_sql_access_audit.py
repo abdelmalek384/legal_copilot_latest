@@ -79,8 +79,10 @@ def private():
     def test_aliased_fastapi_and_apirouter_bindings_fail_closed(self):
         source = '''
 from fastapi import FastAPI as Application, APIRouter as Router
-application = Application()
-v1 = Router()
+make_application = Application
+make_router = Router
+application = make_application()
+v1 = make_router()
 application_alias = application
 v1_alias = v1
 
