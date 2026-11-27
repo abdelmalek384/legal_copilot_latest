@@ -110,8 +110,11 @@ def firm_connection():
     return None
 
 class CaseRepository:
-    def read_case(self, db, case_id):
+    def _query(self, db, case_id):
         return db.execute("SELECT id FROM cases WHERE id=?", (case_id,)).fetchone()
+
+    def read_case(self, db, case_id):
+        return self._query(db, case_id)
 
 @app.get("/cases/{case_id}")
 def case_detail(case_id):
