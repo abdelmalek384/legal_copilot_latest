@@ -1,6 +1,7 @@
 """Tests for safe tenant catalog and SQLite database provisioning."""
 import os
 import sqlite3
+import stat
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -271,6 +272,13 @@ class TenantCatalogTests(unittest.TestCase):
         self.assertIsNone(self.catalog.execute(
             "SELECT 1 FROM tenant_database_catalog WHERE firm_id=404"
         ).fetchone())
+
+    @unittest.skipUnless(os.name == "posix", "POSIX directory permission enforcement is required")
+    def test_existing_storage_root_permissions_are_restricted(self):
+        self.root.mkdir(parents=True, mode=0o755)
+        os.chmod(self.root, 0o755)
+        provision_tenant_database(self.catalog, 17, self.root, self.initialize_tenant)
+        self.assertEqual(stat.S_IMODE(os.lstat(self.root).st_mode), 0o700)
 
     def test_provision_and_resolve_uses_catalog_not_client_path(self):
         initialize_catalog(self.catalog)
