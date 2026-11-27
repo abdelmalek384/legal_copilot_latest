@@ -223,6 +223,39 @@ class LocalPrivateObjectStoreTests(unittest.TestCase):
         with self.assertRaises(ObjectStorageError):
             self.store.stage(9, b"must not escape")
 
+    @unittest.skipUnless(os.name == "posix", "POSIX directory-descriptor operations are required")
+    def test_delete_restores_raced_name_instead_of_deleting_replacement(self):
+        staged = self.store.stage(7, b"original pinned object")
+        namespace = self.root / "firm-7"
+        original_path = namespace / (staged.object_id + ".staged")
+        parked = Path(self.temp.name) / "parked-original"
+        replacement = b"replacement must be preserved"
+        real_rename = os.rename
+        swapped = False
+
+        def replace_before_quarantine(source, destination, *args, **kwargs):
+            nonlocal swapped
+            if (
+                source == original_path.name
+                and isinstance(destination, str) and destination.startswith(".delete-")
+                and kwargs.get("src_dir_fd") is not None
+                and not swapped
+            ):
+                original_path.rename(parked)
+                original_path.write_bytes(replacement)
+                swapped = True
+            return real_rename(source, destination, *args, **kwargs)
+
+        with patch("original_file_storage.os.rename", side_effect=replace_before_quarantine):
+            with self.assertRaisesRegex(ObjectStorageError, "changed during deletion"):
+                self.store.delete(7, staged.object_id)
+
+        self.assertTrue(swapped)
+        self.assertEqual(parked.read_bytes(), b"original pinned object")
+        self.assertEqual(original_path.read_bytes(), replacement)
+        self.assertEqual(list(namespace.glob(".delete-*")), [])
+        self.assertEqual(self.store.object_presence(7, staged.object_id), (True, False))
+
     def test_delete_removes_staged_or_final_object(self):
         staged = self.store.stage(7, b"delete me")
         self.assertTrue(self.store.delete(7, staged.object_id))
