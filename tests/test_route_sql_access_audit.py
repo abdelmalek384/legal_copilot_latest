@@ -102,6 +102,24 @@ application_alias.add_api_route("/dynamic", private, methods=["GET"])
         self.assertTrue(any("application_alias.add_api_route" in error for error in report["route_declaration_errors"]))
         self.assertTrue(any("v1_alias.websocket" in error for error in report["route_declaration_errors"]))
 
+    def test_nested_class_route_handler_fails_closed(self):
+        source = '''
+from fastapi import APIRouter
+api = APIRouter()
+
+class CaseViews:
+    @api.get("/cases/{case_id}")
+    def detail(self, case_id):
+        db = conn()
+        return db.execute("SELECT id FROM cases WHERE id=?", (case_id,)).fetchone()
+'''
+        report = audit_source(source)
+        self.assertEqual(report["route_count"], 0)
+        self.assertTrue(any(
+            "nested/class route handler cannot be inventoried" in error
+            for error in report["route_declaration_errors"]
+        ))
+
     def test_dynamic_api_route_methods_are_reported_as_uninventoried(self):
         source = '''
 METHODS = ["GET", "POST"]
