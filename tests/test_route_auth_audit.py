@@ -249,6 +249,36 @@ def private():
                     for finding in report["missing_authentication"]
                 ))
 
+    def test_aliased_fastapi_and_apirouter_bindings_fail_closed(self):
+        source = '''
+from fastapi import FastAPI as Application, APIRouter as Router
+application = Application()
+v1 = Router()
+
+@application.get("/private")
+def private():
+    return None
+
+@v1.websocket("/socket")
+async def socket(websocket):
+    return None
+
+application.add_api_route("/dynamic", private, methods=["GET"])
+'''
+        report = audit_source(source)
+        self.assertEqual(report["route_count"], 1)
+        self.assertEqual(report["routes"][0]["path"], "/private")
+        self.assertEqual(
+            report["missing_authentication"],
+            [
+                "GET /private (private) in app.py has no Depends(user) authentication",
+                "cannot statically audit dynamic route registration "
+                "application.add_api_route in app.py; use literal route decorators",
+                "cannot statically audit unsupported route decorator "
+                "v1.websocket on socket in app.py; use supported literal HTTP route decorators",
+            ],
+        )
+
     def test_keyword_literal_route_path_is_audited(self):
         source = '''
 @app.get(path="/private")
