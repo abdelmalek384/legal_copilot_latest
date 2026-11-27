@@ -64,20 +64,28 @@ def _framework_bindings(tree: ast.AST) -> set[str]:
                 for alias in node.names
                 if alias.name in {"FastAPI", "APIRouter"}
             )
-    for node in ast.walk(tree):
-        targets = []
-        value = None
-        if isinstance(node, ast.Assign):
-            targets = node.targets
-            value = node.value
-        elif isinstance(node, ast.AnnAssign):
-            targets = [node.target]
-            value = node.value
-        if not isinstance(value, ast.Call) or _call_name(value.func) not in constructor_names:
-            continue
-        for target in targets:
-            if isinstance(target, ast.Name):
-                names.add(target.id)
+    changed = True
+    while changed:
+        changed = False
+        for node in ast.walk(tree):
+            targets = []
+            value = None
+            if isinstance(node, ast.Assign):
+                targets = node.targets
+                value = node.value
+            elif isinstance(node, ast.AnnAssign):
+                targets = [node.target]
+                value = node.value
+            if isinstance(value, ast.Call):
+                recognized = _call_name(value.func) in constructor_names
+            else:
+                recognized = isinstance(value, ast.Name) and value.id in names
+            if not recognized:
+                continue
+            for target in targets:
+                if isinstance(target, ast.Name) and target.id not in names:
+                    names.add(target.id)
+                    changed = True
     return names
 
 
