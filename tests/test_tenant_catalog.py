@@ -319,7 +319,14 @@ class TenantCatalogTests(unittest.TestCase):
 
     @unittest.skipUnless(os.name == "posix", "POSIX file permission enforcement is required")
     def test_posix_chmod_failure_aborts_provisioning_and_cleans_file(self):
-        with patch("tenant_catalog.os.chmod", side_effect=OSError("permission denied")):
+        real_chmod = os.chmod
+
+        def fail_database_file_chmod(path, mode):
+            if str(path).endswith(".sqlite3"):
+                raise OSError("permission denied")
+            return real_chmod(path, mode)
+
+        with patch("tenant_catalog.os.chmod", side_effect=fail_database_file_chmod):
             with self.assertRaisesRegex(TenantCatalogError, "Cannot enforce restrictive permissions"):
                 provision_tenant_database(self.catalog, 34, self.root, self.initialize_tenant)
         row = self.catalog.execute(
