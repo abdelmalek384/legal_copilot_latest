@@ -146,6 +146,22 @@ class ClaimSupportTests(unittest.TestCase):
             hits, tokens, norm, _mask_markdown_code
         ))
 
+    def test_percent_symbol_is_not_treated_as_unitless_number(self):
+        cases = (
+            ("The fictional fee is 10%.", "The fictional fee is 10 percent."),
+            ("The fictional fee is 10 percent.", "The fictional fee is 10%."),
+        )
+        for claim, evidence in cases:
+            with self.subTest(claim=claim):
+                self.assertFalse(has_unsupported_claims(
+                    claim + " [1].", [{"text": evidence}],
+                    tokens, norm, _mask_markdown_code
+                ))
+        self.assertTrue(has_unsupported_claims(
+            "The fictional fee is 10% [1].", [{"text": "The fictional fee is 10."}],
+            tokens, norm, _mask_markdown_code
+        ))
+
     def test_comma_grouped_thousands_cannot_collapse_to_decimal_one(self):
         evidence = [{"text": "The limitation period is one year."}]
         self.assertTrue(has_unsupported_claims(
