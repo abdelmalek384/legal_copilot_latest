@@ -215,12 +215,30 @@ def private():
         self.assertEqual(report["route_count"], 0)
         self.assertIn("route path must be a literal string", report["missing_authentication"][0])
 
+    def test_unsupported_starlette_and_websocket_route_decorators_fail_closed(self):
+        sources = (
+            '@app.route("/private")\\ndef private(request):\\n    return None\\n',
+            '@router.route("/private")\\ndef private(request):\\n    return None\\n',
+            '@app.websocket("/socket")\\nasync def socket(websocket):\\n    return None\\n',
+            '@router.websocket_route("/socket")\\nasync def socket(websocket):\\n    return None\\n',
+        )
+        for source in sources:
+            with self.subTest(source=source):
+                report = audit_source(source)
+                self.assertEqual(report["route_count"], 0)
+                self.assertEqual(len(report["missing_authentication"]), 1)
+                self.assertIn(
+                    "cannot statically audit unsupported route decorator",
+                    report["missing_authentication"][0],
+                )
+
     def test_dynamic_route_registration_api_fails_closed(self):
         sources = (
             'app.add_api_route("/private", private_handler, methods=["GET"])',
             'router.add_api_route("/private", private_handler, methods=["GET"])',
             'app.mount("/static", static_files)',
             'app.add_route("/private", private_handler)',
+            'app.add_websocket_route("/socket", websocket_handler)',
         )
         for source in sources:
             with self.subTest(source=source):
