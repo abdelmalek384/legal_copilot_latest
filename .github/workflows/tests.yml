@@ -84,6 +84,8 @@ jobs:
         run: python tests/test_research_copy_initialization.py
       - name: Test security regression registration consistency
         run: python tests/test_security_matrix_registration.py
+      - name: Test manual release gate contract
+        run: python tests/test_manual_release_gate_contract.py
       - name: Check frontend JavaScript syntax
         run: |
           python -c "from pathlib import Path; import re; html=Path('static/index.html').read_text(encoding='utf-8'); scripts=re.findall(r'<script[^>]*>(.*?)</script>', html, re.S); assert scripts, 'No inline JavaScript found'; Path('/tmp/legal-copilot.js').write_text(chr(10).join(scripts), encoding='utf-8')"
