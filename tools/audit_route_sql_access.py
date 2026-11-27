@@ -376,11 +376,42 @@ def audit_source(source: str) -> dict[str, Any]:
         node.name: node for node in tree.body
         if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef))
     }
-    class_method_candidates: dict[str, list[ast.FunctionDef | ast.AsyncFunctionDef]] = {}
+    all_class_methods: dict[str, list[ast.FunctionDef | ast.AsyncFunctionDef]] = {}
     for class_node in (item for item in ast.walk(tree) if isinstance(item, ast.ClassDef)):
         for member in class_node.body:
             if isinstance(member, (ast.FunctionDef, ast.AsyncFunctionDef)):
-                class_method_candidates.setdefault(member.name, []).append(member)
+                all_class_methods.setdefault(member.name, []).append(member)
+    # Only add class methods that can reach a SQL execution method. This avoids
+    # treating unrelated framework/library methods such as .get() as local SQL
+    # helpers merely because a class happens to define the same method name.
+    sql_relevant_method_names = {
+        name
+        for name, candidates in all_class_methods.items()
+        if any(
+            isinstance(call, ast.Call)
+            and _call_name(call.func) in {"execute", "executemany", "executescript"}
+            for candidate in candidates
+            for call in ast.walk(candidate)
+        )
+    }
+    changed_methods = True
+    while changed_methods:
+        changed_methods = False
+        for name, candidates in all_class_methods.items():
+            if name in sql_relevant_method_names:
+                continue
+            if any(
+                isinstance(call, ast.Call) and _call_name(call.func) in sql_relevant_method_names
+                for candidate in candidates
+                for call in ast.walk(candidate)
+            ):
+                sql_relevant_method_names.add(name)
+                changed_methods = True
+    class_method_candidates = {
+        name: candidates
+        for name, candidates in all_class_methods.items()
+        if name in sql_relevant_method_names
+    }
     ambiguous_class_methods = {
         name for name, candidates in class_method_candidates.items()
         if len(candidates) > 1 and name not in functions
