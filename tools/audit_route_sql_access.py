@@ -365,6 +365,7 @@ def _reviewed_dynamic_sql(function: str, template: str) -> bool:
 
 def audit_source(source: str) -> dict[str, Any]:
     tree = ast.parse(source, filename=str(APP_FILE))
+    framework_names = _framework_bindings(tree)
     functions = {
         node.name: node for node in tree.body
         if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef))
