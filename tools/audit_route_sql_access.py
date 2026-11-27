@@ -22,7 +22,8 @@ ROUTER_MODULES = {
     "routers.identity": ROOT / "routers" / "identity.py",
 }
 ROUTE_METHODS = {"get", "post", "put", "patch", "delete", "options", "head", "api_route"}
-DYNAMIC_ROUTE_REGISTRATION_METHODS = {"add_api_route", "add_route", "mount"}
+DYNAMIC_ROUTE_REGISTRATION_METHODS = {"add_api_route", "add_route", "add_websocket_route", "mount"}
+UNSUPPORTED_ROUTE_DECORATORS = {"route", "websocket", "websocket_route"}
 BOUNDARY_CALLS = {
     "conn": "firm",
     "firm_connection": "firm",
@@ -62,6 +63,16 @@ def _route_decorators(
             continue
         owner = decorator.func.value
         method = decorator.func.attr.lower()
+        if (
+            isinstance(owner, ast.Name)
+            and owner.id in {"app", "router"}
+            and method in UNSUPPORTED_ROUTE_DECORATORS
+        ):
+            errors.append(
+                f"{function.name}: unsupported route decorator {owner.id}.{method} "
+                "cannot be inventoried for tenant SQL access"
+            )
+            continue
         if not isinstance(owner, ast.Name) or owner.id not in {"app", "router"} or method not in ROUTE_METHODS:
             continue
         path_node = decorator.args[0] if decorator.args else next(
