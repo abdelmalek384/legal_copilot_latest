@@ -297,7 +297,7 @@ _NUMERIC_UNITS = {
     "أيام": "day", "ايام": "day", "أياما": "day", "اياما": "day",
     "hour": "hour", "hours": "hour", "ساعة": "hour", "ساعات": "hour",
     "minute": "minute", "minutes": "minute", "دقيقة": "minute", "دقائق": "minute",
-    "percent": "percent", "percentage": "percent", "%": "percent", "بالمئة": "percent",
+    "percent": "percent", "percentage": "percent", "%": "percent", "٪": "percent", "بالمئة": "percent",
     "percent": "percent", "unit": "unit", "units": "unit",
     "وحدة": "unit", "وحدات": "unit", "egp": "currency",
     "pound": "currency", "pounds": "currency", "جنيه": "currency",
