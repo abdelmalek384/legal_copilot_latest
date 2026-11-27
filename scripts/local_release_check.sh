@@ -98,6 +98,20 @@ else
   fi
 fi
 
+if command -v node >/dev/null 2>&1; then
+  run_check "Frontend inline JavaScript syntax" bash -c '
+    set -eu
+    tmpfile=$(mktemp --suffix=.js)
+    trap "rm -f \"$tmpfile\"" EXIT
+    python -c "from pathlib import Path; import re; html=Path(\"static/index.html\").read_text(encoding=\"utf-8\"); scripts=re.findall(r\"<script[^>]*>(.*?)</script>\", html, re.S); assert scripts, \"No inline JavaScript found\"; Path(\"$1\").write_text(chr(10).join(scripts), encoding=\"utf-8\")" "$tmpfile"
+    node --check "$tmpfile"
+  '
+else
+  names+=("Frontend inline JavaScript syntax")
+  statuses+=("BLOCKED")
+  details+=("Node.js is not installed; the frontend syntax check was not run")
+fi
+
 if command -v actionlint >/dev/null 2>&1; then
   run_check "GitHub Actions workflow lint" actionlint
 else
