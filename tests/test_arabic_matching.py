@@ -200,6 +200,15 @@ class ArabicMatchingTests(unittest.TestCase):
                 self.assertNotIn(tokens("صرف")[0], expanded - original)
 
 
+    def test_longer_negation_scope_blocks_positive_hint_expansion(self):
+        # A negator followed by a longer clause must not be lost at the
+        # retrieval-hint boundary (original query tokens remain available).
+        query = "ليس من حق العامل الحصول على الإجازة السنوية"
+        expanded = set(expanded_tokens(query))
+        self.assertTrue(set(tokens(query)).issubset(expanded))
+        self.assertNotIn("leave", expanded)
+        self.assertFalse(set(tokens("الإجازة السنوية للعامل")).issubset(expanded))
+
     def test_interrogative_ma_is_not_mistaken_for_negation(self):
         expanded = set(expanded_tokens("ما هي الإجازة السنوية؟"))
         self.assertIn("leave", expanded)
