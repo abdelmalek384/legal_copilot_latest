@@ -13,6 +13,7 @@ MATRIX_MODULES = re.findall(r"^\s+(test_[A-Za-z0-9_]+\.py)\s*$", MATRIX, re.MULT
 
 REQUIRED_SECURITY_MODULES = {
     "test_mfa_primitives.py", "test_mfa_break_glass_cli.py",
+    "test_trusted_proxy_client_ip.py",
     "test_platform_admin_bootstrap_cli.py", "test_tenant_context.py",
     "test_tenant_context_transaction_boundary.py", "test_tenant_database_preflight.py",
     "test_tenant_fleet_migration.py", "test_tenant_ownership_preflight.py",
