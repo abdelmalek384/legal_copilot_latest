@@ -149,6 +149,25 @@ def list_cases():
             for error in report["route_declaration_errors"]
         ))
 
+    def test_class_method_name_collision_with_module_helper_fails_closed(self):
+        source = '''
+def read_case(db):
+    return db.execute("SELECT id FROM cases").fetchall()
+
+class CaseRepository:
+    def read_case(self, db):
+        return db.execute("SELECT id FROM cases").fetchall()
+
+@app.get("/cases")
+def list_cases():
+    return CaseRepository().read_case(conn())
+'''
+        report = audit_source(source)
+        self.assertTrue(any(
+            "class method read_case that is defined more than once" in error
+            for error in report["route_declaration_errors"]
+        ))
+
     def test_nested_class_route_handler_fails_closed(self):
         source = '''
 from fastapi import APIRouter
