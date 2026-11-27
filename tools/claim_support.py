@@ -22,7 +22,7 @@ _ARABIC_NO_EXPIRY = re.compile(
 _ENGLISH_FINITE_PERIOD = re.compile(
     r"\b(?:\d+(?:[.,]\d+)?|zero|one|two|three|four|five|six|seven|eight|"
     r"nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|"
-    r"eighteen|nineteen|sixteen|seventeen|twenty|thirty|forty|fifty|sixty|seventy|eighty|"
+    r"eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|"
     r"ninety|hundred|thousand)(?:[- ](?:one|two|three|four|five|six|seven|"
     r"eight|nine))?\s*(?:year|years|month|months|week|weeks|day|days)\b",
     re.IGNORECASE,
@@ -297,8 +297,7 @@ _NUMERIC_UNITS = {
     "أيام": "day", "ايام": "day", "أياما": "day", "اياما": "day",
     "hour": "hour", "hours": "hour", "ساعة": "hour", "ساعات": "hour",
     "minute": "minute", "minutes": "minute", "دقيقة": "minute", "دقائق": "minute",
-    "percent": "percent", "percentage": "percent", "%": "percent", "٪": "percent", "بالمئة": "percent",
-    "percent": "percent", "unit": "unit", "units": "unit",
+    "percent": "percent", "percentage": "percent", "%": "percent", "٪": "percent", "بالمئة": "percent", "unit": "unit", "units": "unit",
     "وحدة": "unit", "وحدات": "unit", "egp": "currency",
     "pound": "currency", "pounds": "currency", "جنيه": "currency",
     "جنيهات": "currency", "usd": "currency", "dollar": "currency",
