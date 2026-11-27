@@ -53,8 +53,37 @@ def _call_name(node: ast.AST) -> str | None:
     return None
 
 
+def _framework_bindings(tree: ast.AST) -> set[str]:
+    """Find FastAPI/APIRouter instances, including variables assigned through import aliases."""
+    names = {"app", "router"}
+    constructor_names = {"FastAPI", "APIRouter"}
+    for node in ast.walk(tree):
+        if isinstance(node, ast.ImportFrom) and node.module == "fastapi":
+            constructor_names.update(
+                alias.asname or alias.name
+                for alias in node.names
+                if alias.name in {"FastAPI", "APIRouter"}
+            )
+    for node in ast.walk(tree):
+        targets = []
+        value = None
+        if isinstance(node, ast.Assign):
+            targets = node.targets
+            value = node.value
+        elif isinstance(node, ast.AnnAssign):
+            targets = [node.target]
+            value = node.value
+        if not isinstance(value, ast.Call) or _call_name(value.func) not in constructor_names:
+            continue
+        for target in targets:
+            if isinstance(target, ast.Name):
+                names.add(target.id)
+    return names
+
+
 def _route_decorators(
     function: ast.FunctionDef | ast.AsyncFunctionDef,
+    framework_names: set[str],
 ) -> tuple[list[dict[str, str]], list[str]]:
     result = []
     errors = []
@@ -65,7 +94,7 @@ def _route_decorators(
         method = decorator.func.attr.lower()
         if (
             isinstance(owner, ast.Name)
-            and owner.id in {"app", "router"}
+            and owner.id in framework_names
             and method in UNSUPPORTED_ROUTE_DECORATORS
         ):
             errors.append(
@@ -73,7 +102,7 @@ def _route_decorators(
                 "cannot be inventoried for tenant SQL access"
             )
             continue
-        if not isinstance(owner, ast.Name) or owner.id not in {"app", "router"} or method not in ROUTE_METHODS:
+        if not isinstance(owner, ast.Name) or owner.id not in framework_names or method not in ROUTE_METHODS:
             continue
         path_node = decorator.args[0] if decorator.args else next(
             (keyword.value for keyword in decorator.keywords if keyword.arg == "path"),
@@ -348,7 +377,7 @@ def audit_source(source: str) -> dict[str, Any]:
         owner = candidate.func.value
         if (
             isinstance(owner, ast.Name)
-            and owner.id in {"app", "router"}
+            and owner.id in framework_names
             and candidate.func.attr.lower() in DYNAMIC_ROUTE_REGISTRATION_METHODS
         ):
             route_declaration_errors.append(
@@ -357,7 +386,7 @@ def audit_source(source: str) -> dict[str, Any]:
             )
     for node in tree.body:
         if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
-            discovered, errors = _route_decorators(node)
+            discovered, errors = _route_decorators(node, framework_names)
             route_declaration_errors.extend(errors)
             for route in discovered:
                 routes.append((route, node.name))
