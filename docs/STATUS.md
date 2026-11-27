@@ -2356,3 +2356,11 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Direct-main audit commits: 143ea17, 99bf671, 111c4ae, f589fe7, 4713ec1. Prior route decorator/WebSocket audit commits remain on main. No PRs are left open at this checkpoint.
 - Verification: GitHub read-back confirmed the four audit/test files and merged Arabic matching changes. No Python tests, GitHub Actions, browser tests, or runtime acceptance were executed. Do not treat source read-back as a test pass.
 - Progress accounting: route-audit coverage advanced (aliased framework bindings are now explicitly detected); overall pilot-readiness percentage remains unchanged because no runtime, browser, cross-firm, or production acceptance evidence was added. Lawyer verification remains 0.
+
+## AI-2 original-file deletion race review — 2026-11-27
+
+- Reviewed draft PR [#2040](https://github.com/abdelmalek384/legal_copilot_latest/pull/2040), which proposes inode pinning and quarantine-based deletion in `original_file_storage.py` with a synthetic name-substitution regression.
+- The PR reports a 2/2 standalone copied-logic harness result, but explicitly has no exact repository test execution, independent review, or live storage acceptance. Its draft status therefore did not satisfy the project's merge gate.
+- Closed PR #2040 **unmerged** so no unvalidated draft remains pending. Its branch changes are not part of `main`; do not count them as integrated or use its implementation as a validated fix.
+- Follow-up required before reconsidering: exercise the exact repository regression on the supported Python 3.12 runtime, review the post-quarantine name-to-unlink race boundary (the implementation still unlinks a pathname after a separate identity check), and obtain independent storage review. Any revised implementation must prove it cannot unlink a substituted quarantine entry and must preserve recovery behavior.
+- Main remains at the previously communicated 76.8% broad engineering estimate; no percentage increase is justified. No repository tests or GitHub Actions were run in this review. Pilot remains **NOT READY**.
