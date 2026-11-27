@@ -369,7 +369,7 @@ def _has_unsupported_numbers(claim, evidence):
 
 
 _QUALIFIER_PATTERNS = {
-    "universal": (r"\b(?:all|every|each|any)\b", r"(?:^|\s)(?:لكل|كل|جميع|كافة)(?:\s|$)"),
+    "universal": (r"\b(?:all|every|each|any)\b", r"(?:^|\s)(?:لكل|كل|جميع|كافة|أي|أية|اي|اية)(?:\s|$)"),
     "always": (r"\balways\b", r"(?:^|\s)دائما(?:\s|$)"),
     "never": (r"\bnever\b", r"(?:^|\s)(?:ابدا|أبدا)(?:\s|$)"),
     "perpetual": (r"\b(?:forever|unlimited|without\s+limit)\b", r"(?:بلا|دون)\s+(?:حدود|نهاية)"),
