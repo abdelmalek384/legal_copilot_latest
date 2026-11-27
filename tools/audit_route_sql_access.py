@@ -393,12 +393,30 @@ def audit_source(source: str) -> dict[str, Any]:
                 f"cannot statically audit dynamic route registration "
                 f"{owner.id}.{candidate.func.attr}; use literal route decorators"
             )
+    top_level_functions = {
+        id(node) for node in tree.body
+        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef))
+    }
     for node in tree.body:
         if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
             discovered, errors = _route_decorators(node, framework_names)
             route_declaration_errors.extend(errors)
             for route in discovered:
                 routes.append((route, node.name))
+    # Class-based or nested route handlers are not part of the current call-graph
+    # inventory. Fail closed instead of silently omitting their SQL behavior.
+    for node in ast.walk(tree):
+        if (
+            isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef))
+            and id(node) not in top_level_functions
+        ):
+            discovered, errors = _route_decorators(node, framework_names)
+            route_declaration_errors.extend(errors)
+            if discovered:
+                route_declaration_errors.append(
+                    f"{node.name}: nested/class route handler cannot be inventoried "
+                    "for tenant SQL access; use a top-level route handler"
+                )
 
     records = []
     for route, handler in sorted(routes, key=lambda item: (item[0]["path"], item[0]["method"])):
