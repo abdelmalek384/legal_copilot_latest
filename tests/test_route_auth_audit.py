@@ -275,9 +275,9 @@ application_alias.add_api_route("/dynamic", private, methods=["GET"])
             [
                 "GET /private (private) in app.py has no Depends(user) authentication",
                 "cannot statically audit dynamic route registration "
-                "application.add_api_route in app.py; use literal route decorators",
+                "application_alias.add_api_route in app.py; use literal route decorators",
                 "cannot statically audit unsupported route decorator "
-                "v1.websocket on socket in app.py; use supported literal HTTP route decorators",
+                "v1_alias.websocket on socket in app.py; use supported literal HTTP route decorators",
             ],
         )
 
