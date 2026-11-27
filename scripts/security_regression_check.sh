@@ -29,6 +29,7 @@ tests=(
   test_database_runtime.py
   test_dependency_lock_workflow_contract.py
   test_tenant_catalog.py
+  test_trusted_proxy_client_ip.py
   test_tenant_storage.py
   test_auth_rate_limits_separate_runtime.py
   test_identity_lifecycle.py
