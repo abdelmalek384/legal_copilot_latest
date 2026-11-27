@@ -55,15 +55,20 @@ tests=(
   test_reminder_outbox.py
   test_reminder_service.py
   test_security_transport_config.py
-  test_trusted_proxy_client_ip.py
   test_trusted_host_middleware.py
   test_uploaded_filename_sanitization.py
-    test_database_migration_rehearsal.py
-    test_recover_staged_original_files.py
-    test_bounded_original_file_audit_history.py
-    test_security_audit_read_separate_runtime.py
-    test_firm_security_policy.py
-    test_auth_cookie_expiry_middleware.py
+
+  test_database_migration_rehearsal.py
+
+  test_recover_staged_original_files.py
+
+  test_bounded_original_file_audit_history.py
+
+  test_security_audit_read_separate_runtime.py
+
+  test_firm_security_policy.py
+
+  test_auth_cookie_expiry_middleware.py
   test_original_file_storage.py
   test_original_file_reconciliation.py
   test_import_restored_originals_to_s3.py
