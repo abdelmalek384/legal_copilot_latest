@@ -1070,5 +1070,16 @@ class ClaimSupportTests(unittest.TestCase):
                 self.assertTrue(_has_unsupported_qualifiers(claim, evidence))
 
 
+    def test_arabic_percent_sign_is_tokenized_as_unit_marker(self):
+        self.assertFalse(has_unsupported_claims(
+            "الرسوم 10٪ [1].", [{"text": "الرسوم 10 بالمئة."}],
+            tokens, norm, _mask_markdown_code
+        ))
+        self.assertTrue(has_unsupported_claims(
+            "الرسوم 10٪ [1].", [{"text": "الرسوم 10."}],
+            tokens, norm, _mask_markdown_code
+        ))
+
+
 if __name__ == "__main__":
     unittest.main()
