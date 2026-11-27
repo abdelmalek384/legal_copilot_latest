@@ -194,18 +194,10 @@ Each gate requires an owner, exact candidate commit, reproducible command/config
 
 ## Original-file local deletion race hardening — 2026-11-27
 
-- Current main source review identified a narrow race in LocalPrivateObjectStore.delete(): it performed an lstat-style metadata check and then unlinked the filename directly, so a same-namespace name substitution between the check and unlink could cause the substituted entry to be removed.
-- The dedicated AI-2 branch changes deletion to open and pin the expected regular-file inode, atomically rename the entry into a unique quarantine name relative to the pinned firm-directory descriptor, verify the moved inode against the opened descriptor, and only then unlink. Mismatched regular-file/symlink entries are restored by no-follow hardlinking where possible; recovery failures leave the quarantine entry in place and fail closed.
-- Added a synthetic race-injection regression to tests/test_original_file_storage.py; existing test registration in the security regression script and workflow was inspected and is already present.
-- Isolated harness results are not repository test results. Full Python 3.12 repository execution, browser/mobile tests, tenant acceptance, and storage/recovery drills remain unperformed.
-- Branch: ai2/guard-original-object-delete-race-20261127. No PR merge or production storage operation is performed.
-
- 
-## Original-file local deletion race hardening — 2026-11-27
-
-- `LocalPrivateObjectStore.delete()` now opens/pins the expected regular-file inode, renames the name atomically into a unique quarantine entry within the pinned firm namespace, validates the moved inode, and unlinks only the verified entry.
-- Mismatched regular-file or symlink entries are restored by no-follow hardlinking where possible; failed recovery leaves a quarantine entry and reports an error rather than deleting an unverified object.
+- Current source review identified a narrow race in `LocalPrivateObjectStore.delete()`: it performed an lstat-style metadata check and then unlinked the filename directly, so a same-namespace name substitution could cause a substituted entry to be removed.
+- The branch pins the expected regular-file inode through an opened descriptor, atomically renames the entry into a unique quarantine name relative to the pinned firm-directory descriptor, validates the moved inode, and unlinks only the verified entry.
+- Mismatched regular-file/symlink entries are restored by no-follow hardlinking where possible; failed recovery leaves a quarantine entry and reports an error rather than deleting an unverified object.
 - Added the synthetic name-substitution regression in `tests/test_original_file_storage.py`. The module was confirmed already registered in both `scripts/security_regression_check.sh` and `.github/workflows/tests.yml`.
-- Standalone harness (temporary directory and pinned directory descriptor) passed 2/2 scenarios: normal deletion and race substitution preserving the replacement. This is not repository-test execution.
-- PR #2036 (backup-retention pruning) was closed unmerged; its reported 76.4% branch estimate is not integrated on main. Mainline progress remains 76.3% overall, 46.9% deployment/recovery, and 11.8% test-readiness. The eight-workstream report continues to track 76.4% as the project engineering estimate including unmerged branch work, without adding any percentage this run.
+- Standalone harness (temporary directory and pinned directory descriptor) passed 2/2 scenarios: normal deletion and race substitution preserving the replacement. This is copied helper logic, not repository test execution.
+- PR #2036 (backup-retention pruning) was closed unmerged; its branch contribution is not integrated on main. Mainline progress remains 76.3% overall, 46.9% deployment/recovery, and 11.8% test-readiness. The project estimate reported previously remains 76.4% including unmerged branch work, without any percentage increase this run.
 - Branch: `ai2/guard-original-object-delete-race-20261127`; no merge, production operation, or GitHub Actions.
