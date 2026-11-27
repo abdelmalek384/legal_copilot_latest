@@ -1,3 +1,11 @@
+## AI-2 Mac local-launcher port override — 2026-11-27
+
+- Added a validated `COPILOT_PORT` override to `start_mac.command` (default 8000, allowed range 1–65535), while preserving the loopback-only bind at `127.0.0.1`. This lets the test checkout run on a second port if another checkout is already listening.
+- Added `tests/test_mac_launcher_port_contract.py` to check the default, validation, URL printout, and loopback binding. Registered this platform-specific test in `.github/known_unrun_tests.txt` so CI test-file coverage bookkeeping does not flag it as an untracked test; manual Mac runtime validation remains required.
+- Documented `COPILOT_PORT=8001 ./start_mac.command` in README.
+- Direct-main commits: `641240c` (launcher), `f719e2b` (test), `d741f20` (README), `509a162` (test registration).
+- GitHub read-back only; no Python test, shell execution, Uvicorn startup, or browser acceptance was performed here. No readiness percentage increase is assigned. Local app and pilot remain not ready until runtime and workflow acceptance are complete.
+
 
 - Fixture maintenance after URL hardening: synthetic packets used by the non-string-use, unknown/duplicate-use, and boolean-flag tests now carry a valid neutral HTTPS rights-evidence locator. This preserves the intended test boundary rather than having those cases fail earlier on missing URL metadata. Tests remain unexecuted.
 
