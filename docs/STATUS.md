@@ -2364,3 +2364,12 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Closed PR #2040 **unmerged** so no unvalidated draft remains pending. Its branch changes are not part of `main`; do not count them as integrated or use its implementation as a validated fix.
 - Follow-up required before reconsidering: exercise the exact repository regression on the supported Python 3.12 runtime, review the post-quarantine name-to-unlink race boundary (the implementation still unlinks a pathname after a separate identity check), and obtain independent storage review. Any revised implementation must prove it cannot unlink a substituted quarantine entry and must preserve recovery behavior.
 - Main remains at the previously communicated 76.8% broad engineering estimate; no percentage increase is justified. No repository tests or GitHub Actions were run in this review. Pilot remains **NOT READY**.
+
+## AI-2 tenant storage-root permission hardening — 2026-11-27
+
+- Closed a narrow local confidentiality gap in `tenant_catalog._storage_root_path()`: the shared tenant database directory was created without an explicit mode and an existing directory's group/world access was not constrained, even though individual database files are intended to be private.
+- On POSIX, newly created roots now request mode `0700`; existing roots are tightened to `0700`; and the resulting directory entry is re-inspected and rejected unless it is a real directory with no group/world permission bits. Permission enforcement failures fail closed.
+- Added `test_existing_storage_root_permissions_are_restricted`. Adjusted the existing database-file chmod-failure test so it still targets the database file rather than the new root-permission enforcement.
+- Commits: implementation `29cbdc4a958d461d00520736b319dd401579591f`; regression `610d7bc099d6fabd55ff9704f0d695e6718add81`; fixture-scope correction `d5caab353fde7d4a0d25904819f7cd2a85507694`.
+- GitHub read-back only. The `tests/test_tenant_catalog.py` module and full suite were **not executed**; no Actions were run. This reduces directory listing/access exposure on POSIX but does not close the separately documented path-check/open TOCTOU risk against an actor able to modify the storage root or its ancestors.
+- Progress: task-level POSIX storage-root permission enforcement is implemented; overall estimate remains **76.8%** (0.0 pp change) until exact tests and broader tenant-isolation acceptance are executed. Pilot remains **NOT READY**.
