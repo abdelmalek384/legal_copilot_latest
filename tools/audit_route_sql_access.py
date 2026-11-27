@@ -376,6 +376,18 @@ def audit_source(source: str) -> dict[str, Any]:
         node.name: node for node in tree.body
         if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef))
     }
+    class_method_candidates: dict[str, list[ast.FunctionDef | ast.AsyncFunctionDef]] = {}
+    for class_node in (item for item in ast.walk(tree) if isinstance(item, ast.ClassDef)):
+        for member in class_node.body:
+            if isinstance(member, (ast.FunctionDef, ast.AsyncFunctionDef)):
+                class_method_candidates.setdefault(member.name, []).append(member)
+    ambiguous_class_methods = {
+        name for name, candidates in class_method_candidates.items()
+        if len(candidates) > 1 and name not in functions
+    }
+    for name, candidates in class_method_candidates.items():
+        if len(candidates) == 1 and name not in functions:
+            functions[name] = candidates[0]
     global_assignments: dict[str, ast.AST] = {}
     for item in tree.body:
         if isinstance(item, ast.Assign):
@@ -436,6 +448,7 @@ def audit_source(source: str) -> dict[str, Any]:
         dynamic_sql_sites: list[dict[str, Any]] = []
         unresolved_sql_sites: list[dict[str, Any]] = []
         direct_sqlite_open = False
+        ambiguous_method_calls: set[str] = set()
 
         while pending:
             name = pending.pop()
@@ -476,8 +489,17 @@ def audit_source(source: str) -> dict[str, Any]:
                             dynamic_sql_sites.append(site)
                         if not resolved:
                             unresolved_sql_sites.append(site)
+                if called in ambiguous_class_methods:
+                    ambiguous_method_calls.add(called)
                 if called in functions and called not in STOP_TRAVERSAL and called not in visited:
                     pending.append(called)
+
+        for method_name in sorted(ambiguous_method_calls):
+            route_declaration_errors.append(
+                f"{route['method']} {route['path']} ({handler}) calls class method "
+                f"{method_name} that is defined more than once; tenant SQL reachability "
+                "cannot be resolved statically"
+            )
 
         records.append({
             **route,
