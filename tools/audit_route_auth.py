@@ -55,6 +55,14 @@ def _call_name(node: ast.AST) -> str | None:
 def _framework_bindings(tree: ast.AST) -> set[str]:
     """Find FastAPI/APIRouter instances, including variables assigned through import aliases."""
     names = {"app", "router"}
+    constructor_names = {"FastAPI", "APIRouter"}
+    for node in ast.walk(tree):
+        if isinstance(node, ast.ImportFrom) and node.module == "fastapi":
+            constructor_names.update(
+                alias.asname or alias.name
+                for alias in node.names
+                if alias.name in {"FastAPI", "APIRouter"}
+            )
     for node in ast.walk(tree):
         targets = []
         value = None
@@ -64,7 +72,7 @@ def _framework_bindings(tree: ast.AST) -> set[str]:
         elif isinstance(node, ast.AnnAssign):
             targets = [node.target]
             value = node.value
-        if not isinstance(value, ast.Call) or _call_name(value.func) not in {"FastAPI", "APIRouter"}:
+        if not isinstance(value, ast.Call) or _call_name(value.func) not in constructor_names:
             continue
         for target in targets:
             if isinstance(target, ast.Name):
