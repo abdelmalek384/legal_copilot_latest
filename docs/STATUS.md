@@ -2344,7 +2344,7 @@ Percentages are scoped to the described implementation or acceptance phase. They
 ## AI-2 route-inventory fail-closed coverage — 2026-11-27
 
 - Extended the authentication and tenant-SQL static route audits to recognize FastAPI and APIRouter instances assigned to aliased variable names, including constructor imports aliased from fastapi. Unsupported WebSocket/Starlette decorators and dynamic route registration through those aliases now produce fail-closed inventory findings instead of being silently skipped.
-- Added synthetic regressions for aliased application/router instances, aliased constructor imports, unsupported WebSocket decorators, and dynamic route registration in both audit test modules.
+- Added synthetic regressions for aliased application/router instances, aliased constructor imports, chained variable aliases, unsupported WebSocket decorators, and dynamic route registration in both audit test modules. Alias discovery follows assignments until the framework-instance names reach a fixed point.
 - This closes a static audit blind spot; it does not establish that a live route was vulnerable or that runtime authorization/tenant isolation passed.
 - Arabic negation-hint scope PR #2038 was reviewed and merged as 0955dd3626224f1fe98c9dcbdd8abc82e66e4141. It adds a longer Arabic negation-scope regression and expands the bounded retrieval-hint window from 5 to 8 tokens. Original query tokens remain available; this is retrieval behavior, not legal verification.
 - Direct-main audit commits: 143ea17, 99bf671, 111c4ae, f589fe7, 4713ec1. Prior route decorator/WebSocket audit commits remain on main. No PRs are left open at this checkpoint.
