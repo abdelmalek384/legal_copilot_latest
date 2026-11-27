@@ -162,6 +162,20 @@ class ClaimSupportTests(unittest.TestCase):
             tokens, norm, _mask_markdown_code
         ))
 
+    def test_arabic_percent_sign_matches_worded_unit_and_rejects_unitless_evidence(self):
+        self.assertFalse(has_unsupported_claims(
+            "الرسوم الافتراضية 10٪ [1].", [{"text": "الرسوم الافتراضية 10 بالمئة."}],
+            tokens, norm, _mask_markdown_code
+        ))
+        self.assertFalse(has_unsupported_claims(
+            "الرسوم الافتراضية 10 بالمئة [1].", [{"text": "الرسوم الافتراضية 10٪."}],
+            tokens, norm, _mask_markdown_code
+        ))
+        self.assertTrue(has_unsupported_claims(
+            "الرسوم الافتراضية 10٪ [1].", [{"text": "الرسوم الافتراضية 10."}],
+            tokens, norm, _mask_markdown_code
+        ))
+
     def test_comma_grouped_thousands_cannot_collapse_to_decimal_one(self):
         evidence = [{"text": "The limitation period is one year."}]
         self.assertTrue(has_unsupported_claims(
