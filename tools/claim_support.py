@@ -320,7 +320,7 @@ def _numeric_markers(text):
     # interpretation. A mistaken 1,000 -> 1 conversion can hide a material
     # numerical contradiction in a legal claim.
     numeric_token = r"(?:[0-9]{1,3}(?:,[0-9]{3})+(?:\.[0-9]+)?|[0-9]+(?:[.,][0-9]+)?)"
-    parts = re.findall(r"[a-z]+|" + numeric_token + r"|[\u0600-\u06ff]+|%", value)
+    parts = re.findall(r"[a-z]+|" + numeric_token + r"|[\u0600-\u06ff]+|[%٪]", value)
     values = set()
     markers = set()
     index = 0
