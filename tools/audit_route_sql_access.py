@@ -76,6 +76,12 @@ def _framework_bindings(tree: ast.AST) -> set[str]:
             elif isinstance(node, ast.AnnAssign):
                 targets = [node.target]
                 value = node.value
+            if isinstance(value, ast.Name) and value.id in constructor_names:
+                for target in targets:
+                    if isinstance(target, ast.Name) and target.id not in constructor_names:
+                        constructor_names.add(target.id)
+                        changed = True
+                continue
             if isinstance(value, ast.Call):
                 recognized = _call_name(value.func) in constructor_names
             else:
