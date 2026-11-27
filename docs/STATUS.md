@@ -2373,3 +2373,10 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Commits: implementation `29cbdc4a958d461d00520736b319dd401579591f`; regression `610d7bc099d6fabd55ff9704f0d695e6718add81`; fixture-scope correction `d5caab353fde7d4a0d25904819f7cd2a85507694`.
 - GitHub read-back only. The `tests/test_tenant_catalog.py` module and full suite were **not executed**; no Actions were run. This reduces directory listing/access exposure on POSIX but does not close the separately documented path-check/open TOCTOU risk against an actor able to modify the storage root or its ancestors.
 - Progress: task-level POSIX storage-root permission enforcement is implemented; overall estimate remains **76.8%** (0.0 pp change) until exact tests and broader tenant-isolation acceptance are executed. Pilot remains **NOT READY**.
+
+## AI-1 Arabic percent-unit support — 2026-11-27
+
+- Reviewed and squash-merged PR [#2041](https://github.com/abdelmalek384/legal_copilot_latest/pull/2041) as `06961094dba6a6451699ad4bf0ffb97e39051e9c`.
+- The existing claim-support numeric-unit map now treats Arabic percent sign `٪` as the same unit as `%`, `percent`, and `بالمئة`. Added an Arabic regression for symbol/word equivalence in both directions and rejection when cited evidence omits the percentage unit.
+- This is lexical unit consistency only; it does not establish semantic entailment, legal accuracy, or lawyer verification. Tests are authored but **not executed**; no GitHub Actions were run.
+- PR #2041 is merged; no PR remains open at this checkpoint. Overall estimate remains **76.8%** (0.0 pp change), because no repository test execution or end-to-end acceptance was added. Lawyer verification remains 0%.
