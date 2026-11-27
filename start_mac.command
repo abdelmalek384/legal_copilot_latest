@@ -43,6 +43,13 @@ export COPILOT_CORPUS_DB="${COPILOT_CORPUS_DB:-$PWD/data/legal_corpus.sqlite3}"
 python -c "from database_runtime import DatabaseRuntime; DatabaseRuntime.from_env().initialize()"
 
 python tools/bootstrap_first_firm.py
-echo "سيفتح Legal Copilot على http://127.0.0.1:8000"
+# Allow a non-default local port when another checkout already owns 8000.
+# Keep the bind address loopback-only; never expose this dev server externally.
+COPILOT_PORT="${COPILOT_PORT:-8000}"
+if [[ ! "${COPILOT_PORT}" =~ ^[0-9]+$ ]] || (( COPILOT_PORT < 1 || COPILOT_PORT > 65535 )); then
+  echo "COPILOT_PORT must be a number between 1 and 65535."
+  exit 1
+fi
+echo "سيفتح Legal Copilot على http://127.0.0.1:${COPILOT_PORT}"
 echo "لإيقافه، ارجع إلى هذه النافذة واضغط Control+C."
-python -m uvicorn app:app --host 127.0.0.1 --port 8000
+python -m uvicorn app:app --host 127.0.0.1 --port "${COPILOT_PORT}"
