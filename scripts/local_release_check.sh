@@ -101,8 +101,9 @@ fi
 if command -v node >/dev/null 2>&1; then
   run_check "Frontend inline JavaScript syntax" bash -c '
     set -eu
-    tmpfile=$(mktemp --suffix=.js)
-    trap "rm -f \"$tmpfile\"" EXIT
+    tmpdir=$(mktemp -d)
+    tmpfile="$tmpdir/frontend.js"
+    trap "rm -rf \"$tmpdir\"" EXIT
     python -c "from pathlib import Path; import re, sys; html=Path(\"static/index.html\").read_text(encoding=\"utf-8\"); scripts=re.findall(r\"<script[^>]*>(.*?)</script>\", html, re.S); assert scripts, \"No inline JavaScript found\"; Path(sys.argv[1]).write_text(chr(10).join(scripts), encoding=\"utf-8\")" "$tmpfile"
     node --check "$tmpfile"
   '
