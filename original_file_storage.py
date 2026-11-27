@@ -90,7 +90,7 @@ class LocalPrivateObjectStore:
 
     @staticmethod
     def _require_dirfd_support() -> None:
-        required = (os.open, os.stat, os.unlink, os.link, os.mkdir)
+        required = (os.open, os.stat, os.unlink, os.link, os.mkdir, os.rename)
         if (
             not getattr(os, "O_DIRECTORY", 0)
             or not getattr(os, "O_NOFOLLOW", 0)
@@ -181,6 +181,66 @@ class LocalPrivateObjectStore:
     def _fsync_directory_fd(directory_fd: int) -> None:
         if os.name == "posix":
             os.fsync(directory_fd)
+
+    def _delete_name_safely(self, namespace_fd: int, name: str) -> bool:
+        """Pin an object, atomically move its name, then delete only the pinned inode."""
+        before = self._stat_at(namespace_fd, name)
+        if before is None:
+            return False
+        if not stat.S_ISREG(before.st_mode) or before.st_nlink != 1:
+            raise ObjectStorageError("stored object is not a single-link regular file")
+
+        flags = (
+            os.O_RDONLY | os.O_NOFOLLOW | getattr(os, "O_NONBLOCK", 0)
+            | getattr(os, "O_CLOEXEC", 0)
+        )
+        descriptor = os.open(name, flags, dir_fd=namespace_fd)
+        try:
+            pinned = os.fstat(descriptor)
+            if (
+                not stat.S_ISREG(pinned.st_mode) or pinned.st_nlink != 1
+                or (pinned.st_dev, pinned.st_ino) != (before.st_dev, before.st_ino)
+            ):
+                raise ObjectStorageError("stored object changed before deletion")
+
+            quarantine = ".delete-" + uuid.uuid4().hex
+            if self._stat_at(namespace_fd, quarantine) is not None:
+                raise ObjectStorageError("deletion quarantine name collision")
+            os.rename(
+                name, quarantine,
+                src_dir_fd=namespace_fd, dst_dir_fd=namespace_fd,
+            )
+            moved = self._stat_at(namespace_fd, quarantine)
+            if (
+                moved is not None and stat.S_ISREG(moved.st_mode)
+                and moved.st_nlink == 1
+                and (moved.st_dev, moved.st_ino) == (pinned.st_dev, pinned.st_ino)
+            ):
+                os.unlink(quarantine, dir_fd=namespace_fd)
+                return True
+
+            # A raced-in name was moved, not destroyed. Restore it by creating
+            # the original name without replacement, then remove only the
+            # quarantine link. If restoration fails, leave quarantine intact
+            # for operator recovery rather than deleting an unverified object.
+            if moved is not None and (stat.S_ISREG(moved.st_mode) or stat.S_ISLNK(moved.st_mode)):
+                try:
+                    os.link(
+                        quarantine, name,
+                        src_dir_fd=namespace_fd, dst_dir_fd=namespace_fd,
+                        follow_symlinks=False,
+                    )
+                    os.unlink(quarantine, dir_fd=namespace_fd)
+                except OSError as exc:
+                    raise ObjectStorageError(
+                        "object changed during deletion; quarantined entry requires recovery"
+                    ) from exc
+                raise ObjectStorageError("object changed during deletion; raced entry was restored")
+            raise ObjectStorageError(
+                "object changed during deletion; quarantined entry requires recovery"
+            )
+        finally:
+            os.close(descriptor)
 
     def stage(self, firm_id: int, data: bytes) -> StagedObject:
         """Write bytes to a new private staging object through a pinned namespace."""
@@ -405,13 +465,7 @@ class LocalPrivateObjectStore:
         removed = False
         try:
             for name in (object_id + ".staged", object_id + ".blob"):
-                metadata = self._stat_at(namespace_fd, name)
-                if metadata is None:
-                    continue
-                if not stat.S_ISREG(metadata.st_mode) or metadata.st_nlink != 1:
-                    raise ObjectStorageError("stored object is not a single-link regular file")
-                os.unlink(name, dir_fd=namespace_fd)
-                removed = True
+                removed = self._delete_name_safely(namespace_fd, name) or removed
             if removed:
                 self._fsync_directory_fd(namespace_fd)
             return removed
