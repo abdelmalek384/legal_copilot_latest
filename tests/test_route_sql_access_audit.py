@@ -76,6 +76,30 @@ def private():
                     for error in report["route_declaration_errors"]
                 ))
 
+    def test_aliased_fastapi_and_apirouter_bindings_fail_closed(self):
+        source = '''
+from fastapi import FastAPI as Application, APIRouter as Router
+application = Application()
+v1 = Router()
+
+@application.get("/private")
+def private():
+    db = conn()
+    return db.execute("SELECT id FROM cases").fetchall()
+
+@v1.websocket("/socket")
+async def socket(websocket):
+    return None
+
+application.add_api_route("/dynamic", private, methods=["GET"])
+'''
+        report = audit_source(source)
+        self.assertEqual(report["route_count"], 1)
+        self.assertEqual(report["routes"][0]["path"], "/private")
+        self.assertEqual(len(report["route_declaration_errors"]), 2)
+        self.assertTrue(any("application.add_api_route" in error for error in report["route_declaration_errors"]))
+        self.assertTrue(any("v1.websocket" in error for error in report["route_declaration_errors"]))
+
     def test_dynamic_api_route_methods_are_reported_as_uninventoried(self):
         source = '''
 METHODS = ["GET", "POST"]
