@@ -52,6 +52,26 @@ def _call_name(node: ast.AST) -> str | None:
     return None
 
 
+def _framework_bindings(tree: ast.AST) -> set[str]:
+    """Find FastAPI/APIRouter instances, including variables assigned through import aliases."""
+    names = {"app", "router"}
+    for node in ast.walk(tree):
+        targets = []
+        value = None
+        if isinstance(node, ast.Assign):
+            targets = node.targets
+            value = node.value
+        elif isinstance(node, ast.AnnAssign):
+            targets = [node.target]
+            value = node.value
+        if not isinstance(value, ast.Call) or _call_name(value.func) not in {"FastAPI", "APIRouter"}:
+            continue
+        for target in targets:
+            if isinstance(target, ast.Name):
+                names.add(target.id)
+    return names
+
+
 def _is_user_dependency(node: ast.AST) -> bool:
     return (
         isinstance(node, ast.Call)
@@ -66,7 +86,7 @@ def _contains_user_dependency(node: ast.AST) -> bool:
     return any(_is_user_dependency(item) for item in ast.walk(node))
 
 
-def _unsupported_route_decorator(decorator: ast.AST) -> tuple[str, str] | None:
+def _unsupported_route_decorator(decorator: ast.AST, framework_names: set[str]) -> tuple[str, str] | None:
     """Identify valid framework route decorators this HTTP inventory cannot model."""
     if (
         not isinstance(decorator, ast.Call)
@@ -76,18 +96,18 @@ def _unsupported_route_decorator(decorator: ast.AST) -> tuple[str, str] | None:
         return None
     owner = decorator.func.value.id
     method = decorator.func.attr.lower()
-    if owner in {"app", "router"} and method in UNSUPPORTED_ROUTE_DECORATORS:
+    if owner in framework_names and method in UNSUPPORTED_ROUTE_DECORATORS:
         return owner, method
     return None
 
 
-def _route_methods(decorator: ast.AST) -> list[str]:
+def _route_methods(decorator: ast.AST, framework_names: set[str]) -> list[str]:
     if not isinstance(decorator, ast.Call) or not isinstance(decorator.func, ast.Attribute):
         return []
     method = decorator.func.attr.lower()
     if method not in ROUTE_METHODS or not isinstance(decorator.func.value, ast.Name):
         return []
-    if decorator.func.value.id not in {"app", "router"}:
+    if decorator.func.value.id not in framework_names:
         return []
     if method == "api_route":
         methods = {"GET"}
@@ -133,13 +153,14 @@ def audit_sources(
 
     for filename, source in sources.items():
         tree = ast.parse(source, filename=filename)
+        framework_names = _framework_bindings(tree)
         for candidate in ast.walk(tree):
             if not isinstance(candidate, ast.Call) or not isinstance(candidate.func, ast.Attribute):
                 continue
             owner = candidate.func.value
             if (
                 isinstance(owner, ast.Name)
-                and owner.id in {"app", "router"}
+                and owner.id in framework_names
                 and candidate.func.attr.lower() in DYNAMIC_ROUTE_REGISTRATION_METHODS
             ):
                 findings.append(
@@ -150,7 +171,7 @@ def audit_sources(
             if not isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
                 continue
             for decorator in node.decorator_list:
-                unsupported = _unsupported_route_decorator(decorator)
+                unsupported = _unsupported_route_decorator(decorator, framework_names)
                 if unsupported is not None:
                     owner, method = unsupported
                     findings.append(
@@ -160,7 +181,7 @@ def audit_sources(
                     )
                     continue
                 try:
-                    methods = _route_methods(decorator)
+                    methods = _route_methods(decorator, framework_names)
                 except ValueError as exc:
                     findings.append(
                         f"cannot statically audit HTTP methods for {node.name} in {filename}: {exc}"
