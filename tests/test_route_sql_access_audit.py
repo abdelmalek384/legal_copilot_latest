@@ -43,11 +43,29 @@ def private():
         self.assertEqual(len(report["route_declaration_errors"]), 1)
         self.assertIn("route path must be a literal string", report["route_declaration_errors"][0])
 
+    def test_unsupported_starlette_and_websocket_route_decorators_are_uninventoried(self):
+        sources = (
+            '@app.route("/private")\\ndef private(request):\\n    return None\\n',
+            '@router.route("/private")\\ndef private(request):\\n    return None\\n',
+            '@app.websocket("/socket")\\nasync def socket(websocket):\\n    return None\\n',
+            '@router.websocket_route("/socket")\\nasync def socket(websocket):\\n    return None\\n',
+        )
+        for source in sources:
+            with self.subTest(source=source):
+                report = audit_source(source)
+                self.assertEqual(report["route_count"], 0)
+                self.assertEqual(len(report["route_declaration_errors"]), 1)
+                self.assertIn(
+                    "unsupported route decorator",
+                    report["route_declaration_errors"][0],
+                )
+
     def test_dynamic_route_registration_apis_are_reported_as_uninventoried(self):
         for source in (
             'app.add_api_route("/private", private_handler, methods=["GET"])',
             'router.add_api_route("/private", private_handler, methods=["GET"])',
             'app.add_route("/private", private_handler)',
+            'app.add_websocket_route("/socket", websocket_handler)',
             'app.mount("/static", static_files)',
         ):
             with self.subTest(source=source):
