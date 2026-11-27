@@ -9,6 +9,14 @@ from __future__ import annotations
 
 import subprocess
 import sys
+from pathlib import Path
+
+# When invoked as `python tools/bootstrap_first_firm.py`, Python places the
+# tools directory (not the repository root) at sys.path[0]. Add the project
+# root explicitly so root-level application modules resolve reliably.
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
 
 from database_runtime import DatabaseRuntime
 
