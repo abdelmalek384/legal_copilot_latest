@@ -414,7 +414,7 @@ def audit_source(source: str) -> dict[str, Any]:
     }
     ambiguous_class_methods = {
         name for name, candidates in class_method_candidates.items()
-        if len(candidates) > 1 and name not in functions
+        if len(candidates) > 1 or name in functions
     }
     for name, candidates in class_method_candidates.items():
         if len(candidates) == 1 and name not in functions:
@@ -520,7 +520,7 @@ def audit_source(source: str) -> dict[str, Any]:
                             dynamic_sql_sites.append(site)
                         if not resolved:
                             unresolved_sql_sites.append(site)
-                if called in ambiguous_class_methods:
+                if called in ambiguous_class_methods and isinstance(call.func, ast.Attribute):
                     ambiguous_method_calls.add(called)
                 if called in functions and called not in STOP_TRAVERSAL and called not in visited:
                     pending.append(called)
