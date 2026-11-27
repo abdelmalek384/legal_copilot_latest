@@ -191,3 +191,11 @@ Each gate requires an owner, exact candidate commit, reproducible command/config
 - Added regressions in `tests/test_database_backup_bundle.py`. This module is already registered in both `scripts/security_regression_check.sh` and `.github/workflows/tests.yml`.
 - Commits: `5bc54707c73f11e5a10577174b52cba240b5f43e` and `aa21e4b176cccf7bdea7b95368b24866f92f7054`.
 - Source review only; tests and GitHub Actions not run. Do not treat this as archive restore acceptance.
+
+## Original-file local deletion race hardening — 2026-11-27
+
+- Current main source review identified a narrow race in LocalPrivateObjectStore.delete(): it performed an lstat-style metadata check and then unlinked the filename directly, so a same-namespace name substitution between the check and unlink could cause the substituted entry to be removed.
+- The dedicated AI-2 branch changes deletion to open and pin the expected regular-file inode, atomically rename the entry into a unique quarantine name relative to the pinned firm-directory descriptor, verify the moved inode against the opened descriptor, and only then unlink. Mismatched regular-file/symlink entries are restored by no-follow hardlinking where possible; recovery failures leave the quarantine entry in place and fail closed.
+- Added a synthetic race-injection regression to tests/test_original_file_storage.py; existing test registration in the security regression script and workflow was inspected and is already present.
+- Isolated harness results are not repository test results. Full Python 3.12 repository execution, browser/mobile tests, tenant acceptance, and storage/recovery drills remain unperformed.
+- Branch: ai2/guard-original-object-delete-race-20261127. No PR merge or production storage operation is performed.
