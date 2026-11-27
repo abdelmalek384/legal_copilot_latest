@@ -2388,3 +2388,12 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Commits: matrix `d8c89116e112d53ee9feffbc7ce02a1c69f343c1`; registration `527241c2ed09af15916164508b9193fa205f9408`.
 - GitHub read-back confirms the module is now listed in both locations; registration tests and the full manual matrix were not executed. This fixes a coverage omission in the manual test runner, not a test pass or security sign-off.
 - Overall estimate remains **76.8%** (0.0 pp change); no runtime evidence. Pilot remains **NOT READY**.
+
+
+## Manual security matrix duplicate and formatting correction — 2026-11-27
+
+- Read-back of the explicit security regression matrix found the trusted-proxy module listed twice and six module entries with accidental indentation/blank-line formatting. The duplicate would cause the registration contract's no-duplicates test to fail and execute the proxy test twice.
+- Removed the duplicate, normalized the six entries, and verified the resulting matrix text via GitHub read-back: 100 module entries, no duplicates, and exactly one trusted-proxy module entry. This is static parsing/read-back only; the registration test and security matrix were not executed.
+- Direct-main commit: `9da78afdc3e5bea98b5fbaad795072e7b7d3d079`.
+- PR #2042 was reviewed and squash-merged as `039e7249ce365050977037d187f758005c411cb0`: the claim-support numeric tokenizer now recognizes Arabic percent symbol `٪` as a unit marker and adds regression coverage for matching `10٪` to `10 بالمئة` and rejecting evidence without the unit. Tests were authored but not executed; this is lexical consistency only.
+- Overall project readiness estimate remains **76.8%** (+0.0 pp) because neither repository tests nor app/tenant/browser acceptance have been executed. Lawyer verification remains **0%**; pilot remains **NOT READY**.
