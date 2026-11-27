@@ -1028,5 +1028,17 @@ class ClaimSupportTests(unittest.TestCase):
         ))
 
 
+    def test_arabic_universal_qualifiers_are_explicitly_detected(self):
+        evidence = "النص الافتراضي يسمح لبعض الأشخاص."
+        for claim in (
+            "أي شخص له الحق.",
+            "أية جهة لها الحق.",
+            "اي شخص له الحق.",
+            "اية جهة لها الحق.",
+        ):
+            with self.subTest(claim=claim):
+                self.assertTrue(_has_unsupported_qualifiers(claim, evidence))
+
+
 if __name__ == "__main__":
     unittest.main()
