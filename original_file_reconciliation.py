@@ -83,8 +83,10 @@ def _open_directory_chain(path: Path) -> int:
         raise
 
 
-def _hash_file_at(directory_fd: int, name: str) -> tuple[str, int]:
-    """Hash one regular, single-link object opened relative to its pinned namespace."""
+def _hash_file_at(
+    directory_fd: int, name: str, expected_identity: tuple[int, int]
+) -> tuple[str, int]:
+    """Hash one regular, single-link object whose namespace identity remains stable."""
     digest = hashlib.sha256()
     size = 0
     flags = (
@@ -95,8 +97,11 @@ def _hash_file_at(directory_fd: int, name: str) -> tuple[str, int]:
     try:
         descriptor = os.open(name, flags, dir_fd=directory_fd)
         metadata = os.fstat(descriptor)
-        if not stat.S_ISREG(metadata.st_mode) or metadata.st_nlink != 1:
-            raise ValueError("object is not a single-link regular file")
+        if (
+            not stat.S_ISREG(metadata.st_mode) or metadata.st_nlink != 1
+            or (metadata.st_dev, metadata.st_ino) != expected_identity
+        ):
+            raise ValueError("object changed between inventory check and open")
         if metadata.st_size > _MAX_RECONCILIATION_OBJECT_BYTES:
             raise _ObjectSizeLimitExceeded("object exceeds reconciliation size limit")
         handle = os.fdopen(descriptor, "rb", closefd=True)
@@ -111,6 +116,12 @@ def _hash_file_at(directory_fd: int, name: str) -> tuple[str, int]:
                 if size > _MAX_RECONCILIATION_OBJECT_BYTES:
                     raise _ObjectSizeLimitExceeded("object exceeds reconciliation size limit")
                 digest.update(block)
+            current = os.stat(name, dir_fd=directory_fd, follow_symlinks=False)
+            if (
+                not stat.S_ISREG(current.st_mode) or current.st_nlink != 1
+                or (current.st_dev, current.st_ino) != expected_identity
+            ):
+                raise ValueError("object name changed during reconciliation hash")
     except _ObjectSizeLimitExceeded:
         raise
     except ValueError:
@@ -306,7 +317,10 @@ def reconcile_original_file_storage(
                                 continue
                             digest, size, state = metadata
                             try:
-                                actual_digest, actual_size = _hash_file_at(firm_fd, object_name)
+                                actual_digest, actual_size = _hash_file_at(
+                                    firm_fd, object_name,
+                                    (metadata_stat.st_dev, metadata_stat.st_ino),
+                                )
                             except _ObjectSizeLimitExceeded:
                                 findings.append(ReconciliationFinding(
                                     "object_size_limit_exceeded", firm_id, object_id,
