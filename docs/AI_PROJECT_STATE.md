@@ -20,3 +20,11 @@ Controlled law-firm pilot. Fail-closed source trust, tenant isolation, security,
 
 ## Next implementation action
 Implement adapter exposure and candidate retrieval with synthetic evidence only, exact version/source binding and firm/environment/policy gate; test isolation and malformed/missing evidence. Current workspace cannot clone GitHub (DNS resolution failed), so source changes/test execution are blocked until a checkout/runtime is available. Do not claim implementation or tests passed.
+
+
+## 2026-11-28 AI-2 continuation checkpoint
+
+- Re-read continuity files and #1903 issue; source-match adapter, migrations 0005/0006 and integration boundary confirmed.
+- Repeated shallow clone attempt failed DNS (`Could not resolve host: github.com`); no code or tests executed.
+- Added `docs/ai2_1903_integration_contract.md` on branch `ai2-1903-integration-contract`, documenting exact packet-binding, test-firm isolation, fail-closed retrieval and acceptance requirements. Design documentation only; no implementation/validation claim.
+- Candidate serving remains disabled/fail-closed; verified/legal flags unchanged; Law 14/2025 remains rights-blocked.
