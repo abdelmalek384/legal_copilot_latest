@@ -58,6 +58,36 @@ def _reject_duplicate_json_keys(pairs):
     return result
 
 
+_MAX_JSON_INPUT_BYTES = 4 * 1024 * 1024
+
+def _read_json_input(path, label):
+    """Load bounded JSON from a regular file without following symlinks."""
+    path = Path(path)
+    flags = os.O_RDONLY | getattr(os, "O_BINARY", 0) | getattr(os, "O_NONBLOCK", 0) | getattr(os, "O_NOFOLLOW", 0)
+    try:
+        if path.is_symlink():
+            raise OSError("symlink input refused")
+        descriptor = os.open(path, flags)
+    except OSError as exc:
+        raise ValueError(f"{label} is unreadable or unsafe") from exc
+    try:
+        with os.fdopen(descriptor, "rb") as stream:
+            metadata = os.fstat(stream.fileno())
+            if not stat.S_ISREG(metadata.st_mode) or metadata.st_size > _MAX_JSON_INPUT_BYTES:
+                raise ValueError(f"{label} must be a regular file no larger than 4 MiB")
+            raw = stream.read(_MAX_JSON_INPUT_BYTES + 1)
+    except OSError as exc:
+        raise ValueError(f"{label} is unreadable or unsafe") from exc
+    if len(raw) > _MAX_JSON_INPUT_BYTES:
+        raise ValueError(f"{label} must be a regular file no larger than 4 MiB")
+    try:
+        return json.loads(raw.decode("utf-8"), object_pairs_hook=_reject_duplicate_json_keys)
+    except UnicodeDecodeError as exc:
+        raise ValueError(f"{label} is not valid UTF-8") from exc
+    except json.JSONDecodeError as exc:
+        raise ValueError(f"{label} is not valid JSON: {exc.msg}") from exc
+
+
 def load_catalog(path=CATALOG):
     data = _read_json_input(path, "candidate catalog")
     if not isinstance(data, dict):

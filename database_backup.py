@@ -1044,11 +1044,19 @@ def _read_encrypted_backup(path_value: str | Path) -> bytes:
             raise DatabaseBundleError("Encrypted backup exceeds the supported size limit")
         stream = os.fdopen(descriptor, "rb")
         descriptor = None
+        # Read in bounded chunks: a single read(limit + 1) preallocates the full
+        # limit (about 10.7 GB) and raises MemoryError on ordinary hosts even for
+        # tiny backups. Memory use here tracks the real file size instead.
+        buffer = bytearray()
         with stream:
-            data = stream.read(_MAX_ENCRYPTED_BUNDLE_BYTES + 1)
-        if len(data) > _MAX_ENCRYPTED_BUNDLE_BYTES:
-            raise DatabaseBundleError("Encrypted backup exceeds the supported size limit")
-        return data
+            while True:
+                block = stream.read(min(1024 * 1024, _MAX_ENCRYPTED_BUNDLE_BYTES - len(buffer) + 1))
+                if not block:
+                    break
+                buffer.extend(block)
+                if len(buffer) > _MAX_ENCRYPTED_BUNDLE_BYTES:
+                    raise DatabaseBundleError("Encrypted backup exceeds the supported size limit")
+        return bytes(buffer)
     except DatabaseBundleError:
         raise
     except OSError as exc:
