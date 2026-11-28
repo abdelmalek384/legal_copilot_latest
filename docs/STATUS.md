@@ -1,3 +1,11 @@
+## Arabic long-clause negation retrieval guard — 2026-11-28
+
+- Extended the bounded negator-to-target window from 8 to 12 intervening tokens for formal Arabic queries. Clause/discourse boundary segmentation remains in place, and original query tokens are retained.
+- Added regressions for longer formal clauses (including `لا يجوز قانونا لصاحب العمل منع العامل من الحصول على الإجازة السنوية` and `ليس من المقبول بأي حال حرمان الموظف من الإجازة السنوية`) to ensure positive retrieval aliases are not appended.
+- Direct-main commits: implementation `e2d7910`; tests `1e03266`.
+- Replicated PR #2047 directly on main, read back both files, then closed it unmerged to avoid a pending PR.
+- Static GitHub read-back only; tests not executed. This is retrieval-hint scope hardening, not an increase in retrieval-quality or pilot-readiness percentages.
+
 ## MFA recovery-hash parser strictness — 2026-11-28
 
 - Hardened the standalone recovery-code verifier to reject invalid URL-safe Base64 characters and non-canonical encodings in stored scrypt salt/hash fields. Previously the permissive URL-safe decoder could ignore invalid characters, allowing malformed stored hash strings to be accepted as equivalent to valid encodings.
