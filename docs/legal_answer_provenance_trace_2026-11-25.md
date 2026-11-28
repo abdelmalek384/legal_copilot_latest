@@ -7,8 +7,8 @@
 - `citation_provenance(c, version_id)` binds a retrieved corpus passage to its document-version, document, source registry row, central permission-register result, review-event evidence, and version relationships.
 - Both verified retrieval query paths require verified version state, required review evidence, collection/commercial permission evidence, and effective/repeal date gates before retrieval.
 - Search-result adapters populate `source_id`, `source_status`, and citation text from registry provenance.
-- The dedicated `firm_test_source_matched` answer path reads `source_match_evidence` from hit records and validates it with the trust-tier helper. However, the corpus provenance adapter does **not** populate/persist the full evidence package, and the documented test-mode search scope intentionally yields no eligible candidates. The synthetic tests stub the search layer, so they exercise response labeling but not end-to-end corpus retrieval.
-- Therefore, source-matched answer mode is currently fail-closed in actual corpus retrieval. This is an intentional boundary, not a defect to bypass. Do not add an evidence object from metadata or hashes alone, and do not enable candidate retrieval until the storage/adapter owner supplies a reviewed schema and a permission-cleared candidate record.
+- The dedicated `firm_test_source_matched` answer path validates a complete `source_match_evidence` packet through the trust-tier helper. Current `app.py` static readback shows `citation_provenance(c, version_id)` loads this packet bound to the exact version/source registry row and attaches it to provenance; hit construction copies it into the hit. This adapter exposure is implemented in current source readback, but has not been runtime-verified in this session.
+- The dedicated search scope remains fail-closed and returns no candidates. Do not synthesize evidence from metadata or hashes, or enable retrieval until a separate, reviewed, permission-cleared candidate retrieval path is implemented and tested.
 
 ## Integration recommendation
 
