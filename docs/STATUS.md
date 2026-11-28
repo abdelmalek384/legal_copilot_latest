@@ -1,3 +1,11 @@
+## Claim-support numeric parsing — Arabic numeric separators — 2026-11-28
+
+- Fixed an actual false-negative risk: Arabic thousands separator `٬` and decimal separator `٫` were not normalized by the claim-support numeric parser, so formatted Arabic numerals could be split/misread instead of compared accurately.
+- The parser now maps Arabic thousands separator to comma grouping and Arabic decimal separator to decimal point before extracting values.
+- Added regressions for rejecting `١٬٠٠٠` when cited evidence only says one year, matching Arabic grouped thousands against `1000`, and matching `١٫٥` against `1.5`.
+- Direct-main commits: implementation `c1730f2`; regression `37c26f4`.
+- GitHub file read-back confirms the implementation and tests are present. Tests were not executed; no CI. This improves numeric contradiction screening but does not increase legal readiness or constitute legal review.
+
 ## AI-1 Arabic retrieval lexicon alias-list strictness — 2026-11-28
 
 - Tightened schema validation to reject empty alias lists (which silently contribute no retrieval hints) and repeated alias strings (redundant expansion).
