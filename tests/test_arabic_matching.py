@@ -285,6 +285,26 @@ class ArabicMatchingTests(unittest.TestCase):
                 finally:
                     MATCHING._load_lexicon.cache_clear()
 
+    def test_lexicon_loader_rejects_missing_required_sections_and_invalid_version(self):
+        malformed_payloads = (
+            '{"version":1,"phrase_aliases":{}}',
+            '{"version":1,"token_aliases":{}}',
+            '{"phrase_aliases":{},"token_aliases":{}}',
+            '{"version":2,"phrase_aliases":{},"token_aliases":{}}',
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "lexicon.json"
+            with patch.object(MATCHING, "_LEXICON_PATH", path):
+                for payload in malformed_payloads:
+                    with self.subTest(payload=payload):
+                        path.write_text(payload, encoding="utf-8")
+                        MATCHING._load_lexicon.cache_clear()
+                        try:
+                            with self.assertRaises(ValueError):
+                                MATCHING._load_lexicon()
+                        finally:
+                            MATCHING._load_lexicon.cache_clear()
+
     def test_orthographic_variants_are_narrow_and_symmetric(self):
         self.assertEqual(orthographic_variants("اجازة"), ("اجازة", "اجازه"))
         self.assertEqual(orthographic_variants("اجازه"), ("اجازه", "اجازة"))
