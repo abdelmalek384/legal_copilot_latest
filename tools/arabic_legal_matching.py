@@ -40,7 +40,7 @@ def _load_lexicon():
         for key, values in entries.items():
             if not isinstance(key, str) or not key.strip():
                 raise ValueError(f"{section} contains an empty key")
-            if not isinstance(values, list) or not all(
+            if not isinstance(values, list) or not values or not all(
                 isinstance(value, str) and value.strip() for value in values
             ):
                 raise ValueError(f"{section}[{key!r}] must be a list of non-empty strings")
