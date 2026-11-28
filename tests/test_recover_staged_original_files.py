@@ -4,7 +4,7 @@ import unittest
 from unittest.mock import patch
 from pathlib import Path
 
-from original_file_storage import LocalPrivateObjectStore
+from original_file_storage import LocalPrivateObjectStore, ObjectStorageError
 from tools.recover_staged_original_files import _process_tenant
 
 
@@ -78,6 +78,27 @@ class RecoverStagedOriginalFilesTests(unittest.TestCase):
         self.assertEqual(self._state(staged.object_id), "ready")
         self.assertEqual(self.store.object_presence(7, staged.object_id), (False, True))
         self.assertTrue(self.store.verify(
+            7, staged.object_id, expected_sha256=staged.sha256, expected_size=staged.byte_size
+        ))
+
+    def test_apply_rechecks_finalized_bytes_before_marking_ready(self):
+        staged = self._add_staged_metadata(b"verified before finalize")
+        final_path = self.object_root / "firm-7" / f"{staged.object_id}.blob"
+        real_finalize = self.store.finalize
+
+        def finalize_then_corrupt(firm_id, object_id):
+            real_finalize(firm_id, object_id)
+            final_path.write_bytes(b"corrupted after finalization")
+
+        with patch.object(self.store, "finalize", side_effect=finalize_then_corrupt):
+            with self.assertRaisesRegex(
+                ObjectStorageError, "finalized object failed SHA-256 or size verification"
+            ):
+                _process_tenant(self.db, 7, self.store, apply=True)
+
+        self.assertEqual(self._state(staged.object_id), "staged")
+        self.assertEqual(self.store.object_presence(7, staged.object_id), (False, True))
+        self.assertFalse(self.store.verify(
             7, staged.object_id, expected_sha256=staged.sha256, expected_size=staged.byte_size
         ))
 
