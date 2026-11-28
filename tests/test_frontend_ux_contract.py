@@ -615,7 +615,7 @@ class FrontendUXContractTests(unittest.TestCase):
         self.assertIn("api('/invoices/'+item.id+'/void','POST'", HTML)
 
 
-        def test_calendar_agenda_count_is_announced(self):
+    def test_calendar_agenda_count_is_announced(self):
         calendar = HTML[HTML.index("async function calendarPage(){"):HTML.index("const caseRow=")]
         self.assertIn("role:'status','aria-live':'polite',textContent:rows.length", calendar)\n\n    def test_calendar_supports_today_and_type_filters(self):
         calendar = HTML[HTML.index("async function calendarPage()"):HTML.index("const caseRow=")]
