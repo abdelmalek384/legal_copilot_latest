@@ -182,6 +182,16 @@ class LocalPrivateObjectStoreTests(unittest.TestCase):
         self.assertEqual(staged_path.read_bytes(), b"trusted original")
 
     @unittest.skipUnless(os.name == "posix", "POSIX hard links are required")
+    def test_open_rejects_final_object_over_size_limit(self):
+        staged = self.store.stage(7, b"small payload")
+        self.store.finalize(7, staged.object_id)
+        final_path = self.root / "firm-7" / (staged.object_id + ".blob")
+        final_path.write_bytes(b"x" * (self.store.max_bytes + 1))
+        if os.name == "posix":
+            os.chmod(final_path, 0o600)
+        with self.assertRaisesRegex(ObjectStorageError, "exceeds configured size limit"):
+            self.store.open(7, staged.object_id)
+
     def test_open_and_verify_reject_final_object_with_external_hardlink(self):
         staged = self.store.stage(7, b"private original")
         self.store.finalize(7, staged.object_id)
