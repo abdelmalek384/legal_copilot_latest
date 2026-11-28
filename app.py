@@ -8519,7 +8519,7 @@ def list_invoices(
 def _invoice_csv_text(value):
     """Neutralize spreadsheet formula prefixes in untrusted text cells."""
     text_value = "" if value is None else str(value)
-    if text_value.lstrip().startswith(("=", "+", "-", "@")):
+    if text_value.lstrip(" \\t\\r\\n\\ufeff").startswith(("=", "+", "-", "@")):
         return "'" + text_value
     return text_value
 
