@@ -138,6 +138,16 @@ def _process_tenant(database_path: Path, firm_id: int, store, apply: bool):
             try:
                 if action == "finalize_staged_object":
                     store.finalize(firm_id, object_id)
+                    # Do not commit the metadata transition on the strength of a
+                    # pre-finalization hash alone. Verify the published bytes again
+                    # before marking the record ready.
+                    if not store.verify(
+                        firm_id, object_id,
+                        expected_sha256=digest, expected_size=size,
+                    ):
+                        raise ObjectStorageError(
+                            "finalized object failed SHA-256 or size verification"
+                        )
                 updated = connection.execute(
                     "UPDATE original_file_objects SET state='ready',updated_at=datetime('now') "
                     "WHERE object_id=? AND firm_id=? AND state='staged'",
