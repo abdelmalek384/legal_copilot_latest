@@ -147,6 +147,11 @@ class TenantSQLiteConnectionRouter:
         # the cached handle rather than silently continuing with an exposed DB.
         if os.name == "posix":
             database_mode = stat.S_IMODE(metadata.st_mode)
+            if metadata.st_nlink != 1:
+                self._revoke_cached_connection(trusted_firm_id)
+                raise TenantConnectionError(
+                    "Tenant database file must not have hard-link aliases"
+                )
             if database_mode & 0o077:
                 self._revoke_cached_connection(trusted_firm_id)
                 raise TenantConnectionError(
