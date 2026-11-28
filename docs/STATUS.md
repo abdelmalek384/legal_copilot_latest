@@ -1,3 +1,10 @@
+## AI-1 Arabic lexicon schema version type guard — 2026-11-28
+
+- Tightened `tools/arabic_legal_matching.py` schema check to require an actual integer version `1`; JSON boolean `true` and floating-point `1.0` are now rejected rather than accepted by Python's equality semantics.
+- Added synthetic malformed-version regression cases for `true` and `1.0` to `tests/test_arabic_matching.py`.
+- Direct-main commits: implementation `6be3389`, test `a12100d`.
+- GitHub read-back only; no local tests or Actions run. This is schema validation hardening only and does not improve legal accuracy or readiness. No percentage change assigned.
+
 ## AI-1 Arabic retrieval lexicon schema fail-closed fix — 2026-11-28
 
 - Reviewed and squash-merged PR #2043 as `06e70ee25272083b96db4e0e0e124a6a41c11e58`.
