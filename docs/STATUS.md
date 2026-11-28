@@ -1,3 +1,10 @@
+## MFA recovery-hash parser strictness — 2026-11-28
+
+- Hardened the standalone recovery-code verifier to reject invalid URL-safe Base64 characters and non-canonical encodings in stored scrypt salt/hash fields. Previously the permissive URL-safe decoder could ignore invalid characters, allowing malformed stored hash strings to be accepted as equivalent to valid encodings.
+- Added focused regressions for invalid characters and padding.
+- Direct-main commits: implementation `88e0d6f`; regression `7edaa11`.
+- GitHub read-back only; tests were not executed. MFA remains standalone primitives and is not represented as integrated/active app MFA.
+
 ## Existing original-file recovery and reconciliation integrity improvements — 2026-11-28
 
 Two previously drafted AI-2 security fixes were reviewed and implemented directly on `main` (draft PRs #2045 and #2046 closed after replication; no pending PRs left from them):
