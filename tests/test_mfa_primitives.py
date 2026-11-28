@@ -93,6 +93,15 @@ class MFAPrimitivesTests(unittest.TestCase):
                             for code, encoded in zip(result["codes"], result["hashes"])))
         self.assertTrue(all(code not in encoded for code, encoded in zip(result["codes"], result["hashes"])))
 
+    def test_recovery_hash_rejects_noncanonical_base64_fields(self):
+        encoded = hash_recovery_code("A1B2C3D4E5")
+        parts = encoded.split("$")
+        for index, tampered in ((4, parts[4] + "!"), (5, parts[5] + "=")):
+            invalid = parts.copy()
+            invalid[index] = tampered
+            with self.subTest(index=index):
+                self.assertFalse(verify_recovery_code("A1B2C3D4E5", "$".join(invalid)))
+
     def test_recovery_code_generation_and_hash_validation(self):
         for count in (0, 21, True):
             with self.subTest(count=count), self.assertRaises(MFAPrimitivesError):
