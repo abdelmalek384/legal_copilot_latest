@@ -79,6 +79,11 @@ class TrustedProxyClientIpTests(unittest.TestCase):
             self.assertEqual(connection.arguments[0][1], "203.0.113.44")
             self.assertEqual(connection.arguments[1][1], "203.0.113.45")
 
+    def test_all_trusted_forwarded_hops_fall_back_to_direct_peer(self):
+        with patch.dict(os.environ, {"COPILOT_TRUSTED_PROXIES": "10.0.0.0/8"}):
+            request = make_request("10.0.0.8", "10.0.0.9, 10.0.0.7")
+            self.assertEqual(client_ip(request), "10.0.0.8")
+
     def test_malformed_forwarded_for_falls_back_to_peer(self):
         with patch.dict(os.environ, {"COPILOT_TRUSTED_PROXIES": "10.0.0.0/8"}):
             request = make_request("10.0.0.8", "203.0.113.44, not-an-ip")
