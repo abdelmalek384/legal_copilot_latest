@@ -109,7 +109,15 @@ def verify_recovery_code(code: str, encoded_hash: str) -> bool:
         n, r, p = (int(parts[index]) for index in (1, 2, 3))
         if (n, r, p) != (_SCRYPT_N, _SCRYPT_R, _SCRYPT_P):
             return False
-        decode = lambda value: base64.urlsafe_b64decode(value + "=" * ((4 - len(value) % 4) % 4))
+        def decode(value):
+            if not isinstance(value, str) or not re.fullmatch(r"[A-Za-z0-9_-]+", value):
+                raise ValueError("invalid recovery hash encoding")
+            padded = value + "=" * ((4 - len(value) % 4) % 4)
+            decoded = base64.b64decode(padded, altchars=b"-_", validate=True)
+            if base64.urlsafe_b64encode(decoded).decode("ascii").rstrip("=") != value:
+                raise ValueError("non-canonical recovery hash encoding")
+            return decoded
+
         salt, expected = decode(parts[4]), decode(parts[5])
         if len(salt) != _SCRYPT_SALT_BYTES or len(expected) != _SCRYPT_DKLEN:
             return False
