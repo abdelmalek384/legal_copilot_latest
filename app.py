@@ -2557,7 +2557,9 @@ def client_ip(request: Request) -> str:
         current = candidate
         if not is_trusted(candidate):
             return str(candidate)
-    return str(chain[0]) if chain else str(peer_address)
+    # If every forwarded hop is trusted, no untrusted origin was established.
+    # Do not treat the leftmost forwarded value as client identity; fall back to the direct peer.
+    return str(peer_address)
 
 
 # Per-process fixed-window limits for expensive or abuse-prone endpoints.
