@@ -1,3 +1,11 @@
+## Trusted-proxy identity fallback hardening — 2026-11-28
+
+- Addressed a rate-limit identity edge case: if a trusted proxy sends a forwarded chain containing only configured trusted hops, the application previously selected the leftmost forwarded value despite never finding an untrusted client hop.
+- The resolver now falls back to the direct peer in that all-trusted-chain case; normal chains with an untrusted client still select the rightmost untrusted address.
+- Added a regression test for a fully trusted forwarded chain.
+- Direct-main commits: implementation `cebe30f`; regression `da0058c`.
+- GitHub read-back verification only; tests not executed. This is security/rate-limit hardening, not a legal-readiness percentage increase.
+
 ## Claim-support numeric parsing — Arabic numeric separators — 2026-11-28
 
 - Fixed an actual false-negative risk: Arabic thousands separator `٬` and decimal separator `٫` were not normalized by the claim-support numeric parser, so formatted Arabic numerals could be split/misread instead of compared accurately.
