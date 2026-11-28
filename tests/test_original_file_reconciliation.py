@@ -206,6 +206,66 @@ class OriginalFileReconciliationTests(unittest.TestCase):
         self.assertTrue(oversized.exists(), "reconciliation must remain read-only")
 
     @unittest.skipUnless(os.name == "posix", "POSIX directory descriptors are required")
+    def test_reconciliation_detects_object_name_swap_before_open(self):
+        from unittest.mock import patch
+        import original_file_reconciliation as reconciliation
+
+        self._create_database(rows=[(self.object_id, self.payload, "ready")])
+        directory = self.objects / "firm-7"
+        directory.mkdir()
+        object_path = directory / f"{self.object_id}.blob"
+        object_path.write_bytes(self.payload)
+        parked = self.root / "parked-object"
+        real_open = os.open
+        swapped = False
+
+        def swap_before_open(path, flags, *args, **kwargs):
+            nonlocal swapped
+            if path == object_path.name and kwargs.get("dir_fd") is not None and not swapped:
+                object_path.rename(parked)
+                object_path.write_bytes(b"replacement with a different inode")
+                swapped = True
+            return real_open(path, flags, *args, **kwargs)
+
+        with patch.object(reconciliation.os, "open", side_effect=swap_before_open):
+            report = self._reconcile()
+
+        self.assertTrue(swapped)
+        self.assertIn("unreadable_object", {finding.code for finding in report.findings})
+        self.assertTrue(parked.exists())
+        self.assertTrue(object_path.exists())
+
+    @unittest.skipUnless(os.name == "posix", "POSIX directory descriptors are required")
+    def test_reconciliation_detects_object_name_swap_after_open(self):
+        from unittest.mock import patch
+        import original_file_reconciliation as reconciliation
+
+        self._create_database(rows=[(self.object_id, self.payload, "ready")])
+        directory = self.objects / "firm-7"
+        directory.mkdir()
+        object_path = directory / f"{self.object_id}.blob"
+        object_path.write_bytes(self.payload)
+        parked = self.root / "parked-object"
+        real_fdopen = os.fdopen
+        swapped = False
+
+        def swap_before_fdopen(descriptor, *args, **kwargs):
+            nonlocal swapped
+            if not swapped:
+                object_path.rename(parked)
+                object_path.write_bytes(b"replacement during hash")
+                swapped = True
+            return real_fdopen(descriptor, *args, **kwargs)
+
+        with patch.object(reconciliation.os, "fdopen", side_effect=swap_before_fdopen):
+            report = self._reconcile()
+
+        self.assertTrue(swapped)
+        self.assertIn("unreadable_object", {finding.code for finding in report.findings})
+        self.assertTrue(parked.exists())
+        self.assertTrue(object_path.exists())
+
+    @unittest.skipUnless(os.name == "posix", "POSIX directory descriptors are required")
     def test_reconciliation_rejects_replaced_object_root(self):
         from unittest.mock import patch
 
