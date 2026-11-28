@@ -313,6 +313,8 @@ class LocalPrivateObjectStore:
             metadata = os.fstat(descriptor)
             if not stat.S_ISREG(metadata.st_mode) or metadata.st_nlink != 1:
                 raise ObjectStorageError("stored object is not a single-link regular file")
+            if metadata.st_size > self.max_bytes:
+                raise ObjectStorageError("stored object exceeds configured size limit")
             handle = os.fdopen(descriptor, "rb", closefd=True)
             descriptor = None
             return handle
