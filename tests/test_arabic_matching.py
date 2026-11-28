@@ -381,6 +381,24 @@ class ArabicMatchingTests(unittest.TestCase):
         self.assertFalse(conflict_name_matches("", "عمر فتحي"))
         self.assertFalse(conflict_name_matches("عمر فتحي", ""))
 
+    def test_lexicon_loader_rejects_empty_alias_lists(self):
+        malformed_payloads = (
+            '{"version":1,"phrase_aliases":{"إجازة":[]},"token_aliases":{}}',
+            '{"version":1,"phrase_aliases":{},"token_aliases":{"إجازة":[]}}',
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "lexicon.json"
+            with patch.object(MATCHING, "_LEXICON_PATH", path):
+                for payload in malformed_payloads:
+                    with self.subTest(payload=payload):
+                        path.write_text(payload, encoding="utf-8")
+                        MATCHING._load_lexicon.cache_clear()
+                        try:
+                            with self.assertRaisesRegex(ValueError, "list of non-empty strings"):
+                                MATCHING._load_lexicon()
+                        finally:
+                            MATCHING._load_lexicon.cache_clear()
+
 
 if __name__ == "__main__":
     unittest.main()
