@@ -46,3 +46,18 @@ This is a conservative integration design checkpoint, not a claim that retrieval
 - A fresh full-file GitHub readback of current `app.py` confirms `citation_provenance(c, version_id)` already calls `load_source_match_evidence(c, data.get('version_id'), data.get('source_id'))` and attaches the packet when present; search-result construction copies it into the hit. Thus the adapter exposure portion appears already implemented in current main, contrary to the older trace documentation.
 - The remaining live gap in the current main readback is `search(..., scope='firm_test_source_matched')`, which still unconditionally returns `[]`. This is direct static source inspection, not runtime verification.
 - Local checkout retry again failed DNS. No source code/tests changed/executed. Need next implementation focus: carefully reviewed dedicated retrieval architecture, rights-use gating, and isolation, while reconciling outdated trace/blocker documentation.
+
+
+## Current source-path readback and narrowed next implementation
+
+### Confirmed in current `app.py` (static inspection only)
+- `citation_provenance(c, version_id)` selects version/document/source registry fields and calls `load_source_match_evidence(c, data.get('version_id'), data.get('source_id'))`; it attaches the packet when the adapter returns one.
+- The search-hit construction copies `provenance.source_match_evidence` into `item.source_match_evidence` and passes the item through `source_status` and citation rendering.
+- `search()` accepts the scope string but explicitly returns `[]` for `firm_test_source_matched` before ordinary FTS retrieval. This is the live implementation boundary.
+- The ordinary FTS SQL is permission/currentness/review gated for verified sources; it must not be weakened or repurposed as candidate retrieval.
+
+### Narrowed implementation task
+Design a separate query over only an explicitly candidate/experimental dataset or controlled version registry scope. It must not silently reuse the verified-only SQL or treat the unverified candidate catalogue as corpus content. It needs an explicit whitelist of approved-use rows, exact source/version binding, packet validation, source-type/primary-source restriction, and exact non-production firm gates. There is no currently demonstrated permission-cleared live candidate; synthetic test fixtures are necessary and must not be seeded into production legal data.
+
+### Current session limit
+Local clone remains blocked by DNS. The session cannot safely author/execute/test a large `app.py` change using the remote contents API alone without confirming the candidate data/query architecture and exact runtime behavior. The safest outcome remains fail-closed, with the implementation gap documented precisely.
