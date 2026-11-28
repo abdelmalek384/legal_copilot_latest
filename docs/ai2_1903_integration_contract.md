@@ -39,3 +39,10 @@ This is a conservative integration design checkpoint, not a claim that retrieval
 - Existing trust-tier and search/provenance path identified through code search.
 - Clone retry failed with `Could not resolve host: github.com`; no Python tests executed.
 - This document is design/checkpoint documentation only. It does not authorize candidate exposure or certify implementation.
+
+
+## Follow-up static readback correction — 2026-11-28
+
+- A fresh full-file GitHub readback of current `app.py` confirms `citation_provenance(c, version_id)` already calls `load_source_match_evidence(c, data.get('version_id'), data.get('source_id'))` and attaches the packet when present; search-result construction copies it into the hit. Thus the adapter exposure portion appears already implemented in current main, contrary to the older trace documentation.
+- The remaining live gap in the current main readback is `search(..., scope='firm_test_source_matched')`, which still unconditionally returns `[]`. This is direct static source inspection, not runtime verification.
+- Local checkout retry again failed DNS. No source code/tests changed/executed. Need next implementation focus: carefully reviewed dedicated retrieval architecture, rights-use gating, and isolation, while reconciling outdated trace/blocker documentation.
