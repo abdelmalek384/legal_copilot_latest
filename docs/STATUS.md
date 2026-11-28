@@ -2471,3 +2471,11 @@ Percentages are scoped to the described implementation or acceptance phase. They
 - Direct-main commit: `9da78afdc3e5bea98b5fbaad795072e7b7d3d079`.
 - PR #2042 was reviewed and squash-merged as `039e7249ce365050977037d187f758005c411cb0`: the claim-support numeric tokenizer now recognizes Arabic percent symbol `٪` as a unit marker and adds regression coverage for matching `10٪` to `10 بالمئة` and rejecting evidence without the unit. Tests were authored but not executed; this is lexical consistency only.
 - Overall project readiness estimate remains **76.8%** (+0.0 pp) because neither repository tests nor app/tenant/browser acceptance have been executed. Lawyer verification remains **0%**; pilot remains **NOT READY**.
+
+
+## 2026-11-28 AI-2 continuation checkpoint
+
+- Re-read continuity files and #1903 issue; source-match adapter, migrations 0005/0006 and integration boundary confirmed.
+- Repeated shallow clone attempt failed DNS (`Could not resolve host: github.com`); no code or tests executed.
+- Added `docs/ai2_1903_integration_contract.md` on branch `ai2-1903-integration-contract`, documenting exact packet-binding, test-firm isolation, fail-closed retrieval and acceptance requirements. Design documentation only; no implementation/validation claim.
+- Candidate serving remains disabled/fail-closed; verified/legal flags unchanged; Law 14/2025 remains rights-blocked.
