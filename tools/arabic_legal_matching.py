@@ -29,7 +29,7 @@ def _load_lexicon():
         payload = json.load(handle, object_pairs_hook=_reject_duplicate_json_keys)
     if not isinstance(payload, dict):
         raise ValueError("Arabic legal lexicon must be a JSON object")
-    if payload.get("version") != 1:
+    if type(payload.get("version")) is not int or payload.get("version") != 1:
         raise ValueError("Arabic legal lexicon version must be 1")
     for section in ("phrase_aliases", "token_aliases"):
         if section not in payload:
