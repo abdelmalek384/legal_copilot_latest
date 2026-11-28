@@ -313,7 +313,8 @@ _CURRENCY_PREFIXES = {"egp", "pound", "pounds", "جنيه", "جنيهات"}
 
 def _numeric_markers(text):
     """Extract numeric values and optional units, including common Arabic/English words."""
-    value = unicodedata.normalize("NFKC", str(text or "")).translate(_ARABIC_DIGITS).lower()
+    value = (unicodedata.normalize("NFKC", str(text or ""))
+             .translate(_ARABIC_DIGITS).replace("\u066c", ",").replace("\u066b", ".").lower())
     value = re.sub(r"[\u0640\u064b-\u065f\u0670]", "", value)
     # Prefer comma-grouped thousands (1,000 / 1,000.5) over decimal-comma
     # interpretation. A mistaken 1,000 -> 1 conversion can hide a material
