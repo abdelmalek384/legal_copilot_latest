@@ -1,23 +1,22 @@
 # AI Project State — Legal for Today
 
 **Repository:** [legal_copilot_latest](https://github.com/abdelmalek384/legal_copilot_latest)  
-**Branch baseline:** main  
-**Baseline SHA (session start):** 60b2ebd0d2a0940c904a6ac6afb54a4ac221fcec  
-**Checkpoint:** 2026-11-28
+**Checkpoint:** 2026-11-28; continuity docs merged as commit `2a16454c52e660156d9fe7c6634678c442706db6`.
 
-## Current direction
-Controlled law-firm pilot; fail-closed source trust, tenant isolation, security, and legal review boundaries remain release-critical. No production deployment or legal verification is claimed.
+## Direction
+Controlled law-firm pilot. Fail-closed source trust, tenant isolation, security, and lawyer review are release-critical. Pilot is NOT READY.
 
-## Current engineering focus
-- **AI-2 integration blocker #1903:** Persist and expose exact-version source-match evidence to the dedicated, non-production test-firm retrieval scope. Requires normalized schema, provenance adapter integration, dedicated scope, and exact-head Python 3.12 / tenant-isolation tests.
-- Draft PR #1902 supplies a classifier prerequisite but is not an integrated retrieval implementation; do not treat as ready or merge without its acceptance gates.
-- Other release gates remain unresolved, including storage deletion/recovery acceptance, legal-source rights and lawyer review, MFA/email staging acceptance, and manual UI/accessibility acceptance.
+## Current P0
+- **Issue #1903:** implement exact-version source-match evidence retrieval only for the explicitly gated non-production test firm.
+- Existing `migrations/legal_corpus/0005_source_match_evidence.sql` and `0006_source_match_evidence_use_rights_guard.sql`, plus `tools/source_match_evidence.py`, already store and read validated evidence. Missing integration is the corpus provenance adapter and candidate-search scope.
+- Draft PR #1902 classifier is a prerequisite, not an end-to-end integration. Review its exact-head CI and prior blockers before dependency use.
+- Preserve `verified=0`, pending review, false authenticity/status/amendment verification flags, no lawyer-approval event, and complete rights evidence. Do not activate Law 14/2025 without explicitly cleared reuse rights.
 
-## Session evidence
-- GitHub read-back inspected `tools/source_match_evidence.py`, `docs/STATUS.md`, issue #1903, and draft PR #1902 summary.
-- Required prior continuity files were absent at the expected paths.
-- Tests were not executed; this environment has no local checkout/runtime evidence.
-- No legal sources, permission grants, verification status, or production readiness were changed.
+## Session accomplishments
+- Restored `docs/AI_PROJECT_STATE.md`, `docs/AI_TASK_BOARD.md`, and `docs/verification/TEST_LEDGER.md`; PR #2048 merged, commit `2a16454`.
+- Read back issue #1903, adapter, schema migrations, trust-tier helper, storage test, and status/trace references.
+- Identified integration boundary: `citation_provenance()` returns registry-linked provenance but currently omits the full machine evidence package; test-mode search scope yields no candidates.
+- No repository tests executed. No legal permissions, status, or real-source data altered.
 
-## Next implementation
-Resolve #1903 by inspecting the corpus schema, adapter, dedicated test-firm scope, and draft #1902 dependencies; implement only on a feature branch with synthetic data and explicit fail-closed tests. Keep Law 14/2025 excluded unless rights are explicitly cleared.
+## Next implementation action
+Implement adapter exposure and candidate retrieval with synthetic evidence only, exact version/source binding and firm/environment/policy gate; test isolation and malformed/missing evidence. Current workspace cannot clone GitHub (DNS resolution failed), so source changes/test execution are blocked until a checkout/runtime is available. Do not claim implementation or tests passed.
