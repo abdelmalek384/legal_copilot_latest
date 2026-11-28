@@ -211,6 +211,25 @@ class TenantSQLiteConnectionRouterTests(unittest.TestCase):
         with self.assertRaises(sqlite3.ProgrammingError):
             opened[0].execute("SELECT 1")
 
+    @unittest.skipUnless(os.name == "posix", "POSIX hard links are required")
+    def test_database_hardlink_added_after_cache_revokes_connection(self):
+        connection = self.router.connection_for_firm(101)
+        with self._catalog() as catalog:
+            path = resolve_tenant_database(catalog, 101, self.root)
+        external_alias = Path(self.temp.name) / "outside-cached-database"
+        try:
+            os.link(path, external_alias)
+            self.assertEqual(path.stat().st_nlink, 2)
+            with self.assertRaisesRegex(
+                TenantConnectionError, "must not have hard-link aliases"
+            ):
+                self.router.connection_for_firm(101)
+            with self.assertRaises(sqlite3.ProgrammingError):
+                connection.execute("SELECT 1")
+        finally:
+            external_alias.unlink(missing_ok=True)
+            self.router.close_current_thread()
+
     @unittest.skipUnless(os.name == "posix", "POSIX file permission bits are required")
     def test_permissive_sqlite_sidecar_revokes_cached_tenant_connection(self):
         connection = self.router.connection_for_firm(101)
