@@ -190,6 +190,25 @@ class ClaimSupportTests(unittest.TestCase):
             evidence, tokens, norm, _mask_markdown_code
         ))
 
+    def test_arabic_thousands_separator_is_not_parsed_as_a_smaller_number(self):
+        evidence = [{"text": "مدة التقادم سنة واحدة."}]
+        self.assertTrue(has_unsupported_claims(
+            "مدة التقادم ١٬٠٠٠ سنة [1].",
+            evidence, tokens, norm, _mask_markdown_code
+        ))
+
+    def test_arabic_thousands_and_decimal_separators_match_numeric_source(self):
+        grouped = [{"text": "مدة التقادم 1000 سنة."}]
+        self.assertFalse(has_unsupported_claims(
+            "مدة التقادم ١٬٠٠٠ سنة [1].",
+            grouped, tokens, norm, _mask_markdown_code
+        ))
+        decimal = [{"text": "الغرامة الافتراضية 1.5 جنيه."}]
+        self.assertFalse(has_unsupported_claims(
+            "الغرامة الافتراضية ١٫٥ جنيه [1].",
+            decimal, tokens, norm, _mask_markdown_code
+        ))
+
     def test_arabic_no_expiry_claim_is_blocked_by_finite_limitation_period(self):
         hits = [{"text": "مدة التقادم خمس سنوات."}]
         for claim in ("الحق لا يتقادم أبدا [1].", "الدعوى لا تسقط مطلقا [1]."):
