@@ -1,3 +1,10 @@
+## AI-1 Arabic retrieval lexicon schema fail-closed fix — 2026-11-28
+
+- Reviewed and squash-merged PR #2043 as `06e70ee25272083b96db4e0e0e124a6a41c11e58`.
+- The lexicon loader now rejects missing/unsupported schema version and absent required alias sections instead of silently treating them as empty. The existing current lexicon declares version 1 and both sections.
+- Synthetic regressions cover absent each section, absent version, and unsupported version. No retrieval quality or legal content change is claimed.
+- Merge verified via GitHub merge response. Python tests were not executed (GitHub Actions unavailable; local environment untouched by this work). No readiness percentage increase; pilot remains NOT READY pending runtime, full regression, browser/two-firm acceptance, and lawyer review.
+
 ## AI-2 Mac local-launcher port override — 2026-11-27
 
 - Added a validated `COPILOT_PORT` override to `start_mac.command` (default 8000, allowed range 1–65535), while preserving the loopback-only bind at `127.0.0.1`. This lets the test checkout run on a second port if another checkout is already listening.
