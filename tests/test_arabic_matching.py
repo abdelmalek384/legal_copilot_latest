@@ -293,6 +293,8 @@ class ArabicMatchingTests(unittest.TestCase):
             '{"version":2,"phrase_aliases":{},"token_aliases":{}}',
             '{"version":true,"phrase_aliases":{},"token_aliases":{}}',
             '{"version":1.0,"phrase_aliases":{},"token_aliases":{}}',
+            '{"version":1,"phrase_aliases":{"test":[]},"token_aliases":{}}',
+            '{"version":1,"phrase_aliases":{"test":["alias","alias"]},"token_aliases":{}}',
         )
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "lexicon.json"
