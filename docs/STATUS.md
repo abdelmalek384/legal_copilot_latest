@@ -1,3 +1,17 @@
+## Existing original-file recovery and reconciliation integrity improvements — 2026-11-28
+
+Two previously drafted AI-2 security fixes were reviewed and implemented directly on `main` (draft PRs #2045 and #2046 closed after replication; no pending PRs left from them):
+
+1. Staged original-file recovery now re-verifies the finalized object digest and byte size after finalization, before committing metadata as `ready`. Failed verification raises and rolls back the state transition. Regression injects corruption immediately after finalization.
+   - Source commit: `d38d29f`
+   - Regression commit: `3fec231`
+
+2. Read-only local original-file reconciliation now pins expected device/inode from inventory, verifies the opened descriptor identity, and checks the no-follow directory entry identity after hashing. Race regressions swap the file name before open and after open/hash start and expect an `unreadable_object` finding.
+   - Source commit: `dc59e1d`
+   - Regression commit: `db03704`
+
+Source and regression files were read back from GitHub after committing. Exact repository tests remain unexecuted; GitHub Actions unavailable. These changes are focused integrity improvements, not proof of full race freedom or pilot readiness.
+
 ## Trusted-proxy identity fallback hardening — 2026-11-28
 
 - Addressed a rate-limit identity edge case: if a trusted proxy sends a forwarded chain containing only configured trusted hops, the application previously selected the leftmost forwarded value despite never finding an untrusted client hop.
