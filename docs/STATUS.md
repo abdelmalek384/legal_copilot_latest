@@ -1,3 +1,10 @@
+## AI-1 Arabic retrieval lexicon alias-list strictness — 2026-11-28
+
+- Tightened schema validation to reject empty alias lists (which silently contribute no retrieval hints) and repeated alias strings (redundant expansion).
+- Added synthetic malformed lexicon regression cases for both conditions. Current checked-in lexicon manually inspected: 144 phrase entries and 38 token entries; zero empty lists or duplicate alias strings found.
+- Direct-main commits: validator `92f4020`, regression `abe42b0`.
+- GitHub read-back only; tests are authored but not executed. This is input-shape validation, not legal-content validation or retrieval-quality improvement. No readiness percentage increase assigned.
+
 ## AI-1 Arabic lexicon schema version type guard — 2026-11-28
 
 - Tightened `tools/arabic_legal_matching.py` schema check to require an actual integer version `1`; JSON boolean `true` and floating-point `1.0` are now rejected rather than accepted by Python's equality semantics.
