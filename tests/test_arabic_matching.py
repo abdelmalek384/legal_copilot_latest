@@ -209,6 +209,16 @@ class ArabicMatchingTests(unittest.TestCase):
         self.assertNotIn("leave", expanded)
         self.assertFalse(set(tokens("الإجازة السنوية للعامل")).issubset(expanded))
 
+    def test_negation_scope_covers_long_formal_clauses_before_target(self):
+        query = "لا يجوز قانونا لصاحب العمل منع العامل من الحصول على الإجازة السنوية"
+        expanded = set(expanded_tokens(query))
+        self.assertTrue(set(tokens(query)).issubset(expanded))
+        self.assertNotIn("leave", expanded)
+
+        query = "ليس من المقبول بأي حال حرمان الموظف من الإجازة السنوية"
+        expanded = set(expanded_tokens(query))
+        self.assertNotIn("leave", expanded)
+
     def test_interrogative_ma_is_not_mistaken_for_negation(self):
         expanded = set(expanded_tokens("ما هي الإجازة السنوية؟"))
         self.assertIn("leave", expanded)
