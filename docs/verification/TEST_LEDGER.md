@@ -1,10 +1,12 @@
 # Test Ledger — Legal for Today
 
-This ledger is a restored evidence log. It does not retroactively certify prior tests.
+Evidence log; no retroactive certification.
 
 | Date | Commit / scope | Command or evidence | Outcome | Classification |
 |---|---|---|---|---|
-| 2026-11-28 | Main baseline `60b2ebd0d2a0940c904a6ac6afb54a4ac221fcec` | GitHub source read-back: `tools/source_match_evidence.py`, `docs/STATUS.md`, issue #1903, draft PR #1902 | Source-level inspection only; tests not executed during this session | Not a test run |
+| 2026-11-28 | Baseline `60b2ebd0d2a0940c904a6ac6afb54a4ac221fcec` | Source read-back of adapter, docs, issue #1903, PR #1902 | No tests executed | Inspection only |
+| 2026-11-28 | Continuity docs #2048 merged `2a16454c52e660156d9fe7c6634678c442706db6` | GitHub merge response | Merge confirmed; documentation-only | Integration evidence |
+| 2026-11-28 | #1903 code investigation | GitHub read-back: schema migrations 0005/0006, adapter, storage test, trust helper, provenance trace | Integration gap located; clone attempt failed DNS; tests not executed | Inspection/blocker |
 
 ## Evidence requirements
-For each test execution record: exact commit SHA, supported Python/runtime, command, exit status, test count/output summary, and whether run locally or in CI. Separate static inspection, synthetic harnesses, CI results, staging acceptance, and live-provider acceptance. Never record an unexecuted test as passed.
+Record exact commit SHA, supported runtime, command, exit status, test output/count, and whether local or CI. Separate source inspection, synthetic harnesses, CI, staging, and live acceptance. Never claim unexecuted tests passed.
