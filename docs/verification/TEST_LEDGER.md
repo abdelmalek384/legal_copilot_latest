@@ -10,3 +10,11 @@ Evidence log; no retroactive certification.
 
 ## Evidence requirements
 Record exact commit SHA, supported runtime, command, exit status, test output/count, and whether local or CI. Separate source inspection, synthetic harnesses, CI, staging, and live acceptance. Never claim unexecuted tests passed.
+
+
+## 2026-11-28 AI-2 continuation checkpoint
+
+- Re-read continuity files and #1903 issue; source-match adapter, migrations 0005/0006 and integration boundary confirmed.
+- Repeated shallow clone attempt failed DNS (`Could not resolve host: github.com`); no code or tests executed.
+- Added `docs/ai2_1903_integration_contract.md` on branch `ai2-1903-integration-contract`, documenting exact packet-binding, test-firm isolation, fail-closed retrieval and acceptance requirements. Design documentation only; no implementation/validation claim.
+- Candidate serving remains disabled/fail-closed; verified/legal flags unchanged; Law 14/2025 remains rights-blocked.
