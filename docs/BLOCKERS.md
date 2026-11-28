@@ -687,3 +687,8 @@ The owner has explicitly requested a non-production firm-test implementation. Th
 - Extracted the source-matched test policy-approval switch into a small fail-closed helper that accepts only mapping-like configuration and the trimmed string value `1`. Integers, booleans, nulls, malformed values, and non-mapping inputs are denied.
 - Updated the application gate to call this helper and added synthetic malformed-setting regressions. Tests are authored, not executed; GitHub Actions are not run.
 - This is defensive configuration parsing only; no source evidence, legal content, permissions, or production eligibility changed.
+
+
+## #1903 current static readback correction — 2026-11-28
+
+Current `app.py` source readback confirms the corpus provenance adapter already calls the version/source-bound evidence loader and attaches its packet when available; hit construction propagates it. This is static evidence only, not runtime validation. The dedicated `firm_test_source_matched` search scope still returns no candidates. The candidate query/permission-use/isolation integration remains outstanding; clone DNS failure prevents checkout and tests in this session.
